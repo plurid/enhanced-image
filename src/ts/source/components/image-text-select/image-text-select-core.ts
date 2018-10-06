@@ -8,6 +8,8 @@ interface IImageText {
     id: string,
     begin: number,
     end: number,
+    xPercentage: number,
+    yPercentage: number,
     xCoord: number,
     yCoord: number,
     perspective: string,
@@ -35,13 +37,13 @@ export function setImage(its: HTMLImageTextSelectElement) {
     // Set video attributes.
     // imgEl.autoplay = its.autoplay;
     // imgEl.controls = its.controls;
-    imgEl.height = parseInt(its.height);
+    // imgEl.height = parseInt(its.height);
     // imgEl.loop = its.loop;
     // imgEl.muted = its.muted;
     // imgEl.poster = its.poster;
     // imgEl.preload = its.preload;
     imgEl.src = its.source;
-    imgEl.width = parseInt(its.width);
+    // imgEl.width = parseInt(its.width);
 
     // If text has been generated, load it from database
     // or get it from server and set it in page.
@@ -70,7 +72,7 @@ export function setImage(its: HTMLImageTextSelectElement) {
 
 
 function setImageText(image: HTMLImageTextSelectElement, itsData: IITSData) {
-    const imageEl = image.getElementsByTagName('image')[0];
+    const imageEl = image.getElementsByTagName('img')[0];
 
     image.id = itsData.id;
 
@@ -81,49 +83,27 @@ function setImageText(image: HTMLImageTextSelectElement, itsData: IITSData) {
         imageSelect.innerHTML = escapeHTML(imageTextEl.textContent);
         imageSelect.id = imageTextEl.id;
 
-        // imageEl.addEventListener( "loadedmetadata", () => {
-        //     // let width = imageEl.videoWidth;
-        //     // let height = imageEl.videoHeight;
-        //     let ratioHW = height/width;
-        //     let ratioWH = width/height;
+        imageEl.addEventListener('load', () => {
+            const imgHeight = imageEl.clientHeight;
+            const imgWidth = imageEl.clientWidth;
+            const leftPos = (imageTextEl.xPercentage * imgWidth) / 100;
+            const topPos = (imageTextEl.yPercentage * imgHeight) / 100;
 
-        //     // console.log('width', width);
-        //     // console.log('height', height);
-        //     // console.log('ratioHW', ratioHW);
-        //     // console.log('ratioWH', ratioWH);
-        //     // console.log('duration', videoEl.duration);
+            // console.log('img', imageEl.getBoundingClientRect());
+            // console.log('height', imageEl.clientHeight);
+            // console.log('width', imageEl.clientWidth);
 
-        //     return {
-        //         width: width,
-        //         height: height,
-        //         ratioHW: ratioHW,
-        //         ratioWH: ratioWH
-        //     }
-        // }, false );
+            imageSelect.style.fontFamily = imageTextEl.fontFamily;
+            imageSelect.style.fontSize = imageTextEl.fontSize + 'px';
+            imageSelect.style.letterSpacing = imageTextEl.letterSpacing + 'px';
+            imageSelect.style.lineHeight = imageTextEl.lineHeight + 'px';
+            imageSelect.style.wordSpacing = imageTextEl.wordSpacing + 'px';
 
+            imageSelect.style.left = leftPos + 'px';
+            imageSelect.style.top = topPos + 'px';
 
-        // let videoBounding = videoEl.getBoundingClientRect();
-        // let videoWidth = videoBounding.width;
-        // let videoWidth = videoEl.offsetWidth;
-        // let videoHeight = videoEl.offsetHeight;
-        // let videoHeight = videoEl.videoHeight;
-        // let videoWidth = videoEl.videoWidth;
-        // let videoHeight = videoBounding.height;
-        // console.log('width', videoWidth);
-        // console.log('height', videoHeight);
-        // console.log(videoBounding);
-
-        // values are good for 995px width page
-        imageSelect.style.fontFamily = imageTextEl.fontFamily;
-        imageSelect.style.fontSize = imageTextEl.fontSize + 'px';
-        imageSelect.style.letterSpacing = imageTextEl.letterSpacing + 'px';
-        imageSelect.style.lineHeight = imageTextEl.lineHeight + 'px';
-        imageSelect.style.wordSpacing = imageTextEl.wordSpacing + 'px';
-
-        imageSelect.style.left = imageTextEl.xCoord + 'px';
-        imageSelect.style.top = imageTextEl.yCoord + 'px';
-
-        imageText.appendChild(imageSelect);
+            imageText.appendChild(imageSelect);
+        });
     });
 
     image.appendChild(imageText);
