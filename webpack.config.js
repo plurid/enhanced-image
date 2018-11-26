@@ -13,7 +13,7 @@ const path = require('path');
 module.exports = {
     mode: 'development',
     // mode: 'production',
-    entry: './app.js',
+    entry: './app.ts',
     output: {
         filename: 'image-text-select.js',
         path: path.resolve(__dirname, 'image-text-select/js')
