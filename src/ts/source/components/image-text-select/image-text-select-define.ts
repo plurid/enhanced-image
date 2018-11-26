@@ -1,38 +1,33 @@
+import { LitElement, html } from '@polymer/lit-element';
 import { setImage } from './image-text-select-core';
 
 
 
-export class HTMLImageTextSelectElement extends HTMLElement {
-    private _autoplay: boolean = false;
-    private _controls: boolean = true;
+export class HTMLImageTextSelectElement extends LitElement {
     private _height: string;
-    private _loop: boolean = false;
-    private _muted: boolean = false;
     private _poster: string;
     private _pregenerate: boolean = false;
     private _preload: string;
     private _source: string;
     private _sources: string[];
     private _width: string;
+    private _text: string;
+
+
+    static get properties() {
+        return {
+        };
+    }
+
+    createRenderRoot() {
+        return this;
+    }
 
 
     constructor() {
         super();
 
-        this.autoplay = ( this.getAttribute('autoplay') === 'true' ||
-                          this.getAttribute('autoplay') === ''
-                        ) ? true : false;
-        this.controls = ( this.getAttribute('controls') === 'true' ||
-                          this.getAttribute('controls') === '' ||
-                          this.getAttribute('controls') === null
-                        ) ? true : false;
         this.height = this.getAttribute('height');
-        this.loop = ( this.getAttribute('loop') === 'true' ||
-                      this.getAttribute('loop') === ''
-                    ) ? true : false;
-        this.muted = ( this.getAttribute('muted') === 'true' ||
-                       this.getAttribute('muted') === ''
-                     ) ? true : false;
         this.poster = this.getAttribute('poster');
         this.pregenerate = ( this.getAttribute('pregenerate') === 'true' ||
                              this.getAttribute('pregenerate') === ''
@@ -43,27 +38,19 @@ export class HTMLImageTextSelectElement extends HTMLElement {
         this.sources = this.getAttribute('sources') ? this.getAttribute('sources').split(' ') : undefined;
 
         this.width = this.getAttribute('width');
+        this.text = this.getAttribute('text');
 
-        setImage(this);
+        console.log(JSON.parse(this.text));
+
+        // setImage(this);
     }
 
-
-    // --- Autoplay ---
-    get autoplay(): boolean {
-        return this._autoplay;
-    }
-    set autoplay(newAutoplay: boolean) {
-        this._autoplay = newAutoplay;
+    render () {
+        return html`
+            aaa ${ this.text }
+        `;
     }
 
-
-    // --- Controls ---
-    get controls(): boolean {
-        return this._controls;
-    }
-    set controls(newControls: boolean) {
-        this._controls = newControls;
-    }
 
 
     // --- Height ---
@@ -72,23 +59,6 @@ export class HTMLImageTextSelectElement extends HTMLElement {
     }
     set height(newHeight: string) {
         this._height = newHeight;
-    }
-
-    // --- Loop ---
-    get loop(): boolean {
-        return this._loop;
-    }
-    set loop(newLoop: boolean) {
-        this._loop = newLoop;
-    }
-
-
-    // --- Muted ---
-    get muted(): boolean {
-        return this._muted;
-    }
-    set muted(newMuted: boolean) {
-        this._muted = newMuted;
     }
 
 
@@ -143,6 +113,14 @@ export class HTMLImageTextSelectElement extends HTMLElement {
     }
     set width(newWidth: string) {
         this._width = newWidth;
+    }
+
+    // --- Width ---
+    get text(): string {
+        return this._text;
+    }
+    set text(newText: string) {
+        this._text = newText;
     }
 }
 
