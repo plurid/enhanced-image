@@ -34,7 +34,7 @@ module.exports = {
         miniCssExtract
     ],
     resolve: {
-        extensions: ['.ts', '.js', '.json']
+        extensions: ['.ts', '.js']
     },
     module: {
         rules: [
