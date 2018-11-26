@@ -30,7 +30,10 @@ image-text-select > img {
   margin: 0;
   padding: 0;
   width: 100%;
-  user-select: none; }
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
 
 image-text {
   display: block;
@@ -62,6 +65,13 @@ image-select {
   letter-spacing: 0;
   line-height: 14px;
   word-spacing: 0px; }
+
+image-select::-moz-selection {
+  /*
+        Selection background should adjust dynamically
+        based on the median value of the pixels in the image.
+    */
+  background-color: #8592ad; }
 
 image-select::selection {
   /*

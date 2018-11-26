@@ -1,10 +1,12 @@
+const appName = 'image-text-select';
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 
 const miniCssExtract = new MiniCssExtractPlugin({
-    filename: "../css/image-text-select.css",
+    filename: `../css/${appName}.css`,
     disable: process.env.NODE_ENV === "development"
 });
 const path = require('path');
@@ -15,8 +17,8 @@ module.exports = {
     // mode: 'production',
     entry: './app.ts',
     output: {
-        filename: 'image-text-select.js',
-        path: path.resolve(__dirname, 'image-text-select/js')
+        filename: `${appName}.js`,
+        path: path.resolve(__dirname, `${appName}/js`)
     },
     optimization: {
         minimizer: [
@@ -41,6 +43,7 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
+                    'postcss-loader',
                     'sass-loader',
                 ],
             },
