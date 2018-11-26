@@ -148,4 +148,4 @@ export class HTMLImageTextSelectElement extends HTMLElement {
 
 
 customElements.define('image-text-select', HTMLImageTextSelectElement);
-customElements.define('img-text-select', HTMLImageTextSelectElement);
+// customElements.define('img-text-select', HTMLImageTextSelectElement);
