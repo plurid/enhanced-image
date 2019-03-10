@@ -12,58 +12,42 @@ import '@stencil/core';
 
 export namespace Components {
 
-  interface MyComponent {
+  interface EnhancedImage {
     /**
-    * The first name
+    * The source of the image
     */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+    'src': string;
   }
-  interface MyComponentAttributes extends StencilHTMLAttributes {
+  interface EnhancedImageAttributes extends StencilHTMLAttributes {
     /**
-    * The first name
+    * The source of the image
     */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+    'src'?: string;
   }
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'MyComponent': Components.MyComponent;
+    'EnhancedImage': Components.EnhancedImage;
   }
 
   interface StencilIntrinsicElements {
-    'my-component': Components.MyComponentAttributes;
+    'enhanced-image': Components.EnhancedImageAttributes;
   }
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLEnhancedImageElement extends Components.EnhancedImage, HTMLStencilElement {}
+  var HTMLEnhancedImageElement: {
+    prototype: HTMLEnhancedImageElement;
+    new (): HTMLEnhancedImageElement;
   };
 
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement
+    'enhanced-image': HTMLEnhancedImageElement
   }
 
   interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'enhanced-image': HTMLEnhancedImageElement;
   }
 
 

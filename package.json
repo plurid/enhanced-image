@@ -1,7 +1,16 @@
 {
     "name": "enhanced-image-html",
     "version": "0.0.1",
-    "description": "Enhanced Image",
+    "description": "HTML Image Element with Enhanced Abilities — HTML Custom Elements",
+    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/plurid/enhanced-image-html.git"
+    },
+    "bugs": {
+        "url": "https://github.com/plurid/enhanced-image-html/issues"
+    },
     "module": "dist/esm/index.js",
     "main": "dist/index.js",
     "unpkg": "dist/ionic.js",
@@ -18,7 +27,7 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "@stencil/core": "~0.16.2"
-    },
-    "license": "MIT"
+        "@stencil/core": "~0.16.2",
+        "@types/jest": "^24.0.11"
+    }
 }
