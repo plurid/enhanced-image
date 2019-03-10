@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { inlineSvg } from 'stencil-inline-svg';
 
 
 
@@ -14,5 +15,6 @@ export const config: Config = {
             type: 'www',
             serviceWorker: null
         }
-    ]
+    ],
+    plugins: [inlineSvg()]
 };

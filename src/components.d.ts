@@ -12,13 +12,42 @@ import '@stencil/core';
 
 export namespace Components {
 
+  interface EnhancedImageSettingsButton {
+    /**
+    * The source of the image
+    */
+    'invertColors': any;
+    /**
+    * The source of the image
+    */
+    'src': string;
+  }
+  interface EnhancedImageSettingsButtonAttributes extends StencilHTMLAttributes {
+    /**
+    * The source of the image
+    */
+    'invertColors'?: any;
+    /**
+    * The source of the image
+    */
+    'src'?: string;
+  }
+
   interface EnhancedImage {
+    /**
+    * The position of the settings button
+    */
+    'settingsPosition': string;
     /**
     * The source of the image
     */
     'src': string;
   }
   interface EnhancedImageAttributes extends StencilHTMLAttributes {
+    /**
+    * The position of the settings button
+    */
+    'settingsPosition'?: string;
     /**
     * The source of the image
     */
@@ -28,13 +57,21 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'EnhancedImageSettingsButton': Components.EnhancedImageSettingsButton;
     'EnhancedImage': Components.EnhancedImage;
   }
 
   interface StencilIntrinsicElements {
+    'enhanced-image-settings-button': Components.EnhancedImageSettingsButtonAttributes;
     'enhanced-image': Components.EnhancedImageAttributes;
   }
 
+
+  interface HTMLEnhancedImageSettingsButtonElement extends Components.EnhancedImageSettingsButton, HTMLStencilElement {}
+  var HTMLEnhancedImageSettingsButtonElement: {
+    prototype: HTMLEnhancedImageSettingsButtonElement;
+    new (): HTMLEnhancedImageSettingsButtonElement;
+  };
 
   interface HTMLEnhancedImageElement extends Components.EnhancedImage, HTMLStencilElement {}
   var HTMLEnhancedImageElement: {
@@ -43,10 +80,12 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'enhanced-image-settings-button': HTMLEnhancedImageSettingsButtonElement
     'enhanced-image': HTMLEnhancedImageElement
   }
 
   interface ElementTagNameMap {
+    'enhanced-image-settings-button': HTMLEnhancedImageSettingsButtonElement;
     'enhanced-image': HTMLEnhancedImageElement;
   }
 

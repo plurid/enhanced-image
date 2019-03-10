@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 
 
 
@@ -13,13 +13,33 @@ export class EnhancedImage {
     */
     @Prop() src: string;
 
+    /**
+    * The position of the settings button
+    */
+    @Prop() settingsPosition: string;
+
+    @State() invert: number = 0;
+
+
+    invertColors = () => {
+        if ( this.invert == 1 ) {
+            this.invert = 0;
+        } else {
+            this.invert = 1;
+        }
+    }
+
     render() {
         return (
-            <div>
-                Image src is {this.src}
-                <div>
-                    <img src={this.src} height="500" />
-                </div>
+            <div class="enhanced-image-container">
+                <enhanced-image-settings-button
+                    class="enhanced-image-settings-button"
+                    invertColors={this.invertColors}
+                />
+                <img src={this.src}
+                    style={{ filter: `invert(${this.invert})` }}
+                    class="enhanced-image"
+                />
             </div>
         );
     }

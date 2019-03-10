@@ -1,0 +1,49 @@
+.enhanced-image-settings-button-container {
+    display: grid;
+    align-items: center;
+    justify-items: right;
+}
+
+.enhanced-image-settings-button {
+    cursor: pointer;
+    user-select: none;
+}
+
+.enhanced-image-settings-button {
+    height: 35px;
+    width: 35px;
+}
+
+.enhanced-image-settings-button svg {
+    height: 35px;
+}
+
+.enhanced-image-settings-list ul {
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px hsla(0, 0%, 0%, 0.5);
+    list-style: none;
+    padding: 0;
+    user-select: none;
+    font-size: 12px;
+    min-width: 140px;
+    border-radius: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+.enhanced-image-settings-list ul li {
+    padding: 10px;
+}
+
+.enhanced-image-settings-list ul li:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.enhanced-image-settings-list ul li:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.enhanced-image-settings-list ul li:hover {
+    background-color: hsl(0, 0%, 80%);
+}
