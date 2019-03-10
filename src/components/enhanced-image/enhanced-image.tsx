@@ -19,6 +19,10 @@ export class EnhancedImage {
     @Prop() settingsPosition: string;
 
     @State() invert: number = 0;
+    @State() contrastValue: number = 0;
+    @State() hueValue: number = 0;
+    @State() saturationValue: number = 0;
+    @State() brightnessValue: number = 0;
 
 
     invertColors = () => {
@@ -29,15 +33,44 @@ export class EnhancedImage {
         }
     }
 
+    contrast = (value: number) => {
+        this.contrastValue = value;
+    }
+
+    hue = (value: number) => {
+        console.log(value);
+        this.hueValue = value;
+    }
+
+    saturation = (value: number) => {
+        this.saturationValue = value;
+    }
+
+    brightness = (value: number) => {
+        this.brightnessValue = value;
+    }
+
     render() {
         return (
             <div class="enhanced-image-container">
                 <enhanced-image-settings-button
                     class="enhanced-image-settings-button"
                     invertColors={this.invertColors}
+                    contrast={this.contrast}
+                    hue={this.hue}
+                    saturation={this.saturation}
+                    brightness={this.brightness}
                 />
                 <img src={this.src}
-                    style={{ filter: `invert(${this.invert})` }}
+                    style={{
+                        filter: `
+                            invert(${this.invert})
+                            contrast(${this.contrastValue}%)
+                            hue-rotate(${this.hueValue}deg)
+                            saturate(${this.saturationValue}%)
+                            brightness(${this.brightnessValue}%)
+                        `,
+                    }}
                     class="enhanced-image"
                 />
             </div>
