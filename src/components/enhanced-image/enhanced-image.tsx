@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, Element } from '@stencil/core';
 
 import {
     DEFAULT_INVERT,
@@ -16,6 +16,8 @@ import {
     shadow: true
 })
 export class EnhancedImage {
+    @Element() element: HTMLElement;
+
     /**
     * The source of the image
     */
@@ -61,6 +63,7 @@ export class EnhancedImage {
                     src={this.src}
                     invertColors={this.invertColors}
                     setSliderValue={this.setSliderValue}
+                    imageRef={this.element}
                 />
                 <img src={this.src}
                     style={{

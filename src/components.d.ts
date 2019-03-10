@@ -13,6 +13,7 @@ import '@stencil/core';
 export namespace Components {
 
   interface EnhancedImageSettingsButton {
+    'imageRef': any;
     /**
     * Invert the colors.
     */
@@ -27,6 +28,7 @@ export namespace Components {
     'src': string;
   }
   interface EnhancedImageSettingsButtonAttributes extends StencilHTMLAttributes {
+    'imageRef'?: any;
     /**
     * Invert the colors.
     */
