@@ -32,9 +32,12 @@ export class EnhancedImageSettingsButton {
      */
     @Prop() setSliderValue: any;
 
+    @Prop() imageRef: any;
+
 
     @State() clicked: boolean = false;
     @State() colorsInverted: boolean = false;
+    @State() fullscreenToggled: boolean = false;
     @State() contrastSliderValue: number = DEFAULT_CONTRAST;
     @State() hueSliderValue: number = DEFAULT_HUE;
     @State() saturationSliderValue: number = DEFAULT_SATURATION;
@@ -53,6 +56,15 @@ export class EnhancedImageSettingsButton {
         const name = event.target.name;
         const value = event.target.value;
         this.setSlider(name, value);
+    }
+
+    fullscreen = () => {
+        if (!this.fullscreenToggled) {
+            this.imageRef.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+        this.fullscreenToggled = !this.fullscreenToggled;
     }
 
     saveImage = () => {
@@ -78,6 +90,11 @@ export class EnhancedImageSettingsButton {
             this.invertColors();
         }
         this.setSliderDefaults();
+    }
+
+    about = () => {
+        const aboutURL = "https://github.com/plurid/enhanced-image-html"
+        window.open(aboutURL, '_blank');
     }
 
     render() {
@@ -177,11 +194,17 @@ export class EnhancedImageSettingsButton {
                                     />
                                 </div>
                             </li>
+                            <li class="enhanced-image-settings-list-button" onClick={this.fullscreen}>
+                                {this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen Image'}
+                            </li>
                             <li class="enhanced-image-settings-list-button" onClick={this.saveImage}>
                                 Save Image
                             </li>
                             <li class="enhanced-image-settings-list-button" onClick={this.resetDefaultAll}>
                                 Reset to Default
+                            </li>
+                            <li class="enhanced-image-settings-list-button" onClick={this.about}>
+                                About
                             </li>
                         </ul>
                     </div>

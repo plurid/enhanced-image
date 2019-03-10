@@ -28,7 +28,7 @@
     padding: 0;
     user-select: none;
     font-size: 14px;
-    min-width: 140px;
+    min-width: 160px;
     border-radius: 10px;
     font-family: 'Didact Gothic', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
@@ -51,6 +51,11 @@
 
 .enhanced-image-settings-list ul li:hover {
     background-color: hsl(220, 2%, 30%);
+}
+
+.enhanced-image-settings-list ul li a {
+    color: white;
+    text-decoration: none;
 }
 
 .enhanced-image-settings-list-button {
