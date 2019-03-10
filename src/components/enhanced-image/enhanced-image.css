@@ -1,1 +1,19 @@
+.enhanced-image-container {
+    position: relative;
+}
 
+.enhanced-image {
+    width: 100%;
+}
+
+.enhanced-image-settings-button {
+    position: absolute;
+    display: none;
+    right: 20px;
+    top: 20px;
+    z-index: 9999;
+}
+
+.enhanced-image-container:hover .enhanced-image-settings-button {
+    display: block;
+}
