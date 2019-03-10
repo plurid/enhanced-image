@@ -1,5 +1,13 @@
 import { Component, Prop, State } from '@stencil/core';
 
+import {
+    DEFAULT_INVERT,
+    DEFAULT_CONTRAST,
+    DEFAULT_HUE,
+    DEFAULT_SATURATION,
+    DEFAULT_BRIGHTNESS,
+} from '../../utils/defaults';
+
 
 
 @Component({
@@ -18,13 +26,17 @@ export class EnhancedImage {
     */
     @Prop() settingsPosition: string;
 
-    @State() invert: number = 0;
-    @State() contrastValue: number = 0;
-    @State() hueValue: number = 0;
-    @State() saturationValue: number = 0;
-    @State() brightnessValue: number = 0;
+
+    @State() invert: number = DEFAULT_INVERT;
+    @State() contrastValue: number = DEFAULT_CONTRAST;
+    @State() hueValue: number = DEFAULT_HUE;
+    @State() saturationValue: number = DEFAULT_SATURATION;
+    @State() brightnessValue: number = DEFAULT_BRIGHTNESS;
 
 
+    /**
+     *
+     */
     invertColors = () => {
         if ( this.invert == 1 ) {
             this.invert = 0;
@@ -33,21 +45,12 @@ export class EnhancedImage {
         }
     }
 
-    contrast = (value: number) => {
-        this.contrastValue = value;
-    }
-
-    hue = (value: number) => {
-        console.log(value);
-        this.hueValue = value;
-    }
-
-    saturation = (value: number) => {
-        this.saturationValue = value;
-    }
-
-    brightness = (value: number) => {
-        this.brightnessValue = value;
+    /**
+     *
+     */
+    setSliderValue = (name: string, value: number) => {
+        const sliderValue = `${name}Value`;
+        this[sliderValue] = value;
     }
 
     render() {
@@ -55,11 +58,9 @@ export class EnhancedImage {
             <div class="enhanced-image-container">
                 <enhanced-image-settings-button
                     class="enhanced-image-settings-button"
+                    src={this.src}
                     invertColors={this.invertColors}
-                    contrast={this.contrast}
-                    hue={this.hue}
-                    saturation={this.saturation}
-                    brightness={this.brightness}
+                    setSliderValue={this.setSliderValue}
                 />
                 <img src={this.src}
                     style={{

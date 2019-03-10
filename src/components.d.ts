@@ -13,30 +13,30 @@ import '@stencil/core';
 export namespace Components {
 
   interface EnhancedImageSettingsButton {
-    'brightness': any;
-    'contrast': any;
-    'hue': any;
     /**
-    * The source of the image
+    * Invert the colors.
     */
     'invertColors': any;
-    'saturation': any;
     /**
-    * The source of the image
+    * Set the value of the sliders.
+    */
+    'setSliderValue': any;
+    /**
+    * The source of the image.
     */
     'src': string;
   }
   interface EnhancedImageSettingsButtonAttributes extends StencilHTMLAttributes {
-    'brightness'?: any;
-    'contrast'?: any;
-    'hue'?: any;
     /**
-    * The source of the image
+    * Invert the colors.
     */
     'invertColors'?: any;
-    'saturation'?: any;
     /**
-    * The source of the image
+    * Set the value of the sliders.
+    */
+    'setSliderValue'?: any;
+    /**
+    * The source of the image.
     */
     'src'?: string;
   }

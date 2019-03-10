@@ -1,12 +1,14 @@
 import { Component, Prop, State } from '@stencil/core';
 
 import settingsIcon from '../../assets/settings-icon.svg';
+import {
+    DEFAULT_CONTRAST,
+    DEFAULT_HUE,
+    DEFAULT_SATURATION,
+    DEFAULT_BRIGHTNESS,
+    SLIDER_NAMES,
+} from '../../utils/defaults';
 
-
-const DEFAULT_CONTRAST = 100;
-const DEFAULT_HUE = 0;
-const DEFAULT_SATURATION = 100;
-const DEFAULT_BRIGHTNESS = 100;
 
 
 @Component({
@@ -16,18 +18,20 @@ const DEFAULT_BRIGHTNESS = 100;
 })
 export class EnhancedImageSettingsButton {
     /**
-     * The source of the image
+     * The source of the image.
      */
     @Prop() src: string;
 
     /**
-     * The source of the image
+     * Invert the colors.
      */
     @Prop() invertColors: any;
-    @Prop() contrast: any;
-    @Prop() hue: any;
-    @Prop() saturation: any;
-    @Prop() brightness: any;
+
+    /**
+     * Set the value of the sliders.
+     */
+    @Prop() setSliderValue: any;
+
 
     @State() clicked: boolean = false;
     @State() colorsInverted: boolean = false;
@@ -40,43 +44,40 @@ export class EnhancedImageSettingsButton {
         this.clicked = !this.clicked;
     }
 
-    componentDidLoad() {
-        this.contrast(this.contrastSliderValue);
-        this.hue(this.hueSliderValue);
-        this.saturation(this.saturationSliderValue);
-        this.brightness(this.brightnessSliderValue);
-    }
-
     colorsInvert = () => {
         this.invertColors();
         this.colorsInverted = !this.colorsInverted;
     }
 
-    handleChange = (event: any) => {
+    handleSliderInput = (event: any) => {
         const name = event.target.name;
-        const sliderValue = `${name}SliderValue`;
         const value = event.target.value;
-        this[name](value);
+        this.setSlider(name, value);
+    }
+
+    saveImage = () => {
+        console.log('save image', this.src);
+    }
+
+    setSlider = (name: string, value: number) => {
+        const sliderValue = `${name}SliderValue`;
+        this.setSliderValue(name, value);
         this[sliderValue] = value;
     }
 
-    resetDefault = () => {
+    setSliderDefaults = () => {
+        this.setSlider('contrast', DEFAULT_CONTRAST);
+        this.setSlider('hue', DEFAULT_HUE);
+        this.setSlider('saturation', DEFAULT_SATURATION);
+        this.setSlider('brightness', DEFAULT_BRIGHTNESS);
+    }
+
+    resetDefaultAll = () => {
         if (this.colorsInverted) {
             this.colorsInverted = false;
             this.invertColors();
         }
-
-        this.contrast(DEFAULT_CONTRAST);
-        this.contrastSliderValue = DEFAULT_CONTRAST;
-
-        this.hue(DEFAULT_HUE);
-        this.hueSliderValue = DEFAULT_HUE;
-
-        this.saturation(DEFAULT_SATURATION);
-        this.saturationSliderValue = DEFAULT_SATURATION;
-
-        this.brightness(DEFAULT_BRIGHTNESS);
-        this.brightnessSliderValue = DEFAULT_BRIGHTNESS;
+        this.setSliderDefaults();
     }
 
     render() {
@@ -98,7 +99,7 @@ export class EnhancedImageSettingsButton {
                             </li>
                             <li>
                                 <div>
-                                    Contrast
+                                    {SLIDER_NAMES.contrast}
                                     <span class="slider-value">
                                         {this.contrastSliderValue}
                                     </span>
@@ -111,13 +112,14 @@ export class EnhancedImageSettingsButton {
                                         max="200"
                                         name="contrast"
                                         value={this.contrastSliderValue}
-                                        onChange={this.handleChange}
+                                        onInput={this.handleSliderInput}
+                                        onDblClick={this.setSlider.bind(this, 'contrast', DEFAULT_CONTRAST)}
                                     />
                                 </div>
                             </li>
                             <li>
                                 <div>
-                                    Hue Rotate
+                                    {SLIDER_NAMES.hue}
                                     <span class="slider-value">
                                         {this.hueSliderValue}
                                     </span>
@@ -130,13 +132,14 @@ export class EnhancedImageSettingsButton {
                                         max="360"
                                         name="hue"
                                         value={this.hueSliderValue}
-                                        onChange={this.handleChange}
+                                        onInput={this.handleSliderInput}
+                                        onDblClick={this.setSlider.bind(this, 'hue', DEFAULT_HUE)}
                                     />
                                 </div>
                             </li>
                             <li>
                                 <div>
-                                    Saturation
+                                    {SLIDER_NAMES.saturation}
                                     <span class="slider-value">
                                         {this.saturationSliderValue}
                                     </span>
@@ -149,13 +152,14 @@ export class EnhancedImageSettingsButton {
                                         max="200"
                                         name="saturation"
                                         value={this.saturationSliderValue}
-                                        onChange={this.handleChange}
+                                        onInput={this.handleSliderInput}
+                                        onDblClick={this.setSlider.bind(this, 'saturation', DEFAULT_SATURATION)}
                                     />
                                 </div>
                             </li>
                             <li>
                                 <div>
-                                    Lightness
+                                    {SLIDER_NAMES.brightness}
                                     <span class="slider-value">
                                         {this.brightnessSliderValue}
                                     </span>
@@ -168,11 +172,15 @@ export class EnhancedImageSettingsButton {
                                         max="200"
                                         name="brightness"
                                         value={this.brightnessSliderValue}
-                                        onChange={this.handleChange}
+                                        onInput={this.handleSliderInput}
+                                        onDblClick={this.setSlider.bind(this, 'brightness', DEFAULT_BRIGHTNESS)}
                                     />
                                 </div>
                             </li>
-                            <li class="enhanced-image-settings-list-button" onClick={this.resetDefault}>
+                            <li class="enhanced-image-settings-list-button" onClick={this.saveImage}>
+                                Save Image
+                            </li>
+                            <li class="enhanced-image-settings-list-button" onClick={this.resetDefaultAll}>
                                 Reset to Default
                             </li>
                         </ul>
