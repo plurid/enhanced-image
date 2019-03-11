@@ -204,7 +204,7 @@ export class EnhancedImageSettingsButton {
                                 Reset to Default
                             </li>
                             <li class="enhanced-image-settings-list-button" onClick={this.about}>
-                                About
+                                About Enhanced Image
                             </li>
                         </ul>
                     </div>
