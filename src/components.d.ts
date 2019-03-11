@@ -12,6 +12,26 @@ import '@stencil/core';
 
 export namespace Components {
 
+  interface EnhancedImageButtonCheckmark {
+    'checked': boolean;
+    'onClick': (event: MouseEvent) => void;
+    'text': string;
+  }
+  interface EnhancedImageButtonCheckmarkAttributes extends StencilHTMLAttributes {
+    'checked'?: boolean;
+    'onClick'?: (event: MouseEvent) => void;
+    'text'?: string;
+  }
+
+  interface EnhancedImageButtonItem {
+    'onClick': (event: MouseEvent) => void;
+    'text': string;
+  }
+  interface EnhancedImageButtonItemAttributes extends StencilHTMLAttributes {
+    'onClick'?: (event: MouseEvent) => void;
+    'text'?: string;
+  }
+
   interface EnhancedImageSettingsButton {
     /**
     * onClick function.
@@ -110,6 +130,7 @@ export namespace Components {
   interface EnhancedImageSliderItem {
     'handleSliderInput': any;
     'max': number;
+    'min': number;
     'setSlider': any;
     'sliderValue': any;
     /**
@@ -120,6 +141,7 @@ export namespace Components {
   interface EnhancedImageSliderItemAttributes extends StencilHTMLAttributes {
     'handleSliderInput'?: any;
     'max'?: number;
+    'min'?: number;
     'setSlider'?: any;
     'sliderValue'?: any;
     /**
@@ -152,6 +174,8 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'EnhancedImageButtonCheckmark': Components.EnhancedImageButtonCheckmark;
+    'EnhancedImageButtonItem': Components.EnhancedImageButtonItem;
     'EnhancedImageSettingsButton': Components.EnhancedImageSettingsButton;
     'EnhancedImageSettingsList': Components.EnhancedImageSettingsList;
     'EnhancedImageSettings': Components.EnhancedImageSettings;
@@ -160,6 +184,8 @@ declare global {
   }
 
   interface StencilIntrinsicElements {
+    'enhanced-image-button-checkmark': Components.EnhancedImageButtonCheckmarkAttributes;
+    'enhanced-image-button-item': Components.EnhancedImageButtonItemAttributes;
     'enhanced-image-settings-button': Components.EnhancedImageSettingsButtonAttributes;
     'enhanced-image-settings-list': Components.EnhancedImageSettingsListAttributes;
     'enhanced-image-settings': Components.EnhancedImageSettingsAttributes;
@@ -167,6 +193,18 @@ declare global {
     'enhanced-image': Components.EnhancedImageAttributes;
   }
 
+
+  interface HTMLEnhancedImageButtonCheckmarkElement extends Components.EnhancedImageButtonCheckmark, HTMLStencilElement {}
+  var HTMLEnhancedImageButtonCheckmarkElement: {
+    prototype: HTMLEnhancedImageButtonCheckmarkElement;
+    new (): HTMLEnhancedImageButtonCheckmarkElement;
+  };
+
+  interface HTMLEnhancedImageButtonItemElement extends Components.EnhancedImageButtonItem, HTMLStencilElement {}
+  var HTMLEnhancedImageButtonItemElement: {
+    prototype: HTMLEnhancedImageButtonItemElement;
+    new (): HTMLEnhancedImageButtonItemElement;
+  };
 
   interface HTMLEnhancedImageSettingsButtonElement extends Components.EnhancedImageSettingsButton, HTMLStencilElement {}
   var HTMLEnhancedImageSettingsButtonElement: {
@@ -199,6 +237,8 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'enhanced-image-button-checkmark': HTMLEnhancedImageButtonCheckmarkElement
+    'enhanced-image-button-item': HTMLEnhancedImageButtonItemElement
     'enhanced-image-settings-button': HTMLEnhancedImageSettingsButtonElement
     'enhanced-image-settings-list': HTMLEnhancedImageSettingsListElement
     'enhanced-image-settings': HTMLEnhancedImageSettingsElement
@@ -207,6 +247,8 @@ declare global {
   }
 
   interface ElementTagNameMap {
+    'enhanced-image-button-checkmark': HTMLEnhancedImageButtonCheckmarkElement;
+    'enhanced-image-button-item': HTMLEnhancedImageButtonItemElement;
     'enhanced-image-settings-button': HTMLEnhancedImageSettingsButtonElement;
     'enhanced-image-settings-list': HTMLEnhancedImageSettingsListElement;
     'enhanced-image-settings': HTMLEnhancedImageSettingsElement;

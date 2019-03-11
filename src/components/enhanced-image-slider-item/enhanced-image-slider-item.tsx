@@ -17,6 +17,7 @@ export class EnhancedImageSliderItem {
      * The type of the slider.
      */
     @Prop() type: string;
+    @Prop() min: number;
     @Prop() max: number;
 
     @Prop() sliderValue: any;
@@ -27,7 +28,7 @@ export class EnhancedImageSliderItem {
         const type = this.type;
 
         return (
-            <div>
+            <div class="slider-item-container">
                 <div>
                     {SLIDER_NAMES[type]}
                     <span class="slider-value">
@@ -38,7 +39,7 @@ export class EnhancedImageSliderItem {
                     <input
                         class="slider"
                         type="range"
-                        min="0"
+                        min={this.min}
                         max={this.max}
                         name={type}
                         value={this.sliderValue}

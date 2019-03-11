@@ -126,3 +126,8 @@
 .checkbox-fill {
     background-color: white;
 }
+
+
+.slider-item-container {
+    padding: 7px 10px;
+}
