@@ -23,6 +23,12 @@ HTML Image Element with Enhanced Abilities
 
 ## Usage
 
+Install from NPM
+
+    npm install enhanced-image-html
+
+then use in your HTML instead of the regular `<img>` tag
+
 ``` html
     <enhanced-image src="/path/to/image.ext"><enhanced-image>
 ```
@@ -32,3 +38,24 @@ or
 ``` html
     <enh-img src="/path/to/image.ext"><enh-img>
 ```
+
+
+## Demo
+
+Each image will have on hover an `Enhanced Image` settings button in the corner.
+
+![alt text][on-hover]
+
+[on-hover]: https://raw.githubusercontent.com/plurid/enhanced-image-html/master/about/demo/on-hover.png "Enhanced Image on Hover"
+
+Clicking/tapping the button will reveal the controls.
+
+![alt text][on-toggle]
+
+[on-toggle]: https://raw.githubusercontent.com/plurid/enhanced-image-html/master/about/demo/on-toggle.png "Enhanced Image on Toggle"
+
+Changing the sliders alters the image accordingly.
+
+![alt text][on-edit]
+
+[on-edit]: https://raw.githubusercontent.com/plurid/enhanced-image-html/master/about/demo/on-edit.png "Enhanced Image on Edit"
