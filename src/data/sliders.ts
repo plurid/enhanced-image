@@ -2,6 +2,7 @@ interface Slider {
     type: string;
     min?: number;
     max?: number;
+    valueSign?: string;
 }
 
 export const sliders: Slider[] = [
@@ -13,6 +14,7 @@ export const sliders: Slider[] = [
         type: 'hue',
         min: -180,
         max: 180,
+        valueSign: '°',
     },
     {
         type: 'saturation',

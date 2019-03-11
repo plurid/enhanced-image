@@ -137,6 +137,7 @@ export namespace Components {
     * The type of the slider.
     */
     'type': string;
+    'valueSign': string;
   }
   interface EnhancedImageSliderItemAttributes extends StencilHTMLAttributes {
     'handleSliderInput'?: any;
@@ -148,6 +149,7 @@ export namespace Components {
     * The type of the slider.
     */
     'type'?: string;
+    'valueSign'?: string;
   }
 
   interface EnhancedImage {
