@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image-html/master/about/docs/identity/enhanced-image.svg" height="250px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image-html/master/about/docs/identity/enhanced-image.png" height="250px">
     <br />
     <a target="_blank" href="https://www.npmjs.com/package/enhanced-image-html">
         <img src="https://img.shields.io/npm/v/enhanced-image-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
