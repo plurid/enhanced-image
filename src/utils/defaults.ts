@@ -18,3 +18,13 @@ export const SLIDER_ITEM_DEFAULTS = {
     max: 100,
     valueSign: '%',
 }
+
+export const FULLSCREEN_STYLES = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    height: '100%',
+    width: '100%',
+    zIndex: '999',
+};

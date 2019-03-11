@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>Enhanced Image HTML</title>
     <script src="/build/enhanced-image-html.js"></script>
+    <style>
+        html, body {
+            /* background-color: white */
+            background-color: hsl(220, 2%, 15%);
+        }
+    </style>
 </head>
 <body>
-    <div style="margin: 0 auto; width: 800px;">
-        <enhanced-image src="./assets-test/population-density-europe.png"></enhanced-image>
-    </div>
+    <enhanced-image styling="margin: 0 auto; width: 800px;" src="./assets-test/population-density-europe.png"></enhanced-image>
     <br />
-    <div style="margin: 0 auto; width: 800px;">
-        <enhanced-image src="./assets-test/food.jpg"></enhanced-image>
-    </div>
+    <enhanced-image styling="margin: 0 auto; width: 800px;" src="./assets-test/food.jpg"></enhanced-image>
 </body>
 </html>
