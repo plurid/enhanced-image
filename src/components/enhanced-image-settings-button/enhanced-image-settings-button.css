@@ -1,11 +1,11 @@
 .enhanced-image-settings-button {
     cursor: pointer;
     user-select: none;
-    height: 35px;
-    width: 35px;
+    height: 28px;
+    width: 28px;
 }
 
 .enhanced-image-settings-button svg {
-    height: 35px;
-    width: 35px;
+    height: 28px;
+    width: 28px;
 }
