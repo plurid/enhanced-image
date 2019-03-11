@@ -4,6 +4,31 @@ import { SLIDER_DEFAULTS } from '../../utils/defaults';
 
 
 
+const loadImage = (url: string) => {
+    return new Promise(
+        response => {
+            let image = new Image();
+            image.onload = (() => response(image) );
+            image.src = url;
+        }
+    );
+}
+
+// edited from https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#Polyfill
+const dataURIToBlob = (dataURI: any) => {
+    const binStr = atob(dataURI.split(',')[1]);
+    const len = binStr.length;
+    const arr = new Uint8Array(len);
+
+    for (var i = 0; i < len; i++) {
+        arr[i] = binStr.charCodeAt(i);
+    }
+
+    return new Blob([arr]);
+}
+
+
+
 @Component({
     tag: 'enhanced-image-settings',
     styleUrl: 'enhanced-image-settings.css',
@@ -51,8 +76,26 @@ export class EnhancedImageSettings {
         this.setSlider(name, value);
     }
 
-    saveImage = () => {
-        console.log('save image', this.src);
+    saveImage = async (download: any) => {
+        const imageName = this.src;
+        const image: any = await loadImage(this.src);
+        const { height, width } = image;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const context = canvas.getContext('2d');
+        context.filter = `
+            invert(${this.colorsInverted ? 100 : 0}%)
+            contrast(${this.contrastSliderValue}%)
+            hue-rotate(${this.hueSliderValue}deg)
+            saturate(${this.saturationSliderValue}%)
+            brightness(${this.brightnessSliderValue}%)
+        `;
+        context.drawImage(image, 10, 10, width, height);
+        const imageData = canvas.toDataURL("image/png");
+        const blob = dataURIToBlob(imageData);
+        download(blob, imageName);
     }
 
     setSlider = (name: string, value: number) => {

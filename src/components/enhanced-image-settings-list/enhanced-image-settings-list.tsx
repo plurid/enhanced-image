@@ -18,6 +18,8 @@ import aboutIcon from '../../assets/about-icon.svg';
     shadow: true
 })
 export class EnhancedImageSettingsList {
+    saveButton!: HTMLAnchorElement;
+
     /**
      * The source of the image.
      */
@@ -54,6 +56,11 @@ export class EnhancedImageSettingsList {
         this.setSlider('hue', SLIDER_DEFAULTS.hue);
         this.setSlider('saturation', SLIDER_DEFAULTS.saturation);
         this.setSlider('brightness', SLIDER_DEFAULTS.brightness);
+    }
+
+    download = (image: any, imageName: string) => {
+        this.saveButton.href = URL.createObjectURL(image);;
+        this.saveButton.download = imageName;
     }
 
     resetToDefaults = () => {
@@ -106,12 +113,14 @@ export class EnhancedImageSettingsList {
                             text={this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen'}
                         />
                     </li>
-                    <li>
-                        <enhanced-image-button-item
-                            onClick={this.saveImage}
-                            icon={saveIcon}
-                            text={'Save Image'}
-                        />
+                    <li onMouseEnter={this.saveImage.bind(this, this.download)}>
+                        <a ref={(el) => this.saveButton = el as HTMLAnchorElement}>
+                            <enhanced-image-button-item
+                                onClick={() => {}}
+                                icon={saveIcon}
+                                text={'Save Image'}
+                            />
+                        </a>
                     </li>
                     <li>
                         <enhanced-image-button-item
