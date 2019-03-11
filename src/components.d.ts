@@ -24,10 +24,12 @@ export namespace Components {
   }
 
   interface EnhancedImageButtonItem {
+    'icon': any;
     'onClick': (event: MouseEvent) => void;
     'text': string;
   }
   interface EnhancedImageButtonItemAttributes extends StencilHTMLAttributes {
+    'icon'?: any;
     'onClick'?: (event: MouseEvent) => void;
     'text'?: string;
   }

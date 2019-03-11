@@ -1,95 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
-
-.enhanced-image-settings-button-container {
-    display: grid;
-    align-items: center;
-    justify-items: right;
-}
-
-.enhanced-image-settings-list ul {
-    background-color: hsl(220, 2%, 20%);
-    color: white;
-    box-shadow: 0px 0px 5px 0px hsla(0, 0%, 0%, 1);
-    list-style: none;
-    padding: 0;
-    user-select: none;
-    font-size: 14px;
-    min-width: 160px;
-    border-radius: 10px;
-    font-family: 'Didact Gothic', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Sans Unicode', Verdana, sans-serif;
-}
-
-.enhanced-image-settings-list ul li:first-child {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.enhanced-image-settings-list ul li:last-child {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.enhanced-image-settings-list ul li:hover {
-    background-color: hsl(220, 2%, 30%);
-}
-
-.enhanced-image-settings-list ul li a {
-    color: white;
-    text-decoration: none;
-}
-
 .enhanced-image-settings-list-button {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 7px 10px;
 }
 
 .enhanced-image-settings-list-value {
     margin-top: 10px;
-}
-
-
-
-/* SLIDER */
-.slidecontainer {
-    width: 100%;
-    margin-top: 3px;
-    margin-bottom: 7px;
-}
-
-
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 3px;
-    margin: 0;
-    border-radius: 1.5px;
-    /* background: #d3d3d3; */
-    outline: none;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: 2px solid white;
-    background-color: hsl(220, 2%, 30%);
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: 2px solid white;
-    background-color: hsl(220, 2%, 30%);
-    cursor: pointer;
-}
-
-.slider-value {
-    float: right;
-    font-size: 12px;
 }
 
 
