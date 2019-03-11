@@ -40,7 +40,7 @@ or
 ```
 
 
-## Demo
+## [Demo](https://caveljan.com/enhanced-image/)
 
 Each image will have on hover an `Enhanced Image` settings button in the corner.
 
