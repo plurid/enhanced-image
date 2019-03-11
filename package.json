@@ -1,6 +1,6 @@
 {
     "name": "enhanced-image-html",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "HTML Image Element with Enhanced Abilities — HTML Custom Elements",
     "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
     "license": "MIT",
@@ -13,7 +13,6 @@
     },
     "module": "dist/esm/index.js",
     "main": "dist/index.js",
-    "unpkg": "dist/ionic.js",
     "types": "dist/types/components.d.ts",
     "collection": "dist/collection/collection-manifest.json",
     "files": [
