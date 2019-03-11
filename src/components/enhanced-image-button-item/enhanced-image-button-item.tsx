@@ -9,12 +9,14 @@ import { Component, Prop } from '@stencil/core';
 })
 export class EnhancedImageButtonItem {
     @Prop() onClick: (event: MouseEvent) => void;
+    @Prop() icon: any;
     @Prop() text: string;
 
     render() {
         return (
             <div class="enhanced-image-settings-list-button" onClick={this.onClick}>
-                {this.text}
+                <span class="enhanced-image-icon" innerHTML={this.icon} />
+                <span>{this.text}</span>
             </div>
         );
     }

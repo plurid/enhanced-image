@@ -67,6 +67,7 @@ export class EnhancedImage {
     exitFullscreenHandler() {
         if (!(document as any).webkitIsFullScreen) {
             this.fullscreenStyles = {};
+            this.fullscreenToggled = false;
         }
     }
 

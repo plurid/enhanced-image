@@ -1,4 +1,16 @@
 .enhanced-image-settings-list-button {
     cursor: pointer;
+    display: flex;
+    align-items: center;
     padding: 7px 10px;
+}
+
+.enhanced-image-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.enhanced-image-icon svg {
+    width: 20px;
 }

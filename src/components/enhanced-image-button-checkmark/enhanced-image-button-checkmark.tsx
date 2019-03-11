@@ -15,7 +15,9 @@ export class EnhancedImageButtonCheckmark {
     render() {
         return (
             <div class="enhanced-image-settings-list-button" onClick={this.onClick}>
-                {this.text}
+                <span>
+                    {this.text}
+                </span>
                 <span class="slider-value">
                     <span class={ this.checked
                                     ? 'checkbox checkbox-fill'

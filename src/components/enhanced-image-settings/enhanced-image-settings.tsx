@@ -82,45 +82,6 @@ export class EnhancedImageSettings {
                         fullscreenToggled={this.fullscreenToggled}
                         saveImage={this.saveImage}
                     />
-                    // <div class="enhanced-image-settings-list">
-                    //     <ul>
-                    //         <li class="enhanced-image-settings-list-button" onClick={this.colorsInvert}>
-                    //             Invert Colors
-                    //             <span class="slider-value">
-                    //                 <span class={ this.colorsInverted ? 'checkbox checkbox-fill' : 'checkbox' }></span>
-                    //             </span>
-                    //         </li>
-
-                    //         {this.sliders.map(slider => {
-                    //             const sliderValue = `${slider.type}SliderValue`;
-
-                    //             return (
-                    //                 <li>
-                    //                     <enhanced-image-slider-item
-                    //                         type={slider.type}
-                    //                         max={slider.max || 100}
-                    //                         sliderValue={this[sliderValue]}
-                    //                         handleSliderInput={this.handleSliderInput}
-                    //                         setSlider={this.setSlider}
-                    //                     />
-                    //                 </li>
-                    //             );
-                    //         })}
-
-                    //         <li class="enhanced-image-settings-list-button" onClick={this.fullscreen}>
-                    //             {this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen Image'}
-                    //         </li>
-                    //         <li class="enhanced-image-settings-list-button" onClick={this.saveImage}>
-                    //             Save Image
-                    //         </li>
-                    //         <li class="enhanced-image-settings-list-button" onClick={this.resetDefaultAll}>
-                    //             Reset to Default
-                    //         </li>
-                    //         <li class="enhanced-image-settings-list-button" onClick={this.about}>
-                    //             About Enhanced Image
-                    //         </li>
-                    //     </ul>
-                    // </div>
                 )}
             </div>
         );

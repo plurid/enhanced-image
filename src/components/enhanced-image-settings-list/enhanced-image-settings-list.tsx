@@ -5,6 +5,10 @@ import {
     SLIDER_ITEM_DEFAULTS,
 } from '../../utils/defaults';
 import { sliders } from '../../data/sliders';
+import fullscreenIcon from '../../assets/fullscreen-icon.svg';
+import saveIcon from '../../assets/save-icon.svg';
+import resetIcon from '../../assets/reset-icon.svg';
+import aboutIcon from '../../assets/about-icon.svg';
 
 
 
@@ -98,24 +102,28 @@ export class EnhancedImageSettingsList {
                     <li>
                         <enhanced-image-button-item
                             onClick={this.fullscreen}
-                            text={this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen Image'}
+                            icon={fullscreenIcon}
+                            text={this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen'}
                         />
                     </li>
                     <li>
                         <enhanced-image-button-item
                             onClick={this.saveImage}
+                            icon={saveIcon}
                             text={'Save Image'}
                         />
                     </li>
                     <li>
                         <enhanced-image-button-item
                             onClick={this.resetToDefaults}
+                            icon={resetIcon}
                             text={'Reset to Defaults'}
                         />
                     </li>
                     <li>
                         <enhanced-image-button-item
                             onClick={this.aboutEnhancedImage}
+                            icon={aboutIcon}
                             text={'About Enhanced Image'}
                         />
                     </li>
