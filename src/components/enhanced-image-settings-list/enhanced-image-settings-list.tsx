@@ -1,6 +1,9 @@
 import { Component, Prop } from '@stencil/core';
 
-import { SLIDER_DEFAULTS } from '../../utils/defaults';
+import {
+    SLIDER_DEFAULTS,
+    SLIDER_ITEM_DEFAULTS,
+} from '../../utils/defaults';
 import { sliders } from '../../data/sliders';
 
 
@@ -91,8 +94,9 @@ export class EnhancedImageSettingsList {
                             <li>
                                 <enhanced-image-slider-item
                                     type={slider.type}
-                                    min={slider.min || 0}
-                                    max={slider.max || 100}
+                                    min={slider.min || SLIDER_ITEM_DEFAULTS.min}
+                                    max={slider.max || SLIDER_ITEM_DEFAULTS.max}
+                                    valueSign={slider.valueSign || SLIDER_ITEM_DEFAULTS.valueSign}
                                     sliderValue={this[sliderValue]}
                                     handleSliderInput={this.handleSliderInput}
                                     setSlider={this.setSlider}

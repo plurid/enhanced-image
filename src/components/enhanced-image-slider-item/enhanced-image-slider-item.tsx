@@ -23,6 +23,7 @@ export class EnhancedImageSliderItem {
     @Prop() sliderValue: any;
     @Prop() handleSliderInput: any;
     @Prop() setSlider: any;
+    @Prop() valueSign: string;
 
     render() {
         const type = this.type;
@@ -32,7 +33,7 @@ export class EnhancedImageSliderItem {
                 <div>
                     {SLIDER_NAMES[type]}
                     <span class="slider-value">
-                        {this.sliderValue}
+                        {this.sliderValue}{this.valueSign}
                     </span>
                 </div>
                 <div class="slidecontainer">

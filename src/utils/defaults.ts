@@ -12,3 +12,9 @@ export const SLIDER_DEFAULTS = {
     saturation: 100,
     brightness: 100,
 }
+
+export const SLIDER_ITEM_DEFAULTS = {
+    min: 0,
+    max: 100,
+    valueSign: '%',
+}
