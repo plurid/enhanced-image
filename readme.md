@@ -25,18 +25,20 @@ HTML Image Element with Enhanced Abilities
 
 Install from NPM
 
-    npm install enhanced-image-html
+``` bash
+npm install enhanced-image-html
+```
 
 then use in your HTML instead of the regular `<img>` tag
 
 ``` html
-    <enhanced-image src="/path/to/image.ext"><enhanced-image>
+<enhanced-image src="/path/to/image.ext"><enhanced-image>
 ```
 
 or
 
 ``` html
-    <enh-img src="/path/to/image.ext"><enh-img>
+<enh-img src="/path/to/image.ext"><enh-img>
 ```
 
 
