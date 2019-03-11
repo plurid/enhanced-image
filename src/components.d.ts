@@ -13,6 +13,70 @@ import '@stencil/core';
 export namespace Components {
 
   interface EnhancedImageSettingsButton {
+    /**
+    * onClick function.
+    */
+    'onClick': any;
+  }
+  interface EnhancedImageSettingsButtonAttributes extends StencilHTMLAttributes {
+    /**
+    * onClick function.
+    */
+    'onClick'?: any;
+  }
+
+  interface EnhancedImageSettingsList {
+    'brightnessSliderValue': any;
+    'colorsInvert': any;
+    'colorsInverted': any;
+    'contrastSliderValue': any;
+    'fullscreenToggled': any;
+    'handleSliderInput': any;
+    'hueSliderValue': any;
+    'imageRef': any;
+    /**
+    * Invert the colors.
+    */
+    'invertColors': any;
+    'saturationSliderValue': any;
+    'saveImage': any;
+    'setSlider': any;
+    /**
+    * Set the value of the sliders.
+    */
+    'setSliderValue': any;
+    /**
+    * The source of the image.
+    */
+    'src': string;
+  }
+  interface EnhancedImageSettingsListAttributes extends StencilHTMLAttributes {
+    'brightnessSliderValue'?: any;
+    'colorsInvert'?: any;
+    'colorsInverted'?: any;
+    'contrastSliderValue'?: any;
+    'fullscreenToggled'?: any;
+    'handleSliderInput'?: any;
+    'hueSliderValue'?: any;
+    'imageRef'?: any;
+    /**
+    * Invert the colors.
+    */
+    'invertColors'?: any;
+    'saturationSliderValue'?: any;
+    'saveImage'?: any;
+    'setSlider'?: any;
+    /**
+    * Set the value of the sliders.
+    */
+    'setSliderValue'?: any;
+    /**
+    * The source of the image.
+    */
+    'src'?: string;
+  }
+
+  interface EnhancedImageSettings {
     'imageRef': any;
     /**
     * Invert the colors.
@@ -27,7 +91,7 @@ export namespace Components {
     */
     'src': string;
   }
-  interface EnhancedImageSettingsButtonAttributes extends StencilHTMLAttributes {
+  interface EnhancedImageSettingsAttributes extends StencilHTMLAttributes {
     'imageRef'?: any;
     /**
     * Invert the colors.
@@ -41,6 +105,27 @@ export namespace Components {
     * The source of the image.
     */
     'src'?: string;
+  }
+
+  interface EnhancedImageSliderItem {
+    'handleSliderInput': any;
+    'max': number;
+    'setSlider': any;
+    'sliderValue': any;
+    /**
+    * The type of the slider.
+    */
+    'type': string;
+  }
+  interface EnhancedImageSliderItemAttributes extends StencilHTMLAttributes {
+    'handleSliderInput'?: any;
+    'max'?: number;
+    'setSlider'?: any;
+    'sliderValue'?: any;
+    /**
+    * The type of the slider.
+    */
+    'type'?: string;
   }
 
   interface EnhancedImage {
@@ -68,11 +153,17 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'EnhancedImageSettingsButton': Components.EnhancedImageSettingsButton;
+    'EnhancedImageSettingsList': Components.EnhancedImageSettingsList;
+    'EnhancedImageSettings': Components.EnhancedImageSettings;
+    'EnhancedImageSliderItem': Components.EnhancedImageSliderItem;
     'EnhancedImage': Components.EnhancedImage;
   }
 
   interface StencilIntrinsicElements {
     'enhanced-image-settings-button': Components.EnhancedImageSettingsButtonAttributes;
+    'enhanced-image-settings-list': Components.EnhancedImageSettingsListAttributes;
+    'enhanced-image-settings': Components.EnhancedImageSettingsAttributes;
+    'enhanced-image-slider-item': Components.EnhancedImageSliderItemAttributes;
     'enhanced-image': Components.EnhancedImageAttributes;
   }
 
@@ -83,6 +174,24 @@ declare global {
     new (): HTMLEnhancedImageSettingsButtonElement;
   };
 
+  interface HTMLEnhancedImageSettingsListElement extends Components.EnhancedImageSettingsList, HTMLStencilElement {}
+  var HTMLEnhancedImageSettingsListElement: {
+    prototype: HTMLEnhancedImageSettingsListElement;
+    new (): HTMLEnhancedImageSettingsListElement;
+  };
+
+  interface HTMLEnhancedImageSettingsElement extends Components.EnhancedImageSettings, HTMLStencilElement {}
+  var HTMLEnhancedImageSettingsElement: {
+    prototype: HTMLEnhancedImageSettingsElement;
+    new (): HTMLEnhancedImageSettingsElement;
+  };
+
+  interface HTMLEnhancedImageSliderItemElement extends Components.EnhancedImageSliderItem, HTMLStencilElement {}
+  var HTMLEnhancedImageSliderItemElement: {
+    prototype: HTMLEnhancedImageSliderItemElement;
+    new (): HTMLEnhancedImageSliderItemElement;
+  };
+
   interface HTMLEnhancedImageElement extends Components.EnhancedImage, HTMLStencilElement {}
   var HTMLEnhancedImageElement: {
     prototype: HTMLEnhancedImageElement;
@@ -91,11 +200,17 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'enhanced-image-settings-button': HTMLEnhancedImageSettingsButtonElement
+    'enhanced-image-settings-list': HTMLEnhancedImageSettingsListElement
+    'enhanced-image-settings': HTMLEnhancedImageSettingsElement
+    'enhanced-image-slider-item': HTMLEnhancedImageSliderItemElement
     'enhanced-image': HTMLEnhancedImageElement
   }
 
   interface ElementTagNameMap {
     'enhanced-image-settings-button': HTMLEnhancedImageSettingsButtonElement;
+    'enhanced-image-settings-list': HTMLEnhancedImageSettingsListElement;
+    'enhanced-image-settings': HTMLEnhancedImageSettingsElement;
+    'enhanced-image-slider-item': HTMLEnhancedImageSliderItemElement;
     'enhanced-image': HTMLEnhancedImageElement;
   }
 

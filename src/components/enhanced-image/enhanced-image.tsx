@@ -1,12 +1,6 @@
 import { Component, Prop, State, Element } from '@stencil/core';
 
-import {
-    DEFAULT_INVERT,
-    DEFAULT_CONTRAST,
-    DEFAULT_HUE,
-    DEFAULT_SATURATION,
-    DEFAULT_BRIGHTNESS,
-} from '../../utils/defaults';
+import { SLIDER_DEFAULTS } from '../../utils/defaults';
 
 
 
@@ -29,11 +23,11 @@ export class EnhancedImage {
     @Prop() settingsPosition: string;
 
 
-    @State() invert: number = DEFAULT_INVERT;
-    @State() contrastValue: number = DEFAULT_CONTRAST;
-    @State() hueValue: number = DEFAULT_HUE;
-    @State() saturationValue: number = DEFAULT_SATURATION;
-    @State() brightnessValue: number = DEFAULT_BRIGHTNESS;
+    @State() invert: number = SLIDER_DEFAULTS.invert;
+    @State() contrastValue: number = SLIDER_DEFAULTS.contrast;
+    @State() hueValue: number = SLIDER_DEFAULTS.hue;
+    @State() saturationValue: number = SLIDER_DEFAULTS.saturation;
+    @State() brightnessValue: number = SLIDER_DEFAULTS.brightness;
 
 
     /**
@@ -58,7 +52,7 @@ export class EnhancedImage {
     render() {
         return (
             <div class="enhanced-image-container">
-                <enhanced-image-settings-button
+                <enhanced-image-settings
                     class="enhanced-image-settings-button"
                     src={this.src}
                     invertColors={this.invertColors}
