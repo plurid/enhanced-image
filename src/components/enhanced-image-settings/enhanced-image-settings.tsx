@@ -25,12 +25,11 @@ export class EnhancedImageSettings {
      */
     @Prop() setSliderValue: any;
 
-    @Prop() imageRef: any;
-
+    @Prop() fullscreen: any;
+    @Prop() fullscreenToggled: boolean;
 
     @State() toggledSettings: boolean = false;
     @State() colorsInverted: boolean = false;
-    @State() fullscreenToggled: boolean = false;
     @State() contrastSliderValue: number = SLIDER_DEFAULTS.contrast;
     @State() hueSliderValue: number = SLIDER_DEFAULTS.hue;
     @State() saturationSliderValue: number = SLIDER_DEFAULTS.saturation;
@@ -51,15 +50,6 @@ export class EnhancedImageSettings {
         const value = event.target.value;
         this.setSlider(name, value);
     }
-
-    // fullscreen = () => {
-    //     if (!this.fullscreenToggled) {
-    //         this.imageRef.requestFullscreen();
-    //     } else {
-    //         document.exitFullscreen();
-    //     }
-    //     this.fullscreenToggled = !this.fullscreenToggled;
-    // }
 
     saveImage = () => {
         console.log('save image', this.src);
@@ -88,7 +78,7 @@ export class EnhancedImageSettings {
                         handleSliderInput={this.handleSliderInput}
                         setSlider={this.setSlider}
 
-                        imageRef={this.imageRef}
+                        fullscreen={this.fullscreen}
                         fullscreenToggled={this.fullscreenToggled}
                         saveImage={this.saveImage}
                     />

@@ -40,20 +40,10 @@ export class EnhancedImageSettingsList {
     @Prop() handleSliderInput: any;
     @Prop() setSlider: any;
 
-    @Prop() imageRef: any;
+    @Prop() fullscreen: any;
     @Prop() fullscreenToggled: any;
 
     @Prop() saveImage: any;
-
-
-    fullscreen = () => {
-        if (!this.fullscreenToggled) {
-            this.imageRef.requestFullscreen();
-        } else {
-            document.exitFullscreen();
-        }
-        this.fullscreenToggled = !this.fullscreenToggled;
-    }
 
     setSliderDefaults = () => {
         this.setSlider('contrast', SLIDER_DEFAULTS.contrast);

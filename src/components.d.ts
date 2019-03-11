@@ -50,10 +50,10 @@ export namespace Components {
     'colorsInvert': any;
     'colorsInverted': any;
     'contrastSliderValue': any;
+    'fullscreen': any;
     'fullscreenToggled': any;
     'handleSliderInput': any;
     'hueSliderValue': any;
-    'imageRef': any;
     /**
     * Invert the colors.
     */
@@ -75,10 +75,10 @@ export namespace Components {
     'colorsInvert'?: any;
     'colorsInverted'?: any;
     'contrastSliderValue'?: any;
+    'fullscreen'?: any;
     'fullscreenToggled'?: any;
     'handleSliderInput'?: any;
     'hueSliderValue'?: any;
-    'imageRef'?: any;
     /**
     * Invert the colors.
     */
@@ -97,7 +97,8 @@ export namespace Components {
   }
 
   interface EnhancedImageSettings {
-    'imageRef': any;
+    'fullscreen': any;
+    'fullscreenToggled': boolean;
     /**
     * Invert the colors.
     */
@@ -112,7 +113,8 @@ export namespace Components {
     'src': string;
   }
   interface EnhancedImageSettingsAttributes extends StencilHTMLAttributes {
-    'imageRef'?: any;
+    'fullscreen'?: any;
+    'fullscreenToggled'?: boolean;
     /**
     * Invert the colors.
     */
@@ -161,6 +163,7 @@ export namespace Components {
     * The source of the image
     */
     'src': string;
+    'styling': string;
   }
   interface EnhancedImageAttributes extends StencilHTMLAttributes {
     /**
@@ -171,6 +174,7 @@ export namespace Components {
     * The source of the image
     */
     'src'?: string;
+    'styling'?: string;
   }
 }
 

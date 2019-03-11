@@ -1,6 +1,11 @@
-import { Component, Prop, State, Element } from '@stencil/core';
+import { Component, Prop, State, Element, Listen } from '@stencil/core';
 
-import { SLIDER_DEFAULTS } from '../../utils/defaults';
+import {
+    SLIDER_DEFAULTS,
+    FULLSCREEN_STYLES,
+} from '../../utils/defaults';
+import { styleStringToObject } from '../../utils/styleString';
+
 
 
 
@@ -17,6 +22,8 @@ export class EnhancedImage {
     */
     @Prop() src: string;
 
+    @Prop() styling: string;
+
     /**
     * The position of the settings button
     */
@@ -28,7 +35,14 @@ export class EnhancedImage {
     @State() hueValue: number = SLIDER_DEFAULTS.hue;
     @State() saturationValue: number = SLIDER_DEFAULTS.saturation;
     @State() brightnessValue: number = SLIDER_DEFAULTS.brightness;
+    @State() fullscreenToggled: boolean = false;
+    @State() fullscreenStyles: object = {};
 
+    private styled: any;
+
+    componentWillLoad() {
+        this.styled = this.styling ? styleStringToObject(this.styling) : {};
+    }
 
     /**
      *
@@ -49,15 +63,34 @@ export class EnhancedImage {
         this[sliderValue] = value;
     }
 
+    @Listen('window:fullscreenchange')
+    exitFullscreenHandler() {
+        if (!(document as any).webkitIsFullScreen) {
+            this.fullscreenStyles = {};
+        }
+    }
+
+    fullscreen = () => {
+        if (!this.fullscreenToggled) {
+            this.element.requestFullscreen();
+            this.fullscreenStyles = FULLSCREEN_STYLES;
+        } else {
+            document.exitFullscreen();
+            this.fullscreenStyles = {};
+        }
+        this.fullscreenToggled = !this.fullscreenToggled;
+    }
+
     render() {
         return (
-            <div class="enhanced-image-container">
+            <div style={ {...this.styled, ...this.fullscreenStyles} } class="enhanced-image-container">
                 <enhanced-image-settings
                     class="enhanced-image-settings-button"
                     src={this.src}
                     invertColors={this.invertColors}
                     setSliderValue={this.setSliderValue}
-                    imageRef={this.element}
+                    fullscreen={this.fullscreen}
+                    fullscreenToggled={this.fullscreenToggled}
                 />
                 <img src={this.src}
                     style={{

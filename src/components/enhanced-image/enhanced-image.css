@@ -3,10 +3,10 @@
 }
 
 .enhanced-image-container:-webkit-full-screen {
-    min-width: 50% !important;
-    min-height: 50% !important;
-    height: 50% !important;
-    width: 50% !important;
+    /* min-width: 50% !important; */
+    min-height: 100% !important;
+    height: 100% !important;
+    /* width: 50% !important; */
 }
 
 .enhanced-image {
