@@ -56,7 +56,7 @@ Clicking/tapping the button will reveal the controls.
 
 [on-toggle]: https://raw.githubusercontent.com/plurid/enhanced-image-html/master/about/demo/on-toggle.png "Enhanced Image on Toggle"
 
-Changing the sliders alters the image accordingly.
+Moving the sliders alters the image accordingly.
 
 ![alt text][on-edit]
 
