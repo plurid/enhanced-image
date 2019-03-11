@@ -59,7 +59,7 @@ export class EnhancedImageSettingsList {
         this.setSlider('brightness', SLIDER_DEFAULTS.brightness);
     }
 
-    resetDefaultAll = () => {
+    resetToDefaults = () => {
         if (this.colorsInverted) {
             this.colorsInverted = false;
             this.invertColors();
@@ -67,7 +67,7 @@ export class EnhancedImageSettingsList {
         this.setSliderDefaults();
     }
 
-    about = () => {
+    aboutEnhancedImage = () => {
         const aboutURL = "https://github.com/plurid/enhanced-image-html"
         window.open(aboutURL, '_blank');
     }
@@ -76,11 +76,12 @@ export class EnhancedImageSettingsList {
         return (
             <div class="enhanced-image-settings-list">
                 <ul>
-                    <li class="enhanced-image-settings-list-button" onClick={this.colorsInvert}>
-                        Invert Colors
-                        <span class="slider-value">
-                            <span class={ this.colorsInverted ? 'checkbox checkbox-fill' : 'checkbox' }></span>
-                        </span>
+                    <li>
+                        <enhanced-image-button-checkmark
+                            onClick={this.colorsInvert}
+                            text={'Invert Colors'}
+                            checked={this.colorsInverted}
+                        />
                     </li>
 
                     {sliders.map(slider => {
@@ -90,6 +91,7 @@ export class EnhancedImageSettingsList {
                             <li>
                                 <enhanced-image-slider-item
                                     type={slider.type}
+                                    min={slider.min || 0}
                                     max={slider.max || 100}
                                     sliderValue={this[sliderValue]}
                                     handleSliderInput={this.handleSliderInput}
@@ -99,17 +101,29 @@ export class EnhancedImageSettingsList {
                         );
                     })}
 
-                    <li class="enhanced-image-settings-list-button" onClick={this.fullscreen}>
-                        {this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen Image'}
+                    <li>
+                        <enhanced-image-button-item
+                            onClick={this.fullscreen}
+                            text={this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen Image'}
+                        />
                     </li>
-                    <li class="enhanced-image-settings-list-button" onClick={this.saveImage}>
-                        Save Image
+                    <li>
+                        <enhanced-image-button-item
+                            onClick={this.saveImage}
+                            text={'Save Image'}
+                        />
                     </li>
-                    <li class="enhanced-image-settings-list-button" onClick={this.resetDefaultAll}>
-                        Reset to Default
+                    <li>
+                        <enhanced-image-button-item
+                            onClick={this.resetToDefaults}
+                            text={'Reset to Defaults'}
+                        />
                     </li>
-                    <li class="enhanced-image-settings-list-button" onClick={this.about}>
-                        About Enhanced Image
+                    <li>
+                        <enhanced-image-button-item
+                            onClick={this.aboutEnhancedImage}
+                            text={'About Enhanced Image'}
+                        />
                     </li>
                 </ul>
             </div>
