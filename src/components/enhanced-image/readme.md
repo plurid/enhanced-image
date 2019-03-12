@@ -7,11 +7,15 @@
 
 ## Properties
 
-| Property           | Attribute           | Description                         | Type     | Default     |
-| ------------------ | ------------------- | ----------------------------------- | -------- | ----------- |
-| `settingsPosition` | `settings-position` | The position of the settings button | `string` | `undefined` |
-| `src`              | `src`               | The source of the image             | `string` | `undefined` |
-| `styling`          | `styling`           |                                     | `string` | `undefined` |
+| Property     | Attribute    | Description | Type     | Default     |
+| ------------ | ------------ | ----------- | -------- | ----------- |
+| `contrast`   | `contrast`   |             | `string` | `undefined` |
+| `hue`        | `hue`        |             | `string` | `undefined` |
+| `invert`     | `invert`     |             | `string` | `undefined` |
+| `lightness`  | `lightness`  |             | `string` | `undefined` |
+| `saturation` | `saturation` |             | `string` | `undefined` |
+| `src`        | `src`        |             | `string` | `undefined` |
+| `styling`    | `styling`    |             | `string` | `undefined` |
 
 
 ----------------------------------------------

@@ -20,11 +20,11 @@ export class EnhancedImage {
     @Prop() src: string;
     @Prop() styling: string;
 
-    @Prop() invert: string;
-    @Prop() contrast: string;
-    @Prop() hue: string;
-    @Prop() saturation: string;
-    @Prop() lightness: string;
+    @Prop({ mutable: true, reflectToAttr: true }) invert: string;
+    @Prop({ mutable: true, reflectToAttr: true }) contrast: string;
+    @Prop({ mutable: true, reflectToAttr: true }) hue: string;
+    @Prop({ mutable: true, reflectToAttr: true }) saturation: string;
+    @Prop({ mutable: true, reflectToAttr: true }) lightness: string;
     // @Prop() settingsPosition: string;
 
 
@@ -46,6 +46,14 @@ export class EnhancedImage {
         this.hue ? this.hueValue = parseInt(this.hue) : null;
         this.saturation ? this.saturationValue = parseInt(this.saturation) : null;
         this.lightness ? this.brightnessValue = parseInt(this.lightness) : null;
+    }
+
+    componentWillUpdate() {
+        this.invert = this.invertValue + '';
+        this.contrast = this.contrastValue + '';
+        this.hue = this.hueValue + '';
+        this.saturation = this.saturationValue + '';
+        this.lightness = this.brightnessValue + '';
     }
 
     /**
