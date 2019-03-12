@@ -82,7 +82,7 @@ export class EnhancedImageSettingsList {
                 <ul>
                     <li>
                         <enhanced-image-button-checkmark
-                            onClick={this.colorsInvert}
+                            toggle={this.colorsInvert}
                             text={'Invert Colors'}
                             checked={this.colorsInverted}
                         />

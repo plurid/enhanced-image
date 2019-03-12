@@ -8,22 +8,22 @@ import { Component, Prop } from '@stencil/core';
     shadow: true
 })
 export class EnhancedImageButtonCheckmark {
-    @Prop() onClick: (event: MouseEvent) => void;
+    @Prop() toggle: (event: MouseEvent) => void;
     @Prop() text: string;
     @Prop() checked: boolean;
 
     render() {
         return (
-            <div class="enhanced-image-settings-list-button" onClick={this.onClick}>
+            <div class="enhanced-image-button-checkmark" onClick={this.toggle}>
                 <span>
                     {this.text}
                 </span>
-                <span class="slider-value">
-                    <span class={ this.checked
-                                    ? 'checkbox checkbox-fill'
-                                    : 'checkbox' }
-                    >
-                    </span>
+                <span class={
+                    this.checked
+                        ? 'enhanced-image-button-checkbox enhanced-image-button-checkbox-fill'
+                        : 'enhanced-image-button-checkbox'
+                    }
+                >
                 </span>
             </div>
         );
