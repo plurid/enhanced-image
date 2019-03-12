@@ -1,5 +1,27 @@
 .enhanced-image-settings-container {
     display: grid;
     align-items: center;
+}
+
+.enhanced-image-settings-container-topright {
     justify-items: right;
+}
+
+.enhanced-image-settings-container-topleft {
+    justify-items: left;
+}
+
+
+.enhanced-image-settings-container-bottomright {
+    justify-items: right;
+}
+.enhanced-image-settings-container-bottomright enhanced-image-settings-button {
+    grid-row: 2;
+}
+
+.enhanced-image-settings-container-bottomleft {
+    justify-items: left;
+}
+.enhanced-image-settings-container-bottomleft enhanced-image-settings-button {
+    grid-row: 2;
 }

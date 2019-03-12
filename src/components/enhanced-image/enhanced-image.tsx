@@ -8,7 +8,6 @@ import { styleStringToObject } from '../../utils/styleString';
 
 
 
-
 @Component({
     tag: 'enhanced-image',
     styleUrl: 'enhanced-image.css',
@@ -26,7 +25,7 @@ export class EnhancedImage {
     @Prop({ mutable: true, reflectToAttr: true }) hue: string;
     @Prop({ mutable: true, reflectToAttr: true }) saturation: string;
     @Prop({ mutable: true, reflectToAttr: true }) lightness: string;
-    // @Prop() settingsPosition: string;
+    @Prop() settingsPosition: string;
 
 
     @State() invertValue: number = SLIDER_DEFAULTS.invert;
@@ -36,11 +35,13 @@ export class EnhancedImage {
     @State() brightnessValue: number = SLIDER_DEFAULTS.brightness;
     @State() fullscreenToggled: boolean = false;
     @State() fullscreenStyles: object = {};
+    @State() location: string = 'topright';
 
     private styled: any;
 
     componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};
+        this.location = this.settingsPosition ? this.settingsPosition : 'topright';
 
         this.invert ? this.invertValue = parseInt(this.invert) : null;
         this.contrast ? this.contrastValue = parseInt(this.contrast) : null;
@@ -129,7 +130,7 @@ export class EnhancedImage {
                 class={ `enhanced-image-container ${this.classes ? this.classes : '' }`}
             >
                 <enhanced-image-settings
-                    class="enhanced-image-settings-button"
+                    class={`enhanced-image-settings enhanced-image-settings-${this.location}`}
                     src={this.src}
                     invertColors={this.invertColors}
                     setSliderValue={this.setSliderValue}
@@ -140,6 +141,7 @@ export class EnhancedImage {
                     hue={this.hueValue}
                     saturation={this.saturationValue}
                     brightness={this.brightnessValue}
+                    location={this.location}
                 />
                 <img src={this.src}
                     style={{

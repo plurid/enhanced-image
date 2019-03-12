@@ -26,6 +26,8 @@ export class EnhancedImageSettings {
      */
     @Prop() setSliderValue: any;
 
+    @Prop() location: string;
+
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: boolean;
 
@@ -95,7 +97,7 @@ export class EnhancedImageSettings {
 
     render() {
         return (
-            <div class="enhanced-image-settings-container">
+            <div class={`enhanced-image-settings-container enhanced-image-settings-container-${this.location}`}>
                 <enhanced-image-settings-button toggle={this.toggleSettings} />
                 {this.toggledSettings && (
                     <enhanced-image-settings-list
