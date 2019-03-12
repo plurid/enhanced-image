@@ -60,8 +60,10 @@ export namespace Components {
     * Invert the colors.
     */
     'invertColors': any;
+    'location': string;
     'saturationSliderValue': any;
     'saveImage': any;
+    'setLocation': (location: string) => void;
     'setSlider': any;
     /**
     * Set the value of the sliders.
@@ -85,8 +87,10 @@ export namespace Components {
     * Invert the colors.
     */
     'invertColors'?: any;
+    'location'?: string;
     'saturationSliderValue'?: any;
     'saveImage'?: any;
+    'setLocation'?: (location: string) => void;
     'setSlider'?: any;
     /**
     * Set the value of the sliders.
@@ -111,6 +115,7 @@ export namespace Components {
     'invertColors': any;
     'location': string;
     'saturation': number;
+    'setLocation': (location: string) => void;
     /**
     * Set the value of the sliders.
     */
@@ -133,6 +138,7 @@ export namespace Components {
     'invertColors'?: any;
     'location'?: string;
     'saturation'?: number;
+    'setLocation'?: (location: string) => void;
     /**
     * Set the value of the sliders.
     */
