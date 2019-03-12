@@ -99,12 +99,17 @@ export namespace Components {
   }
 
   interface EnhancedImageSettings {
+    'brightness': number;
+    'contrast': number;
     'fullscreen': any;
     'fullscreenToggled': boolean;
+    'hue': number;
+    'invert': number;
     /**
     * Invert the colors.
     */
     'invertColors': any;
+    'saturation': number;
     /**
     * Set the value of the sliders.
     */
@@ -115,12 +120,17 @@ export namespace Components {
     'src': string;
   }
   interface EnhancedImageSettingsAttributes extends StencilHTMLAttributes {
+    'brightness'?: number;
+    'contrast'?: number;
     'fullscreen'?: any;
     'fullscreenToggled'?: boolean;
+    'hue'?: number;
+    'invert'?: number;
     /**
     * Invert the colors.
     */
     'invertColors'?: any;
+    'saturation'?: number;
     /**
     * Set the value of the sliders.
     */
@@ -151,24 +161,20 @@ export namespace Components {
   }
 
   interface EnhancedImage {
-    /**
-    * The position of the settings button
-    */
-    'settingsPosition': string;
-    /**
-    * The source of the image
-    */
+    'contrast': string;
+    'hue': string;
+    'invert': string;
+    'lightness': string;
+    'saturation': string;
     'src': string;
     'styling': string;
   }
   interface EnhancedImageAttributes extends StencilHTMLAttributes {
-    /**
-    * The position of the settings button
-    */
-    'settingsPosition'?: string;
-    /**
-    * The source of the image
-    */
+    'contrast'?: string;
+    'hue'?: string;
+    'invert'?: string;
+    'lightness'?: string;
+    'saturation'?: string;
     'src'?: string;
     'styling'?: string;
   }

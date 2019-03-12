@@ -17,20 +17,18 @@ import { styleStringToObject } from '../../utils/styleString';
 export class EnhancedImage {
     @Element() element: HTMLElement;
 
-    /**
-    * The source of the image
-    */
     @Prop() src: string;
-
     @Prop() styling: string;
 
-    /**
-    * The position of the settings button
-    */
-    @Prop() settingsPosition: string;
+    @Prop() invert: string;
+    @Prop() contrast: string;
+    @Prop() hue: string;
+    @Prop() saturation: string;
+    @Prop() lightness: string;
+    // @Prop() settingsPosition: string;
 
 
-    @State() invert: number = SLIDER_DEFAULTS.invert;
+    @State() invertValue: number = SLIDER_DEFAULTS.invert;
     @State() contrastValue: number = SLIDER_DEFAULTS.contrast;
     @State() hueValue: number = SLIDER_DEFAULTS.hue;
     @State() saturationValue: number = SLIDER_DEFAULTS.saturation;
@@ -42,16 +40,22 @@ export class EnhancedImage {
 
     componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};
+
+        this.invert ? this.invertValue = parseInt(this.invert) : null;
+        this.contrast ? this.contrastValue = parseInt(this.contrast) : null;
+        this.hue ? this.hueValue = parseInt(this.hue) : null;
+        this.saturation ? this.saturationValue = parseInt(this.saturation) : null;
+        this.lightness ? this.brightnessValue = parseInt(this.lightness) : null;
     }
 
     /**
      *
      */
     invertColors = () => {
-        if ( this.invert == 1 ) {
-            this.invert = 0;
+        if ( this.invertValue == 1 ) {
+            this.invertValue = 0;
         } else {
-            this.invert = 1;
+            this.invertValue = 1;
         }
     }
 
@@ -92,11 +96,16 @@ export class EnhancedImage {
                     setSliderValue={this.setSliderValue}
                     fullscreen={this.fullscreen}
                     fullscreenToggled={this.fullscreenToggled}
+                    invert={this.invertValue}
+                    contrast={this.contrastValue}
+                    hue={this.hueValue}
+                    saturation={this.saturationValue}
+                    brightness={this.brightnessValue}
                 />
                 <img src={this.src}
                     style={{
                         filter: `
-                            invert(${this.invert})
+                            invert(${this.invertValue})
                             contrast(${this.contrastValue}%)
                             hue-rotate(${this.hueValue}deg)
                             saturate(${this.saturationValue}%)
