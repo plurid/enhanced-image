@@ -10,8 +10,8 @@
 | Property  | Attribute | Description | Type                          | Default     |
 | --------- | --------- | ----------- | ----------------------------- | ----------- |
 | `checked` | `checked` |             | `boolean`                     | `undefined` |
-| `onClick` | --        |             | `(event: MouseEvent) => void` | `undefined` |
 | `text`    | `text`    |             | `string`                      | `undefined` |
+| `toggle`  | --        |             | `(event: MouseEvent) => void` | `undefined` |
 
 
 ----------------------------------------------
