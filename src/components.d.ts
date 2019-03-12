@@ -161,6 +161,7 @@ export namespace Components {
   }
 
   interface EnhancedImage {
+    'classes': string;
     'contrast': string;
     'hue': string;
     'invert': string;
@@ -170,6 +171,7 @@ export namespace Components {
     'styling': string;
   }
   interface EnhancedImageAttributes extends StencilHTMLAttributes {
+    'classes'?: string;
     'contrast'?: string;
     'hue'?: string;
     'invert'?: string;

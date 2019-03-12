@@ -12,13 +12,14 @@ import { styleStringToObject } from '../../utils/styleString';
 @Component({
     tag: 'enhanced-image',
     styleUrl: 'enhanced-image.css',
-    shadow: true
+    shadow: false
 })
 export class EnhancedImage {
     @Element() element: HTMLElement;
 
     @Prop() src: string;
     @Prop() styling: string;
+    @Prop() classes: string;
 
     @Prop({ mutable: true, reflectToAttr: true }) invert: string;
     @Prop({ mutable: true, reflectToAttr: true }) contrast: string;
@@ -123,7 +124,10 @@ export class EnhancedImage {
 
     render() {
         return (
-            <div style={ {...this.styled, ...this.fullscreenStyles} } class="enhanced-image-container">
+            <div
+                style={ {...this.styled, ...this.fullscreenStyles} }
+                class={ `enhanced-image-container ${this.classes}`}
+            >
                 <enhanced-image-settings
                     class="enhanced-image-settings-button"
                     src={this.src}
