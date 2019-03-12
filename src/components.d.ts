@@ -132,26 +132,20 @@ export namespace Components {
   }
 
   interface EnhancedImageSliderItem {
-    'handleSliderInput': any;
+    'handleSliderInput': () => void;
     'max': number;
     'min': number;
-    'setSlider': any;
-    'sliderValue': any;
-    /**
-    * The type of the slider.
-    */
+    'setSlider': (name: string, value: number) => void;
+    'sliderValue': number;
     'type': string;
     'valueSign': string;
   }
   interface EnhancedImageSliderItemAttributes extends StencilHTMLAttributes {
-    'handleSliderInput'?: any;
+    'handleSliderInput'?: () => void;
     'max'?: number;
     'min'?: number;
-    'setSlider'?: any;
-    'sliderValue'?: any;
-    /**
-    * The type of the slider.
-    */
+    'setSlider'?: (name: string, value: number) => void;
+    'sliderValue'?: number;
     'type'?: string;
     'valueSign'?: string;
   }
