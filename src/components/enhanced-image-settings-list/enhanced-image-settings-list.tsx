@@ -53,6 +53,8 @@ export class EnhancedImageSettingsList {
     @Prop() location: string;
     @Prop() setLocation: (location: string) => void;
 
+    @Prop() textSelect: boolean;
+
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: any;
 
@@ -83,18 +85,21 @@ export class EnhancedImageSettingsList {
     }
 
     render() {
+        console.log(this.textSelect);
+
         return (
             <div class={`enhanced-image-settings-list enhanced-image-settings-list-${this.location}`}>
                 <ul>
-                    {/* <li>
-                        <enhanced-image-button-checkmark
+                    {this.textSelect && (
+                        <li>
+                            <enhanced-image-button-checkmark
                             toggle={this.colorsInvert}
                             text={'Text Select'}
                             checked={this.colorsInverted}
-                        />
-                    </li>
-
-                    <hr class="enhanced-image-hr"/> */}
+                            />
+                            <hr class="enhanced-image-hr"/>
+                        </li>
+                    )}
 
                     <li>
                         <enhanced-image-button-checkmark

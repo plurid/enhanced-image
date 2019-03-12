@@ -29,6 +29,7 @@ export class EnhancedImage {
     @Prop({ mutable: true, reflectToAttr: true }) saturation: string;
     @Prop({ mutable: true, reflectToAttr: true }) lightness: string;
     @Prop({ mutable: true, reflectToAttr: true }) settingsPosition: string;
+    @Prop({ mutable: true, reflectToAttr: true }) textSelect: boolean;
 
 
     @State() invertValue: number = SLIDER_DEFAULTS.invert;
@@ -39,8 +40,8 @@ export class EnhancedImage {
     @State() fullscreenToggled: boolean = false;
     @State() fullscreenStyles: object = {};
     @State() location: string = 'topright';
+    @State() styled: any;
 
-    private styled: any;
 
     componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};
@@ -157,6 +158,7 @@ export class EnhancedImage {
                     brightness={this.brightnessValue}
                     location={this.location}
                     setLocation={this.setLocation}
+                    textSelect={this.textSelect}
                 />
                 <img src={this.src}
                     style={{

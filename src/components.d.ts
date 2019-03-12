@@ -73,6 +73,7 @@ export namespace Components {
     * The source of the image.
     */
     'src': string;
+    'textSelect': boolean;
   }
   interface EnhancedImageSettingsListAttributes extends StencilHTMLAttributes {
     'brightnessSliderValue'?: any;
@@ -100,6 +101,7 @@ export namespace Components {
     * The source of the image.
     */
     'src'?: string;
+    'textSelect'?: boolean;
   }
 
   interface EnhancedImageSettings {
@@ -124,6 +126,7 @@ export namespace Components {
     * The source of the image.
     */
     'src': string;
+    'textSelect': boolean;
   }
   interface EnhancedImageSettingsAttributes extends StencilHTMLAttributes {
     'brightness'?: number;
@@ -147,6 +150,7 @@ export namespace Components {
     * The source of the image.
     */
     'src'?: string;
+    'textSelect'?: boolean;
   }
 
   interface EnhancedImageSliderItem {
@@ -180,6 +184,7 @@ export namespace Components {
     'settingsPosition': string;
     'src': string;
     'styling': string;
+    'textSelect': boolean;
     'width': string;
   }
   interface EnhancedImageAttributes extends StencilHTMLAttributes {
@@ -194,6 +199,7 @@ export namespace Components {
     'settingsPosition'?: string;
     'src'?: string;
     'styling'?: string;
+    'textSelect'?: boolean;
     'width'?: string;
   }
 }

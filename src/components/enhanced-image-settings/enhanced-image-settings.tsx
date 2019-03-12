@@ -29,6 +29,7 @@ export class EnhancedImageSettings {
     @Prop() location: string;
     @Prop() setLocation: (location: string) => void;
 
+    @Prop() textSelect: boolean;
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: boolean;
 
@@ -84,7 +85,7 @@ export class EnhancedImageSettings {
             saturate(${this.saturationSliderValue}%)
             brightness(${this.brightnessSliderValue}%)
         `;
-        context.drawImage(image, 10, 10, width, height);
+        context.drawImage(image, 0, 0, width, height);
         const imageData = canvas.toDataURL("image/png");
         const blob = dataURIToBlob(imageData);
         download(blob, imageName);
@@ -118,6 +119,7 @@ export class EnhancedImageSettings {
                         saveImage={this.saveImage}
                         location={this.location}
                         setLocation={this.setLocation}
+                        textSelect={this.textSelect}
                     />
                 )}
             </div>
