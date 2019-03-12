@@ -17,15 +17,18 @@ export class EnhancedImage {
     @Element() element: HTMLElement;
 
     @Prop() src: string;
-    @Prop() styling: string;
+    @Prop() alt: string;
+    @Prop() height: string;
+    @Prop() width: string;
     @Prop() classes: string;
+    @Prop() styling: string;
 
     @Prop({ mutable: true, reflectToAttr: true }) invert: string;
     @Prop({ mutable: true, reflectToAttr: true }) contrast: string;
     @Prop({ mutable: true, reflectToAttr: true }) hue: string;
     @Prop({ mutable: true, reflectToAttr: true }) saturation: string;
     @Prop({ mutable: true, reflectToAttr: true }) lightness: string;
-    @Prop() settingsPosition: string;
+    @Prop({ mutable: true, reflectToAttr: true }) settingsPosition: string;
 
 
     @State() invertValue: number = SLIDER_DEFAULTS.invert;
@@ -56,6 +59,7 @@ export class EnhancedImage {
         this.hue = this.hueValue + '';
         this.saturation = this.saturationValue + '';
         this.lightness = this.brightnessValue + '';
+        this.settingsPosition = this.location + '';
     }
 
     @Watch('invert')
@@ -86,6 +90,12 @@ export class EnhancedImage {
     lightnessWatch(newValue: string) {
         this.lightness = newValue;
         this.brightnessValue = parseInt(newValue);
+    }
+
+    @Watch('settingsPosition')
+    settingsPositionWatch(newValue: string) {
+        this.settingsPosition = newValue;
+        this.location = newValue;
     }
 
     /**
@@ -157,7 +167,10 @@ export class EnhancedImage {
                             saturate(${this.saturationValue}%)
                             brightness(${this.brightnessValue}%)
                         `,
+                        height: `${this.height ? this.height + 'px' : null}`,
+                        width: `${this.width ? this.width + 'px' : null}`
                     }}
+                    alt={this.alt ? this.alt : ''}
                     class="enhanced-image"
                 />
             </div>
