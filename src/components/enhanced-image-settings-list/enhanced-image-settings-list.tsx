@@ -97,8 +97,10 @@ export class EnhancedImageSettingsList {
                             text={'Text Select'}
                             checked={this.colorsInverted}
                             />
-                            <hr class="enhanced-image-hr"/>
                         </li>
+                    )}
+                    {this.textSelect && (
+                        <hr class="enhanced-image-hr"/>
                     )}
 
                     <li>
