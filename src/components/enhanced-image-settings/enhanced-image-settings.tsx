@@ -29,6 +29,12 @@ export class EnhancedImageSettings {
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: boolean;
 
+    @Prop() invert: number;
+    @Prop() contrast: number;
+    @Prop() hue: number;
+    @Prop() saturation: number;
+    @Prop() brightness: number;
+
     @State() toggledSettings: boolean = false;
     @State() colorsInverted: boolean = false;
     @State() contrastSliderValue: number = SLIDER_DEFAULTS.contrast;
@@ -36,6 +42,13 @@ export class EnhancedImageSettings {
     @State() saturationSliderValue: number = SLIDER_DEFAULTS.saturation;
     @State() brightnessSliderValue: number = SLIDER_DEFAULTS.brightness;
 
+    componentWillLoad() {
+        this.colorsInverted = !!this.invert;
+        this.contrastSliderValue = this.contrast;
+        this.hueSliderValue = this.hue;
+        this.saturationSliderValue = this.saturation;
+        this.brightnessSliderValue = this.brightness;
+    }
 
     toggleSettings = () => {
         this.toggledSettings = !this.toggledSettings;
