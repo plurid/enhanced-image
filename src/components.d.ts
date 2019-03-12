@@ -109,6 +109,7 @@ export namespace Components {
     * Invert the colors.
     */
     'invertColors': any;
+    'location': string;
     'saturation': number;
     /**
     * Set the value of the sliders.
@@ -130,6 +131,7 @@ export namespace Components {
     * Invert the colors.
     */
     'invertColors'?: any;
+    'location'?: string;
     'saturation'?: number;
     /**
     * Set the value of the sliders.
@@ -167,6 +169,7 @@ export namespace Components {
     'invert': string;
     'lightness': string;
     'saturation': string;
+    'settingsPosition': string;
     'src': string;
     'styling': string;
   }
@@ -177,6 +180,7 @@ export namespace Components {
     'invert'?: string;
     'lightness'?: string;
     'saturation'?: string;
+    'settingsPosition'?: string;
     'src'?: string;
     'styling'?: string;
   }
