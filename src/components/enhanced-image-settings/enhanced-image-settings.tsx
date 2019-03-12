@@ -27,6 +27,7 @@ export class EnhancedImageSettings {
     @Prop() setSliderValue: any;
 
     @Prop() location: string;
+    @Prop() setLocation: (location: string) => void;
 
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: boolean;
@@ -115,6 +116,8 @@ export class EnhancedImageSettings {
                         fullscreen={this.fullscreen}
                         fullscreenToggled={this.fullscreenToggled}
                         saveImage={this.saveImage}
+                        location={this.location}
+                        setLocation={this.setLocation}
                     />
                 )}
             </div>

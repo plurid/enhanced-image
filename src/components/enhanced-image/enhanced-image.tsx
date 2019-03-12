@@ -123,6 +123,10 @@ export class EnhancedImage {
         this.fullscreenToggled = !this.fullscreenToggled;
     }
 
+    setLocation = (location: string) => {
+        this.location = location;
+    }
+
     render() {
         return (
             <div
@@ -142,6 +146,7 @@ export class EnhancedImage {
                     saturation={this.saturationValue}
                     brightness={this.brightnessValue}
                     location={this.location}
+                    setLocation={this.setLocation}
                 />
                 <img src={this.src}
                     style={{

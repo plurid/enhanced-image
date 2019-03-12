@@ -9,6 +9,10 @@ import fullscreenIcon from '../../assets/fullscreen-icon.svg';
 import saveIcon from '../../assets/save-icon.svg';
 import resetIcon from '../../assets/reset-icon.svg';
 import aboutIcon from '../../assets/about-icon.svg';
+import bottomleftIcon from '../../assets/bottomleft-icon.svg';
+import bottomrightIcon from '../../assets/bottomright-icon.svg';
+import topleftIcon from '../../assets/topleft-icon.svg';
+import toprightIcon from '../../assets/topright-icon.svg';
 
 
 
@@ -46,6 +50,9 @@ export class EnhancedImageSettingsList {
     @Prop() handleSliderInput: any;
     @Prop() setSlider: any;
 
+    @Prop() location: string;
+    @Prop() setLocation: (location: string) => void;
+
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: any;
 
@@ -77,8 +84,18 @@ export class EnhancedImageSettingsList {
 
     render() {
         return (
-            <div class="enhanced-image-settings-list">
+            <div class={`enhanced-image-settings-list enhanced-image-settings-list-${this.location}`}>
                 <ul>
+                    {/* <li>
+                        <enhanced-image-button-checkmark
+                            toggle={this.colorsInvert}
+                            text={'Text Select'}
+                            checked={this.colorsInverted}
+                        />
+                    </li>
+
+                    <hr class="enhanced-image-hr"/> */}
+
                     <li>
                         <enhanced-image-button-checkmark
                             toggle={this.colorsInvert}
@@ -112,6 +129,9 @@ export class EnhancedImageSettingsList {
                             text={'Reset to Defaults'}
                         />
                     </li>
+
+                    <hr class="enhanced-image-hr"/>
+
                     <li>
                         <enhanced-image-button-item
                             atClick={this.fullscreen}
@@ -128,6 +148,34 @@ export class EnhancedImageSettingsList {
                             />
                         </a>
                     </li>
+                    <li class="enhanced-image-button-default enhanced-image-location">
+                        <span>Location</span>
+                        <span class="enhanced-image-location-spans">
+                            <span
+                                class={`enhanced-image-location-span ${this.location === 'topleft' ? 'enhanced-image-location-span-active' : ''}`}
+                                innerHTML={topleftIcon}
+                                onClick={this.setLocation.bind(this, 'topleft')}
+                            />
+                            <span
+                                class={`enhanced-image-location-span ${this.location === 'topright' ? 'enhanced-image-location-span-active' : ''}`}
+                                innerHTML={toprightIcon}
+                                onClick={this.setLocation.bind(this, 'topright')}
+                            />
+                            <span
+                                class={`enhanced-image-location-span ${this.location === 'bottomleft' ? 'enhanced-image-location-span-active' : ''}`}
+                                innerHTML={bottomleftIcon}
+                                onClick={this.setLocation.bind(this, 'bottomleft')}
+                            />
+                            <span
+                                class={`enhanced-image-location-span ${this.location === 'bottomright' ? 'enhanced-image-location-span-active' : ''}`}
+                                innerHTML={bottomrightIcon}
+                                onClick={this.setLocation.bind(this, 'bottomright')}
+                            />
+                        </span>
+                    </li>
+
+                    <hr class="enhanced-image-hr" />
+
                     <li>
                         <enhanced-image-button-item
                             atClick={this.aboutEnhancedImage}

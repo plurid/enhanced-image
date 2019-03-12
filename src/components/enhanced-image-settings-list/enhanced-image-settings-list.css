@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 
 .enhanced-image-settings-list ul {
+    display: flex;
+    flex-direction: column;
     background-color: hsl(220, 2%, 20%);
     color: white;
     box-shadow: 0px 0px 5px 0px hsla(0, 0%, 0%, 1);
@@ -11,6 +13,16 @@
     min-width: 190px;
     border-radius: 10px;
     font-family: 'Didact Gothic', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+.enhanced-image-settings-list-topleft ul,
+.enhanced-image-settings-list-topright ul {
+    flex-direction: column;
+}
+
+.enhanced-image-settings-list-bottomleft ul,
+.enhanced-image-settings-list-bottomright ul {
+    flex-direction: column-reverse;
 }
 
 .enhanced-image-settings-list ul li:first-child {
@@ -38,4 +50,54 @@
 
 .enhanced-image-settings-list-value {
     margin-top: 10px;
+}
+
+
+.enhanced-image-hr {
+    border: none;
+    border-top: 1px solid hsl(220, 2%, 50%);
+    margin: 0;
+}
+
+
+.enhanced-image-button-default {
+    display: flex;
+    align-items: center;
+    padding: 7px 10px;
+    min-height: 28px;
+}
+
+
+.enhanced-image-location {
+    justify-content: space-between;
+}
+
+.enhanced-image-location-spans {
+    display: inline-grid;
+    grid-gap: 8px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.enhanced-image-location-span {
+    height: 16px;
+    width: 16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 12px;
+    border: 2px solid transparent;
+}
+
+.enhanced-image-location-span svg {
+    height: 8px;
+    width: 8px;
+}
+
+.enhanced-image-location-span:hover {
+    border: 2px solid white;
+}
+
+.enhanced-image-location-span-active {
+    border: 2px solid white;
 }
