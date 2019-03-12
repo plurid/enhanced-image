@@ -13,32 +13,28 @@ import {
     shadow: true
 })
 export class EnhancedImageSliderItem {
-    /**
-     * The type of the slider.
-     */
+    @Prop() sliderValue: number;
+    @Prop() valueSign: string;
     @Prop() type: string;
     @Prop() min: number;
     @Prop() max: number;
-
-    @Prop() sliderValue: any;
-    @Prop() handleSliderInput: any;
-    @Prop() setSlider: any;
-    @Prop() valueSign: string;
+    @Prop() handleSliderInput: () => void;
+    @Prop() setSlider: (name: string, value: number) => void;
 
     render() {
         const type = this.type;
 
         return (
-            <div class="slider-item-container">
+            <div class="enhanced-image-slider-item-container">
                 <div>
                     {SLIDER_NAMES[type]}
-                    <span class="slider-value">
+                    <span class="enhanced-image-slider-value">
                         {this.sliderValue}{this.valueSign}
                     </span>
                 </div>
-                <div class="slidecontainer">
+                <div class="enhanced-image-slider-container">
                     <input
-                        class="slider"
+                        class="enhanced-image-slider"
                         type="range"
                         min={this.min}
                         max={this.max}
