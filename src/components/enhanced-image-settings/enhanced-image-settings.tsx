@@ -42,7 +42,7 @@ export class EnhancedImageSettings {
     @State() saturationSliderValue: number = SLIDER_DEFAULTS.saturation;
     @State() brightnessSliderValue: number = SLIDER_DEFAULTS.brightness;
 
-    componentWillLoad() {
+    componentWillUpdate() {
         this.colorsInverted = !!this.invert;
         this.contrastSliderValue = this.contrast;
         this.hueSliderValue = this.hue;

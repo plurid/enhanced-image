@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Listen } from '@stencil/core';
+import { Component, Prop, State, Element, Listen, Watch } from '@stencil/core';
 
 import {
     SLIDER_DEFAULTS,
@@ -56,6 +56,36 @@ export class EnhancedImage {
         this.lightness = this.brightnessValue + '';
     }
 
+    @Watch('invert')
+    invertWatch(newValue: string) {
+        this.invert = newValue;
+        this.invertValue = parseInt(newValue);
+    }
+
+    @Watch('contrast')
+    contrastWatch(newValue: string) {
+        this.contrast = newValue;
+        this.contrastValue = parseInt(newValue);
+    }
+
+    @Watch('hue')
+    hueWatch(newValue: string) {
+        this.hue = newValue;
+        this.hueValue = parseInt(newValue);
+    }
+
+    @Watch('saturation')
+    saturationWatch(newValue: string) {
+        this.saturation = newValue;
+        this.saturationValue = parseInt(newValue);
+    }
+
+    @Watch('lightness')
+    lightnessWatch(newValue: string) {
+        this.lightness = newValue;
+        this.brightnessValue = parseInt(newValue);
+    }
+
     /**
      *
      */
@@ -67,9 +97,6 @@ export class EnhancedImage {
         }
     }
 
-    /**
-     *
-     */
     setSliderValue = (name: string, value: number) => {
         const sliderValue = `${name}Value`;
         this[sliderValue] = value;
