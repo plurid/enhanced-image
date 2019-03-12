@@ -13,12 +13,12 @@ export class EnhancedImageSettings {
     /**
      *  onClick function.
      */
-    @Prop() onClick: any;
+    @Prop() toggle: any;
 
     render() {
         return (
             <div
-                onClick={this.onClick}
+                onClick={this.toggle}
                 class="enhanced-image-settings-button"
                 innerHTML={settingsIcon}
             />

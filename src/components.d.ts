@@ -24,12 +24,12 @@ export namespace Components {
   }
 
   interface EnhancedImageButtonItem {
-    'click': (event: MouseEvent) => void;
+    'atClick': (event: MouseEvent) => void;
     'icon': string;
     'text': string;
   }
   interface EnhancedImageButtonItemAttributes extends StencilHTMLAttributes {
-    'click'?: (event: MouseEvent) => void;
+    'atClick'?: (event: MouseEvent) => void;
     'icon'?: string;
     'text'?: string;
   }
@@ -38,13 +38,13 @@ export namespace Components {
     /**
     * onClick function.
     */
-    'onClick': any;
+    'toggle': any;
   }
   interface EnhancedImageSettingsButtonAttributes extends StencilHTMLAttributes {
     /**
     * onClick function.
     */
-    'onClick'?: any;
+    'toggle'?: any;
   }
 
   interface EnhancedImageSettingsList {
