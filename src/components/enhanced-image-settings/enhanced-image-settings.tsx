@@ -1,31 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 
 import { SLIDER_DEFAULTS } from '../../utils/defaults';
-
-
-
-const loadImage = (url: string) => {
-    return new Promise(
-        response => {
-            let image = new Image();
-            image.onload = (() => response(image) );
-            image.src = url;
-        }
-    );
-}
-
-// edited from https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#Polyfill
-const dataURIToBlob = (dataURI: any) => {
-    const binStr = atob(dataURI.split(',')[1]);
-    const len = binStr.length;
-    const arr = new Uint8Array(len);
-
-    for (var i = 0; i < len; i++) {
-        arr[i] = binStr.charCodeAt(i);
-    }
-
-    return new Blob([arr]);
-}
+import { loadImage, dataURIToBlob } from '../../utils/image';
 
 
 
@@ -106,7 +82,7 @@ export class EnhancedImageSettings {
 
     render() {
         return (
-            <div class="enhanced-image-settings-button-container">
+            <div class="enhanced-image-settings-container">
                 <enhanced-image-settings-button onClick={this.toggleSettings} />
                 {this.toggledSettings && (
                     <enhanced-image-settings-list
