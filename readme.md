@@ -35,10 +35,28 @@ then use in your HTML instead of the regular `<img>` tag
 <enhanced-image src="/path/to/image.ext"><enhanced-image>
 ```
 
-or
+The image can be enhanced in `HTML`
 
-``` html
-<enh-img src="/path/to/image.ext"><enh-img>
+``` js
+<enhanced-image
+    invert="1" // 0 or 1
+    contrast="152" // values between 0 and 200
+    hue="-47" // values between -180 and 180
+    saturation="76" // values between 0 and 200
+    lightness="123" // values between 0 and 200
+    src="/path/to/image.ext">
+<enhanced-image>
+```
+
+or programmatically in `JS`
+
+``` js
+let enhancedImage = document.querySelector('#enhanced-image-id');
+enhancedImage.invert = "1"; // 0 or 1
+enhancedImage.contrast = "152" // values between 0 and 200
+enhancedImage.hue = "-47" // values between -180 and 180
+enhancedImage.saturation = "76" // values between 0 and 200
+enhancedImage.lightness = "123" // values between 0 and 200
 ```
 
 
