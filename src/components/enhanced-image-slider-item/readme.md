@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property            | Attribute             | Description             | Type     | Default     |
-| ------------------- | --------------------- | ----------------------- | -------- | ----------- |
-| `handleSliderInput` | `handle-slider-input` |                         | `any`    | `undefined` |
-| `max`               | `max`                 |                         | `number` | `undefined` |
-| `min`               | `min`                 |                         | `number` | `undefined` |
-| `setSlider`         | `set-slider`          |                         | `any`    | `undefined` |
-| `sliderValue`       | `slider-value`        |                         | `any`    | `undefined` |
-| `type`              | `type`                | The type of the slider. | `string` | `undefined` |
-| `valueSign`         | `value-sign`          |                         | `string` | `undefined` |
+| Property            | Attribute      | Description | Type                                    | Default     |
+| ------------------- | -------------- | ----------- | --------------------------------------- | ----------- |
+| `handleSliderInput` | --             |             | `() => void`                            | `undefined` |
+| `max`               | `max`          |             | `number`                                | `undefined` |
+| `min`               | `min`          |             | `number`                                | `undefined` |
+| `setSlider`         | --             |             | `(name: string, value: number) => void` | `undefined` |
+| `sliderValue`       | `slider-value` |             | `number`                                | `undefined` |
+| `type`              | `type`         |             | `string`                                | `undefined` |
+| `valueSign`         | `value-sign`   |             | `string`                                | `undefined` |
 
 
 ----------------------------------------------

@@ -9,8 +9,8 @@
 
 | Property  | Attribute | Description | Type                          | Default     |
 | --------- | --------- | ----------- | ----------------------------- | ----------- |
-| `icon`    | `icon`    |             | `any`                         | `undefined` |
-| `onClick` | --        |             | `(event: MouseEvent) => void` | `undefined` |
+| `atClick` | --        |             | `(event: MouseEvent) => void` | `undefined` |
+| `icon`    | `icon`    |             | `string`                      | `undefined` |
 | `text`    | `text`    |             | `string`                      | `undefined` |
 
 

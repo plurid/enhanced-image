@@ -65,8 +65,7 @@ export class EnhancedImageSettingsList {
 
     resetToDefaults = () => {
         if (this.colorsInverted) {
-            this.colorsInverted = false;
-            this.invertColors();
+            this.colorsInvert();
         }
         this.setSliderDefaults();
     }
@@ -108,6 +107,13 @@ export class EnhancedImageSettingsList {
 
                     <li>
                         <enhanced-image-button-item
+                            atClick={this.resetToDefaults}
+                            icon={resetIcon}
+                            text={'Reset to Defaults'}
+                        />
+                    </li>
+                    <li>
+                        <enhanced-image-button-item
                             atClick={this.fullscreen}
                             icon={fullscreenIcon}
                             text={this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen'}
@@ -121,13 +127,6 @@ export class EnhancedImageSettingsList {
                                 text={'Save Image'}
                             />
                         </a>
-                    </li>
-                    <li>
-                        <enhanced-image-button-item
-                            atClick={this.resetToDefaults}
-                            icon={resetIcon}
-                            text={'Reset to Defaults'}
-                        />
                     </li>
                     <li>
                         <enhanced-image-button-item
