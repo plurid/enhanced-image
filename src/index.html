@@ -10,14 +10,19 @@
             /* background-color: white */
             background-color: hsl(220, 2%, 15%);
         }
-
+        .test-class {
+            width: 800px;
+        }
     </style>
 </head>
 <body>
-    <enhanced-image styling="margin: 200px auto; width: 800px;"
+    <enhanced-image
+        styling="margin: 200px auto; width: 800px;"
         src="./assets-test/modely.jpg">
     </enhanced-image>
-    <enhanced-image styling="margin: 200px auto; width: 800px;"
+    <enhanced-image
+        styling="margin: 200px auto;"
+        classes="test-class"
         invert="1"
         contrast="70"
         hue="-55"
