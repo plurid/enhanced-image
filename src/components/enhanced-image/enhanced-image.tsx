@@ -126,7 +126,7 @@ export class EnhancedImage {
         return (
             <div
                 style={ {...this.styled, ...this.fullscreenStyles} }
-                class={ `enhanced-image-container ${this.classes}`}
+                class={ `enhanced-image-container ${this.classes ? this.classes : '' }`}
             >
                 <enhanced-image-settings
                     class="enhanced-image-settings-button"
