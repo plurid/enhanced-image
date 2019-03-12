@@ -1,50 +1,38 @@
 {
-    "name": "image-text-select",
+    "name": "text-select-image-html",
     "version": "0.1.0",
     "description": "Select the text from images.",
     "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
     "license": "MIT",
-    "main": "app.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/plurid/text-select-image-html.git"
+    },
+    "bugs": {
+        "url": "https://github.com/plurid/text-select-image-html/issues"
+    },
+    "module": "dist/esm/index.js",
+    "main": "dist/index.js",
+    "types": "dist/types/components.d.ts",
+    "collection": "dist/collection/collection-manifest.json",
+    "files": [
+        "dist/"
+    ],
     "scripts": {
-        "build": "webpack",
-        "test": "jest ./test/unit/",
-        "test:coverage": "open ./coverage/index.html",
-        "watch": "webpack --watch"
+        "build": "stencil build --docs",
+        "start": "stencil build --dev --watch --serve",
+        "test": "stencil test --spec",
+        "test.e2e": "stencil test --e2e",
+        "test.complete": "stencil test --spec --e2e",
+        "test.watch": "stencil test --spec --e2e --watchAll"
     },
+    "dependencies": {},
     "devDependencies": {
-        "@babel/core": "^7.1.6",
-        "@babel/preset-env": "^7.1.6",
-        "@babel/preset-typescript": "^7.1.0",
-        "@types/jest": "^23.3.9",
-        "autoprefixer": "^9.3.1",
-        "awesome-typescript-loader": "^5.2.0",
-        "babel-jest": "^23.6.0",
-        "babel-loader": "^8.0.4",
-        "css-loader": "^1.0.0",
-        "jest": "^23.6.0",
-        "jest-cli": "^23.6.0",
-        "mini-css-extract-plugin": "^0.4.1",
-        "node-sass": "^4.9.2",
-        "optimize-css-assets-webpack-plugin": "^5.0.0",
-        "postcss-loader": "^3.0.0",
-        "sass-loader": "^7.1.0",
-        "style-loader": "^0.23.1",
-        "stylelint": "^8.4.0",
-        "stylelint-webpack-plugin": "^0.10.5",
-        "ts-jest": "^23.10.4",
-        "ts-node": "^7.0.0",
-        "typescript": "^3.0.1",
-        "uglifyjs-webpack-plugin": "^2.0.1",
-        "webpack": "^4.25.1",
-        "webpack-cli": "^3.1.0"
-    },
-    "dependencies": {
-        "@polymer/lit-element": "^0.6.2",
-        "@webcomponents/webcomponentsjs": "^2.1.3",
-        "pwa-helpers": "^0.9.0",
-        "redux": "^4.0.1",
-        "redux-thunk": "^2.3.0",
-        "reselect": "^4.0.0",
-        "rxjs": "^6.3.3"
+        "@stencil/core": "~0.16.2",
+        "@types/jest": "23.3.14",
+        "@types/puppeteer": "1.12.2",
+        "jest": "23.6.0",
+        "jest-cli": "23.6.0",
+        "puppeteer": "1.8.0"
     }
 }
