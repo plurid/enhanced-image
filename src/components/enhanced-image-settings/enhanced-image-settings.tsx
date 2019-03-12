@@ -83,7 +83,7 @@ export class EnhancedImageSettings {
     render() {
         return (
             <div class="enhanced-image-settings-container">
-                <enhanced-image-settings-button onClick={this.toggleSettings} />
+                <enhanced-image-settings-button toggle={this.toggleSettings} />
                 {this.toggledSettings && (
                     <enhanced-image-settings-list
                         colorsInvert={this.colorsInvert}
