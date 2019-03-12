@@ -8,15 +8,20 @@ import { Component, Prop } from '@stencil/core';
     shadow: true
 })
 export class EnhancedImageButtonItem {
-    @Prop() onClick: (event: MouseEvent) => void;
-    @Prop() icon: any;
+    @Prop() click: (event: MouseEvent) => void;
+    @Prop() icon: string;
     @Prop() text: string;
 
     render() {
         return (
-            <div class="enhanced-image-settings-list-button" onClick={this.onClick}>
-                <span class="enhanced-image-icon" innerHTML={this.icon} />
-                <span>{this.text}</span>
+            <div class="enhanced-image-button-item" onClick={this.click}>
+                <span
+                    class="enhanced-image-button-icon"
+                    innerHTML={this.icon}
+                />
+                <span>
+                    {this.text}
+                </span>
             </div>
         );
     }
