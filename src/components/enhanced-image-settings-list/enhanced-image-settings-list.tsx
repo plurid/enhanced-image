@@ -108,7 +108,7 @@ export class EnhancedImageSettingsList {
 
                     <li>
                         <enhanced-image-button-item
-                            onClick={this.fullscreen}
+                            click={this.fullscreen}
                             icon={fullscreenIcon}
                             text={this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen'}
                         />
@@ -116,7 +116,7 @@ export class EnhancedImageSettingsList {
                     <li onMouseEnter={this.saveImage.bind(this, this.download)}>
                         <a ref={(el) => this.saveButton = el as HTMLAnchorElement}>
                             <enhanced-image-button-item
-                                onClick={() => {}}
+                                click={() => {}}
                                 icon={saveIcon}
                                 text={'Save Image'}
                             />
@@ -124,14 +124,14 @@ export class EnhancedImageSettingsList {
                     </li>
                     <li>
                         <enhanced-image-button-item
-                            onClick={this.resetToDefaults}
+                            click={this.resetToDefaults}
                             icon={resetIcon}
                             text={'Reset to Defaults'}
                         />
                     </li>
                     <li>
                         <enhanced-image-button-item
-                            onClick={this.aboutEnhancedImage}
+                            click={this.aboutEnhancedImage}
                             icon={aboutIcon}
                             text={'About Enhanced Image'}
                         />
