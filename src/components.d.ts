@@ -14,13 +14,13 @@ export namespace Components {
 
   interface EnhancedImageButtonCheckmark {
     'checked': boolean;
-    'onClick': (event: MouseEvent) => void;
     'text': string;
+    'toggle': (event: MouseEvent) => void;
   }
   interface EnhancedImageButtonCheckmarkAttributes extends StencilHTMLAttributes {
     'checked'?: boolean;
-    'onClick'?: (event: MouseEvent) => void;
     'text'?: string;
+    'toggle'?: (event: MouseEvent) => void;
   }
 
   interface EnhancedImageButtonItem {
