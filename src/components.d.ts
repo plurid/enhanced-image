@@ -169,8 +169,10 @@ export namespace Components {
   }
 
   interface EnhancedImage {
+    'alt': string;
     'classes': string;
     'contrast': string;
+    'height': string;
     'hue': string;
     'invert': string;
     'lightness': string;
@@ -178,10 +180,13 @@ export namespace Components {
     'settingsPosition': string;
     'src': string;
     'styling': string;
+    'width': string;
   }
   interface EnhancedImageAttributes extends StencilHTMLAttributes {
+    'alt'?: string;
     'classes'?: string;
     'contrast'?: string;
+    'height'?: string;
     'hue'?: string;
     'invert'?: string;
     'lightness'?: string;
@@ -189,6 +194,7 @@ export namespace Components {
     'settingsPosition'?: string;
     'src'?: string;
     'styling'?: string;
+    'width'?: string;
   }
 }
 
