@@ -56,6 +56,10 @@ export class TextSelectImage {
                 <select-image
                     selectText={this.selectText}
                 />
+                {this.showControl && (
+                    <text-select-image-settings
+                    />
+                )}
             </div>
         );
     }
