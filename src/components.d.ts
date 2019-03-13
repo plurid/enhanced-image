@@ -12,64 +12,74 @@ import '@stencil/core';
 
 export namespace Components {
 
-  interface ImageSelect {}
-  interface ImageSelectAttributes extends StencilHTMLAttributes {}
+  interface SelectImage {}
+  interface SelectImageAttributes extends StencilHTMLAttributes {}
 
-  interface ImageTextSelect {
+  interface TextImage {}
+  interface TextImageAttributes extends StencilHTMLAttributes {}
+
+  interface TextSelectImage {
     'alt': string;
+    'classes': string;
+    'control': boolean;
+    'height': string;
     'src': string;
+    'styling': string;
+    'width': string;
   }
-  interface ImageTextSelectAttributes extends StencilHTMLAttributes {
+  interface TextSelectImageAttributes extends StencilHTMLAttributes {
     'alt'?: string;
+    'classes'?: string;
+    'control'?: boolean;
+    'height'?: string;
     'src'?: string;
+    'styling'?: string;
+    'width'?: string;
   }
-
-  interface ImageText {}
-  interface ImageTextAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'ImageSelect': Components.ImageSelect;
-    'ImageTextSelect': Components.ImageTextSelect;
-    'ImageText': Components.ImageText;
+    'SelectImage': Components.SelectImage;
+    'TextImage': Components.TextImage;
+    'TextSelectImage': Components.TextSelectImage;
   }
 
   interface StencilIntrinsicElements {
-    'image-select': Components.ImageSelectAttributes;
-    'image-text-select': Components.ImageTextSelectAttributes;
-    'image-text': Components.ImageTextAttributes;
+    'select-image': Components.SelectImageAttributes;
+    'text-image': Components.TextImageAttributes;
+    'text-select-image': Components.TextSelectImageAttributes;
   }
 
 
-  interface HTMLImageSelectElement extends Components.ImageSelect, HTMLStencilElement {}
-  var HTMLImageSelectElement: {
-    prototype: HTMLImageSelectElement;
-    new (): HTMLImageSelectElement;
+  interface HTMLSelectImageElement extends Components.SelectImage, HTMLStencilElement {}
+  var HTMLSelectImageElement: {
+    prototype: HTMLSelectImageElement;
+    new (): HTMLSelectImageElement;
   };
 
-  interface HTMLImageTextSelectElement extends Components.ImageTextSelect, HTMLStencilElement {}
-  var HTMLImageTextSelectElement: {
-    prototype: HTMLImageTextSelectElement;
-    new (): HTMLImageTextSelectElement;
+  interface HTMLTextImageElement extends Components.TextImage, HTMLStencilElement {}
+  var HTMLTextImageElement: {
+    prototype: HTMLTextImageElement;
+    new (): HTMLTextImageElement;
   };
 
-  interface HTMLImageTextElement extends Components.ImageText, HTMLStencilElement {}
-  var HTMLImageTextElement: {
-    prototype: HTMLImageTextElement;
-    new (): HTMLImageTextElement;
+  interface HTMLTextSelectImageElement extends Components.TextSelectImage, HTMLStencilElement {}
+  var HTMLTextSelectImageElement: {
+    prototype: HTMLTextSelectImageElement;
+    new (): HTMLTextSelectImageElement;
   };
 
   interface HTMLElementTagNameMap {
-    'image-select': HTMLImageSelectElement
-    'image-text-select': HTMLImageTextSelectElement
-    'image-text': HTMLImageTextElement
+    'select-image': HTMLSelectImageElement
+    'text-image': HTMLTextImageElement
+    'text-select-image': HTMLTextSelectImageElement
   }
 
   interface ElementTagNameMap {
-    'image-select': HTMLImageSelectElement;
-    'image-text-select': HTMLImageTextSelectElement;
-    'image-text': HTMLImageTextElement;
+    'select-image': HTMLSelectImageElement;
+    'text-image': HTMLTextImageElement;
+    'text-select-image': HTMLTextSelectImageElement;
   }
 
 
