@@ -3,14 +3,14 @@ import { Component } from '@stencil/core';
 
 
 @Component({
-    tag: 'image-text',
-    styleUrl: 'image-text.css',
+    tag: 'text-image',
+    styleUrl: 'text-image.css',
     shadow: true
 })
-export class ImageText {
+export class TextImage {
     render() {
         return (
-            <div>ImageText Works</div>
+            <div>TextImage Works</div>
         );
     }
 }

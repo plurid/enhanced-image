@@ -8,6 +8,9 @@
             html, body {
                 /* background-color: white */
                 background-color: hsl(220, 2%, 15%);
+                color: white;
+                font-family: Helvetica, sans-serif;
+                font-size: 16px;
             }
             .container {
                 text-align: center;
@@ -22,7 +25,18 @@
 
     <body>
         <div class="container">
-            <image-text-select src="./test-assets/food-text.jpg"></image-text-select>
+            <text-select-image
+                control
+                src="./test-assets/food-text.jpg"
+            >
+            </text-select-image>
+        </div>
+
+        <div class="container">
+            <text-select-image
+                src="./test-assets/food-text.jpg"
+            >
+            </text-select-image>
         </div>
     </body>
 </html>
