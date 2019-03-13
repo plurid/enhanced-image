@@ -18,14 +18,16 @@ export class TextSelectImage {
 
     render() {
         return (
-            <div>
+            <div class="text-select-image-settings-container">
                 <div
                     class="text-select-image-settings-button"
                     innerHTML={settingsIcon}
                     onClick={this.toggleSettings}
                 />
                 {this.toggle && (
-                    <text-select-image-settings-menu />
+                    <text-select-image-settings-menu
+                        toggle={this.toggleSettings}
+                    />
                 )}
             </div>
         );
