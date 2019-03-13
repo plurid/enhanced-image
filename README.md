@@ -56,11 +56,11 @@ The image is analysed and established if it contains text. If it does, the locat
 
 ### Setup
 
-Add the `image-text-select` script to the application (or install with `npm`).
+Add the `text-select-image-html` script to the application (or install with `npm`).
 
     npm install text-select-image-html
 
-Use the `<image-text-select>` HTML Element, passing in the `src` and `text` attributes.
+Use the `<text-select-image>` HTML Element, passing in the `src` and `text` attributes.
 
 
 ### HTML text-select-image Element
