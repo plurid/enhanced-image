@@ -1,4 +1,4 @@
-export interface ImageText {
+export interface ITextImage {
     id: string,
     begin: number,
     end: number,
@@ -18,7 +18,7 @@ export interface ImageText {
 }
 
 
-export interface TextSelectImageData {
+export interface ITextSelectImageData {
     id: string,
-    imageText: ImageText[]
+    imageText: ITextImage[]
 }

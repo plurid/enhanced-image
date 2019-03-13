@@ -1,4 +1,6 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
+
+import { ITextImage } from '../../interfaces/image-text';
 
 
 
@@ -8,7 +10,11 @@ import { Component } from '@stencil/core';
     shadow: true
 })
 export class TextImage {
+    @Prop() text: ITextImage;
+
     render() {
+        console.log('text', this.text);
+
         return (
             <div>TextImage Works</div>
         );
