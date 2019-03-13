@@ -14,3 +14,9 @@
     right: 0;
     bottom: 0;
 }
+
+.text-select-image-container text-select-image-settings {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}

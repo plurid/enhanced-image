@@ -30,6 +30,12 @@ export namespace Components {
     'text'?: ITextImage;
   }
 
+  interface TextSelectImageSettingsMenu {}
+  interface TextSelectImageSettingsMenuAttributes extends StencilHTMLAttributes {}
+
+  interface TextSelectImageSettings {}
+  interface TextSelectImageSettingsAttributes extends StencilHTMLAttributes {}
+
   interface TextSelectImage {
     'alt': string;
     'classes': string;
@@ -56,12 +62,16 @@ declare global {
   interface StencilElementInterfaces {
     'SelectImage': Components.SelectImage;
     'TextImage': Components.TextImage;
+    'TextSelectImageSettingsMenu': Components.TextSelectImageSettingsMenu;
+    'TextSelectImageSettings': Components.TextSelectImageSettings;
     'TextSelectImage': Components.TextSelectImage;
   }
 
   interface StencilIntrinsicElements {
     'select-image': Components.SelectImageAttributes;
     'text-image': Components.TextImageAttributes;
+    'text-select-image-settings-menu': Components.TextSelectImageSettingsMenuAttributes;
+    'text-select-image-settings': Components.TextSelectImageSettingsAttributes;
     'text-select-image': Components.TextSelectImageAttributes;
   }
 
@@ -78,6 +88,18 @@ declare global {
     new (): HTMLTextImageElement;
   };
 
+  interface HTMLTextSelectImageSettingsMenuElement extends Components.TextSelectImageSettingsMenu, HTMLStencilElement {}
+  var HTMLTextSelectImageSettingsMenuElement: {
+    prototype: HTMLTextSelectImageSettingsMenuElement;
+    new (): HTMLTextSelectImageSettingsMenuElement;
+  };
+
+  interface HTMLTextSelectImageSettingsElement extends Components.TextSelectImageSettings, HTMLStencilElement {}
+  var HTMLTextSelectImageSettingsElement: {
+    prototype: HTMLTextSelectImageSettingsElement;
+    new (): HTMLTextSelectImageSettingsElement;
+  };
+
   interface HTMLTextSelectImageElement extends Components.TextSelectImage, HTMLStencilElement {}
   var HTMLTextSelectImageElement: {
     prototype: HTMLTextSelectImageElement;
@@ -87,12 +109,16 @@ declare global {
   interface HTMLElementTagNameMap {
     'select-image': HTMLSelectImageElement
     'text-image': HTMLTextImageElement
+    'text-select-image-settings-menu': HTMLTextSelectImageSettingsMenuElement
+    'text-select-image-settings': HTMLTextSelectImageSettingsElement
     'text-select-image': HTMLTextSelectImageElement
   }
 
   interface ElementTagNameMap {
     'select-image': HTMLSelectImageElement;
     'text-image': HTMLTextImageElement;
+    'text-select-image-settings-menu': HTMLTextSelectImageSettingsMenuElement;
+    'text-select-image-settings': HTMLTextSelectImageSettingsElement;
     'text-select-image': HTMLTextSelectImageElement;
   }
 
