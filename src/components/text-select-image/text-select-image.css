@@ -1,1 +1,16 @@
+.text-select-image-container {
+    position: relative;
+}
 
+.text-select-image-container img {
+    user-select: none;
+    width: 100%;
+}
+
+.text-select-image-container select-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

@@ -1,11 +1,13 @@
 import { Component, Prop, State } from '@stencil/core';
 
+import { styleStringToObject} from '../../utils/styleString';
+
 
 
 @Component({
     tag: 'text-select-image',
     styleUrl: 'text-select-image.css',
-    shadow: false
+    shadow: true
 })
 export class TextSelectImage {
     @Prop() src: string;
@@ -21,12 +23,16 @@ export class TextSelectImage {
     @State() showControl: boolean;
 
     componentWillLoad() {
-        this.control ? this.showControl = this.control : this.showControl = false;
+        this.styled = this.styling ? styleStringToObject(this.styling) : {};
+        this.showControl = this.control ? this.control : false;
     }
 
     render() {
         return (
-            <div>
+            <div
+                style={ {...this.styled} }
+                class="text-select-image-container"
+            >
                 <img src={this.src} alt={this.alt || ''} />
                 <select-image />
             </div>
