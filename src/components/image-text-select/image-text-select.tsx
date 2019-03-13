@@ -1,16 +1,19 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 
 
 @Component({
     tag: 'image-text-select',
     styleUrl: 'image-text-select.css',
-    shadow: true
+    shadow: false
 })
 export class ImageTextSelect {
+    @Prop() src: string;
+    @Prop() alt: string;
+
     render() {
         return (
-            <div>ImageTextSelect Works</div>
+            <img src={this.src} alt={this.alt || ''} />
         );
     }
 }

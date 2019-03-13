@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-    <title>Text Select Image</title>
-    <script src="/build/mycomponent.js"></script>
-</head>
-<body>
-    <image-text-select></image-text-select>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+        <title>Text Select Image</title>
+        <style>
+            html, body {
+                /* background-color: white */
+                background-color: hsl(220, 2%, 15%);
+            }
+            .container {
+                text-align: center;
+            }
+            .container img {
+                width: 800px;
+                margin: 200px auto;
+            }
+        </style>
+        <script src="/build/text-select-image-html.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <image-text-select src="./test-assets/food-text.jpg"></image-text-select>
+        </div>
+    </body>
 </html>

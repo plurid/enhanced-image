@@ -15,8 +15,14 @@ export namespace Components {
   interface ImageSelect {}
   interface ImageSelectAttributes extends StencilHTMLAttributes {}
 
-  interface ImageTextSelect {}
-  interface ImageTextSelectAttributes extends StencilHTMLAttributes {}
+  interface ImageTextSelect {
+    'alt': string;
+    'src': string;
+  }
+  interface ImageTextSelectAttributes extends StencilHTMLAttributes {
+    'alt'?: string;
+    'src'?: string;
+  }
 
   interface ImageText {}
   interface ImageTextAttributes extends StencilHTMLAttributes {}
