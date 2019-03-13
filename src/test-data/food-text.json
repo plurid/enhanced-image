@@ -1,0 +1,23 @@
+{
+    "id": "1",
+    "imageText": [
+        {
+            "id": "string",
+            "begin": 0,
+            "end": 0,
+            "xPercentage": 0,
+            "yPercentage": 0,
+            "xCoord": 0,
+            "yCoord": 0,
+            "perspective": "string",
+            "rotation": "string",
+            "skew": "string",
+            "fontFamily": "string",
+            "fontSize": 0,
+            "letterSpacing": 0,
+            "lineHeight": 0,
+            "wordSpacing": 0,
+            "textContent": "string"
+        }
+    ]
+}

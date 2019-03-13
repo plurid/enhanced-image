@@ -5,7 +5,7 @@
  * @param path {string}
  * @param callback {Function}
  */
-const loadJSON = (path: string, callback: Function) => {
+export const loadJSON = (path: string, callback: Function) => {
     let xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
 
