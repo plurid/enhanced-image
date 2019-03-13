@@ -13,10 +13,24 @@ export class TextImage {
     @Prop() text: ITextImage;
 
     render() {
+        const text = this.text;
         console.log('text', this.text);
 
         return (
-            <div>TextImage Works</div>
+            <span
+                class="text-image-span"
+                style={{
+                    top: text.yCoord + 'px',
+                    left: text.xCoord + 'px',
+                    // color: text.color,
+                    fontFamily: text.fontFamily,
+                    fontSize: text.fontSize + 'px',
+                    fontWeight: text.fontWeight + '',
+                    letterSpacing: text.letterSpacing + 'px',
+                }}
+            >
+                {text.content}
+            </span>
         );
     }
 }
