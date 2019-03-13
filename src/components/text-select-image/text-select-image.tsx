@@ -3,7 +3,6 @@ import { Component, Prop, State } from '@stencil/core';
 import { TextSelectImageData } from '../../interfaces/image-text';
 
 import { styleStringToObject} from '../../utils/styleString';
-import { loadJSON } from '../../utils/json';
 
 
 
@@ -27,10 +26,10 @@ export class TextSelectImage {
     @State() showControl: boolean;
     @State() selectText: TextSelectImageData;
 
-    componentWillLoad() {
+    async componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};
         this.showControl = this.control ? this.control : false;
-        this.selectText = this.textData ? this.parseText(this.textData) : this.loadDummyText();
+        this.selectText = this.textData ? this.parseText(this.textData) : await this.loadDummyText();
     }
 
     parseText = (data: string) => {
@@ -39,11 +38,12 @@ export class TextSelectImage {
         return parsedData;
     }
 
-    loadDummyText = () => {
+    loadDummyText = async () => {
         let dummyData: TextSelectImageData;
-        loadJSON('../../test-data/food-text.json', (data: TextSelectImageData) => {
-            console.log(data);
-        });
+
+        let response = await fetch('../../test-data/food-text.json');
+        let data = await response.json();
+        console.log('data', data);
 
         return dummyData;
     }
