@@ -1,5 +1,6 @@
 .text-select-image-container {
     position: relative;
+    overflow: hidden;
 }
 
 .text-select-image-container img {

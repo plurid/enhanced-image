@@ -10,17 +10,19 @@ import { ITextSelectImageData } from '../../interfaces/image-text';
     shadow: true
 })
 export class SelectImage {
+    @Prop() textSelectImage: any;
     @Prop() selectText: ITextSelectImageData;
 
     render() {
         const { imageText } = this.selectText;
-        console.log('selectText', this.selectText);
+        // console.log('selectText', this.selectText);
 
         return (
             <div>
                 {imageText.map(text => {
                     return (
                         <text-image
+                            textSelectImage={this.textSelectImage}
                             text={text}
                         />
                     );
