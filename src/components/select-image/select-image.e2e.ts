@@ -2,12 +2,12 @@ import { newE2EPage } from '@stencil/core/testing';
 
 
 
-describe('image-select', () => {
+describe('select-image', () => {
     it('renders', async () => {
         const page = await newE2EPage();
 
-        await page.setContent('<image-select></image-select>');
-        const element = await page.find('image-select');
+        await page.setContent('<select-image></select-image>');
+        const element = await page.find('select-image');
         expect(element).toHaveClass('hydrated');
     });
 });

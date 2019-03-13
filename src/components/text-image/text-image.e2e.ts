@@ -2,12 +2,12 @@ import { newE2EPage } from '@stencil/core/testing';
 
 
 
-describe('image-text', () => {
+describe('text-image', () => {
     it('renders', async () => {
         const page = await newE2EPage();
 
-        await page.setContent('<image-text></image-text>');
-        const element = await page.find('image-text');
+        await page.setContent('<text-image></text-image>');
+        const element = await page.find('text-image');
         expect(element).toHaveClass('hydrated');
     });
 });
