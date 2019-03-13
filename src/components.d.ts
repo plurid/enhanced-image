@@ -30,8 +30,34 @@ export namespace Components {
     'text'?: ITextImage;
   }
 
-  interface TextSelectImageSettingsMenu {}
-  interface TextSelectImageSettingsMenuAttributes extends StencilHTMLAttributes {}
+  interface TextSelectImageButtonCheckmark {
+    'checked': boolean;
+    'text': string;
+    'toggle': (event: MouseEvent) => void;
+  }
+  interface TextSelectImageButtonCheckmarkAttributes extends StencilHTMLAttributes {
+    'checked'?: boolean;
+    'text'?: string;
+    'toggle'?: (event: MouseEvent) => void;
+  }
+
+  interface TextSelectImageButtonItem {
+    'atClick': (event: MouseEvent) => void;
+    'icon': string;
+    'text': string;
+  }
+  interface TextSelectImageButtonItemAttributes extends StencilHTMLAttributes {
+    'atClick'?: (event: MouseEvent) => void;
+    'icon'?: string;
+    'text'?: string;
+  }
+
+  interface TextSelectImageSettingsMenu {
+    'toggle': () => void;
+  }
+  interface TextSelectImageSettingsMenuAttributes extends StencilHTMLAttributes {
+    'toggle'?: () => void;
+  }
 
   interface TextSelectImageSettings {}
   interface TextSelectImageSettingsAttributes extends StencilHTMLAttributes {}
@@ -62,6 +88,8 @@ declare global {
   interface StencilElementInterfaces {
     'SelectImage': Components.SelectImage;
     'TextImage': Components.TextImage;
+    'TextSelectImageButtonCheckmark': Components.TextSelectImageButtonCheckmark;
+    'TextSelectImageButtonItem': Components.TextSelectImageButtonItem;
     'TextSelectImageSettingsMenu': Components.TextSelectImageSettingsMenu;
     'TextSelectImageSettings': Components.TextSelectImageSettings;
     'TextSelectImage': Components.TextSelectImage;
@@ -70,6 +98,8 @@ declare global {
   interface StencilIntrinsicElements {
     'select-image': Components.SelectImageAttributes;
     'text-image': Components.TextImageAttributes;
+    'text-select-image-button-checkmark': Components.TextSelectImageButtonCheckmarkAttributes;
+    'text-select-image-button-item': Components.TextSelectImageButtonItemAttributes;
     'text-select-image-settings-menu': Components.TextSelectImageSettingsMenuAttributes;
     'text-select-image-settings': Components.TextSelectImageSettingsAttributes;
     'text-select-image': Components.TextSelectImageAttributes;
@@ -86,6 +116,18 @@ declare global {
   var HTMLTextImageElement: {
     prototype: HTMLTextImageElement;
     new (): HTMLTextImageElement;
+  };
+
+  interface HTMLTextSelectImageButtonCheckmarkElement extends Components.TextSelectImageButtonCheckmark, HTMLStencilElement {}
+  var HTMLTextSelectImageButtonCheckmarkElement: {
+    prototype: HTMLTextSelectImageButtonCheckmarkElement;
+    new (): HTMLTextSelectImageButtonCheckmarkElement;
+  };
+
+  interface HTMLTextSelectImageButtonItemElement extends Components.TextSelectImageButtonItem, HTMLStencilElement {}
+  var HTMLTextSelectImageButtonItemElement: {
+    prototype: HTMLTextSelectImageButtonItemElement;
+    new (): HTMLTextSelectImageButtonItemElement;
   };
 
   interface HTMLTextSelectImageSettingsMenuElement extends Components.TextSelectImageSettingsMenu, HTMLStencilElement {}
@@ -109,6 +151,8 @@ declare global {
   interface HTMLElementTagNameMap {
     'select-image': HTMLSelectImageElement
     'text-image': HTMLTextImageElement
+    'text-select-image-button-checkmark': HTMLTextSelectImageButtonCheckmarkElement
+    'text-select-image-button-item': HTMLTextSelectImageButtonItemElement
     'text-select-image-settings-menu': HTMLTextSelectImageSettingsMenuElement
     'text-select-image-settings': HTMLTextSelectImageSettingsElement
     'text-select-image': HTMLTextSelectImageElement
@@ -117,6 +161,8 @@ declare global {
   interface ElementTagNameMap {
     'select-image': HTMLSelectImageElement;
     'text-image': HTMLTextImageElement;
+    'text-select-image-button-checkmark': HTMLTextSelectImageButtonCheckmarkElement;
+    'text-select-image-button-item': HTMLTextSelectImageButtonItemElement;
     'text-select-image-settings-menu': HTMLTextSelectImageSettingsMenuElement;
     'text-select-image-settings': HTMLTextSelectImageSettingsElement;
     'text-select-image': HTMLTextSelectImageElement;
