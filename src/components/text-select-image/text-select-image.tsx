@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, Element } from '@stencil/core';
 
 import { ITextSelectImageData } from '../../interfaces/image-text';
 
@@ -12,6 +12,8 @@ import { styleStringToObject} from '../../utils/styleString';
     shadow: true
 })
 export class TextSelectImage {
+    @Element() element: HTMLElement;
+
     @Prop() src: string;
     @Prop() alt: string;
     @Prop() height: string;
@@ -54,6 +56,7 @@ export class TextSelectImage {
             >
                 <img src={this.src} alt={this.alt || ''} />
                 <select-image
+                    textSelectImage={this.element}
                     selectText={this.selectText}
                 />
                 {this.showControl && (

@@ -18,16 +18,20 @@ export namespace Components {
 
   interface SelectImage {
     'selectText': ITextSelectImageData;
+    'textSelectImage': any;
   }
   interface SelectImageAttributes extends StencilHTMLAttributes {
     'selectText'?: ITextSelectImageData;
+    'textSelectImage'?: any;
   }
 
   interface TextImage {
     'text': ITextImage;
+    'textSelectImage': any;
   }
   interface TextImageAttributes extends StencilHTMLAttributes {
     'text'?: ITextImage;
+    'textSelectImage'?: any;
   }
 
   interface TextSelectImageButtonCheckmark {
