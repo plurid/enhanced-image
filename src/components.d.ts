@@ -25,6 +25,7 @@ export namespace Components {
     'height': string;
     'src': string;
     'styling': string;
+    'textData': string;
     'width': string;
   }
   interface TextSelectImageAttributes extends StencilHTMLAttributes {
@@ -34,6 +35,7 @@ export namespace Components {
     'height'?: string;
     'src'?: string;
     'styling'?: string;
+    'textData'?: string;
     'width'?: string;
   }
 }

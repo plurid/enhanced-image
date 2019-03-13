@@ -1,4 +1,4 @@
-interface ImageText {
+export interface ImageText {
     id: string,
     begin: number,
     end: number,
@@ -18,7 +18,7 @@ interface ImageText {
 }
 
 
-interface TSIData {
+export interface TextSelectImageData {
     id: string,
     imageText: ImageText[]
 }
