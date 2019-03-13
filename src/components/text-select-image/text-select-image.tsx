@@ -1,6 +1,6 @@
 import { Component, Prop, State } from '@stencil/core';
 
-import { TextSelectImageData } from '../../interfaces/image-text';
+import { ITextSelectImageData } from '../../interfaces/image-text';
 
 import { styleStringToObject} from '../../utils/styleString';
 
@@ -24,7 +24,7 @@ export class TextSelectImage {
 
     @State() styled: any;
     @State() showControl: boolean;
-    @State() selectText: TextSelectImageData;
+    @State() selectText: ITextSelectImageData;
 
     async componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};
@@ -34,29 +34,28 @@ export class TextSelectImage {
 
     parseText = (data: string) => {
         console.log('data', data);
-        let parsedData: TextSelectImageData;
+        let parsedData: ITextSelectImageData;
         return parsedData;
     }
 
     loadDummyText = async () => {
-        let dummyData: TextSelectImageData;
-
         let response = await fetch('../../test-data/food-text.json');
-        let data = await response.json();
-        console.log('data', data);
-
+        let dummyData: ITextSelectImageData = await response.json();
+        // console.log('dummyData', dummyData);
         return dummyData;
     }
 
     render() {
-        console.log('select text', this.selectText);
+        // console.log('select text', this.selectText);
         return (
             <div
                 style={ {...this.styled} }
                 class="text-select-image-container"
             >
                 <img src={this.src} alt={this.alt || ''} />
-                <select-image />
+                <select-image
+                    selectText={this.selectText}
+                />
             </div>
         );
     }

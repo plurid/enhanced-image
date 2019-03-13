@@ -8,15 +8,27 @@
 import '@stencil/core';
 
 
+import {
+  ITextImage,
+  ITextSelectImageData,
+} from './interfaces/image-text';
 
 
 export namespace Components {
 
-  interface SelectImage {}
-  interface SelectImageAttributes extends StencilHTMLAttributes {}
+  interface SelectImage {
+    'selectText': ITextSelectImageData;
+  }
+  interface SelectImageAttributes extends StencilHTMLAttributes {
+    'selectText'?: ITextSelectImageData;
+  }
 
-  interface TextImage {}
-  interface TextImageAttributes extends StencilHTMLAttributes {}
+  interface TextImage {
+    'text': ITextImage;
+  }
+  interface TextImageAttributes extends StencilHTMLAttributes {
+    'text'?: ITextImage;
+  }
 
   interface TextSelectImage {
     'alt': string;
