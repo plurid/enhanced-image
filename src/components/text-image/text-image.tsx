@@ -21,6 +21,7 @@ export class TextImage {
     @State() xCoord: number = 0;
     @State() yCoord: number = 0;
 
+    @State() textEditable: boolean = false;
     @State() draggable: boolean = false;
     @State() dragging: boolean = false;
     @State() showEditor: boolean = false;
@@ -87,6 +88,18 @@ export class TextImage {
 
     toggleDraggable = () => {
         this.draggable = !this.draggable;
+
+        if (this.textEditable) {
+            this.textEditable = false;
+        }
+    }
+
+    toggleTextEditable = () => {
+        this.textEditable = !this.textEditable;
+
+        if (this.draggable) {
+            this.draggable = false;
+        }
     }
 
     render() {
@@ -97,6 +110,7 @@ export class TextImage {
                 class={`
                     text-image-span
                     ${this.editable ? 'text-image-span-editable' : '' }
+                    ${this.draggable ? 'text-image-span-draggable' : '' }
                     ${this.dragging ? 'text-image-span-dragging' : '' }
                 `}
                 style={{
@@ -117,6 +131,8 @@ export class TextImage {
                 {this.showEditor && (
                     <span class="text-image-span-editor">
                         <text-image-editor
+                            textEditable={this.textEditable}
+                            toggleTextEditable={this.toggleTextEditable}
                             draggable={this.draggable}
                             toggleDraggable={this.toggleDraggable}
                         />
@@ -125,6 +141,7 @@ export class TextImage {
                 <span
                     class="text-image-span-content"
                     ref={(el) => this.textImageSpanContent = el as HTMLSpanElement}
+                    contentEditable={this.textEditable}
                 >
                     {text.content}
                 </span>
