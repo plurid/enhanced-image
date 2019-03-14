@@ -78,7 +78,11 @@
 .text-image-editor-button-color {
     height: 14px;
     width: 14px;
-    border-radius: 7px;
+    border-radius: 10px;
+}
+
+.text-image-editor-button-color-active {
+    border: 1px solid white;
 }
 
 .text-image-editor-button-colors {
