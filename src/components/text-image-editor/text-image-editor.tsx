@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 import grabIcon from '../../assets/grab-icon.svg';
 import fontSizeIcon from '../../assets/font-size-icon.svg';
@@ -15,6 +15,9 @@ import deleteIcon from '../../assets/delete-icon.svg';
     shadow: true
 })
 export class TextImageEditor {
+    @Prop() draggable: boolean;
+    @Prop() toggleDraggable: () => void;
+
     render() {
         return (
             <span class="text-image-editor">
@@ -23,7 +26,11 @@ export class TextImageEditor {
                 </span>
                 <span class="text-image-editor-button">
                     <span
-                        class="text-image-editor-button-icon"
+                        class={`
+                            text-image-editor-button-icon
+                            ${this.draggable ? 'text-image-editor-button-icon-active': ''}
+                        `}
+                        onClick={this.toggleDraggable}
                         innerHTML={grabIcon}
                     />
                 </span>

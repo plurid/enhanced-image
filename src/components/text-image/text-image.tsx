@@ -16,12 +16,14 @@ export class TextImage {
 
     @Prop() text: ITextImage;
     @Prop() textSelectImage: any;
+    @Prop() editable: boolean;
 
     @State() xCoord: number = 0;
     @State() yCoord: number = 0;
 
-    @State() draggable: boolean = true;
+    @State() draggable: boolean = false;
     @State() dragging: boolean = false;
+    @State() showEditor: boolean = false;
     @State() pos1: number = 0;
     @State() pos2: number = 0;
     @State() pos3: number = 0;
@@ -32,15 +34,17 @@ export class TextImage {
         this.yCoord = this.text.yCoord;
     }
 
-    componentDidLoad() {
+    componentWillUpdate() {
         if (this.draggable) {
             this.textImageSpanContent.onmousedown = this.dragMouseDown;
             this.textImageSpanContent.onmouseup = this.mouseUp;
+        } else {
+            this.textImageSpanContent.onmousedown = null;
+            this.textImageSpanContent.onmouseup = null;
         }
     }
 
     dragMouseDown = (e: any) => {
-        console.log(e);
         this.dragging = true;
 
         e = e || window.event;
@@ -77,6 +81,14 @@ export class TextImage {
         this.dragging = false;
     }
 
+    toggleEditor = () => {
+        this.editable ? this.showEditor = !this.showEditor : null;
+    }
+
+    toggleDraggable = () => {
+        this.draggable = !this.draggable;
+    }
+
     render() {
         const text = this.text;
 
@@ -84,7 +96,7 @@ export class TextImage {
             <span
                 class={`
                     text-image-span
-                    ${this.draggable ? 'text-image-span-draggable' : '' }
+                    ${this.editable ? 'text-image-span-editable' : '' }
                     ${this.dragging ? 'text-image-span-dragging' : '' }
                 `}
                 style={{
@@ -98,11 +110,18 @@ export class TextImage {
                     lineHeight: text.lineHeight + '',
                     wordSpacing: text.wordSpacing + 'px',
                 }}
+                onMouseEnter={this.toggleEditor}
+                onMouseLeave={this.toggleEditor}
                 ref={(el) => this.textImageSpan = el as HTMLSpanElement}
             >
-                <span class="text-image-span-editor">
-                    <text-image-editor />
-                </span>
+                {this.showEditor && (
+                    <span class="text-image-span-editor">
+                        <text-image-editor
+                            draggable={this.draggable}
+                            toggleDraggable={this.toggleDraggable}
+                        />
+                    </span>
+                )}
                 <span
                     class="text-image-span-content"
                     ref={(el) => this.textImageSpanContent = el as HTMLSpanElement}

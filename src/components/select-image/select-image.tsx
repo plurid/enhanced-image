@@ -12,6 +12,7 @@ import { ITextSelectImageData } from '../../interfaces/image-text';
 export class SelectImage {
     @Prop() textSelectImage: any;
     @Prop() selectText: ITextSelectImageData;
+    @Prop() editable: boolean;
 
     render() {
         const { imageText } = this.selectText;
@@ -24,6 +25,7 @@ export class SelectImage {
                         <text-image
                             textSelectImage={this.textSelectImage}
                             text={text}
+                            editable={this.editable}
                         />
                     );
                 })}

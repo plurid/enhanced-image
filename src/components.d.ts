@@ -17,22 +17,32 @@ import {
 export namespace Components {
 
   interface SelectImage {
+    'editable': boolean;
     'selectText': ITextSelectImageData;
     'textSelectImage': any;
   }
   interface SelectImageAttributes extends StencilHTMLAttributes {
+    'editable'?: boolean;
     'selectText'?: ITextSelectImageData;
     'textSelectImage'?: any;
   }
 
-  interface TextImageEditor {}
-  interface TextImageEditorAttributes extends StencilHTMLAttributes {}
+  interface TextImageEditor {
+    'draggable': boolean;
+    'toggleDraggable': () => void;
+  }
+  interface TextImageEditorAttributes extends StencilHTMLAttributes {
+    'draggable'?: boolean;
+    'toggleDraggable'?: () => void;
+  }
 
   interface TextImage {
+    'editable': boolean;
     'text': ITextImage;
     'textSelectImage': any;
   }
   interface TextImageAttributes extends StencilHTMLAttributes {
+    'editable'?: boolean;
     'text'?: ITextImage;
     'textSelectImage'?: any;
   }
@@ -60,14 +70,24 @@ export namespace Components {
   }
 
   interface TextSelectImageSettingsMenu {
+    'editable': boolean;
     'toggle': () => void;
+    'toggleEditable': () => void;
   }
   interface TextSelectImageSettingsMenuAttributes extends StencilHTMLAttributes {
+    'editable'?: boolean;
     'toggle'?: () => void;
+    'toggleEditable'?: () => void;
   }
 
-  interface TextSelectImageSettings {}
-  interface TextSelectImageSettingsAttributes extends StencilHTMLAttributes {}
+  interface TextSelectImageSettings {
+    'editable': boolean;
+    'toggleEditable': () => void;
+  }
+  interface TextSelectImageSettingsAttributes extends StencilHTMLAttributes {
+    'editable'?: boolean;
+    'toggleEditable'?: () => void;
+  }
 
   interface TextSelectImage {
     'alt': string;
