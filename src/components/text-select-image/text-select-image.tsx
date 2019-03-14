@@ -27,6 +27,7 @@ export class TextSelectImage {
     @State() styled: any;
     @State() showControl: boolean;
     @State() selectText: ITextSelectImageData;
+    @State() editable: boolean = false;
 
     async componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};
@@ -47,6 +48,10 @@ export class TextSelectImage {
         return dummyData;
     }
 
+    toggleEditable = () => {
+        this.editable = !this.editable;
+    }
+
     render() {
         // console.log('select text', this.selectText);
         return (
@@ -58,9 +63,12 @@ export class TextSelectImage {
                 <select-image
                     textSelectImage={this.element}
                     selectText={this.selectText}
+                    editable={this.editable}
                 />
                 {this.showControl && (
                     <text-select-image-settings
+                        editable={this.editable}
+                        toggleEditable={this.toggleEditable}
                     />
                 )}
             </div>

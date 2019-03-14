@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 import aboutIcon from '../../assets/about-icon.svg';
 import addTextIcon from '../../assets/add-text-icon.svg';
@@ -12,16 +12,12 @@ import addTextIcon from '../../assets/add-text-icon.svg';
 })
 export class TextSelectImage {
     @Prop() toggle: () => void;
-
-    @State() edit: boolean = false;
+    @Prop() editable: boolean;
+    @Prop() toggleEditable: () => void;
 
     addText = () => {
         this.toggle()
         console.log('add text');
-    }
-
-    editText = () => {
-        this.edit = !this.edit;
     }
 
     about = () => {
@@ -35,9 +31,9 @@ export class TextSelectImage {
                 <ul>
                     <li>
                         <text-select-image-button-checkmark
-                            toggle={this.editText}
+                            toggle={this.toggleEditable}
                             text='Edit'
-                            checked={this.edit}
+                            checked={this.editable}
                         />
                     </li>
                     <li>
