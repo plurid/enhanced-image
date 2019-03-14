@@ -40,12 +40,37 @@
 }
 
 
+.text-image-editor-button-increments {
+    background: hsl(220, 2%, 30%);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    font-size: 6px;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    grid-row-gap: 1px;
+    height: 19px;
+}
+
+.text-image-editor-button-increment-button {
+    background: hsl(220, 2%, 15%);
+    width: 12px;
+    height: 9px;
+    text-align: center;
+}
+
+.text-image-editor-button-increment-button:hover {
+    background: hsl(220, 2%, 25%);
+}
+
 .text-image-editor-button input {
     width: 20px;
     border: none;
     background: hsl(220, 2%, 30%);
     color: white;
     text-align: center;
+    outline: none;
     padding: 3px;
     margin-right: 4px;
 }
