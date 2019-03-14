@@ -25,6 +25,9 @@ export namespace Components {
     'textSelectImage'?: any;
   }
 
+  interface TextImageEditor {}
+  interface TextImageEditorAttributes extends StencilHTMLAttributes {}
+
   interface TextImage {
     'text': ITextImage;
     'textSelectImage': any;
@@ -91,6 +94,7 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'SelectImage': Components.SelectImage;
+    'TextImageEditor': Components.TextImageEditor;
     'TextImage': Components.TextImage;
     'TextSelectImageButtonCheckmark': Components.TextSelectImageButtonCheckmark;
     'TextSelectImageButtonItem': Components.TextSelectImageButtonItem;
@@ -101,6 +105,7 @@ declare global {
 
   interface StencilIntrinsicElements {
     'select-image': Components.SelectImageAttributes;
+    'text-image-editor': Components.TextImageEditorAttributes;
     'text-image': Components.TextImageAttributes;
     'text-select-image-button-checkmark': Components.TextSelectImageButtonCheckmarkAttributes;
     'text-select-image-button-item': Components.TextSelectImageButtonItemAttributes;
@@ -114,6 +119,12 @@ declare global {
   var HTMLSelectImageElement: {
     prototype: HTMLSelectImageElement;
     new (): HTMLSelectImageElement;
+  };
+
+  interface HTMLTextImageEditorElement extends Components.TextImageEditor, HTMLStencilElement {}
+  var HTMLTextImageEditorElement: {
+    prototype: HTMLTextImageEditorElement;
+    new (): HTMLTextImageEditorElement;
   };
 
   interface HTMLTextImageElement extends Components.TextImage, HTMLStencilElement {}
@@ -154,6 +165,7 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'select-image': HTMLSelectImageElement
+    'text-image-editor': HTMLTextImageEditorElement
     'text-image': HTMLTextImageElement
     'text-select-image-button-checkmark': HTMLTextSelectImageButtonCheckmarkElement
     'text-select-image-button-item': HTMLTextSelectImageButtonItemElement
@@ -164,6 +176,7 @@ declare global {
 
   interface ElementTagNameMap {
     'select-image': HTMLSelectImageElement;
+    'text-image-editor': HTMLTextImageEditorElement;
     'text-image': HTMLTextImageElement;
     'text-select-image-button-checkmark': HTMLTextSelectImageButtonCheckmarkElement;
     'text-select-image-button-item': HTMLTextSelectImageButtonItemElement;

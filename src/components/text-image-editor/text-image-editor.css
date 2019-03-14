@@ -1,0 +1,47 @@
+.text-image-editor {
+    cursor: default;
+    background-color: hsl(220, 2%, 20%);
+    color: white;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 17px;
+    height: 34px;
+    padding-left: 17px;
+    padding-right: 17px;
+    box-shadow: 0px 0px 5px 1px hsla(220, 2%, 10%, 0.9);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.text-image-editor-button {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.text-image-editor-button-icon {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.text-image-editor-button:hover {
+    background-color: hsl(220, 2%, 60%);
+}
+
+.text-image-editor-button svg {
+    height: 14px;
+    width: 14px;
+}
+
+
+.text-image-editor-button input {
+    width: 20px;
+    border: none;
+    background: hsl(220, 2%, 30%);
+    color: white;
+    text-align: center;
+    padding: 3px;
+    margin-right: 4px;
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 586 775">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <title>Duplicate</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Icon-Duplicate">
+      <g id="Icon-Duplicate-2" data-name="Icon-Duplicate">
+        <path class="cls-1" d="M1,1V703H520V1ZM518,224.34H359.24V692.5H292V224.34H133.32V167.46H518Z"/>
+        <path class="cls-1" d="M66,72V774H585V72ZM518,224.34H359.24V692.5H292V224.34H133.32V167.46H518Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
