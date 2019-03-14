@@ -11,13 +11,16 @@ import { ITextImage } from '../../interfaces/image-text';
 })
 export class TextImage {
     @Element() element: HTMLElement;
+    textImageSpan!: HTMLSpanElement;
 
     @Prop() text: ITextImage;
     @Prop() textSelectImage: any;
 
-    @State() xCoord: number;
-    @State() yCoord: number;
+    @State() xCoord: number = 0;
+    @State() yCoord: number = 0;
 
+    @State() draggable: boolean = true;
+    @State() dragging: boolean = false;
     @State() pos1: number = 0;
     @State() pos2: number = 0;
     @State() pos3: number = 0;
@@ -26,12 +29,15 @@ export class TextImage {
     componentWillLoad() {
         this.xCoord = this.text.xCoord;
         this.yCoord = this.text.yCoord;
-        this.element.onmousedown = this.dragMouseDown;
-        // console.log('bbb', this.element);
+
+        if (this.draggable) {
+            this.element.onmousedown = this.dragMouseDown;
+            this.element.onmouseup = this.mouseUp;
+        }
     }
 
     dragMouseDown = (e: any) => {
-        console.log(e);
+        this.dragging = true;
 
         e = e || window.event;
         e.preventDefault();
@@ -39,53 +45,44 @@ export class TextImage {
         this.pos3 = e.clientX;
         this.pos4 = e.clientY;
 
-
         document.onmouseup = this.closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = this.elementDrag;
     }
 
     elementDrag = (e: any) => {
-        console.log(e);
-
-        e = e || window.event;
         e.preventDefault();
+
         // calculate the new cursor position:
         this.pos1 = this.pos3 - e.clientX;
         this.pos2 = this.pos4 - e.clientY;
         this.pos3 = e.clientX;
         this.pos4 = e.clientY;
 
-        console.log(e.clientX);
-
-        // console.log(this.pos3);
-        // console.log(this.pos4);
-
-        // set the element's new position:
-        // console.log('AAA', this.element.offsetTop - this.pos2);
-        // this.xCoord = (this.element.offsetTop - this.pos2);
-        // this.yCoord = (this.element.offsetLeft - this.pos1);
-
-        this.xCoord = e.clientX - 100;
-        this.yCoord = e.clientY - 200;
+        this.xCoord = this.textImageSpan.offsetLeft - this.pos1;
+        this.yCoord = this.textImageSpan.offsetTop - this.pos2;
     }
 
-    // @Listen('window:mouseup')
     closeDragElement = () => {
         /* stop moving when mouse button is released:*/
         document.onmouseup = null;
         document.onmousemove = null;
     }
 
+    mouseUp = () => {
+        this.dragging = false;
+    }
+
     render() {
         const text = this.text;
-        // console.log('text', this.text);
-        console.log('this.xCoord', this.xCoord);
-        console.log('this.yCoord', this.yCoord);
 
         return (
             <span
-                class="text-image-span text-image-span-draggable"
+                class={`
+                    text-image-span
+                    ${this.draggable ? 'text-image-span-draggable' : '' }
+                    ${this.dragging ? 'text-image-span-dragging' : '' }
+                `}
                 style={{
                     top: this.yCoord + 'px',
                     left: this.xCoord + 'px',
@@ -95,6 +92,7 @@ export class TextImage {
                     fontWeight: text.fontWeight + '',
                     letterSpacing: text.letterSpacing + 'px',
                 }}
+                ref={(el) => this.textImageSpan = el as HTMLSpanElement}
             >
                 {text.content}
             </span>
