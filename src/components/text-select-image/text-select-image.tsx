@@ -27,8 +27,8 @@ export class TextSelectImage {
     @State() styled: any;
     @State() showControl: boolean;
     @State() selectText: ITextSelectImageData;
-    @State() editable: boolean = false;
-    @State() toggledSettings: boolean;
+    @State() editable: boolean = true;
+    @State() toggledSettings: boolean = false;
 
     async componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};

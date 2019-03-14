@@ -49,3 +49,27 @@
     padding: 3px;
     margin-right: 4px;
 }
+
+.text-image-editor-button-color {
+    height: 14px;
+    width: 14px;
+    border-radius: 7px;
+}
+
+.text-image-editor-button-colors {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+}
+
+.text-image-editor-button-color-black {
+    background-color: hsl(220, 2%, 10%);
+}
+
+.text-image-editor-button-color-red {
+    background-color: hsl(0, 100%, 40%);
+}
+
+.text-image-editor-button-color-white {
+    background-color: hsl(220, 2%, 90%);
+}

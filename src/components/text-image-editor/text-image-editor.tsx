@@ -84,8 +84,10 @@ export class TextImageEditor {
                     <input type="text" value="0"/>
                     <span>px</span>
                 </span>
-                <span class="text-image-editor-button">
-                    Color
+                <span class="text-image-editor-button text-image-editor-button-colors">
+                    <span class="text-image-editor-button-color text-image-editor-button-color-black" />
+                    <span class="text-image-editor-button-color text-image-editor-button-color-red" />
+                    <span class="text-image-editor-button-color text-image-editor-button-color-white" />
                 </span>
                 <span class="text-image-editor-button">
                     <span
