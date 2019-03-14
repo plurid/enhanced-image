@@ -11,12 +11,12 @@ import addTextIcon from '../../assets/add-text-icon.svg';
     shadow: true
 })
 export class TextSelectImage {
-    @Prop() toggle: () => void;
+    @Prop() toggleMenu: () => void;
     @Prop() editable: boolean;
     @Prop() toggleEditable: () => void;
 
     addText = () => {
-        this.toggle()
+        this.toggleMenu()
         console.log('add text');
     }
 

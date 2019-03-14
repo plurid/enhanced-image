@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 import settingsIcon from '../../assets/settings-icon.svg';
 
@@ -10,14 +10,11 @@ import settingsIcon from '../../assets/settings-icon.svg';
     shadow: true
 })
 export class TextSelectImage {
+    @Prop() toggledSettings: boolean;
+    @Prop() toggleSettings: () => void;
+
     @Prop() editable: boolean;
     @Prop() toggleEditable: () => void;
-
-    @State() toggle: boolean;
-
-    toggleSettings = () => {
-        this.toggle = !this.toggle;
-    }
 
     render() {
         return (
@@ -27,9 +24,9 @@ export class TextSelectImage {
                     innerHTML={settingsIcon}
                     onClick={this.toggleSettings}
                 />
-                {this.toggle && (
+                {this.toggledSettings && (
                     <text-select-image-settings-menu
-                        toggle={this.toggleSettings}
+                        toggleMenu={this.toggleSettings}
                         editable={this.editable}
                         toggleEditable={this.toggleEditable}
                     />

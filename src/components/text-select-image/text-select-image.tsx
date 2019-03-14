@@ -28,6 +28,7 @@ export class TextSelectImage {
     @State() showControl: boolean;
     @State() selectText: ITextSelectImageData;
     @State() editable: boolean = false;
+    @State() toggledSettings: boolean;
 
     async componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};
@@ -50,6 +51,11 @@ export class TextSelectImage {
 
     toggleEditable = () => {
         this.editable = !this.editable;
+        this.toggleSettings();
+    }
+
+    toggleSettings = () => {
+        this.toggledSettings = !this.toggledSettings;
     }
 
     render() {
@@ -67,6 +73,8 @@ export class TextSelectImage {
                 />
                 {this.showControl && (
                     <text-select-image-settings
+                        toggledSettings={this.toggledSettings}
+                        toggleSettings={this.toggleSettings}
                         editable={this.editable}
                         toggleEditable={this.toggleEditable}
                     />

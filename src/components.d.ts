@@ -75,22 +75,26 @@ export namespace Components {
 
   interface TextSelectImageSettingsMenu {
     'editable': boolean;
-    'toggle': () => void;
     'toggleEditable': () => void;
+    'toggleMenu': () => void;
   }
   interface TextSelectImageSettingsMenuAttributes extends StencilHTMLAttributes {
     'editable'?: boolean;
-    'toggle'?: () => void;
     'toggleEditable'?: () => void;
+    'toggleMenu'?: () => void;
   }
 
   interface TextSelectImageSettings {
     'editable': boolean;
     'toggleEditable': () => void;
+    'toggleSettings': () => void;
+    'toggledSettings': boolean;
   }
   interface TextSelectImageSettingsAttributes extends StencilHTMLAttributes {
     'editable'?: boolean;
     'toggleEditable'?: () => void;
+    'toggleSettings'?: () => void;
+    'toggledSettings'?: boolean;
   }
 
   interface TextSelectImage {
