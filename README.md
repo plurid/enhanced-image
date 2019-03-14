@@ -24,6 +24,7 @@ HTML Specialized Element for displaying an image and allowing for the selection 
 + [Concept](#concept)
     + [Current State](#current-state)
     + [Proposal](#proposal)
++ [Demo](#demo)
 + [Technology](#technology)
 + [Usage](#usage)
     + [Setup](#setup)
@@ -43,6 +44,13 @@ An image is displayed in the browser using the `<img>` tag. The `<img>` HTML Ele
 The HTML Element `<text-select-image>` has a `src` attribute which indicates the location of the image, but can also have a `text` attribute which contains a machine-generated `JavaScript` object detailing the text content and the text characteristics (position, size, and more).
 
 The text content can be obtained through machine analysis or can be provided by the user.
+
+
+## [Demo](https://caveljan.com/text-select-image/)
+
+![Text Select from Image][text-select]
+
+[text-select]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/text-select.png "Text Select from Image"
 
 
 
