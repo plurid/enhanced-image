@@ -29,11 +29,15 @@ export namespace Components {
 
   interface TextImageEditor {
     'draggable': boolean;
+    'textEditable': boolean;
     'toggleDraggable': () => void;
+    'toggleTextEditable': () => void;
   }
   interface TextImageEditorAttributes extends StencilHTMLAttributes {
     'draggable'?: boolean;
+    'textEditable'?: boolean;
     'toggleDraggable'?: () => void;
+    'toggleTextEditable'?: () => void;
   }
 
   interface TextImage {

@@ -1,5 +1,6 @@
 import { Component, Prop } from '@stencil/core';
 
+import selectTextIcon from '../../assets/select-text-icon.svg';
 import grabIcon from '../../assets/grab-icon.svg';
 import fontSizeIcon from '../../assets/font-size-icon.svg';
 import letterSpacingIcon from '../../assets/letter-spacing-icon.svg';
@@ -18,22 +19,38 @@ export class TextImageEditor {
     @Prop() draggable: boolean;
     @Prop() toggleDraggable: () => void;
 
+    @Prop() textEditable: boolean;
+    @Prop() toggleTextEditable: () => void;
+
     render() {
         return (
             <span class="text-image-editor">
-                <span class="text-image-editor-button">
-                    T
-                </span>
-                <span class="text-image-editor-button">
+                <span
+                    class={`
+                        text-image-editor-button
+                        ${this.textEditable ? 'text-image-editor-button-icon-active': ''}
+                    `}
+                    onClick={this.toggleTextEditable}
+                >
                     <span
-                        class={`
-                            text-image-editor-button-icon
-                            ${this.draggable ? 'text-image-editor-button-icon-active': ''}
-                        `}
-                        onClick={this.toggleDraggable}
+                        class="text-image-editor-button-icon"
+                        innerHTML={selectTextIcon}
+                    />
+                </span>
+
+                <span
+                    class={`
+                        text-image-editor-button
+                        ${this.draggable ? 'text-image-editor-button-icon-active': ''}
+                    `}
+                    onClick={this.toggleDraggable}
+                >
+                    <span
+                        class="text-image-editor-button-icon"
                         innerHTML={grabIcon}
                     />
                 </span>
+
                 <span class="text-image-editor-button">
                     <span
                         class="text-image-editor-button-icon"
