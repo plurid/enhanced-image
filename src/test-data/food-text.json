@@ -17,7 +17,7 @@
             "fontSize": 26,
             "fontWeight": 400,
             "letterSpacing": 1,
-            "lineHeight": 0,
+            "lineHeight": "auto",
             "wordSpacing": 0,
             "content": "Text sample Arial"
         },
@@ -37,7 +37,7 @@
             "fontSize": 38,
             "fontWeight": 400,
             "letterSpacing": 0,
-            "lineHeight": 0,
+            "lineHeight": "auto",
             "wordSpacing": 0,
             "content": "Text Sample Verdana"
         },
@@ -57,7 +57,7 @@
             "fontSize": 24,
             "fontWeight": 400,
             "letterSpacing": 0,
-            "lineHeight": 0,
+            "lineHeight": "auto",
             "wordSpacing": 0,
             "content": "Text Sample Georgia"
         }

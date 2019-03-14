@@ -14,7 +14,7 @@ export interface ITextImage {
     fontSize: number;
     fontWeight: number,
     letterSpacing: number;
-    lineHeight: number;
+    lineHeight: string | number;
     wordSpacing: number;
     content: string;
 }

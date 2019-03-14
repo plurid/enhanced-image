@@ -12,6 +12,7 @@ import { ITextImage } from '../../interfaces/image-text';
 export class TextImage {
     @Element() element: HTMLElement;
     textImageSpan!: HTMLSpanElement;
+    textImageSpanContent!: HTMLSpanElement;
 
     @Prop() text: ITextImage;
     @Prop() textSelectImage: any;
@@ -29,14 +30,17 @@ export class TextImage {
     componentWillLoad() {
         this.xCoord = this.text.xCoord;
         this.yCoord = this.text.yCoord;
+    }
 
+    componentDidLoad() {
         if (this.draggable) {
-            this.element.onmousedown = this.dragMouseDown;
-            this.element.onmouseup = this.mouseUp;
+            this.textImageSpanContent.onmousedown = this.dragMouseDown;
+            this.textImageSpanContent.onmouseup = this.mouseUp;
         }
     }
 
     dragMouseDown = (e: any) => {
+        console.log(e);
         this.dragging = true;
 
         e = e || window.event;
@@ -91,10 +95,20 @@ export class TextImage {
                     fontSize: text.fontSize + 'px',
                     fontWeight: text.fontWeight + '',
                     letterSpacing: text.letterSpacing + 'px',
+                    lineHeight: text.lineHeight + '',
+                    wordSpacing: text.wordSpacing + 'px',
                 }}
                 ref={(el) => this.textImageSpan = el as HTMLSpanElement}
             >
-                {text.content}
+                <span class="text-image-span-editor">
+                    <text-image-editor />
+                </span>
+                <span
+                    class="text-image-span-content"
+                    ref={(el) => this.textImageSpanContent = el as HTMLSpanElement}
+                >
+                    {text.content}
+                </span>
             </span>
         );
     }
