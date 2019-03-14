@@ -1,11 +1,17 @@
 .text-image-span {
     position: absolute;
-    color: hsla(0, 0%, 0%, 0.8);
+    white-space: nowrap;
+    color: transparent;
 }
 
 .text-image-span-draggable {
     /* border: 1px solid black; */
     background-color: hsla(0, 0%, 80%, 0.3);
+    color: hsla(0, 0%, 0%, 0.8);
     cursor: grab;
     user-select: none;
+}
+
+.text-image-span-dragging {
+    cursor: grabbing;
 }
