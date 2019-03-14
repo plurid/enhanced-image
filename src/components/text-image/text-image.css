@@ -2,7 +2,8 @@
     position: absolute;
     white-space: nowrap;
     color: transparent;
-    min-width: 10px;
+    min-width: 30px;
+    cursor: default;
     /* color: hsla(0, 0%, 0%, 0.8); */
 }
 
@@ -33,4 +34,9 @@
 .text-image-span-dragging {
     cursor: grabbing;
     z-index: 9999;
+}
+
+.text-image-span [contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
 }
