@@ -73,18 +73,38 @@ export namespace Components {
   }
 
   interface TextImageEditor {
+    'changeValue': (type: string, value: number | string) => void;
+    'colorValue': string;
     'draggable': boolean;
+    'fontSizeValue': number;
+    'fontValue': string;
+    'letterSpacingValue': number;
+    'selectableFonts': string[];
+    'textBold': boolean;
     'textEditable': boolean;
+    'textItalic': boolean;
     'toggleDraggable': () => void;
     'toggleEditor': () => void;
+    'toggleElement': (element: string) => void;
     'toggleTextEditable': () => void;
+    'wordSpacingValue': number;
   }
   interface TextImageEditorAttributes extends StencilHTMLAttributes {
+    'changeValue'?: (type: string, value: number | string) => void;
+    'colorValue'?: string;
     'draggable'?: boolean;
+    'fontSizeValue'?: number;
+    'fontValue'?: string;
+    'letterSpacingValue'?: number;
+    'selectableFonts'?: string[];
+    'textBold'?: boolean;
     'textEditable'?: boolean;
+    'textItalic'?: boolean;
     'toggleDraggable'?: () => void;
     'toggleEditor'?: () => void;
+    'toggleElement'?: (element: string) => void;
     'toggleTextEditable'?: () => void;
+    'wordSpacingValue'?: number;
   }
 
   interface TextImage {

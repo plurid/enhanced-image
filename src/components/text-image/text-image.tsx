@@ -30,6 +30,32 @@ export class TextImage {
     @State() pos3: number = 0;
     @State() pos4: number = 0;
 
+    @State() fontSizeValue: number = 12;
+    @State() letterSpacingValue: number = 1;
+    @State() wordSpacingValue: number = 0;
+    @State() fontValue: string = 'Arial';
+    @State() colorValue: string = 'black';
+    @State() textBold: boolean = false;
+    @State() textItalic: boolean = false;
+
+    private selectableFonts = [
+        'serif',
+        'sans-serif',
+        'monospace',
+        'cursive',
+        'Arial', 'Arial Black',
+        'Bookman', 'Book Antiqua',
+        'Charcoal', 'Courier', 'Courier New',
+        'Garamond', 'Gadget', 'Geneva', 'Georgia',
+        'Helvetica',
+        'Impact',
+        'Lucida Console', 'Lucida Grande', 'Lucida Sans Unicode',
+        'Monaco',
+        'Tahoma', 'Times', 'Times New Roman', 'Trebuchet MS',
+        'Palatino', 'Palatino Linotype',
+        'Verdana',
+    ];
+
     componentWillLoad() {
         this.xCoord = this.text.xCoord;
         this.yCoord = this.text.yCoord;
@@ -102,6 +128,15 @@ export class TextImage {
         }
     }
 
+    changeValue = (type: string, value: number | string) => {
+        const typeValue = `${type}Value`;
+        this[typeValue] = value;
+    }
+
+    toggleElement = (element: string) => {
+        this[element] = !this[element];
+    }
+
     render() {
         const text = this.text;
 
@@ -136,6 +171,19 @@ export class TextImage {
                             draggable={this.draggable}
                             toggleDraggable={this.toggleDraggable}
                             toggleEditor={this.toggleEditor}
+
+                            fontSizeValue={this.fontSizeValue}
+                            letterSpacingValue={this.letterSpacingValue}
+                            wordSpacingValue={this.wordSpacingValue}
+                            fontValue={this.fontValue}
+                            colorValue={this.colorValue}
+                            textBold={this.textBold}
+                            textItalic={this.textItalic}
+
+                            changeValue={this.changeValue}
+                            toggleElement={this.toggleElement}
+
+                            selectableFonts={this.selectableFonts}
                         />
                     </span>
                 )}
