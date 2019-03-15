@@ -12,8 +12,8 @@
 | `changeValue`        | --                     |             | `(type: string, value: string \| number) => void` | `undefined` |
 | `colorValue`         | `color-value`          |             | `string`                                          | `undefined` |
 | `draggable`          | `draggable`            |             | `boolean`                                         | `undefined` |
+| `fontFamilyValue`    | `font-family-value`    |             | `string`                                          | `undefined` |
 | `fontSizeValue`      | `font-size-value`      |             | `number`                                          | `undefined` |
-| `fontValue`          | `font-value`           |             | `string`                                          | `undefined` |
 | `letterSpacingValue` | `letter-spacing-value` |             | `number`                                          | `undefined` |
 | `selectableFonts`    | --                     |             | `string[]`                                        | `undefined` |
 | `textBold`           | `text-bold`            |             | `boolean`                                         | `undefined` |

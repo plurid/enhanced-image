@@ -33,10 +33,10 @@ export class TextImage {
     @State() pos3: number = 0;
     @State() pos4: number = 0;
 
-    @State() fontSizeValue: number = 50;
-    @State() letterSpacingValue: number = 1;
+    @State() fontSizeValue: number = 12;
+    @State() letterSpacingValue: number = 0;
     @State() wordSpacingValue: number = 0;
-    @State() fontValue: string = 'Arial';
+    @State() fontFamilyValue: string = 'Arial';
     @State() colorValue: string = 'black';
     @State() textBold: boolean = false;
     @State() textItalic: boolean = false;
@@ -65,6 +65,13 @@ export class TextImage {
         this.xCoord = this.text.xCoord;
         this.yCoord = this.text.yCoord;
 
+        this.fontSizeValue = this.text.fontSize || this.fontSizeValue;
+        this.fontFamilyValue = this.text.fontFamily || this.fontFamilyValue;
+        this.letterSpacingValue = this.text.letterSpacing || this.letterSpacingValue;
+        this.wordSpacingValue = this.text.wordSpacing || this.wordSpacingValue;
+        this.textBold =  this.text.bold || this.textBold;
+        this.textItalic =  this.text.italic || this.textItalic;
+        this.colorValue = this.text.color || this.colorValue;
     }
 
     // componentDidLoad() {
@@ -166,13 +173,14 @@ export class TextImage {
                 style={{
                     top: this.yCoord + 'px',
                     left: this.xCoord + 'px',
-                    // color: text.color,
-                    fontFamily: text.fontFamily,
-                    fontSize: text.fontSize + 'px',
-                    fontWeight: text.fontWeight + '',
-                    letterSpacing: text.letterSpacing + 'px',
-                    lineHeight: text.lineHeight + '',
-                    wordSpacing: text.wordSpacing + 'px',
+                    color: this.colorValue,
+                    fontFamily: this.fontFamilyValue,
+                    fontSize: this.fontSizeValue + 'px',
+                    fontWeight: this.textBold ? 'bold' : 'normal',
+                    fontStyle: this.textItalic ? 'italic' : 'normal',
+                    letterSpacing: this.letterSpacingValue + 'px',
+                    // lineHeight: text.lineHeight + '',
+                    wordSpacing: this.wordSpacingValue + 'px',
                 }}
                 onMouseEnter={this.toggleEditor}
                 onMouseLeave={this.toggleEditor}
@@ -201,7 +209,7 @@ export class TextImage {
                             fontSizeValue={this.fontSizeValue}
                             letterSpacingValue={this.letterSpacingValue}
                             wordSpacingValue={this.wordSpacingValue}
-                            fontValue={this.fontValue}
+                            fontFamilyValue={this.fontFamilyValue}
                             colorValue={this.colorValue}
                             textBold={this.textBold}
                             textItalic={this.textItalic}
