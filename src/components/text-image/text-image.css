@@ -3,8 +3,12 @@
     white-space: nowrap;
     color: transparent;
     min-width: 30px;
-    cursor: default;
+    /* cursor: default; */
     /* color: hsla(0, 0%, 0%, 0.8); */
+}
+
+.text-image-span:not(.text-image-span-editable) {
+    cursor: text;
 }
 
 .text-image-span-editor {
@@ -23,7 +27,7 @@
     background-color: hsla(0, 0%, 50%, 0.4);
     box-shadow: 0px 0px 5px 1px hsla(220, 2%, 10%, 0.4);
     color: hsla(0, 0%, 0%, 0.8);
-    cursor: default;
+    /* cursor: default; */
     user-select: none;
 }
 

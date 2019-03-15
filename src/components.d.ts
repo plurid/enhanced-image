@@ -27,15 +27,30 @@ export namespace Components {
     'textSelectImage'?: any;
   }
 
+  interface TextImageEditorButtonIncrements {
+    'changeValue': (type: string, value: number) => void;
+    'icon': string;
+    'step': number;
+    'type': string;
+    'unit': string;
+    'value': number;
+  }
+  interface TextImageEditorButtonIncrementsAttributes extends StencilHTMLAttributes {
+    'changeValue'?: (type: string, value: number) => void;
+    'icon'?: string;
+    'step'?: number;
+    'type'?: string;
+    'unit'?: string;
+    'value'?: number;
+  }
+
   interface TextImageEditorButtonToggle {
     'icon': string;
-    'text': string;
     'toggle': () => void;
     'toggled': boolean;
   }
   interface TextImageEditorButtonToggleAttributes extends StencilHTMLAttributes {
     'icon'?: string;
-    'text'?: string;
     'toggle'?: () => void;
     'toggled'?: boolean;
   }
@@ -135,6 +150,7 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'SelectImage': Components.SelectImage;
+    'TextImageEditorButtonIncrements': Components.TextImageEditorButtonIncrements;
     'TextImageEditorButtonToggle': Components.TextImageEditorButtonToggle;
     'TextImageEditor': Components.TextImageEditor;
     'TextImage': Components.TextImage;
@@ -147,6 +163,7 @@ declare global {
 
   interface StencilIntrinsicElements {
     'select-image': Components.SelectImageAttributes;
+    'text-image-editor-button-increments': Components.TextImageEditorButtonIncrementsAttributes;
     'text-image-editor-button-toggle': Components.TextImageEditorButtonToggleAttributes;
     'text-image-editor': Components.TextImageEditorAttributes;
     'text-image': Components.TextImageAttributes;
@@ -162,6 +179,12 @@ declare global {
   var HTMLSelectImageElement: {
     prototype: HTMLSelectImageElement;
     new (): HTMLSelectImageElement;
+  };
+
+  interface HTMLTextImageEditorButtonIncrementsElement extends Components.TextImageEditorButtonIncrements, HTMLStencilElement {}
+  var HTMLTextImageEditorButtonIncrementsElement: {
+    prototype: HTMLTextImageEditorButtonIncrementsElement;
+    new (): HTMLTextImageEditorButtonIncrementsElement;
   };
 
   interface HTMLTextImageEditorButtonToggleElement extends Components.TextImageEditorButtonToggle, HTMLStencilElement {}
@@ -214,6 +237,7 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'select-image': HTMLSelectImageElement
+    'text-image-editor-button-increments': HTMLTextImageEditorButtonIncrementsElement
     'text-image-editor-button-toggle': HTMLTextImageEditorButtonToggleElement
     'text-image-editor': HTMLTextImageEditorElement
     'text-image': HTMLTextImageElement
@@ -226,6 +250,7 @@ declare global {
 
   interface ElementTagNameMap {
     'select-image': HTMLSelectImageElement;
+    'text-image-editor-button-increments': HTMLTextImageEditorButtonIncrementsElement;
     'text-image-editor-button-toggle': HTMLTextImageEditorButtonToggleElement;
     'text-image-editor': HTMLTextImageEditorElement;
     'text-image': HTMLTextImageElement;
