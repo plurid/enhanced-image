@@ -19,8 +19,9 @@
         "dist/"
     ],
     "scripts": {
-        "build": "stencil build --docs",
-        "start": "stencil build --dev --watch --serve",
+        "clean": "rm -rf ./.stencil && rm -rf ./www && rm -rf ./dist",
+        "build": "npm run clean && stencil build --docs",
+        "start": "npm run clean && stencil build --dev --watch --serve",
         "test": "stencil test --spec",
         "test.e2e": "stencil test --e2e",
         "test.complete": "stencil test --spec --e2e",
