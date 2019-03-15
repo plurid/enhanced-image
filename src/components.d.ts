@@ -18,11 +18,13 @@ export namespace Components {
 
   interface SelectImage {
     'editable': boolean;
+    'imageWidth': number;
     'selectText': ITextSelectImageData;
     'textSelectImage': any;
   }
   interface SelectImageAttributes extends StencilHTMLAttributes {
     'editable'?: boolean;
+    'imageWidth'?: number;
     'selectText'?: ITextSelectImageData;
     'textSelectImage'?: any;
   }
@@ -109,11 +111,13 @@ export namespace Components {
 
   interface TextImage {
     'editable': boolean;
+    'imageWidth': number;
     'text': ITextImage;
     'textSelectImage': any;
   }
   interface TextImageAttributes extends StencilHTMLAttributes {
     'editable'?: boolean;
+    'imageWidth'?: number;
     'text'?: ITextImage;
     'textSelectImage'?: any;
   }

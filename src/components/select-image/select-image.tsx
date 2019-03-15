@@ -13,10 +13,10 @@ export class SelectImage {
     @Prop() textSelectImage: any;
     @Prop() selectText: ITextSelectImageData;
     @Prop() editable: boolean;
+    @Prop() imageWidth: number;
 
     render() {
         const { imageText } = this.selectText;
-        // console.log('selectText', this.selectText);
 
         return (
             <div>
@@ -26,6 +26,7 @@ export class SelectImage {
                             textSelectImage={this.textSelectImage}
                             text={text}
                             editable={this.editable}
+                            imageWidth={this.imageWidth}
                         />
                     );
                 })}
