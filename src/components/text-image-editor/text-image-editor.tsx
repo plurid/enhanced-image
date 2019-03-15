@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 import selectTextIcon from '../../assets/select-text-icon.svg';
 import grabIcon from '../../assets/grab-icon.svg';
@@ -26,45 +26,18 @@ export class TextImageEditor {
 
     @Prop() toggleEditor: () => void;
 
-    @State() fontSizeValue: number = 12;
-    @State() letterSpacingValue: number = 1;
-    @State() wordSpacingValue: number = 0;
-    @State() fontValue: string = 'Arial';
-    @State() fontWeightValue: string = 'Normal';
-    @State() fontStyleValue: string = 'Normal';
-    @State() textBold: boolean = false;
-    @State() textItalic: boolean = false;
+    @Prop() fontSizeValue: number;
+    @Prop() letterSpacingValue: number;
+    @Prop() wordSpacingValue: number;
+    @Prop() fontValue: string;
+    @Prop() colorValue: string;
+    @Prop() textBold: boolean;
+    @Prop() textItalic: boolean;
 
-    private selectableFonts = [
-        'serif',
-        'sans-serif',
-        'monospace',
-        'cursive',
-        'Arial', 'Arial Black',
-        'Bookman', 'Book Antiqua',
-        'Charcoal', 'Courier', 'Courier New',
-        'Garamond', 'Gadget', 'Geneva', 'Georgia',
-        'Helvetica',
-        'Impact',
-        'Lucida Console', 'Lucida Grande', 'Lucida Sans Unicode',
-        'Monaco',
-        'Tahoma', 'Times', 'Times New Roman', 'Trebuchet MS',
-        'Palatino', 'Palatino Linotype',
-        'Verdana',
-    ];
+    @Prop() selectableFonts: string[];
 
-    changeValue = (type: string, value: number | string) => {
-        const typeValue = `${type}Value`;
-        this[typeValue] = value;
-    }
-
-    toggleTextBold = () => {
-        this.textBold = !this.textBold;
-    }
-
-    toggleTextItalic = () => {
-        this.textItalic = !this.textItalic;
-    }
+    @Prop() changeValue: (type: string, value: number | string) => void;
+    @Prop() toggleElement: (element: string) => void;
 
     render() {
         return (
@@ -80,6 +53,8 @@ export class TextImageEditor {
                     toggled={this.draggable}
                     icon={grabIcon}
                 />
+
+                <span class="text-image-editor-vertical-divider" />
 
                 <text-image-editor-button-increments
                     type='fontSize'
@@ -97,16 +72,14 @@ export class TextImageEditor {
                     toggleEditor={this.toggleEditor}
                 />
 
-                {/* BOLD */}
                 <text-image-editor-button-toggle
-                    toggle={this.toggleTextBold}
+                    toggle={this.toggleElement.bind(this, 'textBold')}
                     toggled={this.textBold}
                     icon={boldIcon}
                 />
 
-                {/* ITALIC */}
                 <text-image-editor-button-toggle
-                    toggle={this.toggleTextItalic}
+                    toggle={this.toggleElement.bind(this, 'textItalic')}
                     toggled={this.textItalic}
                     icon={italicIcon}
                 />
@@ -131,11 +104,31 @@ export class TextImageEditor {
                     step={0.1}
                 />
 
-                <span class="text-image-editor-button text-image-editor-button-colors">
-                    <span class="text-image-editor-button-color text-image-editor-button-color-black" />
-                    <span class="text-image-editor-button-color text-image-editor-button-color-red" />
-                    <span class="text-image-editor-button-color text-image-editor-button-color-white" />
+                <span class="text-image-editor-button-colors">
+                    <span
+                        class={`
+                            text-image-editor-button-color text-image-editor-button-color-black
+                            ${this.colorValue === 'black' ? 'text-image-editor-button-color-active' : ''}
+                        `}
+                        onClick={this.changeValue.bind(this, 'color', 'black')}
+                    />
+                    <span
+                        class={`
+                            text-image-editor-button-color text-image-editor-button-color-red
+                            ${this.colorValue === 'red' ? 'text-image-editor-button-color-active' : ''}
+                        `}
+                        onClick={this.changeValue.bind(this, 'color', 'red')}
+                    />
+                    <span
+                        class={`
+                            text-image-editor-button-color text-image-editor-button-color-white
+                            ${this.colorValue === 'white' ? 'text-image-editor-button-color-active' : ''}
+                        `}
+                        onClick={this.changeValue.bind(this, 'color', 'white')}
+                    />
                 </span>
+
+                <span class="text-image-editor-vertical-divider" />
 
                 <span class="text-image-editor-button">
                     <span
