@@ -12,7 +12,7 @@
             "perspective": "string",
             "rotation": "string",
             "skew": "string",
-            "color": "black",
+            "color": "red",
             "fontFamily": "Arial",
             "fontSize": 28,
             "bold": false,

@@ -37,7 +37,7 @@ export class TextImage {
     @State() letterSpacingValue: number = 0;
     @State() wordSpacingValue: number = 0;
     @State() fontFamilyValue: string = 'Arial';
-    @State() colorValue: string = 'black';
+    @State() colorValue: string = '';
     @State() textBold: boolean = false;
     @State() textItalic: boolean = false;
 
@@ -71,11 +71,11 @@ export class TextImage {
         this.wordSpacingValue = this.text.wordSpacing || this.wordSpacingValue;
         this.textBold =  this.text.bold || this.textBold;
         this.textItalic =  this.text.italic || this.textItalic;
-        this.colorValue = this.text.color || this.colorValue;
+        // this.colorValue = this.text.color || this.colorValue;
+        if(this.editable) {
+            this.colorValue = this.text.color || 'black';
+        }
     }
-
-    // componentDidLoad() {
-    // }
 
     componentWillUpdate() {
         if (this.draggable) {
@@ -86,10 +86,20 @@ export class TextImage {
             this.textImageSpanContent.onmouseup = null;
         }
 
+        // Do not let editor to go to the right.
         if (this.textImageSpan.offsetLeft + EDITOR_WIDTH > this.imageWidth) {
             this.editorXCoord = -1 * (this.textImageSpan.offsetLeft + EDITOR_WIDTH - this.imageWidth);
         } else {
             this.editorXCoord = -17;
+        }
+
+        // Do not let editor to go to the left.
+        if (this.textImageSpan.offsetLeft < 17) {
+            this.editorXCoord = this.textImageSpan.offsetLeft * -1;
+        }
+
+        if (!this.editable) {
+            this.colorValue = '';
         }
     }
 
