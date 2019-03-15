@@ -29,7 +29,7 @@ export class TextImageEditor {
     @Prop() fontSizeValue: number;
     @Prop() letterSpacingValue: number;
     @Prop() wordSpacingValue: number;
-    @Prop() fontValue: string;
+    @Prop() fontFamilyValue: string;
     @Prop() colorValue: string;
     @Prop() textBold: boolean;
     @Prop() textItalic: boolean;
@@ -54,7 +54,7 @@ export class TextImageEditor {
                     icon={grabIcon}
                 />
 
-                <span class="text-image-editor-vertical-divider" />
+                <span class="text-image-editor-vertical-divider">&nbsp;</span>
 
                 <text-image-editor-button-increments
                     type='fontSize'
@@ -64,9 +64,9 @@ export class TextImageEditor {
                 />
 
                 <text-image-editor-button-dropdown
-                    type='font'
+                    type='fontFamily'
                     alterStyle='fontFamily'
-                    selected={this.fontValue}
+                    selected={this.fontFamilyValue}
                     selectables={this.selectableFonts}
                     changeSelected={this.changeValue}
                     toggleEditor={this.toggleEditor}
@@ -128,7 +128,7 @@ export class TextImageEditor {
                     />
                 </span>
 
-                <span class="text-image-editor-vertical-divider" />
+                <span class="text-image-editor-vertical-divider">&nbsp;</span>
 
                 <span class="text-image-editor-button">
                     <span

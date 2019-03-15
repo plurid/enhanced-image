@@ -78,8 +78,8 @@ export namespace Components {
     'changeValue': (type: string, value: number | string) => void;
     'colorValue': string;
     'draggable': boolean;
+    'fontFamilyValue': string;
     'fontSizeValue': number;
-    'fontValue': string;
     'letterSpacingValue': number;
     'selectableFonts': string[];
     'textBold': boolean;
@@ -95,8 +95,8 @@ export namespace Components {
     'changeValue'?: (type: string, value: number | string) => void;
     'colorValue'?: string;
     'draggable'?: boolean;
+    'fontFamilyValue'?: string;
     'fontSizeValue'?: number;
-    'fontValue'?: string;
     'letterSpacingValue'?: number;
     'selectableFonts'?: string[];
     'textBold'?: boolean;

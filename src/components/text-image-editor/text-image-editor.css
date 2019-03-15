@@ -6,11 +6,16 @@
     color: white;
     font-size: 14px;
     display: inline-flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     border-radius: 17px;
     height: 34px;
     width: 690px;
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-weight: normal;
+    font-style: normal;
     margin: 0;
     padding-left: 17px;
     padding-right: 17px;
@@ -86,9 +91,8 @@
 }
 
 
-
 .text-image-editor-vertical-divider {
     background-color: hsl(220, 2%, 50%);
     width: 1px;
-    height: 34px;
+    height: 100%;
 }

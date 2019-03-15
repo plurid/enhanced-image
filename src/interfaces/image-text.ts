@@ -12,7 +12,8 @@ export interface ITextImage {
     color: string;
     fontFamily: string;
     fontSize: number;
-    fontWeight: number,
+    bold: boolean;
+    italic: boolean;
     letterSpacing: number;
     lineHeight: string | number;
     wordSpacing: number;
