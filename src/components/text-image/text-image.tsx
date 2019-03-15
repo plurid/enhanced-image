@@ -135,6 +135,7 @@ export class TextImage {
                             toggleTextEditable={this.toggleTextEditable}
                             draggable={this.draggable}
                             toggleDraggable={this.toggleDraggable}
+                            toggleEditor={this.toggleEditor}
                         />
                     </span>
                 )}

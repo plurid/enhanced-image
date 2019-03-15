@@ -12,6 +12,7 @@
 | `draggable`          | `draggable`     |             | `boolean`    | `undefined` |
 | `textEditable`       | `text-editable` |             | `boolean`    | `undefined` |
 | `toggleDraggable`    | --              |             | `() => void` | `undefined` |
+| `toggleEditor`       | --              |             | `() => void` | `undefined` |
 | `toggleTextEditable` | --              |             | `() => void` | `undefined` |
 
 

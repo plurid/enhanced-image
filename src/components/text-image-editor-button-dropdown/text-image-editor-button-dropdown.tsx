@@ -13,6 +13,8 @@ export class TextImageEditor {
     @Prop() selected: string;
     @Prop() changeSelected: (type: string, value: string) => void;
 
+    @Prop() toggleEditor: () => void;
+
     @State() toggledDropdown: boolean = false;
 
     toggleDropdown = () => {
@@ -23,20 +25,25 @@ export class TextImageEditor {
         this.changeSelected(this.type, selected);
     }
 
+    clickSelect = (selected: string) => {
+        this.toggleDropdown();
+        this.toggleEditor();
+        this.select(selected);
+    }
+
     onInput = (e: any) => {
         this.select(e.target.value);
     }
 
     render() {
         return (
-            <span class="text-image-editor-dropdown"
-            >
+            <span class="text-image-editor-dropdown">
                 <span class="text-image-editor-dropdown-selected">
                     <input
                         type="text"
                         value={this.selected}
                         onInput={this.onInput}
-                        onFocus={this.toggleDropdown}
+                        onClick={this.toggleDropdown}
                     />
                 </span>
 
@@ -47,7 +54,8 @@ export class TextImageEditor {
                                 return (
                                     <li
                                         style={{ [this.alterStyle]: select }}
-                                        onClick={this.select.bind(this, select)}
+                                        onClick={this.clickSelect.bind(this, select)}
+                                        onMouseEnter={this.select.bind(this, select)}
                                     >
                                         {select}
                                     </li>

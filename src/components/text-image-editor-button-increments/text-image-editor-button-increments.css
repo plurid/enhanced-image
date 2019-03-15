@@ -1,13 +1,13 @@
 .text-image-editor-button {
-    cursor: pointer;
+    /* cursor: pointer; */
     padding: 5px;
     display: flex;
     align-items: center;
 }
 
-.text-image-editor-button:hover {
+/* .text-image-editor-button:hover {
     background-color: hsl(220, 2%, 60%);
-}
+} */
 
 .text-image-editor-button-icon {
     display: flex;
@@ -38,6 +38,7 @@
     background: hsl(220, 2%, 15%);
     width: 12px;
     height: 9px;
+    cursor: pointer;
     text-align: center;
 }
 
