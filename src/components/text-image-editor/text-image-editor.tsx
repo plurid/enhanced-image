@@ -25,8 +25,13 @@ export class TextImageEditor {
     @State() fontSizeValue: number = 12;
     @State() letterSpacingValue: number = 1;
     @State() wordSpacingValue: number = 0;
+    @State() fontValue: string = 'Arial';
+    @State() fontWeightValue: string = 'Normal';
+    @State() fontStyleValue: string = 'Normal';
 
-    changeValue = (type: string, value: number) => {
+    private selectableFonts = ['Arial', 'Verdana', 'Georgia', 'Palatino'];
+
+    changeValue = (type: string, value: number | string) => {
         const typeValue = `${type}Value`;
         this[typeValue] = value;
     }
@@ -53,13 +58,27 @@ export class TextImageEditor {
                     icon={fontSizeIcon}
                 />
 
-                <span class="text-image-editor-button">
-                    Arial
-                </span>
+                <text-image-editor-button-dropdown
+                    type='font'
+                    alterStyle='fontFamily'
+                    selected={this.fontValue}
+                    selectable={this.selectableFonts}
+                    changeSelected={this.changeValue}
+                />
 
-                <span class="text-image-editor-button">
-                    Normal
-                </span>
+                {/* BOLD */}
+                <text-image-editor-button-toggle
+                    toggle={this.toggleTextEditable}
+                    toggled={this.textEditable}
+                    icon={selectTextIcon}
+                />
+
+                {/* ITALIC */}
+                <text-image-editor-button-toggle
+                    toggle={this.toggleTextEditable}
+                    toggled={this.textEditable}
+                    icon={selectTextIcon}
+                />
 
                 <text-image-editor-button-increments
                     type='letterSpacing'

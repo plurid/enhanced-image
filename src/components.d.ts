@@ -27,6 +27,21 @@ export namespace Components {
     'textSelectImage'?: any;
   }
 
+  interface TextImageEditorButtonDropdown {
+    'alterStyle': string;
+    'changeSelected': (type: string, value: string) => void;
+    'selectable': string[];
+    'selected': string;
+    'type': string;
+  }
+  interface TextImageEditorButtonDropdownAttributes extends StencilHTMLAttributes {
+    'alterStyle'?: string;
+    'changeSelected'?: (type: string, value: string) => void;
+    'selectable'?: string[];
+    'selected'?: string;
+    'type'?: string;
+  }
+
   interface TextImageEditorButtonIncrements {
     'changeValue': (type: string, value: number) => void;
     'icon': string;
@@ -150,6 +165,7 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'SelectImage': Components.SelectImage;
+    'TextImageEditorButtonDropdown': Components.TextImageEditorButtonDropdown;
     'TextImageEditorButtonIncrements': Components.TextImageEditorButtonIncrements;
     'TextImageEditorButtonToggle': Components.TextImageEditorButtonToggle;
     'TextImageEditor': Components.TextImageEditor;
@@ -163,6 +179,7 @@ declare global {
 
   interface StencilIntrinsicElements {
     'select-image': Components.SelectImageAttributes;
+    'text-image-editor-button-dropdown': Components.TextImageEditorButtonDropdownAttributes;
     'text-image-editor-button-increments': Components.TextImageEditorButtonIncrementsAttributes;
     'text-image-editor-button-toggle': Components.TextImageEditorButtonToggleAttributes;
     'text-image-editor': Components.TextImageEditorAttributes;
@@ -179,6 +196,12 @@ declare global {
   var HTMLSelectImageElement: {
     prototype: HTMLSelectImageElement;
     new (): HTMLSelectImageElement;
+  };
+
+  interface HTMLTextImageEditorButtonDropdownElement extends Components.TextImageEditorButtonDropdown, HTMLStencilElement {}
+  var HTMLTextImageEditorButtonDropdownElement: {
+    prototype: HTMLTextImageEditorButtonDropdownElement;
+    new (): HTMLTextImageEditorButtonDropdownElement;
   };
 
   interface HTMLTextImageEditorButtonIncrementsElement extends Components.TextImageEditorButtonIncrements, HTMLStencilElement {}
@@ -237,6 +260,7 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'select-image': HTMLSelectImageElement
+    'text-image-editor-button-dropdown': HTMLTextImageEditorButtonDropdownElement
     'text-image-editor-button-increments': HTMLTextImageEditorButtonIncrementsElement
     'text-image-editor-button-toggle': HTMLTextImageEditorButtonToggleElement
     'text-image-editor': HTMLTextImageEditorElement
@@ -250,6 +274,7 @@ declare global {
 
   interface ElementTagNameMap {
     'select-image': HTMLSelectImageElement;
+    'text-image-editor-button-dropdown': HTMLTextImageEditorButtonDropdownElement;
     'text-image-editor-button-increments': HTMLTextImageEditorButtonIncrementsElement;
     'text-image-editor-button-toggle': HTMLTextImageEditorButtonToggleElement;
     'text-image-editor': HTMLTextImageEditorElement;

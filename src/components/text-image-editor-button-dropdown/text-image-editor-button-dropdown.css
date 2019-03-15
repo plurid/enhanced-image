@@ -1,0 +1,60 @@
+.text-image-editor-button {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.text-image-editor-button:hover {
+    background-color: hsl(220, 2%, 60%);
+}
+
+.text-image-editor-button svg {
+    height: 14px;
+    width: 14px;
+}
+
+
+
+.text-image-editor-dropdown input {
+    width: 100px;
+    border: none;
+    background: hsl(220, 2%, 30%);
+    color: white;
+    text-align: left;
+    outline: none;
+    padding: 3px 6px;
+}
+
+
+
+.text-image-editor-dropdown {
+    position: relative;
+}
+
+.text-image-editor-dropdown-list {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: grid;
+    align-content: flex-start;
+}
+
+.text-image-editor-dropdown-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.text-image-editor-dropdown-list ul li {
+    cursor: pointer;
+    padding: 3px 6px;
+    font-size: 12px;
+    background-color: hsl(220, 2%, 20%);
+}
+
+.text-image-editor-dropdown-list ul li:hover {
+    background-color: hsl(220, 2%, 60%);
+}
