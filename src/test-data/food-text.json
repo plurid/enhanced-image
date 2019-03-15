@@ -7,16 +7,16 @@
             "end": 0,
             "xPercentage": 0,
             "yPercentage": 0,
-            "xCoord": 18,
-            "yCoord": 190,
+            "xCoord": 17,
+            "yCoord": 189,
             "perspective": "string",
             "rotation": "string",
             "skew": "string",
             "color": "blue",
             "fontFamily": "Arial",
-            "fontSize": 26,
+            "fontSize": 28,
             "fontWeight": 400,
-            "letterSpacing": 1,
+            "letterSpacing": 0,
             "lineHeight": "auto",
             "wordSpacing": 0,
             "content": "Text sample Arial"
@@ -36,9 +36,9 @@
             "fontFamily": "Verdana",
             "fontSize": 38,
             "fontWeight": 400,
-            "letterSpacing": 0,
+            "letterSpacing": -1,
             "lineHeight": "auto",
-            "wordSpacing": 0,
+            "wordSpacing": 6,
             "content": "Text Sample Verdana"
         },
         {
@@ -58,7 +58,7 @@
             "fontWeight": 400,
             "letterSpacing": 0,
             "lineHeight": "auto",
-            "wordSpacing": 0,
+            "wordSpacing": 1.5,
             "content": "Text Sample Georgia"
         }
     ]
