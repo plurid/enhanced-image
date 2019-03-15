@@ -30,7 +30,7 @@ export namespace Components {
   interface TextImageEditorButtonDropdown {
     'alterStyle': string;
     'changeSelected': (type: string, value: string) => void;
-    'selectable': string[];
+    'selectables': string[];
     'selected': string;
     'toggleEditor': () => void;
     'type': string;
@@ -38,7 +38,7 @@ export namespace Components {
   interface TextImageEditorButtonDropdownAttributes extends StencilHTMLAttributes {
     'alterStyle'?: string;
     'changeSelected'?: (type: string, value: string) => void;
-    'selectable'?: string[];
+    'selectables'?: string[];
     'selected'?: string;
     'toggleEditor'?: () => void;
     'type'?: string;

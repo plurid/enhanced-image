@@ -67,7 +67,7 @@ export class TextImageEditor {
                     type='font'
                     alterStyle='fontFamily'
                     selected={this.fontValue}
-                    selectable={this.selectableFonts}
+                    selectables={this.selectableFonts}
                     changeSelected={this.changeValue}
                     toggleEditor={this.toggleEditor}
                 />

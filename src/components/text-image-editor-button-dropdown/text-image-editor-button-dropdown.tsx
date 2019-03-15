@@ -9,13 +9,18 @@ import { Component, Prop, State } from '@stencil/core';
 export class TextImageEditor {
     @Prop() type: string;
     @Prop() alterStyle: string;
-    @Prop() selectable: string[];
+    @Prop() selectables: string[];
     @Prop() selected: string;
     @Prop() changeSelected: (type: string, value: string) => void;
 
     @Prop() toggleEditor: () => void;
 
     @State() toggledDropdown: boolean = false;
+    @State() filtered: string[];
+
+    componentWillLoad() {
+        this.filtered = this.selectables;
+    }
 
     toggleDropdown = () => {
         this.toggledDropdown = !this.toggledDropdown;
@@ -32,7 +37,24 @@ export class TextImageEditor {
     }
 
     onInput = (e: any) => {
-        this.select(e.target.value);
+        const value = e.target.value;
+        this.select(value);
+        this.filter(value);
+    }
+
+    filter = (value: string) => {
+        if (value) {
+            const filtered = this.selectables.filter(selectable => {
+                if (selectable.toLowerCase().startsWith(value.toLowerCase())) {
+                    return selectable;
+                }
+            });
+            this.filtered = filtered;
+        }
+
+        if (value === '') {
+            this.filtered = this.selectables;
+        }
     }
 
     render() {
@@ -50,7 +72,7 @@ export class TextImageEditor {
                 {this.toggledDropdown && (
                     <span class="text-image-editor-dropdown-list">
                         <ul>
-                            {this.selectable.map(select => {
+                            {this.filtered.map(select => {
                                 return (
                                     <li
                                         style={{ [this.alterStyle]: select }}

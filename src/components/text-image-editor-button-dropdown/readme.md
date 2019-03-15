@@ -11,7 +11,7 @@
 | ---------------- | ------------- | ----------- | --------------------------------------- | ----------- |
 | `alterStyle`     | `alter-style` |             | `string`                                | `undefined` |
 | `changeSelected` | --            |             | `(type: string, value: string) => void` | `undefined` |
-| `selectable`     | --            |             | `string[]`                              | `undefined` |
+| `selectables`    | --            |             | `string[]`                              | `undefined` |
 | `selected`       | `selected`    |             | `string`                                | `undefined` |
 | `toggleEditor`   | --            |             | `() => void`                            | `undefined` |
 | `type`           | `type`        |             | `string`                                | `undefined` |
