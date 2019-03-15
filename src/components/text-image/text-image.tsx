@@ -30,13 +30,15 @@ export class TextImage {
     @State() pos3: number = 0;
     @State() pos4: number = 0;
 
-    @State() fontSizeValue: number = 12;
+    @State() fontSizeValue: number = 50;
     @State() letterSpacingValue: number = 1;
     @State() wordSpacingValue: number = 0;
     @State() fontValue: string = 'Arial';
     @State() colorValue: string = 'black';
     @State() textBold: boolean = false;
     @State() textItalic: boolean = false;
+
+    @State() textHeight: number = 0;
 
     private selectableFonts = [
         'serif',
@@ -45,7 +47,7 @@ export class TextImage {
         'cursive',
         'Arial', 'Arial Black',
         'Bookman', 'Book Antiqua',
-        'Charcoal', 'Courier', 'Courier New',
+        'Charcoal', 'Comic Sans MS', 'Courier', 'Courier New',
         'Garamond', 'Gadget', 'Geneva', 'Georgia',
         'Helvetica',
         'Impact',
@@ -59,7 +61,11 @@ export class TextImage {
     componentWillLoad() {
         this.xCoord = this.text.xCoord;
         this.yCoord = this.text.yCoord;
+
     }
+
+    // componentDidLoad() {
+    // }
 
     componentWillUpdate() {
         if (this.draggable) {
@@ -69,6 +75,8 @@ export class TextImage {
             this.textImageSpanContent.onmousedown = null;
             this.textImageSpanContent.onmouseup = null;
         }
+
+        this.textHeight = this.textImageSpan.clientHeight;
     }
 
     dragMouseDown = (e: any) => {
@@ -163,8 +171,19 @@ export class TextImage {
                 onMouseLeave={this.toggleEditor}
                 ref={(el) => this.textImageSpan = el as HTMLSpanElement}
             >
+                <span
+                    class="text-image-span-content"
+                    ref={(el) => this.textImageSpanContent = el as HTMLSpanElement}
+                    contentEditable={this.textEditable}
+                >
+                    {text.content}
+                </span>
+
                 {this.showEditor && (
-                    <span class="text-image-span-editor">
+                    <span
+                        // style={{ top: `${this.textHeight}px`}}
+                        class="text-image-span-editor"
+                    >
                         <text-image-editor
                             textEditable={this.textEditable}
                             toggleTextEditable={this.toggleTextEditable}
@@ -187,13 +206,6 @@ export class TextImage {
                         />
                     </span>
                 )}
-                <span
-                    class="text-image-span-content"
-                    ref={(el) => this.textImageSpanContent = el as HTMLSpanElement}
-                    contentEditable={this.textEditable}
-                >
-                    {text.content}
-                </span>
             </span>
         );
     }
