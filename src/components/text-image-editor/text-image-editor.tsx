@@ -25,31 +25,16 @@ export class TextImageEditor {
     render() {
         return (
             <span class="text-image-editor">
-                <span
-                    class={`
-                        text-image-editor-button
-                        ${this.textEditable ? 'text-image-editor-button-icon-active': ''}
-                    `}
-                    onClick={this.toggleTextEditable}
-                >
-                    <span
-                        class="text-image-editor-button-icon"
-                        innerHTML={selectTextIcon}
-                    />
-                </span>
-
-                <span
-                    class={`
-                        text-image-editor-button
-                        ${this.draggable ? 'text-image-editor-button-icon-active': ''}
-                    `}
-                    onClick={this.toggleDraggable}
-                >
-                    <span
-                        class="text-image-editor-button-icon"
-                        innerHTML={grabIcon}
-                    />
-                </span>
+                <text-image-editor-button-toggle
+                    toggle={this.toggleTextEditable}
+                    toggled={this.textEditable}
+                    icon={selectTextIcon}
+                />
+                <text-image-editor-button-toggle
+                    toggle={this.toggleDraggable}
+                    toggled={this.draggable}
+                    icon={grabIcon}
+                />
 
                 <span class="text-image-editor-button">
                     <span

@@ -5,6 +5,7 @@
 
 .text-select-image-container img {
     user-select: none;
+    /* pointer-events: all; */
     width: 100%;
 }
 

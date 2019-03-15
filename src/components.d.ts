@@ -27,6 +27,19 @@ export namespace Components {
     'textSelectImage'?: any;
   }
 
+  interface TextImageEditorButtonToggle {
+    'icon': string;
+    'text': string;
+    'toggle': () => void;
+    'toggled': boolean;
+  }
+  interface TextImageEditorButtonToggleAttributes extends StencilHTMLAttributes {
+    'icon'?: string;
+    'text'?: string;
+    'toggle'?: () => void;
+    'toggled'?: boolean;
+  }
+
   interface TextImageEditor {
     'draggable': boolean;
     'textEditable': boolean;
@@ -122,6 +135,7 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'SelectImage': Components.SelectImage;
+    'TextImageEditorButtonToggle': Components.TextImageEditorButtonToggle;
     'TextImageEditor': Components.TextImageEditor;
     'TextImage': Components.TextImage;
     'TextSelectImageButtonCheckmark': Components.TextSelectImageButtonCheckmark;
@@ -133,6 +147,7 @@ declare global {
 
   interface StencilIntrinsicElements {
     'select-image': Components.SelectImageAttributes;
+    'text-image-editor-button-toggle': Components.TextImageEditorButtonToggleAttributes;
     'text-image-editor': Components.TextImageEditorAttributes;
     'text-image': Components.TextImageAttributes;
     'text-select-image-button-checkmark': Components.TextSelectImageButtonCheckmarkAttributes;
@@ -147,6 +162,12 @@ declare global {
   var HTMLSelectImageElement: {
     prototype: HTMLSelectImageElement;
     new (): HTMLSelectImageElement;
+  };
+
+  interface HTMLTextImageEditorButtonToggleElement extends Components.TextImageEditorButtonToggle, HTMLStencilElement {}
+  var HTMLTextImageEditorButtonToggleElement: {
+    prototype: HTMLTextImageEditorButtonToggleElement;
+    new (): HTMLTextImageEditorButtonToggleElement;
   };
 
   interface HTMLTextImageEditorElement extends Components.TextImageEditor, HTMLStencilElement {}
@@ -193,6 +214,7 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'select-image': HTMLSelectImageElement
+    'text-image-editor-button-toggle': HTMLTextImageEditorButtonToggleElement
     'text-image-editor': HTMLTextImageEditorElement
     'text-image': HTMLTextImageElement
     'text-select-image-button-checkmark': HTMLTextSelectImageButtonCheckmarkElement
@@ -204,6 +226,7 @@ declare global {
 
   interface ElementTagNameMap {
     'select-image': HTMLSelectImageElement;
+    'text-image-editor-button-toggle': HTMLTextImageEditorButtonToggleElement;
     'text-image-editor': HTMLTextImageEditorElement;
     'text-image': HTMLTextImageElement;
     'text-select-image-button-checkmark': HTMLTextSelectImageButtonCheckmarkElement;
