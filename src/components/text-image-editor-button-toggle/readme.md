@@ -10,7 +10,6 @@
 | Property  | Attribute | Description | Type         | Default     |
 | --------- | --------- | ----------- | ------------ | ----------- |
 | `icon`    | `icon`    |             | `string`     | `undefined` |
-| `text`    | `text`    |             | `string`     | `undefined` |
 | `toggle`  | --        |             | `() => void` | `undefined` |
 | `toggled` | `toggled` |             | `boolean`    | `undefined` |
 

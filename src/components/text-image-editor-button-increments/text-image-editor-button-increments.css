@@ -1,0 +1,67 @@
+.text-image-editor-button {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.text-image-editor-button:hover {
+    background-color: hsl(220, 2%, 60%);
+}
+
+.text-image-editor-button-icon {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.text-image-editor-button-icon svg {
+    height: 14px;
+    width: 14px;
+}
+
+
+.text-image-editor-button-increments {
+    background: hsl(220, 2%, 30%);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    font-size: 6px;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    grid-row-gap: 1px;
+    height: 19px;
+}
+
+.text-image-editor-button-increment-button {
+    background: hsl(220, 2%, 15%);
+    width: 12px;
+    height: 9px;
+    text-align: center;
+}
+
+.text-image-editor-button-increment-button:hover {
+    background: hsl(220, 2%, 25%);
+}
+
+.text-image-editor-button input {
+    width: 30px;
+    border: none;
+    background: hsl(220, 2%, 30%);
+    color: white;
+    text-align: center;
+    outline: none;
+    padding: 3px;
+    margin-right: 4px;
+}
+
+.text-image-editor-button input[type=number]::-webkit-inner-spin-button,
+.text-image-editor-button input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.text-image-editor-button-increments-unit {
+    font-size: 12px;
+}

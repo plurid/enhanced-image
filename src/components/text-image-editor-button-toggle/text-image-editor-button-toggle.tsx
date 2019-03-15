@@ -11,7 +11,6 @@ export class TextImageEditor {
     @Prop() toggled: boolean;
     @Prop() toggle: () => void;
     @Prop() icon: string;
-    @Prop() text: string;
 
     render() {
         return (
