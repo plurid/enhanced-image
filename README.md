@@ -43,7 +43,7 @@ An image is displayed in the browser using the `<img>` tag. The `<img>` HTML Ele
 
 The HTML Element `<text-select-image>` has a `src` attribute which indicates the location of the image, but can also have a `text` attribute which contains a machine-generated `JavaScript` object detailing the text content and the text characteristics (position, size, and more).
 
-The text content can be obtained through machine analysis or can be provided by the user.
+The text content can be obtained through machine analysis or can be provided by the user through the interface.
 
 
 ## [Demo](https://caveljan.com/text-select-image/)
@@ -56,7 +56,7 @@ The text content can be obtained through machine analysis or can be provided by 
 
 ## Technology
 
-The image is analysed and established if it contains text. If it does, the location of the text (x, y coordinates) is registered and over the image is placed a transparent div, cotaining exactly the text from the image. The text from the image appears like it is truly selectable.
+The image is analysed and established if it contains text. If it does, the location of the text (x, y coordinates) is registered and over the image is placed a transparent div, containing exactly the text from the image. The text from the image appears like it is truly selectable.
 
 
 
