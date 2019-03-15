@@ -32,6 +32,7 @@ export namespace Components {
     'changeSelected': (type: string, value: string) => void;
     'selectable': string[];
     'selected': string;
+    'toggleEditor': () => void;
     'type': string;
   }
   interface TextImageEditorButtonDropdownAttributes extends StencilHTMLAttributes {
@@ -39,6 +40,7 @@ export namespace Components {
     'changeSelected'?: (type: string, value: string) => void;
     'selectable'?: string[];
     'selected'?: string;
+    'toggleEditor'?: () => void;
     'type'?: string;
   }
 
@@ -74,12 +76,14 @@ export namespace Components {
     'draggable': boolean;
     'textEditable': boolean;
     'toggleDraggable': () => void;
+    'toggleEditor': () => void;
     'toggleTextEditable': () => void;
   }
   interface TextImageEditorAttributes extends StencilHTMLAttributes {
     'draggable'?: boolean;
     'textEditable'?: boolean;
     'toggleDraggable'?: () => void;
+    'toggleEditor'?: () => void;
     'toggleTextEditable'?: () => void;
   }
 
