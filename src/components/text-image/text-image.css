@@ -13,8 +13,9 @@
 
 .text-image-span-editor {
     position: absolute;
-    left: 0px;
+    left: -17px;
     top: -34px;
+    height: 34px;
 }
 
 .text-image-span-content {
