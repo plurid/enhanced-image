@@ -28,7 +28,7 @@ export class TextSelectImage {
     @State() styled: any;
     @State() showControl: boolean;
     @State() selectText: ITextSelectImageData;
-    @State() editable: boolean = true;
+    @State() editable: boolean = false;
     @State() toggledSettings: boolean = false;
     @State() imageWidth: number = 0;
 
