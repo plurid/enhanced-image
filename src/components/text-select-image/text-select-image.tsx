@@ -13,6 +13,7 @@ import { styleStringToObject} from '../../utils/styleString';
 })
 export class TextSelectImage {
     @Element() element: HTMLElement;
+    image!: HTMLImageElement;
 
     @Prop() src: string;
     @Prop() alt: string;
@@ -29,6 +30,7 @@ export class TextSelectImage {
     @State() selectText: ITextSelectImageData;
     @State() editable: boolean = true;
     @State() toggledSettings: boolean = false;
+    @State() imageWidth: number = 0;
 
     async componentWillLoad() {
         this.styled = this.styling ? styleStringToObject(this.styling) : {};
@@ -58,18 +60,26 @@ export class TextSelectImage {
         this.toggledSettings = !this.toggledSettings;
     }
 
+    componentDidLoad() {
+        this.imageWidth = this.image.offsetWidth;
+    }
+
     render() {
-        // console.log('select text', this.selectText);
         return (
             <div
                 style={ {...this.styled} }
                 class="text-select-image-container"
             >
-                <img src={this.src} alt={this.alt || ''} />
+                <img
+                    src={this.src}
+                    alt={this.alt || ''}
+                    ref={(el) => this.image = el as HTMLImageElement}
+                />
                 <select-image
                     textSelectImage={this.element}
                     selectText={this.selectText}
                     editable={this.editable}
+                    imageWidth={this.imageWidth}
                 />
                 {this.showControl && (
                     <text-select-image-settings

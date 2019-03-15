@@ -10,6 +10,7 @@
 | Property          | Attribute           | Description | Type                   | Default     |
 | ----------------- | ------------------- | ----------- | ---------------------- | ----------- |
 | `editable`        | `editable`          |             | `boolean`              | `undefined` |
+| `imageWidth`      | `image-width`       |             | `number`               | `undefined` |
 | `selectText`      | --                  |             | `ITextSelectImageData` | `undefined` |
 | `textSelectImage` | `text-select-image` |             | `any`                  | `undefined` |
 

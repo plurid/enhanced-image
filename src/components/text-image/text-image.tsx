@@ -3,6 +3,8 @@ import { Component, Element, Prop, State } from '@stencil/core';
 import { ITextImage } from '../../interfaces/image-text';
 
 
+const EDITOR_WIDTH = 724;
+
 
 @Component({
     tag: 'text-image',
@@ -17,6 +19,7 @@ export class TextImage {
     @Prop() text: ITextImage;
     @Prop() textSelectImage: any;
     @Prop() editable: boolean;
+    @Prop() imageWidth: number;
 
     @State() xCoord: number = 0;
     @State() yCoord: number = 0;
@@ -38,7 +41,7 @@ export class TextImage {
     @State() textBold: boolean = false;
     @State() textItalic: boolean = false;
 
-    @State() textHeight: number = 0;
+    @State() editorXCoord: number = 0;
 
     private selectableFonts = [
         'serif',
@@ -76,7 +79,11 @@ export class TextImage {
             this.textImageSpanContent.onmouseup = null;
         }
 
-        this.textHeight = this.textImageSpan.clientHeight;
+        if (this.textImageSpan.offsetLeft + EDITOR_WIDTH > this.imageWidth) {
+            this.editorXCoord = -1 * (this.textImageSpan.offsetLeft + EDITOR_WIDTH - this.imageWidth);
+        } else {
+            this.editorXCoord = -17;
+        }
     }
 
     dragMouseDown = (e: any) => {
@@ -181,7 +188,7 @@ export class TextImage {
 
                 {this.showEditor && (
                     <span
-                        // style={{ top: `${this.textHeight}px`}}
+                        style={{ left: `${this.editorXCoord}px`}}
                         class="text-image-span-editor"
                     >
                         <text-image-editor
