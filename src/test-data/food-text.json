@@ -1,8 +1,8 @@
 {
-    "id": "1",
+    "id": "12",
     "imageText": [
         {
-            "id": "1",
+            "id": "123",
             "begin": 0,
             "end": 0,
             "xPercentage": 0,
@@ -23,7 +23,7 @@
             "content": "Text sample Arial"
         },
         {
-            "id": "2",
+            "id": "1234",
             "begin": 0,
             "end": 0,
             "xPercentage": 0,
@@ -44,7 +44,7 @@
             "content": "Text Sample Verdana"
         },
         {
-            "id": "3",
+            "id": "12345",
             "begin": 0,
             "end": 0,
             "xPercentage": 0,

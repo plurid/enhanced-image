@@ -81,11 +81,82 @@ export class TextSelectImage {
         document.dispatchEvent(updatedTextSelectImage);
     }
 
+    duplicateText = (id: string) => {
+        const selectText = { ...this.selectText }
+
+        let duplicatedText: ITextImage;
+        const texts = [];
+        selectText.imageText.map((text: ITextImage) => {
+            // console.log(id);
+            // console.log(text.id);
+            if (text.id === id) {
+                console.log(text);
+                duplicatedText = {
+                    ...text,
+                    id: `${Math.ceil(Math.random()*10000000)}`,
+                    xCoord: text.xCoord,
+                    yCoord: text.yCoord + 50,
+                };
+                texts.push(duplicatedText);
+                console.log('aaa', duplicatedText);
+            }
+            texts.push(text);
+        });
+        selectText.imageText = texts;
+        this.selectText = { ...selectText };
+        // console.log(this.selectText);
+    }
+
+    deleteText = (id: string) => {
+        const selectText = { ...this.selectText }
+
+        const texts = selectText.imageText.filter((text: ITextImage) => {
+            if (text.id === id) {
+                return false;
+            }
+            return text;
+        });
+        selectText.imageText = texts;
+        this.selectText = { ...selectText };
+        console.log(this.selectText);
+    }
+
+    addText = () => {
+        const selectText = { ...this.selectText }
+
+        const text = {
+            id: `${Math.ceil(Math.random()*10000000)}`,
+            begin: 0,
+            end: 0,
+            xPercentage: 0,
+            yPercentage: 0,
+            xCoord: 50,
+            yCoord: 50,
+            perspective: "string",
+            rotation: "string",
+            skew: "string",
+            color: "white",
+            fontFamily: "Helvetica",
+            fontSize: 30,
+            bold: false,
+            italic: false,
+            letterSpacing: 0,
+            lineHeight: "auto",
+            wordSpacing: 0,
+            content: "New Text"
+        }
+
+        selectText.imageText.push(text);
+        this.selectText = { ...selectText };
+    }
+
     componentDidLoad() {
         this.imageWidth = this.image.offsetWidth;
     }
 
     render() {
+        // console.log(this.selectText);
+
         return (
             <div
                 style={ {...this.styled} }
@@ -102,6 +173,8 @@ export class TextSelectImage {
                     editable={this.editable}
                     imageWidth={this.imageWidth}
                     updateText={this.updateText}
+                    duplicateText={this.duplicateText}
+                    deleteText={this.deleteText}
                 />
                 {this.showControl && (
                     <text-select-image-settings
@@ -109,6 +182,7 @@ export class TextSelectImage {
                         toggleSettings={this.toggleSettings}
                         editable={this.editable}
                         toggleEditable={this.toggleEditable}
+                        addText={this.addText}
                     />
                 )}
             </div>

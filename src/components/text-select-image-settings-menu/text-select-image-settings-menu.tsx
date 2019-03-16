@@ -15,9 +15,11 @@ export class TextSelectImage {
     @Prop() editable: boolean;
     @Prop() toggleEditable: () => void;
 
-    addText = () => {
+    @Prop() addText: () => void;
+
+    add = () => {
         this.toggleMenu()
-        console.log('add text');
+        this.addText()
     }
 
     about = () => {
@@ -38,7 +40,7 @@ export class TextSelectImage {
                     </li>
                     <li>
                         <text-select-image-button-item
-                            atClick={this.addText}
+                            atClick={this.add}
                             icon={addTextIcon}
                             text='Add text'
                         />

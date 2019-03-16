@@ -21,10 +21,15 @@ export class TextImageEditor {
     @Prop() draggable: boolean;
     @Prop() toggleDraggable: () => void;
 
+    @Prop() duplicateText: (id: string) => void;
+    @Prop() deleteText: (id: string) => void;
+
     @Prop() textEditable: boolean;
     @Prop() toggleTextEditable: () => void;
 
     @Prop() toggleEditor: () => void;
+
+    @Prop() textId: string;
 
     @Prop() fontSizeValue: number;
     @Prop() letterSpacingValue: number;
@@ -38,6 +43,16 @@ export class TextImageEditor {
 
     @Prop() changeValue: (type: string, value: number | string) => void;
     @Prop() toggleElement: (element: string) => void;
+
+    duplicate = () => {
+        console.log('Duplicate', this.textId);
+        this.duplicateText(this.textId);
+    }
+
+    delete = () => {
+        console.log('Delete', this.textId);
+        this.deleteText(this.textId);
+    }
 
     render() {
         return (
@@ -130,14 +145,20 @@ export class TextImageEditor {
 
                 <span class="text-image-editor-vertical-divider">&nbsp;</span>
 
-                <span class="text-image-editor-button">
+                <span
+                    class="text-image-editor-button"
+                    onClick={this.duplicate}
+                >
                     <span
                         class="text-image-editor-button-icon"
                         innerHTML={duplicateIcon}
                     />
                 </span>
 
-                <span class="text-image-editor-button">
+                <span
+                    class="text-image-editor-button"
+                    onClick={this.delete}
+                >
                     <span
                         class="text-image-editor-button-icon"
                         innerHTML={deleteIcon}

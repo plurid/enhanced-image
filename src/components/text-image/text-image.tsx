@@ -20,7 +20,9 @@ export class TextImage {
     @Prop() textSelectImage: any;
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
-    @Prop() updateText: (id: string, record: object) => void;;
+    @Prop() updateText: (id: string, record: object) => void;
+    @Prop() duplicateText: (id: string) => void;
+    @Prop() deleteText: (id: string) => void;
 
     @State() xCoord: number = 0;
     @State() yCoord: number = 0;
@@ -268,6 +270,7 @@ export class TextImage {
                             toggleDraggable={this.toggleDraggable}
                             toggleEditor={this.toggleEditor}
 
+                            textId={this.text.id}
                             fontSizeValue={this.fontSizeValue}
                             letterSpacingValue={this.letterSpacingValue}
                             wordSpacingValue={this.wordSpacingValue}
@@ -280,6 +283,9 @@ export class TextImage {
                             toggleElement={this.toggleElement}
 
                             selectableFonts={this.selectableFonts}
+
+                            duplicateText={this.duplicateText}
+                            deleteText={this.deleteText}
                         />
                     </span>
                 )}
