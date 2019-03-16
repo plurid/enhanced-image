@@ -14,6 +14,7 @@ export class SelectImage {
     @Prop() selectText: ITextSelectImageData;
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
+    @Prop() updateText: (id: string, record: object) => void;;
 
     render() {
         const { imageText } = this.selectText;
@@ -27,6 +28,7 @@ export class SelectImage {
                             text={text}
                             editable={this.editable}
                             imageWidth={this.imageWidth}
+                            updateText={this.updateText}
                         />
                     );
                 })}

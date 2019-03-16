@@ -20,6 +20,7 @@ export class TextImage {
     @Prop() textSelectImage: any;
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
+    @Prop() updateText: (id: string, record: object) => void;;
 
     @State() xCoord: number = 0;
     @State() yCoord: number = 0;
@@ -101,6 +102,20 @@ export class TextImage {
         if (!this.editable) {
             this.colorValue = '';
         }
+
+        const record = { ...this.text };
+        record.xCoord = this.xCoord;
+        record.yCoord = this.yCoord;
+        record.fontSize = this.fontSizeValue;
+        record.letterSpacing = this.letterSpacingValue;
+        record.wordSpacing = this.wordSpacingValue;
+        record.fontFamily = this.fontFamilyValue;
+        record.color = this.colorValue;
+        record.bold = this.textBold;
+        record.italic = this.textItalic;
+        record.content = this.textImageSpanContent.innerText;
+
+        this.updateText(this.text.id, record);
     }
 
     dragMouseDown = (e: any) => {
@@ -171,6 +186,7 @@ export class TextImage {
 
     render() {
         const text = this.text;
+        console.log(text);
 
         return (
             <span

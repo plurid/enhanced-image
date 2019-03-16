@@ -1,6 +1,6 @@
 import { Component, Prop, State, Element } from '@stencil/core';
 
-import { ITextSelectImageData } from '../../interfaces/image-text';
+import { ITextSelectImageData, ITextImage } from '../../interfaces/image-text';
 
 import { styleStringToObject} from '../../utils/styleString';
 
@@ -60,11 +60,24 @@ export class TextSelectImage {
         this.toggledSettings = !this.toggledSettings;
     }
 
+    updateText = (id: string, record: object) => {
+        const updatedTexts = this.selectText.imageText.map((text: ITextImage) => {
+            if (text.id === id) {
+                const updatedText: ITextImage = { ...text, ...record };
+                return updatedText;
+            }
+            return text;
+        });
+        this.selectText.imageText = updatedTexts;
+    }
+
     componentDidLoad() {
         this.imageWidth = this.image.offsetWidth;
     }
 
     render() {
+        console.log('select text', this.selectText);
+
         return (
             <div
                 style={ {...this.styled} }
@@ -80,6 +93,7 @@ export class TextSelectImage {
                     selectText={this.selectText}
                     editable={this.editable}
                     imageWidth={this.imageWidth}
+                    updateText={this.updateText}
                 />
                 {this.showControl && (
                     <text-select-image-settings
