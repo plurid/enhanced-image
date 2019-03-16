@@ -1,6 +1,6 @@
 import { Component, Prop } from '@stencil/core';
 
-import { ITextSelectImageData } from '../../interfaces/image-text';
+import { ITextSelectImageData, ITextImage } from '../../interfaces/image-text';
 
 
 
@@ -10,16 +10,17 @@ import { ITextSelectImageData } from '../../interfaces/image-text';
     shadow: true
 })
 export class SelectImage {
-    @Prop() textSelectImage: any;
     @Prop() selectText: ITextSelectImageData;
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
-    @Prop() updateText: (id: string, record: object) => void;
+    @Prop() imageHeight: number;
+
+    @Prop() updateText: (id: string, text: ITextImage) => void;
     @Prop() duplicateText: (id: string) => void;
     @Prop() deleteText: (id: string) => void;
 
     render() {
-        console.log('cccc', this.selectText);
+        console.log('select-image :: this.selectText', this.selectText);
         const { imageText } = this.selectText;
 
         return (
@@ -27,13 +28,17 @@ export class SelectImage {
                 {imageText.map(text => {
                     return (
                         <text-image
-                            textSelectImage={this.textSelectImage}
-                            text={text}
                             editable={this.editable}
-                            imageWidth={this.imageWidth}
+
+                            textId={text.id}
+                            imageText={imageText}
+
                             updateText={this.updateText}
                             duplicateText={this.duplicateText}
                             deleteText={this.deleteText}
+
+                            imageWidth={this.imageWidth}
+                            imageHeight={this.imageHeight}
                         />
                     );
                 })}

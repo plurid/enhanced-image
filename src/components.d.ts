@@ -20,19 +20,19 @@ export namespace Components {
     'deleteText': (id: string) => void;
     'duplicateText': (id: string) => void;
     'editable': boolean;
+    'imageHeight': number;
     'imageWidth': number;
     'selectText': ITextSelectImageData;
-    'textSelectImage': any;
-    'updateText': (id: string, record: object) => void;
+    'updateText': (id: string, text: ITextImage) => void;
   }
   interface SelectImageAttributes extends StencilHTMLAttributes {
     'deleteText'?: (id: string) => void;
     'duplicateText'?: (id: string) => void;
     'editable'?: boolean;
+    'imageHeight'?: number;
     'imageWidth'?: number;
     'selectText'?: ITextSelectImageData;
-    'textSelectImage'?: any;
-    'updateText'?: (id: string, record: object) => void;
+    'updateText'?: (id: string, text: ITextImage) => void;
   }
 
   interface TextImageEditorButtonDropdown {
@@ -125,19 +125,21 @@ export namespace Components {
     'deleteText': (id: string) => void;
     'duplicateText': (id: string) => void;
     'editable': boolean;
+    'imageHeight': number;
+    'imageText': ITextImage[];
     'imageWidth': number;
-    'text': ITextImage;
-    'textSelectImage': any;
-    'updateText': (id: string, record: object) => void;
+    'textId': string;
+    'updateText': (id: string, text: ITextImage) => void;
   }
   interface TextImageAttributes extends StencilHTMLAttributes {
     'deleteText'?: (id: string) => void;
     'duplicateText'?: (id: string) => void;
     'editable'?: boolean;
+    'imageHeight'?: number;
+    'imageText'?: ITextImage[];
     'imageWidth'?: number;
-    'text'?: ITextImage;
-    'textSelectImage'?: any;
-    'updateText'?: (id: string, record: object) => void;
+    'textId'?: string;
+    'updateText'?: (id: string, text: ITextImage) => void;
   }
 
   interface TextSelectImageButtonCheckmark {
