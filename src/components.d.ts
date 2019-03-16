@@ -21,12 +21,14 @@ export namespace Components {
     'imageWidth': number;
     'selectText': ITextSelectImageData;
     'textSelectImage': any;
+    'updateText': (id: string, record: object) => void;
   }
   interface SelectImageAttributes extends StencilHTMLAttributes {
     'editable'?: boolean;
     'imageWidth'?: number;
     'selectText'?: ITextSelectImageData;
     'textSelectImage'?: any;
+    'updateText'?: (id: string, record: object) => void;
   }
 
   interface TextImageEditorButtonDropdown {
@@ -114,12 +116,14 @@ export namespace Components {
     'imageWidth': number;
     'text': ITextImage;
     'textSelectImage': any;
+    'updateText': (id: string, record: object) => void;
   }
   interface TextImageAttributes extends StencilHTMLAttributes {
     'editable'?: boolean;
     'imageWidth'?: number;
     'text'?: ITextImage;
     'textSelectImage'?: any;
+    'updateText'?: (id: string, record: object) => void;
   }
 
   interface TextSelectImageButtonCheckmark {
