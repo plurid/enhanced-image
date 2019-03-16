@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 
 import { ITextSelectImageData, ITextImage } from '../../interfaces/image-text';
 
@@ -12,7 +12,6 @@ import { styleStringToObject} from '../../utils/styleString';
     shadow: true
 })
 export class TextSelectImage {
-    @Element() element: HTMLElement;
     image!: HTMLImageElement;
 
     @Prop() src: string;
@@ -31,11 +30,18 @@ export class TextSelectImage {
     @State() editable: boolean = false;
     @State() toggledSettings: boolean = false;
     @State() imageWidth: number = 0;
+    @State() imageHeight: number = 0;
 
     async componentWillLoad() {
-        this.styled = this.styling ? styleStringToObject(this.styling) : {};
-        this.showControl = this.control ? this.control : false;
-        this.selectText = this.textData ? this.parseText(this.textData) : await this.loadDummyText();
+        this.styled = this.styling
+            ? styleStringToObject(this.styling)
+            : {};
+        this.showControl = this.control
+            ? this.control
+            : false;
+        this.selectText = this.textData
+            ? this.parseText(this.textData)
+            : await this.loadDummyText();
     }
 
     parseText = (data: string) => {
@@ -60,7 +66,7 @@ export class TextSelectImage {
         this.toggledSettings = !this.toggledSettings;
     }
 
-    updateText = (id: string, record: object) => {
+    updateText = (id: string, record: ITextImage) => {
         const updatedTexts = this.selectText.imageText.map((text: ITextImage) => {
             if (text.id === id) {
                 const updatedText: ITextImage = { ...text, ...record };
@@ -93,15 +99,19 @@ export class TextSelectImage {
                 console.log(text);
                 duplicatedText = {
                     ...text,
-                    id: `${Math.ceil(Math.random()*10000000)}`,
-                    xCoord: text.xCoord,
-                    yCoord: text.yCoord + 50,
+                    // id:
+                    // xCoord: text.xCoord,
+                    // yCoord: text.yCoord + 50,
                 };
+                duplicatedText.id = `${Math.ceil(Math.random()*10000000)}`;
+                // duplicatedText.xCoord = text.xCoord;
+                duplicatedText.yCoord = text.yCoord + 50;
                 texts.push(duplicatedText);
                 console.log('aaa', duplicatedText);
             }
             texts.push(text);
         });
+        selectText.imageText = [];
         selectText.imageText = texts;
         this.selectText = { ...selectText };
         // console.log(this.selectText);
@@ -116,6 +126,8 @@ export class TextSelectImage {
             }
             return text;
         });
+        console.log(texts);
+
         selectText.imageText = texts;
         this.selectText = { ...selectText };
         console.log(this.selectText);
@@ -152,10 +164,11 @@ export class TextSelectImage {
 
     componentDidLoad() {
         this.imageWidth = this.image.offsetWidth;
+        this.imageHeight = this.image.offsetHeight;
     }
 
     render() {
-        // console.log(this.selectText);
+        console.log(this.selectText);
 
         return (
             <div
@@ -165,13 +178,15 @@ export class TextSelectImage {
                 <img
                     src={this.src}
                     alt={this.alt || ''}
-                    ref={(el) => this.image = el as HTMLImageElement}
+                    ref={(imgEl) => this.image = imgEl as HTMLImageElement}
                 />
                 <select-image
-                    textSelectImage={this.element}
                     selectText={this.selectText}
                     editable={this.editable}
+
                     imageWidth={this.imageWidth}
+                    imageHeight={this.imageHeight}
+
                     updateText={this.updateText}
                     duplicateText={this.duplicateText}
                     deleteText={this.deleteText}

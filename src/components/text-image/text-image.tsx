@@ -2,8 +2,12 @@ import { Component, Element, Prop, State } from '@stencil/core';
 
 import { ITextImage } from '../../interfaces/image-text';
 
+import { selectableFonts } from '../../data/fonts';
+
+
 
 const EDITOR_WIDTH = 724;
+
 
 
 @Component({
@@ -16,11 +20,13 @@ export class TextImage {
     textImageSpan!: HTMLSpanElement;
     textImageSpanContent!: HTMLSpanElement;
 
-    @Prop() text: ITextImage;
-    @Prop() textSelectImage: any;
+    @Prop() textId: string;
+    @Prop() imageText: ITextImage[];
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
-    @Prop() updateText: (id: string, record: object) => void;
+    @Prop() imageHeight: number;
+
+    @Prop() updateText: (id: string, text: ITextImage) => void;
     @Prop() duplicateText: (id: string) => void;
     @Prop() deleteText: (id: string) => void;
 
@@ -36,6 +42,8 @@ export class TextImage {
     @State() pos3: number = 0;
     @State() pos4: number = 0;
 
+    private text: ITextImage;
+
     @State() fontSizeValue: number = 12;
     @State() letterSpacingValue: number = 0;
     @State() wordSpacingValue: number = 0;
@@ -48,26 +56,30 @@ export class TextImage {
     @State() textChanged: boolean = false;
 
     @State() editorXCoord: number = 0;
-
-    private selectableFonts = [
-        'serif',
-        'sans-serif',
-        'monospace',
-        'cursive',
-        'Arial', 'Arial Black',
-        'Bookman', 'Book Antiqua',
-        'Charcoal', 'Comic Sans MS', 'Courier', 'Courier New',
-        'Garamond', 'Gadget', 'Geneva', 'Georgia',
-        'Helvetica',
-        'Impact',
-        'Lucida Console', 'Lucida Grande', 'Lucida Sans Unicode',
-        'Monaco',
-        'Tahoma', 'Times', 'Times New Roman', 'Trebuchet MS',
-        'Palatino', 'Palatino Linotype',
-        'Verdana',
-    ];
+    @State() editorYCoord: number = 0;
 
     componentWillLoad() {
+        const imageText = this.imageText.filter(text => {
+            if (text.id === this.textId) {
+                return text
+            }
+            return false;
+        })[0];
+        // console.log('aaaaadddd33', imageText);
+        // // TODO: validate that imageText is ITextImage.
+        if (imageText) {
+            this.text = imageText;
+        }
+    }
+
+    // componentWillLoad() {
+
+    // }
+
+    componentDidLoad() {
+        // this.textContent = 'this.textImageSpanContent.innerText;';
+        // this.textContent = this.textImageSpanContent.innerText;
+
         this.xCoord = this.text.xCoord;
         this.yCoord = this.text.yCoord;
 
@@ -84,12 +96,30 @@ export class TextImage {
         }
     }
 
-    componentDidLoad() {
-        this.textContent = this.textImageSpanContent.innerText;
-    }
+    // componentDidLoad() {
+    //     this.textContent = this.textImageSpanContent.innerText;
+
+    //     this.xCoord = this.text.xCoord;
+    //     this.yCoord = this.text.yCoord;
+
+    //     this.fontSizeValue = this.text.fontSize || this.fontSizeValue;
+    //     this.fontFamilyValue = this.text.fontFamily || this.fontFamilyValue;
+    //     this.letterSpacingValue = this.text.letterSpacing || this.letterSpacingValue;
+    //     this.wordSpacingValue = this.text.wordSpacing || this.wordSpacingValue;
+    //     this.textBold =  this.text.bold || this.textBold;
+    //     this.textItalic =  this.text.italic || this.textItalic;
+    //     // this.colorValue = this.text.color || this.colorValue;
+    //     if(this.editable) {
+    //         this.colorValue = this.text.color || 'black';
+    //         this.colorValueStyle = this.colorValue;
+    //     }
+    // }
+
+
 
     componentWillUpdate() {
         if (this.draggable) {
+            // console.log('aa', this.textImageSpanContent);
             this.textImageSpanContent.onmousedown = this.dragMouseDown;
             this.textImageSpanContent.onmouseup = this.mouseUp;
         } else {
@@ -107,6 +137,12 @@ export class TextImage {
         // Do not let editor to go to the left.
         if (this.textImageSpan.offsetLeft < 17) {
             this.editorXCoord = this.textImageSpan.offsetLeft * -1;
+        }
+
+        if (this.textImageSpan.offsetTop < 34) {
+            this.editorYCoord = this.textImageSpan.offsetHeight;
+        } else {
+            this.editorYCoord = -34;
         }
 
         if (!this.editable) {
@@ -224,6 +260,7 @@ export class TextImage {
 
     render() {
         const text = this.text;
+        console.log('text-image :: text', this.textId, this.text);
 
         return (
             <span
@@ -260,7 +297,10 @@ export class TextImage {
 
                 {this.showEditor && (
                     <span
-                        style={{ left: `${this.editorXCoord}px`}}
+                        style={{
+                            left: `${this.editorXCoord}px`,
+                            top: `${this.editorYCoord}px`,
+                        }}
                         class="text-image-span-editor"
                     >
                         <text-image-editor
@@ -282,7 +322,7 @@ export class TextImage {
                             changeValue={this.changeValue}
                             toggleElement={this.toggleElement}
 
-                            selectableFonts={this.selectableFonts}
+                            selectableFonts={selectableFonts}
 
                             duplicateText={this.duplicateText}
                             deleteText={this.deleteText}
