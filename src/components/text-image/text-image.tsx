@@ -39,8 +39,11 @@ export class TextImage {
     @State() wordSpacingValue: number = 0;
     @State() fontFamilyValue: string = 'Arial';
     @State() colorValue: string = '';
+    @State() colorValueStyle: string = '';
     @State() textBold: boolean = false;
     @State() textItalic: boolean = false;
+    @State() textContent: string = '';
+    @State() textChanged: boolean = false;
 
     @State() editorXCoord: number = 0;
 
@@ -75,7 +78,12 @@ export class TextImage {
         // this.colorValue = this.text.color || this.colorValue;
         if(this.editable) {
             this.colorValue = this.text.color || 'black';
+            this.colorValueStyle = this.colorValue;
         }
+    }
+
+    componentDidLoad() {
+        this.textContent = this.textImageSpanContent.innerText;
     }
 
     componentWillUpdate() {
@@ -100,22 +108,26 @@ export class TextImage {
         }
 
         if (!this.editable) {
-            this.colorValue = '';
+            this.colorValueStyle = '';
+        } else {
+            this.colorValueStyle = this.colorValue;
         }
 
-        const record = { ...this.text };
-        record.xCoord = this.xCoord;
-        record.yCoord = this.yCoord;
-        record.fontSize = this.fontSizeValue;
-        record.letterSpacing = this.letterSpacingValue;
-        record.wordSpacing = this.wordSpacingValue;
-        record.fontFamily = this.fontFamilyValue;
-        record.color = this.colorValue;
-        record.bold = this.textBold;
-        record.italic = this.textItalic;
-        record.content = this.textImageSpanContent.innerText;
+        if (this.recordChanged()) {
+            const record = { ...this.text };
+            record.xCoord = this.xCoord;
+            record.yCoord = this.yCoord;
+            record.fontSize = this.fontSizeValue;
+            record.letterSpacing = this.letterSpacingValue;
+            record.wordSpacing = this.wordSpacingValue;
+            record.fontFamily = this.fontFamilyValue;
+            record.color = this.colorValue;
+            record.bold = this.textBold;
+            record.italic = this.textItalic;
+            record.content = this.textImageSpanContent.innerText;
 
-        this.updateText(this.text.id, record);
+            this.updateText(this.text.id, record);
+        }
     }
 
     dragMouseDown = (e: any) => {
@@ -184,9 +196,32 @@ export class TextImage {
         this[element] = !this[element];
     }
 
+    updateTextContent = () => {
+        this.textContent = this.textImageSpanContent.innerText;
+        this.textChanged = true;
+    }
+
+    recordChanged = () => {
+        const text = this.text;
+        if (
+            text.xCoord !== this.xCoord
+            || text.yCoord !== this.yCoord
+            || text.fontSize !== this.fontSizeValue
+            || text.letterSpacing !== this.letterSpacingValue
+            || text.wordSpacing !== this.wordSpacingValue
+            || text.fontFamily !== this.fontFamilyValue
+            || text.color !== this.colorValue
+            || text.bold !== this.textBold
+            || text.italic !== this.textItalic
+            || this.textChanged
+        ) {
+            return true;
+        }
+        return false;
+    }
+
     render() {
         const text = this.text;
-        console.log(text);
 
         return (
             <span
@@ -199,7 +234,7 @@ export class TextImage {
                 style={{
                     top: this.yCoord + 'px',
                     left: this.xCoord + 'px',
-                    color: this.colorValue,
+                    color: this.colorValueStyle,
                     fontFamily: this.fontFamilyValue,
                     fontSize: this.fontSizeValue + 'px',
                     fontWeight: this.textBold ? 'bold' : 'normal',
@@ -216,6 +251,7 @@ export class TextImage {
                     class="text-image-span-content"
                     ref={(el) => this.textImageSpanContent = el as HTMLSpanElement}
                     contentEditable={this.textEditable}
+                    onKeyUp={this.updateTextContent}
                 >
                     {text.content}
                 </span>

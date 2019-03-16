@@ -69,6 +69,16 @@ export class TextSelectImage {
             return text;
         });
         this.selectText.imageText = updatedTexts;
+
+        this.textselectimageEvent();
+    }
+
+    textselectimageEvent = () => {
+        const updatedTextSelectImage = new CustomEvent(
+            "textselectimage",
+            { detail: this.selectText }
+        );
+        document.dispatchEvent(updatedTextSelectImage);
     }
 
     componentDidLoad() {
@@ -76,8 +86,6 @@ export class TextSelectImage {
     }
 
     render() {
-        console.log('select text', this.selectText);
-
         return (
             <div
                 style={ {...this.styled} }
