@@ -16,6 +16,8 @@ export class TextSelectImage {
     @Prop() editable: boolean;
     @Prop() toggleEditable: () => void;
 
+    @Prop() addText: () => void;
+
     render() {
         return (
             <div class="text-select-image-settings-container">
@@ -29,6 +31,7 @@ export class TextSelectImage {
                         toggleMenu={this.toggleSettings}
                         editable={this.editable}
                         toggleEditable={this.toggleEditable}
+                        addText={this.addText}
                     />
                 )}
             </div>

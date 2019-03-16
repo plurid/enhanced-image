@@ -14,9 +14,12 @@ export class SelectImage {
     @Prop() selectText: ITextSelectImageData;
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
-    @Prop() updateText: (id: string, record: object) => void;;
+    @Prop() updateText: (id: string, record: object) => void;
+    @Prop() duplicateText: (id: string) => void;
+    @Prop() deleteText: (id: string) => void;
 
     render() {
+        console.log('cccc', this.selectText);
         const { imageText } = this.selectText;
 
         return (
@@ -29,6 +32,8 @@ export class SelectImage {
                             editable={this.editable}
                             imageWidth={this.imageWidth}
                             updateText={this.updateText}
+                            duplicateText={this.duplicateText}
+                            deleteText={this.deleteText}
                         />
                     );
                 })}

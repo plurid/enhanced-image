@@ -17,6 +17,8 @@ import {
 export namespace Components {
 
   interface SelectImage {
+    'deleteText': (id: string) => void;
+    'duplicateText': (id: string) => void;
     'editable': boolean;
     'imageWidth': number;
     'selectText': ITextSelectImageData;
@@ -24,6 +26,8 @@ export namespace Components {
     'updateText': (id: string, record: object) => void;
   }
   interface SelectImageAttributes extends StencilHTMLAttributes {
+    'deleteText'?: (id: string) => void;
+    'duplicateText'?: (id: string) => void;
     'editable'?: boolean;
     'imageWidth'?: number;
     'selectText'?: ITextSelectImageData;
@@ -79,13 +83,16 @@ export namespace Components {
   interface TextImageEditor {
     'changeValue': (type: string, value: number | string) => void;
     'colorValue': string;
+    'deleteText': (id: string) => void;
     'draggable': boolean;
+    'duplicateText': (id: string) => void;
     'fontFamilyValue': string;
     'fontSizeValue': number;
     'letterSpacingValue': number;
     'selectableFonts': string[];
     'textBold': boolean;
     'textEditable': boolean;
+    'textId': string;
     'textItalic': boolean;
     'toggleDraggable': () => void;
     'toggleEditor': () => void;
@@ -96,13 +103,16 @@ export namespace Components {
   interface TextImageEditorAttributes extends StencilHTMLAttributes {
     'changeValue'?: (type: string, value: number | string) => void;
     'colorValue'?: string;
+    'deleteText'?: (id: string) => void;
     'draggable'?: boolean;
+    'duplicateText'?: (id: string) => void;
     'fontFamilyValue'?: string;
     'fontSizeValue'?: number;
     'letterSpacingValue'?: number;
     'selectableFonts'?: string[];
     'textBold'?: boolean;
     'textEditable'?: boolean;
+    'textId'?: string;
     'textItalic'?: boolean;
     'toggleDraggable'?: () => void;
     'toggleEditor'?: () => void;
@@ -112,6 +122,8 @@ export namespace Components {
   }
 
   interface TextImage {
+    'deleteText': (id: string) => void;
+    'duplicateText': (id: string) => void;
     'editable': boolean;
     'imageWidth': number;
     'text': ITextImage;
@@ -119,6 +131,8 @@ export namespace Components {
     'updateText': (id: string, record: object) => void;
   }
   interface TextImageAttributes extends StencilHTMLAttributes {
+    'deleteText'?: (id: string) => void;
+    'duplicateText'?: (id: string) => void;
     'editable'?: boolean;
     'imageWidth'?: number;
     'text'?: ITextImage;
@@ -149,23 +163,27 @@ export namespace Components {
   }
 
   interface TextSelectImageSettingsMenu {
+    'addText': () => void;
     'editable': boolean;
     'toggleEditable': () => void;
     'toggleMenu': () => void;
   }
   interface TextSelectImageSettingsMenuAttributes extends StencilHTMLAttributes {
+    'addText'?: () => void;
     'editable'?: boolean;
     'toggleEditable'?: () => void;
     'toggleMenu'?: () => void;
   }
 
   interface TextSelectImageSettings {
+    'addText': () => void;
     'editable': boolean;
     'toggleEditable': () => void;
     'toggleSettings': () => void;
     'toggledSettings': boolean;
   }
   interface TextSelectImageSettingsAttributes extends StencilHTMLAttributes {
+    'addText'?: () => void;
     'editable'?: boolean;
     'toggleEditable'?: () => void;
     'toggleSettings'?: () => void;
