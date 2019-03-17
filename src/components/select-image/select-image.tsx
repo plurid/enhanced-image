@@ -27,7 +27,7 @@ export class SelectImage {
             <div>
                 {imageText.map(text => {
                     return (
-                        <div>{text.id}</div>
+                        <div onClick={this.duplicateText.bind(this, text.id)}>{text.id}</div>
                         // <text-image
                         //     editable={this.editable}
 
