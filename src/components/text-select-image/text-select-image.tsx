@@ -45,6 +45,11 @@ export class TextSelectImage {
             : await this.loadDummyText();
     }
 
+    componentDidLoad() {
+        this.imageWidth = this.image.offsetWidth;
+        this.imageHeight = this.image.offsetHeight;
+    }
+
     parseText = (data: string) => {
         console.log('data', data);
         let parsedData: ITextSelectImageData;
@@ -89,33 +94,26 @@ export class TextSelectImage {
     }
 
     duplicateText = (id: string) => {
-        const selectText = { ...this.selectText }
-
-        let duplicatedText: ITextImage;
+        const selectText = { ...this.selectText };
         const texts = [];
+        let duplicatedText: ITextImage;
+
         selectText.imageText.map((text: ITextImage) => {
-            // console.log(id);
-            // console.log(text.id);
+            texts.push(text);
             if (text.id === id) {
-                console.log(text);
                 duplicatedText = {
                     ...text,
-                    // id:
-                    // xCoord: text.xCoord,
-                    // yCoord: text.yCoord + 50,
+                    id: `tsi-text-${uuidv4()}`,
+                    yCoord: text.yCoord + 50,
                 };
-                duplicatedText.id = `${Math.ceil(Math.random()*10000000)}`;
-                // duplicatedText.xCoord = text.xCoord;
-                duplicatedText.yCoord = text.yCoord + 50;
                 texts.push(duplicatedText);
-                console.log('aaa', duplicatedText);
+                console.log('duplicate source', text);
+                console.log('duplicated text', duplicatedText);
             }
-            texts.push(text);
         });
-        selectText.imageText = [];
+
         selectText.imageText = texts;
         this.selectText = { ...selectText };
-        // console.log(this.selectText);
     }
 
     deleteText = (id: string) => {
@@ -163,13 +161,8 @@ export class TextSelectImage {
         this.selectText = { ...selectText };
     }
 
-    componentDidLoad() {
-        this.imageWidth = this.image.offsetWidth;
-        this.imageHeight = this.image.offsetHeight;
-    }
-
     render() {
-        console.log(this.selectText);
+        // console.log(this.selectText);
 
         return (
             <div
