@@ -22,7 +22,7 @@ export class TextImageEditor {
     @Prop() toggleDraggable: () => void;
 
     @Prop() duplicateText: (id: string) => void;
-    @Prop() deleteText: (id: string) => void;
+    @Prop() removeText: (id: string) => void;
 
     @Prop() textEditable: boolean;
     @Prop() toggleTextEditable: () => void;
@@ -49,9 +49,9 @@ export class TextImageEditor {
         this.duplicateText(this.textId);
     }
 
-    delete = () => {
-        console.log('Delete', this.textId);
-        this.deleteText(this.textId);
+    remove = () => {
+        console.log('Remove text with id: ', this.textId);
+        this.removeText(this.textId);
     }
 
     render() {
@@ -157,7 +157,7 @@ export class TextImageEditor {
 
                 <span
                     class="text-image-editor-button"
-                    onClick={this.delete}
+                    onClick={this.remove}
                 >
                     <span
                         class="text-image-editor-button-icon"
