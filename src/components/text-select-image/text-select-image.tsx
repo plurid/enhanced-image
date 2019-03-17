@@ -145,18 +145,18 @@ export class TextSelectImage {
             yPercentage: 0,
             xCoord: 50,
             yCoord: 50,
-            perspective: "string",
-            rotation: "string",
-            skew: "string",
-            color: "white",
-            fontFamily: "Helvetica",
+            perspective: '',
+            rotation: '',
+            skew: '',
+            color: 'white',
+            fontFamily: 'Helvetica',
             fontSize: 30,
             bold: false,
             italic: false,
             letterSpacing: 0,
-            lineHeight: "auto",
+            lineHeight: 'auto',
             wordSpacing: 0,
-            content: "New Text"
+            content: 'New Text'
         }
 
         selectText.imageText.push(text);
