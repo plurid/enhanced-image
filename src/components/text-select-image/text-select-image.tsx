@@ -2,7 +2,8 @@ import { Component, Prop, State } from '@stencil/core';
 
 import { ITextSelectImageData, ITextImage } from '../../interfaces/image-text';
 
-import { styleStringToObject} from '../../utils/styleString';
+import { styleStringToObject } from '../../utils/styleString';
+import { uuidv4 } from '../../utils/uuid';
 
 
 
@@ -137,7 +138,7 @@ export class TextSelectImage {
         const selectText = { ...this.selectText }
 
         const text = {
-            id: `${Math.ceil(Math.random()*10000000)}`,
+            id: `tsi-text-${uuidv4()}`,
             begin: 0,
             end: 0,
             xPercentage: 0,

@@ -27,19 +27,20 @@ export class SelectImage {
             <div>
                 {imageText.map(text => {
                     return (
-                        <text-image
-                            editable={this.editable}
+                        <div>{text.id}</div>
+                        // <text-image
+                        //     editable={this.editable}
 
-                            textId={text.id}
-                            imageText={imageText}
+                        //     textId={text.id}
+                        //     imageText={imageText}
 
-                            updateText={this.updateText}
-                            duplicateText={this.duplicateText}
-                            deleteText={this.deleteText}
+                        //     updateText={this.updateText}
+                        //     duplicateText={this.duplicateText}
+                        //     deleteText={this.deleteText}
 
-                            imageWidth={this.imageWidth}
-                            imageHeight={this.imageHeight}
-                        />
+                        //     imageWidth={this.imageWidth}
+                        //     imageHeight={this.imageHeight}
+                        // />
                     );
                 })}
             </div>
