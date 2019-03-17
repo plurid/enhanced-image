@@ -20,7 +20,7 @@ export class TextImage {
     textImageSpan!: HTMLSpanElement;
     textImageSpanContent!: HTMLSpanElement;
 
-    @Prop() textId: string;
+    @Prop({ reflectToAttr: true }) textId: string;
     @Prop() imageText: ITextImage[];
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
@@ -28,7 +28,7 @@ export class TextImage {
 
     @Prop() updateText: (id: string, text: ITextImage) => void;
     @Prop() duplicateText: (id: string) => void;
-    @Prop() deleteText: (id: string) => void;
+    @Prop() removeText: (id: string) => void;
 
     @State() xCoord: number = 0;
     @State() yCoord: number = 0;
@@ -325,7 +325,7 @@ export class TextImage {
                             selectableFonts={selectableFonts}
 
                             duplicateText={this.duplicateText}
-                            deleteText={this.deleteText}
+                            removeText={this.removeText}
                         />
                     </span>
                 )}

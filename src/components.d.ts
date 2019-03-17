@@ -83,12 +83,12 @@ export namespace Components {
   interface TextImageEditor {
     'changeValue': (type: string, value: number | string) => void;
     'colorValue': string;
-    'deleteText': (id: string) => void;
     'draggable': boolean;
     'duplicateText': (id: string) => void;
     'fontFamilyValue': string;
     'fontSizeValue': number;
     'letterSpacingValue': number;
+    'removeText': (id: string) => void;
     'selectableFonts': string[];
     'textBold': boolean;
     'textEditable': boolean;
@@ -103,12 +103,12 @@ export namespace Components {
   interface TextImageEditorAttributes extends StencilHTMLAttributes {
     'changeValue'?: (type: string, value: number | string) => void;
     'colorValue'?: string;
-    'deleteText'?: (id: string) => void;
     'draggable'?: boolean;
     'duplicateText'?: (id: string) => void;
     'fontFamilyValue'?: string;
     'fontSizeValue'?: number;
     'letterSpacingValue'?: number;
+    'removeText'?: (id: string) => void;
     'selectableFonts'?: string[];
     'textBold'?: boolean;
     'textEditable'?: boolean;
@@ -122,22 +122,22 @@ export namespace Components {
   }
 
   interface TextImage {
-    'deleteText': (id: string) => void;
     'duplicateText': (id: string) => void;
     'editable': boolean;
     'imageHeight': number;
     'imageText': ITextImage[];
     'imageWidth': number;
+    'removeText': (id: string) => void;
     'textId': string;
     'updateText': (id: string, text: ITextImage) => void;
   }
   interface TextImageAttributes extends StencilHTMLAttributes {
-    'deleteText'?: (id: string) => void;
     'duplicateText'?: (id: string) => void;
     'editable'?: boolean;
     'imageHeight'?: number;
     'imageText'?: ITextImage[];
     'imageWidth'?: number;
+    'removeText'?: (id: string) => void;
     'textId'?: string;
     'updateText'?: (id: string, text: ITextImage) => void;
   }

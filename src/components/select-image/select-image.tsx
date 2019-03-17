@@ -10,6 +10,8 @@ import { ITextSelectImageData, ITextImage } from '../../interfaces/image-text';
     shadow: true
 })
 export class SelectImage {
+    div!: HTMLDivElement;
+
     @Prop() selectText: ITextSelectImageData;
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
@@ -19,28 +21,37 @@ export class SelectImage {
     @Prop() duplicateText: (id: string) => void;
     @Prop() deleteText: (id: string) => void;
 
+    removeText = (id: string) => {
+        const el = this.div.querySelector(`text-image[text-id=${id}]`);
+        this.div.removeChild(el);
+
+        this.deleteText(id);
+    }
+
     render() {
         console.log('select-image :: this.selectText', this.selectText);
         const { imageText } = this.selectText;
 
         return (
-            <div>
+            <div
+                ref={(el) => this.div = el as HTMLDivElement}
+            >
                 {imageText.map(text => {
                     return (
-                        <div onClick={this.duplicateText.bind(this, text.id)}>{text.id}</div>
-                        // <text-image
-                        //     editable={this.editable}
+                        // <div onClick={this.deleteText.bind(this, text.id)}>{text.id}</div>
+                        <text-image
+                            editable={this.editable}
 
-                        //     textId={text.id}
-                        //     imageText={imageText}
+                            textId={text.id}
+                            imageText={imageText}
 
-                        //     updateText={this.updateText}
-                        //     duplicateText={this.duplicateText}
-                        //     deleteText={this.deleteText}
+                            updateText={this.updateText}
+                            duplicateText={this.duplicateText}
+                            removeText={this.removeText}
 
-                        //     imageWidth={this.imageWidth}
-                        //     imageHeight={this.imageHeight}
-                        // />
+                            imageWidth={this.imageWidth}
+                            imageHeight={this.imageHeight}
+                        />
                     );
                 })}
             </div>
