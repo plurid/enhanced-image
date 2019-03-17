@@ -17,5 +17,7 @@ export const config: Config = {
             serviceWorker: null
         }
     ],
-    plugins: [inlineSvg()]
+    plugins: [
+        inlineSvg(),
+    ],
 };
