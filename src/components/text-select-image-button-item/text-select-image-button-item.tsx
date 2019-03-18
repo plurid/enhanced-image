@@ -7,7 +7,7 @@ import { Component, Prop } from '@stencil/core';
     styleUrl: 'text-select-image-button-item.css',
     shadow: true
 })
-export class EnhancedImageButtonItem {
+export class TextSelectImageButtonItem {
     @Prop() atClick: (event: MouseEvent) => void;
     @Prop() icon: string;
     @Prop() text: string;

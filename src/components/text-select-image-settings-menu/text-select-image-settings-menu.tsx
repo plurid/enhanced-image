@@ -10,7 +10,7 @@ import addTextIcon from '../../assets/add-text-icon.svg';
     styleUrl: 'text-select-image-settings-menu.css',
     shadow: true
 })
-export class TextSelectImage {
+export class TextSelectImageSettingsMenu {
     @Prop() toggleMenu: () => void;
     @Prop() editable: boolean;
     @Prop() toggleEditable: () => void;

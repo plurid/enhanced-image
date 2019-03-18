@@ -9,7 +9,7 @@ import settingsIcon from '../../assets/settings-icon.svg';
     styleUrl: 'text-select-image-settings.css',
     shadow: true
 })
-export class TextSelectImage {
+export class TextSelectImageSettings {
     @Prop() toggledSettings: boolean;
     @Prop() toggleSettings: () => void;
 
