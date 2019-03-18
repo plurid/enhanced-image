@@ -31,8 +31,8 @@ export class TextImage {
     @Prop() duplicateText: (id: string) => void;
     @Prop() removeText: (id: string) => void;
 
-    @State() xCoord: number = 0;
-    @State() yCoord: number = 0;
+    @State() xCoord: number = 20;
+    @State() yCoord: number = 20;
 
     @State() textEditable: boolean = false;
     @State() draggable: boolean = false;
@@ -60,17 +60,6 @@ export class TextImage {
     @State() editorYCoord: number = 0;
 
     componentWillLoad() {
-        // const imageText = this.imageText.filter(text => {
-        //     if (text.id === this.textId) {
-        //         return text
-        //     }
-        //     return false;
-        // })[0];
-        // // console.log('aaaaadddd33', imageText);
-        // // // TODO: validate that imageText is ITextImage.
-        // if (imageText) {
-        //     this.text = imageText;
-        // }
         this.text = this.textImage;
     }
 
@@ -93,26 +82,6 @@ export class TextImage {
             this.colorValueStyle = this.colorValue;
         }
     }
-
-    // componentDidLoad() {
-    //     this.textContent = this.textImageSpanContent.innerText;
-
-    //     this.xCoord = this.text.xCoord;
-    //     this.yCoord = this.text.yCoord;
-
-    //     this.fontSizeValue = this.text.fontSize || this.fontSizeValue;
-    //     this.fontFamilyValue = this.text.fontFamily || this.fontFamilyValue;
-    //     this.letterSpacingValue = this.text.letterSpacing || this.letterSpacingValue;
-    //     this.wordSpacingValue = this.text.wordSpacing || this.wordSpacingValue;
-    //     this.textBold =  this.text.bold || this.textBold;
-    //     this.textItalic =  this.text.italic || this.textItalic;
-    //     // this.colorValue = this.text.color || this.colorValue;
-    //     if(this.editable) {
-    //         this.colorValue = this.text.color || 'black';
-    //         this.colorValueStyle = this.colorValue;
-    //     }
-    // }
-
 
 
     componentWillUpdate() {
@@ -257,8 +226,9 @@ export class TextImage {
     }
 
     render() {
+        // console.log('A');
         const text = this.text;
-        console.log('text-image :: text', this.textId, this.text);
+        // console.log('text-image :: text', this.textId, this.text);
 
         return (
             <span
