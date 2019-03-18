@@ -48,9 +48,21 @@ The text content can be obtained through machine analysis or can be provided by 
 
 ## [Demo](https://caveljan.com/text-select-image/)
 
+Select the text from the image.
+
 ![Text Select from Image][text-select]
 
 [text-select]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/text-select.png "Text Select from Image"
+
+Edit the text as admin.
+
+![Edit][edit]
+
+[edit]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/edit.png "Text Select from Image"
+
+![Text Editor][hover]
+
+[hover]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/edit.png "Text Select from Image"
 
 
 
@@ -69,6 +81,16 @@ Add the `text-select-image-html` script to the application (or install with `npm
     npm install text-select-image-html
 
 Use the `<text-select-image>` HTML Element, passing in the `src` and `text` attributes.
+
+Pass the `control` attribute to display the controls for the texts.
+
+In order to detect the changes made to the text, listen for the `textselectimage` event on the document
+
+``` javascript
+document.addEventListener('textselectimage', (event: CustomEvent) => {
+    console.log('UPDATED', event.detail)
+});
+```
 
 
 ### HTML text-select-image Element
