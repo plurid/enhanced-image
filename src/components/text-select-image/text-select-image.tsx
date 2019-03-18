@@ -162,7 +162,7 @@ export class TextSelectImage {
     }
 
     render() {
-        console.log('RENDER TSI', this.selectText);
+        // console.log('RENDER TSI', this.selectText);
 
         return (
             <div
