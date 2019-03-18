@@ -1,7 +1,7 @@
 {
     "name": "text-select-image-html",
     "version": "0.1.0",
-    "description": "Select the text from images.",
+    "description": "HTML Custom Image Element to select the text from the Image",
     "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
     "license": "MIT",
     "repository": {
