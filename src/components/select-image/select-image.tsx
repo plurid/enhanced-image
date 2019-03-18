@@ -24,8 +24,7 @@ export class SelectImage {
     removeText = (id: string) => {
         const el = this.div.querySelector(`text-image[text-id=${id}]`);
         this.div.removeChild(el);
-        console.log(el);
-
+        // console.log(el);
         this.deleteText(id);
     }
 
@@ -39,7 +38,6 @@ export class SelectImage {
             >
                 {imageText.map(text => {
                     return (
-                        // <div onClick={this.deleteText.bind(this, text.id)}>{text.id}</div>
                         <text-image
                             key={text.id}
 

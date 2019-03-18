@@ -57,8 +57,8 @@ export class TextSelectImage {
     }
 
     loadDummyText = async () => {
-        let response = await fetch('../../test-data/food-text.json');
-        let dummyData: ITextSelectImageData = await response.json();
+        const response = await fetch('../../test-data/food-text.json');
+        const dummyData: ITextSelectImageData = await response.json();
         // console.log('dummyData', dummyData);
         return dummyData;
     }
@@ -107,8 +107,8 @@ export class TextSelectImage {
                     yCoord: text.yCoord + 50,
                 };
                 texts.push(duplicatedText);
-                console.log('duplicate source', text);
-                console.log('duplicated text', duplicatedText);
+                // console.log('duplicate source', text);
+                // console.log('duplicated text', duplicatedText);
             }
         });
 
@@ -125,11 +125,11 @@ export class TextSelectImage {
             }
             return text;
         });
-        console.log(texts);
+        // console.log(texts);
 
         selectText.imageText = texts;
         this.selectText = { ...selectText };
-        console.log(this.selectText);
+        // console.log(this.selectText);
     }
 
     addText = () => {
@@ -162,7 +162,7 @@ export class TextSelectImage {
     }
 
     render() {
-        // console.log(this.selectText);
+        console.log('RENDER TSI', this.selectText);
 
         return (
             <div
@@ -174,6 +174,7 @@ export class TextSelectImage {
                     alt={this.alt || ''}
                     ref={(imgEl) => this.image = imgEl as HTMLImageElement}
                 />
+
                 <select-image
                     selectText={this.selectText}
                     editable={this.editable}
@@ -185,6 +186,7 @@ export class TextSelectImage {
                     duplicateText={this.duplicateText}
                     deleteText={this.deleteText}
                 />
+
                 {this.showControl && (
                     <text-select-image-settings
                         toggledSettings={this.toggledSettings}
