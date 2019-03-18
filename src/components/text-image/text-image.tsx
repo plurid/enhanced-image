@@ -22,6 +22,7 @@ export class TextImage {
 
     @Prop({ reflectToAttr: true }) textId: string;
     @Prop() imageText: ITextImage[];
+    @Prop() textImage: ITextImage;
     @Prop() editable: boolean;
     @Prop() imageWidth: number;
     @Prop() imageHeight: number;
@@ -59,22 +60,19 @@ export class TextImage {
     @State() editorYCoord: number = 0;
 
     componentWillLoad() {
-        const imageText = this.imageText.filter(text => {
-            if (text.id === this.textId) {
-                return text
-            }
-            return false;
-        })[0];
-        // console.log('aaaaadddd33', imageText);
-        // // TODO: validate that imageText is ITextImage.
-        if (imageText) {
-            this.text = imageText;
-        }
+        // const imageText = this.imageText.filter(text => {
+        //     if (text.id === this.textId) {
+        //         return text
+        //     }
+        //     return false;
+        // })[0];
+        // // console.log('aaaaadddd33', imageText);
+        // // // TODO: validate that imageText is ITextImage.
+        // if (imageText) {
+        //     this.text = imageText;
+        // }
+        this.text = this.textImage;
     }
-
-    // componentWillLoad() {
-
-    // }
 
     componentDidLoad() {
         // this.textContent = 'this.textImageSpanContent.innerText;';
@@ -251,7 +249,7 @@ export class TextImage {
             || text.color !== this.colorValue
             || text.bold !== this.textBold
             || text.italic !== this.textItalic
-            || this.textChanged
+            // || this.textChanged
         ) {
             return true;
         }

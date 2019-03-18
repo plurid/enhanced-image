@@ -129,6 +129,7 @@ export namespace Components {
     'imageWidth': number;
     'removeText': (id: string) => void;
     'textId': string;
+    'textImage': ITextImage;
     'updateText': (id: string, text: ITextImage) => void;
   }
   interface TextImageAttributes extends StencilHTMLAttributes {
@@ -139,6 +140,7 @@ export namespace Components {
     'imageWidth'?: number;
     'removeText'?: (id: string) => void;
     'textId'?: string;
+    'textImage'?: ITextImage;
     'updateText'?: (id: string, text: ITextImage) => void;
   }
 
