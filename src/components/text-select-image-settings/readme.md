@@ -9,6 +9,7 @@
 
 | Property          | Attribute          | Description | Type         | Default     |
 | ----------------- | ------------------ | ----------- | ------------ | ----------- |
+| `addText`         | --                 |             | `() => void` | `undefined` |
 | `editable`        | `editable`         |             | `boolean`    | `undefined` |
 | `toggleEditable`  | --                 |             | `() => void` | `undefined` |
 | `toggleSettings`  | --                 |             | `() => void` | `undefined` |
