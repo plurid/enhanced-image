@@ -52,17 +52,17 @@ Select the text from the image.
 
 ![Text Select from Image][text-select]
 
-[text-select]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/text-select.png "Text Select from Image"
+[text-select]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/text-select.png
 
 Edit the text as admin.
 
 ![Edit][edit]
 
-[edit]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/edit.png "Text Select from Image"
+[edit]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/edit.png
 
 ![Text Editor][hover]
 
-[hover]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/edit.png "Text Select from Image"
+[hover]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/hover.png
 
 
 
