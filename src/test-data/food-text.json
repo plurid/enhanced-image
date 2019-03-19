@@ -3,8 +3,6 @@
     "imageText": [
         {
             "id": "tsi-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e",
-            "begin": 0,
-            "end": 0,
             "xPercentage": 0,
             "yPercentage": 0,
             "xCoord": 17,
@@ -24,8 +22,6 @@
         },
         {
             "id": "tsi-text-cfef2e11-4e65-40fe-980a-7136046a9fb0",
-            "begin": 0,
-            "end": 0,
             "xPercentage": 0,
             "yPercentage": 0,
             "xCoord": 145,
@@ -45,8 +41,6 @@
         },
         {
             "id": "tsi-text-4f635939-c1ee-4bc2-9de3-f92f16e3c025",
-            "begin": 0,
-            "end": 0,
             "xPercentage": 0,
             "yPercentage": 0,
             "xCoord": 421.5,
