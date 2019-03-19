@@ -1,7 +1,5 @@
 export interface ITextImage {
     id: string;
-    begin: number;
-    end: number;
     xPercentage: number;
     yPercentage: number;
     xCoord: number;
