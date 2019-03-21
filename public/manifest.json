@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "Enhanced Image",
+    "description": "Select text from images, alter colors",
+    "version": "0.0.1",
+    "icons": {
+        "16": "./assets/enhanced-image-16.png",
+        "48": "./assets/enhanced-image-48.png",
+        "128": "./assets/enhanced-image-128.png"
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "<all_urls>"
+    ],
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": [
+            "/app/contentscript.js"
+        ],
+        "run_at": "document_end"
+    }],
+    "web_accessible_resources": [
+        "enhanced-image-html/dist/**.js"
+    ],
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_title": "Enhanced Image"
+    },
+    "content_security_policy": "script-src 'self' 'sha256-5As4+3YpY62+l38PsxCEkjB1R4YtyktBtRScTJ3fyLU='; object-src 'self'"
+}
