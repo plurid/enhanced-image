@@ -1,0 +1,35 @@
+{
+    "name": "enhanced-image-chrome",
+    "version": "0.0.1",
+    "description": "Chrome Extension for Enhanced Image HTML Element",
+    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/plurid/enhanced-image-chrome.git"
+    },
+    "bugs": {
+        "url": "https://github.com/plurid/enhanced-image-chrome/issues"
+    },
+    "dependencies": {
+        "enhanced-image-html": "^0.1.1",
+        "react": "^16.8.4",
+        "react-dom": "^16.8.4",
+        "react-scripts": "2.1.8"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ]
+}

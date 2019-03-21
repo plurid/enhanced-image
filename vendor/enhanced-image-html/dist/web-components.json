@@ -1,0 +1,301 @@
+{
+  "tags": [
+    {
+      "label": "enhanced-image-button-checkmark",
+      "description": "",
+      "attributes": [
+        {
+          "label": "checked",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "text",
+          "description": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "enhanced-image-button-item",
+      "description": "",
+      "attributes": [
+        {
+          "label": "icon",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "text",
+          "description": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "enhanced-image-settings-button",
+      "description": "",
+      "attributes": [
+        {
+          "label": "toggle",
+          "description": "onClick function.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "enhanced-image-settings-list",
+      "description": "",
+      "attributes": [
+        {
+          "label": "brightness-slider-value",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "colors-invert",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "colors-inverted",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "contrast-slider-value",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "fullscreen",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "fullscreen-toggled",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "handle-slider-input",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "hue-slider-value",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "invert-colors",
+          "description": "Invert the colors.",
+          "required": false
+        },
+        {
+          "label": "location",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "saturation-slider-value",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "save-image",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "set-slider",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "set-slider-value",
+          "description": "Set the value of the sliders.",
+          "required": false
+        },
+        {
+          "label": "src",
+          "description": "The source of the image.",
+          "required": false
+        },
+        {
+          "label": "text-select",
+          "description": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "enhanced-image-settings",
+      "description": "",
+      "attributes": [
+        {
+          "label": "brightness",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "contrast",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "fullscreen",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "fullscreen-toggled",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "hue",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "invert",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "invert-colors",
+          "description": "Invert the colors.",
+          "required": false
+        },
+        {
+          "label": "location",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "saturation",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "set-slider-value",
+          "description": "Set the value of the sliders.",
+          "required": false
+        },
+        {
+          "label": "src",
+          "description": "The source of the image.",
+          "required": false
+        },
+        {
+          "label": "text-select",
+          "description": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "enhanced-image-slider-item",
+      "description": "",
+      "attributes": [
+        {
+          "label": "max",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "min",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "slider-value",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "type",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "value-sign",
+          "description": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "enhanced-image",
+      "description": "",
+      "attributes": [
+        {
+          "label": "alt",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "classes",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "contrast",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "height",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "hue",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "invert",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "lightness",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "saturation",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "settings-position",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "src",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "styling",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "text-select",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "width",
+          "description": "",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

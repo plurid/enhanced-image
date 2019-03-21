@@ -1,0 +1,1 @@
+// EnhancedImageHtml: CommonJS Main
