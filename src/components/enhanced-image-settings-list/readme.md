@@ -25,6 +25,7 @@
 | `setSlider`             | `set-slider`              |                               | `any`                        | `undefined` |
 | `setSliderValue`        | `set-slider-value`        | Set the value of the sliders. | `any`                        | `undefined` |
 | `src`                   | `src`                     | The source of the image.      | `string`                     | `undefined` |
+| `textSelect`            | `text-select`             |                               | `boolean`                    | `undefined` |
 
 
 ----------------------------------------------
