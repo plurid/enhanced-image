@@ -7,7 +7,7 @@
 
 import '@stencil/core';
 
-
+import 'text-select-image-html';
 
 
 export namespace Components {

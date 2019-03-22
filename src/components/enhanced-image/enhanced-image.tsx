@@ -1,5 +1,7 @@
 import { Component, Prop, State, Element, Listen, Watch } from '@stencil/core';
 
+import 'text-select-image-html';
+
 import {
     SLIDER_DEFAULTS,
     FULLSCREEN_STYLES,
@@ -139,6 +141,32 @@ export class EnhancedImage {
         this.location = location;
     }
 
+    renderImage = () => {
+        if (this.textSelect) {
+            return (
+                <text-select-image control src={this.src}></text-select-image>
+            )
+        }
+
+        return (
+            <img src={this.src}
+                style={{
+                    filter: `
+                        invert(${this.invertValue})
+                        contrast(${this.contrastValue}%)
+                        hue-rotate(${this.hueValue}deg)
+                        saturate(${this.saturationValue}%)
+                        brightness(${this.brightnessValue}%)
+                    `,
+                    height: `${this.height ? this.height + 'px' : null}`,
+                    width: `${this.width ? this.width + 'px' : null}`
+                }}
+                alt={this.alt ? this.alt : ''}
+                class="enhanced-image"
+            />
+        );
+    }
+
     render() {
         return (
             <div
@@ -162,21 +190,8 @@ export class EnhancedImage {
                     textSelect={this.textSelect}
                     noAbout={this.noAbout}
                 />
-                <img src={this.src}
-                    style={{
-                        filter: `
-                            invert(${this.invertValue})
-                            contrast(${this.contrastValue}%)
-                            hue-rotate(${this.hueValue}deg)
-                            saturate(${this.saturationValue}%)
-                            brightness(${this.brightnessValue}%)
-                        `,
-                        height: `${this.height ? this.height + 'px' : null}`,
-                        width: `${this.width ? this.width + 'px' : null}`
-                    }}
-                    alt={this.alt ? this.alt : ''}
-                    class="enhanced-image"
-                />
+
+                {this.renderImage()}
             </div>
         );
     }
