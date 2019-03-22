@@ -202,7 +202,7 @@ export namespace Components {
     'src': string;
     'styleImage': any;
     'styling': string;
-    'textData': string;
+    'textData': ITextSelectImageData;
     'width': string;
   }
   interface TextSelectImageAttributes extends StencilHTMLAttributes {
@@ -213,7 +213,7 @@ export namespace Components {
     'src'?: string;
     'styleImage'?: any;
     'styling'?: string;
-    'textData'?: string;
+    'textData'?: ITextSelectImageData;
     'width'?: string;
   }
 }

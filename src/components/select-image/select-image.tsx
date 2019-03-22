@@ -29,7 +29,7 @@ export class SelectImage {
     }
 
     render() {
-        // console.log('select-image :: this.selectText', this.selectText);
+        console.log('select-image :: this.selectText', this.selectText);
         const { imageText } = this.selectText;
 
         return (
