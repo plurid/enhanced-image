@@ -8,6 +8,69 @@ import {
 } from '../../utils/defaults';
 import { styleStringToObject } from '../../utils/styleString';
 
+const foodText = {
+    id: "tsi-image-b634e1b7-a46c-443f-8b9d-02bc2745a768",
+    imageText: [
+        {
+            "id": "tsi-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e",
+            "xPercentage": 0,
+            "yPercentage": 0,
+            "xCoord": 17,
+            "yCoord": 189,
+            "perspective": "",
+            "rotation": "",
+            "skew": "",
+            "color": "red",
+            "fontFamily": "Arial",
+            "fontSize": 28,
+            "bold": false,
+            "italic": false,
+            "letterSpacing": 0,
+            "lineHeight": "auto",
+            "wordSpacing": 0,
+            "content": "Text sample Arial"
+        },
+        {
+            "id": "tsi-text-cfef2e11-4e65-40fe-980a-7136046a9fb0",
+            "xPercentage": 0,
+            "yPercentage": 0,
+            "xCoord": 145,
+            "yCoord": 257,
+            "perspective": "",
+            "rotation": "",
+            "skew": "",
+            "color": "black",
+            "fontFamily": "Verdana",
+            "fontSize": 38,
+            "bold": false,
+            "italic": false,
+            "letterSpacing": -1,
+            "lineHeight": "auto",
+            "wordSpacing": 6,
+            "content": "Text Sample Verdana"
+        },
+        {
+            "id": "tsi-text-4f635939-c1ee-4bc2-9de3-f92f16e3c025",
+            "xPercentage": 0,
+            "yPercentage": 0,
+            "xCoord": 421.5,
+            "yCoord": 357,
+            "perspective": "",
+            "rotation": "",
+            "skew": "",
+            "color": "black",
+            "fontFamily": "Georgia",
+            "fontSize": 24,
+            "bold": false,
+            "italic": false,
+            "letterSpacing": 0,
+            "lineHeight": "auto",
+            "wordSpacing": 1.5,
+            "content": "Text Sample Georgia"
+        }
+    ]
+}
+
 
 
 @Component({
@@ -144,12 +207,32 @@ export class EnhancedImage {
     renderImage = () => {
         if (this.textSelect) {
             return (
-                <text-select-image control src={this.src}></text-select-image>
+                <text-select-image
+                    src={this.src}
+                    alt={this.alt || ''}
+                    control
+                    styleImage={{
+                        filter: `
+                            invert(${this.invertValue})
+                            contrast(${this.contrastValue}%)
+                            hue-rotate(${this.hueValue}deg)
+                            saturate(${this.saturationValue}%)
+                            brightness(${this.brightnessValue}%)
+                        `,
+                        height: `${this.height ? this.height + 'px' : null}`,
+                        width: `${this.width ? this.width + 'px' : null}`
+                    }}
+                    textData={foodText}
+                >
+                </text-select-image>
             )
         }
 
         return (
-            <img src={this.src}
+            <img
+                src={this.src}
+                alt={this.alt || ''}
+                class="enhanced-image"
                 style={{
                     filter: `
                         invert(${this.invertValue})
@@ -161,8 +244,6 @@ export class EnhancedImage {
                     height: `${this.height ? this.height + 'px' : null}`,
                     width: `${this.width ? this.width + 'px' : null}`
                 }}
-                alt={this.alt ? this.alt : ''}
-                class="enhanced-image"
             />
         );
     }
