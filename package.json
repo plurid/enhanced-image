@@ -19,8 +19,9 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "react-scripts build",
+        "build": "react-scripts build && yarn copyvendor",
         "test": "react-scripts test",
+        "copyvendor": "cp -r ./vendor/enhanced-image-html ./build/",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
