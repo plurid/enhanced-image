@@ -16,6 +16,7 @@
 | `hue`              | `hue`               |             | `string`  | `undefined` |
 | `invert`           | `invert`            |             | `string`  | `undefined` |
 | `lightness`        | `lightness`         |             | `string`  | `undefined` |
+| `noAbout`          | `no-about`          |             | `boolean` | `undefined` |
 | `saturation`       | `saturation`        |             | `string`  | `undefined` |
 | `settingsPosition` | `settings-position` |             | `string`  | `undefined` |
 | `src`              | `src`               |             | `string`  | `undefined` |
