@@ -35,6 +35,7 @@ for (let i = 0; i < imagesArr.length; i++) {
             }
 
             enhancedImage.setAttribute('text-select', true);
+            enhancedImage.setAttribute('no-about', true);
 
             // enhancedImage.setAttribute('styling', "width: 500px;");
             // console.log(enhancedImage);
