@@ -1,1 +1,0 @@
-// EnhancedImageHtml: ES Module
