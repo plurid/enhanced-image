@@ -14,6 +14,7 @@
 | `fullscreen`        | `fullscreen`         |                               | `any`                        | `undefined` |
 | `fullscreenToggled` | `fullscreen-toggled` |                               | `boolean`                    | `undefined` |
 | `hue`               | `hue`                |                               | `number`                     | `undefined` |
+| `icon`              | `icon`               |                               | `string`                     | `undefined` |
 | `invert`            | `invert`             |                               | `number`                     | `undefined` |
 | `invertColors`      | `invert-colors`      | Invert the colors.            | `any`                        | `undefined` |
 | `location`          | `location`           |                               | `string`                     | `undefined` |
