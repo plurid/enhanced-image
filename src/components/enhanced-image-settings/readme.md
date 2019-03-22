@@ -17,6 +17,7 @@
 | `invert`            | `invert`             |                               | `number`                     | `undefined` |
 | `invertColors`      | `invert-colors`      | Invert the colors.            | `any`                        | `undefined` |
 | `location`          | `location`           |                               | `string`                     | `undefined` |
+| `noAbout`           | `no-about`           |                               | `boolean`                    | `undefined` |
 | `saturation`        | `saturation`         |                               | `number`                     | `undefined` |
 | `setLocation`       | --                   |                               | `(location: string) => void` | `undefined` |
 | `setSliderValue`    | `set-slider-value`   | Set the value of the sliders. | `any`                        | `undefined` |

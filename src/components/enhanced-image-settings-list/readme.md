@@ -19,6 +19,7 @@
 | `hueSliderValue`        | `hue-slider-value`        |                               | `any`                        | `undefined` |
 | `invertColors`          | `invert-colors`           | Invert the colors.            | `any`                        | `undefined` |
 | `location`              | `location`                |                               | `string`                     | `undefined` |
+| `noAbout`               | `no-about`                |                               | `boolean`                    | `undefined` |
 | `saturationSliderValue` | `saturation-slider-value` |                               | `any`                        | `undefined` |
 | `saveImage`             | `save-image`              |                               | `any`                        | `undefined` |
 | `setLocation`           | --                        |                               | `(location: string) => void` | `undefined` |
