@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
+import Popup from './components/Popup';
+
 
 
 class App extends Component {
     render() {
         return (
             <div>
-                Enhanced Image
+                <Popup />
             </div>
         );
     }
