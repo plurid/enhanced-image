@@ -6,7 +6,7 @@ import { inlineSvg } from 'stencil-inline-svg';
 export const config: Config = {
     namespace: 'enhanced-image-html',
     copy: [
-        { src: 'assets-test' }
+        { src: 'test-assets' }
     ],
     outputTargets: [
         { type: 'dist' },
