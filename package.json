@@ -11,26 +11,24 @@
     "bugs": {
         "url": "https://github.com/plurid/enhanced-image-chrome/issues"
     },
+    "scripts": {
+        "start": "react-scripts-ts start",
+        "build": "react-scripts-ts build && yarn copyvendor",
+        "test": "react-scripts-ts test --env=jsdom",
+        "copyvendor": "cp -r ./vendor/enhanced-image-html ./build/",
+        "eject": "react-scripts eject"
+    },
     "dependencies": {
         "enhanced-image-html": "^0.1.1",
         "react": "^16.8.4",
         "react-dom": "^16.8.4",
-        "react-scripts": "2.1.8"
+        "react-scripts-ts": "3.1.0"
     },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build && yarn copyvendor",
-        "test": "react-scripts test",
-        "copyvendor": "cp -r ./vendor/enhanced-image-html ./build/",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": [
-        ">0.2%",
-        "not dead",
-        "not ie <= 11",
-        "not op_mini all"
-    ]
+    "devDependencies": {
+        "@types/jest": "^24.0.11",
+        "@types/node": "^11.11.5",
+        "@types/react": "^16.8.8",
+        "@types/react-dom": "^16.8.3",
+        "typescript": "^3.3.4000"
+    }
 }
