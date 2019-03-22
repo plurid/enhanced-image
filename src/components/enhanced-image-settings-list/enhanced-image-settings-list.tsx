@@ -129,7 +129,10 @@ export class EnhancedImageSettingsList {
 
     render() {
         return (
-            <div class={`enhanced-image-settings-list enhanced-image-settings-list-${this.location}`}>
+            <div class={`
+                enhanced-image-settings-list
+                enhanced-image-settings-list-${this.location}
+            `}>
                 <ul>
                     {this.textSelect && (
                         <li>
