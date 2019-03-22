@@ -21,6 +21,7 @@ export class TextSelectImage {
     @Prop() width: string;
     @Prop() classes: string;
     @Prop() styling: string;
+    @Prop() styleImage: any;
 
     @Prop() control: boolean;
     @Prop() textData: string;
@@ -172,6 +173,7 @@ export class TextSelectImage {
                 <img
                     src={this.src}
                     alt={this.alt || ''}
+                    style={ { ...this.styleImage} }
                     ref={(imgEl) => this.image = imgEl as HTMLImageElement}
                 />
 
