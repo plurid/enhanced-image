@@ -31,6 +31,7 @@ export class EnhancedImageSettings {
 
     @Prop() textSelect: boolean;
     @Prop() noAbout: boolean;
+    @Prop() icon: string;
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: boolean;
 
@@ -101,7 +102,10 @@ export class EnhancedImageSettings {
     render() {
         return (
             <div class={`enhanced-image-settings-container enhanced-image-settings-container-${this.location}`}>
-                <enhanced-image-settings-button toggle={this.toggleSettings} />
+                <enhanced-image-settings-button
+                    toggle={this.toggleSettings}
+                    icon={this.icon}
+                />
                 {this.toggledSettings && (
                     <enhanced-image-settings-list
                         colorsInvert={this.colorsInvert}

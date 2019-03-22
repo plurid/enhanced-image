@@ -35,12 +35,14 @@ export namespace Components {
   }
 
   interface EnhancedImageSettingsButton {
+    'icon': string;
     /**
     * onClick function.
     */
     'toggle': any;
   }
   interface EnhancedImageSettingsButtonAttributes extends StencilHTMLAttributes {
+    'icon'?: string;
     /**
     * onClick function.
     */
@@ -112,6 +114,7 @@ export namespace Components {
     'fullscreen': any;
     'fullscreenToggled': boolean;
     'hue': number;
+    'icon': string;
     'invert': number;
     /**
     * Invert the colors.
@@ -137,6 +140,7 @@ export namespace Components {
     'fullscreen'?: any;
     'fullscreenToggled'?: boolean;
     'hue'?: number;
+    'icon'?: string;
     'invert'?: number;
     /**
     * Invert the colors.
@@ -182,6 +186,7 @@ export namespace Components {
     'contrast': string;
     'height': string;
     'hue': string;
+    'icon': string;
     'invert': string;
     'lightness': string;
     'noAbout': boolean;
@@ -198,6 +203,7 @@ export namespace Components {
     'contrast'?: string;
     'height'?: string;
     'hue'?: string;
+    'icon'?: string;
     'invert'?: string;
     'lightness'?: string;
     'noAbout'?: boolean;
