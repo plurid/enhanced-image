@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
 
 
-const popupStyle = {
-    width: 240,
+const popupStyle: any = {
+    cursor: 'pointer',
     padding: 20,
     textAlign: 'center',
-    cursor: 'pointer',
     userSelect: 'none',
+    width: 240,
 }
 
-class Popup extends Component {
-    openOptions = () => {
-        chrome.runtime.openOptionsPage(); // eslint-disable-line no-undef
+class Popup extends React.Component {
+    public openOptions = () => {
+        // chrome.runtime.openOptionsPage();
     }
 
-    render() {
+    public render() {
         return (
-            <div style={popupStyle}>
+            <div style={ {...popupStyle} }>
                 Enhanced Image
 
                 <div
