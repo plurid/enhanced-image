@@ -2,7 +2,7 @@ console.log('content script loaded');
 // console.log(document.images);
 
 var script = document.createElement('script');
-script.src = chrome.extension.getURL('enhanced-image-html/dist/enhanced-image-html.js');
+script.src = chrome.extension.getURL('enhanced-image-html/dist/enhanced-image-html.js');  // eslint-disable-line no-undef
 document.body.appendChild(script);
 
 const imagesArr = Array.from(document.images);
@@ -34,6 +34,7 @@ for (let i = 0; i < imagesArr.length; i++) {
                 enhancedImage.setAttribute('classes', image.classList);
             }
 
+            enhancedImage.setAttribute('text-select', true);
 
             // enhancedImage.setAttribute('styling', "width: 500px;");
             // console.log(enhancedImage);
