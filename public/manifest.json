@@ -2,13 +2,13 @@
     "manifest_version": 2,
     "name": "Enhanced Image",
     "short_name" : "EnhImg",
-    "description": "Select text from images, alter colors",
+    "description": "Modify colors, select the text from images.",
     "author": "caveljan",
     "version": "0.0.2",
     "icons": {
-        "16": "./assets/enhanced-image-16.png",
-        "48": "./assets/enhanced-image-48.png",
-        "128": "./assets/enhanced-image-128.png"
+        "16": "./assets/logo-16.png",
+        "48": "./assets/logo-48.png",
+        "128": "./assets/logo-128.png"
     },
     "permissions": [
         "activeTab"
