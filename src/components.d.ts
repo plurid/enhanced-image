@@ -200,6 +200,7 @@ export namespace Components {
     'control': boolean;
     'height': string;
     'src': string;
+    'styleImage': any;
     'styling': string;
     'textData': string;
     'width': string;
@@ -210,6 +211,7 @@ export namespace Components {
     'control'?: boolean;
     'height'?: string;
     'src'?: string;
+    'styleImage'?: any;
     'styling'?: string;
     'textData'?: string;
     'width'?: string;
