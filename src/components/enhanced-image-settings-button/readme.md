@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description       | Type  | Default     |
-| -------- | --------- | ----------------- | ----- | ----------- |
-| `toggle` | `toggle`  | onClick function. | `any` | `undefined` |
+| Property | Attribute | Description       | Type     | Default     |
+| -------- | --------- | ----------------- | -------- | ----------- |
+| `icon`   | `icon`    |                   | `string` | `undefined` |
+| `toggle` | `toggle`  | onClick function. | `any`    | `undefined` |
 
 
 ----------------------------------------------

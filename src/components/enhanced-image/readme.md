@@ -14,6 +14,7 @@
 | `contrast`         | `contrast`          |             | `string`  | `undefined` |
 | `height`           | `height`            |             | `string`  | `undefined` |
 | `hue`              | `hue`               |             | `string`  | `undefined` |
+| `icon`             | `icon`              |             | `string`  | `undefined` |
 | `invert`           | `invert`            |             | `string`  | `undefined` |
 | `lightness`        | `lightness`         |             | `string`  | `undefined` |
 | `noAbout`          | `no-about`          |             | `boolean` | `undefined` |
