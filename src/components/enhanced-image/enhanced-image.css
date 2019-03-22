@@ -1,5 +1,6 @@
 .enhanced-image-container {
     position: relative;
+    display: inline-block;
 }
 
 .enhanced-image-container:-webkit-full-screen {

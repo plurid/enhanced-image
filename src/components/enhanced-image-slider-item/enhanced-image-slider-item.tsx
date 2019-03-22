@@ -26,7 +26,7 @@ export class EnhancedImageSliderItem {
 
         return (
             <div class="enhanced-image-slider-item-container">
-                <div>
+                <div class="enhanced-image-slider-type">
                     {SLIDER_NAMES[type]}
                     <span class="enhanced-image-slider-value">
                         {this.sliderValue}{this.valueSign}

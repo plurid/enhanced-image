@@ -11,7 +11,7 @@ import { styleStringToObject } from '../../utils/styleString';
 @Component({
     tag: 'enhanced-image',
     styleUrl: 'enhanced-image.css',
-    shadow: false
+    shadow: true
 })
 export class EnhancedImage {
     @Element() element: HTMLElement;
