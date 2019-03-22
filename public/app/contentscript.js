@@ -11,11 +11,31 @@ for (let i = 0; i < imagesArr.length; i++) {
     const image = imagesArr[i];
     if (image) {
         if (image.width > 400) {
-            console.log(image);
-            console.log(image.width);
+            // console.log(image);
+            // console.log(image.width);
             const enhancedImage = document.createElement('enhanced-image');
+
             // console.log(image.src);
             enhancedImage.setAttribute('src', image.src);
+
+            if (image.alt) {
+                enhancedImage.setAttribute('alt', image.alt);
+            }
+
+            if (image.height) {
+                enhancedImage.setAttribute('height', image.height);
+            }
+
+            if (image.width) {
+                enhancedImage.setAttribute('width', image.width);
+            }
+
+            if (image.classList) {
+                enhancedImage.setAttribute('classes', image.classList);
+            }
+
+
+            // enhancedImage.setAttribute('styling', "width: 500px;");
             // console.log(enhancedImage);
 
             image.parentElement.replaceChild(enhancedImage, image);
