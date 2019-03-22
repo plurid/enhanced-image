@@ -60,6 +60,8 @@ export class EnhancedImageSettingsList {
 
     @Prop() saveImage: any;
 
+    @Prop() noAbout: boolean;
+
     setSliderDefaults = () => {
         this.setSlider('contrast', SLIDER_DEFAULTS.contrast);
         this.setSlider('hue', SLIDER_DEFAULTS.hue);
@@ -130,6 +132,14 @@ export class EnhancedImageSettingsList {
                     })}
 
                     <li>
+                        <enhanced-image-button-checkmark
+                            toggle={this.colorsInvert}
+                            text={'Toggle Defaults'}
+                            checked={this.colorsInverted}
+                        />
+                    </li>
+
+                    <li>
                         <enhanced-image-button-item
                             atClick={this.resetToDefaults}
                             icon={resetIcon}
@@ -181,15 +191,19 @@ export class EnhancedImageSettingsList {
                         </span>
                     </li>
 
-                    <hr class="enhanced-image-hr" />
+                    {!this.noAbout &&
+                        <hr class="enhanced-image-hr" />
+                    }
 
-                    <li>
-                        <enhanced-image-button-item
-                            atClick={this.aboutEnhancedImage}
-                            icon={aboutIcon}
-                            text={'About Enhanced Image'}
-                        />
-                    </li>
+                    {!this.noAbout &&
+                        <li>
+                            <enhanced-image-button-item
+                                atClick={this.aboutEnhancedImage}
+                                icon={aboutIcon}
+                                text={'About Enhanced Image'}
+                            />
+                        </li>
+                    }
                 </ul>
             </div>
         );

@@ -30,6 +30,7 @@ export class EnhancedImageSettings {
     @Prop() setLocation: (location: string) => void;
 
     @Prop() textSelect: boolean;
+    @Prop() noAbout: boolean;
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: boolean;
 
@@ -120,6 +121,7 @@ export class EnhancedImageSettings {
                         location={this.location}
                         setLocation={this.setLocation}
                         textSelect={this.textSelect}
+                        noAbout={this.noAbout}
                     />
                 )}
             </div>

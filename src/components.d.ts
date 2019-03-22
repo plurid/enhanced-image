@@ -61,6 +61,7 @@ export namespace Components {
     */
     'invertColors': any;
     'location': string;
+    'noAbout': boolean;
     'saturationSliderValue': any;
     'saveImage': any;
     'setLocation': (location: string) => void;
@@ -89,6 +90,7 @@ export namespace Components {
     */
     'invertColors'?: any;
     'location'?: string;
+    'noAbout'?: boolean;
     'saturationSliderValue'?: any;
     'saveImage'?: any;
     'setLocation'?: (location: string) => void;
@@ -116,6 +118,7 @@ export namespace Components {
     */
     'invertColors': any;
     'location': string;
+    'noAbout': boolean;
     'saturation': number;
     'setLocation': (location: string) => void;
     /**
@@ -140,6 +143,7 @@ export namespace Components {
     */
     'invertColors'?: any;
     'location'?: string;
+    'noAbout'?: boolean;
     'saturation'?: number;
     'setLocation'?: (location: string) => void;
     /**
@@ -180,6 +184,7 @@ export namespace Components {
     'hue': string;
     'invert': string;
     'lightness': string;
+    'noAbout': boolean;
     'saturation': string;
     'settingsPosition': string;
     'src': string;
@@ -195,6 +200,7 @@ export namespace Components {
     'hue'?: string;
     'invert'?: string;
     'lightness'?: string;
+    'noAbout'?: boolean;
     'saturation'?: string;
     'settingsPosition'?: string;
     'src'?: string;

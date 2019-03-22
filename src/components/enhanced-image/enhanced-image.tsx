@@ -30,6 +30,7 @@ export class EnhancedImage {
     @Prop({ mutable: true, reflectToAttr: true }) lightness: string;
     @Prop({ mutable: true, reflectToAttr: true }) settingsPosition: string;
     @Prop({ mutable: true, reflectToAttr: true }) textSelect: boolean;
+    @Prop({ mutable: true, reflectToAttr: true }) noAbout: boolean;
 
 
     @State() invertValue: number = SLIDER_DEFAULTS.invert;
@@ -159,6 +160,7 @@ export class EnhancedImage {
                     location={this.location}
                     setLocation={this.setLocation}
                     textSelect={this.textSelect}
+                    noAbout={this.noAbout}
                 />
                 <img src={this.src}
                     style={{
