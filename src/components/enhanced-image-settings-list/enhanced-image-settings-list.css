@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
-
 .enhanced-image-settings-list ul {
     display: flex;
     flex-direction: column;
@@ -13,7 +11,6 @@
     min-width: 190px;
     border-radius: 10px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    /* font-family: 'Didact Gothic', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Sans Unicode', Verdana, sans-serif; */
 }
 
 .enhanced-image-settings-list-topleft ul,
