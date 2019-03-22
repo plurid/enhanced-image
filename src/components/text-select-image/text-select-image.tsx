@@ -24,7 +24,7 @@ export class TextSelectImage {
     @Prop() styleImage: any;
 
     @Prop() control: boolean;
-    @Prop() textData: string;
+    @Prop() textData: ITextSelectImageData;
 
     @State() styled: any;
     @State() showControl: boolean;
@@ -51,10 +51,13 @@ export class TextSelectImage {
         this.imageHeight = this.image.offsetHeight;
     }
 
-    parseText = (data: string) => {
-        console.log('data', data);
-        let parsedData: ITextSelectImageData;
-        return parsedData;
+    parseText = (data: ITextSelectImageData) => {
+        // if (typeof data === 'object') {
+            return data;
+        // }
+        // console.log('data', data);
+        // let parsedData: ITextSelectImageData;
+        // return parsedData;
     }
 
     loadDummyText = async () => {
