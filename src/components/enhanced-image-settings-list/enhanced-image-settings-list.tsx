@@ -54,6 +54,8 @@ export class EnhancedImageSettingsList {
     @Prop() setLocation: (location: string) => void;
 
     @Prop() textSelect: boolean;
+    @Prop() toggledDefaults: boolean;
+    @Prop() toggleDefaults: (val?: boolean) => void;
 
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: any;
@@ -62,7 +64,6 @@ export class EnhancedImageSettingsList {
 
     @Prop() noAbout: boolean;
 
-    @State() toggledDefaults: boolean = false;
     @State() previousValues = {
         invert: this.colorsInverted,
         contrast: SLIDER_DEFAULTS.contrast,
@@ -83,8 +84,10 @@ export class EnhancedImageSettingsList {
         this.saveButton.download = imageName;
     }
 
-    toggleDefaults = () => {
-        this.toggledDefaults = !this.toggledDefaults;
+    togglingDefaults = () => {
+        console.log(this.previousValues);
+
+        this.toggleDefaults();
         if(this.toggledDefaults) {
             this.previousValues = {
                 invert: this.colorsInverted,
@@ -118,7 +121,7 @@ export class EnhancedImageSettingsList {
             && this.saturationSliderValue === SLIDER_DEFAULTS.saturation
             && this.brightnessSliderValue === SLIDER_DEFAULTS.brightness
         ) {
-            this.toggledDefaults = false;
+            this.toggleDefaults(false);
         }
     }
 
@@ -175,7 +178,7 @@ export class EnhancedImageSettingsList {
 
                     <li>
                         <enhanced-image-button-checkmark
-                            toggle={this.toggleDefaults}
+                            toggle={this.togglingDefaults}
                             text={'Toggle Defaults'}
                             checked={this.toggledDefaults}
                         />

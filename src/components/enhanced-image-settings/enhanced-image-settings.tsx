@@ -42,6 +42,7 @@ export class EnhancedImageSettings {
     @Prop() brightness: number;
 
     @State() toggledSettings: boolean = false;
+    @State() toggledDefaults: boolean = false;
     @State() colorsInverted: boolean = false;
     @State() contrastSliderValue: number = SLIDER_DEFAULTS.contrast;
     @State() hueSliderValue: number = SLIDER_DEFAULTS.hue;
@@ -97,6 +98,18 @@ export class EnhancedImageSettings {
         const sliderValue = `${name}SliderValue`;
         this.setSliderValue(name, value);
         this[sliderValue] = value;
+
+        if (value !== SLIDER_DEFAULTS[name]) {
+            this.toggledDefaults = false;
+        }
+    }
+
+    toggleDefaults = (value?: boolean | null) => {
+        if (value === false) {
+            this.toggledDefaults = false;
+        } else {
+            this.toggledDefaults = !this.toggledDefaults;
+        }
     }
 
     render() {
@@ -126,6 +139,9 @@ export class EnhancedImageSettings {
                         setLocation={this.setLocation}
                         textSelect={this.textSelect}
                         noAbout={this.noAbout}
+
+                        toggledDefaults={this.toggledDefaults}
+                        toggleDefaults={this.toggleDefaults}
                     />
                 )}
             </div>
