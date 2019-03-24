@@ -1,7 +1,8 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 
 import { SLIDER_ITEM_DEFAULTS } from '../../utils/defaults';
 import { sliders } from '../../data/sliders';
+import addTextIcon from '../../assets/add-text-icon.svg';
 import fullscreenIcon from '../../assets/fullscreen-icon.svg';
 import saveIcon from '../../assets/save-icon.svg';
 import resetIcon from '../../assets/reset-icon.svg';
@@ -22,6 +23,8 @@ export class EnhancedImageSettingsList {
     saveButton!: HTMLAnchorElement;
 
     @Prop() src: string;
+    @Prop() toggledTextSelect: boolean;
+    @Prop() toggleTextSelect: () => void;
     @Prop() invertColors: any;
     @Prop() setSliderValue: any;
     @Prop() colorsInvert: any;
@@ -43,6 +46,8 @@ export class EnhancedImageSettingsList {
     @Prop() saveImage: any;
     @Prop() noAbout: boolean;
 
+    @State() toggledEditText: boolean = false;
+
     download = (image: any, imageName: string) => {
         this.saveButton.href = URL.createObjectURL(image);;
         this.saveButton.download = imageName;
@@ -51,6 +56,15 @@ export class EnhancedImageSettingsList {
     aboutEnhancedImage = () => {
         const aboutURL = "https://github.com/plurid/enhanced-image-html"
         window.open(aboutURL, '_blank');
+    }
+
+
+    toggleEditText = () => {
+        this.toggledEditText = !this.toggledEditText;
+    }
+
+    addText = () => {
+        console.log('add text');
     }
 
     render() {
@@ -63,12 +77,33 @@ export class EnhancedImageSettingsList {
                     {this.textSelect && (
                         <li>
                             <enhanced-image-button-checkmark
-                            toggle={this.colorsInvert}
+                            toggle={this.toggleTextSelect}
                             text={'Text Select'}
-                            checked={this.colorsInverted}
+                            checked={this.toggledTextSelect}
                             />
                         </li>
                     )}
+
+                    {this.toggledTextSelect && (
+                        <li>
+                            <enhanced-image-button-checkmark
+                            toggle={this.toggleEditText}
+                            text={'Edit Texts'}
+                            checked={this.toggledEditText}
+                            />
+                        </li>
+                    )}
+
+                    {this.toggledTextSelect && (
+                        <li>
+                            <enhanced-image-button-item
+                                atClick={this.addText}
+                                icon={addTextIcon}
+                                text={'Add Text'}
+                            />
+                        </li>
+                    )}
+
                     {this.textSelect && (
                         <hr class="enhanced-image-hr"/>
                     )}

@@ -41,6 +41,8 @@ export class EnhancedImageSettings {
         saturation: SLIDER_DEFAULTS.saturation,
         brightness: SLIDER_DEFAULTS.brightness,
     };
+    @State() toggledTextSelect: boolean = false;
+
 
     componentWillUpdate() {
         this.colorsInverted = !!this.invert;
@@ -52,6 +54,10 @@ export class EnhancedImageSettings {
 
     toggleSettings = () => {
         this.toggledSettings = !this.toggledSettings;
+    }
+
+    toggleTextSelect = () => {
+        this.toggledTextSelect = !this.toggledTextSelect;
     }
 
     colorsInvert = () => {
@@ -143,6 +149,9 @@ export class EnhancedImageSettings {
                 />
                 {this.toggledSettings && (
                     <enhanced-image-settings-list
+                        toggleTextSelect={this.toggleTextSelect}
+                        toggledTextSelect={this.toggledTextSelect}
+
                         colorsInvert={this.colorsInvert}
                         colorsInverted={this.colorsInverted}
 
