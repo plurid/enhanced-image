@@ -58,26 +58,18 @@ export namespace Components {
     'fullscreenToggled': any;
     'handleSliderInput': any;
     'hueSliderValue': any;
-    /**
-    * Invert the colors.
-    */
     'invertColors': any;
     'location': string;
     'noAbout': boolean;
+    'resetToDefaults': () => void;
     'saturationSliderValue': any;
     'saveImage': any;
     'setLocation': (location: string) => void;
     'setSlider': any;
-    /**
-    * Set the value of the sliders.
-    */
     'setSliderValue': any;
-    /**
-    * The source of the image.
-    */
     'src': string;
     'textSelect': boolean;
-    'toggleDefaults': (val?: boolean) => void;
+    'toggleDefaults': () => void;
     'toggledDefaults': boolean;
   }
   interface EnhancedImageSettingsListAttributes extends StencilHTMLAttributes {
@@ -89,26 +81,18 @@ export namespace Components {
     'fullscreenToggled'?: any;
     'handleSliderInput'?: any;
     'hueSliderValue'?: any;
-    /**
-    * Invert the colors.
-    */
     'invertColors'?: any;
     'location'?: string;
     'noAbout'?: boolean;
+    'resetToDefaults'?: () => void;
     'saturationSliderValue'?: any;
     'saveImage'?: any;
     'setLocation'?: (location: string) => void;
     'setSlider'?: any;
-    /**
-    * Set the value of the sliders.
-    */
     'setSliderValue'?: any;
-    /**
-    * The source of the image.
-    */
     'src'?: string;
     'textSelect'?: boolean;
-    'toggleDefaults'?: (val?: boolean) => void;
+    'toggleDefaults'?: () => void;
     'toggledDefaults'?: boolean;
   }
 
@@ -120,21 +104,12 @@ export namespace Components {
     'hue': number;
     'icon': string;
     'invert': number;
-    /**
-    * Invert the colors.
-    */
     'invertColors': any;
     'location': string;
     'noAbout': boolean;
     'saturation': number;
     'setLocation': (location: string) => void;
-    /**
-    * Set the value of the sliders.
-    */
     'setSliderValue': any;
-    /**
-    * The source of the image.
-    */
     'src': string;
     'textSelect': boolean;
   }
@@ -146,21 +121,12 @@ export namespace Components {
     'hue'?: number;
     'icon'?: string;
     'invert'?: number;
-    /**
-    * Invert the colors.
-    */
     'invertColors'?: any;
     'location'?: string;
     'noAbout'?: boolean;
     'saturation'?: number;
     'setLocation'?: (location: string) => void;
-    /**
-    * Set the value of the sliders.
-    */
     'setSliderValue'?: any;
-    /**
-    * The source of the image.
-    */
     'src'?: string;
     'textSelect'?: boolean;
   }

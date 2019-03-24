@@ -1,9 +1,6 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
-import {
-    SLIDER_DEFAULTS,
-    SLIDER_ITEM_DEFAULTS,
-} from '../../utils/defaults';
+import { SLIDER_ITEM_DEFAULTS } from '../../utils/defaults';
 import { sliders } from '../../data/sliders';
 import fullscreenIcon from '../../assets/fullscreen-icon.svg';
 import saveIcon from '../../assets/save-icon.svg';
@@ -24,105 +21,31 @@ import toprightIcon from '../../assets/topright-icon.svg';
 export class EnhancedImageSettingsList {
     saveButton!: HTMLAnchorElement;
 
-    /**
-     * The source of the image.
-     */
     @Prop() src: string;
-
-    /**
-     * Invert the colors.
-     */
     @Prop() invertColors: any;
-
-    /**
-     * Set the value of the sliders.
-     */
     @Prop() setSliderValue: any;
-
     @Prop() colorsInvert: any;
     @Prop() colorsInverted: any;
-
     @Prop() contrastSliderValue: any;
     @Prop() hueSliderValue: any;
     @Prop() saturationSliderValue: any;
     @Prop() brightnessSliderValue: any;
-
     @Prop() handleSliderInput: any;
     @Prop() setSlider: any;
-
     @Prop() location: string;
     @Prop() setLocation: (location: string) => void;
-
     @Prop() textSelect: boolean;
     @Prop() toggledDefaults: boolean;
-    @Prop() toggleDefaults: (val?: boolean) => void;
-
+    @Prop() toggleDefaults: () => void;
+    @Prop() resetToDefaults: () => void;
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: any;
-
     @Prop() saveImage: any;
-
     @Prop() noAbout: boolean;
-
-    @State() previousValues = {
-        invert: this.colorsInverted,
-        contrast: SLIDER_DEFAULTS.contrast,
-        hue: SLIDER_DEFAULTS.hue,
-        saturation: SLIDER_DEFAULTS.saturation,
-        brightness: SLIDER_DEFAULTS.brightness,
-    };
-
-    setSliderDefaults = () => {
-        this.setSlider('contrast', SLIDER_DEFAULTS.contrast);
-        this.setSlider('hue', SLIDER_DEFAULTS.hue);
-        this.setSlider('saturation', SLIDER_DEFAULTS.saturation);
-        this.setSlider('brightness', SLIDER_DEFAULTS.brightness);
-    }
 
     download = (image: any, imageName: string) => {
         this.saveButton.href = URL.createObjectURL(image);;
         this.saveButton.download = imageName;
-    }
-
-    togglingDefaults = () => {
-        console.log(this.previousValues);
-
-        this.toggleDefaults();
-        if(this.toggledDefaults) {
-            this.previousValues = {
-                invert: this.colorsInverted,
-                contrast: this.contrastSliderValue,
-                hue: this.hueSliderValue,
-                saturation: this.saturationSliderValue,
-                brightness: this.brightnessSliderValue,
-            }
-            this.resetToDefaults();
-        } else {
-            if (this.previousValues.invert) {
-                this.colorsInvert();
-            }
-            this.setSlider('contrast', this.previousValues.contrast);
-            this.setSlider('hue', this.previousValues.hue);
-            this.setSlider('saturation', this.previousValues.saturation);
-            this.setSlider('brightness', this.previousValues.brightness);
-        }
-    }
-
-    resetToDefaults = () => {
-        if (this.colorsInverted) {
-            this.colorsInvert();
-        }
-        this.setSliderDefaults();
-
-        if (
-            this.colorsInverted === !!SLIDER_DEFAULTS.invert
-            && this.contrastSliderValue === SLIDER_DEFAULTS.contrast
-            && this.hueSliderValue === SLIDER_DEFAULTS.hue
-            && this.saturationSliderValue === SLIDER_DEFAULTS.saturation
-            && this.brightnessSliderValue === SLIDER_DEFAULTS.brightness
-        ) {
-            this.toggleDefaults(false);
-        }
     }
 
     aboutEnhancedImage = () => {
@@ -178,7 +101,7 @@ export class EnhancedImageSettingsList {
 
                     <li>
                         <enhanced-image-button-checkmark
-                            toggle={this.togglingDefaults}
+                            toggle={this.toggleDefaults}
                             text={'Toggle Defaults'}
                             checked={this.toggledDefaults}
                         />

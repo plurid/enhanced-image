@@ -11,30 +11,16 @@ import { loadImage, dataURIToBlob } from '../../utils/image';
     shadow: true
 })
 export class EnhancedImageSettings {
-    /**
-     * The source of the image.
-     */
     @Prop() src: string;
-
-    /**
-     * Invert the colors.
-     */
     @Prop() invertColors: any;
-
-    /**
-     * Set the value of the sliders.
-     */
     @Prop() setSliderValue: any;
-
     @Prop() location: string;
     @Prop() setLocation: (location: string) => void;
-
     @Prop() textSelect: boolean;
     @Prop() noAbout: boolean;
     @Prop() icon: string;
     @Prop() fullscreen: any;
     @Prop() fullscreenToggled: boolean;
-
     @Prop() invert: number;
     @Prop() contrast: number;
     @Prop() hue: number;
@@ -48,6 +34,13 @@ export class EnhancedImageSettings {
     @State() hueSliderValue: number = SLIDER_DEFAULTS.hue;
     @State() saturationSliderValue: number = SLIDER_DEFAULTS.saturation;
     @State() brightnessSliderValue: number = SLIDER_DEFAULTS.brightness;
+    @State() previousValues = {
+        invert: this.colorsInverted,
+        contrast: SLIDER_DEFAULTS.contrast,
+        hue: SLIDER_DEFAULTS.hue,
+        saturation: SLIDER_DEFAULTS.saturation,
+        brightness: SLIDER_DEFAULTS.brightness,
+    };
 
     componentWillUpdate() {
         this.colorsInverted = !!this.invert;
@@ -104,13 +97,42 @@ export class EnhancedImageSettings {
         }
     }
 
-    toggleDefaults = (value?: boolean | null) => {
-        if (value === false) {
-            this.toggledDefaults = false;
+    toggleDefaults = () => {
+        this.toggledDefaults = !this.toggledDefaults;
+        if(this.toggledDefaults) {
+            this.previousValues = {
+                invert: this.colorsInverted,
+                contrast: this.contrastSliderValue,
+                hue: this.hueSliderValue,
+                saturation: this.saturationSliderValue,
+                brightness: this.brightnessSliderValue,
+            }
+            this.resetToDefaults();
         } else {
-            this.toggledDefaults = !this.toggledDefaults;
+            if (this.previousValues.invert) {
+                this.colorsInvert();
+            }
+            this.setSlider('contrast', this.previousValues.contrast);
+            this.setSlider('hue', this.previousValues.hue);
+            this.setSlider('saturation', this.previousValues.saturation);
+            this.setSlider('brightness', this.previousValues.brightness);
         }
     }
+
+    setSliderDefaults = () => {
+        this.setSlider('contrast', SLIDER_DEFAULTS.contrast);
+        this.setSlider('hue', SLIDER_DEFAULTS.hue);
+        this.setSlider('saturation', SLIDER_DEFAULTS.saturation);
+        this.setSlider('brightness', SLIDER_DEFAULTS.brightness);
+    }
+
+    resetToDefaults = () => {
+        if (this.colorsInverted) {
+            this.colorsInvert();
+        }
+        this.setSliderDefaults();
+    }
+
 
     render() {
         return (
@@ -142,6 +164,8 @@ export class EnhancedImageSettings {
 
                         toggledDefaults={this.toggledDefaults}
                         toggleDefaults={this.toggleDefaults}
+
+                        resetToDefaults={this.resetToDefaults}
                     />
                 )}
             </div>

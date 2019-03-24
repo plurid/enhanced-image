@@ -7,26 +7,29 @@
 
 ## Properties
 
-| Property                | Attribute                 | Description                   | Type                         | Default     |
-| ----------------------- | ------------------------- | ----------------------------- | ---------------------------- | ----------- |
-| `brightnessSliderValue` | `brightness-slider-value` |                               | `any`                        | `undefined` |
-| `colorsInvert`          | `colors-invert`           |                               | `any`                        | `undefined` |
-| `colorsInverted`        | `colors-inverted`         |                               | `any`                        | `undefined` |
-| `contrastSliderValue`   | `contrast-slider-value`   |                               | `any`                        | `undefined` |
-| `fullscreen`            | `fullscreen`              |                               | `any`                        | `undefined` |
-| `fullscreenToggled`     | `fullscreen-toggled`      |                               | `any`                        | `undefined` |
-| `handleSliderInput`     | `handle-slider-input`     |                               | `any`                        | `undefined` |
-| `hueSliderValue`        | `hue-slider-value`        |                               | `any`                        | `undefined` |
-| `invertColors`          | `invert-colors`           | Invert the colors.            | `any`                        | `undefined` |
-| `location`              | `location`                |                               | `string`                     | `undefined` |
-| `noAbout`               | `no-about`                |                               | `boolean`                    | `undefined` |
-| `saturationSliderValue` | `saturation-slider-value` |                               | `any`                        | `undefined` |
-| `saveImage`             | `save-image`              |                               | `any`                        | `undefined` |
-| `setLocation`           | --                        |                               | `(location: string) => void` | `undefined` |
-| `setSlider`             | `set-slider`              |                               | `any`                        | `undefined` |
-| `setSliderValue`        | `set-slider-value`        | Set the value of the sliders. | `any`                        | `undefined` |
-| `src`                   | `src`                     | The source of the image.      | `string`                     | `undefined` |
-| `textSelect`            | `text-select`             |                               | `boolean`                    | `undefined` |
+| Property                | Attribute                 | Description | Type                         | Default     |
+| ----------------------- | ------------------------- | ----------- | ---------------------------- | ----------- |
+| `brightnessSliderValue` | `brightness-slider-value` |             | `any`                        | `undefined` |
+| `colorsInvert`          | `colors-invert`           |             | `any`                        | `undefined` |
+| `colorsInverted`        | `colors-inverted`         |             | `any`                        | `undefined` |
+| `contrastSliderValue`   | `contrast-slider-value`   |             | `any`                        | `undefined` |
+| `fullscreen`            | `fullscreen`              |             | `any`                        | `undefined` |
+| `fullscreenToggled`     | `fullscreen-toggled`      |             | `any`                        | `undefined` |
+| `handleSliderInput`     | `handle-slider-input`     |             | `any`                        | `undefined` |
+| `hueSliderValue`        | `hue-slider-value`        |             | `any`                        | `undefined` |
+| `invertColors`          | `invert-colors`           |             | `any`                        | `undefined` |
+| `location`              | `location`                |             | `string`                     | `undefined` |
+| `noAbout`               | `no-about`                |             | `boolean`                    | `undefined` |
+| `resetToDefaults`       | --                        |             | `() => void`                 | `undefined` |
+| `saturationSliderValue` | `saturation-slider-value` |             | `any`                        | `undefined` |
+| `saveImage`             | `save-image`              |             | `any`                        | `undefined` |
+| `setLocation`           | --                        |             | `(location: string) => void` | `undefined` |
+| `setSlider`             | `set-slider`              |             | `any`                        | `undefined` |
+| `setSliderValue`        | `set-slider-value`        |             | `any`                        | `undefined` |
+| `src`                   | `src`                     |             | `string`                     | `undefined` |
+| `textSelect`            | `text-select`             |             | `boolean`                    | `undefined` |
+| `toggleDefaults`        | --                        |             | `() => void`                 | `undefined` |
+| `toggledDefaults`       | `toggled-defaults`        |             | `boolean`                    | `undefined` |
 
 
 ----------------------------------------------
