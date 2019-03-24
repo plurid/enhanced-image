@@ -11,7 +11,12 @@ import { loadImage, dataURIToBlob } from '../../utils/image';
     shadow: true
 })
 export class EnhancedImageSettings {
+    @Prop() element: any;
     @Prop() src: string;
+    @Prop() editTextSelect: () => void;
+    @Prop() textSelectImage: HTMLTextSelectImageElement;
+    @Prop() toggleTextSelect: () => void;
+    @Prop() toggledTextSelect: boolean;
     @Prop() invertColors: any;
     @Prop() setSliderValue: any;
     @Prop() location: string;
@@ -28,6 +33,7 @@ export class EnhancedImageSettings {
     @Prop() brightness: number;
 
     @State() toggledSettings: boolean = false;
+    @State() toggledEditText: boolean = false;
     @State() toggledDefaults: boolean = false;
     @State() colorsInverted: boolean = false;
     @State() contrastSliderValue: number = SLIDER_DEFAULTS.contrast;
@@ -41,8 +47,6 @@ export class EnhancedImageSettings {
         saturation: SLIDER_DEFAULTS.saturation,
         brightness: SLIDER_DEFAULTS.brightness,
     };
-    @State() toggledTextSelect: boolean = false;
-
 
     componentWillUpdate() {
         this.colorsInverted = !!this.invert;
@@ -56,8 +60,13 @@ export class EnhancedImageSettings {
         this.toggledSettings = !this.toggledSettings;
     }
 
-    toggleTextSelect = () => {
-        this.toggledTextSelect = !this.toggledTextSelect;
+    toggleEditText = () => {
+        this.toggledEditText = !this.toggledEditText;
+        this.textSelectImage.toggleEditable();
+    }
+
+    addText = () => {
+        this.textSelectImage.addText();
     }
 
     colorsInvert = () => {
@@ -151,6 +160,11 @@ export class EnhancedImageSettings {
                     <enhanced-image-settings-list
                         toggleTextSelect={this.toggleTextSelect}
                         toggledTextSelect={this.toggledTextSelect}
+
+                        toggleEditText={this.toggleEditText}
+                        toggledEditText={this.toggledEditText}
+
+                        addText={this.addText}
 
                         colorsInvert={this.colorsInvert}
                         colorsInverted={this.colorsInverted}

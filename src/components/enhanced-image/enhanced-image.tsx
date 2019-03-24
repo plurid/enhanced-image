@@ -80,6 +80,7 @@ const foodText = {
 })
 export class EnhancedImage {
     @Element() element: HTMLElement;
+    textSelectImage!: HTMLTextSelectImageElement;
 
     @Prop() src: string;
     @Prop() alt: string;
@@ -98,7 +99,7 @@ export class EnhancedImage {
     @Prop({ mutable: true, reflectToAttr: true }) noAbout: boolean;
     @Prop({ mutable: true, reflectToAttr: true }) icon: string;
 
-
+    @State() toggledTextSelect: boolean = false;
     @State() invertValue: number = SLIDER_DEFAULTS.invert;
     @State() contrastValue: number = SLIDER_DEFAULTS.contrast;
     @State() hueValue: number = SLIDER_DEFAULTS.hue;
@@ -129,6 +130,7 @@ export class EnhancedImage {
         this.lightness = this.brightnessValue + '';
         this.settingsPosition = this.location + '';
     }
+
 
     @Watch('invert')
     invertWatch(newValue: string) {
@@ -166,6 +168,7 @@ export class EnhancedImage {
         this.location = newValue;
     }
 
+
     invertColors = () => {
         if ( this.invertValue == 1 ) {
             this.invertValue = 0;
@@ -202,13 +205,16 @@ export class EnhancedImage {
         this.location = location;
     }
 
+    toggleTextSelect = () => {
+        this.toggledTextSelect = !this.toggledTextSelect;
+    }
+
     renderImage = () => {
         if (this.textSelect) {
             return (
                 <text-select-image
                     src={this.src}
                     alt={this.alt || ''}
-                    control
                     styleImage={{
                         filter: `
                             invert(${this.invertValue})
@@ -221,6 +227,7 @@ export class EnhancedImage {
                         width: `${this.width ? this.width + 'px' : null}`
                     }}
                     textData={foodText}
+                    ref={(el) => this.textSelectImage = el as HTMLTextSelectImageElement}
                 >
                 </text-select-image>
             )
@@ -253,8 +260,12 @@ export class EnhancedImage {
                 class={ `enhanced-image-container ${this.classes ? this.classes : '' }`}
             >
                 <enhanced-image-settings
+                    element={this.element}
                     class={`enhanced-image-settings enhanced-image-settings-${this.location}`}
                     src={this.src}
+                    textSelectImage={this.textSelectImage}
+                    toggleTextSelect={this.toggleTextSelect}
+                    toggledTextSelect={this.toggledTextSelect}
                     invertColors={this.invertColors}
                     setSliderValue={this.setSliderValue}
                     fullscreen={this.fullscreen}

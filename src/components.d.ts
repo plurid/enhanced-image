@@ -50,6 +50,7 @@ export namespace Components {
   }
 
   interface EnhancedImageSettingsList {
+    'addText': () => void;
     'brightnessSliderValue': any;
     'colorsInvert': any;
     'colorsInverted': any;
@@ -70,11 +71,14 @@ export namespace Components {
     'src': string;
     'textSelect': boolean;
     'toggleDefaults': () => void;
+    'toggleEditText': () => void;
     'toggleTextSelect': () => void;
     'toggledDefaults': boolean;
+    'toggledEditText': boolean;
     'toggledTextSelect': boolean;
   }
   interface EnhancedImageSettingsListAttributes extends StencilHTMLAttributes {
+    'addText'?: () => void;
     'brightnessSliderValue'?: any;
     'colorsInvert'?: any;
     'colorsInverted'?: any;
@@ -95,14 +99,18 @@ export namespace Components {
     'src'?: string;
     'textSelect'?: boolean;
     'toggleDefaults'?: () => void;
+    'toggleEditText'?: () => void;
     'toggleTextSelect'?: () => void;
     'toggledDefaults'?: boolean;
+    'toggledEditText'?: boolean;
     'toggledTextSelect'?: boolean;
   }
 
   interface EnhancedImageSettings {
     'brightness': number;
     'contrast': number;
+    'editTextSelect': () => void;
+    'element': any;
     'fullscreen': any;
     'fullscreenToggled': boolean;
     'hue': number;
@@ -116,10 +124,15 @@ export namespace Components {
     'setSliderValue': any;
     'src': string;
     'textSelect': boolean;
+    'textSelectImage': HTMLTextSelectImageElement;
+    'toggleTextSelect': () => void;
+    'toggledTextSelect': boolean;
   }
   interface EnhancedImageSettingsAttributes extends StencilHTMLAttributes {
     'brightness'?: number;
     'contrast'?: number;
+    'editTextSelect'?: () => void;
+    'element'?: any;
     'fullscreen'?: any;
     'fullscreenToggled'?: boolean;
     'hue'?: number;
@@ -133,6 +146,9 @@ export namespace Components {
     'setSliderValue'?: any;
     'src'?: string;
     'textSelect'?: boolean;
+    'textSelectImage'?: HTMLTextSelectImageElement;
+    'toggleTextSelect'?: () => void;
+    'toggledTextSelect'?: boolean;
   }
 
   interface EnhancedImageSliderItem {
