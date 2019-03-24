@@ -70,7 +70,9 @@ export namespace Components {
     'src': string;
     'textSelect': boolean;
     'toggleDefaults': () => void;
+    'toggleTextSelect': () => void;
     'toggledDefaults': boolean;
+    'toggledTextSelect': boolean;
   }
   interface EnhancedImageSettingsListAttributes extends StencilHTMLAttributes {
     'brightnessSliderValue'?: any;
@@ -93,7 +95,9 @@ export namespace Components {
     'src'?: string;
     'textSelect'?: boolean;
     'toggleDefaults'?: () => void;
+    'toggleTextSelect'?: () => void;
     'toggledDefaults'?: boolean;
+    'toggledTextSelect'?: boolean;
   }
 
   interface EnhancedImageSettings {

@@ -166,9 +166,6 @@ export class EnhancedImage {
         this.location = newValue;
     }
 
-    /**
-     *
-     */
     invertColors = () => {
         if ( this.invertValue == 1 ) {
             this.invertValue = 0;
