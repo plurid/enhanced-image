@@ -37,6 +37,14 @@
     cursor: pointer;
 }
 
+.enhanced-image-slider-active::-webkit-slider-thumb {
+    background-color: white;
+}
+
+.enhanced-image-slider-active::-moz-range-thumb {
+    background-color: white;
+}
+
 .enhanced-image-slider-value {
     float: right;
     font-size: 12px;
