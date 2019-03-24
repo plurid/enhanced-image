@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 import { SLIDER_ITEM_DEFAULTS } from '../../utils/defaults';
 import { sliders } from '../../data/sliders';
@@ -25,6 +25,9 @@ export class EnhancedImageSettingsList {
     @Prop() src: string;
     @Prop() toggledTextSelect: boolean;
     @Prop() toggleTextSelect: () => void;
+    @Prop() toggledEditText: boolean;
+    @Prop() toggleEditText: () => void;
+    @Prop() addText: () => void;
     @Prop() invertColors: any;
     @Prop() setSliderValue: any;
     @Prop() colorsInvert: any;
@@ -46,10 +49,9 @@ export class EnhancedImageSettingsList {
     @Prop() saveImage: any;
     @Prop() noAbout: boolean;
 
-    @State() toggledEditText: boolean = false;
 
     download = (image: any, imageName: string) => {
-        this.saveButton.href = URL.createObjectURL(image);;
+        this.saveButton.href = URL.createObjectURL(image);
         this.saveButton.download = imageName;
     }
 
@@ -58,14 +60,6 @@ export class EnhancedImageSettingsList {
         window.open(aboutURL, '_blank');
     }
 
-
-    toggleEditText = () => {
-        this.toggledEditText = !this.toggledEditText;
-    }
-
-    addText = () => {
-        console.log('add text');
-    }
 
     render() {
         return (
