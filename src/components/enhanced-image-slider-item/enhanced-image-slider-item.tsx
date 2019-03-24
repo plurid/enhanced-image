@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 
 import {
     SLIDER_DEFAULTS,
@@ -21,6 +21,12 @@ export class EnhancedImageSliderItem {
     @Prop() handleSliderInput: () => void;
     @Prop() setSlider: (name: string, value: number) => void;
 
+    @State() hover: boolean = false;
+
+    toggleHover = () => {
+        this.hover = !this.hover;
+    }
+
     render() {
         const type = this.type;
 
@@ -34,13 +40,18 @@ export class EnhancedImageSliderItem {
                 </div>
                 <div class="enhanced-image-slider-container">
                     <input
-                        class="enhanced-image-slider"
+                        class={`
+                            enhanced-image-slider
+                            ${this.hover ? 'enhanced-image-slider-active' : null }
+                        `}
                         type="range"
                         min={this.min}
                         max={this.max}
                         name={type}
                         value={this.sliderValue}
                         onInput={this.handleSliderInput}
+                        onMouseEnter={this.toggleHover}
+                        onMouseLeave={this.toggleHover}
                         onDblClick={this.setSlider.bind(this, type, SLIDER_DEFAULTS[type])}
                     />
                 </div>
