@@ -195,20 +195,24 @@ export namespace Components {
   }
 
   interface TextSelectImage {
+    'addText': () => void;
     'alt': string;
     'classes': string;
     'control': boolean;
+    'enhanced': boolean;
     'height': string;
     'src': string;
     'styleImage': any;
     'styling': string;
     'textData': ITextSelectImageData;
+    'toggleEditable': () => void;
     'width': string;
   }
   interface TextSelectImageAttributes extends StencilHTMLAttributes {
     'alt'?: string;
     'classes'?: string;
     'control'?: boolean;
+    'enhanced'?: boolean;
     'height'?: string;
     'src'?: string;
     'styleImage'?: any;

@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, Method } from '@stencil/core';
 
 import { ITextSelectImageData, ITextImage } from '../../interfaces/image-text';
 
@@ -22,6 +22,7 @@ export class TextSelectImage {
     @Prop() classes: string;
     @Prop() styling: string;
     @Prop() styleImage: any;
+    @Prop() enhanced: boolean;
 
     @Prop() control: boolean;
     @Prop() textData: ITextSelectImageData;
@@ -33,6 +34,7 @@ export class TextSelectImage {
     @State() toggledSettings: boolean = false;
     @State() imageWidth: number = 0;
     @State() imageHeight: number = 0;
+
 
     async componentWillLoad() {
         this.styled = this.styling
@@ -67,8 +69,13 @@ export class TextSelectImage {
         return dummyData;
     }
 
-    toggleEditable = () => {
+    @Method()
+    toggleEditable(): void {
         this.editable = !this.editable;
+    }
+
+    toggleEditableAndSettings(): void {
+        this.toggleEditable();
         this.toggleSettings();
     }
 
@@ -136,7 +143,8 @@ export class TextSelectImage {
         // console.log(this.selectText);
     }
 
-    addText = () => {
+    @Method()
+    addText(): void {
         const selectText = { ...this.selectText }
 
         const text = {
@@ -197,7 +205,7 @@ export class TextSelectImage {
                         toggledSettings={this.toggledSettings}
                         toggleSettings={this.toggleSettings}
                         editable={this.editable}
-                        toggleEditable={this.toggleEditable}
+                        toggleEditable={this.toggleEditableAndSettings}
                         addText={this.addText}
                     />
                 )}
