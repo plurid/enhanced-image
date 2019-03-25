@@ -5,6 +5,7 @@ import { sliders } from '../../data/sliders';
 import addTextIcon from '../../assets/add-text-icon.svg';
 import fullscreenIcon from '../../assets/fullscreen-icon.svg';
 import saveIcon from '../../assets/save-icon.svg';
+import shareIcon from '../../assets/share-icon.svg';
 import resetIcon from '../../assets/reset-icon.svg';
 import aboutIcon from '../../assets/about-icon.svg';
 import bottomleftIcon from '../../assets/bottomleft-icon.svg';
@@ -51,6 +52,24 @@ export class EnhancedImageSettingsList {
     download = (image: any, imageName: string) => {
         this.saveButton.href = URL.createObjectURL(image);
         this.saveButton.download = imageName;
+    }
+
+    share = () => {
+        /**
+         * TODO
+         * Compute image sha
+         * check if image sha exists on images.plurid.com
+         * if it does, open in new tab the link
+         * if not, post the image to images.plurid.com/<image-sha>
+         *
+         * To optimize for image modification
+         * for example, an image with
+         * colors not inverted, contrast 150%, hue negative -150 degrees,
+         * saturation 35%, lightness 144%, to have the url
+         * images.plurid.com/<image-sha>-ni-C150-Hn150-S35-L144
+         * where ni stands for not inverted, and Hn150 for Hue negative 150
+         */
+        // console.log('share image');
     }
 
     aboutEnhancedImage = () => {
@@ -141,6 +160,15 @@ export class EnhancedImageSettingsList {
                             text={this.fullscreenToggled ? 'Exit Fullscreen' : 'View Fullscreen'}
                         />
                     </li>
+
+                    <li>
+                        <enhanced-image-button-item
+                            atClick={this.share}
+                            icon={shareIcon}
+                            text={'Share Image'}
+                        />
+                    </li>
+
                     <li onMouseEnter={this.saveImage.bind(this, this.download)}>
                         <a ref={(el) => this.saveButton = el as HTMLAnchorElement}>
                             <enhanced-image-button-item
@@ -150,6 +178,7 @@ export class EnhancedImageSettingsList {
                             />
                         </a>
                     </li>
+
                     <li class="enhanced-image-button-default enhanced-image-location">
                         <span>Location</span>
                         <span class="enhanced-image-location-spans">
