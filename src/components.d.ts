@@ -72,10 +72,8 @@ export namespace Components {
     'textSelect': boolean;
     'toggleDefaults': () => void;
     'toggleEditText': () => void;
-    'toggleTextSelect': () => void;
     'toggledDefaults': boolean;
     'toggledEditText': boolean;
-    'toggledTextSelect': boolean;
   }
   interface EnhancedImageSettingsListAttributes extends StencilHTMLAttributes {
     'addText'?: () => void;
@@ -100,10 +98,8 @@ export namespace Components {
     'textSelect'?: boolean;
     'toggleDefaults'?: () => void;
     'toggleEditText'?: () => void;
-    'toggleTextSelect'?: () => void;
     'toggledDefaults'?: boolean;
     'toggledEditText'?: boolean;
-    'toggledTextSelect'?: boolean;
   }
 
   interface EnhancedImageSettings {
@@ -125,8 +121,8 @@ export namespace Components {
     'src': string;
     'textSelect': boolean;
     'textSelectImage': HTMLTextSelectImageElement;
-    'toggleTextSelect': () => void;
-    'toggledTextSelect': boolean;
+    'toggleSettings': () => void;
+    'toggledSettings': boolean;
   }
   interface EnhancedImageSettingsAttributes extends StencilHTMLAttributes {
     'brightness'?: number;
@@ -147,8 +143,8 @@ export namespace Components {
     'src'?: string;
     'textSelect'?: boolean;
     'textSelectImage'?: HTMLTextSelectImageElement;
-    'toggleTextSelect'?: () => void;
-    'toggledTextSelect'?: boolean;
+    'toggleSettings'?: () => void;
+    'toggledSettings'?: boolean;
   }
 
   interface EnhancedImageSliderItem {

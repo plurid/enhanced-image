@@ -23,8 +23,6 @@ export class EnhancedImageSettingsList {
     saveButton!: HTMLAnchorElement;
 
     @Prop() src: string;
-    @Prop() toggledTextSelect: boolean;
-    @Prop() toggleTextSelect: () => void;
     @Prop() toggledEditText: boolean;
     @Prop() toggleEditText: () => void;
     @Prop() addText: () => void;
@@ -71,24 +69,14 @@ export class EnhancedImageSettingsList {
                     {this.textSelect && (
                         <li>
                             <enhanced-image-button-checkmark
-                            toggle={this.toggleTextSelect}
-                            text={'Text Select'}
-                            checked={this.toggledTextSelect}
-                            />
-                        </li>
-                    )}
-
-                    {this.toggledTextSelect && (
-                        <li>
-                            <enhanced-image-button-checkmark
                             toggle={this.toggleEditText}
-                            text={'Edit Texts'}
+                            text={'Edit Text'}
                             checked={this.toggledEditText}
                             />
                         </li>
                     )}
 
-                    {this.toggledTextSelect && (
+                    {this.textSelect && (
                         <li>
                             <enhanced-image-button-item
                                 atClick={this.addText}

@@ -15,8 +15,8 @@ export class EnhancedImageSettings {
     @Prop() src: string;
     @Prop() editTextSelect: () => void;
     @Prop() textSelectImage: HTMLTextSelectImageElement;
-    @Prop() toggleTextSelect: () => void;
-    @Prop() toggledTextSelect: boolean;
+    @Prop() toggleSettings: () => void;
+    @Prop() toggledSettings: boolean;
     @Prop() invertColors: any;
     @Prop() setSliderValue: any;
     @Prop() location: string;
@@ -32,7 +32,6 @@ export class EnhancedImageSettings {
     @Prop() saturation: number;
     @Prop() brightness: number;
 
-    @State() toggledSettings: boolean = false;
     @State() toggledEditText: boolean = false;
     @State() toggledDefaults: boolean = false;
     @State() colorsInverted: boolean = false;
@@ -54,10 +53,6 @@ export class EnhancedImageSettings {
         this.hueSliderValue = this.hue;
         this.saturationSliderValue = this.saturation;
         this.brightnessSliderValue = this.brightness;
-    }
-
-    toggleSettings = () => {
-        this.toggledSettings = !this.toggledSettings;
     }
 
     toggleEditText = () => {
@@ -158,9 +153,6 @@ export class EnhancedImageSettings {
                 />
                 {this.toggledSettings && (
                     <enhanced-image-settings-list
-                        toggleTextSelect={this.toggleTextSelect}
-                        toggledTextSelect={this.toggledTextSelect}
-
                         toggleEditText={this.toggleEditText}
                         toggledEditText={this.toggledEditText}
 
