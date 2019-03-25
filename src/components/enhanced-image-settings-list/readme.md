@@ -27,6 +27,7 @@
 | `setLocation`           | --                        |             | `(location: string) => void` | `undefined` |
 | `setSlider`             | `set-slider`              |             | `any`                        | `undefined` |
 | `setSliderValue`        | `set-slider-value`        |             | `any`                        | `undefined` |
+| `shareImage`            | `share-image`             |             | `any`                        | `undefined` |
 | `src`                   | `src`                     |             | `string`                     | `undefined` |
 | `textSelect`            | `text-select`             |             | `boolean`                    | `undefined` |
 | `toggleDefaults`        | --                        |             | `() => void`                 | `undefined` |
