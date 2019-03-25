@@ -99,7 +99,7 @@ export class EnhancedImage {
     @Prop({ mutable: true, reflectToAttr: true }) noAbout: boolean;
     @Prop({ mutable: true, reflectToAttr: true }) icon: string;
 
-    @State() toggledTextSelect: boolean = false;
+    @State() toggledSettings: boolean = false;
     @State() invertValue: number = SLIDER_DEFAULTS.invert;
     @State() contrastValue: number = SLIDER_DEFAULTS.contrast;
     @State() hueValue: number = SLIDER_DEFAULTS.hue;
@@ -205,9 +205,10 @@ export class EnhancedImage {
         this.location = location;
     }
 
-    toggleTextSelect = () => {
-        this.toggledTextSelect = !this.toggledTextSelect;
+    toggleSettings = () => {
+        this.toggledSettings = !this.toggledSettings;
     }
+
 
     renderImage = () => {
         if (this.textSelect) {
@@ -263,9 +264,9 @@ export class EnhancedImage {
                     element={this.element}
                     class={`enhanced-image-settings enhanced-image-settings-${this.location}`}
                     src={this.src}
+                    toggleSettings={this.toggleSettings}
+                    toggledSettings={this.toggledSettings}
                     textSelectImage={this.textSelectImage}
-                    toggleTextSelect={this.toggleTextSelect}
-                    toggledTextSelect={this.toggledTextSelect}
                     invertColors={this.invertColors}
                     setSliderValue={this.setSliderValue}
                     fullscreen={this.fullscreen}
