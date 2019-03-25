@@ -11,6 +11,8 @@
 | ------------------- | -------------------- | ----------- | ---------------------------- | ----------- |
 | `brightness`        | `brightness`         |             | `number`                     | `undefined` |
 | `contrast`          | `contrast`           |             | `number`                     | `undefined` |
+| `editTextSelect`    | --                   |             | `() => void`                 | `undefined` |
+| `element`           | `element`            |             | `any`                        | `undefined` |
 | `fullscreen`        | `fullscreen`         |             | `any`                        | `undefined` |
 | `fullscreenToggled` | `fullscreen-toggled` |             | `boolean`                    | `undefined` |
 | `hue`               | `hue`                |             | `number`                     | `undefined` |
@@ -24,6 +26,9 @@
 | `setSliderValue`    | `set-slider-value`   |             | `any`                        | `undefined` |
 | `src`               | `src`                |             | `string`                     | `undefined` |
 | `textSelect`        | `text-select`        |             | `boolean`                    | `undefined` |
+| `textSelectImage`   | --                   |             | `HTMLTextSelectImageElement` | `undefined` |
+| `toggleSettings`    | --                   |             | `() => void`                 | `undefined` |
+| `toggledSettings`   | `toggled-settings`   |             | `boolean`                    | `undefined` |
 
 
 ----------------------------------------------
