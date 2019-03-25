@@ -1,7 +1,10 @@
 import { Component, Prop, State } from '@stencil/core';
 
+import sha256 from 'crypto-js/sha256';
+
 import { SLIDER_DEFAULTS } from '../../utils/defaults';
 import { loadImage, dataURIToBlob } from '../../utils/image';
+import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
 
 
 
@@ -73,6 +76,47 @@ export class EnhancedImageSettings {
         const name = event.target.name;
         const value = event.target.value;
         this.setSlider(name, value);
+    }
+
+    shareImage = async () => {
+        /**
+         * Compute image sha
+         * check if image sha exists on depict.plurid.com
+         * if it does, open in new tab the link
+         * if not, post the image to depict.plurid.com/enhanced/<image-sha>
+         *
+         * To optimize for image modification
+         * for example, an image with
+         * colors not inverted, contrast 150%, hue negative -150 degrees,
+         * saturation 35%, lightness 144%, to have the url
+         * depict.plurid.com/enhanced/<image-sha>-ni-C150-Hn150-S35-L144
+         * where ni stands for not inverted, and Hn150 for Hue negative 150
+         */
+
+        const image: any = await loadImage(this.src);
+        const { height, width } = image;
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const context = canvas.getContext('2d');
+        context.drawImage(image, 0, 0, width, height);
+        const imageData = context.getImageData(0, 0, width, height);
+        const buffer = imageData.data;
+        const sha = sha256(arrayBufferToWordArray(buffer));
+        // console.log(sha.toString());
+
+        const invertString = this.colorsInverted ? 'I' : 'nI';
+        const constrastString = 'C' + this.contrastSliderValue;
+        const hueString = (this.hueSliderValue < 0 ? 'n' : '') + 'H' + Math.abs(this.hueSliderValue);
+        const saturationString = 'S' + this.saturationSliderValue;
+        const lightnessString = 'L' + this.brightnessSliderValue;
+        const modificationsString = `${invertString}-${constrastString}-${hueString}-${saturationString}-${lightnessString}`;
+
+        const baseLink = 'https://depict.plurid.com/enhanced/';
+        const imageLink = sha.toString() + '-' + modificationsString;
+        const url = baseLink + imageLink;
+        // console.log(url);
+        window.open(url, '_blank');
     }
 
     saveImage = async (download: any) => {
@@ -171,6 +215,7 @@ export class EnhancedImageSettings {
 
                         fullscreen={this.fullscreen}
                         fullscreenToggled={this.fullscreenToggled}
+                        shareImage={this.shareImage}
                         saveImage={this.saveImage}
                         location={this.location}
                         setLocation={this.setLocation}
