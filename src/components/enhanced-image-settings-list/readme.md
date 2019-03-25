@@ -9,6 +9,7 @@
 
 | Property                | Attribute                 | Description | Type                         | Default     |
 | ----------------------- | ------------------------- | ----------- | ---------------------------- | ----------- |
+| `addText`               | --                        |             | `() => void`                 | `undefined` |
 | `brightnessSliderValue` | `brightness-slider-value` |             | `any`                        | `undefined` |
 | `colorsInvert`          | `colors-invert`           |             | `any`                        | `undefined` |
 | `colorsInverted`        | `colors-inverted`         |             | `any`                        | `undefined` |
@@ -29,7 +30,9 @@
 | `src`                   | `src`                     |             | `string`                     | `undefined` |
 | `textSelect`            | `text-select`             |             | `boolean`                    | `undefined` |
 | `toggleDefaults`        | --                        |             | `() => void`                 | `undefined` |
+| `toggleEditText`        | --                        |             | `() => void`                 | `undefined` |
 | `toggledDefaults`       | `toggled-defaults`        |             | `boolean`                    | `undefined` |
+| `toggledEditText`       | `toggled-edit-text`       |             | `boolean`                    | `undefined` |
 
 
 ----------------------------------------------
