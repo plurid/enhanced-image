@@ -60,13 +60,13 @@ export class EnhancedImageSettingsList {
          * Compute image sha
          * check if image sha exists on images.plurid.com
          * if it does, open in new tab the link
-         * if not, post the image to images.plurid.com/<image-sha>
+         * if not, post the image to depict.plurid.com/<image-sha>
          *
          * To optimize for image modification
          * for example, an image with
          * colors not inverted, contrast 150%, hue negative -150 degrees,
          * saturation 35%, lightness 144%, to have the url
-         * images.plurid.com/<image-sha>-ni-C150-Hn150-S35-L144
+         * depict.plurid.com/<image-sha>-ni-C150-Hn150-S35-L144
          * where ni stands for not inverted, and Hn150 for Hue negative 150
          */
         // console.log('share image');
