@@ -68,6 +68,7 @@ export namespace Components {
     'setLocation': (location: string) => void;
     'setSlider': any;
     'setSliderValue': any;
+    'shareImage': any;
     'src': string;
     'textSelect': boolean;
     'toggleDefaults': () => void;
@@ -94,6 +95,7 @@ export namespace Components {
     'setLocation'?: (location: string) => void;
     'setSlider'?: any;
     'setSliderValue'?: any;
+    'shareImage'?: any;
     'src'?: string;
     'textSelect'?: boolean;
     'toggleDefaults'?: () => void;
