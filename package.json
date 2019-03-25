@@ -27,10 +27,12 @@
         "test.watch": "stencil test --spec --e2e --watchAll"
     },
     "dependencies": {
+        "crypto-js": "^3.1.9-1",
         "text-select-image-html": "^0.1.0"
     },
     "devDependencies": {
         "@stencil/core": "^0.18.1",
+        "@types/crypto-js": "^3.1.43",
         "@types/jest": "23.3.14",
         "@types/puppeteer": "1.12.2",
         "jest": "23.6.0",
