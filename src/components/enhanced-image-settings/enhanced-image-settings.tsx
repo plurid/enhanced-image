@@ -89,8 +89,8 @@ export class EnhancedImageSettings {
          * for example, an image with
          * colors not inverted, contrast 150%, hue negative -150 degrees,
          * saturation 35%, lightness 144%, to have the url
-         * depict.plurid.com/enhanced/<image-sha>-ni-C150-Hn150-S35-L144
-         * where ni stands for not inverted, and Hn150 for Hue negative 150
+         * depict.plurid.com/enhanced/<image-sha>-I0-C150-Hn150-S35-L144
+         * where I0 stands for not inverted, and H-150 for Hue negative 150
          */
 
         const image: any = await loadImage(this.src);
@@ -105,15 +105,15 @@ export class EnhancedImageSettings {
         const sha = sha256(arrayBufferToWordArray(buffer));
         // console.log(sha.toString());
 
-        const invertString = this.colorsInverted ? 'I' : 'nI';
-        const constrastString = 'C' + this.contrastSliderValue;
-        const hueString = (this.hueSliderValue < 0 ? 'n' : '') + 'H' + Math.abs(this.hueSliderValue);
-        const saturationString = 'S' + this.saturationSliderValue;
-        const lightnessString = 'L' + this.brightnessSliderValue;
-        const modificationsString = `${invertString}-${constrastString}-${hueString}-${saturationString}-${lightnessString}`;
+        const invertStr = this.colorsInverted ? 'I100' : 'I0';
+        const contrastStr = 'C' + this.contrastSliderValue;
+        const hueStr = 'H' + this.hueSliderValue;
+        const saturationStr = 'S' + this.saturationSliderValue;
+        const lightnessStr = 'L' + this.brightnessSliderValue;
+        const enhance = `${invertStr}-${contrastStr}-${hueStr}-${saturationStr}-${lightnessStr}`;
 
         const baseLink = 'https://depict.plurid.com/enhanced/';
-        const imageLink = sha.toString() + '-' + modificationsString;
+        const imageLink = sha.toString() + '-' + enhance;
         const url = baseLink + imageLink;
         // console.log(url);
         window.open(url, '_blank');
