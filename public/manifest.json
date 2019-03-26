@@ -2,9 +2,9 @@
     "manifest_version": 2,
     "name": "Enhanced Image",
     "short_name" : "EnhImg",
-    "description": "Modify colors, select the text from images.",
+    "description": "Change colors. Select text. From images.",
     "author": "caveljan",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "icons": {
         "16": "./assets/logo-16.png",
         "48": "./assets/logo-48.png",
