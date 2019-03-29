@@ -6,7 +6,7 @@ import { Component, Prop, State } from '@stencil/core';
     styleUrl: 'text-image-editor-button-dropdown.css',
     shadow: true
 })
-export class TextImageEditor {
+export class TextImageEditorButtonDropdown {
     @Prop() type: string;
     @Prop() alterStyle: string;
     @Prop() selectables: string[];

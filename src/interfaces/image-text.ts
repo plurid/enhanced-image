@@ -16,6 +16,8 @@ export interface ITextImage {
     lineHeight: string | number;
     wordSpacing: number;
     content: string;
+    link: boolean;
+    linkTo: string;
 }
 
 

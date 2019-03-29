@@ -1,0 +1,39 @@
+.text-image-editor-button-input {
+    position: relative;
+}
+
+.text-image-editor-button-input:hover .text-image-editor-button-input-container {
+    display: flex;
+}
+
+.text-image-editor-button-input input {
+    width: 110px;
+    border: none;
+    background: hsl(220, 2%, 30%);
+    color: white;
+    text-align: left;
+    outline: none;
+    padding: 3px 6px;
+    height: 24px;
+}
+
+.text-image-editor-button-input-container {
+    position: absolute;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    background: hsl(220, 2%, 30%);
+    top: 0;
+    left: 0;
+}
+
+.text-image-editor-button-input-gotolink {
+    height: 14px;
+    width: 14px;
+    padding-right: 6px;
+}
+
+.text-image-editor-button-input-gotolink svg {
+    height: 14px;
+    width: 14px;
+}

@@ -3,6 +3,7 @@ import { Component, Prop } from '@stencil/core';
 import selectTextIcon from '../../assets/select-text-icon.svg';
 import grabIcon from '../../assets/grab-icon.svg';
 import fontSizeIcon from '../../assets/font-size-icon.svg';
+import linkIcon from '../../assets/link-icon.svg';
 import boldIcon from '../../assets/bold-icon.svg';
 import italicIcon from '../../assets/italic-icon.svg';
 import letterSpacingIcon from '../../assets/letter-spacing-icon.svg';
@@ -36,6 +37,8 @@ export class TextImageEditor {
     @Prop() wordSpacingValue: number;
     @Prop() fontFamilyValue: string;
     @Prop() colorValue: string;
+    @Prop() textLink: boolean;
+    @Prop() textLinkToValue: string;
     @Prop() textBold: boolean;
     @Prop() textItalic: boolean;
 
@@ -45,12 +48,12 @@ export class TextImageEditor {
     @Prop() toggleElement: (element: string) => void;
 
     duplicate = () => {
-        console.log('Duplicate', this.textId);
+        // console.log('Duplicate', this.textId);
         this.duplicateText(this.textId);
     }
 
     remove = () => {
-        console.log('Remove text with id: ', this.textId);
+        // console.log('Remove text with id:', this.textId);
         this.removeText(this.textId);
     }
 
@@ -85,6 +88,15 @@ export class TextImageEditor {
                     selectables={this.selectableFonts}
                     changeSelected={this.changeValue}
                     toggleEditor={this.toggleEditor}
+                />
+
+                <text-image-editor-button-input
+                    toggle={this.toggleElement.bind(this, 'textLink')}
+                    toggled={this.textLink}
+                    icon={linkIcon}
+                    value={this.textLinkToValue}
+                    valueType="textLinkTo"
+                    changeValue={this.changeValue}
                 />
 
                 <text-image-editor-button-toggle

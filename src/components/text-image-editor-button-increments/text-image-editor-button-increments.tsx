@@ -10,7 +10,7 @@ const STEP = 1;
     styleUrl: 'text-image-editor-button-increments.css',
     shadow: true
 })
-export class TextImageEditor {
+export class TextImageEditorButtonIncrements {
     @Prop() type: string;
     @Prop() changeValue: (type: string, value: number) => void;
     @Prop() value: number;

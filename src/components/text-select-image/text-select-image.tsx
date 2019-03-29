@@ -150,7 +150,7 @@ export class TextSelectImage {
 
     addTextIntern = (): void => {
         const selectText = { ...this.selectText }
-        console.log(selectText);
+        // console.log(selectText);
 
         const text = {
             id: `tsi-text-${uuidv4()}`,
@@ -171,7 +171,9 @@ export class TextSelectImage {
             letterSpacing: 0,
             lineHeight: 'auto',
             wordSpacing: 0,
-            content: 'New Text'
+            content: 'New Text',
+            link: false,
+            linkTo: '',
         }
 
         selectText.imageText.push(text);

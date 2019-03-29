@@ -7,7 +7,7 @@ import { Component, Prop } from '@stencil/core';
     styleUrl: 'text-image-editor-button-toggle.css',
     shadow: true
 })
-export class TextImageEditor {
+export class TextImageEditorButtonToggle {
     @Prop() toggled: boolean;
     @Prop() toggle: () => void;
     @Prop() icon: string;
