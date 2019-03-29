@@ -74,8 +74,8 @@ export class TextSelectImage {
         this.editable = !this.editable;
     }
 
-    toggleEditableAndSettings(): void {
-        this.toggleEditable();
+    toggleEditableIntern = (): void => {
+        this.editable = !this.editable;
         this.toggleSettings();
     }
 
@@ -145,7 +145,12 @@ export class TextSelectImage {
 
     @Method()
     addText(): void {
+       this.addTextIntern();
+    }
+
+    addTextIntern = (): void => {
         const selectText = { ...this.selectText }
+        console.log(selectText);
 
         const text = {
             id: `tsi-text-${uuidv4()}`,
@@ -205,8 +210,8 @@ export class TextSelectImage {
                         toggledSettings={this.toggledSettings}
                         toggleSettings={this.toggleSettings}
                         editable={this.editable}
-                        toggleEditable={this.toggleEditableAndSettings}
-                        addText={this.addText}
+                        toggleEditable={this.toggleEditableIntern}
+                        addText={this.addTextIntern}
                     />
                 )}
             </div>
