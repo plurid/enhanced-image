@@ -24,6 +24,11 @@
     outline: none;
 }
 
+.text-image-span-content a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .text-image-span-editable {
     /* border: 1px solid black; */
     background-color: hsla(0, 0%, 50%, 0.4);

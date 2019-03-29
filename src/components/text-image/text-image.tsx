@@ -6,7 +6,7 @@ import { selectableFonts } from '../../data/fonts';
 
 
 
-const EDITOR_WIDTH = 724;
+const EDITOR_WIDTH = 758;
 
 
 
@@ -51,6 +51,8 @@ export class TextImage {
     @State() fontFamilyValue: string = 'Arial';
     @State() colorValue: string = '';
     @State() colorValueStyle: string = '';
+    @State() textLink: boolean = false;
+    @State() textLinkToValue: string = '';
     @State() textBold: boolean = false;
     @State() textItalic: boolean = false;
     @State() textContent: string = '';
@@ -74,7 +76,9 @@ export class TextImage {
         this.fontFamilyValue = this.text.fontFamily || this.fontFamilyValue;
         this.letterSpacingValue = this.text.letterSpacing || this.letterSpacingValue;
         this.wordSpacingValue = this.text.wordSpacing || this.wordSpacingValue;
-        this.textBold =  this.text.bold || this.textBold;
+        this.textLink = this.text.link || this.textLink;
+        this.textLinkToValue = this.text.linkTo || this.textLinkToValue;
+        this.textBold = this.text.bold || this.textBold;
         this.textItalic =  this.text.italic || this.textItalic;
         // this.colorValue = this.text.color || this.colorValue;
         if(this.editable) {
@@ -226,9 +230,8 @@ export class TextImage {
     }
 
     render() {
-        // console.log('A');
         const text = this.text;
-        // console.log('text-image :: text', this.textId, this.text);
+        console.log('text-image :: text', this.textId, this.text);
 
         return (
             <span
@@ -260,7 +263,14 @@ export class TextImage {
                     contentEditable={this.textEditable}
                     onKeyUp={this.updateTextContent}
                 >
-                    {text.content}
+                    {this.textLink
+                        ? (<a href={this.textLinkToValue} target="_blank">
+                            {text.content}
+                        </a>)
+                        : (<span>
+                            {text.content}
+                        </span>)
+                    }
                 </span>
 
                 {this.showEditor && (
@@ -284,6 +294,8 @@ export class TextImage {
                             wordSpacingValue={this.wordSpacingValue}
                             fontFamilyValue={this.fontFamilyValue}
                             colorValue={this.colorValue}
+                            textLink={this.textLink}
+                            textLinkToValue={this.textLinkToValue}
                             textBold={this.textBold}
                             textItalic={this.textItalic}
 

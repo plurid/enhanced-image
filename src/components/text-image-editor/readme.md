@@ -22,6 +22,8 @@
 | `textEditable`       | `text-editable`        |             | `boolean`                                         | `undefined` |
 | `textId`             | `text-id`              |             | `string`                                          | `undefined` |
 | `textItalic`         | `text-italic`          |             | `boolean`                                         | `undefined` |
+| `textLink`           | `text-link`            |             | `boolean`                                         | `undefined` |
+| `textLinkToValue`    | `text-link-to-value`   |             | `string`                                          | `undefined` |
 | `toggleDraggable`    | --                     |             | `() => void`                                      | `undefined` |
 | `toggleEditor`       | --                     |             | `() => void`                                      | `undefined` |
 | `toggleElement`      | --                     |             | `(element: string) => void`                       | `undefined` |
