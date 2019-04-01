@@ -9,8 +9,8 @@ import {
 import { styleStringToObject } from '../../utils/styleString';
 
 const foodText = {
-    id: "tsi-image-b634e1b7-a46c-443f-8b9d-02bc2745a768",
-    imageText: [
+    "id": "tsi-image-b634e1b7-a46c-443f-8b9d-02bc2745a768",
+    "imageText": [
         {
             "id": "tsi-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e",
             "xPercentage": 0,
@@ -28,7 +28,9 @@ const foodText = {
             "letterSpacing": 0,
             "lineHeight": "auto",
             "wordSpacing": 0,
-            "content": "Text sample Arial"
+            "content": "Text sample Arial",
+            "link": true,
+            "linkTo": "https://plurid.com"
         },
         {
             "id": "tsi-text-cfef2e11-4e65-40fe-980a-7136046a9fb0",
@@ -47,7 +49,9 @@ const foodText = {
             "letterSpacing": -1,
             "lineHeight": "auto",
             "wordSpacing": 6,
-            "content": "Text Sample Verdana"
+            "content": "Text Sample Verdana",
+            "link": false,
+            "linkTo": ""
         },
         {
             "id": "tsi-text-4f635939-c1ee-4bc2-9de3-f92f16e3c025",
@@ -66,7 +70,9 @@ const foodText = {
             "letterSpacing": 0,
             "lineHeight": "auto",
             "wordSpacing": 1.5,
-            "content": "Text Sample Georgia"
+            "content": "Text Sample Georgia",
+            "link": false,
+            "linkTo": ""
         }
     ]
 }
