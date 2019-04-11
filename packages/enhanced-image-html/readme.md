@@ -1,13 +1,13 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image-html/master/about/docs/identity/enhanced-image.png" height="250px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/identity/enhanced-image-logo.png" height="250px">
     <br />
-    <a target="_blank" href="https://www.npmjs.com/package/enhanced-image-html">
-        <img src="https://img.shields.io/npm/v/enhanced-image-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+    <a target="_blank" href="https://www.npmjs.com/package/@plurid/enhanced-image-html">
+        <img src="https://img.shields.io/npm/v/@plurid/enhanced-image-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
     </a>
     <a target="_blank" href="https://travis-ci.org/plurid/enhanced-image-html">
         <img src="https://img.shields.io/travis/plurid/enhanced-image-html.svg?logo=travis&colorB=1380C3&style=for-the-badge" alt="Build Status">
     </a>
-    <a target="_blank" href="https://github.com/plurid/enhanced-image-html/blob/master/LICENSE">
+    <a target="_blank" href="https://github.com/plurid/enhanced-image/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: MIT">
     </a>
 </p>

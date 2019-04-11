@@ -1,16 +1,29 @@
 {
-    "name": "enhanced-image-chrome",
-    "version": "0.0.1",
+    "name": "@plurid/enhanced-image-chrome",
+    "version": "0.0.0",
     "description": "Chrome Extension for Enhanced Image HTML Element",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "keywords": [
+        "enhanced",
+        "image",
+        "html"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/enhanced-image-chrome.git"
+        "url": "https://github.com/plurid/enhanced-image"
     },
     "bugs": {
-        "url": "https://github.com/plurid/enhanced-image-chrome/issues"
+        "email": "feedback@plurid.com",
+        "url": "https://github.com/plurid/enhanced-image/issues"
     },
+    "homepage": "https://github.com/plurid/enhanced-image/blob/master/packages/enhanced-image-chrome",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "scripts": {
         "start": "react-scripts-ts start",
         "build": "react-scripts-ts build && yarn copyvendor",

@@ -1,22 +1,32 @@
 {
-    "name": "enhanced-image-vue",
-    "version": "0.1.0",
-    "description": "Vue implementation for enhanced-image-html",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/enhanced-image-vue",
+    "version": "0.0.0",
+    "description": "Enhanced Image HTML Element, Vue implementation",
+    "keywords": [
+        "enhanced",
+        "image",
+        "html"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/enhanced-image.git"
+        "url": "https://github.com/plurid/enhanced-image"
     },
     "bugs": {
+        "email": "feedback@plurid.com",
         "url": "https://github.com/plurid/enhanced-image/issues"
     },
+    "homepage": "https://github.com/plurid/enhanced-image/blob/master/packages/enhanced-image-vue",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
-    "files": [
-        "dist"
-    ],
     "engines": {
         "node": ">=8",
         "npm": ">=5"
