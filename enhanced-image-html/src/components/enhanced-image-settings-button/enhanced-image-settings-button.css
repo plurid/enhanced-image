@@ -1,0 +1,12 @@
+.enhanced-image-settings-button {
+    cursor: pointer;
+    user-select: none;
+    height: 30px;
+    width: 30px;
+}
+
+.enhanced-image-settings-button svg {
+    height: 30px;
+    width: 30px;
+    filter: drop-shadow(0px 0px 3px hsl(220, 2%, 20%));
+}
