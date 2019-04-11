@@ -1,2 +1,2 @@
-# Enhanced Image
+# Text Select Image
 
