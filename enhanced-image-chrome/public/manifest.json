@@ -1,0 +1,35 @@
+{
+    "manifest_version": 2,
+    "name": "Enhanced Image",
+    "short_name" : "EnhImg",
+    "description": "Change colors. Select text. From images.",
+    "author": "caveljan",
+    "version": "0.0.3",
+    "icons": {
+        "16": "./assets/logo-16.png",
+        "48": "./assets/logo-48.png",
+        "128": "./assets/logo-128.png"
+    },
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": [
+            "/app/contentscript.js"
+        ],
+        "run_at": "document_end"
+    }],
+    "web_accessible_resources": [
+        "enhanced-image-html/dist/**.js"
+    ],
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    },
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_title": "Enhanced Image"
+    },
+    "content_security_policy": "script-src 'self' 'sha256-5As4+3YpY62+l38PsxCEkjB1R4YtyktBtRScTJ3fyLU='; object-src 'self'"
+}
