@@ -1,23 +1,33 @@
 {
-    "name": "enhanced-image-html",
-    "version": "0.1.1",
-    "description": "HTML Image Element with Enhanced Abilities — HTML Custom Elements",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/enhanced-image-html",
+    "version": "0.0.0",
+    "description": "Enhanced Image HTML Element, HTML Custom Elements implementation",
+    "keywords": [
+        "enhanced",
+        "image",
+        "html custom elements"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/enhanced-image-html.git"
+        "url": "https://github.com/plurid/enhanced-image"
     },
     "bugs": {
-        "url": "https://github.com/plurid/enhanced-image-html/issues"
+        "email": "feedback@plurid.com",
+        "url": "https://github.com/plurid/enhanced-image/issues"
     },
+    "homepage": "https://github.com/plurid/enhanced-image/blob/master/packages/enhanced-image-html",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "module": "dist/esm/index.js",
     "main": "dist/index.js",
     "types": "dist/types/components.d.ts",
     "collection": "dist/collection/collection-manifest.json",
-    "files": [
-        "dist/"
-    ],
     "scripts": {
         "build": "stencil build --docs",
         "start": "stencil build --dev --watch --serve",
