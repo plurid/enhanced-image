@@ -1,0 +1,18 @@
+.enhanced-image-button-item {
+    display: flex;
+    align-items: center;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+.enhanced-image-button-icon {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+    padding: 6px;
+    padding-left: 0;
+}
+
+.enhanced-image-button-icon svg {
+    width: 16px;
+}
