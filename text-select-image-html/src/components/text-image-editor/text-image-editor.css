@@ -1,0 +1,99 @@
+.text-image-editor {
+    position: absolute;
+    top: 0;
+    cursor: default;
+    background-color: hsl(220, 2%, 20%);
+    color: white;
+    font-size: 14px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 17px;
+    height: 34px;
+    width: 724px;
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-weight: normal;
+    font-style: normal;
+    margin: 0;
+    padding-left: 17px;
+    z-index: 999;
+    padding-right: 17px;
+    box-shadow: 0px 0px 5px 1px hsla(220, 2%, 10%, 0.9);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.text-image-editor-button {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.text-image-editor-button:hover {
+    background-color: hsl(220, 2%, 60%);
+}
+
+.text-image-editor-button-icon {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.text-image-editor-button svg {
+    height: 14px;
+    width: 14px;
+}
+
+
+/* COLORS */
+.text-image-editor-button-color {
+    height: 14px;
+    width: 14px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.text-image-editor-button-color:hover:not(.text-image-editor-button-color-white) {
+    border: 1px solid white;
+}
+
+.text-image-editor-button-color:hover {
+    border: 1px solid black;
+}
+
+.text-image-editor-button-color-active {
+    border: 1px solid black;
+}
+
+.text-image-editor-button-color-active:not(.text-image-editor-button-color-white) {
+    border: 1px solid white;
+}
+
+.text-image-editor-button-colors {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    margin: 0 5px;
+}
+
+.text-image-editor-button-color-black {
+    background-color: hsl(220, 2%, 10%);
+}
+
+.text-image-editor-button-color-red {
+    background-color: hsl(0, 100%, 40%);
+}
+
+.text-image-editor-button-color-white {
+    background-color: hsl(220, 2%, 90%);
+}
+
+
+.text-image-editor-vertical-divider {
+    background-color: hsl(220, 2%, 50%);
+    width: 1px;
+    height: 100%;
+}
