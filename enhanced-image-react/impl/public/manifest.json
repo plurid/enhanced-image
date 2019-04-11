@@ -1,8 +1,0 @@
-{
-  "short_name": "enhanced-image-react",
-  "name": "enhanced-image-react",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
-}

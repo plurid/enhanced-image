@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 906.83 902.4">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <title>Bottom Right</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Icon-ArrowBottomRight">
+      <g id="Icon-ArrowBottomRight-2" data-name="Icon-ArrowBottomRight">
+        <g>
+          <path class="cls-1" d="M166.21,901.4V693.12H543.86L1.42,150.67,153.12,1.4C337.19,179.28,515,360.06,696.69,540.68V161.78H905.83V901.4Z"/>
+          <path class="cls-2" d="M166.21,901.4V693.12H543.86L1.42,150.67,153.12,1.4C337.19,179.28,515,360.06,696.69,540.68V161.78H905.83V901.4Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
