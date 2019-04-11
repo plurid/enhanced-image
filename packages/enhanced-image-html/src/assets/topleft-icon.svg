@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 906.83 902.4">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <title>Top Left</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Icon-ArrowTopLeft">
+      <g id="Icon-ArrowTopLeft-2" data-name="Icon-ArrowTopLeft">
+        <g>
+          <path class="cls-1" d="M740.61,1V209.27H363L905.41,751.73,753.71,901C569.63,723.12,391.84,542.34,210.13,361.71v378.9H1V1Z"/>
+          <path class="cls-2" d="M740.61,1V209.27H363L905.41,751.73,753.71,901C569.63,723.12,391.84,542.34,210.13,361.71v378.9H1V1Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
