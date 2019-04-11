@@ -1,0 +1,25 @@
+.text-image-editor-button {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.text-image-editor-button-icon {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.text-image-editor-button-icon-active {
+    background-color: hsl(220, 2%, 40%);
+}
+
+.text-image-editor-button:hover {
+    background-color: hsl(220, 2%, 60%);
+}
+
+.text-image-editor-button svg {
+    height: 14px;
+    width: 14px;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+        <link rel="icon" href="./test-assets/favicon.png">
+        <title>Text Select Image</title>
+        <style>
+            html, body {
+                margin: 0;
+                /* background-color: white */
+                background-color: hsl(220, 2%, 15%);
+                color: white;
+                font-family: Helvetica, sans-serif;
+                font-size: 16px;
+            }
+            .container {
+                width: 800px;
+                margin: 0 auto;
+            }
+        </style>
+        <script src="/build/text-select-image-html.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <text-select-image
+                styling="margin: 200px 0;"
+                control
+                src="./test-assets/food-text.jpg"
+            >
+            </text-select-image>
+        </div>
+
+        <!-- <div class="container">
+            <text-select-image
+                styling="margin: 200px 0;"
+                src="./test-assets/food-text.jpg"
+            >
+            </text-select-image>
+        </div> -->
+
+        <!-- <div class="container">
+            <text-select-image
+                styling="margin: 200px 0;"
+                control
+                src="./test-assets/population-density-europe.png"
+            >
+            </text-select-image>
+        </div> -->
+
+        <script>
+            // document.addEventListener('textselectimage', (e) => {
+            //     console.log('UPDATED', e.detail)
+            // });
+        </script>
+    </body>
+</html>
