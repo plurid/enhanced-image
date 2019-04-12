@@ -1,13 +1,13 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/identity/TSI-logo.png" height="250px">
+    <img src="https://raw.githubusercontent.com/plurid/text-select-image/master/about/identity/TSI-logo.png" height="250px">
     <br />
-    <a target="_blank" href="https://www.npmjs.com/package/text-select-image-html">
-        <img src="https://img.shields.io/npm/v/text-select-image-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+    <a target="_blank" href="https://www.npmjs.com/package/@plurid/text-select-image-html">
+        <img src="https://img.shields.io/npm/v/@plurid/text-select-image-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
     </a>
-    <a target="_blank" href="https://travis-ci.org/plurid/text-select-image-html">
-        <img src="https://img.shields.io/travis/plurid/text-select-image-html.svg?logo=travis&colorB=1380C3&style=for-the-badge" alt="Build Status">
+    <a target="_blank" href="https://travis-ci.org/plurid/text-select-image">
+        <img src="https://img.shields.io/travis/plurid/text-select-image.svg?logo=travis&colorB=1380C3&style=for-the-badge" alt="Build Status">
     </a>
-    <a target="_blank" href="https://github.com/plurid/text-select-image-html/blob/master/LICENSE">
+    <a target="_blank" href="https://github.com/plurid/text-select-image/blob/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: MIT">
     </a>
 </p>
@@ -52,17 +52,17 @@ Select the text from the image.
 
 ![Text Select from Image][text-select]
 
-[text-select]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/text-select.png
+[text-select]: https://raw.githubusercontent.com/plurid/text-select-image/master/about/demo/text-select.png
 
 Edit the text as admin.
 
 ![Edit][edit]
 
-[edit]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/edit.png
+[edit]: https://raw.githubusercontent.com/plurid/text-select-image/master/about/demo/edit.png
 
 ![Text Editor][hover]
 
-[hover]: https://raw.githubusercontent.com/plurid/text-select-image-html/master/about/demo/hover.png
+[hover]: https://raw.githubusercontent.com/plurid/text-select-image/master/about/demo/hover.png
 
 
 

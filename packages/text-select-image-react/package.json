@@ -1,22 +1,32 @@
 {
-    "name": "text-select-image-react",
-    "version": "0.1.0",
-    "description": "React implementation for text-select-image-html",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/text-select-image-react",
+    "version": "0.0.0",
+    "description": "React Component to select the text from images",
+    "keywords": [
+        "text",
+        "image",
+        "html"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/text-select-image-react.git"
+        "url": "https://github.com/plurid/text-select-image"
     },
     "bugs": {
-        "url": "https://github.com/plurid/text-select-image-react/issues"
+        "email": "feedback@plurid.com",
+        "url": "https://github.com/plurid/text-select-image/issues"
     },
+    "homepage": "https://github.com/plurid/text-select-image/blob/master/packages/text-select-image-react",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
-    "files": [
-        "dist"
-    ],
     "engines": {
         "node": ">=8",
         "npm": ">=5"
