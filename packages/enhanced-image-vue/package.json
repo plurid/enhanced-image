@@ -1,6 +1,6 @@
 {
     "name": "@plurid/enhanced-image-vue",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Enhanced Image HTML Element, Vue implementation",
     "keywords": [
         "enhanced",
@@ -34,9 +34,5 @@
     },
     "scripts": {
         "clean": "rm -rf ./dist"
-    },
-    "peerDependencies": {
-    },
-    "devDependencies": {
     }
 }
