@@ -1,6 +1,6 @@
 import { Component, Prop, State, Element, Listen, Watch } from '@stencil/core';
 
-import 'text-select-image-html';
+import '@plurid/text-select-image-html';
 
 import {
     SLIDER_DEFAULTS,
@@ -8,71 +8,73 @@ import {
 } from '../../utils/defaults';
 import { styleStringToObject } from '../../utils/styleString';
 
+
+
 const foodText = {
-    "id": "tsi-image-b634e1b7-a46c-443f-8b9d-02bc2745a768",
-    "imageText": [
+    id: 'tsi-image-b634e1b7-a46c-443f-8b9d-02bc2745a768',
+    imageText: [
         {
-            "id": "tsi-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e",
-            "xPercentage": 0,
-            "yPercentage": 0,
-            "xCoord": 17,
-            "yCoord": 189,
-            "perspective": "",
-            "rotation": "",
-            "skew": "",
-            "color": "red",
-            "fontFamily": "Arial",
-            "fontSize": 28,
-            "bold": false,
-            "italic": false,
-            "letterSpacing": 0,
-            "lineHeight": "auto",
-            "wordSpacing": 0,
-            "content": "Text sample Arial",
-            "link": true,
-            "linkTo": "https://plurid.com"
+            'id': 'tsi-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e',
+            'xPercentage': 0,
+            'yPercentage': 0,
+            'xCoord': 17,
+            'yCoord': 189,
+            'perspective': '',
+            'rotation': '',
+            'skew': '',
+            'color': 'red',
+            'fontFamily': 'Arial',
+            'fontSize': 28,
+            'bold': false,
+            'italic': false,
+            'letterSpacing': 0,
+            'lineHeight': 'auto',
+            'wordSpacing': 0,
+            'content': 'Text sample Arial',
+            'link': true,
+            'linkTo': 'https://plurid.com'
         },
         {
-            "id": "tsi-text-cfef2e11-4e65-40fe-980a-7136046a9fb0",
-            "xPercentage": 0,
-            "yPercentage": 0,
-            "xCoord": 145,
-            "yCoord": 257,
-            "perspective": "",
-            "rotation": "",
-            "skew": "",
-            "color": "black",
-            "fontFamily": "Verdana",
-            "fontSize": 38,
-            "bold": false,
-            "italic": false,
-            "letterSpacing": -1,
-            "lineHeight": "auto",
-            "wordSpacing": 6,
-            "content": "Text Sample Verdana",
-            "link": false,
-            "linkTo": ""
+            'id': 'tsi-text-cfef2e11-4e65-40fe-980a-7136046a9fb0',
+            'xPercentage': 0,
+            'yPercentage': 0,
+            'xCoord': 145,
+            'yCoord': 257,
+            'perspective': '',
+            'rotation': '',
+            'skew': '',
+            'color': 'black',
+            'fontFamily': 'Verdana',
+            'fontSize': 38,
+            'bold': false,
+            'italic': false,
+            'letterSpacing': -1,
+            'lineHeight': 'auto',
+            'wordSpacing': 6,
+            'content': 'Text Sample Verdana',
+            'link': false,
+            'linkTo': ''
         },
         {
-            "id": "tsi-text-4f635939-c1ee-4bc2-9de3-f92f16e3c025",
-            "xPercentage": 0,
-            "yPercentage": 0,
-            "xCoord": 421.5,
-            "yCoord": 357,
-            "perspective": "",
-            "rotation": "",
-            "skew": "",
-            "color": "black",
-            "fontFamily": "Georgia",
-            "fontSize": 24,
-            "bold": false,
-            "italic": false,
-            "letterSpacing": 0,
-            "lineHeight": "auto",
-            "wordSpacing": 1.5,
-            "content": "Text Sample Georgia",
-            "link": false,
-            "linkTo": ""
+            'id': 'tsi-text-4f635939-c1ee-4bc2-9de3-f92f16e3c025',
+            'xPercentage': 0,
+            'yPercentage': 0,
+            'xCoord': 421.5,
+            'yCoord': 357,
+            'perspective': '',
+            'rotation': '',
+            'skew': '',
+            'color': 'black',
+            'fontFamily': 'Georgia',
+            'fontSize': 24,
+            'bold': false,
+            'italic': false,
+            'letterSpacing': 0,
+            'lineHeight': 'auto',
+            'wordSpacing': 1.5,
+            'content': 'Text Sample Georgia',
+            'link': false,
+            'linkTo': ''
         }
     ]
 }
@@ -82,7 +84,7 @@ const foodText = {
 @Component({
     tag: 'enhanced-image',
     styleUrl: 'enhanced-image.css',
-    shadow: true
+    shadow: true,
 })
 export class EnhancedImage {
     @Element() element: HTMLElement;
@@ -176,11 +178,12 @@ export class EnhancedImage {
 
 
     invertColors = () => {
-        if ( this.invertValue == 1 ) {
-            this.invertValue = 0;
-        } else {
-            this.invertValue = 1;
-        }
+        this.invertValue = this.invertValue === 1 ? 0 : 1;
+        // if (this.invertValue === 1) {
+        //     this.invertValue = 0;
+        // } else {
+        //     this.invertValue = 1;
+        // }
     }
 
     setSliderValue = (name: string, value: number) => {
@@ -235,9 +238,8 @@ export class EnhancedImage {
                     }}
                     textData={foodText}
                     ref={(el) => this.textSelectImage = el as HTMLTextSelectImageElement}
-                >
-                </text-select-image>
-            )
+                />
+            );
         }
 
         return (
@@ -263,8 +265,8 @@ export class EnhancedImage {
     render() {
         return (
             <div
-                style={ {...this.styled, ...this.fullscreenStyles} }
-                class={ `enhanced-image-container ${this.classes ? this.classes : '' }`}
+                style={{...this.styled, ...this.fullscreenStyles}}
+                class={`enhanced-image-container ${this.classes ? this.classes : '' }`}
             >
                 <enhanced-image-settings
                     element={this.element}

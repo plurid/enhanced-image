@@ -9,6 +9,9 @@
         "interface-name": false,
         "object-literal-sort-keys": false,
         "ordered-imports": false,
+        "jsx-no-multiline-js": false,
+        "member-access": false,
+        "no-submodule-imports": false,
         "no-shadowed-variable": false,
         "no-implicit-dependencies": false,
         "no-var-requires": false,
@@ -18,6 +21,11 @@
             "avoid-escape",
             "avoid-template",
             "jsx-double"
+        ]
+    },
+    "linterOptions": {
+        "exclude": [
+            "node_modules"
         ]
     }
 }
