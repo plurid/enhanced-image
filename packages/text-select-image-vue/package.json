@@ -1,22 +1,32 @@
 {
-    "name": "text-select-image-vue",
-    "version": "0.1.0",
-    "description": "Vue implementation for text-select-image-html",
-    "author": "Jan Cavel <mail@caveljan.com> (https://caveljan.com/)",
+    "name": "@plurid/text-select-image-vue",
+    "version": "0.0.0",
+    "description": "Vue Component to select the text from images",
+    "keywords": [
+        "text",
+        "image",
+        "html"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/plurid/text-select-image.git"
+        "url": "https://github.com/plurid/text-select-image"
     },
     "bugs": {
+        "email": "feedback@plurid.com",
         "url": "https://github.com/plurid/text-select-image/issues"
     },
+    "homepage": "https://github.com/plurid/text-select-image/blob/master/packages/text-select-image-vue",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
     "main": "dist/index.js",
     "module": "dist/index.es.js",
     "jsnext:main": "dist/index.es.js",
-    "files": [
-        "dist"
-    ],
     "engines": {
         "node": ">=8",
         "npm": ">=5"
