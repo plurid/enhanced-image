@@ -1,12 +1,15 @@
 import { Component, Prop, State } from '@stencil/core';
 
-// import * as crypto from 'crypto-js';
-import * as CryptoJS from 'crypto-js';
+// import * as CryptoJS from 'crypto-js';
+// const SHA256 = require('crypto-js/sha256');
+// import * as sha256 from 'crypto-js';
 
 import { SLIDER_DEFAULTS } from '../../utils/defaults';
 import { loadImage, dataURIToBlob } from '../../utils/image';
-import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
+// import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
 
+// console.log(CryptoJS);
+// console.log(sha256);
 
 
 @Component({
@@ -94,30 +97,30 @@ export class EnhancedImageSettings {
          * where I0 stands for not inverted, and H-150 for Hue negative 150
          */
 
-        const image: any = await loadImage(this.src);
-        const { height, width } = image;
-        const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
-        const context = canvas.getContext('2d');
-        context.drawImage(image, 0, 0, width, height);
-        const imageData = context.getImageData(0, 0, width, height);
-        const buffer = imageData.data;
-        const sha = CryptoJS.SHA256(arrayBufferToWordArray(buffer));
-        // console.log(sha.toString());
+        // const image: any = await loadImage(this.src);
+        // const { height, width } = image;
+        // const canvas = document.createElement('canvas');
+        // canvas.width = width;
+        // canvas.height = height;
+        // const context = canvas.getContext('2d');
+        // context.drawImage(image, 0, 0, width, height);
+        // const imageData = context.getImageData(0, 0, width, height);
+        // const buffer = imageData.data;
+        // const sha = CryptoJS.SHA256(arrayBufferToWordArray(buffer));
+        // console.log(CryptoJS);
 
-        const invertStr = this.colorsInverted ? 'I100' : 'I0';
-        const contrastStr = 'C' + this.contrastSliderValue;
-        const hueStr = 'H' + this.hueSliderValue;
-        const saturationStr = 'S' + this.saturationSliderValue;
-        const lightnessStr = 'L' + this.brightnessSliderValue;
-        const enhance = `${invertStr}-${contrastStr}-${hueStr}-${saturationStr}-${lightnessStr}`;
+        // const invertStr = this.colorsInverted ? 'I100' : 'I0';
+        // const contrastStr = 'C' + this.contrastSliderValue;
+        // const hueStr = 'H' + this.hueSliderValue;
+        // const saturationStr = 'S' + this.saturationSliderValue;
+        // const lightnessStr = 'L' + this.brightnessSliderValue;
+        // const enhance = `${invertStr}-${contrastStr}-${hueStr}-${saturationStr}-${lightnessStr}`;
 
-        const baseLink = 'https://depict.plurid.com/enhanced/';
-        const imageLink = sha.toString() + '-' + enhance;
-        const url = baseLink + imageLink;
-        // console.log(url);
-        window.open(url, '_blank');
+        // const baseLink = 'https://depict.plurid.com/enhanced/';
+        // const imageLink = sha.toString() + '-' + enhance;
+        // const url = baseLink + imageLink;
+        // // console.log(url);
+        // window.open(url, '_blank');
     }
 
     saveImage = async (download: any) => {

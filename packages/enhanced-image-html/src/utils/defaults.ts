@@ -11,13 +11,13 @@ export const SLIDER_DEFAULTS = {
     hue: 0,
     saturation: 100,
     brightness: 100,
-}
+};
 
 export const SLIDER_ITEM_DEFAULTS = {
     min: 0,
     max: 100,
     valueSign: '%',
-}
+};
 
 export const FULLSCREEN_STYLES = {
     position: 'fixed',

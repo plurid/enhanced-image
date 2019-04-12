@@ -6,15 +6,15 @@ import { inlineSvg } from 'stencil-inline-svg';
 export const config: Config = {
     namespace: 'enhanced-image-html',
     copy: [
-        { src: 'test-assets' }
+        { src: 'test-assets' },
     ],
     outputTargets: [
         { type: 'dist' },
         { type: 'docs' },
         {
             type: 'www',
-            serviceWorker: null
-        }
+            serviceWorker: null,
+        },
     ],
-    plugins: [inlineSvg()]
+    plugins: [inlineSvg()],
 };
