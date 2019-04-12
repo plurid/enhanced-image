@@ -1,6 +1,6 @@
 {
     "name": "@plurid/text-select-image-vue",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Vue Component to select the text from images",
     "keywords": [
         "text",

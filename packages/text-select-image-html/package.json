@@ -1,6 +1,6 @@
 {
     "name": "@plurid/text-select-image-html",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "HTML Custom Image Element to select the text from images",
     "keywords": [
         "text",
@@ -37,7 +37,6 @@
         "test.complete": "stencil test --spec --e2e",
         "test.watch": "stencil test --spec --e2e --watchAll"
     },
-    "dependencies": {},
     "devDependencies": {
         "@stencil/core": "^0.18.1",
         "@types/jest": "23.3.14",
