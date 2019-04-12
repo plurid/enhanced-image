@@ -7,15 +7,15 @@ export const config: Config = {
     namespace: 'text-select-image-html',
     copy: [
         { src: 'test-assets' },
-        { src: 'test-data' }
+        { src: 'test-data' },
     ],
-    outputTargets:[
+    outputTargets: [
         { type: 'dist' },
         { type: 'docs' },
         {
             type: 'www',
-            serviceWorker: null
-        }
+            serviceWorker: null,
+        },
     ],
     plugins: [
         inlineSvg(),
