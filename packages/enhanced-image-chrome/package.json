@@ -9,6 +9,7 @@
     ],
     "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
     "license": "MIT",
+    "private": true,
     "repository": {
         "type": "git",
         "url": "https://github.com/plurid/enhanced-image"
