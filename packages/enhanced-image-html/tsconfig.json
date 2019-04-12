@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
         "allowUnreachableCode": false,
         "declaration": false,
         "experimentalDecorators": true,
@@ -9,12 +8,15 @@
             "es2017"
         ],
         "moduleResolution": "node",
-        "module": "esnext",
+        "module": "commonjs",
         "target": "es2017",
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "jsx": "react",
         "jsxFactory": "h",
+        "types": [
+            "node"
+        ],
         "typeRoots": [
             "./node_modules/@types"
         ]
@@ -24,8 +26,8 @@
         "types/jsx.d.ts"
     ],
     "exclude": [
-        "node_modules",
-        "../../node_modules",
+        "node_modules/**",
+        "../../node_modules/**",
         "**/*.spec.ts"
     ]
 }
