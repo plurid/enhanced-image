@@ -1,6 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 
-import sha256 from 'crypto-js/sha256';
+// import * as crypto from 'crypto-js';
+import * as CryptoJS from 'crypto-js';
 
 import { SLIDER_DEFAULTS } from '../../utils/defaults';
 import { loadImage, dataURIToBlob } from '../../utils/image';
@@ -11,7 +12,7 @@ import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
 @Component({
     tag: 'enhanced-image-settings',
     styleUrl: 'enhanced-image-settings.css',
-    shadow: true
+    shadow: true,
 })
 export class EnhancedImageSettings {
     @Prop() element: any;
@@ -102,7 +103,7 @@ export class EnhancedImageSettings {
         context.drawImage(image, 0, 0, width, height);
         const imageData = context.getImageData(0, 0, width, height);
         const buffer = imageData.data;
-        const sha = sha256(arrayBufferToWordArray(buffer));
+        const sha = CryptoJS.SHA256(arrayBufferToWordArray(buffer));
         // console.log(sha.toString());
 
         const invertStr = this.colorsInverted ? 'I100' : 'I0';
@@ -136,7 +137,7 @@ export class EnhancedImageSettings {
             brightness(${this.brightnessSliderValue}%)
         `;
         context.drawImage(image, 0, 0, width, height);
-        const imageData = canvas.toDataURL("image/png");
+        const imageData = canvas.toDataURL('image/png');
         const blob = dataURIToBlob(imageData);
         download(blob, imageName);
     }
@@ -153,14 +154,14 @@ export class EnhancedImageSettings {
 
     toggleDefaults = () => {
         this.toggledDefaults = !this.toggledDefaults;
-        if(this.toggledDefaults) {
+        if (this.toggledDefaults) {
             this.previousValues = {
                 invert: this.colorsInverted,
                 contrast: this.contrastSliderValue,
                 hue: this.hueSliderValue,
                 saturation: this.saturationSliderValue,
                 brightness: this.brightnessSliderValue,
-            }
+            };
             this.resetToDefaults();
         } else {
             if (this.previousValues.invert) {
