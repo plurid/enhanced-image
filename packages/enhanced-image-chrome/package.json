@@ -33,7 +33,6 @@
         "eject": "react-scripts eject"
     },
     "dependencies": {
-        "enhanced-image-html": "^0.1.1",
         "react": "^16.8.4",
         "react-dom": "^16.8.4",
         "react-scripts-ts": "3.1.0"
