@@ -3,6 +3,7 @@ import { Component, Prop } from '@stencil/core';
 import { SLIDER_ITEM_DEFAULTS } from '../../utils/defaults';
 import { sliders } from '../../data/sliders';
 import addTextIcon from '../../assets/add-text-icon.svg';
+import generateIcon from '../../assets/generate-icon.svg';
 import fullscreenIcon from '../../assets/fullscreen-icon.svg';
 import saveIcon from '../../assets/save-icon.svg';
 import shareIcon from '../../assets/share-icon.svg';
@@ -50,13 +51,17 @@ export class EnhancedImageSettingsList {
     @Prop() noAbout: boolean;
 
 
+    generate = () => {
+        console.log('generate new image');
+    }
+
     download = (image: any, imageName: string) => {
         this.saveButton.href = URL.createObjectURL(image);
         this.saveButton.download = imageName;
     }
 
     aboutEnhancedImage = () => {
-        const aboutURL = "https://github.com/plurid/enhanced-image-html"
+        const aboutURL = "https://github.com/plurid/enhanced-image"
         window.open(aboutURL, '_blank');
     }
 
@@ -91,6 +96,16 @@ export class EnhancedImageSettingsList {
                     {this.textSelect && (
                         <hr class="enhanced-image-hr"/>
                     )}
+
+                    <li>
+                        <enhanced-image-button-item
+                            atClick={this.generate}
+                            icon={generateIcon}
+                            text={'Generate'}
+                        />
+                    </li>
+
+                    <hr class="enhanced-image-hr"/>
 
                     <li>
                         <enhanced-image-button-checkmark
