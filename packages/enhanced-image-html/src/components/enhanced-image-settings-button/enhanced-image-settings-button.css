@@ -10,3 +10,7 @@
     width: 30px;
     filter: drop-shadow(0px 0px 3px hsl(220, 2%, 20%));
 }
+
+.enhanced-image-settings-button svg .cls-1  {
+    fill: url(#enhanced-image-settings-button-gradient) #447799;
+}
