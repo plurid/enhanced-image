@@ -1,16 +1,10 @@
 import { Component, Prop, State } from '@stencil/core';
 
-// import * as CryptoJS from 'crypto-js';
-// const SHA256 = require('crypto-js/sha256');
-// import * as CryptoJS from 'crypto-js';
-import * as jsSHA from 'jssha';
+import sha256 from 'crypto-js/sha256';
 
 import { SLIDER_DEFAULTS } from '../../utils/defaults';
 import { loadImage, dataURIToBlob } from '../../utils/image';
-// import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
-
-// console.log(CryptoJS);
-// console.log(sha256('message'));
+import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
 
 
 
@@ -108,13 +102,7 @@ export class EnhancedImageSettings {
         context.drawImage(image, 0, 0, width, height);
         const imageData = context.getImageData(0, 0, width, height);
         const buffer = imageData.data;
-        // const sha = new jsSHA.default('SHA-256', buffer as any);
-        const sha = new jsSHA.default('SHA-256', 'ARRAYBUFFER');
-        sha.update(buffer);
-        console.log(sha.getHash('HEX'));
-
-        // const sha = CryptoJS.SHA256(arrayBufferToWordArray(buffer));
-        // console.log(CryptoJS);
+        const sha = sha256(arrayBufferToWordArray(buffer));
 
         const invertStr = this.colorsInverted ? 'I100' : 'I0';
         const contrastStr = 'C' + this.contrastSliderValue;
@@ -124,7 +112,7 @@ export class EnhancedImageSettings {
         const enhance = `${invertStr}-${contrastStr}-${hueStr}-${saturationStr}-${lightnessStr}`;
 
         const baseLink = 'https://depict.plurid.com/enhanced/';
-        const imageLink = sha.getHash('HEX') + '-' + enhance;
+        const imageLink = sha.toString() + '-' + enhance;
         const url = baseLink + imageLink;
         // console.log(url);
         window.open(url, '_blank');
