@@ -2594,11 +2594,6 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enhanced-image-html@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/enhanced-image-html/-/enhanced-image-html-0.1.1.tgz#36341b9b18a4f3632587d4e9ac19ef902febf66a"
-  integrity sha512-rIFq6N0ZGxiSutowKJ17GMYhRBqap4tVlbiBCSRbh9RDpMRn3hXgeM3td+7iD8t9tRyD5/U8x5Ep1S5evKa25g==
-
 enhanced-resolve@^3.0.0, enhanced-resolve@^3.4.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-3.4.1.tgz#0421e339fd71419b3da13d129b3979040230476e"
