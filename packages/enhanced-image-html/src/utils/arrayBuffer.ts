@@ -1,4 +1,4 @@
-// import * as CryptoJS from 'crypto-js';
+import CryptoJS from 'crypto-js';
 // const CryptoJS = require('crypto-js');
 // import CryptoJS from 'crypto-js';
 // const CryptoJS = require('crypto-js');
@@ -12,5 +12,5 @@ export const arrayBufferToWordArray = (ab: any) => {
       a.push(i8a[i] << 24 | i8a[i + 1] << 16 | i8a[i + 2] << 8 | i8a[i + 3]);
     }
 
-    // return CryptoJS.lib.WordArray.create(a);
+    return CryptoJS.lib.WordArray.create(a);
 };

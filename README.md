@@ -13,4 +13,3 @@
 </h1>
 
 HTML Image Element with Enhanced Abilities
-
