@@ -4,6 +4,7 @@ import { SLIDER_ITEM_DEFAULTS } from '../../utils/defaults';
 import { sliders } from '../../data/sliders';
 import addTextIcon from '../../assets/add-text-icon.svg';
 import generateIcon from '../../assets/generate-icon.svg';
+import transviewIcon from '../../assets/transview-icon.svg';
 import fullscreenIcon from '../../assets/fullscreen-icon.svg';
 import saveIcon from '../../assets/save-icon.svg';
 import shareIcon from '../../assets/share-icon.svg';
@@ -55,6 +56,10 @@ export class EnhancedImageSettingsList {
         console.log('generate new image');
     }
 
+    transview = () => {
+        console.log('transview');
+    }
+
     download = (image: any, imageName: string) => {
         this.saveButton.href = URL.createObjectURL(image);
         this.saveButton.download = imageName;
@@ -102,6 +107,14 @@ export class EnhancedImageSettingsList {
                             atClick={this.generate}
                             icon={generateIcon}
                             text={'Generate'}
+                        />
+                    </li>
+
+                    <li>
+                        <enhanced-image-button-item
+                            atClick={this.transview}
+                            icon={transviewIcon}
+                            text={'Transview'}
                         />
                     </li>
 
