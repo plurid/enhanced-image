@@ -32,6 +32,9 @@ module.exports = (api) => {
                 ],
             },
         },
-        ignore: ['node_modules'],
+        ignore: [
+            'node_modules',
+            '/dist/'
+        ],
     };
 };
