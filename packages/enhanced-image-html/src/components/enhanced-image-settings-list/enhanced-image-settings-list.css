@@ -1,3 +1,10 @@
+/* .enhanced-image-settings-list {
+    max-height: 500px;
+    overflow: auto;
+    border-radius: 10px;
+} */
+
+
 .enhanced-image-settings-list ul {
     display: flex;
     flex-direction: column;
