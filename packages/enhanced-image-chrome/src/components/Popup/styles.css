@@ -1,0 +1,64 @@
+.popup {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    user-select: none;
+    width: 200px;
+}
+
+.popup li {
+    margin: 15px;
+}
+
+.onOff {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 65% 35%;
+}
+
+.logged {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50% 50%;
+}
+
+.loggedUser {
+    overflow-wrap: break-word;
+}
+
+.username {
+    margin-top: 4px;
+}
+
+.onOffButtons {
+    text-align: right;
+}
+
+.onOffButton {
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.logoutButton {
+    text-align: right;
+}
+
+.available ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.available ul li {
+    margin: 5px;
+    margin-left: 0;
+}
+
+.button {
+    cursor: pointer;
+    color: hsl(220, 3%, 80%);
+}
+
+.button:hover {
+    color: white;
+}
