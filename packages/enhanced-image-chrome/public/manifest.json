@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Enhanced Image",
     "short_name" : "EnhImg",
-    "description": "Select text, generate similar images, translate image text, and alter the image colors.",
+    "description": "Select image text and translate it, generate similar images, colorize the image.",
     "author": "caveljan",
     "version": "0.0.1",
     "icons": {

@@ -5,6 +5,7 @@ import { sliders } from '../../data/sliders';
 import addTextIcon from '../../assets/add-text-icon.svg';
 import generateIcon from '../../assets/generate-icon.svg';
 import transviewIcon from '../../assets/transview-icon.svg';
+import colorizeIcon from '../../assets/colorize-icon.svg';
 import fullscreenIcon from '../../assets/fullscreen-icon.svg';
 import saveIcon from '../../assets/save-icon.svg';
 import shareIcon from '../../assets/share-icon.svg';
@@ -58,6 +59,10 @@ export class EnhancedImageSettingsList {
 
     transview = () => {
         console.log('transview');
+    }
+
+    colorize = () => {
+        console.log('colorize');
     }
 
     download = (image: any, imageName: string) => {
@@ -119,6 +124,14 @@ export class EnhancedImageSettingsList {
                     </li>
 
                     <hr class="enhanced-image-hr"/>
+
+                    <li>
+                        <enhanced-image-button-item
+                            atClick={this.colorize}
+                            icon={colorizeIcon}
+                            text={'Colorize'}
+                        />
+                    </li>
 
                     <li>
                         <enhanced-image-button-checkmark
