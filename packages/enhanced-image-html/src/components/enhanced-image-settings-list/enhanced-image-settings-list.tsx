@@ -104,6 +104,16 @@ export class EnhancedImageSettingsList {
                     )}
 
                     {this.textSelect && (
+                        <li>
+                            <enhanced-image-button-item
+                                atClick={this.transview}
+                                icon={transviewIcon}
+                                text={'Transview'}
+                            />
+                        </li>
+                    )}
+
+                    {this.textSelect && (
                         <hr class="enhanced-image-hr"/>
                     )}
 
@@ -114,16 +124,6 @@ export class EnhancedImageSettingsList {
                             text={'Generate'}
                         />
                     </li>
-
-                    <li>
-                        <enhanced-image-button-item
-                            atClick={this.transview}
-                            icon={transviewIcon}
-                            text={'Transview'}
-                        />
-                    </li>
-
-                    <hr class="enhanced-image-hr"/>
 
                     <li>
                         <enhanced-image-button-item
