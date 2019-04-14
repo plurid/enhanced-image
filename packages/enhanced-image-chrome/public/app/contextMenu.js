@@ -1,0 +1,13 @@
+const contextMenu = {
+    id: 'enhanced-image',
+    title: 'Enhanced Image',
+    contexts: ['image']
+}
+
+chrome.contextMenus.create(contextMenu);
+
+chrome.contextMenus.onClicked.addListener((clickData) => {
+    if (clickData.menuItemId === 'enhanced-image') {
+        window.open(clickData.srcUrl, '_blank');
+    }
+});

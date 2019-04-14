@@ -2,24 +2,31 @@
     "manifest_version": 2,
     "name": "Enhanced Image",
     "short_name" : "EnhImg",
-    "description": "Change colors. Select text. From images.",
+    "description": "Select text and alter colors from images.",
     "author": "caveljan",
-    "version": "0.0.3",
+    "version": "0.0.1",
     "icons": {
         "16": "./assets/logo-16.png",
         "48": "./assets/logo-48.png",
         "128": "./assets/logo-128.png"
     },
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "management",
+        "<all_urls>",
+        "contextMenus"
     ],
     "content_scripts": [{
         "matches": ["<all_urls>"],
         "js": [
-            "/app/contentscript.js"
+            "/app/contentScript.js"
         ],
         "run_at": "document_end"
     }],
+    "background": {
+        "scripts": ["/app/contextMenu.js"],
+        "persistent": false
+    },
     "web_accessible_resources": [
         "enhanced-image-html/dist/**.js"
     ],

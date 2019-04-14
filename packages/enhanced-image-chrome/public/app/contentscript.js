@@ -1,47 +1,70 @@
 console.log('content script loaded');
-// console.log(document.images);
 
-var script = document.createElement('script');
-script.src = chrome.extension.getURL('enhanced-image-html/dist/enhanced-image-html.js');  // eslint-disable-line no-undef
+
+
+const isImage = (location) => {
+    let imagePage = false;
+
+    const reFormats = /\.(png)|(jpe?g)|(gif)|(tif)|(svg)$/;
+    imagePage = reFormats.test(location);
+    if (imagePage) {
+        return true;
+    }
+
+    const reBase64 = /^data:image/;
+    imagePage = reBase64.test(location);
+    if (imagePage) {
+        return true;
+    }
+}
+
+const href = location.href;
+
+
+const script = document.createElement('script');
+script.src = chrome.extension.getURL('enhanced-image-html/dist/enhanced-image-html.js');
 document.body.appendChild(script);
 
 const imagesArr = Array.from(document.images);
 
-for (let i = 0; i < imagesArr.length; i++) {
-    const image = imagesArr[i];
-    if (image) {
-        if (image.width > 400) {
-            // console.log(image);
-            // console.log(image.width);
-            const enhancedImage = document.createElement('enhanced-image');
 
-            // console.log(image.src);
-            enhancedImage.setAttribute('src', image.src);
+if (isImage(href)) {
+    for (let i = 0; i < imagesArr.length; i++) {
+        const image = imagesArr[i];
+        if (image) {
+            // if (image.width > 400) {
+                // console.log(image);
+                // console.log(image.width);
+                const enhancedImage = document.createElement('enhanced-image');
 
-            if (image.alt) {
-                enhancedImage.setAttribute('alt', image.alt);
-            }
+                // console.log(image.src);
+                enhancedImage.setAttribute('src', image.src);
 
-            if (image.height) {
-                enhancedImage.setAttribute('height', image.height);
-            }
+                if (image.alt) {
+                    enhancedImage.setAttribute('alt', image.alt);
+                }
 
-            if (image.width) {
-                enhancedImage.setAttribute('width', image.width);
-            }
+                if (image.height) {
+                    enhancedImage.setAttribute('height', image.height);
+                }
 
-            if (image.classList) {
-                enhancedImage.setAttribute('classes', image.classList);
-            }
+                if (image.width) {
+                    enhancedImage.setAttribute('width', image.width);
+                }
 
-            enhancedImage.setAttribute('text-select', true);
-            enhancedImage.setAttribute('no-about', true);
-            enhancedImage.setAttribute('icon', 'textselect');
+                if (image.classList) {
+                    enhancedImage.setAttribute('classes', image.classList);
+                }
 
-            // enhancedImage.setAttribute('styling', "width: 500px;");
-            // console.log(enhancedImage);
+                enhancedImage.setAttribute('text-select', true);
+                enhancedImage.setAttribute('no-about', true);
+                enhancedImage.setAttribute('icon', 'textselect');
 
-            image.parentElement.replaceChild(enhancedImage, image);
+                // enhancedImage.setAttribute('styling', "width: 500px;");
+                // console.log(enhancedImage);
+
+                image.parentElement.replaceChild(enhancedImage, image);
+            // }
         }
     }
 }
