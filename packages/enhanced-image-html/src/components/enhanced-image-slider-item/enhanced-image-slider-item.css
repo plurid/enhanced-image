@@ -1,9 +1,14 @@
 .enhanced-image-slider-item-container {
     padding: 7px 10px;
+    padding-bottom: 0;
 }
 
 .enhanced-image-slider-container {
     width: 100%;
+    min-height: 20px;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
     margin-top: 3px;
     margin-bottom: 7px;
 }

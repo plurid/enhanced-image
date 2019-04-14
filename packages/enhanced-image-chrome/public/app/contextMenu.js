@@ -4,7 +4,9 @@ const contextMenu = {
     contexts: ['image']
 }
 
-chrome.contextMenus.create(contextMenu);
+chrome.runtime.onInstalled.addListener(function() {
+    chrome.contextMenus.create(contextMenu);
+});
 
 chrome.contextMenus.onClicked.addListener((clickData) => {
     if (clickData.menuItemId === 'enhanced-image') {
