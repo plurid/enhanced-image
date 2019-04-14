@@ -18,7 +18,6 @@
         "email": "feedback@plurid.com",
         "url": "https://github.com/plurid/enhanced-image/issues"
     },
-    "homepage": "https://github.com/plurid/enhanced-image/blob/master/packages/enhanced-image-chrome",
     "publishConfig": {
         "access": "public"
     },
@@ -38,6 +37,7 @@
         "react-scripts-ts": "3.1.0"
     },
     "devDependencies": {
+        "@types/chrome": "^0.0.82",
         "@types/jest": "^24.0.11",
         "@types/node": "^11.11.5",
         "@types/react": "^16.8.8",
