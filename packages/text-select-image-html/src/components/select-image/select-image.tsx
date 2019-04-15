@@ -7,28 +7,28 @@ import { ITextSelectImageData, ITextImage } from '../../interfaces/image-text';
 @Component({
     tag: 'select-image',
     styleUrl: 'select-image.css',
-    shadow: true
+    shadow: true,
 })
 export class SelectImage {
-    div!: HTMLDivElement;
+    private div!: HTMLDivElement;
 
-    @Prop() selectText: ITextSelectImageData;
-    @Prop() editable: boolean;
-    @Prop() imageWidth: number;
-    @Prop() imageHeight: number;
+    @Prop() private selectText: ITextSelectImageData;
+    @Prop() private editable: boolean;
+    @Prop() private imageWidth: number;
+    @Prop() private imageHeight: number;
 
-    @Prop() updateText: (id: string, text: ITextImage) => void;
-    @Prop() duplicateText: (id: string) => void;
-    @Prop() deleteText: (id: string) => void;
+    @Prop() private updateText: (id: string, text: ITextImage) => void;
+    @Prop() private duplicateText: (id: string) => void;
+    @Prop() private deleteText: (id: string) => void;
 
-    removeText = (id: string) => {
+    public removeText = (id: string) => {
         const el = this.div.querySelector(`text-image[text-id=${id}]`);
         this.div.removeChild(el);
         // console.log(el);
         this.deleteText(id);
     }
 
-    render() {
+    public render() {
         // console.log('select-image :: this.selectText', this.selectText);
         const { imageText } = this.selectText;
 
