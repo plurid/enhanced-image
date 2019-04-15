@@ -18,6 +18,7 @@ export interface ITextImage {
     content: string;
     link: boolean;
     linkTo: string;
+    viewable: boolean;
 }
 
 

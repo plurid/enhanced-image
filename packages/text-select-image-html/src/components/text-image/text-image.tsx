@@ -6,7 +6,8 @@ import { selectableFonts } from '../../data/fonts';
 
 
 
-const EDITOR_WIDTH = 758;
+// const EDITOR_WIDTH = 758;
+const EDITOR_WIDTH = 798;
 
 
 
@@ -57,6 +58,7 @@ export class TextImage {
     @State() textItalic: boolean = false;
     @State() textContent: string = '';
     @State() textChanged: boolean = false;
+    @State() textViewable: boolean = false;
 
     @State() editorXCoord: number = 0;
     @State() editorYCoord: number = 0;
@@ -80,8 +82,9 @@ export class TextImage {
         this.textLinkToValue = this.text.linkTo || this.textLinkToValue;
         this.textBold = this.text.bold || this.textBold;
         this.textItalic =  this.text.italic || this.textItalic;
+        this.textViewable = this.text.viewable || this.textViewable;
         // this.colorValue = this.text.color || this.colorValue;
-        if(this.editable) {
+        if (this.editable) {
             this.colorValue = this.text.color || 'black';
             this.colorValueStyle = this.colorValue;
         }
@@ -106,10 +109,12 @@ export class TextImage {
         }
 
         // Do not let editor to go to the left.
-        if (this.textImageSpan.offsetLeft < 17) {
+        if (this.textImageSpan.offsetLeft < 0) {
+            console.log(this.textImageSpan.offsetLeft);
             this.editorXCoord = this.textImageSpan.offsetLeft * -1;
         }
 
+        // Do not let editor to go to over the top.
         if (this.textImageSpan.offsetTop < 34) {
             this.editorYCoord = this.textImageSpan.offsetHeight;
         } else {
@@ -196,6 +201,10 @@ export class TextImage {
         }
     }
 
+    toggleTextViewable = () => {
+        this.textViewable = !this.textViewable;
+    }
+
     changeValue = (type: string, value: number | string) => {
         const typeValue = `${type}Value`;
         this[typeValue] = value;
@@ -222,6 +231,7 @@ export class TextImage {
             || text.color !== this.colorValue
             || text.bold !== this.textBold
             || text.italic !== this.textItalic
+            || text.viewable !== this.textViewable
             // || this.textChanged
         ) {
             return true;
@@ -240,6 +250,7 @@ export class TextImage {
                     ${this.editable ? 'text-image-span-editable' : '' }
                     ${this.draggable ? 'text-image-span-draggable' : '' }
                     ${this.dragging ? 'text-image-span-dragging' : '' }
+                    ${this.textViewable ? 'text-image-span-viewable' : '' }
                 `}
                 style={{
                     top: this.yCoord + 'px',
@@ -287,6 +298,8 @@ export class TextImage {
                             draggable={this.draggable}
                             toggleDraggable={this.toggleDraggable}
                             toggleEditor={this.toggleEditor}
+                            textViewable={this.textViewable}
+                            toggleTextViewable={this.toggleTextViewable}
 
                             textId={this.text.id}
                             fontSizeValue={this.fontSizeValue}

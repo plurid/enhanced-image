@@ -10,7 +10,7 @@ import { uuidv4 } from '../../utils/uuid';
 @Component({
     tag: 'text-select-image',
     styleUrl: 'text-select-image.css',
-    shadow: true
+    shadow: true,
 })
 export class TextSelectImage {
     image!: HTMLImageElement;
@@ -98,8 +98,8 @@ export class TextSelectImage {
 
     textselectimageEvent = () => {
         const updatedTextSelectImage = new CustomEvent(
-            "textselectimage",
-            { detail: this.selectText }
+            'textselectimage',
+            { detail: this.selectText },
         );
         document.dispatchEvent(updatedTextSelectImage);
     }
@@ -128,7 +128,7 @@ export class TextSelectImage {
     }
 
     deleteText = (id: string) => {
-        const selectText = { ...this.selectText }
+        const selectText = { ...this.selectText };
 
         const texts = selectText.imageText.filter((text: ITextImage) => {
             if (text.id === id) {
@@ -149,7 +149,7 @@ export class TextSelectImage {
     }
 
     addTextIntern = (): void => {
-        const selectText = { ...this.selectText }
+        const selectText = { ...this.selectText };
         // console.log(selectText);
 
         const text = {
@@ -174,7 +174,8 @@ export class TextSelectImage {
             content: 'New Text',
             link: false,
             linkTo: '',
-        }
+            viewable: false,
+        };
 
         selectText.imageText.push(text);
         this.selectText = { ...selectText };
@@ -185,13 +186,13 @@ export class TextSelectImage {
 
         return (
             <div
-                style={ {...this.styled} }
+                style={{...this.styled}}
                 class="text-select-image-container"
             >
                 <img
                     src={this.src}
                     alt={this.alt || ''}
-                    style={ { ...this.styleImage} }
+                    style={{ ...this.styleImage}}
                     ref={(imgEl) => this.image = imgEl as HTMLImageElement}
                 />
 

@@ -20,7 +20,8 @@
             "wordSpacing": 0,
             "content": "Text sample Arial",
             "link": true,
-            "linkTo": "https://plurid.com"
+            "linkTo": "https://plurid.com",
+            "viewable": false
         },
         {
             "id": "tsi-text-cfef2e11-4e65-40fe-980a-7136046a9fb0",
@@ -41,7 +42,8 @@
             "wordSpacing": 6,
             "content": "Text Sample Verdana",
             "link": false,
-            "linkTo": ""
+            "linkTo": "",
+            "viewable": false
         },
         {
             "id": "tsi-text-4f635939-c1ee-4bc2-9de3-f92f16e3c025",
@@ -62,7 +64,8 @@
             "wordSpacing": 1.5,
             "content": "Text Sample Georgia",
             "link": false,
-            "linkTo": ""
+            "linkTo": "",
+            "viewable": false
         }
     ]
 }

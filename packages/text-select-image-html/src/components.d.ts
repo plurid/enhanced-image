@@ -113,10 +113,12 @@ export namespace Components {
     'textItalic': boolean;
     'textLink': boolean;
     'textLinkToValue': string;
+    'textViewable': boolean;
     'toggleDraggable': () => void;
     'toggleEditor': () => void;
     'toggleElement': (element: string) => void;
     'toggleTextEditable': () => void;
+    'toggleTextViewable': () => void;
     'wordSpacingValue': number;
   }
   interface TextImageEditorAttributes extends StencilHTMLAttributes {
@@ -135,10 +137,12 @@ export namespace Components {
     'textItalic'?: boolean;
     'textLink'?: boolean;
     'textLinkToValue'?: string;
+    'textViewable'?: boolean;
     'toggleDraggable'?: () => void;
     'toggleEditor'?: () => void;
     'toggleElement'?: (element: string) => void;
     'toggleTextEditable'?: () => void;
+    'toggleTextViewable'?: () => void;
     'wordSpacingValue'?: number;
   }
 

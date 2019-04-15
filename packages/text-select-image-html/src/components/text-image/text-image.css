@@ -51,3 +51,7 @@
     -webkit-user-select: text;
     user-select: text;
 }
+
+.text-image-span-viewable {
+    color: red;
+}
