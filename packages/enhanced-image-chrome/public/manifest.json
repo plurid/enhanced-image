@@ -31,7 +31,7 @@
         "enhanced-image-html/dist/**.js"
     ],
     "options_ui": {
-        "page": "options.html",
+        "page": "index.html",
         "chrome_style": true
     },
     "browser_action": {
