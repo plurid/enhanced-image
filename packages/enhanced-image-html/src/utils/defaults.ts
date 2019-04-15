@@ -28,3 +28,8 @@ export const FULLSCREEN_STYLES = {
     width: '100%',
     zIndex: '999',
 };
+
+export const SETTINGS_OPACITY = {
+    default: 1,
+    active: 0.7,
+};

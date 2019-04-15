@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 
 import { SLIDER_ITEM_DEFAULTS } from '../../utils/defaults';
 import { sliders } from '../../data/sliders';
@@ -52,6 +52,7 @@ export class EnhancedImageSettingsList {
     @Prop() shareImage: any;
     @Prop() noAbout: boolean;
 
+    @State() settingsOpacity: number = 1;
 
     generate = () => {
         console.log('generate new image');
@@ -75,13 +76,20 @@ export class EnhancedImageSettingsList {
         window.open(aboutURL, '_blank');
     }
 
+    setSettingsOpacity = (value: number) => {
+        this.settingsOpacity = value;
+    }
+
 
     render() {
         return (
-            <div class={`
-                enhanced-image-settings-list
-                enhanced-image-settings-list-${this.location}
-            `}>
+            <div
+                class={`
+                    enhanced-image-settings-list
+                    enhanced-image-settings-list-${this.location}
+                `}
+                style= {{ opacity: this.settingsOpacity + '' }}
+            >
                 <ul>
                     {this.textSelect && (
                         <li>
@@ -154,6 +162,7 @@ export class EnhancedImageSettingsList {
                                     sliderValue={this[sliderValue]}
                                     handleSliderInput={this.handleSliderInput}
                                     setSlider={this.setSlider}
+                                    setSettingsOpacity={this.setSettingsOpacity}
                                 />
                             </li>
                         );

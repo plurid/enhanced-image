@@ -3,6 +3,7 @@ import { Component, Prop, State } from '@stencil/core';
 import {
     SLIDER_DEFAULTS,
     SLIDER_NAMES,
+    SETTINGS_OPACITY,
 } from '../../utils/defaults';
 
 
@@ -18,13 +19,19 @@ export class EnhancedImageSliderItem {
     @Prop() type: string;
     @Prop() min: number;
     @Prop() max: number;
-    @Prop() handleSliderInput: () => void;
+    @Prop() handleSliderInput: (event: any) => void;
     @Prop() setSlider: (name: string, value: number) => void;
+    @Prop() setSettingsOpacity: (value: number) => void;
 
     @State() hover: boolean = false;
 
     toggleHover = () => {
         this.hover = !this.hover;
+    }
+
+    _handleSliderInput = (event: any) =>{
+        this.handleSliderInput(event);
+        this.setSettingsOpacity(SETTINGS_OPACITY.active);
     }
 
     render() {
@@ -49,9 +56,10 @@ export class EnhancedImageSliderItem {
                         max={this.max}
                         name={type}
                         value={this.sliderValue}
-                        onInput={this.handleSliderInput}
+                        onInput={this._handleSliderInput}
                         onMouseEnter={this.toggleHover}
                         onMouseLeave={this.toggleHover}
+                        onMouseUp={this.setSettingsOpacity.bind(this, SETTINGS_OPACITY.default)}
                         onDblClick={this.setSlider.bind(this, type, SLIDER_DEFAULTS[type])}
                     />
                 </div>
