@@ -2,6 +2,8 @@ import { Component, Prop } from '@stencil/core';
 
 import selectTextIcon from '../../assets/select-text-icon.svg';
 import grabIcon from '../../assets/grab-icon.svg';
+import viewableIcon from '../../assets/viewable-icon.svg';
+import notViewableIcon from '../../assets/not-viewable-icon.svg';
 import fontSizeIcon from '../../assets/font-size-icon.svg';
 import linkIcon from '../../assets/link-icon.svg';
 import boldIcon from '../../assets/bold-icon.svg';
@@ -27,6 +29,9 @@ export class TextImageEditor {
 
     @Prop() textEditable: boolean;
     @Prop() toggleTextEditable: () => void;
+
+    @Prop() textViewable: boolean;
+    @Prop() toggleTextViewable: () => void;
 
     @Prop() toggleEditor: () => void;
 
@@ -70,6 +75,12 @@ export class TextImageEditor {
                     toggle={this.toggleDraggable}
                     toggled={this.draggable}
                     icon={grabIcon}
+                />
+
+                <text-image-editor-button-toggle
+                    toggle={this.toggleTextViewable}
+                    toggled={this.textViewable}
+                    icon={this.textViewable ? viewableIcon : notViewableIcon}
                 />
 
                 <span class="text-image-editor-vertical-divider">&nbsp;</span>
