@@ -1,8 +1,12 @@
 html, body {
     margin: 0;
-    background: linear-gradient(217deg, hsla(325, 70%, 45%, 1), rgba(255,0,0,0) 50.71%),
+    /* background: linear-gradient(217deg, hsla(325, 70%, 45%, 1), rgba(255,0,0,0) 50.71%),
                 linear-gradient(127deg, hsla(310, 50%, 45%, 0.8), hsl(285, 60%, 40%) 70.71%),
-                linear-gradient(336deg, hsla(285, 60%, 20%, 0.8),  hsl(325, 70%, 15%) 30.71%);
+                linear-gradient(336deg, hsla(285, 60%, 20%, 0.8),  hsl(325, 70%, 15%) 30.71%); */
+
+    background: linear-gradient(217deg, hsla(325, 70%, 45%, 1), hsla(0, 100%, 50%, 0) 60.71%),
+                linear-gradient(127deg, hsla(310, 50%, 45%, 1), hsl(285, 60%, 35%) 70.71%);
+
     /* background-color: hsl(220, 2%, 15%); */
     color: white;
 }
