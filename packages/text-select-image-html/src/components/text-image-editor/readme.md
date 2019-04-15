@@ -24,10 +24,12 @@
 | `textItalic`         | `text-italic`          |             | `boolean`                                         | `undefined` |
 | `textLink`           | `text-link`            |             | `boolean`                                         | `undefined` |
 | `textLinkToValue`    | `text-link-to-value`   |             | `string`                                          | `undefined` |
+| `textViewable`       | `text-viewable`        |             | `boolean`                                         | `undefined` |
 | `toggleDraggable`    | --                     |             | `() => void`                                      | `undefined` |
 | `toggleEditor`       | --                     |             | `() => void`                                      | `undefined` |
 | `toggleElement`      | --                     |             | `(element: string) => void`                       | `undefined` |
 | `toggleTextEditable` | --                     |             | `() => void`                                      | `undefined` |
+| `toggleTextViewable` | --                     |             | `() => void`                                      | `undefined` |
 | `wordSpacingValue`   | `word-spacing-value`   |             | `number`                                          | `undefined` |
 
 
