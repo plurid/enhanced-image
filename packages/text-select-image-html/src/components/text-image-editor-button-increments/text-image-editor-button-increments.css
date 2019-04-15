@@ -63,6 +63,10 @@
     margin: 0;
 }
 
+.text-image-editor-button input[type=number] {
+    -moz-appearance:textfield;
+}
+
 .text-image-editor-button-increments-unit {
     font-size: 12px;
 }

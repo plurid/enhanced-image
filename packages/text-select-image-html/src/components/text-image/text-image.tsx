@@ -6,7 +6,6 @@ import { selectableFonts } from '../../data/fonts';
 
 
 
-// const EDITOR_WIDTH = 758;
 const EDITOR_WIDTH = 798;
 
 
@@ -14,60 +13,60 @@ const EDITOR_WIDTH = 798;
 @Component({
     tag: 'text-image',
     styleUrl: 'text-image.css',
-    shadow: true
+    shadow: true,
 })
 export class TextImage {
-    @Element() element: HTMLElement;
-    textImageSpan!: HTMLSpanElement;
-    textImageSpanContent!: HTMLSpanElement;
+    @Element() private element: HTMLElement;
+    private textImageSpan!: HTMLSpanElement;
+    private textImageSpanContent!: HTMLSpanElement;
 
-    @Prop({ reflectToAttr: true }) textId: string;
-    @Prop() imageText: ITextImage[];
-    @Prop() textImage: ITextImage;
-    @Prop() editable: boolean;
-    @Prop() imageWidth: number;
-    @Prop() imageHeight: number;
+    @Prop({ reflectToAttr: true }) private textId: string;
+    @Prop() private imageText: ITextImage[];
+    @Prop() private textImage: ITextImage;
+    @Prop() private editable: boolean;
+    @Prop() private imageWidth: number;
+    @Prop() private imageHeight: number;
 
-    @Prop() updateText: (id: string, text: ITextImage) => void;
-    @Prop() duplicateText: (id: string) => void;
-    @Prop() removeText: (id: string) => void;
+    @Prop() private updateText: (id: string, text: ITextImage) => void;
+    @Prop() private duplicateText: (id: string) => void;
+    @Prop() private removeText: (id: string) => void;
 
-    @State() xCoord: number = 20;
-    @State() yCoord: number = 20;
+    @State() private xCoord: number = 20;
+    @State() private yCoord: number = 20;
 
-    @State() textEditable: boolean = false;
-    @State() draggable: boolean = false;
-    @State() dragging: boolean = false;
-    @State() showEditor: boolean = false;
-    @State() pos1: number = 0;
-    @State() pos2: number = 0;
-    @State() pos3: number = 0;
-    @State() pos4: number = 0;
+    @State() private textEditable: boolean = false;
+    @State() private draggable: boolean = false;
+    @State() private dragging: boolean = false;
+    @State() private showEditor: boolean = false;
+    @State() private pos1: number = 0;
+    @State() private pos2: number = 0;
+    @State() private pos3: number = 0;
+    @State() private pos4: number = 0;
 
     private text: ITextImage;
 
-    @State() fontSizeValue: number = 12;
-    @State() letterSpacingValue: number = 0;
-    @State() wordSpacingValue: number = 0;
-    @State() fontFamilyValue: string = 'Arial';
-    @State() colorValue: string = '';
-    @State() colorValueStyle: string = '';
-    @State() textLink: boolean = false;
-    @State() textLinkToValue: string = '';
-    @State() textBold: boolean = false;
-    @State() textItalic: boolean = false;
-    @State() textContent: string = '';
-    @State() textChanged: boolean = false;
-    @State() textViewable: boolean = false;
+    @State() private fontSizeValue: number = 12;
+    @State() private letterSpacingValue: number = 0;
+    @State() private wordSpacingValue: number = 0;
+    @State() private fontFamilyValue: string = 'Arial';
+    @State() private colorValue: string = '';
+    @State() private colorValueStyle: string = '';
+    @State() private textLink: boolean = false;
+    @State() private textLinkToValue: string = '';
+    @State() private textBold: boolean = false;
+    @State() private textItalic: boolean = false;
+    @State() private textContent: string = '';
+    @State() private textChanged: boolean = false;
+    @State() private textViewable: boolean = false;
 
-    @State() editorXCoord: number = 0;
-    @State() editorYCoord: number = 0;
+    @State() private editorXCoord: number = 0;
+    @State() private editorYCoord: number = 0;
 
-    componentWillLoad() {
+    public componentWillLoad() {
         this.text = this.textImage;
     }
 
-    componentDidLoad() {
+    public componentDidLoad() {
         // this.textContent = 'this.textImageSpanContent.innerText;';
         // this.textContent = this.textImageSpanContent.innerText;
 
@@ -90,8 +89,7 @@ export class TextImage {
         }
     }
 
-
-    componentWillUpdate() {
+    public componentWillUpdate() {
         if (this.draggable) {
             // console.log('aa', this.textImageSpanContent);
             this.textImageSpanContent.onmousedown = this.dragMouseDown;
@@ -109,8 +107,7 @@ export class TextImage {
         }
 
         // Do not let editor to go to the left.
-        if (this.textImageSpan.offsetLeft < 0) {
-            console.log(this.textImageSpan.offsetLeft);
+        if (this.textImageSpan.offsetLeft < 17) {
             this.editorXCoord = this.textImageSpan.offsetLeft * -1;
         }
 
@@ -144,7 +141,7 @@ export class TextImage {
         }
     }
 
-    dragMouseDown = (e: any) => {
+    public dragMouseDown = (e: any) => {
         this.dragging = true;
 
         e = e || window.event;
@@ -158,7 +155,7 @@ export class TextImage {
         document.onmousemove = this.elementDrag;
     }
 
-    elementDrag = (e: any) => {
+    public elementDrag = (e: any) => {
         e.preventDefault();
 
         // calculate the new cursor position:
@@ -171,21 +168,21 @@ export class TextImage {
         this.yCoord = this.textImageSpan.offsetTop - this.pos2;
     }
 
-    closeDragElement = () => {
+    public closeDragElement = () => {
         /* stop moving when mouse button is released:*/
         document.onmouseup = null;
         document.onmousemove = null;
     }
 
-    mouseUp = () => {
+    public mouseUp = () => {
         this.dragging = false;
     }
 
-    toggleEditor = () => {
+    public toggleEditor = () => {
         this.editable ? this.showEditor = !this.showEditor : null;
     }
 
-    toggleDraggable = () => {
+    public toggleDraggable = () => {
         this.draggable = !this.draggable;
 
         if (this.textEditable) {
@@ -193,7 +190,7 @@ export class TextImage {
         }
     }
 
-    toggleTextEditable = () => {
+    public toggleTextEditable = () => {
         this.textEditable = !this.textEditable;
 
         if (this.draggable) {
@@ -201,25 +198,25 @@ export class TextImage {
         }
     }
 
-    toggleTextViewable = () => {
+    public toggleTextViewable = () => {
         this.textViewable = !this.textViewable;
     }
 
-    changeValue = (type: string, value: number | string) => {
+    public changeValue = (type: string, value: number | string) => {
         const typeValue = `${type}Value`;
         this[typeValue] = value;
     }
 
-    toggleElement = (element: string) => {
+    public toggleElement = (element: string) => {
         this[element] = !this[element];
     }
 
-    updateTextContent = () => {
+    public updateTextContent = () => {
         this.textContent = this.textImageSpanContent.innerText;
         this.textChanged = true;
     }
 
-    recordChanged = () => {
+    public recordChanged = () => {
         const text = this.text;
         if (
             text.xCoord !== this.xCoord
@@ -239,9 +236,9 @@ export class TextImage {
         return false;
     }
 
-    render() {
+    public render() {
         const text = this.text;
-        console.log('text-image :: text', this.textId, this.text);
+        // console.log('text-image :: text', this.textId, this.text);
 
         return (
             <span
