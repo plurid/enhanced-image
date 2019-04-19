@@ -5,7 +5,7 @@ console.log('content script loaded');
 const isImage = (location) => {
     let imagePage = false;
 
-    const reFormats = /\.(png)|(jpe?g)|(gif)|(tif)|(svg)$/;
+    const reFormats = /(\.png)|(\.jpe?g)|(\.gif)|(\.tif)|(\.svg)$/;
     imagePage = reFormats.test(location);
     if (imagePage) {
         return true;
@@ -20,15 +20,13 @@ const isImage = (location) => {
 
 const href = location.href;
 
-
-const script = document.createElement('script');
-script.src = chrome.extension.getURL('enhanced-image-html/dist/enhanced-image-html.js');
-document.body.appendChild(script);
-
-const imagesArr = Array.from(document.images);
-
-
 if (isImage(href)) {
+    const script = document.createElement('script');
+    script.src = chrome.extension.getURL('enhanced-image-html/dist/enhanced-image-html.js');
+    document.body.appendChild(script);
+
+    const imagesArr = Array.from(document.images);
+
     for (let i = 0; i < imagesArr.length; i++) {
         const image = imagesArr[i];
         if (image) {
