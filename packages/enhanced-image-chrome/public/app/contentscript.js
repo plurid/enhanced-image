@@ -5,7 +5,7 @@ console.log('content script loaded');
 const isImage = (location) => {
     let imagePage = false;
 
-    const reFormats = /(\.png)|(\.jpe?g)|(\.gif)|(\.tif)|(\.svg)$/;
+    const reFormats = /(\.png)|(\.jpe?g)|(\.gif)|(\.tif)|(\.svg)|(\.webp)$/;
     imagePage = reFormats.test(location);
     if (imagePage) {
         return true;
