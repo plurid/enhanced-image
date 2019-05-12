@@ -66,12 +66,16 @@ class Popup extends React.Component {
 
                     {!this.state.loggedIn && (
                         <>
-                            <div style={ {textAlign: 'left'}}>
+                            <div
+                                style={ {textAlign: 'left'} }
+                            >
                                 <span className="button">
                                     Login
                                 </span>
                             </div>
-                            <div style={ {textAlign: 'right'}}>
+                            <div
+                                style={ {textAlign: 'right'} }
+                            >
                                 <span className="button">
                                     Create Account
                                 </span>

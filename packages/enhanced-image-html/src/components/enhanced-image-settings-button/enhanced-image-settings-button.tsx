@@ -29,7 +29,7 @@ export class EnhancedImageSettings {
                 class="enhanced-image-settings-button"
                 innerHTML={innerHTMLIcon}
             >
-                <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+                <svg style={{width:0, height: 0, position: 'absolute' }} aria-hidden="true" focusable="false">
                     <linearGradient id="enhanced-image-settings-button-gradient" x1="0" y1="0" x2="1" y2="1">
                         <stop offset="0%" stop-color="hsl(310, 50%, 45%)" />
                         <stop offset="40%" stop-color="hsl(325, 70%, 35%)" />
