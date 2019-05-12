@@ -10,7 +10,6 @@ class App extends React.Component {
 
         return (
             <div>
-                {/* Enhanced Image */}
                 <Popup />
             </div>
         );
