@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { StateShareImage } from './';
+import TextSelectImage from './';
+
+
 
 it('renders without crashing', () => {
-    shallow(<StateShareImage />);
+    shallow(<TextSelectImage />);
 });
