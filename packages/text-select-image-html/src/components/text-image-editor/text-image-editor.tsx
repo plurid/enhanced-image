@@ -18,51 +18,41 @@ import deleteIcon from '../../assets/delete-icon.svg';
 @Component({
     tag: 'text-image-editor',
     styleUrl: 'text-image-editor.css',
-    shadow: true
+    shadow: true,
 })
 export class TextImageEditor {
-    @Prop() draggable: boolean;
-    @Prop() toggleDraggable: () => void;
+    @Prop() private draggable: boolean;
+    @Prop() private toggleDraggable: () => void;
 
-    @Prop() duplicateText: (id: string) => void;
-    @Prop() removeText: (id: string) => void;
+    @Prop() private duplicateText: (id: string) => void;
+    @Prop() private removeText: (id: string) => void;
 
-    @Prop() textEditable: boolean;
-    @Prop() toggleTextEditable: () => void;
+    @Prop() private textEditable: boolean;
+    @Prop() private toggleTextEditable: () => void;
 
-    @Prop() textViewable: boolean;
-    @Prop() toggleTextViewable: () => void;
+    @Prop() private textViewable: boolean;
+    @Prop() private toggleTextViewable: () => void;
 
-    @Prop() toggleEditor: () => void;
+    @Prop() private toggleEditor: () => void;
 
-    @Prop() textId: string;
+    @Prop() private textId: string;
 
-    @Prop() fontSizeValue: number;
-    @Prop() letterSpacingValue: number;
-    @Prop() wordSpacingValue: number;
-    @Prop() fontFamilyValue: string;
-    @Prop() colorValue: string;
-    @Prop() textLink: boolean;
-    @Prop() textLinkToValue: string;
-    @Prop() textBold: boolean;
-    @Prop() textItalic: boolean;
+    @Prop() private fontSizeValue: number;
+    @Prop() private letterSpacingValue: number;
+    @Prop() private wordSpacingValue: number;
+    @Prop() private fontFamilyValue: string;
+    @Prop() private colorValue: string;
+    @Prop() private textLink: boolean;
+    @Prop() private textLinkToValue: string;
+    @Prop() private textBold: boolean;
+    @Prop() private textItalic: boolean;
 
-    @Prop() selectableFonts: string[];
+    @Prop() private selectableFonts: string[];
 
-    @Prop() changeValue: (type: string, value: number | string) => void;
-    @Prop() toggleElement: (element: string) => void;
+    @Prop() private changeValue: (type: string, value: number | string) => void;
+    @Prop() private toggleElement: (element: string) => void;
 
-    duplicate = () => {
-        // console.log('Duplicate', this.textId);
-        this.duplicateText(this.textId);
-    }
-
-    remove = () => {
-        // console.log('Remove text with id:', this.textId);
-        this.removeText(this.textId);
-    }
-
-    render() {
+    public render() {
         return (
             <span class="text-image-editor">
                 <text-image-editor-button-toggle
@@ -86,15 +76,15 @@ export class TextImageEditor {
                 <span class="text-image-editor-vertical-divider">&nbsp;</span>
 
                 <text-image-editor-button-increments
-                    type='fontSize'
+                    type="fontSize"
                     changeValue={this.changeValue}
                     value={this.fontSizeValue}
                     icon={fontSizeIcon}
                 />
 
                 <text-image-editor-button-dropdown
-                    type='fontFamily'
-                    alterStyle='fontFamily'
+                    type="fontFamily"
+                    alterStyle="fontFamily"
                     selected={this.fontFamilyValue}
                     selectables={this.selectableFonts}
                     changeSelected={this.changeValue}
@@ -123,7 +113,7 @@ export class TextImageEditor {
                 />
 
                 <text-image-editor-button-increments
-                    type='letterSpacing'
+                    type="letterSpacing"
                     changeValue={this.changeValue}
                     value={this.letterSpacingValue}
                     icon={letterSpacingIcon}
@@ -135,7 +125,7 @@ export class TextImageEditor {
                 </span> */}
 
                 <text-image-editor-button-increments
-                    type='wordSpacing'
+                    type="wordSpacing"
                     changeValue={this.changeValue}
                     value={this.wordSpacingValue}
                     icon={wordSpacingIcon}
@@ -189,5 +179,15 @@ export class TextImageEditor {
                 </span>
             </span>
         );
+    }
+
+    private duplicate = () => {
+        // console.log('Duplicate', this.textId);
+        this.duplicateText(this.textId);
+    }
+
+    private remove = () => {
+        // console.log('Remove text with id:', this.textId);
+        this.removeText(this.textId);
     }
 }

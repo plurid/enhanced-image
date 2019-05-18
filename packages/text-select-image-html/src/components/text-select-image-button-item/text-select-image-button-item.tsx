@@ -5,14 +5,14 @@ import { Component, Prop } from '@stencil/core';
 @Component({
     tag: 'text-select-image-button-item',
     styleUrl: 'text-select-image-button-item.css',
-    shadow: true
+    shadow: true,
 })
 export class TextSelectImageButtonItem {
-    @Prop() atClick: (event: MouseEvent) => void;
-    @Prop() icon: string;
-    @Prop() text: string;
+    @Prop() private atClick: (event: MouseEvent) => void;
+    @Prop() private icon: string;
+    @Prop() private text: string;
 
-    render() {
+    public render() {
         return (
             <div class="text-select-image-button-item" onClick={this.atClick}>
                 <span

@@ -5,19 +5,19 @@ import { Component, Prop } from '@stencil/core';
 @Component({
     tag: 'text-image-editor-button-toggle',
     styleUrl: 'text-image-editor-button-toggle.css',
-    shadow: true
+    shadow: true,
 })
 export class TextImageEditorButtonToggle {
-    @Prop() toggled: boolean;
-    @Prop() toggle: () => void;
-    @Prop() icon: string;
+    @Prop() private toggled: boolean;
+    @Prop() private toggle: () => void;
+    @Prop() private icon: string;
 
-    render() {
+    public render() {
         return (
             <span
                 class={`
                     text-image-editor-button
-                    ${this.toggled ? 'text-image-editor-button-icon-active': ''}
+                    ${this.toggled ? 'text-image-editor-button-icon-active' : ''}
                 `}
                 onClick={this.toggle}
             >

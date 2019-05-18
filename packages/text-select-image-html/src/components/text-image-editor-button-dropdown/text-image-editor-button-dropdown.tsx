@@ -4,60 +4,25 @@ import { Component, Prop, State } from '@stencil/core';
 @Component({
     tag: 'text-image-editor-button-dropdown',
     styleUrl: 'text-image-editor-button-dropdown.css',
-    shadow: true
+    shadow: true,
 })
 export class TextImageEditorButtonDropdown {
-    @Prop() type: string;
-    @Prop() alterStyle: string;
-    @Prop() selectables: string[];
-    @Prop() selected: string;
-    @Prop() changeSelected: (type: string, value: string) => void;
+    @Prop() private type: string;
+    @Prop() private alterStyle: string;
+    @Prop() private selectables: string[];
+    @Prop() private selected: string;
+    @Prop() private changeSelected: (type: string, value: string) => void;
 
-    @Prop() toggleEditor: () => void;
+    @Prop() private toggleEditor: () => void;
 
-    @State() toggledDropdown: boolean = false;
-    @State() filtered: string[];
+    @State() private toggledDropdown: boolean = false;
+    @State() private filtered: string[];
 
-    componentWillLoad() {
+    public componentWillLoad() {
         this.filtered = this.selectables;
     }
 
-    toggleDropdown = () => {
-        this.toggledDropdown = !this.toggledDropdown;
-    }
-
-    select = (selected: string) => {
-        this.changeSelected(this.type, selected);
-    }
-
-    clickSelect = (selected: string) => {
-        this.toggleDropdown();
-        this.toggleEditor();
-        this.select(selected);
-    }
-
-    onInput = (e: any) => {
-        const value = e.target.value;
-        this.select(value);
-        this.filter(value);
-    }
-
-    filter = (value: string) => {
-        if (value) {
-            const filtered = this.selectables.filter(selectable => {
-                if (selectable.toLowerCase().startsWith(value.toLowerCase())) {
-                    return selectable;
-                }
-            });
-            this.filtered = filtered;
-        }
-
-        if (value === '') {
-            this.filtered = this.selectables;
-        }
-    }
-
-    render() {
+    public render() {
         return (
             <span class="text-image-editor-dropdown">
                 <span class="text-image-editor-dropdown-selected">
@@ -72,9 +37,10 @@ export class TextImageEditorButtonDropdown {
                 {this.toggledDropdown && (
                     <span class="text-image-editor-dropdown-list">
                         <ul>
-                            {this.filtered.map(select => {
+                            {this.filtered.map((select, index) => {
                                 return (
                                     <li
+                                        key={index}
                                         style={{ [this.alterStyle]: select }}
                                         onClick={this.clickSelect.bind(this, select)}
                                         onMouseEnter={this.select.bind(this, select)}
@@ -88,5 +54,41 @@ export class TextImageEditorButtonDropdown {
                 )}
             </span>
         );
+    }
+
+
+    private toggleDropdown = () => {
+        this.toggledDropdown = !this.toggledDropdown;
+    }
+
+    private select = (selected: string) => {
+        this.changeSelected(this.type, selected);
+    }
+
+    private clickSelect = (selected: string) => {
+        this.toggleDropdown();
+        this.toggleEditor();
+        this.select(selected);
+    }
+
+    private onInput = (e: any) => {
+        const value = e.target.value;
+        this.select(value);
+        this.filter(value);
+    }
+
+    private filter = (value: string) => {
+        if (value) {
+            const filtered = this.selectables.filter(selectable => {
+                if (selectable.toLowerCase().startsWith(value.toLowerCase())) {
+                    return selectable;
+                }
+            });
+            this.filtered = filtered;
+        }
+
+        if (value === '') {
+            this.filtered = this.selectables;
+        }
     }
 }

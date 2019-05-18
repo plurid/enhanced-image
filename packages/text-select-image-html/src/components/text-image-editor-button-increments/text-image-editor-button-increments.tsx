@@ -3,37 +3,30 @@ import { Component, Prop, State } from '@stencil/core';
 
 
 const STEP = 1;
+const UP_ARROW = (<span>&#x25b2;</span>);
+const DOWN_ARROW = (<span>&#x25bc;</span>);
 
 
 @Component({
     tag: 'text-image-editor-button-increments',
     styleUrl: 'text-image-editor-button-increments.css',
-    shadow: true
+    shadow: true,
 })
 export class TextImageEditorButtonIncrements {
-    @Prop() type: string;
-    @Prop() changeValue: (type: string, value: number) => void;
-    @Prop() value: number;
-    @Prop() icon: string;
-    @Prop() unit: string;
-    @Prop() step: number;
+    @Prop() private type: string;
+    @Prop() private changeValue: (type: string, value: number) => void;
+    @Prop() private value: number;
+    @Prop() private icon: string;
+    @Prop() private unit: string;
+    @Prop() private step: number;
 
-    @State() stepValue: number;
+    @State() private stepValue: number;
 
-    componentWillLoad() {
+    public componentWillLoad() {
         this.stepValue = this.step || STEP;
     }
 
-    inputChange = (e: any) => {
-        const value = e.target.value;
-        this.changeValue(this.type, value);
-    }
-
-    round = (val: number) => {
-        return Math.round(val * 100) / 100
-    }
-
-    render() {
+    public render() {
         return (
             <span class="text-image-editor-button">
                 <span
@@ -45,13 +38,13 @@ export class TextImageEditorButtonIncrements {
                         class="text-image-editor-button-increment-button text-image-editor-button-increment-up"
                         onClick={this.changeValue.bind(this, this.type, this.round(this.value + this.stepValue))}
                     >
-                        &#x25b2; { /* up arrow */ }
+                        {UP_ARROW}
                     </span>
                     <span
                         class="text-image-editor-button-increment-button text-image-editor-button-increment-down"
                         onClick={this.changeValue.bind(this, this.type, this.round(this.value - this.stepValue))}
                     >
-                        &#x25bc; { /* down arrow */ }
+                        {DOWN_ARROW}
                     </span>
                 </span>
 
@@ -68,5 +61,15 @@ export class TextImageEditorButtonIncrements {
             </span>
 
         );
+    }
+
+
+    private inputChange = (e: any) => {
+        const value = e.target.value;
+        this.changeValue(this.type, value);
+    }
+
+    private round = (val: number) => {
+        return Math.round(val * 100) / 100;
     }
 }
