@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
+import TextSelectImage from './components/TextSelectImage';
 
 
 
-export default class StateShareImage extends Component {}
+export default TextSelectImage;

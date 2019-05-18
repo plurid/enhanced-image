@@ -1,0 +1,17 @@
+export const selectableFonts = [
+    'serif',
+    'sans-serif',
+    'monospace',
+    'cursive',
+    'Arial', 'Arial Black',
+    'Bookman', 'Book Antiqua',
+    'Charcoal', 'Comic Sans MS', 'Courier', 'Courier New',
+    'Garamond', 'Gadget', 'Geneva', 'Georgia',
+    'Helvetica',
+    'Impact',
+    'Lucida Console', 'Lucida Grande', 'Lucida Sans Unicode',
+    'Monaco',
+    'Tahoma', 'Times', 'Times New Roman', 'Trebuchet MS',
+    'Palatino', 'Palatino Linotype',
+    'Verdana',
+];
