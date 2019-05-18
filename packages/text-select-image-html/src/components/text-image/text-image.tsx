@@ -100,11 +100,9 @@ export class TextImage {
         }
 
         // Do not let editor to go to the right.
-        if (this.textImageSpan.offsetLeft + EDITOR_WIDTH > this.imageWidth) {
-            this.editorXCoord = -1 * (this.textImageSpan.offsetLeft + EDITOR_WIDTH - this.imageWidth);
-        } else {
-            this.editorXCoord = -17;
-        }
+        this.editorXCoord = this.textImageSpan.offsetLeft + EDITOR_WIDTH > this.imageWidth
+            ? -1 * (this.textImageSpan.offsetLeft + EDITOR_WIDTH - this.imageWidth)
+            : -17;
 
         // Do not let editor to go to the left.
         if (this.textImageSpan.offsetLeft < 17) {
@@ -112,17 +110,11 @@ export class TextImage {
         }
 
         // Do not let editor to go to over the top.
-        if (this.textImageSpan.offsetTop < 34) {
-            this.editorYCoord = this.textImageSpan.offsetHeight;
-        } else {
-            this.editorYCoord = -34;
-        }
+        this.editorYCoord = this.textImageSpan.offsetTop < 34
+            ? this.textImageSpan.offsetHeight
+            : -34;
 
-        if (!this.editable) {
-            this.colorValueStyle = '';
-        } else {
-            this.colorValueStyle = this.colorValue;
-        }
+        this.colorValueStyle = !this.editable ? '' : this.colorValue;
 
         if (this.recordChanged()) {
             const record = { ...this.text };
@@ -139,101 +131,6 @@ export class TextImage {
 
             this.updateText(this.text.id, record);
         }
-    }
-
-    public dragMouseDown = (e: any) => {
-        this.dragging = true;
-
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        this.pos3 = e.clientX;
-        this.pos4 = e.clientY;
-
-        document.onmouseup = this.closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = this.elementDrag;
-    }
-
-    public elementDrag = (e: any) => {
-        e.preventDefault();
-
-        // calculate the new cursor position:
-        this.pos1 = this.pos3 - e.clientX;
-        this.pos2 = this.pos4 - e.clientY;
-        this.pos3 = e.clientX;
-        this.pos4 = e.clientY;
-
-        this.xCoord = this.textImageSpan.offsetLeft - this.pos1;
-        this.yCoord = this.textImageSpan.offsetTop - this.pos2;
-    }
-
-    public closeDragElement = () => {
-        /* stop moving when mouse button is released:*/
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-
-    public mouseUp = () => {
-        this.dragging = false;
-    }
-
-    public toggleEditor = () => {
-        this.editable ? this.showEditor = !this.showEditor : null;
-    }
-
-    public toggleDraggable = () => {
-        this.draggable = !this.draggable;
-
-        if (this.textEditable) {
-            this.textEditable = false;
-        }
-    }
-
-    public toggleTextEditable = () => {
-        this.textEditable = !this.textEditable;
-
-        if (this.draggable) {
-            this.draggable = false;
-        }
-    }
-
-    public toggleTextViewable = () => {
-        this.textViewable = !this.textViewable;
-    }
-
-    public changeValue = (type: string, value: number | string) => {
-        const typeValue = `${type}Value`;
-        this[typeValue] = value;
-    }
-
-    public toggleElement = (element: string) => {
-        this[element] = !this[element];
-    }
-
-    public updateTextContent = () => {
-        this.textContent = this.textImageSpanContent.innerText;
-        this.textChanged = true;
-    }
-
-    public recordChanged = () => {
-        const text = this.text;
-        if (
-            text.xCoord !== this.xCoord
-            || text.yCoord !== this.yCoord
-            || text.fontSize !== this.fontSizeValue
-            || text.letterSpacing !== this.letterSpacingValue
-            || text.wordSpacing !== this.wordSpacingValue
-            || text.fontFamily !== this.fontFamilyValue
-            || text.color !== this.colorValue
-            || text.bold !== this.textBold
-            || text.italic !== this.textItalic
-            || text.viewable !== this.textViewable
-            // || this.textChanged
-        ) {
-            return true;
-        }
-        return false;
     }
 
     public render() {
@@ -321,5 +218,103 @@ export class TextImage {
                 )}
             </span>
         );
+    }
+
+
+    private dragMouseDown = (e: any) => {
+        this.dragging = true;
+
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        this.pos3 = e.clientX;
+        this.pos4 = e.clientY;
+
+        document.onmouseup = this.closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = this.elementDrag;
+    }
+
+    private elementDrag = (e: any) => {
+        e.preventDefault();
+
+        // calculate the new cursor position:
+        this.pos1 = this.pos3 - e.clientX;
+        this.pos2 = this.pos4 - e.clientY;
+        this.pos3 = e.clientX;
+        this.pos4 = e.clientY;
+
+        this.xCoord = this.textImageSpan.offsetLeft - this.pos1;
+        this.yCoord = this.textImageSpan.offsetTop - this.pos2;
+    }
+
+    private closeDragElement = () => {
+        /* stop moving when mouse button is released:*/
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+
+    private mouseUp = () => {
+        this.dragging = false;
+    }
+
+    private toggleEditor = () => {
+        if (this.editable) {
+            this.showEditor = !this.showEditor;
+        }
+    }
+
+    private toggleDraggable = () => {
+        this.draggable = !this.draggable;
+
+        if (this.textEditable) {
+            this.textEditable = false;
+        }
+    }
+
+    private toggleTextEditable = () => {
+        this.textEditable = !this.textEditable;
+
+        if (this.draggable) {
+            this.draggable = false;
+        }
+    }
+
+    private toggleTextViewable = () => {
+        this.textViewable = !this.textViewable;
+    }
+
+    private changeValue = (type: string, value: number | string) => {
+        const typeValue = `${type}Value`;
+        this[typeValue] = value;
+    }
+
+    private toggleElement = (element: string) => {
+        this[element] = !this[element];
+    }
+
+    private updateTextContent = () => {
+        this.textContent = this.textImageSpanContent.innerText;
+        this.textChanged = true;
+    }
+
+    private recordChanged = () => {
+        const text = this.text;
+        if (
+            text.xCoord !== this.xCoord
+            || text.yCoord !== this.yCoord
+            || text.fontSize !== this.fontSizeValue
+            || text.letterSpacing !== this.letterSpacingValue
+            || text.wordSpacing !== this.wordSpacingValue
+            || text.fontFamily !== this.fontFamilyValue
+            || text.color !== this.colorValue
+            || text.bold !== this.textBold
+            || text.italic !== this.textItalic
+            || text.viewable !== this.textViewable
+            // || this.textChanged
+        ) {
+            return true;
+        }
+        return false;
     }
 }

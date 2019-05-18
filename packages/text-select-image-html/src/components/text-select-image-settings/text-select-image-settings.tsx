@@ -7,18 +7,18 @@ import settingsIcon from '../../assets/settings-icon.svg';
 @Component({
     tag: 'text-select-image-settings',
     styleUrl: 'text-select-image-settings.css',
-    shadow: true
+    shadow: true,
 })
 export class TextSelectImageSettings {
-    @Prop() toggledSettings: boolean;
-    @Prop() toggleSettings: () => void;
+    @Prop() private toggledSettings: boolean;
+    @Prop() private toggleSettings: () => void;
 
-    @Prop() editable: boolean;
-    @Prop() toggleEditable: () => void;
+    @Prop() private editable: boolean;
+    @Prop() private toggleEditable: () => void;
 
-    @Prop() addText: () => void;
+    @Prop() private addText: () => void;
 
-    render() {
+    public render() {
         return (
             <div class="text-select-image-settings-container">
                 <div

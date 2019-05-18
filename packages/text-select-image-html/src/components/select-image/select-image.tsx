@@ -21,13 +21,6 @@ export class SelectImage {
     @Prop() private duplicateText: (id: string) => void;
     @Prop() private deleteText: (id: string) => void;
 
-    public removeText = (id: string) => {
-        const el = this.div.querySelector(`text-image[text-id=${id}]`);
-        this.div.removeChild(el);
-        // console.log(el);
-        this.deleteText(id);
-    }
-
     public render() {
         // console.log('select-image :: this.selectText', this.selectText);
         const { imageText } = this.selectText;
@@ -58,5 +51,11 @@ export class SelectImage {
                 })}
             </div>
         );
+    }
+
+    private removeText = (id: string) => {
+        const el = this.div.querySelector(`text-image[text-id=${id}]`);
+        this.div.removeChild(el);
+        this.deleteText(id);
     }
 }

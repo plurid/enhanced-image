@@ -7,17 +7,17 @@ import goToLinkIcon from '../../assets/gotolink-icon.svg';
 @Component({
     tag: 'text-image-editor-button-input',
     styleUrl: 'text-image-editor-button-input.css',
-    shadow: true
+    shadow: true,
 })
 export class TextImageEditorButtonInput {
-    @Prop() toggled: boolean;
-    @Prop() toggle: () => void;
-    @Prop() icon: string;
-    @Prop() value: string;
-    @Prop() valueType: string;
-    @Prop() changeValue: (type: string, value: number | string) => void;
+    @Prop() private toggled: boolean;
+    @Prop() private toggle: () => void;
+    @Prop() private icon: string;
+    @Prop() private value: string;
+    @Prop() private valueType: string;
+    @Prop() private changeValue: (type: string, value: number | string) => void;
 
-    render() {
+    public render() {
         return (
             <span class="text-image-editor-button-input">
                 <text-image-editor-button-toggle
@@ -32,18 +32,20 @@ export class TextImageEditorButtonInput {
                             <input
                                 type="text"
                                 value={this.value}
-                                onInput={(event: any) => {
-                                    this.changeValue(this.valueType, event.target.value);
-                                }}
+                                onInput={this.handleInput}
                             />
                             <a href={this.value} target="_blank">
-                                <span class="text-image-editor-button-input-gotolink" innerHTML={goToLinkIcon}>
-                                </span>
+                                <span class="text-image-editor-button-input-gotolink" innerHTML={goToLinkIcon} />
                             </a>
                         </span>
                     )
                 }
             </span>
         );
+    }
+
+
+    private handleInput = (event: any) => {
+        this.changeValue(this.valueType, event.target.value);
     }
 }
