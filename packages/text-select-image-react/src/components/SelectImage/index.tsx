@@ -23,7 +23,7 @@ class SelectImage extends Component<any, any> {
                 return (
                     <TextImage
                         key={text.id}
-                        textImage={text}
+                        text={text}
                     />
                 );
             });

@@ -11,6 +11,8 @@ export interface IContext {
     theme: any;
     toggleSettings: () => void;
     toggledSettings: boolean;
+    toggleEditable: () => void,
+    toggledEditable: boolean,
     selectText: any;
 }
 

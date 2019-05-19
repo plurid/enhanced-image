@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import settingsIcon from '../../assets/settings-icon.svg';
+import SettingsIcon from '../../assets/settings-icon';
 
 import {
     StyledTextSelectImageSettings,
@@ -31,7 +31,7 @@ class TextSelectImageSettings extends Component<any, any> {
                             <StyledTextSelectImageSettingsButton
                                 onClick={toggleSettings}
                             >
-                                <img src={settingsIcon} height={30} />
+                                {SettingsIcon}
                             </StyledTextSelectImageSettingsButton>
 
                             {toggledSettings && (
