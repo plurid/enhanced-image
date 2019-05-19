@@ -40,7 +40,7 @@
         "build": "yarn clean && yarn test && yarn lint && yarn build.rollup",
         "build.rollup": "rollup -c",
         "build.clean": "yarn clean && yarn build.rollup",
-        "start": "rollup -c -w"
+        "start": "yarn clean && rollup -c -w"
     },
     "peerDependencies": {
         "prop-types": ">=15",

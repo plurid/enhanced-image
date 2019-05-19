@@ -24,6 +24,7 @@ export const StyledTextSelectImageSettingsMenu = styled.div`
         border-radius: 10px;
         padding: 0;
         font-size: 13px;
+        z-index: 9999;
     }
 
     ul li {
