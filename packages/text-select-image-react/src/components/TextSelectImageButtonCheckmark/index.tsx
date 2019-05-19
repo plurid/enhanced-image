@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
     StyledTextSelectImageButtonCheckmark,
+    StyledTextSelectImageButtonCheckmarkCheckbox,
 } from './styled';
 
 
@@ -19,27 +20,23 @@ class TextSelectImageButtonCheckmark extends Component<
 > {
     public render() {
         const {
-            checked,
             text,
             toggle,
+            checked,
             theme,
         } = this.props;
 
         return (
             <StyledTextSelectImageButtonCheckmark
                 onClick={toggle}
-                theme={theme}
             >
-                <span>
+                <div>
                     {text}
-                </span>
+                </div>
 
-                <span
-                    className={
-                        checked
-                            ? 'enhanced-image-button-checkbox enhanced-image-button-checkbox-fill'
-                            : 'enhanced-image-button-checkbox'
-                    }
+                <StyledTextSelectImageButtonCheckmarkCheckbox
+                    theme={theme}
+                    isChecked={checked}
                 />
             </StyledTextSelectImageButtonCheckmark>
         );

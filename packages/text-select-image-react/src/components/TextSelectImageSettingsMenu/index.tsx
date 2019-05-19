@@ -18,18 +18,18 @@ import TextSelectImageButtonItem from '../TextSelectImageButtonItem';
 
 class TextSelectImageSettingsMenu extends Component<any, any> {
     public render() {
-        const {
-            editable,
-            toggleEditable,
-        } = this.props;
+        // const {
+        //     editable,
+        //     toggleEditable,
+        // } = this.props;
 
         return (
             <Context.Consumer>
                 {context => {
                     const {
                         theme,
-                        // editable,
-                        // toggleEditable,
+                        toggleEditable,
+                        toggledEditable,
                     } = context;
 
                     return (
@@ -41,7 +41,7 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
                                     <TextSelectImageButtonCheckmark
                                         toggle={toggleEditable}
                                         text="Edit"
-                                        checked={editable}
+                                        checked={toggledEditable}
                                         theme={theme}
                                     />
                                 </li>
@@ -73,13 +73,14 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
     }
 
     private add = () => {
-        const {
-            toggleMenu,
-            addText,
-        } = this.props;
+        console.log('add');
+        // const {
+        //     toggleMenu,
+        //     addText,
+        // } = this.props;
 
-        toggleMenu();
-        addText();
+        // toggleMenu();
+        // addText();
     }
 
     private about = () => {
