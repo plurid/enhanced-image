@@ -18,27 +18,28 @@ export default {
             file: pkg.main,
             format: 'cjs',
             exports: 'named',
-            sourcemap: true
+            sourcemap: false,
         },
         {
             file: pkg.module,
             format: 'es',
             exports: 'named',
-            sourcemap: true
-        }
+            sourcemap: false,
+        },
     ],
     plugins: [
         external(),
         postcss({
-            modules: true
+            modules: true,
         }),
         url(),
         svgr(),
         resolve(),
         typescript({
+            check: false,
             rollupCommonJSResolveHack: true,
-            clean: true
+            clean: true,
         }),
-        commonjs()
-    ]
+        commonjs(),
+    ],
 }
