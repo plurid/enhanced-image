@@ -2,15 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextImageEditorButtonToggle: any = styled.div`
-    background-color: ${(props: any) => {
-        if (props.toggled) {
-            return props.theme.backgroundColorHover;
-        } else {
-            return 'transparent';
-        }
-    }};
-
+export const StyledTextImageEditorButtonClick: any = styled.div`
     cursor: pointer;
     display: grid;
     place-content: center;
