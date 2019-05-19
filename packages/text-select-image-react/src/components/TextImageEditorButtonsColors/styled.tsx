@@ -16,7 +16,7 @@ export const StyledTextImageEditorButtonColors: any = styled.div`
         }
         switch (props.color) {
             case 'black':
-                return props.theme.backgroundColorHover;
+                return 'black'
             case 'red':
                 return 'red';
             case 'white':
@@ -28,18 +28,6 @@ export const StyledTextImageEditorButtonColors: any = styled.div`
     height: 14px;
     width: 14px;
     border-radius: 10px;
-    border: 1px solid ${(props: any) => {
-        return props.theme.colorSecondary;
-        // switch (props.color) {
-        //     case 'black':
-        //         return 'white';
-        //     case 'red':
-        //         return 'white';
-        //     case 'white':
-        //         return 'black';
-        //     default:
-        //         return 'black';
-        // }
-    }};;
+    border: 1px solid ${(props: any) => props.theme.colorSecondary};
     cursor: pointer;
 `;

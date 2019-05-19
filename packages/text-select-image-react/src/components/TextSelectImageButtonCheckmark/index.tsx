@@ -8,9 +8,9 @@ import {
 
 
 interface ITextSelectImageButtonCheckmarkProps {
-    checked: boolean;
+    checked: boolean | undefined;
     text: string;
-    toggle: (event: any) => void;
+    toggle: () => void | undefined;
     theme: any;
 }
 
