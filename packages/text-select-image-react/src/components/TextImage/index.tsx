@@ -1,84 +1,86 @@
 import React, { Component } from 'react';
 
-import { ITextImage } from '../../interfaces/image-text';
+import { StyledTextImage } from './styled';
 
-import { selectableFonts } from '../../data/fonts';
+import Context from '../../context';
 
-import { EDITOR_WIDTH } from '../../data/constants';
+// import { ITextImage } from '../../interfaces/image-text';
 
 import TextImageEditor from '../TextImageEditor';
 
 
 
-interface ITextImageProps {
-    textImage: ITextImage;
-}
+// interface ITextImageProps {
+//     textImage: ITextImage;
+// }
 
-
-interface ITextImageState {
-    text: ITextImage;
-    xCoord: number;
-    yCoord: number;
-    textEditable: boolean;
-    draggable: boolean;
-    dragging: boolean;
-    showEditor: boolean;
-    pos1: number;
-    pos2: number;
-    pos3: number;
-    pos4: number;
-    fontSizeValue: number;
-    letterSpacingValue: number;
-    wordSpacingValue: number;
-    fontFamilyValue: string;
-    colorValue: string;
-    colorValueStyle: string;
-    textLink: boolean;
-    textLinkToValue: string;
-    textBold: boolean;
-    textItalic: boolean;
-    textContent: string;
-    textChanged: boolean;
-    textViewable: boolean;
-    editorXCoord: number;
-    editorYCoord: number;
-}
+// interface ITextImageState {
+//     text: ITextImage;
+//     xCoord: number;
+//     yCoord: number;
+//     textEditable: boolean;
+//     draggable: boolean;
+//     dragging: boolean;
+//     showEditor: boolean;
+//     pos1: number;
+//     pos2: number;
+//     pos3: number;
+//     pos4: number;
+//     fontSizeValue: number;
+//     letterSpacingValue: number;
+//     wordSpacingValue: number;
+//     fontFamilyValue: string;
+//     colorValue: string;
+//     colorValueStyle: string;
+//     textLink: boolean;
+//     textLinkToValue: string;
+//     textBold: boolean;
+//     textItalic: boolean;
+//     textContent: string;
+//     textChanged: boolean;
+//     textViewable: boolean;
+//     editorXCoord: number;
+//     editorYCoord: number;
+// }
 
 
 class TextImage extends Component<
     any, any
     // ITextImageProps, ITextImageState
 > {
-    // state = {
-    //     text: this.props.textImage,
-    //     xCoord: 0,
-    //     yCoord: 0,
-    //     textEditable: false,
-    //     draggable: false,
-    //     dragging: false,
-    //     showEditor: false,
-    //     pos1: 0,
-    //     pos2: 0,
-    //     pos3: 0,
-    //     pos4: 0,
-    //     fontSizeValue: 0,
-    //     letterSpacingValue: 0,
-    //     wordSpacingValue: 0,
-    //     fontFamilyValue: '',
-    //     colorValue: '',
-    //     colorValueStyle: '',
-    //     textLink: false,
-    //     textLinkToValue: '',
-    //     textBold: false,
-    //     textItalic: false,
-    //     textContent: '',
-    //     textChanged: false,
-    //     textViewable: false,
-    //     editorXCoord: 0,
-    //     editorYCoord: 0,
-    // };
+    static contextType = Context;
 
+    state = {
+        text: this.props.text,
+        textLink: this.props.text.textLink,
+        textLinkToValue: this.props.text.textLinkToValue,
+        showEditor: false,
+        // xCoord: 0,
+        // yCoord: 0,
+        // textEditable: false,
+        // draggable: false,
+        // dragging: false,
+        // pos1: 0,
+        // pos2: 0,
+        // pos3: 0,
+        // pos4: 0,
+        // fontSizeValue: 0,
+        // letterSpacingValue: 0,
+        // wordSpacingValue: 0,
+        // fontFamilyValue: '',
+        // colorValue: '',
+        // colorValueStyle: '',
 
+        // textBold: false,
+        // textItalic: false,
+        // textContent: '',
+        // textChanged: false,
+        // textViewable: false,
+        // editorXCoord: 0,
+        // editorYCoord: 0,
+        // toggleEditor: false,
+        // editable: false,
+    };
 
     public componentDidLoad() {
         // const {
@@ -153,9 +155,85 @@ class TextImage extends Component<
     }
 
     public render() {
+        const {
+            textLink,
+            textLinkToValue,
+            text,
+            showEditor,
+
+            // editable,
+            // draggable,
+            // dragging,
+            // textViewable,
+            // yCoord,
+            // xCoord,
+            // colorValueStyle,
+            // fontFamilyValue,
+            // fontSizeValue,
+            // textBold,
+            // textItalic,
+            // letterSpacingValue,
+            // wordSpacingValue,
+        } = this.state;
+
+        const {
+            toggledEditable,
+        } = this.context;
+
+        // console.log(text);
+
+        const textContent = textLink
+            ? (<a href={textLinkToValue} target="_blank">
+                {text.content}
+            </a>)
+            : (
+                (<div>
+                    {text.content}
+                </div>)
+            );
+
         return (
             <div>
-                TextImage
+               <StyledTextImage
+                    editMode={toggledEditable}
+
+                    // className={`
+                    //     text-image-span
+                    //     ${editable ? 'text-image-span-editable' : '' }
+                    //     ${draggable ? 'text-image-span-draggable' : '' }
+                    //     ${dragging ? 'text-image-span-dragging' : '' }
+                    //     ${textViewable ? 'text-image-span-viewable' : '' }
+                    // `}
+                    // style={{
+                    //     top: yCoord + 'px',
+                    //     left: xCoord + 'px',
+                    //     color: colorValueStyle,
+                    //     fontFamily: fontFamilyValue,
+                    //     fontSize: fontSizeValue + 'px',
+                    //     fontWeight: textBold ? 'bold' : 'normal',
+                    //     fontStyle: textItalic ? 'italic' : 'normal',
+                    //     letterSpacing: letterSpacingValue + 'px',
+                    //     // lineHeight: text.lineHeight + '',
+                    //     wordSpacing: wordSpacingValue + 'px',
+                    // }}
+                    onMouseEnter={this.showEditor}
+                    onMouseLeave={this.showEditor}
+                >
+                    <div
+                        // className="text-image-span-content"
+                        // contentEditable={textEditable}
+                        // onKeyUp={updateTextContent}
+                    >
+                        {textContent}
+                    </div>
+
+                    {/* {showEditor && (
+                        <TextImageEditor />
+                    )} */}
+                    <TextImageEditor
+                        toggleElement={this.toggleElement}
+                    />
+                </StyledTextImage>
             </div>
         );
     }
@@ -286,15 +364,15 @@ class TextImage extends Component<
     //     });
     // }
 
-    // private toggleEditor = () => {
-    //     const { editable } = this.props;
+    private showEditor = () => {
+        const { toggledEditable } = this.context;
 
-    //     if (editable) {
-    //         this.setState((prevState: any) => ({
-    //             showEditor: !prevState.showEditor,
-    //         }));
-    //     }
-    // }
+        if (toggledEditable) {
+            this.setState((prevState: any) => ({
+                showEditor: !prevState.showEditor,
+            }));
+        }
+    }
 
     // private toggleDraggable = () => {
     //     this.setState((prevState: any) => ({
@@ -335,9 +413,9 @@ class TextImage extends Component<
     //     this[typeValue] = value;
     // }
 
-    // private toggleElement = (element: string) => {
-    //     this[element] = !this[element];
-    // }
+    private toggleElement = (element: string) => {
+        // this[element] = !this[element];
+    }
 
     // private updateTextContent = () => {
     //     this.textContent = this.textImageSpanContent.innerText;
