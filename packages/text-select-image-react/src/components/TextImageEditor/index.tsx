@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-import { StyledTextImageEditor } from './styled';
+import {
+    StyledTextImageEditor,
+    StyledTextImageEditorVerticalDivider,
+} from './styled';
 
 import Context from '../../context';
 
@@ -8,6 +11,8 @@ import TextImageEditorButtonDropdown from '../TextImageEditorButtonDropdown';
 import TextImageEditorButtonIncrements from '../TextImageEditorButtonIncrements';
 import TextImageEditorButtonInput from '../TextImageEditorButtonInput';
 import TextImageEditorButtonToggle from '../TextImageEditorButtonToggle';
+import TextImageEditorButtonsColors from '../TextImageEditorButtonsColors';
+import TextImageEditorButtonClick from '../TextImageEditorButtonClick';
 
 import { selectableFonts } from '../../data/fonts';
 
@@ -82,7 +87,11 @@ class TextImageEditor extends Component<any, any> {
                     icon={textViewable ? ViewableIcon : NotViewableIcon}
                 />
 
-                <span className="text-image-editor-vertical-divider">&nbsp;</span>
+                <StyledTextImageEditorVerticalDivider
+                    theme={theme}
+                >
+                    &nbsp;
+                </StyledTextImageEditorVerticalDivider>
 
                 <TextImageEditorButtonIncrements
                     theme={theme}
@@ -143,54 +152,28 @@ class TextImageEditor extends Component<any, any> {
                     step={0.1}
                 />
 
-                {/* <span className="text-image-editor-button-colors">
-                    <span
-                        className={`
-                            text-image-editor-button-color text-image-editor-button-color-black
-                            ${this.colorValue === 'black' ? 'text-image-editor-button-color-active' : ''}
-                        `}
-                        onClick={this.changeValue.bind(this, 'color', 'black')}
-                    />
-                    <span
-                        className={`
-                            text-image-editor-button-color text-image-editor-button-color-red
-                            ${this.colorValue === 'red' ? 'text-image-editor-button-color-active' : ''}
-                        `}
-                        onClick={this.changeValue.bind(this, 'color', 'red')}
-                    />
-                    <span
-                        className={`
-                            text-image-editor-button-color text-image-editor-button-color-white
-                            ${this.colorValue === 'white' ? 'text-image-editor-button-color-active' : ''}
-                        `}
-                        onClick={this.changeValue.bind(this, 'color', 'white')}
-                    />
-                </span>
+                <TextImageEditorButtonsColors
+                    changeValue={changeValue}
+                />
 
-                <span className="text-image-editor-vertical-divider">&nbsp;</span>
-                */}
-
-                <span
-                    className="text-image-editor-button"
-                    onClick={this.duplicate}
+                <StyledTextImageEditorVerticalDivider
+                    theme={theme}
                 >
-                    <span
-                        className="text-image-editor-button-icon"
-                    >
-                        {DuplicateIcon}
-                    </span>
-                </span>
+                    &nbsp;
+                </StyledTextImageEditorVerticalDivider>
 
-                <span
-                    className="text-image-editor-button"
-                    onClick={this.remove}
-                >
-                    <span
-                        className="text-image-editor-button-icon"
-                    >
-                        {DeleteIcon}
-                    </span>
-                </span>
+
+                <TextImageEditorButtonClick
+                    theme={theme}
+                    atClick={this.duplicate}
+                    icon={DuplicateIcon}
+                />
+
+                <TextImageEditorButtonClick
+                    theme={theme}
+                    atClick={this.remove}
+                    icon={DeleteIcon}
+                />
             </StyledTextImageEditor>
         );
     }

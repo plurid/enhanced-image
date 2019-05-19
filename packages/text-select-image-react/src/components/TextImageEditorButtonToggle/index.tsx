@@ -11,6 +11,7 @@ interface TextImageEditorButtonToggleProps {
     toggle: () => void;
 }
 
+
 class TextImageEditorButtonToggle extends Component<
     TextImageEditorButtonToggleProps, any
 > {
@@ -25,17 +26,10 @@ class TextImageEditorButtonToggle extends Component<
         return (
             <StyledTextImageEditorButtonToggle
                 theme={theme}
-                className={`
-                    text-image-editor-button
-                    ${toggled ? 'text-image-editor-button-icon-active' : ''}
-                `}
+                toggled={toggled}
                 onClick={toggle}
             >
-                <span
-                    className="text-image-editor-button-icon"
-                >
-                    {icon}
-                </span>
+                {icon}
             </StyledTextImageEditorButtonToggle>
         );
     }

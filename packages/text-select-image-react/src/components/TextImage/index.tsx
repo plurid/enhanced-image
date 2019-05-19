@@ -55,8 +55,8 @@ class TextImage extends Component<
         textLink: this.props.text.textLink,
         textLinkToValue: this.props.text.textLinkToValue,
         showEditor: false,
-        // xCoord: 0,
-        // yCoord: 0,
+        xCoord: this.props.text.xCoord,
+        yCoord: this.props.text.yCoord,
         // textEditable: false,
         // draggable: false,
         // dragging: false,
@@ -161,12 +161,12 @@ class TextImage extends Component<
             text,
             showEditor,
 
+            yCoord,
+            xCoord,
             // editable,
             // draggable,
             // dragging,
             // textViewable,
-            // yCoord,
-            // xCoord,
             // colorValueStyle,
             // fontFamilyValue,
             // fontSizeValue,
@@ -216,6 +216,12 @@ class TextImage extends Component<
                     //     // lineHeight: text.lineHeight + '',
                     //     wordSpacing: wordSpacingValue + 'px',
                     // }}
+
+                    style={{
+                        top: yCoord + 'px',
+                        left: xCoord + 'px',
+                    }}
+
                     onMouseEnter={this.showEditor}
                     onMouseLeave={this.showEditor}
                 >
@@ -228,10 +234,13 @@ class TextImage extends Component<
                     </div>
 
                     {/* {showEditor && (
-                        <TextImageEditor />
+                        <TextImageEditor
+                            toggleElement={this.toggleElement}
+                        />
                     )} */}
                     <TextImageEditor
                         toggleElement={this.toggleElement}
+                        changeValue={this.changeValue}
                     />
                 </StyledTextImage>
             </div>
@@ -408,10 +417,10 @@ class TextImage extends Component<
     //     }));
     // }
 
-    // private changeValue = (type: string, value: number | string) => {
-    //     const typeValue = `${type}Value`;
-    //     this[typeValue] = value;
-    // }
+    private changeValue = (type: string, value: number | string) => {
+        const typeValue = `${type}Value`;
+        this[typeValue] = value;
+    }
 
     private toggleElement = (element: string) => {
         // this[element] = !this[element];

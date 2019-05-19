@@ -24,7 +24,7 @@ export const StyledTextImageEditor = styled.div`
     justify-content: center;
     border-radius: 17px;
     height: 34px;
-    width: 764px;
+    /* width: 764px; */
     letter-spacing: 0;
     word-spacing: 0;
     font-weight: normal;
@@ -35,4 +35,11 @@ export const StyledTextImageEditor = styled.div`
     padding-right: 17px;
     box-shadow: 0px 0px 5px 1px hsla(220, 2%, 10%, 0.9);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+`;
+
+
+export const StyledTextImageEditorVerticalDivider = styled.div`
+    background-color: ${props => props.theme.colorSecondary};
+    width: 1px;
+    height: 100%;
 `;
