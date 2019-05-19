@@ -1,0 +1,34 @@
+const themes = {
+    night: {
+        backgroundColor: 'hsl(220, 2%, 4%)',
+        backgroundColorHover: 'hsla(220, 2%, 44%, 0.3)',
+        color: 'hsl(220, 2%, 87%)',
+    },
+    dusk: {
+        backgroundColor: 'hsl(220, 2%, 15%)',
+        backgroundColorHover: 'hsla(220, 2%, 55%, 0.3)',
+        color: 'hsl(220, 2%, 93%)',
+    },
+    dawn: {
+        backgroundColor: 'hsl(220, 2%, 70%)',
+        backgroundColorHover: 'hsla(220, 2%, 40%, 0.3)',
+        color: 'hsl(220, 2%, 17%)',
+    },
+    light: {
+        backgroundColor: 'hsl(220, 2%, 97%)',
+        backgroundColorHover: 'hsla(220, 2%, 55%, 0.3)',
+        color: 'hsl(220, 2%, 10%)',
+    },
+    gradient: {
+        backgroundColor: 'hsl(325, 70%, 45%)',
+        backgroundGradient: `
+            linear-gradient(217deg, hsla(325, 70%, 45%, 1), hsla(0, 100%, 50%, 0) 60.71%),
+            linear-gradient(127deg, hsla(310, 50%, 45%, 1), hsl(285, 60%, 35%) 70.71%)
+        `,
+        backgroundColorHover: 'hsla(290, 30%, 25%, 0.3)',
+        color: 'hsl(220, 2%, 95%)',
+    },
+};
+
+
+export default themes;

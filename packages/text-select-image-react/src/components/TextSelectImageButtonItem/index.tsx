@@ -1,14 +1,45 @@
 import React, { Component } from 'react';
 
+import {
+    StyledTextSelectImageButtonItem,
+    StyledTextSelectImageButtonItemIcon,
+} from './styled';
 
 
-class TextSelectImageButtonItem extends Component<any, any> {
 
+interface ITextSelectImageButtonItemProps {
+    icon: JSX.Element;
+    text: string;
+    atClick: (event: any) => void;
+    theme: any;
+}
+
+
+class TextSelectImageButtonItem extends Component<
+    ITextSelectImageButtonItemProps, any
+> {
     public render() {
+        const {
+            icon,
+            text,
+            atClick,
+            theme,
+        } = this.props;
+
         return (
-            <div>
-                TextSelectImageButtonItem
-            </div>
+            <StyledTextSelectImageButtonItem
+                onClick={atClick}
+            >
+                <StyledTextSelectImageButtonItemIcon
+                    theme={theme}
+                >
+                    {icon}
+                </StyledTextSelectImageButtonItemIcon>
+
+                <div>
+                    {text}
+                </div>
+            </StyledTextSelectImageButtonItem>
         );
     }
 }

@@ -15,15 +15,6 @@ html, body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
 }
 
-html {
-    overflow: hidden;
-}
-
-
 .app {
     text-align: center;
-}
-
-.app img {
-    margin: 150px auto;
 }

@@ -1,14 +1,47 @@
 import React, { Component } from 'react';
 
+import {
+    StyledTextSelectImageButtonCheckmark,
+} from './styled';
 
 
-class TextSelectImageButtonCheckmark extends Component<any, any> {
 
+interface ITextSelectImageButtonCheckmarkProps {
+    checked: boolean;
+    text: string;
+    toggle: (event: any) => void;
+    theme: any;
+}
+
+
+class TextSelectImageButtonCheckmark extends Component<
+    ITextSelectImageButtonCheckmarkProps, any
+> {
     public render() {
+        const {
+            checked,
+            text,
+            toggle,
+            theme,
+        } = this.props;
+
         return (
-            <div>
-                TextSelectImageButtonCheckmark
-            </div>
+            <StyledTextSelectImageButtonCheckmark
+                onClick={toggle}
+                theme={theme}
+            >
+                <span>
+                    {text}
+                </span>
+
+                <span
+                    className={
+                        checked
+                            ? 'enhanced-image-button-checkbox enhanced-image-button-checkbox-fill'
+                            : 'enhanced-image-button-checkbox'
+                    }
+                />
+            </StyledTextSelectImageButtonCheckmark>
         );
     }
 }
