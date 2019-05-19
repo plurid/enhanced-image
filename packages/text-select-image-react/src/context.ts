@@ -20,6 +20,8 @@ const initialContext = {
     controls: false,
     toggleSettings: () => {},
     toggledSettings: false,
+    toggleEditable: () => {},
+    toggledEditable: false,
 }
 
 

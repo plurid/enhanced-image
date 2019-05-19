@@ -41,6 +41,8 @@ class TextSelectImage extends Component<
         this.state = {
             toggleSettings: this.toggleSettings,
             toggledSettings: false,
+            toggleEditable: this.toggleEditable,
+            toggledEditable: false,
         }
     }
 
@@ -98,6 +100,12 @@ class TextSelectImage extends Component<
     private toggleSettings = () => {
         this.setState((prevState: any) => ({
             toggledSettings: !prevState.toggledSettings,
+        }));
+    }
+
+    private toggleEditable = () => {
+        this.setState((prevState: any) => ({
+            toggledEditable: !prevState.toggledEditable,
         }));
     }
 }
