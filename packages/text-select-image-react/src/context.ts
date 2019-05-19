@@ -11,6 +11,7 @@ export interface IContext {
     theme: any;
     toggleSettings: () => void;
     toggledSettings: boolean;
+    selectText: any;
 }
 
 const initialContext = {
@@ -22,6 +23,7 @@ const initialContext = {
     toggledSettings: false,
     toggleEditable: () => {},
     toggledEditable: false,
+    selectText: null,
 }
 
 
