@@ -23,7 +23,7 @@ export const StyledTextSelectImageSettingsMenu = styled.div`
         user-select: none;
         border-radius: 10px;
         padding: 0;
-        font-size: 14px;
+        font-size: 13px;
     }
 
     ul li {

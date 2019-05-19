@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 import { StyledTextSelectImage } from './styled';
 
-// import SelectImage from '../SelectImage';
+import Context from '../../context';
+
+import SelectImage from '../SelectImage';
 import TextSelectImageSettings from '../TextSelectImageSettings';
 
 import themes from '../../data/themes';
-import { DEFAULT_THEME } from '../../data/constants';
 
-import Context from '../../context';
+import foodText from '../../test-data/data-food-text';
 
 
 
@@ -27,6 +28,9 @@ interface ITextSelectImageState {
     themeName: string;
     toggleSettings: () => void;
     toggledSettings: boolean;
+    toggleEditable: () => void;
+    toggledEditable: boolean;
+    selectText: any;
 }
 
 
@@ -46,7 +50,7 @@ class TextSelectImage extends Component<
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const {
             about,
             controls,
@@ -58,11 +62,14 @@ class TextSelectImage extends Component<
         const _theme = theme ? themes[theme] : this.context.theme;
         const _themeName = theme ? theme : this.context.themeName;
 
+        const selectText = await this.getText();
+
         this.setState({
             about: _about,
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
+            selectText,
         });
     }
 
@@ -85,13 +92,9 @@ class TextSelectImage extends Component<
                         alt={alt || 'Image'}
                     />
 
-                    {/* <SelectImage
+                    <SelectImage />
 
-                    /> */}
-
-                    <TextSelectImageSettings
-
-                    />
+                    <TextSelectImageSettings />
                 </StyledTextSelectImage>
             </Context.Provider>
         )
@@ -107,6 +110,10 @@ class TextSelectImage extends Component<
         this.setState((prevState: any) => ({
             toggledEditable: !prevState.toggledEditable,
         }));
+    }
+
+    getText = async () => {
+        return foodText;
     }
 }
 

@@ -1,65 +1,39 @@
 import React, { Component } from 'react';
 
+import { StyledSelectImage } from './styled';
+
+import Context from '../../context';
+
 import TextImage from '../TextImage';
 
-import { ITextSelectImageData, ITextImage } from '../../interfaces/image-text';
 
 
+class SelectImage extends Component<any, any> {
+    static contextType = Context;
 
-interface ISelectImage {
-    editable: boolean;
-    imageWidth: number;
-    imageHeight: number;
-    selectText: ITextSelectImageData;
-    deleteText: (id: string) => void;
-    duplicateText: (id: string) => void;
-    updateText: (id: string, text: ITextImage) => void;
-}
-
-
-class SelectImage extends Component<ISelectImage, any> {
     public render() {
         const {
-            editable,
-            imageWidth,
-            imageHeight,
             selectText,
-            duplicateText,
-            updateText,
-        } = this.props;
-        const { imageText } = selectText;
+        } = this.context;
+
+        let renderSelectText;
+        if (selectText) {
+            const { imageText } = selectText;
+            renderSelectText = imageText.map((text: any) => {
+                return (
+                    <TextImage
+                        key={text.id}
+                        textImage={text}
+                    />
+                );
+            });
+        }
 
         return (
-            <div>
-                {imageText.map(text => {
-                    return (
-                        <TextImage
-                            key={text.id}
-
-                            editable={editable}
-
-                            textId={text.id}
-                            textImage={text}
-                            imageText={imageText}
-
-                            updateText={updateText}
-                            duplicateText={duplicateText}
-                            removeText={this.removeText}
-
-                            imageWidth={imageWidth}
-                            imageHeight={imageHeight}
-                        />
-                    );
-                })}
-            </div>
+            <StyledSelectImage>
+                {renderSelectText}
+            </StyledSelectImage>
         );
-    }
-
-    private removeText = (id: string) => {
-        const { deleteText } = this.props;
-        // const el = this.div.querySelector(`text-image[text-id=${id}]`);
-        // this.div.removeChild(el);
-        deleteText(id);
     }
 }
 
