@@ -116,6 +116,7 @@ class TextSelectImage extends Component<
             theme,
             selectText,
         } = this.state;
+        // console.log(selectText);
 
         return (
             <Context.Provider value={this.state}>
@@ -168,8 +169,20 @@ class TextSelectImage extends Component<
     }
 
     private deleteTextImage = (id: string) => {
-        console.log('deleteTextImage', id);
+        const { selectText } = this.state;
+        const { imageText } = selectText;
 
+        const updatedImageText = imageText.filter((imgText: any) => {
+            if (imgText.id === id) {
+                return false;
+            }
+            return imgText;
+        });
+        selectText.imageText = updatedImageText;
+
+        this.setState({
+            selectText,
+        });
     }
 
     private toggleSettings = () => {
