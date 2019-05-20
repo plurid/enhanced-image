@@ -7,6 +7,12 @@ import {
 
 
 
+const COLOR = 'color';
+const colors = [
+    'black', 'red', 'white',
+];
+
+
 class TextImageEditorButtonsColors extends Component<any, any> {
     public render() {
         const {
@@ -19,24 +25,17 @@ class TextImageEditorButtonsColors extends Component<any, any> {
             <StyledTextImageEditorButtonsColors
                 theme={theme}
             >
-                <StyledTextImageEditorButtonColors
-                    theme={theme}
-                    color="black"
-                    colorValue={colorValue}
-                    onClick={changeValue.bind(this, 'color', 'black')}
-                />
-                <StyledTextImageEditorButtonColors
-                    theme={theme}
-                    color="red"
-                    colorValue={colorValue}
-                    onClick={changeValue.bind(this, 'color', 'red')}
-                />
-                <StyledTextImageEditorButtonColors
-                    theme={theme}
-                    color="white"
-                    colorValue={colorValue}
-                    onClick={changeValue.bind(this, 'color', 'white')}
-                />
+                {colors.map(color => {
+                    return (
+                        <StyledTextImageEditorButtonColors
+                            key={color}
+                            theme={theme}
+                            color={color}
+                            colorValue={colorValue}
+                            onClick={changeValue.bind(this, COLOR, color)}
+                        />
+                    );
+                })}
             </StyledTextImageEditorButtonsColors>
         );
     }

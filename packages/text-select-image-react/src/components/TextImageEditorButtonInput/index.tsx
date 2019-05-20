@@ -30,8 +30,6 @@ class TextImageEditorButtonInput extends Component<any, any> {
             show,
         } = this.state;
 
-        console.log(value);
-
         return (
             <StyledTextImageEditorButtonInput
                 theme={theme}

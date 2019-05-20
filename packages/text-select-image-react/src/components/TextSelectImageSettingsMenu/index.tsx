@@ -17,73 +17,77 @@ import TextSelectImageButtonItem from '../TextSelectImageButtonItem';
 
 
 class TextSelectImageSettingsMenu extends Component<any, any> {
+    static contextType = Context;
+
     public render() {
-        // const {
-        //     editable,
-        //     toggleEditable,
-        // } = this.props;
+        const {
+            theme,
+            toggledEditable,
+        } = this.context;
 
         return (
-            <Context.Consumer>
-                {context => {
-                    const {
-                        theme,
-                        toggleEditable,
-                        toggledEditable,
-                    } = context;
-
-                    return (
-                        <StyledTextSelectImageSettingsMenu
+            <StyledTextSelectImageSettingsMenu
+                theme={theme}
+            >
+                <ul>
+                    <li>
+                        <TextSelectImageButtonCheckmark
                             theme={theme}
-                        >
-                            <ul>
-                                <li>
-                                    <TextSelectImageButtonCheckmark
-                                        toggle={toggleEditable}
-                                        text="Edit"
-                                        checked={toggledEditable}
-                                        theme={theme}
-                                    />
-                                </li>
-                                <li>
-                                    <TextSelectImageButtonItem
-                                        atClick={this.add}
-                                        icon={AddTextIcon}
-                                        text="Add text"
-                                        theme={theme}
-                                    />
-                                </li>
+                            toggle={this.toggleEditable}
+                            text="Edit"
+                            checked={toggledEditable}
+                        />
+                    </li>
+                    <li>
+                        <TextSelectImageButtonItem
+                            theme={theme}
+                            atClick={this.addText}
+                            icon={AddTextIcon}
+                            text="Add text"
+                        />
+                    </li>
 
-                                <hr />
+                    <hr />
 
-                                <li>
-                                    <TextSelectImageButtonItem
-                                        atClick={this.about}
-                                        icon={AboutIcon}
-                                        text="About TSI"
-                                        theme={theme}
-                                    />
-                                </li>
-                            </ul>
-                        </StyledTextSelectImageSettingsMenu>
-                    );
-                }}
-            </Context.Consumer>
+                    <li>
+                        <TextSelectImageButtonItem
+                            theme={theme}
+                            atClick={this.about}
+                            icon={AboutIcon}
+                            text="About TSI"
+                        />
+                    </li>
+                </ul>
+            </StyledTextSelectImageSettingsMenu>
         );
     }
 
-    private add = () => {
-        console.log('add');
-        // const {
-        //     toggleMenu,
-        //     addText,
-        // } = this.props;
+    private toggleEditable = () => {
+        const {
+            toggleSettings,
+            toggleEditable,
+        } = this.context;
 
-        // toggleMenu();
-        // addText();
+        toggleSettings();
+        toggleEditable();
+    }
+
+    private addText = () => {
+        const {
+            toggleSettings,
+            createTextImage,
+        } = this.context;
+
+        toggleSettings();
+        createTextImage();
     }
 
     private about = () => {
+        const {
+            toggleSettings,
+        } = this.context;
+
+        toggleSettings();
         const aboutURL = ABOUT_URL;
         window.open(aboutURL, '_blank');
     }
