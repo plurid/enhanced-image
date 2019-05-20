@@ -42,4 +42,5 @@ export const StyledTextImageEditorVerticalDivider = styled.div`
     background-color: ${props => props.theme.colorSecondary};
     width: 1px;
     height: 100%;
+    user-select: none;
 `;
