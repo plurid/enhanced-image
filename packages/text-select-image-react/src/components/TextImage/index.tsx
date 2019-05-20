@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-import { StyledTextImage } from './styled';
+import {
+    StyledTextImage,
+    StyledTextImageTextContent,
+} from './styled';
 
 import Context from '../../context';
 
@@ -69,8 +72,8 @@ class TextImage extends Component<
         pos3: 0,
         pos4: 0,
 
-        // editorXCoord: 0,
-        // editorYCoord: 0,
+        editorXCoord: 0,
+        editorYCoord: 0,
     };
 
     public componentDidLoad() {
@@ -131,25 +134,34 @@ class TextImage extends Component<
         } = this.props.text;
 
         const {
+            theme,
             toggledEditable,
         } = this.context;
 
-        // console.log(text);
-        const textContent = link
+        const textContent = link && !toggledEditable
             ? (
-                <a href={linkTo} target="_blank">
-                    {text.content}
-                </a>
+                <StyledTextImageTextContent
+                    theme={theme}
+                    editMode={toggledEditable}
+                >
+                    <a href={linkTo} target="_blank">
+                        {text.content}
+                    </a>
+                </StyledTextImageTextContent>
             )
             : (
-                <div>
+                <StyledTextImageTextContent
+                    theme={theme}
+                    editMode={toggledEditable}
+                >
                     {text.content}
-                </div>
+                </StyledTextImageTextContent>
             );
 
         return (
             <div>
                <StyledTextImage
+                    theme={theme}
                     editMode={toggledEditable}
                     dragMode={textDraggable}
                     draggingMode={dragging}
@@ -171,11 +183,7 @@ class TextImage extends Component<
                     onMouseEnter={this.showEditor}
                     onMouseLeave={this.showEditor}
                 >
-                    <div
-                        // onKeyUp={updateTextContent}
-                    >
-                        {textContent}
-                    </div>
+                    {textContent}
 
                     {/* {showEditor && (
                         <TextImageEditor
@@ -265,7 +273,6 @@ class TextImage extends Component<
             }));
         }
     }
-
 
     private toggleTextEditable = () => {
         this.setState((prevState: any) => ({
