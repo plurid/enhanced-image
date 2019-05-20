@@ -141,7 +141,7 @@ class TextImageEditor extends Component<any, any> {
                     toggled={link}
                     icon={LinkIcon}
                     value={linkTo}
-                    valueType="textLinkTo"
+                    valueType="linkTo"
                     changeValue={this.changeValue}
                 />
 
@@ -204,9 +204,14 @@ class TextImageEditor extends Component<any, any> {
     }
 
 
-    private changeValue = () => {
+    private changeValue = (type: string, value: number | string) => {
+        console.log(type, value);
 
-        this.update();
+        this.setState({
+            [type]: value,
+        },
+            this.update
+        );
     }
 
     private toggleElement = (element: string) => {
