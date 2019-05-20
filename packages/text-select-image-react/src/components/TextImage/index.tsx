@@ -55,8 +55,10 @@ class TextImage extends Component<
         textLink: this.props.text.textLink,
         textLinkToValue: this.props.text.textLinkToValue,
         showEditor: false,
+
         xCoord: this.props.text.xCoord,
         yCoord: this.props.text.yCoord,
+
         // textEditable: false,
         // draggable: false,
         // dragging: false,
@@ -174,7 +176,27 @@ class TextImage extends Component<
             // textItalic,
             // letterSpacingValue,
             // wordSpacingValue,
+
+
+
+
         } = this.state;
+
+
+        const {
+            color,
+            fontFamily,
+            fontSize,
+            bold,
+            italic,
+            letterSpacing,
+            lineHeight,
+            wordSpacing,
+            // content,
+            link,
+            linkTo,
+            viewable,
+        } = this.props.text;
 
         const {
             toggledEditable,
@@ -182,8 +204,8 @@ class TextImage extends Component<
 
         // console.log(text);
 
-        const textContent = textLink
-            ? (<a href={textLinkToValue} target="_blank">
+        const textContent = link
+            ? (<a href={linkTo} target="_blank">
                 {text.content}
             </a>)
             : (
@@ -204,22 +226,18 @@ class TextImage extends Component<
                     //     ${dragging ? 'text-image-span-dragging' : '' }
                     //     ${textViewable ? 'text-image-span-viewable' : '' }
                     // `}
-                    // style={{
-                    //     top: yCoord + 'px',
-                    //     left: xCoord + 'px',
-                    //     color: colorValueStyle,
-                    //     fontFamily: fontFamilyValue,
-                    //     fontSize: fontSizeValue + 'px',
-                    //     fontWeight: textBold ? 'bold' : 'normal',
-                    //     fontStyle: textItalic ? 'italic' : 'normal',
-                    //     letterSpacing: letterSpacingValue + 'px',
-                    //     // lineHeight: text.lineHeight + '',
-                    //     wordSpacing: wordSpacingValue + 'px',
-                    // }}
 
                     style={{
                         top: yCoord + 'px',
                         left: xCoord + 'px',
+                        color: toggledEditable ? color : 'transparent',
+                        fontFamily,
+                        fontSize: fontSize + 'px',
+                        fontWeight: bold ? 'bold' : 'normal',
+                        fontStyle: italic ? 'italic' : 'normal',
+                        letterSpacing: letterSpacing + 'px',
+                        lineHeight: lineHeight + '',
+                        wordSpacing: wordSpacing + 'px',
                     }}
 
                     onMouseEnter={this.showEditor}
@@ -236,11 +254,14 @@ class TextImage extends Component<
                     {/* {showEditor && (
                         <TextImageEditor
                             toggleElement={this.toggleElement}
+                            changeValue={this.changeValue}
+                            text={text}
                         />
                     )} */}
                     <TextImageEditor
                         toggleElement={this.toggleElement}
                         changeValue={this.changeValue}
+                        text={text}
                     />
                 </StyledTextImage>
             </div>

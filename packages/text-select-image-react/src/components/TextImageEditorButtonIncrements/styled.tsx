@@ -10,6 +10,7 @@ export const StyledTextImageEditorButtonIncrement = styled.div`
     input {
         background: ${props => props.theme.backgroundColorHover};
         color: ${props => props.theme.color};
+        height: 20px;
         width: 30px;
         border: none;
         text-align: center;
@@ -51,9 +52,9 @@ export const StyledTextImageEditorButtonIncrements: any = styled.div`
     font-size: 6px;
     justify-items: center;
     justify-content: center;
-    align-items: center;
-    grid-row-gap: 1px;
-    height: 19px;
+    align-items: space-between;
+    grid-row-gap: 2px;
+    height: 20px;
 `;
 
 
@@ -65,6 +66,8 @@ export const StyledTextImageEditorButtonIncrementButton = styled.div`
     height: 9px;
     cursor: pointer;
     text-align: center;
+    display: grid;
+    place-content: center;
 
     :hover {
         background-color: ${props => props.theme.backgroundColorHover};
