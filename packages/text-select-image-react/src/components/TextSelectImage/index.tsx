@@ -174,8 +174,24 @@ class TextSelectImage extends Component<
     }
 
     private duplicateTextImage = (duplicateId: string) => {
-        console.log('duplicateTextImage', duplicateId);
+        const { selectText } = this.state;
+        const { imageText } = selectText;
 
+        const updatedImageText: any[] = [];
+        imageText.map((imgText: any) => {
+            if (imgText.id === duplicateId) {
+                const duplicateText = { ...imgText };
+                duplicateText.id = `tsi-text-${uuidv4()}`;
+                duplicateText.yCoord = duplicateText.yCoord + 50;
+                updatedImageText.push(duplicateText);
+            }
+            updatedImageText.push(imgText);
+        });
+        selectText.imageText = updatedImageText;
+
+        this.setState({
+            selectText,
+        });
     }
 
     private updateTextImage = (text: any) => {
