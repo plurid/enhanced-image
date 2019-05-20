@@ -179,11 +179,21 @@ class TextImage extends Component<
 
                     {/* {showEditor && (
                         <TextImageEditor
-                            toggleElement={this.toggleElement}
+                            toggleTextEditable={this.toggleTextEditable}
+                            textEditable={textEditable}
+
+                            toggleTextDraggable={this.toggleTextDraggable}
+                            textDraggable={textDraggable}
+
+                            toggleTextViewable={this.toggleTextViewable}
+                            textViewable={textViewable}
+
                             changeValue={this.changeValue}
+
                             text={text}
                         />
                     )} */}
+
                     <TextImageEditor
                         toggleTextEditable={this.toggleTextEditable}
                         textEditable={textEditable}
@@ -194,8 +204,6 @@ class TextImage extends Component<
                         toggleTextViewable={this.toggleTextViewable}
                         textViewable={textViewable}
 
-                        toggleElement={this.toggleElement}
-                        changeValue={this.changeValue}
                         text={text}
                     />
                 </StyledTextImage>
@@ -293,15 +301,6 @@ class TextImage extends Component<
         this.setState((prevState: any) => ({
             textViewable: !prevState.textViewable,
         }));
-    }
-
-    private changeValue = (type: string, value: number | string) => {
-        const typeValue = `${type}Value`;
-        this[typeValue] = value;
-    }
-
-    private toggleElement = (element: string) => {
-        // this[element] = !this[element];
     }
 
     private updateTextContent = () => {

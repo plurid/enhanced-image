@@ -30,6 +30,8 @@ class TextImageEditorButtonInput extends Component<any, any> {
             show,
         } = this.state;
 
+        console.log(value);
+
         return (
             <StyledTextImageEditorButtonInput
                 theme={theme}
@@ -50,7 +52,7 @@ class TextImageEditorButtonInput extends Component<any, any> {
                         <input
                             type="text"
                             value={value}
-                            onInput={this.handleInput}
+                            onChange={this.handleInput}
                         />
                         <a href={value} target="_blank">
                             <StyledTextImageEditorButtonInputGotoLink
@@ -72,7 +74,12 @@ class TextImageEditorButtonInput extends Component<any, any> {
     }
 
     private handleInput = (event: any) => {
-        // this.changeValue(this.valueType, event.target.value);
+        const {
+            valueType,
+            changeValue,
+        } = this.props;
+
+        changeValue(valueType, event.target.value);
     }
 }
 

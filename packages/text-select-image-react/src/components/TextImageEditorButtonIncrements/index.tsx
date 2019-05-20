@@ -44,14 +44,14 @@ class TextImageEditorButtonIncrements extends Component<any, any> {
                 >
                     <StyledTextImageEditorButtonIncrementButton
                         theme={theme}
-                        // onClick={changeValue.bind(this, type, this.round(value + stepValue))}
+                        onClick={changeValue.bind(this, type, this.round(value + stepValue))}
                     >
                         {UP_ARROW}
                     </StyledTextImageEditorButtonIncrementButton>
 
                     <StyledTextImageEditorButtonIncrementButton
                         theme={theme}
-                        // onClick={changeValue.bind(this, type, this.round(value - stepValue))}
+                        onClick={changeValue.bind(this, type, this.round(value - stepValue))}
                     >
                         {DOWN_ARROW}
                     </StyledTextImageEditorButtonIncrementButton>
@@ -61,7 +61,7 @@ class TextImageEditorButtonIncrements extends Component<any, any> {
                     type="number"
                     value={value}
                     step={stepValue}
-                    onInput={this.inputChange}
+                    onChange={this.inputChange}
                 />
 
                 <StyledTextImageEditorButtonIncrementsUnit>
