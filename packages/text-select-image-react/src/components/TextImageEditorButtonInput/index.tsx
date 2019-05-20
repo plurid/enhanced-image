@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import { StyledTextImageEditorButtonInput } from './styled';
+import {
+    StyledTextImageEditorButtonInput,
+    StyledTextImageEditorButtonInputContainer,
+    StyledTextImageEditorButtonInputGotoLink,
+} from './styled';
 
 import TextImageEditorButtonToggle from '../TextImageEditorButtonToggle';
 
@@ -13,10 +17,11 @@ class TextImageEditorButtonInput extends Component<any, any> {
         const {
             icon,
             toggle,
-            toggled,
+            // toggled,
             value,
             theme,
         } = this.props;
+        const toggled = true;
 
         return (
             <StyledTextImageEditorButtonInput
@@ -31,18 +36,22 @@ class TextImageEditorButtonInput extends Component<any, any> {
                     />
 
                     {toggled && (
-                        <span className="text-image-editor-button-input-container">
+                        <StyledTextImageEditorButtonInputContainer
+                            theme={theme}
+                        >
                             <input
                                 type="text"
                                 value={value}
                                 onInput={this.handleInput}
                             />
                             <a href={value} target="_blank">
-                                <span className="text-image-editor-button-input-gotolink">
+                                <StyledTextImageEditorButtonInputGotoLink
+                                    theme={theme}
+                                >
                                     {GoToLinkIcon}
-                                </span>
+                                </StyledTextImageEditorButtonInputGotoLink>
                             </a>
-                        </span>
+                        </StyledTextImageEditorButtonInputContainer>
                     )}
                 </span>
             </StyledTextImageEditorButtonInput>

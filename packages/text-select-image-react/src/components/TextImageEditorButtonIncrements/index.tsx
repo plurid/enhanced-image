@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
-import { StyledTextImageEditorButtonIncrements } from './styled';
+import {
+    StyledTextImageEditorButtonIncrement,
+    StyledTextImageEditorButtonIncrementIcon,
+    StyledTextImageEditorButtonIncrements,
+    StyledTextImageEditorButtonIncrementButton,
+    StyledTextImageEditorButtonIncrementsUnit,
+} from './styled';
 
 
 
@@ -24,42 +30,44 @@ class TextImageEditorButtonIncrements extends Component<any, any> {
         const stepValue = step || STEP;
 
         return (
-            <StyledTextImageEditorButtonIncrements
+            <StyledTextImageEditorButtonIncrement
                 theme={theme}
             >
-                <span className="text-image-editor-button">
-                    <span
-                        className="text-image-editor-button-icon"
+                <StyledTextImageEditorButtonIncrementIcon
+                    theme={theme}
+                >
+                    {icon}
+                </StyledTextImageEditorButtonIncrementIcon>
+
+                <StyledTextImageEditorButtonIncrements
+                    theme={theme}
+                >
+                    <StyledTextImageEditorButtonIncrementButton
+                        theme={theme}
+                        // onClick={changeValue.bind(this, type, this.round(value + stepValue))}
                     >
-                        {icon}
-                    </span>
-                    <span className="text-image-editor-button-increments">
-                        <span
-                            className="text-image-editor-button-increment-button text-image-editor-button-increment-up"
-                            // onClick={changeValue.bind(this, type, this.round(value + stepValue))}
-                        >
-                            {UP_ARROW}
-                        </span>
-                        <span
-                            className="text-image-editor-button-increment-button text-image-editor-button-increment-down"
-                            // onClick={changeValue.bind(this, type, this.round(value - stepValue))}
-                        >
-                            {DOWN_ARROW}
-                        </span>
-                    </span>
+                        {UP_ARROW}
+                    </StyledTextImageEditorButtonIncrementButton>
 
-                    <input
-                        type="number"
-                        value={value}
-                        step={stepValue}
-                        onInput={this.inputChange}
-                    />
+                    <StyledTextImageEditorButtonIncrementButton
+                        theme={theme}
+                        // onClick={changeValue.bind(this, type, this.round(value - stepValue))}
+                    >
+                        {DOWN_ARROW}
+                    </StyledTextImageEditorButtonIncrementButton>
+                </StyledTextImageEditorButtonIncrements>
 
-                    <span className="text-image-editor-button-increments-unit">
-                        {unit || 'px'}
-                    </span>
-                </span>
-            </StyledTextImageEditorButtonIncrements>
+                <input
+                    type="number"
+                    value={value}
+                    step={stepValue}
+                    onInput={this.inputChange}
+                />
+
+                <StyledTextImageEditorButtonIncrementsUnit>
+                    {unit || 'px'}
+                </StyledTextImageEditorButtonIncrementsUnit>
+            </StyledTextImageEditorButtonIncrement>
         );
     }
 
