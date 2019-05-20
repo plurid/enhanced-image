@@ -205,7 +205,7 @@ class TextImageEditor extends Component<any, any> {
 
 
     private changeValue = (type: string, value: number | string) => {
-        console.log(type, value);
+        // console.log(type, value);
 
         this.setState({
             [type]: value,
@@ -229,10 +229,44 @@ class TextImageEditor extends Component<any, any> {
 
         const {
             id,
+            xPercentage,
+            yPercentage,
+            perspective,
+            rotation,
+            skew,
+            color,
+            fontFamily,
+            fontSize,
+            bold,
+            italic,
+            letterSpacing,
+            lineHeight,
+            wordSpacing,
+            content,
+            link,
+            linkTo,
+            viewable,
         } = this.state;
 
         const text = {
             id,
+            xPercentage,
+            yPercentage,
+            perspective,
+            rotation,
+            skew,
+            color,
+            fontFamily,
+            fontSize,
+            bold,
+            italic,
+            letterSpacing,
+            lineHeight,
+            wordSpacing,
+            content,
+            link,
+            linkTo,
+            viewable,
         }
 
         updateTextImage(text);

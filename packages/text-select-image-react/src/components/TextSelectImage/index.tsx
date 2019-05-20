@@ -55,7 +55,7 @@ interface ITextSelectImageState {
 
     createTextImage: () => any;
     duplicateTextImage: (duplicateId: string) => any;
-    updateTextImage: (id: string) => any;
+    updateTextImage: (text: any) => any;
     updateTextImageField: (id: string, element: string, value: any) => any;
     deleteTextImage: (id: string) => any;
 }
@@ -148,8 +148,8 @@ class TextSelectImage extends Component<
 
     }
 
-    private updateTextImage = (id: string) => {
-        console.log('updateTextImage', id);
+    private updateTextImage = (text: any) => {
+        console.log('updateTextImage', text);
     }
 
     private updateTextImageField = (id: string, element: string, value: any) => {
