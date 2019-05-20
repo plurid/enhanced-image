@@ -7,7 +7,11 @@ import Context from '../../context';
 import SelectImage from '../SelectImage';
 import TextSelectImageSettings from '../TextSelectImageSettings';
 
+import { PLURID_API } from '../../data/constants';
+
 import themes from '../../data/themes';
+
+import computeContentId from '../../utils/contentId';
 
 import foodText from '../../test-data/data-food-text';
 
@@ -19,9 +23,20 @@ interface ITextSelectImageProps {
     controls?: boolean;
     src: string;
     theme?: string;
+    imageText?: any;
+
+    // To be specified when using another API than https://api.plurid.com
+    // GraphlQL-based
+    apiEndpoint?: string;
+
+    // The apiKey contains the domain allowed to make requests
+    // To be specified when using as a service provider
+    // apiKey obtained from https://depict.plurid.com/api
+    apiKey?: string;
 }
 
 interface ITextSelectImageState {
+    apiEndpoint: string;
     about: boolean;
     controls: boolean;
     theme: any;
@@ -49,6 +64,7 @@ class TextSelectImage extends Component<
         super(props);
 
         this.state = {
+            apiEndpoint: this.props.apiEndpoint || PLURID_API,
             toggleSettings: this.toggleSettings,
             toggledSettings: false,
             toggleEditable: this.toggleEditable,
@@ -151,6 +167,20 @@ class TextSelectImage extends Component<
     }
 
     getText = async () => {
+        // graphql query to the apiEndpoint
+        // with apiKey if exists
+        // to get the data
+        // based on the contentId of the image
+
+        const { apiEndpoint } = this.state;
+        const { apiKey } = this.props;
+
+        const contentId = computeContentId();
+
+        // const data = (apiEndpoint, apiKey, contentId) => {
+        //     return {};
+        // };
+
         return foodText;
     }
 }
