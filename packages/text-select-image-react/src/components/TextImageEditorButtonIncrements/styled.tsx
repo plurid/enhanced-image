@@ -46,6 +46,7 @@ export const StyledTextImageEditorButtonIncrementIcon = styled.div`
 
 export const StyledTextImageEditorButtonIncrements: any = styled.div`
     background: ${props => props.theme.backgroundColorHover};
+
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
@@ -55,6 +56,7 @@ export const StyledTextImageEditorButtonIncrements: any = styled.div`
     align-items: space-between;
     grid-row-gap: 2px;
     height: 20px;
+    user-select: none;
 `;
 
 
@@ -68,6 +70,7 @@ export const StyledTextImageEditorButtonIncrementButton = styled.div`
     text-align: center;
     display: grid;
     place-content: center;
+    user-select: none;
 
     :hover {
         background-color: ${props => props.theme.backgroundColorHover};
@@ -77,4 +80,5 @@ export const StyledTextImageEditorButtonIncrementButton = styled.div`
 
 export const StyledTextImageEditorButtonIncrementsUnit = styled.div`
     font-size: 12px;
+    user-select: none;
 `;

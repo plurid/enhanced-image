@@ -188,8 +188,6 @@ class TextImage extends Component<
                             toggleTextViewable={this.toggleTextViewable}
                             textViewable={textViewable}
 
-                            changeValue={this.changeValue}
-
                             text={text}
                         />
                     )} */}
