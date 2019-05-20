@@ -1,3 +1,5 @@
+export const UPDATE_DEBOUNCE = 5000;
+
 export const EDITOR_WIDTH = 798;
 
 export const DEFAULT_THEME = 'gradient';

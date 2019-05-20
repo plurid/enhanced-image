@@ -7,7 +7,10 @@ import Context from '../../context';
 import SelectImage from '../SelectImage';
 import TextSelectImageSettings from '../TextSelectImageSettings';
 
-import { PLURID_API } from '../../data/constants';
+import {
+    UPDATE_DEBOUNCE,
+    PLURID_API,
+} from '../../data/constants';
 
 import themes from '../../data/themes';
 
@@ -33,10 +36,13 @@ interface ITextSelectImageProps {
     // To be specified when using as a service provider
     // apiKey obtained from https://depict.plurid.com/api
     apiKey?: string;
+
+    updateDebounce?: number;
 }
 
 interface ITextSelectImageState {
     apiEndpoint: string;
+    updateDebounce: number;
     about: boolean;
     controls: boolean;
     theme: any;
@@ -65,6 +71,7 @@ class TextSelectImage extends Component<
 
         this.state = {
             apiEndpoint: this.props.apiEndpoint || PLURID_API,
+            updateDebounce: this.props.updateDebounce || UPDATE_DEBOUNCE,
             toggleSettings: this.toggleSettings,
             toggledSettings: false,
             toggleEditable: this.toggleEditable,
@@ -166,7 +173,7 @@ class TextSelectImage extends Component<
         }));
     }
 
-    getText = async () => {
+    private getText = async () => {
         // graphql query to the apiEndpoint
         // with apiKey if exists
         // to get the data
@@ -182,6 +189,12 @@ class TextSelectImage extends Component<
         // };
 
         return foodText;
+    }
+
+    private updateText = () => {
+        // to debounce the update to database every updateDebounce seconds
+
+        const { updateDebounce } = this.state;
     }
 }
 
