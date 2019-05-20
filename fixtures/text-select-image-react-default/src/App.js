@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import foodImage from './assets/food-vegetables-text.jpg';
-import populationDensityEurope from './assets/population-density-europe.png';
+// import populationDensityEurope from './assets/population-density-europe.png';
 
 import TextSelectImage from '@plurid/text-select-image-react';
 
@@ -16,7 +16,7 @@ class App extends Component {
                 >
                     <TextSelectImage
                         theme="night"
-                        src={populationDensityEurope}
+                        src={foodImage}
                         about={false}
                     />
                 </div>
