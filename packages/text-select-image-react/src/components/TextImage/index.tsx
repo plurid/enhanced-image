@@ -60,8 +60,9 @@ class TextImage extends Component<
         yCoord: this.props.text.yCoord,
 
         textEditable: false,
-        draggable: false,
+        textDraggable: false,
         dragging: false,
+        textViewable: false,
 
         pos1: 0,
         pos2: 0,
@@ -108,8 +109,10 @@ class TextImage extends Component<
             yCoord,
             xCoord,
 
-            draggable,
+            textEditable,
+            textDraggable,
             dragging,
+            textViewable,
         } = this.state;
 
         const {
@@ -124,7 +127,7 @@ class TextImage extends Component<
             // content,
             link,
             linkTo,
-            viewable,
+            // viewable,
         } = this.props.text;
 
         const {
@@ -148,9 +151,9 @@ class TextImage extends Component<
             <div>
                <StyledTextImage
                     editMode={toggledEditable}
-                    dragMode={draggable}
+                    dragMode={textDraggable}
                     draggingMode={dragging}
-                    viewable={viewable}
+                    viewable={textViewable}
 
                     style={{
                         top: yCoord + 'px',
@@ -174,18 +177,27 @@ class TextImage extends Component<
                         {textContent}
                     </div>
 
-                    {showEditor && (
+                    {/* {showEditor && (
                         <TextImageEditor
                             toggleElement={this.toggleElement}
                             changeValue={this.changeValue}
                             text={text}
                         />
-                    )}
-                    {/* <TextImageEditor
+                    )} */}
+                    <TextImageEditor
+                        toggleTextEditable={this.toggleTextEditable}
+                        textEditable={textEditable}
+
+                        toggleTextDraggable={this.toggleTextDraggable}
+                        textDraggable={textDraggable}
+
+                        toggleTextViewable={this.toggleTextViewable}
+                        textViewable={textViewable}
+
                         toggleElement={this.toggleElement}
                         changeValue={this.changeValue}
                         text={text}
-                    /> */}
+                    />
                 </StyledTextImage>
             </div>
         );
@@ -248,9 +260,24 @@ class TextImage extends Component<
         }
     }
 
-    private toggleDraggable = () => {
+
+    private toggleTextEditable = () => {
         this.setState((prevState: any) => ({
-            draggable: !prevState.draggable,
+            textEditable: !prevState.textEditable,
+        }));
+
+        const { textDraggable } = this.state;
+
+        if (textDraggable) {
+            this.setState({
+                textDraggable: false,
+            });
+        }
+    }
+
+    private toggleTextDraggable = () => {
+        this.setState((prevState: any) => ({
+            textDraggable: !prevState.textDraggable,
         }));
 
         const { textEditable } = this.state;
@@ -258,20 +285,6 @@ class TextImage extends Component<
         if (textEditable) {
             this.setState({
                 textEditable: false,
-            });
-        }
-    }
-
-    private toggleTextEditable = () => {
-        this.setState((prevState: any) => ({
-            textEditable: !prevState.textEditable,
-        }));
-
-        const { draggable } = this.state;
-
-        if (draggable) {
-            this.setState({
-                draggable: false,
             });
         }
     }

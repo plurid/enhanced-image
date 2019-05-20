@@ -59,11 +59,12 @@ class TextImageEditor extends Component<any, any> {
 
     public render() {
         const {
-            textEditable,
             toggleTextEditable,
-            draggable,
-            toggleDraggable,
+            textEditable,
+            toggleTextDraggable,
+            textDraggable,
             toggleTextViewable,
+            textViewable,
             toggleEditor,
         } = this.props;
 
@@ -83,32 +84,32 @@ class TextImageEditor extends Component<any, any> {
             // content,
             link,
             linkTo,
-            viewable,
+            // viewable,
         } = this.state;
 
         return (
             <StyledTextImageEditor
                 theme={theme}
             >
-                 <TextImageEditorButtonToggle
+                <TextImageEditorButtonToggle
                     theme={theme}
                     toggle={toggleTextEditable}
                     toggled={textEditable}
                     icon={SelectTextIcon}
                 />
 
-                 <TextImageEditorButtonToggle
+                <TextImageEditorButtonToggle
                     theme={theme}
-                    toggle={toggleDraggable}
-                    toggled={draggable}
+                    toggle={toggleTextDraggable}
+                    toggled={textDraggable}
                     icon={GrabIcon}
                 />
 
                 <TextImageEditorButtonToggle
                     theme={theme}
                     toggle={toggleTextViewable}
-                    toggled={viewable}
-                    icon={viewable ? ViewableIcon : NotViewableIcon}
+                    toggled={textViewable}
+                    icon={textViewable ? ViewableIcon : NotViewableIcon}
                 />
 
                 <StyledTextImageEditorVerticalDivider
@@ -187,7 +188,6 @@ class TextImageEditor extends Component<any, any> {
                     &nbsp;
                 </StyledTextImageEditorVerticalDivider>
 
-
                 <TextImageEditorButtonClick
                     theme={theme}
                     atClick={this.duplicate}
@@ -202,7 +202,6 @@ class TextImageEditor extends Component<any, any> {
             </StyledTextImageEditor>
         );
     }
-
 
 
     private changeValue = () => {
@@ -264,7 +263,7 @@ class TextImageEditor extends Component<any, any> {
         } = this.context;
 
         const {
-            text
+            text,
         } = this.state;
 
         deleteTextImage(text.id);
