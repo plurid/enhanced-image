@@ -217,9 +217,9 @@ class TextImageEditor extends Component<any, any> {
     private toggleElement = (element: string) => {
         this.setState((prevState: any) => ({
             [element]: !prevState[element],
-        }));
-
-        this.update();
+        }),
+            this.update
+        );
     }
 
     private update = () => {

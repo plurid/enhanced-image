@@ -117,8 +117,6 @@ class TextSelectImage extends Component<
             selectText,
         } = this.state;
 
-        console.log(selectText);
-
         return (
             <Context.Provider value={this.state}>
                 <StyledTextSelectImage
@@ -134,7 +132,7 @@ class TextSelectImage extends Component<
                     <TextSelectImageSettings />
                 </StyledTextSelectImage>
             </Context.Provider>
-        )
+        );
     }
 
 
@@ -149,7 +147,20 @@ class TextSelectImage extends Component<
     }
 
     private updateTextImage = (text: any) => {
-        console.log('updateTextImage', text);
+        const { selectText } = this.state;
+        const { imageText } = selectText;
+
+        const updatedImageText = imageText.map((imgText: any) => {
+            if (imgText.id === text.id) {
+                return text;
+            }
+            return imgText;
+        });
+        selectText.imageText = updatedImageText;
+
+        this.setState({
+            selectText,
+        });
     }
 
     private updateTextImageField = (id: string, element: string, value: any) => {
