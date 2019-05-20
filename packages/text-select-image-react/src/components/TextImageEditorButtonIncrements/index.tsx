@@ -78,7 +78,7 @@ class TextImageEditorButtonIncrements extends Component<any, any> {
         } = this.props;
 
         const value = e.target.value;
-        changeValue(type, value);
+        changeValue(type, parseFloat(value));
     }
 
     private round = (val: number) => {
