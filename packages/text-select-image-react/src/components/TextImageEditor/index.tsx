@@ -34,6 +34,29 @@ import DeleteIcon from '../../assets/delete-icon';
 class TextImageEditor extends Component<any, any> {
     static contextType = Context;
 
+    state = {
+        id: this.props.text.id,
+        xPercentage: this.props.text.xPercentage,
+        yPercentage: this.props.text.yPercentage,
+        perspective: this.props.text.perspective,
+        rotation: this.props.text.rotation,
+        skew: this.props.text.skew,
+        color: this.props.text.color,
+        fontFamily: this.props.text.fontFamily,
+        fontSize: this.props.text.fontSize,
+        bold: this.props.text.bold,
+        italic: this.props.text.italic,
+        letterSpacing: this.props.text.letterSpacing,
+        lineHeight: this.props.text.lineHeight,
+        wordSpacing: this.props.text.wordSpacing,
+        content: this.props.text.content,
+        link: this.props.text.link,
+        linkTo: this.props.text.linkTo,
+        viewable: this.props.text.viewable,
+
+        text: this.props.text,
+    };
+
     public render() {
         const {
             textEditable,
@@ -41,26 +64,27 @@ class TextImageEditor extends Component<any, any> {
             draggable,
             toggleDraggable,
             toggleTextViewable,
-            textViewable,
-
-            changeValue,
-            fontSizeValue,
-
-            toggleElement,
-            textBold,
-            textItalic,
-            letterSpacingValue,
-            wordSpacingValue,
-
             toggleEditor,
-            fontFamilyValue,
-            textLink,
-            textLinkToValue,
         } = this.props;
 
         const {
             theme,
         } = this.context;
+
+        const {
+            color,
+            fontFamily,
+            fontSize,
+            bold,
+            italic,
+            letterSpacing,
+            // lineHeight,
+            wordSpacing,
+            // content,
+            link,
+            linkTo,
+            viewable,
+        } = this.state;
 
         return (
             <StyledTextImageEditor
@@ -83,8 +107,8 @@ class TextImageEditor extends Component<any, any> {
                 <TextImageEditorButtonToggle
                     theme={theme}
                     toggle={toggleTextViewable}
-                    toggled={textViewable}
-                    icon={textViewable ? ViewableIcon : NotViewableIcon}
+                    toggled={viewable}
+                    icon={viewable ? ViewableIcon : NotViewableIcon}
                 />
 
                 <StyledTextImageEditorVerticalDivider
@@ -96,49 +120,49 @@ class TextImageEditor extends Component<any, any> {
                 <TextImageEditorButtonIncrements
                     theme={theme}
                     type="fontSize"
-                    changeValue={changeValue}
-                    value={fontSizeValue}
+                    changeValue={this.changeValue}
+                    value={fontSize}
                     icon={FontSizeIcon}
                 />
 
                 <TextImageEditorButtonDropdown
                     type="fontFamily"
                     alterStyle="fontFamily"
-                    selected={fontFamilyValue}
+                    selected={fontFamily}
                     selectables={selectableFonts}
-                    changeSelected={changeValue}
+                    changeSelected={this.changeValue}
                     toggleEditor={toggleEditor}
                 />
 
                 <TextImageEditorButtonInput
                     theme={theme}
-                    toggle={toggleElement.bind(this, 'textLink')}
-                    toggled={textLink}
+                    toggle={this.toggleElement.bind(this, 'link')}
+                    toggled={link}
                     icon={LinkIcon}
-                    value={textLinkToValue}
+                    value={linkTo}
                     valueType="textLinkTo"
-                    changeValue={changeValue}
+                    changeValue={this.changeValue}
                 />
 
                 <TextImageEditorButtonToggle
                     theme={theme}
-                    toggle={toggleElement.bind(this, 'textBold')}
-                    toggled={textBold}
+                    toggle={this.toggleElement.bind(this, 'bold')}
+                    toggled={bold}
                     icon={BoldIcon}
                 />
 
                 <TextImageEditorButtonToggle
                     theme={theme}
-                    toggle={toggleElement.bind(this, 'textItalic')}
-                    toggled={textItalic}
+                    toggle={this.toggleElement.bind(this, 'italic')}
+                    toggled={italic}
                     icon={ItalicIcon}
                 />
 
                 <TextImageEditorButtonIncrements
                     theme={theme}
                     type="letterSpacing"
-                    changeValue={changeValue}
-                    value={letterSpacingValue}
+                    changeValue={this.changeValue}
+                    value={letterSpacing}
                     icon={LetterSpacingIcon}
                     step={0.1}
                 />
@@ -146,14 +170,15 @@ class TextImageEditor extends Component<any, any> {
                 <TextImageEditorButtonIncrements
                     theme={theme}
                     type="wordSpacing"
-                    changeValue={changeValue}
-                    value={wordSpacingValue}
+                    changeValue={this.changeValue}
+                    value={wordSpacing}
                     icon={WordSpacingIcon}
                     step={0.1}
                 />
 
                 <TextImageEditorButtonsColors
-                    changeValue={changeValue}
+                    changeValue={this.changeValue}
+                    color={color}
                 />
 
                 <StyledTextImageEditorVerticalDivider
@@ -171,15 +196,79 @@ class TextImageEditor extends Component<any, any> {
 
                 <TextImageEditorButtonClick
                     theme={theme}
-                    atClick={this.remove}
+                    atClick={this.delete}
                     icon={DeleteIcon}
                 />
             </StyledTextImageEditor>
         );
     }
 
-    duplicate = () => {}
-    remove = () => {}
+
+
+    private changeValue = () => {
+
+        this.update();
+    }
+
+    private toggleElement = (element: string) => {
+        this.setState((prevState: any) => ({
+            [element]: !prevState[element],
+        }));
+
+        this.update();
+    }
+
+    private update = () => {
+        const {
+            updateTextImage,
+        } = this.context;
+
+        const {
+            id,
+        } = this.state;
+
+        const text = {
+            id,
+        }
+
+        updateTextImage(text);
+    }
+
+    private updateField = (element: any, value: any) => {
+        const {
+            updateTextImageField,
+        } = this.context;
+
+        const {
+            id,
+        } = this.state;
+
+        updateTextImageField(id, element, value);
+    }
+
+    private duplicate = () => {
+        const {
+            duplicateTextImage,
+        } = this.context;
+
+        const {
+            text
+        } = this.state;
+
+        duplicateTextImage(text.id);
+    }
+
+    private delete = () => {
+        const {
+            deleteTextImage,
+        } = this.context;
+
+        const {
+            text
+        } = this.state;
+
+        deleteTextImage(text.id);
+    }
 }
 
 

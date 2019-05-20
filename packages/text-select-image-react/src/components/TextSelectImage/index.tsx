@@ -31,6 +31,12 @@ interface ITextSelectImageState {
     toggleEditable: () => void;
     toggledEditable: boolean;
     selectText: any;
+
+    createTextImage: () => any;
+    duplicateTextImage: (duplicateId: string) => any;
+    updateTextImage: (id: string) => any;
+    updateTextImageField: (id: string, element: string, value: any) => any;
+    deleteTextImage: (id: string) => any;
 }
 
 
@@ -47,6 +53,11 @@ class TextSelectImage extends Component<
             toggledSettings: false,
             toggleEditable: this.toggleEditable,
             toggledEditable: false,
+            createTextImage: this.createTextImage,
+            duplicateTextImage: this.duplicateTextImage,
+            updateTextImage: this.updateTextImage,
+            updateTextImageField: this.updateTextImageField,
+            deleteTextImage: this.deleteTextImage,
         }
     }
 
@@ -79,8 +90,11 @@ class TextSelectImage extends Component<
             alt,
         } = this.props;
         const {
-            theme
+            theme,
+            selectText,
         } = this.state;
+
+        console.log(selectText);
 
         return (
             <Context.Provider value={this.state}>
@@ -98,6 +112,30 @@ class TextSelectImage extends Component<
                 </StyledTextSelectImage>
             </Context.Provider>
         )
+    }
+
+
+    private createTextImage = () => {
+        console.log('createTextImage');
+
+    }
+
+    private duplicateTextImage = (duplicateId: string) => {
+        console.log('duplicateTextImage', duplicateId);
+
+    }
+
+    private updateTextImage = (id: string) => {
+        console.log('updateTextImage', id);
+    }
+
+    private updateTextImageField = (id: string, element: string, value: any) => {
+        console.log('updateTextImage', id, element, value);
+    }
+
+    private deleteTextImage = (id: string) => {
+        console.log('deleteTextImage', id);
+
     }
 
     private toggleSettings = () => {

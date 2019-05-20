@@ -6,6 +6,7 @@ export const StyledTextImageEditorButtonInput = styled.div`
     position: relative;
     height: 100%;
     width: 32px;
+    display: grid;
 
     svg {
         fill: ${props => props.theme.color};
@@ -32,7 +33,7 @@ export const StyledTextImageEditorButtonInputContainer = styled.div`
         text-align: left;
         outline: none;
         padding: 3px 6px;
-        height: 24px;
+        height: 26px;
     }
 `;
 

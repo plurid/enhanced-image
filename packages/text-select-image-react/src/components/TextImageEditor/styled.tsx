@@ -15,7 +15,7 @@ export const StyledTextImageEditor = styled.div`
     color: ${props => props.theme.color};
 
     position: absolute;
-    top: 0;
+    top: -34px;
     cursor: default;
     font-size: 14px;
     display: inline-flex;

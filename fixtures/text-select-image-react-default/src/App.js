@@ -12,7 +12,7 @@ class App extends Component {
         return (
             <div className="app">
                 <div
-                    style={ {width: 900, margin: '150px auto'} }
+                    style={ {width: 800, margin: '150px auto'} }
                 >
                     <TextSelectImage
                         theme="night"
@@ -22,7 +22,7 @@ class App extends Component {
                 </div>
 
                 <div
-                    style={ {width: 900, margin: '150px auto'} }
+                    style={ {width: 800, margin: '150px auto'} }
                 >
                     <TextSelectImage
                         theme="dusk"
@@ -34,7 +34,7 @@ class App extends Component {
                 </div>
 
                 <div
-                    style={ {width: 900, margin: '150px auto'} }
+                    style={ {width: 800, margin: '150px auto'} }
                 >
                     <TextSelectImage
                         theme="dawn"
@@ -46,7 +46,7 @@ class App extends Component {
                 </div>
 
                 <div
-                    style={ {width: 900, margin: '150px auto'} }
+                    style={ {width: 800, margin: '150px auto'} }
                 >
                     <TextSelectImage
                         theme="light"
@@ -58,7 +58,7 @@ class App extends Component {
                 </div>
 
                 <div
-                    style={ {width: 900, margin: '150px auto'} }
+                    style={ {width: 800, margin: '150px auto'} }
                 >
                     <TextSelectImage
                         // theme="light"
