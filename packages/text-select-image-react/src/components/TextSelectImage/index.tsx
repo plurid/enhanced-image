@@ -15,6 +15,7 @@ import {
 import themes from '../../data/themes';
 
 import computeContentId from '../../utils/contentId';
+import uuidv4 from '../../utils/uuid';
 
 import foodText from '../../test-data/data-food-text';
 
@@ -138,8 +139,38 @@ class TextSelectImage extends Component<
 
 
     private createTextImage = () => {
-        console.log('createTextImage');
+        const { selectText } = this.state;
+        const { imageText } = selectText;
 
+        const newTextImage = {
+            id: `tsi-text-${uuidv4()}`,
+            xPercentage: 0,
+            yPercentage: 0,
+            xCoord: 50,
+            yCoord: 50,
+            perspective: '',
+            rotation: '',
+            skew: '',
+            color: 'red',
+            fontFamily: 'Arial',
+            fontSize: 24,
+            bold: false,
+            italic: false,
+            letterSpacing: 1,
+            lineHeight: 'auto',
+            wordSpacing: 0,
+            content: 'New Text',
+            link: false,
+            linkTo: '',
+            wiewable: false,
+        };
+
+        imageText.push(newTextImage);
+        selectText.imageText = imageText;
+
+        this.setState({
+            selectText,
+        });
     }
 
     private duplicateTextImage = (duplicateId: string) => {
