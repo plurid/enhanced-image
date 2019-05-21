@@ -142,7 +142,12 @@ class TextImage extends Component<
             ? (
                 <StyledTextImageTextContent
                     theme={theme}
-                    editMode={toggledEditable}
+                    toggledEditable={toggledEditable}
+                    editMode={textEditable}
+                    dragMode={textDraggable}
+                    draggingMode={dragging}
+                    viewable={textViewable}
+                    color={color}
                 >
                     <a href={linkTo} target="_blank">
                         {text.content}
@@ -152,7 +157,12 @@ class TextImage extends Component<
             : (
                 <StyledTextImageTextContent
                     theme={theme}
-                    editMode={toggledEditable}
+                    toggledEditable={toggledEditable}
+                    editMode={textEditable}
+                    dragMode={textDraggable}
+                    draggingMode={dragging}
+                    viewable={textViewable}
+                    color={color}
                 >
                     {text.content}
                 </StyledTextImageTextContent>
@@ -182,10 +192,14 @@ class TextImage extends Component<
 
                     onMouseEnter={this.showEditor}
                     onMouseLeave={this.showEditor}
+
+                    onMouseDown={this.dragMouseDown}
+                    onMouseMove={this.elementDrag}
+                    onMouseUp={this.mouseUp}
                 >
                     {textContent}
 
-                    {/* {showEditor && (
+                    {showEditor && (
                         <TextImageEditor
                             toggleTextEditable={this.toggleTextEditable}
                             textEditable={textEditable}
@@ -198,20 +212,7 @@ class TextImage extends Component<
 
                             text={this.props.text}
                         />
-                    )} */}
-
-                    <TextImageEditor
-                        toggleTextEditable={this.toggleTextEditable}
-                        textEditable={textEditable}
-
-                        toggleTextDraggable={this.toggleTextDraggable}
-                        textDraggable={textDraggable}
-
-                        toggleTextViewable={this.toggleTextViewable}
-                        textViewable={textViewable}
-
-                        text={text}
-                    />
+                    )}
                 </StyledTextImage>
             </div>
         );
