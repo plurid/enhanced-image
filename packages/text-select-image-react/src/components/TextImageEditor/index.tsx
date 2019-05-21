@@ -66,6 +66,8 @@ class TextImageEditor extends Component<any, any> {
             toggleTextViewable,
             textViewable,
             toggleEditor,
+            xCoord,
+            yCoord,
         } = this.props;
 
         const {
@@ -90,6 +92,10 @@ class TextImageEditor extends Component<any, any> {
         return (
             <StyledTextImageEditor
                 theme={theme}
+                style={{
+                    left: xCoord + 'px',
+                    top: yCoord + 'px',
+                }}
             >
                 <TextImageEditorButtonToggle
                     theme={theme}
