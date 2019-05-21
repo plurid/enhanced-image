@@ -34,6 +34,8 @@ import DeleteIcon from '../../assets/delete-icon';
 class TextImageEditor extends Component<any, any> {
     static contextType = Context;
 
+    editor: any = React.createRef();
+
     state = {
         id: this.props.text.id,
         xPercentage: this.props.text.xPercentage,
@@ -56,6 +58,15 @@ class TextImageEditor extends Component<any, any> {
 
         text: this.props.text,
     };
+
+    componentDidMount() {
+        const {
+            setEditorWidth,
+        } = this.context
+
+        const editorWidth = this.editor.current.offsetWidth;
+        setEditorWidth(editorWidth);
+    }
 
     public render() {
         const {
@@ -96,6 +107,7 @@ class TextImageEditor extends Component<any, any> {
                     left: xCoord + 'px',
                     top: yCoord + 'px',
                 }}
+                ref={this.editor}
             >
                 <TextImageEditorButtonToggle
                     theme={theme}

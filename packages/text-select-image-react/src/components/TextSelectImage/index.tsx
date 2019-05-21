@@ -53,12 +53,16 @@ interface ITextSelectImageState {
     toggleEditable: () => void;
     toggledEditable: boolean;
     selectText: any;
+    imageWidth: number;
+    imageHeight: number;
+    editorWidth: number;
 
     createTextImage: () => any;
     duplicateTextImage: (duplicateId: string) => any;
     updateTextImage: (text: any) => any;
     updateTextImageField: (id: string, element: string, value: any) => any;
     deleteTextImage: (id: string) => any;
+    setEditorWidth: (value: number) => any;
 }
 
 
@@ -82,6 +86,10 @@ class TextSelectImage extends Component<
             updateTextImage: this.updateTextImage,
             updateTextImageField: this.updateTextImageField,
             deleteTextImage: this.deleteTextImage,
+            imageWidth: 0,
+            imageHeight: 0,
+            editorWidth: 0,
+            setEditorWidth: this.setEditorWidth,
         }
     }
 
@@ -127,6 +135,7 @@ class TextSelectImage extends Component<
                     <img
                         src={src}
                         alt={alt || 'Image'}
+                        onLoad={this.handleLoadedImage}
                     />
 
                     <SelectImage />
@@ -266,6 +275,21 @@ class TextSelectImage extends Component<
         // to debounce the update to database every updateDebounce seconds
 
         const { updateDebounce } = this.state;
+    }
+
+    private handleLoadedImage = (image: any) => {
+        const { offsetHeight, offsetWidth } = image.target;
+
+        this.setState({
+            imageWidth: offsetWidth,
+            imageHeight: offsetHeight,
+        })
+    }
+
+    private setEditorWidth = (editorWidth: number) => {
+        this.setState({
+            editorWidth,
+        });
     }
 }
 

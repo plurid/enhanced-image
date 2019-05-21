@@ -78,6 +78,11 @@ class TextImage extends Component<
 
         editorXCoord: 0,
         editorYCoord: -EDITOR_HEIGHT,
+
+        imageWidth: 0,
+        imageHeight: 0,
+        editorWidth: 0,
+        editorSet: false,
     };
 
     constructor(props: any) {
@@ -88,10 +93,26 @@ class TextImage extends Component<
 
     public componentDidMount() {
         document.addEventListener('mouseup', this.dragMouseUp);
+        document.addEventListener('mousemove', this.dragMouseMove);
+    }
+
+    public componentDidUpdate() {
+        const { editorSet } = this.state;
+
+        if (!editorSet) {
+            this.setState({
+                imageWidth: this.context.imageWidth,
+                imageHeight: this.context.imageHeight,
+                editorWidth: this.context.editorWidth,
+            },
+                this.editorPosition
+            );
+        }
     }
 
     public componentWillUnmount() {
         document.removeEventListener('mouseup', this.dragMouseUp);
+        document.removeEventListener('mousemove', this.dragMouseMove);
     }
 
     public render() {
@@ -129,7 +150,14 @@ class TextImage extends Component<
         const {
             theme,
             toggledEditable,
+            imageWidth,
+            editorWidth,
         } = this.context;
+
+        console.log(
+            imageWidth,
+            editorWidth,
+        );
 
         const textContent = link && !toggledEditable
             ? (
@@ -187,7 +215,7 @@ class TextImage extends Component<
                     onMouseLeave={this.showEditor}
 
                     onMouseDown={this.dragMouseDown}
-                    onMouseMove={this.dragMouseMove}
+                    // onMouseMove={this.dragMouseMove}
                     onMouseUp={this.dragMouseUp}
 
                     onKeyDown={this.handleArrows}
@@ -273,6 +301,8 @@ class TextImage extends Component<
         const offsetX = e.nativeEvent.offsetX;
         const offsetY = e.nativeEvent.offsetY;
 
+        console.log(offsetX, offsetY);
+
         this.setState({
             dragging: true,
             pos3: offsetX,
@@ -295,11 +325,11 @@ class TextImage extends Component<
 
         const { offsetLeft, offsetTop } = this.textImage.current;
 
-        const offsetX = e.nativeEvent.offsetX;
-        const offsetY = e.nativeEvent.offsetY;
+        const offsetX = e.offsetX;
+        const offsetY = e.offsetY;
 
-        const diffX = pos3 - offsetX;
-        const diffY = pos4 - offsetY;
+        const diffX = - pos3 + offsetX;
+        const diffY = - pos4 + offsetY;
 
         console.log(offsetLeft, offsetTop);
         console.log(offsetX, offsetY);
@@ -308,12 +338,12 @@ class TextImage extends Component<
 
         // calculate the new cursor position:
         this.setState({
-            pos1: diffX,
-            pos2: diffY,
+            pos1: pos3,
+            pos2: pos4,
             pos3: offsetX,
             pos4: offsetY,
-            xCoord: offsetLeft - diffX,
-            yCoord: offsetTop - diffY,
+            xCoord: offsetLeft + diffX,
+            yCoord: offsetTop + diffY,
         },
             this.editorPosition
         );
@@ -336,35 +366,41 @@ class TextImage extends Component<
     }
 
     private editorPosition() {
-        // const {
-        //     imageWidth,
-        //     editorWidth,
-        // } = this.context;
-        // const {
-        //     offsetLeft,
-        //     offsetTop,
-        //     offsetHeight,
-        // } = this.textImage.current;
+        const {
+            imageWidth,
+            imageHeight,
+            // editorWidth,
+            editorSet,
+        } = this.state;
+
+        const editorWidth = 744;
+
+        const {
+            offsetLeft,
+            offsetTop,
+            offsetHeight,
+        } = this.textImage.current;
 
         // // // Do not let editor to go to the right.
-        // let editorXCoord = offsetLeft + editorWidth > imageWidth
-        //     ? -1 * (offsetLeft + editorWidth - imageWidth)
-        //     : -17;
+        let editorXCoord = offsetLeft + editorWidth > imageWidth
+            ? -1 * (offsetLeft + editorWidth - imageWidth)
+            : -17;
 
         // // // Do not let editor to go to the left.
-        // if (offsetLeft < 17) {
-        //     editorXCoord = offsetLeft * -1;
-        // }
+        if (offsetLeft < 17) {
+            editorXCoord = offsetLeft * -1;
+        }
 
         // // // Do not let editor to go to over the top.
-        // let editorYCoord = offsetTop < 34
-        //     ?  offsetHeight
-        //     : -34;
+        let editorYCoord = offsetTop < 34
+            ?  offsetHeight
+            : -34;
 
-        // this.setState({
-        //     editorXCoord,
-        //     editorYCoord,
-        // });
+        this.setState({
+            editorXCoord,
+            editorYCoord,
+            editorSet: true,
+        });
     }
 
     private toggleTextEditable = () => {
