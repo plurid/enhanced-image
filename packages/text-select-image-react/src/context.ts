@@ -14,6 +14,10 @@ export interface IContext {
     toggleEditable: () => void,
     toggledEditable: boolean,
     selectText: any;
+    imageWidth: number;
+    imageHeight: number;
+    editorWidth: number;
+    setEditorWidth: (value: number) => void;
 }
 
 const initialContext = {
@@ -26,6 +30,10 @@ const initialContext = {
     toggleEditable: () => {},
     toggledEditable: false,
     selectText: null,
+    imageWidth: 0,
+    imageHeight: 0,
+    editorWidth: 0,
+    setEditorWidth: (value: number) => {},
 }
 
 
