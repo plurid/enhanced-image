@@ -16,8 +16,16 @@ export const StyledTextImage: any = styled.div`
 
 
 export const StyledTextImageTextContent: any = styled.div`
+    color: ${(props: any) => {
+        if (props.viewable) {
+            return props.color;
+        }
+
+        return 'inherit';
+    }};
+
     background: ${(props: any) => {
-        if (props.editMode) {
+        if (props.toggledEditable) {
             return 'hsla(220, 2%, 10%, 0.3)';
         }
 
@@ -25,7 +33,7 @@ export const StyledTextImageTextContent: any = styled.div`
     }};
 
     user-select: ${(props: any) => {
-        if (props.editMode) {
+        if (props.toggledEditable) {
             return 'none';
         }
 
@@ -33,7 +41,19 @@ export const StyledTextImageTextContent: any = styled.div`
     }};
 
     cursor: ${(props: any) => {
+        if (props.dragMode) {
+            return 'grab';
+        }
+
+        if (props.draggingMode) {
+            return 'grabbing';
+        }
+
         if (props.editMode) {
+            return 'text';
+        }
+
+        if (props.toggledEditable) {
             return 'default';
         }
 
