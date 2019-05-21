@@ -8,6 +8,7 @@ export const StyledTextImage: any = styled.div`
     min-width: 30px;
     text-align: left;
     cursor: text;
+    outline: none;
 
     a {
         color: inherit;
@@ -41,12 +42,12 @@ export const StyledTextImageTextContent: any = styled.div`
     }};
 
     cursor: ${(props: any) => {
-        if (props.dragMode) {
-            return 'grab';
-        }
-
         if (props.draggingMode) {
             return 'grabbing';
+        }
+
+        if (props.dragMode) {
+            return 'grab';
         }
 
         if (props.editMode) {

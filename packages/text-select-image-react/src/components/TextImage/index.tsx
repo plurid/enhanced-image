@@ -190,6 +190,9 @@ class TextImage extends Component<
                     onMouseMove={this.dragMouseMove}
                     onMouseUp={this.dragMouseUp}
 
+                    onKeyDown={this.handleArrows}
+                    tabIndex="0"
+
                     ref={this.textImage}
                 >
                     {textContent}
@@ -216,23 +219,58 @@ class TextImage extends Component<
         );
     }
 
+    private handleArrows = (event: any) => {
+        this.moveWithArrows(event);
+        if (event.shiftKey) {
+            this.moveWithArrows(event, 10);
+        }
+    }
+
+    private moveWithArrows(event: any, step: number = 1) {
+        const { key } = event;
+
+        const { xCoord, yCoord } = this.state;
+
+        switch(key) {
+            case 'ArrowLeft':
+                    this.setState({
+                        xCoord: xCoord - step
+                    });
+                    break;
+            case 'ArrowRight':
+                this.setState({
+                    xCoord: xCoord + step
+                });
+                break;
+            case 'ArrowUp':
+                this.setState({
+                    yCoord: yCoord - step
+                });
+                break;
+            case 'ArrowDown':
+                this.setState({
+                    yCoord: yCoord + step
+                });
+                break;
+        }
+    }
+
     private dragMouseDown = (e: any) => {
+        const { textDraggable } = this.state;
+        if (!textDraggable) {
+            return;
+        }
+
+        e.preventDefault();
+
+        const offsetX = e.nativeEvent.offsetX;
+        const offsetY = e.nativeEvent.offsetY;
+
         this.setState({
             dragging: true,
+            pos3: offsetX,
+            pos4: offsetY,
         });
-
-        // e = e || window.event;
-        // e.preventDefault();
-        // // get the mouse cursor position at startup:
-
-        // this.setState({
-        //     pos3: e.clientX,
-        //     pos4: e.clientY,
-        // });
-
-        // document.onmouseup = this.closeDragElement;
-        // // call a function whenever the cursor moves:
-        // document.onmousemove = this.elementDrag;
     }
 
     private dragMouseMove = (e: any) => {
@@ -243,25 +281,32 @@ class TextImage extends Component<
 
         e.preventDefault();
 
-        const { pos1, pos2, pos3, pos4 } = this.state;
+        const {
+            pos3,
+            pos4,
+        } = this.state;
 
         const { offsetLeft, offsetTop } = this.textImage.current;
 
+        const offsetX = e.nativeEvent.offsetX;
+        const offsetY = e.nativeEvent.offsetY;
+
+        const diffX = pos3 - offsetX;
+        const diffY = pos4 - offsetY;
+
         console.log(offsetLeft, offsetTop);
-        console.log(e.offsetX, e.offsetX);
+        console.log(offsetX, offsetY);
+        console.log(diffX, diffY);
+        console.log('-----------');
 
         // calculate the new cursor position:
         this.setState({
-            pos1: pos3,
-            pos2: pos4,
-            pos3: e.clientX,
-            pos4: e.clientY,
-            // xCoord: offsetLeft - pos1,
-            // yCoord: offsetTop - pos2,
-            xCoord: offsetLeft + 2,
-            yCoord: offsetTop + 2,
-            // xCoord: this.textImageSpan.offsetLeft - pos1,
-            // yCoord: this.textImageSpan.offsetTop - pos2,
+            pos1: diffX,
+            pos2: diffY,
+            pos3: offsetX,
+            pos4: offsetY,
+            xCoord: offsetLeft - diffX,
+            yCoord: offsetTop - diffY,
         },
             this.editorPosition
         );
