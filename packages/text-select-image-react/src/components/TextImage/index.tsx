@@ -220,6 +220,13 @@ class TextImage extends Component<
     }
 
     private handleArrows = (event: any) => {
+        const { textDraggable } = this.state;
+        if (!textDraggable) {
+            return;
+        }
+
+        event.preventDefault();
+
         this.moveWithArrows(event);
         if (event.shiftKey) {
             this.moveWithArrows(event, 10);
