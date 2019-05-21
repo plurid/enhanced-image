@@ -205,8 +205,6 @@ class TextImageEditor extends Component<any, any> {
 
 
     private changeValue = (type: string, value: number | string) => {
-        // console.log(type, value);
-
         this.setState({
             [type]: value,
         },

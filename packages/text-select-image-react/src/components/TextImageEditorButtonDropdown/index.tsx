@@ -1,47 +1,70 @@
 import React, { Component } from 'react';
 
-import { StyledTextImageEditorButtonDropdown } from './styled';
+import Context from '../../context';
+
+import {
+    StyledTextImageEditorButtonDropdown,
+    StyledTextImageEditorButtonDropdownSelected,
+    StyledTextImageEditorButtonDropdownList,
+} from './styled';
 
 
 
 class TextImageEditorButtonDropdown extends Component<any, any> {
-    state = {
-        toggledDropdown: false,
+    static contextType = Context;
 
+    state = {
+        filtered: this.props.selectables,
+        selected: this.props.selected,
+        toggledDropdown: false,
     }
 
     public render() {
-        return (
-            <StyledTextImageEditorButtonDropdown>
-                {/* <span className="text-image-editor-dropdown">
-                    <span className="text-image-editor-dropdown-selected">
-                        <input
-                            type="text"
-                            value={this.selected}
-                            onInput={this.onInput}
-                            onClick={this.toggleDropdown}
-                        />
-                    </span>
+        const {
+            filtered,
+            selected,
+            toggledDropdown,
+        } = this.state;
 
-                    {this.toggledDropdown && (
-                        <span className="text-image-editor-dropdown-list">
-                            <ul>
-                                {this.filtered.map((select, index) => {
-                                    return (
-                                        <li
-                                            key={index}
-                                            style={{ [this.alterStyle]: select }}
-                                            onClick={this.clickSelect.bind(this, select)}
-                                            onMouseEnter={this.select.bind(this, select)}
-                                        >
-                                            {select}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </span>
-                    )}
-                </span> */}
+        const {
+            theme
+        } = this.context;
+
+        return (
+            <StyledTextImageEditorButtonDropdown
+                theme={theme}
+            >
+                <StyledTextImageEditorButtonDropdownSelected
+                    theme={theme}
+                >
+                    <input
+                        type="text"
+                        value={selected}
+                        onChange={this.onInput}
+                        onClick={this.toggleDropdown}
+                    />
+                </StyledTextImageEditorButtonDropdownSelected>
+
+                {toggledDropdown && (
+                    <StyledTextImageEditorButtonDropdownList
+                        theme={theme}
+                    >
+                        <ul>
+                            {filtered.map((select: any, index: any) => {
+                                return (
+                                    <li
+                                        key={index}
+                                        style={{ fontFamily: select }}
+                                        onClick={this.clickSelect.bind(this, select)}
+                                        onMouseEnter={this.select.bind(this, select)}
+                                    >
+                                        {select}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </StyledTextImageEditorButtonDropdownList>
+                )}
             </StyledTextImageEditorButtonDropdown>
         );
     }
@@ -52,36 +75,52 @@ class TextImageEditorButtonDropdown extends Component<any, any> {
         }));
     }
 
-    // private select = (selected: string) => {
-    //     this.changeSelected(this.type, selected);
-    // }
+    private select = (selected: string) => {
+        const {
+            changeSelected,
+            type,
+        } = this.props;
 
-    // private clickSelect = (selected: string) => {
-    //     this.toggleDropdown();
-    //     this.toggleEditor();
-    //     this.select(selected);
-    // }
+        this.setState({
+            selected,
+        },
+            changeSelected(type, selected)
+        );
+    }
 
-    // private onInput = (e: any) => {
-    //     const value = e.target.value;
-    //     this.select(value);
-    //     this.filter(value);
-    // }
+    private clickSelect = (selected: string) => {
+        this.toggleDropdown();
+        this.select(selected);
+    }
 
-    // private filter = (value: string) => {
-    //     if (value) {
-    //         const filtered = this.selectables.filter(selectable => {
-    //             if (selectable.toLowerCase().startsWith(value.toLowerCase())) {
-    //                 return selectable;
-    //             }
-    //         });
-    //         this.filtered = filtered;
-    //     }
+    private onInput = (e: any) => {
+        const value = e.target.value;
+        this.select(value);
+        this.filter(value);
+    }
 
-    //     if (value === '') {
-    //         this.filtered = this.selectables;
-    //     }
-    // }
+    private filter = (value: string) => {
+        const {
+            selectables,
+        } = this.props;
+
+        if (value) {
+            const filtered = selectables.filter((selectable: any) => {
+                if (selectable.toLowerCase().startsWith(value.toLowerCase())) {
+                    return selectable;
+                }
+            });
+            this.setState({
+                filtered,
+            });
+        }
+
+        if (value === '') {
+            this.setState({
+                filtered: selectables,
+            });
+        }
+    }
 }
 
 

@@ -185,7 +185,7 @@ class TextImage extends Component<
                 >
                     {textContent}
 
-                    {showEditor && (
+                    {/* {showEditor && (
                         <TextImageEditor
                             toggleTextEditable={this.toggleTextEditable}
                             textEditable={textEditable}
@@ -198,9 +198,9 @@ class TextImage extends Component<
 
                             text={this.props.text}
                         />
-                    )}
+                    )} */}
 
-                    {/* <TextImageEditor
+                    <TextImageEditor
                         toggleTextEditable={this.toggleTextEditable}
                         textEditable={textEditable}
 
@@ -211,7 +211,7 @@ class TextImage extends Component<
                         textViewable={textViewable}
 
                         text={text}
-                    /> */}
+                    />
                 </StyledTextImage>
             </div>
         );
