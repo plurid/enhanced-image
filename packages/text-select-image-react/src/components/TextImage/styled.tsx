@@ -3,6 +3,14 @@ import styled from 'styled-components';
 
 
 export const StyledTextImage: any = styled.div`
+    z-index: ${(props: any) => {
+        if (props.dragMode) {
+            return '9999';
+        }
+
+        return 'inherit';
+    }};
+
     position: absolute;
     white-space: nowrap;
     min-width: 30px;
