@@ -266,6 +266,8 @@ class TextImage extends Component<
 
         const { xCoord, yCoord } = this.state;
 
+        this.editorPosition();
+
         switch(key) {
             case 'ArrowLeft':
                     this.setState({
