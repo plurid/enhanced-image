@@ -240,7 +240,7 @@ class TextImage extends Component<
                 >
                     {textContent}
 
-                    {showMore && (
+                    {showMore && !toggledEditable && (
                         <TextImageMore
                             content={content}
                             toggleShow={this.toggleShowMore}
