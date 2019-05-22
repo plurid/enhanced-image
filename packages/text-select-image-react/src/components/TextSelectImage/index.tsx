@@ -6,6 +6,7 @@ import Context from '../../context';
 
 import SelectImage from '../SelectImage';
 import TextSelectImageSettings from '../TextSelectImageSettings';
+import Spinner from '../Spinner';
 
 import {
     UPDATE_DEBOUNCE,
@@ -56,6 +57,7 @@ interface ITextSelectImageState {
     imageWidth: number;
     imageHeight: number;
     editorWidth: number;
+    loading: boolean;
 
     createTextImage: () => any;
     duplicateTextImage: (duplicateId: string) => any;
@@ -75,6 +77,7 @@ class TextSelectImage extends Component<
         super(props);
 
         this.state = {
+            loading: false,
             apiEndpoint: this.props.apiEndpoint || PLURID_API,
             updateDebounce: this.props.updateDebounce || UPDATE_DEBOUNCE,
             toggleSettings: this.toggleSettings,
@@ -122,6 +125,7 @@ class TextSelectImage extends Component<
             alt,
         } = this.props;
         const {
+            loading,
             theme,
             selectText,
         } = this.state;
@@ -141,6 +145,10 @@ class TextSelectImage extends Component<
                     <SelectImage />
 
                     <TextSelectImageSettings />
+
+                    {loading && (
+                        <Spinner />
+                    )}
                 </StyledTextSelectImage>
             </Context.Provider>
         );
