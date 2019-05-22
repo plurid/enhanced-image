@@ -66,8 +66,8 @@ class TextImage extends Component<
         showEditor: false,
         showMore: false,
 
-        xCoord: this.props.text.xCoord,
-        yCoord: this.props.text.yCoord,
+        xCoord: 0,
+        yCoord: 0,
 
         textEditable: false,
         textDraggable: false,
@@ -86,6 +86,11 @@ class TextImage extends Component<
         imageHeight: 0,
         editorWidth: 0,
         editorSet: false,
+        percentagesProcessed: false,
+
+        fontSize: 0,
+        letterSpacing: 0,
+        wordSpacing: 0,
     };
 
     constructor(props: any) {
@@ -102,6 +107,7 @@ class TextImage extends Component<
     public componentDidUpdate() {
         const {
             editorSet,
+            percentagesProcessed,
             textEditable,
             textDraggable,
         } = this.state;
@@ -127,6 +133,10 @@ class TextImage extends Component<
                 textDraggable: false,
             });
         }
+
+        if (!percentagesProcessed) {
+            this.processCoords();
+        }
     }
 
     public componentWillUnmount() {
@@ -142,6 +152,9 @@ class TextImage extends Component<
 
             yCoord,
             xCoord,
+            fontSize,
+            letterSpacing,
+            wordSpacing,
 
             textEditable,
             textDraggable,
@@ -155,16 +168,12 @@ class TextImage extends Component<
         const {
             color,
             fontFamily,
-            fontSize,
             bold,
             italic,
-            letterSpacing,
             lineHeight,
-            wordSpacing,
             content,
             link,
             linkTo,
-            // viewable,
         } = this.props.text;
 
         const {
@@ -267,6 +276,41 @@ class TextImage extends Component<
                 </StyledTextImage>
             </div>
         );
+    }
+
+    private processCoords = () => {
+        const {
+            imageHeight,
+            imageWidth,
+        } = this.context;
+
+        const {
+            xPercentage,
+            yPercentage,
+            fontSizePercentage,
+            letterSpacingPercentage,
+            wordSpacingPercentage,
+        } = this.props.text;
+
+        const xCoord = xPercentage * imageWidth / 100;
+        const yCoord = yPercentage * imageHeight / 100;
+        const fontSize = Math.ceil(fontSizePercentage * imageHeight / 100);
+        const letterSpacing = letterSpacingPercentage * imageWidth / 100;
+        const wordSpacing =  wordSpacingPercentage * imageWidth / 100;
+
+        // console.log(xPercentage, yPercentage);
+        // console.log(Math.ceil(fontSize));
+        // console.log(imageHeight, imageWidth);
+        // console.log(xCoord, yCoord);
+
+        this.setState({
+            xCoord,
+            yCoord,
+            fontSize,
+            letterSpacing,
+            wordSpacing,
+            percentagesProcessed: true,
+        });
     }
 
     private handleKey = (event: any) => {
