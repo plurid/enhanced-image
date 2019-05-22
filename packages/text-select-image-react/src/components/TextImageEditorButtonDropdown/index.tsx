@@ -170,7 +170,12 @@ class TextImageEditorButtonDropdown extends Component<any, any> {
         const {
             cursor,
             filtered,
+            toggledDropdown,
         } = this.state;
+
+        if (!toggledDropdown) {
+            return;
+        }
 
         const { key } = event;
 
