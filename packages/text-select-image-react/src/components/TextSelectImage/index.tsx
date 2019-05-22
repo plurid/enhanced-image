@@ -56,8 +56,10 @@ interface ITextSelectImageState {
     toggleEditable: () => void;
     toggledEditable: boolean;
     selectText: any;
-    imageWidth: number;
     imageHeight: number;
+    imageWidth: number;
+    imageNaturalHeight: number;
+    imageNaturalWidth: number;
     editorWidth: number;
     loading: boolean;
 
@@ -93,8 +95,10 @@ class TextSelectImage extends Component<
             updateTextImage: this.updateTextImage,
             updateTextImageField: this.updateTextImageField,
             deleteTextImage: this.deleteTextImage,
-            imageWidth: 0,
             imageHeight: 0,
+            imageWidth: 0,
+            imageNaturalHeight: 0,
+            imageNaturalWidth: 0,
             editorWidth: 0,
             setEditorWidth: this.setEditorWidth,
         }
@@ -137,7 +141,8 @@ class TextSelectImage extends Component<
             selectText,
             controls,
         } = this.state;
-        // console.log(selectText);
+
+        console.log(selectText);
 
         return (
             <Context.Provider value={this.state}>
@@ -305,13 +310,20 @@ class TextSelectImage extends Component<
         const { updateDebounce } = this.state;
     }
 
-    private handleLoadedImage = (image: any) => {
-        const { offsetHeight, offsetWidth } = image.target;
+    private handleLoadedImage = async (image: any) => {
+        const {
+            offsetHeight,
+            offsetWidth,
+            naturalHeight,
+            naturalWidth,
+        } = image.target;
 
         this.setState({
             imageWidth: offsetWidth,
             imageHeight: offsetHeight,
-        })
+            imageNaturalHeight: naturalHeight,
+            imageNaturalWidth: naturalWidth,
+        });
     }
 
     private setEditorWidth = (editorWidth: number) => {

@@ -9,11 +9,14 @@ export interface ITextImage {
     skew: string;
     color: string;
     fontFamily: string;
+    fontSizePercentage: number;
     fontSize: number;
     bold: boolean;
     italic: boolean;
+    letterSpacingPercentage: number;
     letterSpacing: number;
     lineHeight: string | number;
+    wordSpacingPercentage: number;
     wordSpacing: number;
     content: string;
     link: boolean;
@@ -24,5 +27,7 @@ export interface ITextImage {
 
 export interface ITextSelectImageData {
     id: string;
+    imageHeight: number;
+    imageWidth: number;
     imageText: ITextImage[];
 }
