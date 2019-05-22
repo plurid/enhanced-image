@@ -142,7 +142,9 @@ class TextSelectImage extends Component<
             controls,
         } = this.state;
 
-        console.log(selectText);
+        if (selectText) {
+            console.log(selectText.imageText[1].xPercentage, selectText.imageText[1].yPercentage);
+        }
 
         return (
             <Context.Provider value={this.state}>
@@ -248,7 +250,22 @@ class TextSelectImage extends Component<
     }
 
     private updateTextImageField = (id: string, element: string, value: any) => {
+        const { selectText } = this.state;
+        const { imageText } = selectText;
+
+        const updatedImageText = imageText.map((imgText: any) => {
+            if (imgText.id === id) {
+                imgText[element] = value;
+                return imgText;
+            }
+            return imgText;
+        });
+        selectText.imageText = updatedImageText;
         console.log('updateTextImage', id, element, value);
+
+        this.setState({
+            selectText,
+        });
     }
 
     private deleteTextImage = (id: string) => {
