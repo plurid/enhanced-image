@@ -49,6 +49,8 @@ interface ITextSelectImageState {
     controls: boolean;
     theme: any;
     themeName: string;
+    toggleSettingsButton: () => void;
+    toggledSettingsButton: boolean;
     toggleSettings: () => void;
     toggledSettings: boolean;
     toggleEditable: () => void;
@@ -77,6 +79,8 @@ class TextSelectImage extends Component<
         super(props);
 
         this.state = {
+            toggleSettingsButton: this.toggleSettingsButton,
+            toggledSettingsButton: false,
             loading: false,
             apiEndpoint: this.props.apiEndpoint || PLURID_API,
             updateDebounce: this.props.updateDebounce || UPDATE_DEBOUNCE,
@@ -128,6 +132,7 @@ class TextSelectImage extends Component<
             loading,
             theme,
             toggledEditable,
+            toggledSettingsButton,
             imageWidth,
             selectText,
         } = this.state;
@@ -139,6 +144,8 @@ class TextSelectImage extends Component<
                     theme={theme}
                     toggledEditable={toggledEditable}
                     imageWidth={imageWidth}
+                    onMouseEnter={this.toggleSettingsButton}
+                    onMouseLeave={this.toggleSettingsButton}
                 >
                     <img
                         src={src}
@@ -148,7 +155,9 @@ class TextSelectImage extends Component<
 
                     <SelectImage />
 
-                    <TextSelectImageSettings />
+                    {toggledSettingsButton && (
+                        <TextSelectImageSettings />
+                    )}
 
                     {loading && (
                         <Spinner />
@@ -256,6 +265,12 @@ class TextSelectImage extends Component<
     private toggleSettings = () => {
         this.setState((prevState: any) => ({
             toggledSettings: !prevState.toggledSettings,
+        }));
+    }
+
+    private toggleSettingsButton = () => {
+        this.setState((prevState: any) => ({
+            toggledSettingsButton: !prevState.toggledSettingsButton,
         }));
     }
 
