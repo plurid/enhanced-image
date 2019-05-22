@@ -159,35 +159,36 @@ class TextImage extends Component<
             editorWidth,
         );
 
-        const textContent = link && !toggledEditable
-            ? (
-                <StyledTextImageTextContent
-                    theme={theme}
-                    toggledEditable={toggledEditable}
-                    editMode={textEditable}
-                    dragMode={textDraggable}
-                    draggingMode={dragging}
-                    viewable={textViewable}
-                    color={color}
-                >
-                    <a href={linkTo} target="_blank">
-                        {text.content}
-                    </a>
-                </StyledTextImageTextContent>
-            )
-            : (
-                <StyledTextImageTextContent
-                    theme={theme}
-                    toggledEditable={toggledEditable}
-                    editMode={textEditable}
-                    dragMode={textDraggable}
-                    draggingMode={dragging}
-                    viewable={textViewable}
-                    color={color}
-                >
-                    {text.content}
-                </StyledTextImageTextContent>
-            );
+        const editableDiv = (
+            <div
+                contentEditable={textEditable}
+                suppressContentEditableWarning={true}
+            >
+                {text.content}
+            </div>
+        );
+
+        const textContent = (
+            <StyledTextImageTextContent
+                theme={theme}
+                toggledEditable={toggledEditable}
+                editMode={textEditable}
+                dragMode={textDraggable}
+                draggingMode={dragging}
+                viewable={textViewable}
+                color={color}
+            >
+                {link && !toggledEditable
+                    ? (
+                        <a href={linkTo} target="_blank">
+                            {editableDiv}
+                        </a>
+                    ) : (
+                        <>{editableDiv}</>
+                    )
+                }
+            </StyledTextImageTextContent>
+        );
 
         return (
             <div>
@@ -215,7 +216,6 @@ class TextImage extends Component<
                     onMouseLeave={this.showEditor}
 
                     onMouseDown={this.dragMouseDown}
-                    // onMouseMove={this.dragMouseMove}
                     onMouseUp={this.dragMouseUp}
 
                     onKeyDown={this.handleKey}

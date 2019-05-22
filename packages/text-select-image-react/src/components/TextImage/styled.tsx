@@ -42,7 +42,7 @@ export const StyledTextImageTextContent: any = styled.div`
     }};
 
     user-select: ${(props: any) => {
-        if (props.toggledEditable) {
+        if (!props.toggledEditable) {
             return 'none';
         }
 
@@ -68,4 +68,6 @@ export const StyledTextImageTextContent: any = styled.div`
 
         return 'initial';
     }};
+
+    pointer-events: all;
 `;
