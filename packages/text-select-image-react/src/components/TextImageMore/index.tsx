@@ -24,6 +24,7 @@ class TextImageMore extends Component<any, any> {
 
         const {
             content,
+            toggleShow,
         } = this.props;
 
         return (
@@ -38,6 +39,7 @@ class TextImageMore extends Component<any, any> {
                     <TextImageMoreMenu
                         content={content}
                         toggleMenu={this.toggleMenu}
+                        toggleShow={toggleShow}
                     />
                 )}
             </StyledTextImageMore>

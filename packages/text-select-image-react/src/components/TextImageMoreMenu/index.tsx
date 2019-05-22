@@ -6,6 +6,7 @@ import { StyledTextImageMoreMenu } from './styled';
 
 import TextSelectImageButtonItem from '../TextSelectImageButtonItem';
 import CopyIcon from '../../assets/copy-icon';
+import TranslateIcon from '../../assets/translate-icon';
 
 import copyToClipboard from '../../utils/copyToClipboard';
 
@@ -39,7 +40,7 @@ class TextImageMoreMenu extends Component<any, any> {
                         <TextSelectImageButtonItem
                             theme={theme}
                             atClick={this.translate}
-                            icon={AddTextIcon}
+                            icon={TranslateIcon}
                             text="Translate"
                         />
                     </li> */}
@@ -52,10 +53,12 @@ class TextImageMoreMenu extends Component<any, any> {
         const {
             content,
             toggleMenu,
+            toggleShow,
         } = this.props;
 
         copyToClipboard(content);
         toggleMenu();
+        toggleShow();
     }
 
     private translate = () => {

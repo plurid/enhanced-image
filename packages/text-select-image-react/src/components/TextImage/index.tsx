@@ -240,12 +240,12 @@ class TextImage extends Component<
                 >
                     {textContent}
 
-                    {/* {showMore && (
-                        <TextImageMore />
-                    )} */}
-                    <TextImageMore
-                        content={content}
-                    />
+                    {showMore && (
+                        <TextImageMore
+                            content={content}
+                            toggleShow={this.toggleShowMore}
+                        />
+                    )}
 
                     {showEditor && !dragging && (
                         <TextImageEditor
@@ -428,6 +428,10 @@ class TextImage extends Component<
             }));
         }
 
+        this.toggleShowMore();
+    }
+
+    toggleShowMore = () => {
         this.setState((prevState: any) => ({
             showMore: !prevState.showMore,
         }));

@@ -22,8 +22,8 @@ export const StyledTextImageMoreMenu = styled.div`
 
         box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
 
-        min-width: 130px;
-        width: 150px;
+        min-width: 90px;
+        width: 110px;
         display: flex;
         flex-direction: column;
         list-style: none;
