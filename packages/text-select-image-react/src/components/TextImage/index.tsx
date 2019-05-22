@@ -298,15 +298,13 @@ class TextImage extends Component<
 
         e.preventDefault();
 
-        const offsetX = e.nativeEvent.offsetX;
-        const offsetY = e.nativeEvent.offsetY;
-
-        console.log(offsetX, offsetY);
+        const pageX = e.pageX;
+        const pageY = e.pageY;
 
         this.setState({
             dragging: true,
-            pos3: offsetX,
-            pos4: offsetY,
+            pos3: pageX,
+            pos4: pageY,
         });
     }
 
@@ -325,23 +323,18 @@ class TextImage extends Component<
 
         const { offsetLeft, offsetTop } = this.textImage.current;
 
-        const offsetX = e.offsetX;
-        const offsetY = e.offsetY;
+        const pageX = e.pageX;
+        const pageY = e.pageY;
 
-        const diffX = - pos3 + offsetX;
-        const diffY = - pos4 + offsetY;
-
-        console.log(offsetLeft, offsetTop);
-        console.log(offsetX, offsetY);
-        console.log(diffX, diffY);
-        console.log('-----------');
+        const diffX = pageX - pos3;
+        const diffY = pageY - pos4;
 
         // calculate the new cursor position:
         this.setState({
             pos1: pos3,
             pos2: pos4,
-            pos3: offsetX,
-            pos4: offsetY,
+            pos3: pageX,
+            pos4: pageY,
             xCoord: offsetLeft + diffX,
             yCoord: offsetTop + diffY,
         },
