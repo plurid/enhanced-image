@@ -218,7 +218,7 @@ class TextImage extends Component<
                     // onMouseMove={this.dragMouseMove}
                     onMouseUp={this.dragMouseUp}
 
-                    onKeyDown={this.handleArrows}
+                    onKeyDown={this.handleKey}
                     tabIndex="0"
 
                     ref={this.textImage}
@@ -247,13 +247,59 @@ class TextImage extends Component<
         );
     }
 
-    private handleArrows = (event: any) => {
-        const { textDraggable } = this.state;
-        if (!textDraggable) {
+    private handleKey = (event: any) => {
+        this.handleShortcuts(event);
+        this.handleArrows(event);
+    }
+
+    private handleShortcuts = (event: any) => {
+        const {
+            textEditable,
+            text,
+        } = this.state;
+
+        const {
+            duplicateTextImage,
+            deleteTextImage,
+        } = this.context;
+
+        const { key, altKey } = event;
+
+        if (key === '†' && altKey) {
+            this.toggleTextEditable();
+        }
+
+        if (textEditable) {
             return;
         }
 
-        event.preventDefault();
+        switch(key) {
+            case 't':
+                this.toggleTextEditable();
+                break;
+            case 'g':
+                this.toggleTextDraggable();
+                break;
+            case 'v':
+                this.toggleTextViewable();
+                break;
+            case 'd':
+                duplicateTextImage(text.id);
+                break;
+            case 'x':
+                deleteTextImage(text.id);
+                break;
+        }
+    }
+
+    private handleArrows = (event: any) => {
+        const {
+            textDraggable,
+        } = this.state;
+
+        if (!textDraggable) {
+            return;
+        }
 
         this.moveWithArrows(event);
         if (event.shiftKey) {
