@@ -89,6 +89,15 @@ class TextImageEditorButtonDropdown extends Component<any, any> {
     }
 
     private toggleDropdown = () => {
+        const {
+            textDraggable,
+            toggleTextDraggable,
+        } = this.props;
+
+        if (textDraggable) {
+            toggleTextDraggable();
+        }
+
         this.setState((prevState: any) => ({
             toggledDropdown: !prevState.toggledDropdown,
         }),

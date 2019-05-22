@@ -313,6 +313,7 @@ class TextImage extends Component<
             return;
         }
 
+        event.preventDefault();
         this.moveWithArrows(event);
         if (event.shiftKey) {
             this.moveWithArrows(event, 10);
