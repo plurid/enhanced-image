@@ -88,7 +88,7 @@ class TextImage extends Component<
         editorSet: false,
         percentagesProcessed: false,
 
-        fontSize: 0,
+        fontSize: 12,
         letterSpacing: 0,
         wordSpacing: 0,
     };
@@ -186,6 +186,7 @@ class TextImage extends Component<
                 toggledEditable={toggledEditable}
                 contentEditable={textEditable}
                 suppressContentEditableWarning={true}
+                onInput={this.handleChange}
             >
                 {text.content}
             </StyledEditableDiv>
@@ -276,6 +277,19 @@ class TextImage extends Component<
                 </StyledTextImage>
             </div>
         );
+    }
+
+    private handleChange = (event: any) => {
+        const {
+            updateTextImageField,
+        } = this.context;
+
+        const {
+            text
+        } = this.state;
+
+        const value = event.target.innerText;
+        updateTextImageField(text.id, 'content', value);
     }
 
     private processCoords = () => {
@@ -383,26 +397,66 @@ class TextImage extends Component<
 
         switch(key) {
             case 'ArrowLeft':
-                    this.setState({
-                        xCoord: xCoord - step
-                    });
-                    break;
+                this.setState({
+                    xCoord: xCoord - step
+                },
+                    this.saveCoords
+                );
+                break;
             case 'ArrowRight':
                 this.setState({
                     xCoord: xCoord + step
-                });
+                },
+                    this.saveCoords
+                );
                 break;
             case 'ArrowUp':
                 this.setState({
                     yCoord: yCoord - step
-                });
+                },
+                    this.saveCoords
+                );
                 break;
             case 'ArrowDown':
                 this.setState({
                     yCoord: yCoord + step
-                });
+                },
+                    this.saveCoords
+                );
                 break;
         }
+    }
+
+    private saveCoords = () => {
+        const {
+            updateTextImageField,
+        } = this.context;
+
+        const {
+            text
+        } = this.state;
+
+        const { xPercentage, yPercentage } = this.coordsToPercentage();
+
+        updateTextImageField(text.id, 'xPercentage', xPercentage);
+        updateTextImageField(text.id, 'yPercentage', yPercentage);
+    }
+
+    private coordsToPercentage = () => {
+        const {
+            xCoord,
+            yCoord,
+            imageHeight,
+            imageWidth,
+        } = this.state;
+
+        const xPercentage = xCoord * 100 / imageWidth;
+        const yPercentage = yCoord * 100 / imageHeight;
+
+        return {
+            xPercentage,
+            yPercentage,
+        };
     }
 
     private dragMouseDown = (e: any) => {
@@ -453,7 +507,10 @@ class TextImage extends Component<
             xCoord: offsetLeft + diffX,
             yCoord: offsetTop + diffY,
         },
-            this.editorPosition
+            () => {
+                this.editorPosition();
+                this.saveCoords();
+            }
         );
     }
 
