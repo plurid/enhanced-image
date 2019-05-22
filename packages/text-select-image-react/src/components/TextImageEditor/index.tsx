@@ -151,6 +151,8 @@ class TextImageEditor extends Component<any, any> {
                     selectables={selectableFonts}
                     changeSelected={this.changeValue}
                     toggleEditor={toggleEditor}
+                    textDraggable={textDraggable}
+                    toggleTextDraggable={toggleTextDraggable}
                 />
 
                 <TextImageEditorButtonInput
