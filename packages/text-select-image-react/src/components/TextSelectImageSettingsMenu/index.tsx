@@ -21,6 +21,7 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
 
     public render() {
         const {
+            about,
             theme,
             toggledEditable,
         } = this.context;
@@ -38,6 +39,7 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
                             checked={toggledEditable}
                         />
                     </li>
+
                     <li>
                         <TextSelectImageButtonItem
                             theme={theme}
@@ -47,16 +49,20 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
                         />
                     </li>
 
-                    <hr />
+                    {about && (
+                        <hr />
+                    )}
 
-                    <li>
-                        <TextSelectImageButtonItem
-                            theme={theme}
-                            atClick={this.about}
-                            icon={AboutIcon}
-                            text="About TSI"
-                        />
-                    </li>
+                    {about && (
+                        <li>
+                            <TextSelectImageButtonItem
+                                theme={theme}
+                                atClick={this.about}
+                                icon={AboutIcon}
+                                text="About TSI"
+                            />
+                        </li>
+                    )}
                 </ul>
             </StyledTextSelectImageSettingsMenu>
         );

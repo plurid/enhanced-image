@@ -107,10 +107,10 @@ class TextSelectImage extends Component<
             theme
         } = this.props;
 
-        const _about = about ? about : this.context.about;
-        const _controls = controls ? controls : this.context.controls;
-        const _theme = theme ? themes[theme] : this.context.theme;
-        const _themeName = theme ? theme : this.context.themeName;
+        const _about = about === undefined ? this.context.about : about;
+        const _controls = controls === undefined ? this.context.controls : controls;
+        const _theme = theme === undefined ? this.context.theme : themes[theme];
+        const _themeName = theme === undefined ? this.context.themeName : theme;
 
         const selectText = await this.getText();
 
@@ -135,6 +135,7 @@ class TextSelectImage extends Component<
             toggledSettingsButton,
             imageWidth,
             selectText,
+            controls,
         } = this.state;
         // console.log(selectText);
 
@@ -155,7 +156,7 @@ class TextSelectImage extends Component<
 
                     <SelectImage />
 
-                    {toggledSettingsButton && (
+                    {toggledSettingsButton && controls && (
                         <TextSelectImageSettings />
                     )}
 

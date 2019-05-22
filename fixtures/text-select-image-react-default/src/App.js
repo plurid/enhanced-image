@@ -17,7 +17,7 @@ class App extends Component {
                     <TextSelectImage
                         theme="night"
                         src={foodImage}
-                        about={false}
+                        controls={true}
                     />
                 </div>
 
@@ -29,7 +29,7 @@ class App extends Component {
                         src={foodImage}
                         alt="food image"
                         about={false}
-
+                        controls={true}
                     />
                 </div>
 
@@ -41,6 +41,7 @@ class App extends Component {
                         src={foodImage}
                         alt="food image"
                         about={false}
+                        controls={true}
 
                     />
                 </div>
@@ -53,6 +54,7 @@ class App extends Component {
                         src={foodImage}
                         alt="food image"
                         about={false}
+                        controls={true}
 
                     />
                 </div>
@@ -65,6 +67,8 @@ class App extends Component {
                         src={foodImage}
                         alt="food image"
                         about={false}
+                        controls={true}
+
                     />
                 </div>
             </div>
