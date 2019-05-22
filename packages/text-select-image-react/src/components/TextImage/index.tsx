@@ -11,6 +11,7 @@ import Context from '../../context';
 // import { ITextImage } from '../../interfaces/image-text';
 
 import TextImageEditor from '../TextImageEditor';
+import TextImageMore from '../TextImageMore';
 
 import { EDITOR_HEIGHT } from '../../data/constants';
 
@@ -63,6 +64,7 @@ class TextImage extends Component<
         textLink: this.props.text.textLink,
         textLinkToValue: this.props.text.textLinkToValue,
         showEditor: false,
+        showMore: false,
 
         xCoord: this.props.text.xCoord,
         yCoord: this.props.text.yCoord,
@@ -136,6 +138,7 @@ class TextImage extends Component<
         const {
             text,
             showEditor,
+            showMore,
 
             yCoord,
             xCoord,
@@ -158,7 +161,7 @@ class TextImage extends Component<
             letterSpacing,
             lineHeight,
             wordSpacing,
-            // content,
+            content,
             link,
             linkTo,
             // viewable,
@@ -225,8 +228,8 @@ class TextImage extends Component<
                         wordSpacing: wordSpacing + 'px',
                     }}
 
-                    onMouseEnter={this.showEditor}
-                    onMouseLeave={this.showEditor}
+                    onMouseEnter={this.handleMouseEnter}
+                    onMouseLeave={this.handleMouseEnter}
 
                     onMouseUp={this.dragMouseUp}
 
@@ -236,6 +239,13 @@ class TextImage extends Component<
                     ref={this.textImage}
                 >
                     {textContent}
+
+                    {/* {showMore && (
+                        <TextImageMore />
+                    )} */}
+                    <TextImageMore
+                        content={content}
+                    />
 
                     {showEditor && !dragging && (
                         <TextImageEditor
@@ -409,7 +419,7 @@ class TextImage extends Component<
         });
     }
 
-    private showEditor = () => {
+    private handleMouseEnter = () => {
         const { toggledEditable } = this.context;
 
         if (toggledEditable) {
@@ -417,6 +427,10 @@ class TextImage extends Component<
                 showEditor: !prevState.showEditor,
             }));
         }
+
+        this.setState((prevState: any) => ({
+            showMore: !prevState.showMore,
+        }));
     }
 
     private editorPosition() {

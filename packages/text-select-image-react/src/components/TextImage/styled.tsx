@@ -18,6 +18,10 @@ export const StyledTextImage: any = styled.div`
     cursor: text;
     outline: none;
 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     a {
         color: inherit;
     }
