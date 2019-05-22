@@ -127,6 +127,8 @@ class TextSelectImage extends Component<
         const {
             loading,
             theme,
+            toggledEditable,
+            imageWidth,
             selectText,
         } = this.state;
         // console.log(selectText);
@@ -135,6 +137,8 @@ class TextSelectImage extends Component<
             <Context.Provider value={this.state}>
                 <StyledTextSelectImage
                     theme={theme}
+                    toggledEditable={toggledEditable}
+                    imageWidth={imageWidth}
                 >
                     <img
                         src={src}

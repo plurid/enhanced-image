@@ -41,14 +41,6 @@ export const StyledTextImageTextContent: any = styled.div`
         return 'transparent';
     }};
 
-    user-select: ${(props: any) => {
-        if (!props.toggledEditable) {
-            return 'none';
-        }
-
-        return 'auto';
-    }};
-
     cursor: ${(props: any) => {
         if (props.draggingMode) {
             return 'grabbing';
@@ -69,5 +61,17 @@ export const StyledTextImageTextContent: any = styled.div`
         return 'initial';
     }};
 
-    pointer-events: all;
+`;
+
+
+export const StyledEditableDiv: any = styled.div`
+    outline: none;
+
+    user-select: ${(props: any) => {
+        if (props.toggledEditable) {
+            return 'none';
+        }
+
+        return 'auto';
+    }};
 `;

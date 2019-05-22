@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 
 export const StyledTextImageEditorButtonDropdown = styled.div`
+    display: grid;
+    place-content: center;
     position: relative;
 `;
 
@@ -22,7 +24,7 @@ export const StyledTextImageEditorButtonDropdownSelected = styled.div`
 
 export const StyledTextImageEditorButtonDropdownList: any = styled.div`
     position: absolute;
-    top: 19px;
+    top: 27px;
     left: 0;
     right: 0;
     display: grid;

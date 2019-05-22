@@ -7,6 +7,7 @@ export const StyledTextImageEditorButtonsColors: any = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
     margin: 0 5px;
+    place-content: center;
 `;
 
 export const StyledTextImageEditorButtonColors: any = styled.div`

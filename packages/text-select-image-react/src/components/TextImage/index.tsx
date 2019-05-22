@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
     StyledTextImage,
     StyledTextImageTextContent,
+    StyledEditableDiv,
 } from './styled';
 
 import Context from '../../context';
@@ -97,7 +98,15 @@ class TextImage extends Component<
     }
 
     public componentDidUpdate() {
-        const { editorSet } = this.state;
+        const {
+            editorSet,
+            textEditable,
+            textDraggable,
+        } = this.state;
+
+        const {
+            toggledEditable,
+        } = this.context;
 
         if (!editorSet) {
             this.setState({
@@ -107,6 +116,14 @@ class TextImage extends Component<
             },
                 this.editorPosition
             );
+        }
+
+        // set text edit and drag to false when not editing the image
+        if (!toggledEditable && (textEditable || textDraggable)) {
+            this.setState({
+                textEditable: false,
+                textDraggable: false,
+            });
         }
     }
 
@@ -150,22 +167,16 @@ class TextImage extends Component<
         const {
             theme,
             toggledEditable,
-            imageWidth,
-            editorWidth,
         } = this.context;
 
-        console.log(
-            imageWidth,
-            editorWidth,
-        );
-
         const editableDiv = (
-            <div
+            <StyledEditableDiv
+                toggledEditable={toggledEditable}
                 contentEditable={textEditable}
                 suppressContentEditableWarning={true}
             >
                 {text.content}
-            </div>
+            </StyledEditableDiv>
         );
 
         const textContent = (
@@ -177,6 +188,8 @@ class TextImage extends Component<
                 draggingMode={dragging}
                 viewable={textViewable}
                 color={color}
+
+                onMouseDown={this.dragMouseDown}
             >
                 {link && !toggledEditable
                     ? (
@@ -215,7 +228,6 @@ class TextImage extends Component<
                     onMouseEnter={this.showEditor}
                     onMouseLeave={this.showEditor}
 
-                    onMouseDown={this.dragMouseDown}
                     onMouseUp={this.dragMouseUp}
 
                     onKeyDown={this.handleKey}
@@ -225,7 +237,7 @@ class TextImage extends Component<
                 >
                     {textContent}
 
-                    {showEditor && (
+                    {showEditor && !dragging && (
                         <TextImageEditor
                             toggleTextEditable={this.toggleTextEditable}
                             textEditable={textEditable}
@@ -409,12 +421,8 @@ class TextImage extends Component<
     private editorPosition() {
         const {
             imageWidth,
-            imageHeight,
-            // editorWidth,
-            editorSet,
-        } = this.state;
-
-        const editorWidth = 744;
+            editorWidth,
+        } = this.context;
 
         const {
             offsetLeft,
@@ -422,17 +430,21 @@ class TextImage extends Component<
             offsetHeight,
         } = this.textImage.current;
 
-        // // // Do not let editor to go to the right.
+        // Do not let editor to go to the right.
         let editorXCoord = offsetLeft + editorWidth > imageWidth
             ? -1 * (offsetLeft + editorWidth - imageWidth)
             : -17;
 
-        // // // Do not let editor to go to the left.
+        // Do not let editor to go to the left.
         if (offsetLeft < 17) {
             editorXCoord = offsetLeft * -1;
         }
 
-        // // // Do not let editor to go to over the top.
+        if (editorWidth === 0) {
+            editorXCoord = - offsetLeft;
+        }
+
+        // Do not let editor to go to over the top.
         let editorYCoord = offsetTop < 34
             ?  offsetHeight
             : -34;
