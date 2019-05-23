@@ -18,10 +18,11 @@ import themes from '../../data/themes';
 import computeContentId from '../../utils/contentId';
 import uuidv4 from '../../utils/uuid';
 
-import foodText from '../../test-data/data-food-text';
-
 import ApolloClient from 'apollo-boost';
-import { gql } from 'apollo-boost';
+
+import { getTextSelectImage } from '../../graphql/query';
+import { updateTextSelectImage } from '../../graphql/mutation';
+
 
 
 const apolloClient = (uri: string) => {
@@ -336,23 +337,51 @@ class TextSelectImage extends Component<
      * to get the data based on the contentId of the image.
      */
     private getText = async () => {
-        const { apiEndpoint } = this.state;
-        const { apiKey } = this.props;
+        // const { apiEndpoint } = this.state;
+        // const { apiKey } = this.props;
 
         const contentId = await computeContentId(this.props.src);
-        console.log(contentId);
 
-        // const query = await this.client
-        //     .query({
-        //         query: gql`
-        //             {
-        //                 get the imageData based on the contentId
-        //             }
-        //         `
-        //     });
-        // console.log(query);
+        const query = await this.client
+            .query({
+                query: getTextSelectImage,
+                variables: {
+                    sha: contentId
+                },
+            });
 
-        return foodText;
+        const selectText = this.processText(query.data.textSelectImage);
+
+        return selectText;
+    }
+
+    private processText = (data: any) => {
+        const {
+            imageText,
+            imageHeight,
+            imageWidth,
+        } = data;
+
+        const imgText: any[] = [];
+
+        for (let text of imageText) {
+            let txt = {};
+            const { currentVersionId, versions } = text;
+            for (let version of versions) {
+                if (version.id === currentVersionId) {
+                    txt = { ...version };
+                }
+            }
+            imgText.push(txt);
+        }
+
+        const selectText = {
+            imageHeight,
+            imageWidth,
+            imageText: imgText,
+        };
+
+        return selectText;
     }
 
     private updateText = () => {
