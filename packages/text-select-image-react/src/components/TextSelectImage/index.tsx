@@ -45,10 +45,20 @@ interface ITextSelectImageProps {
 interface ITextSelectImageState {
     apiEndpoint: string;
     updateDebounce: number;
-    about: boolean;
-    controls: boolean;
+
     theme: any;
     themeName: string;
+    about: boolean;
+    controls: boolean;
+    editorWidth: number;
+    loading: boolean;
+
+    imageLoaded: boolean;
+    imageHeight: number;
+    imageWidth: number;
+    imageNaturalHeight: number;
+    imageNaturalWidth: number;
+
     toggleSettingsButton: () => void;
     toggledSettingsButton: boolean;
     toggleSettings: () => void;
@@ -56,12 +66,6 @@ interface ITextSelectImageState {
     toggleEditable: () => void;
     toggledEditable: boolean;
     selectText: any;
-    imageHeight: number;
-    imageWidth: number;
-    imageNaturalHeight: number;
-    imageNaturalWidth: number;
-    editorWidth: number;
-    loading: boolean;
 
     createTextImage: () => any;
     duplicateTextImage: (duplicateId: string) => any;
@@ -81,25 +85,30 @@ class TextSelectImage extends Component<
         super(props);
 
         this.state = {
-            toggleSettingsButton: this.toggleSettingsButton,
-            toggledSettingsButton: false,
-            loading: false,
             apiEndpoint: this.props.apiEndpoint || PLURID_API,
             updateDebounce: this.props.updateDebounce || UPDATE_DEBOUNCE,
+
+            loading: false,
+            editorWidth: 0,
+
+            imageLoaded: false,
+            imageHeight: 0,
+            imageWidth: 0,
+            imageNaturalHeight: 0,
+            imageNaturalWidth: 0,
+
+            toggleSettingsButton: this.toggleSettingsButton,
+            toggledSettingsButton: false,
             toggleSettings: this.toggleSettings,
             toggledSettings: false,
             toggleEditable: this.toggleEditable,
             toggledEditable: false,
+
             createTextImage: this.createTextImage,
             duplicateTextImage: this.duplicateTextImage,
             updateTextImage: this.updateTextImage,
             updateTextImageField: this.updateTextImageField,
             deleteTextImage: this.deleteTextImage,
-            imageHeight: 0,
-            imageWidth: 0,
-            imageNaturalHeight: 0,
-            imageNaturalWidth: 0,
-            editorWidth: 0,
             setEditorWidth: this.setEditorWidth,
         }
     }
@@ -133,18 +142,14 @@ class TextSelectImage extends Component<
             alt,
         } = this.props;
         const {
-            loading,
+            controls,
             theme,
+            loading,
+            imageWidth,
             toggledEditable,
             toggledSettingsButton,
-            imageWidth,
             selectText,
-            controls,
         } = this.state;
-
-        if (selectText) {
-            console.log(selectText.imageText[1].xPercentage, selectText.imageText[1].yPercentage);
-        }
 
         return (
             <Context.Provider value={this.state}>
@@ -261,7 +266,6 @@ class TextSelectImage extends Component<
             return imgText;
         });
         selectText.imageText = updatedImageText;
-        console.log('updateTextImage', id, element, value);
 
         this.setState({
             selectText,
@@ -336,6 +340,7 @@ class TextSelectImage extends Component<
         } = image.target;
 
         this.setState({
+            imageLoaded: true,
             imageWidth: offsetWidth,
             imageHeight: offsetHeight,
             imageNaturalHeight: naturalHeight,
