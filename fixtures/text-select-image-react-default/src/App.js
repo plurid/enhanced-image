@@ -12,7 +12,7 @@ class App extends Component {
         return (
             <div className="app">
                 <div
-                    style={ {width: 550, margin: '150px auto'} }
+                    style={ {width: 800, margin: '150px auto'} }
                 >
                     <TextSelectImage
                         theme="night"
@@ -21,56 +21,58 @@ class App extends Component {
                     />
                 </div>
 
-                <div
-                    style={ {width: 800, margin: '150px auto'} }
-                >
-                    <TextSelectImage
-                        theme="dusk"
-                        src={foodImage}
-                        alt="food image"
-                        about={false}
-                        controls={true}
-                    />
-                </div>
+            {
+                // <div
+                //     style={ {width: 800, margin: '150px auto'} }
+                // >
+                //     <TextSelectImage
+                //         theme="dusk"
+                //         src={foodImage}
+                //         alt="food image"
+                //         about={false}
+                //         controls={true}
+                //     />
+                // </div>
 
-                <div
-                    style={ {width: 800, margin: '150px auto'} }
-                >
-                    <TextSelectImage
-                        theme="dawn"
-                        src={foodImage}
-                        alt="food image"
-                        about={false}
-                        controls={true}
+                // <div
+                //     style={ {width: 800, margin: '150px auto'} }
+                // >
+                //     <TextSelectImage
+                //         theme="dawn"
+                //         src={foodImage}
+                //         alt="food image"
+                //         about={false}
+                //         controls={true}
 
-                    />
-                </div>
+                //     />
+                // </div>
 
-                <div
-                    style={ {width: 800, margin: '150px auto'} }
-                >
-                    <TextSelectImage
-                        theme="light"
-                        src={foodImage}
-                        alt="food image"
-                        about={false}
-                        controls={true}
+                // <div
+                //     style={ {width: 800, margin: '150px auto'} }
+                // >
+                //     <TextSelectImage
+                //         theme="light"
+                //         src={foodImage}
+                //         alt="food image"
+                //         about={false}
+                //         controls={true}
 
-                    />
-                </div>
+                //     />
+                // </div>
 
-                <div
-                    style={ {width: 800, margin: '150px auto'} }
-                >
-                    <TextSelectImage
-                        // theme="light"
-                        src={foodImage}
-                        alt="food image"
-                        about={false}
-                        controls={true}
+                // <div
+                //     style={ {width: 800, margin: '150px auto'} }
+                // >
+                //     <TextSelectImage
+                //         // theme="light"
+                //         src={foodImage}
+                //         alt="food image"
+                //         about={false}
+                //         controls={true}
 
-                    />
-                </div>
+                //     />
+                // </div>
+            }
             </div>
         );
     }
