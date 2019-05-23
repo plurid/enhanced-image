@@ -18,6 +18,7 @@ class App extends Component {
                         theme="night"
                         src={foodImage}
                         controls={true}
+                        apiEndpoint="http://localhost:3360/graphql"
                     />
                 </div>
 

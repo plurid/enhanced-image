@@ -20,6 +20,15 @@ import uuidv4 from '../../utils/uuid';
 
 import foodText from '../../test-data/data-food-text';
 
+import ApolloClient from 'apollo-boost';
+import { gql } from 'apollo-boost';
+
+
+const apolloClient = (uri: string) => {
+    return new ApolloClient({
+        uri,
+    });
+}
 
 
 interface ITextSelectImageProps {
@@ -81,11 +90,16 @@ class TextSelectImage extends Component<
 > {
     static contextType = Context;
 
+    client: any;
+
     constructor(props: ITextSelectImageProps) {
         super(props);
 
+        const apiEndpoint = this.props.apiEndpoint || PLURID_API;
+        this.client = apolloClient(apiEndpoint);
+
         this.state = {
-            apiEndpoint: this.props.apiEndpoint || PLURID_API,
+            apiEndpoint,
             updateDebounce: this.props.updateDebounce || UPDATE_DEBOUNCE,
 
             loading: false,
@@ -313,20 +327,26 @@ class TextSelectImage extends Component<
         }));
     }
 
+    /**
+     * Graphql query to the apiEndpoint (with apiKey if it exists)
+     * to get the data based on the contentId of the image.
+     */
     private getText = async () => {
-        // graphql query to the apiEndpoint
-        // with apiKey if exists
-        // to get the data
-        // based on the contentId of the image
-
         const { apiEndpoint } = this.state;
         const { apiKey } = this.props;
 
-        const contentId = computeContentId();
+        const contentId = await computeContentId(this.props.src);
+        console.log(contentId);
 
-        // const data = (apiEndpoint, apiKey, contentId) => {
-        //     return {};
-        // };
+        // const query = await this.client
+        //     .query({
+        //         query: gql`
+        //             {
+        //                 get the imageData based on the contentId
+        //             }
+        //         `
+        //     });
+        // console.log(query);
 
         return foodText;
     }

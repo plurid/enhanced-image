@@ -1,8 +1,27 @@
-const computeContentId = (): string => {
-    // from the image data
-    // compute a unique sha and return it
+import { loadImage } from './image';
+import { arrayBufferToWordArray } from './arrayBuffer';
 
-    return '';
+import sha256 from 'crypto-js/sha256';
+
+
+
+/**
+ * Compute a unique SHA from the image data
+ */
+const computeContentId = async (src: string) => {
+    const image: any = await loadImage(src);
+    const { height, width } = image;
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const context: any = canvas.getContext('2d');
+    context.drawImage(image, 0, 0, width, height);
+    const imageData = context.getImageData(0, 0, width, height);
+    const buffer = imageData.data;
+    const sha = sha256(arrayBufferToWordArray(buffer));
+    const shaString = sha.toString();
+
+    return shaString;
 }
 
 
