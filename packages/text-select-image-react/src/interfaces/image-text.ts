@@ -1,7 +1,7 @@
 export interface ITextImage {
     id: string;
-    xPercentage: number;
-    yPercentage: number;
+    xCoordPercentage: number;
+    yCoordPercentage: number;
     perspective: string;
     rotation: string;
     skew: string;

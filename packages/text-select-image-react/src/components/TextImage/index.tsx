@@ -305,15 +305,15 @@ class TextImage extends Component<
         } = this.context;
 
         const {
-            xPercentage,
-            yPercentage,
+            xCoordPercentage,
+            yCoordPercentage,
             fontSizePercentage,
             letterSpacingPercentage,
             wordSpacingPercentage,
         } = this.props.text;
 
-        const xCoord = valueFromPercentage(xPercentage, imageWidth);
-        const yCoord = valueFromPercentage(yPercentage, imageHeight);
+        const xCoord = valueFromPercentage(xCoordPercentage, imageWidth);
+        const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
         const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
         const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
         const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
@@ -439,10 +439,10 @@ class TextImage extends Component<
             text
         } = this.props;
 
-        const { xPercentage, yPercentage } = this.coordsToPercentage();
+        const { xCoordPercentage, yCoordPercentage } = this.coordsToPercentage();
 
-        updateTextImageField(text.id, 'xPercentage', xPercentage);
-        updateTextImageField(text.id, 'yPercentage', yPercentage);
+        updateTextImageField(text.id, 'xCoordPercentage', xCoordPercentage);
+        updateTextImageField(text.id, 'yCoordPercentage', yCoordPercentage);
     }
 
     private coordsToPercentage = () => {
@@ -453,12 +453,12 @@ class TextImage extends Component<
             imageWidth,
         } = this.state;
 
-        const xPercentage = percentageFromValue(xCoord, imageWidth);
-        const yPercentage = percentageFromValue(yCoord, imageHeight);
+        const xCoordPercentage = percentageFromValue(xCoord, imageWidth);
+        const yCoordPercentage = percentageFromValue(yCoord, imageHeight);
 
         return {
-            xPercentage,
-            yPercentage,
+            xCoordPercentage,
+            yCoordPercentage,
         };
     }
 

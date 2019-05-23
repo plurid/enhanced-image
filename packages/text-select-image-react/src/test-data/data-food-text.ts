@@ -5,8 +5,8 @@ const foodText = {
     imageText: [
         {
             id: 'tsi-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e',
-            xPercentage: 25.375,
-            yPercentage: 36.069,
+            xCoordPercentage: 25.375,
+            yCoordPercentage: 36.069,
             perspective: '',
             rotation: '',
             skew: '',
@@ -21,12 +21,12 @@ const foodText = {
             content: 'eat.yourvegetables.com',
             link: true,
             linkTo: 'https://github.com/plurid/text-select-image',
-            wiewable: false,
+            viewable: false,
         },
         {
             id: 'tsi-text-cfef2e11-4e65-40fe-980a-7136046a9fb0',
-            xPercentage: 28.75,
-            yPercentage: 62.3661,
+            xCoordPercentage: 28.75,
+            yCoordPercentage: 62.3661,
             perspective: '',
             rotation: '',
             skew: '',
