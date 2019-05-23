@@ -28,7 +28,7 @@ export const StyledTextImageEditor: any = styled.div`
     font-weight: normal;
     font-style: normal;
     margin: 0;
-    z-index: 9990;
+    z-index: 9999;
     box-shadow: 0px 0px 5px 1px hsla(220, 2%, 10%, 0.9);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 

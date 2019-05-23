@@ -245,7 +245,11 @@ class TextSelectImage extends Component<
             if (imgText.id === duplicateId) {
                 const duplicateText = { ...imgText };
                 duplicateText.id = `tsi-text-${uuidv4()}`;
-                duplicateText.yCoord = duplicateText.yCoord + 50;
+                if (duplicateText.yPercentage < 80) {
+                    duplicateText.yPercentage = duplicateText.yPercentage + 12;
+                } else {
+                    duplicateText.yPercentage = duplicateText.yPercentage - 12;
+                }
                 updatedImageText.push(duplicateText);
             }
             updatedImageText.push(imgText);
