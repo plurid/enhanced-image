@@ -6,9 +6,9 @@ import { StyledTextImageMoreMenu } from './styled';
 
 import TextSelectImageButtonItem from '../TextSelectImageButtonItem';
 import CopyIcon from '../../assets/copy-icon';
-import TranslateIcon from '../../assets/translate-icon';
+// import TranslateIcon from '../../assets/translate-icon';
 
-import copyToClipboard from '../../utils/copyToClipboard';
+import copyToClipboard from '../../utils/clipboard';
 
 
 
@@ -61,9 +61,7 @@ class TextImageMoreMenu extends Component<any, any> {
         toggleShow();
     }
 
-    private translate = () => {
-
-    }
+    // private translate = () => { }
 }
 
 
