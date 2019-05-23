@@ -144,6 +144,7 @@ class TextSelectImage extends Component<
         const {
             controls,
             theme,
+            imageLoaded,
             loading,
             imageWidth,
             toggledEditable,
@@ -166,7 +167,9 @@ class TextSelectImage extends Component<
                         onLoad={this.handleLoadedImage}
                     />
 
-                    <SelectImage />
+                    {imageLoaded && (
+                        <SelectImage />
+                    )}
 
                     {toggledSettingsButton && controls && (
                         <TextSelectImageSettings />
