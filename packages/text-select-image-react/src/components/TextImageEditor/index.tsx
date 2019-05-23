@@ -29,6 +29,7 @@ import WordSpacingIcon from '../../assets/word-spacing-icon';
 import DuplicateIcon from '../../assets/duplicate-icon';
 import DeleteIcon from '../../assets/delete-icon';
 
+import { percentageFromValue } from '../../utils/percentage';
 
 
 class TextImageEditor extends Component<any, any> {
@@ -45,12 +46,12 @@ class TextImageEditor extends Component<any, any> {
         skew: this.props.text.skew,
         color: this.props.text.color,
         fontFamily: this.props.text.fontFamily,
-        fontSize: this.props.text.fontSize,
+        fontSize: this.props.fontSize,
         bold: this.props.text.bold,
         italic: this.props.text.italic,
-        letterSpacing: this.props.text.letterSpacing,
+        letterSpacing: this.props.letterSpacing,
         lineHeight: this.props.text.lineHeight,
-        wordSpacing: this.props.text.wordSpacing,
+        wordSpacing: this.props.wordSpacing,
         content: this.props.text.content,
         link: this.props.text.link,
         linkTo: this.props.text.linkTo,
@@ -65,6 +66,8 @@ class TextImageEditor extends Component<any, any> {
         } = this.context
 
         const editorWidth = this.editor.current.offsetWidth;
+        // console.log('editorWidth', editorWidth);
+
         setEditorWidth(editorWidth);
     }
 
@@ -225,6 +228,8 @@ class TextImageEditor extends Component<any, any> {
 
 
     private changeValue = (type: string, value: number | string) => {
+        console.log(type, value);
+
         this.setState({
             [type]: value,
         },
@@ -243,6 +248,8 @@ class TextImageEditor extends Component<any, any> {
     private update = () => {
         const {
             updateTextImage,
+            imageHeight,
+            imagwWidth,
         } = this.context;
 
         const {
@@ -266,6 +273,12 @@ class TextImageEditor extends Component<any, any> {
             viewable,
         } = this.state;
 
+        const fontSizePercentage = percentageFromValue(fontSize, imageHeight);
+        const letterSpacingPercentage = percentageFromValue(letterSpacing, imagwWidth);
+        const wordSpacingPercentage = percentageFromValue(wordSpacing, imagwWidth);
+
+        console.log(fontSizePercentage, imageHeight);
+
         const text = {
             id,
             xPercentage,
@@ -275,12 +288,12 @@ class TextImageEditor extends Component<any, any> {
             skew,
             color,
             fontFamily,
-            fontSize,
+            fontSizePercentage,
             bold,
             italic,
-            letterSpacing,
+            letterSpacingPercentage,
             lineHeight,
-            wordSpacing,
+            wordSpacingPercentage,
             content,
             link,
             linkTo,

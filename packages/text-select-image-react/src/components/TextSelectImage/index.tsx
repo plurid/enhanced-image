@@ -152,6 +152,11 @@ class TextSelectImage extends Component<
             selectText,
         } = this.state;
 
+        if (selectText) {
+            // console.log(selectText.imageText[1].fontSizePercentage);
+            console.log(selectText.imageText[1].content);
+        }
+
         return (
             <Context.Provider value={this.state}>
                 <StyledTextSelectImage

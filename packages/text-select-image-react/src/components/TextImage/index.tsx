@@ -43,8 +43,6 @@ import {
 //     fontFamilyValue: string;
 //     colorValue: string;
 //     colorValueStyle: string;
-//     textLink: boolean;
-//     textLinkToValue: string;
 //     textBold: boolean;
 //     textItalic: boolean;
 //     textContent: string;
@@ -64,9 +62,8 @@ class TextImage extends Component<
     private textImage: any;
 
     state = {
-        text: this.props.text,
-        textLink: this.props.text.textLink,
-        textLinkToValue: this.props.text.textLinkToValue,
+        content: this.props.text.content,
+        contentInput: '',
         showEditor: false,
         showMore: false,
 
@@ -88,7 +85,7 @@ class TextImage extends Component<
 
         imageWidth: 0,
         imageHeight: 0,
-        editorWidth: 0,
+        editorWidth: 744,
 
         fontSize: 12,
         letterSpacing: 0,
@@ -105,8 +102,6 @@ class TextImage extends Component<
         document.addEventListener('mouseup', this.dragMouseUp);
         document.addEventListener('mousemove', this.dragMouseMove);
 
-        this.processCoords();
-
         this.setState({
             imageWidth: this.context.imageWidth,
             imageHeight: this.context.imageHeight,
@@ -114,6 +109,8 @@ class TextImage extends Component<
         },
             this.editorPosition
         );
+
+        this.processCoords();
     }
 
     public componentDidUpdate() {
@@ -127,11 +124,14 @@ class TextImage extends Component<
         } = this.context;
 
         // set text edit and drag to false when not editing the image
-        if (!toggledEditable && (textEditable || textDraggable)) {
-            this.setState({
-                textEditable: false,
-                textDraggable: false,
-            });
+        if (!toggledEditable) {
+            if (textEditable) {
+                this.toggleTextEditable();
+            }
+
+            if (textDraggable) {
+                this.toggleTextDraggable();
+            }
         }
     }
 
@@ -142,7 +142,7 @@ class TextImage extends Component<
 
     public render() {
         const {
-            text,
+            content,
             showEditor,
             showMore,
 
@@ -161,16 +161,18 @@ class TextImage extends Component<
             editorYCoord,
         } = this.state;
 
+        const { text } = this.props;
+
         const {
             color,
             fontFamily,
             bold,
             italic,
             lineHeight,
-            content,
+            // content,
             link,
             linkTo,
-        } = this.props.text;
+        } = text;
 
         const {
             theme,
@@ -184,7 +186,7 @@ class TextImage extends Component<
                 suppressContentEditableWarning={true}
                 onInput={this.handleChange}
             >
-                {text.content}
+                {content}
             </StyledEditableDiv>
         );
 
@@ -211,6 +213,9 @@ class TextImage extends Component<
                 }
             </StyledTextImageTextContent>
         );
+
+        // console.log(text.fontSizePercentage);
+        // console.log(this.context.selectText)
 
         return (
             <div>
@@ -264,10 +269,16 @@ class TextImage extends Component<
                             toggleTextViewable={this.toggleTextViewable}
                             textViewable={textViewable}
 
-                            text={this.props.text}
+                            text={text}
 
                             xCoord={editorXCoord}
                             yCoord={editorYCoord}
+
+                            fontSize={fontSize}
+                            letterSpacing={letterSpacing}
+                            wordSpacing={wordSpacing}
+
+                            processCoords={this.processCoords}
                         />
                     )}
                 </StyledTextImage>
@@ -277,15 +288,14 @@ class TextImage extends Component<
 
     private handleChange = (event: any) => {
         const {
-            updateTextImageField,
-        } = this.context;
-
-        const {
-            text
+            contentInput,
         } = this.state;
 
         const value = event.target.innerText;
-        updateTextImageField(text.id, 'content', value);
+
+        this.setState({
+            contentInput: value,
+        });
     }
 
     private processCoords = () => {
@@ -325,8 +335,11 @@ class TextImage extends Component<
     private handleShortcuts = (event: any) => {
         const {
             textEditable,
-            text,
         } = this.state;
+
+        const {
+            text,
+        } = this.props;
 
         const {
             duplicateTextImage,
@@ -424,7 +437,7 @@ class TextImage extends Component<
 
         const {
             text
-        } = this.state;
+        } = this.props;
 
         const { xPercentage, yPercentage } = this.coordsToPercentage();
 
@@ -528,7 +541,7 @@ class TextImage extends Component<
             editorWidth,
         } = this.context;
 
-        console.log(editorWidth);
+        // console.log(editorWidth);
 
         const {
             offsetLeft,
@@ -561,7 +574,35 @@ class TextImage extends Component<
         });
     }
 
+    private saveContentInput = () => {
+        const {
+            contentInput
+        } = this.state;
+
+        const {
+            updateTextImageField,
+        } = this.context;
+
+        const {
+            text
+        } = this.props;
+
+        updateTextImageField(text.id, 'content', contentInput);
+
+        this.setState({
+            content: contentInput,
+        });
+    }
+
     private toggleTextEditable = () => {
+        const {
+            textEditable
+        } = this.state;
+
+        if (textEditable) {
+            this.saveContentInput();
+        }
+
         this.setState((prevState: any) => ({
             textEditable: !prevState.textEditable,
         }));
