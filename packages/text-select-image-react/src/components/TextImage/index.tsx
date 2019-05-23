@@ -15,6 +15,10 @@ import TextImageMore from '../TextImageMore';
 
 import { EDITOR_HEIGHT } from '../../data/constants';
 
+import {
+    valueFromPercentage,
+    percentageFromValue,
+} from '../../utils/percentage';
 
 
 // interface ITextImageProps {
@@ -216,6 +220,8 @@ class TextImage extends Component<
             </StyledTextImageTextContent>
         );
 
+        console.log(this.context);
+
         return (
             <div>
                <StyledTextImage
@@ -306,16 +312,11 @@ class TextImage extends Component<
             wordSpacingPercentage,
         } = this.props.text;
 
-        const xCoord = xPercentage * imageWidth / 100;
-        const yCoord = yPercentage * imageHeight / 100;
-        const fontSize = Math.ceil(fontSizePercentage * imageHeight / 100);
-        const letterSpacing = letterSpacingPercentage * imageWidth / 100;
-        const wordSpacing =  wordSpacingPercentage * imageWidth / 100;
-
-        // console.log(xPercentage, yPercentage);
-        // console.log(Math.ceil(fontSize));
-        // console.log(imageHeight, imageWidth);
-        // console.log(xCoord, yCoord);
+        const xCoord = valueFromPercentage(xPercentage, imageWidth);
+        const yCoord = valueFromPercentage(yPercentage, imageHeight);
+        const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
+        const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
+        const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
 
         this.setState({
             xCoord,
@@ -450,8 +451,8 @@ class TextImage extends Component<
             imageWidth,
         } = this.state;
 
-        const xPercentage = xCoord * 100 / imageWidth;
-        const yPercentage = yCoord * 100 / imageHeight;
+        const xPercentage = percentageFromValue(xCoord, imageWidth);
+        const yPercentage = percentageFromValue(yCoord, imageHeight);
 
         return {
             xPercentage,
@@ -459,16 +460,16 @@ class TextImage extends Component<
         };
     }
 
-    private dragMouseDown = (e: any) => {
+    private dragMouseDown = (event: any) => {
         const { textDraggable } = this.state;
         if (!textDraggable) {
             return;
         }
 
-        e.preventDefault();
+        event.preventDefault();
 
-        const pageX = e.pageX;
-        const pageY = e.pageY;
+        const pageX = event.pageX;
+        const pageY = event.pageY;
 
         this.setState({
             dragging: true,
@@ -477,13 +478,13 @@ class TextImage extends Component<
         });
     }
 
-    private dragMouseMove = (e: any) => {
+    private dragMouseMove = (event: any) => {
         const { dragging } = this.state;
         if (!dragging) {
             return;
         }
 
-        e.preventDefault();
+        event.preventDefault();
 
         const {
             pos3,
@@ -492,13 +493,13 @@ class TextImage extends Component<
 
         const { offsetLeft, offsetTop } = this.textImage.current;
 
-        const pageX = e.pageX;
-        const pageY = e.pageY;
+        const pageX = event.pageX;
+        const pageY = event.pageY;
 
+        // calculate the new cursor position:
         const diffX = pageX - pos3;
         const diffY = pageY - pos4;
 
-        // calculate the new cursor position:
         this.setState({
             pos1: pos3,
             pos2: pos4,
@@ -530,12 +531,6 @@ class TextImage extends Component<
         }
 
         this.toggleShowMore();
-    }
-
-    toggleShowMore = () => {
-        this.setState((prevState: any) => ({
-            showMore: !prevState.showMore,
-        }));
     }
 
     private editorPosition() {
@@ -610,9 +605,10 @@ class TextImage extends Component<
         }));
     }
 
-    private updateTextContent = () => {
-    //     this.textContent = this.textImageSpanContent.innerText;
-    //     this.textChanged = true;
+    private toggleShowMore = () => {
+        this.setState((prevState: any) => ({
+            showMore: !prevState.showMore,
+        }));
     }
 }
 
