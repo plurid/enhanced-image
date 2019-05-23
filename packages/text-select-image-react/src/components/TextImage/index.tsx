@@ -89,8 +89,6 @@ class TextImage extends Component<
         imageWidth: 0,
         imageHeight: 0,
         editorWidth: 0,
-        editorSet: false,
-        percentagesProcessed: false,
 
         fontSize: 12,
         letterSpacing: 0,
@@ -106,12 +104,20 @@ class TextImage extends Component<
     public componentDidMount() {
         document.addEventListener('mouseup', this.dragMouseUp);
         document.addEventListener('mousemove', this.dragMouseMove);
+
+        this.processCoords();
+
+        this.setState({
+            imageWidth: this.context.imageWidth,
+            imageHeight: this.context.imageHeight,
+            editorWidth: this.context.editorWidth,
+        },
+            this.editorPosition
+        );
     }
 
     public componentDidUpdate() {
         const {
-            editorSet,
-            percentagesProcessed,
             textEditable,
             textDraggable,
         } = this.state;
@@ -120,26 +126,12 @@ class TextImage extends Component<
             toggledEditable,
         } = this.context;
 
-        if (!editorSet) {
-            this.setState({
-                imageWidth: this.context.imageWidth,
-                imageHeight: this.context.imageHeight,
-                editorWidth: this.context.editorWidth,
-            },
-                this.editorPosition
-            );
-        }
-
         // set text edit and drag to false when not editing the image
         if (!toggledEditable && (textEditable || textDraggable)) {
             this.setState({
                 textEditable: false,
                 textDraggable: false,
             });
-        }
-
-        if (!percentagesProcessed) {
-            this.processCoords();
         }
     }
 
@@ -219,8 +211,6 @@ class TextImage extends Component<
                 }
             </StyledTextImageTextContent>
         );
-
-        console.log(this.context);
 
         return (
             <div>
@@ -324,7 +314,6 @@ class TextImage extends Component<
             fontSize,
             letterSpacing,
             wordSpacing,
-            percentagesProcessed: true,
         });
     }
 
@@ -539,6 +528,8 @@ class TextImage extends Component<
             editorWidth,
         } = this.context;
 
+        console.log(editorWidth);
+
         const {
             offsetLeft,
             offsetTop,
@@ -567,7 +558,6 @@ class TextImage extends Component<
         this.setState({
             editorXCoord,
             editorYCoord,
-            editorSet: true,
         });
     }
 
