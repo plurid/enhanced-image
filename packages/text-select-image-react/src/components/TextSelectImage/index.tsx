@@ -154,7 +154,7 @@ class TextSelectImage extends Component<
 
         if (selectText) {
             // console.log(selectText.imageText[1].fontSizePercentage);
-            console.log(selectText.imageText[1].content);
+            // console.log(selectText.imageText[1].content);
         }
 
         return (
@@ -195,21 +195,19 @@ class TextSelectImage extends Component<
 
         const newTextImage = {
             id: `tsi-text-${uuidv4()}`,
-            xPercentage: 0,
-            yPercentage: 0,
-            xCoord: 50,
-            yCoord: 50,
+            xPercentage: 5,
+            yPercentage: 5,
             perspective: '',
             rotation: '',
             skew: '',
             color: 'red',
             fontFamily: 'Arial',
-            fontSize: 24,
+            fontSizePercentage: 7,
             bold: false,
             italic: false,
-            letterSpacing: 1,
+            letterSpacingPercentage: 0,
             lineHeight: 'auto',
-            wordSpacing: 0,
+            wordSpacingPercentage: 0,
             content: 'New Text',
             link: false,
             linkTo: '',
