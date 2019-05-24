@@ -4,7 +4,10 @@ import Context from '../../context';
 
 import TextImageMoreMenu from '../TextImageMoreMenu';
 
-import { StyledTextImageMore } from './styled';
+import {
+    StyledTextImageMore,
+    StyledTextImageMoreButton,
+} from './styled';
 
 import MoreIcon from '../../assets/more-icon';
 
@@ -29,11 +32,11 @@ class TextImageMore extends Component<any, any> {
 
         return (
             <StyledTextImageMore>
-                <div
+                <StyledTextImageMoreButton
                     onClick={this.toggleMenu}
                 >
                     {MoreIcon}
-                </div>
+                </StyledTextImageMoreButton>
 
                 {showMenu && (
                     <TextImageMoreMenu
