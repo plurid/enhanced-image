@@ -346,7 +346,7 @@ class TextSelectImage extends Component<
             .query({
                 query: getTextSelectImage,
                 variables: {
-                    sha: contentId
+                    imageSha: contentId
                 },
             });
 

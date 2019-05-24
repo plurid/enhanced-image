@@ -3,12 +3,13 @@ import { gql } from 'apollo-boost';
 
 
 export const getTextSelectImage = gql`
-    query TextSelectImage($sha: String!) {
-        textSelectImage(sha: $sha) {
+    query TextSelectImage($imageSha: String!) {
+        textSelectImage(imageSha: $imageSha) {
             user {
                 username
             }
             imagePath
+            imageSource
             imageHeight
             imageWidth
             imageText {
@@ -16,7 +17,9 @@ export const getTextSelectImage = gql`
                 versions {
                     id
                     createdAt
-                    createdBy
+                    user {
+                        username
+                    }
                     xCoordPercentage
                     yCoordPercentage
                     perspective
