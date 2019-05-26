@@ -4,6 +4,8 @@ import Context from '../../context';
 
 import AboutIcon from '../../assets/about-icon';
 import AddTextIcon from '../../assets/add-text-icon';
+import GetTextIcon from '../../assets/get-text-icon';
+import ExtractTextIcon from '../../assets/extract-text-icon';
 
 import { ABOUT_URL } from '../../data/constants';
 
@@ -35,7 +37,7 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
                         <TextSelectImageButtonCheckmark
                             theme={theme}
                             toggle={this.toggleEditable}
-                            text="Edit"
+                            text="Edit Text"
                             checked={toggledEditable}
                         />
                     </li>
@@ -45,7 +47,27 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
                             theme={theme}
                             atClick={this.addText}
                             icon={AddTextIcon}
-                            text="Add text"
+                            text="Add Text"
+                        />
+                    </li>
+
+                    <hr />
+
+                    <li>
+                        <TextSelectImageButtonItem
+                            theme={theme}
+                            atClick={this.getText}
+                            icon={GetTextIcon}
+                            text="Get Text"
+                        />
+                    </li>
+
+                    <li>
+                        <TextSelectImageButtonItem
+                            theme={theme}
+                            atClick={this.extractText}
+                            icon={ExtractTextIcon}
+                            text="Extract Text"
                         />
                     </li>
 
@@ -86,6 +108,12 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
 
         toggleSettings();
         createTextImage();
+    }
+
+    private getText = () => {
+    }
+
+    private extractText = () => {
     }
 
     private about = () => {

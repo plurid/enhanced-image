@@ -346,17 +346,19 @@ class TextSelectImage extends Component<
             .query({
                 query: getTextSelectImage,
                 variables: {
-                    imageSha: contentId + 'b'
+                    imageSha: contentId,
                 },
             });
 
         console.log(query);
 
-        if (!query.status) {
+        const { status, textSelectImage } = query.data.textSelectImage;
+
+        if (!status) {
             return {};
         }
 
-        const selectText = this.processText(query.data.textSelectImage.textSelectImage);
+        const selectText = this.processText(textSelectImage);
 
         return selectText;
     }
