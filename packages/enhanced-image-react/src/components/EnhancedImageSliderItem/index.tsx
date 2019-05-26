@@ -13,11 +13,15 @@ import {
     SLIDER_INPUT_DEFAULTS,
 } from './constants';
 
+import Context from '../../context';
+
 
 
 class EnhancedImageSliderItem extends Component<
     any, any
 > {
+    static contextType = Context;
+
     constructor(props: any) {
         super(props);
 
@@ -36,8 +40,13 @@ class EnhancedImageSliderItem extends Component<
             type,
             min,
             max,
-            sliderValue,
+            value,
+            valueSign
         } = this.props;
+
+        const {
+            toggleMenuOpaque
+        } = this.context;
 
         return (
             <StyledEnhancedImageSliderItem
@@ -47,7 +56,7 @@ class EnhancedImageSliderItem extends Component<
 
                     <StyledEnhancedImageSliderValue>
                         {/* {this.sliderValue}{this.valueSign} */}
-                        100
+                        {value}{valueSign || SLIDER_INPUT_DEFAULTS.valueSign}
                     </StyledEnhancedImageSliderValue>
                 </StyledEnhancedImageSliderType>
 
@@ -57,14 +66,15 @@ class EnhancedImageSliderItem extends Component<
                 >
                     <input
                         type="range"
-                        min={min}
-                        max={max}
+                        min={min || SLIDER_INPUT_DEFAULTS.min}
+                        max={max || SLIDER_INPUT_DEFAULTS.max}
                         name={type}
-                        value={sliderValue}
+                        value={value}
                         onMouseEnter={this.toggleHover}
                         onMouseLeave={this.toggleHover}
-                        // onInput={this._handleSliderInput}
-                        // onMouseUp={this.setSettingsOpacity.bind(this, SETTINGS_OPACITY.default)}
+                        onChange={this.handleSliderInput}
+                        onMouseDown={toggleMenuOpaque}
+                        onMouseUp={toggleMenuOpaque}
                         // onDblClick={this.setSlider.bind(this, type, SLIDER_DEFAULTS[type])}
                     />
                 </StyledEnhancedImageSliderInputContainer>
@@ -76,6 +86,20 @@ class EnhancedImageSliderItem extends Component<
         this.setState({
             hovered: !this.state.hovered,
         });
+    }
+
+    private handleSliderInput = (event: any) => {
+        const { value } = event.target;
+
+        const {
+            type
+        } = this.props;
+
+        const {
+            setColorValue,
+        } = this.context;
+
+        setColorValue(type, value);
     }
 }
 

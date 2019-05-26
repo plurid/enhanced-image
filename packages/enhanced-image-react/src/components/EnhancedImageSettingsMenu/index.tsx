@@ -26,6 +26,9 @@ import EnhancedImageButtonCheckmark from '../EnhancedImageButtonCheckmark';
 import EnhancedImageButtonItem from '../EnhancedImageButtonItem';
 import EnhancedImageSliderItem from '../EnhancedImageSliderItem';
 
+import sliders from '../../data/sliders';
+
+
 
 
 class EnhancedImageSettingsMenu extends Component<any, any> {
@@ -36,11 +39,20 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
             about,
             theme,
             toggledEditable,
+
+            invertValue,
+            contrastValue,
+            hueValue,
+            saturationValue,
+            brightnessValue,
+
+            menuOpaque,
         } = this.context;
 
         return (
             <StyledEnhancedImageSettingsMenu
                 theme={theme}
+                menuOpaque={menuOpaque}
             >
                 <ul>
                     <li>
@@ -119,33 +131,33 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
                         />
                     </li>
 
-                    <li>
-                        <EnhancedImageSliderItem
-                            theme={theme}
-                            type="contrast"
-                        />
-                    </li>
+                    {
+                        sliders.map(slider => {
+                            const {
+                                type,
+                                min,
+                                max,
+                                valueSign
+                            } = slider;
 
-                    <li>
-                        <EnhancedImageSliderItem
-                            theme={theme}
-                            type="hue"
-                        />
-                    </li>
+                            const sliderValue = `${slider.type}Value`;
 
-                    <li>
-                        <EnhancedImageSliderItem
-                            theme={theme}
-                            type="saturation"
-                        />
-                    </li>
-
-                    <li>
-                        <EnhancedImageSliderItem
-                            theme={theme}
-                            type="brightness"
-                        />
-                    </li>
+                            return (
+                                <li
+                                    key={type}
+                                >
+                                    <EnhancedImageSliderItem
+                                        theme={theme}
+                                        type={type}
+                                        min={min}
+                                        max={max}
+                                        value={this.context[sliderValue]}
+                                        valueSign={valueSign}
+                                    />
+                                </li>
+                            )
+                        })
+                    }
 
                     <li>
                         <EnhancedImageButtonCheckmark
