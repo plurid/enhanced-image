@@ -41,11 +41,6 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
             toggledEditable,
 
             invertValue,
-            contrastValue,
-            hueValue,
-            saturationValue,
-            brightnessValue,
-
             menuOpaque,
         } = this.context;
 
@@ -125,9 +120,9 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
                     <li>
                         <EnhancedImageButtonCheckmark
                             theme={theme}
-                            toggle={this.toggleEditable}
+                            toggle={this.toggleInvert}
                             text="Invert Colors"
-                            checked={toggledEditable}
+                            checked={!!invertValue}
                         />
                     </li>
 
@@ -223,6 +218,16 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
                 </ul>
             </StyledEnhancedImageSettingsMenu>
         );
+    }
+
+
+    private toggleInvert = () => {
+        const {
+            invertValue,
+            setColorValue,
+        } = this.context;
+
+        invertValue === 0 ? setColorValue('invert', 1) : setColorValue('invert', 0);
     }
 
     private toggleEditable = () => {
