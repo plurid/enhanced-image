@@ -9,9 +9,8 @@ import {
 
 import {
     SLIDER_NAMES,
-    SLIDER_VALUE_DEFAULTS,
     SLIDER_INPUT_DEFAULTS,
-} from './constants';
+} from '../../data/constants';
 
 import Context from '../../context';
 

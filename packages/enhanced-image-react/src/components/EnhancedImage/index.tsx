@@ -127,6 +127,9 @@ class EnhancedImage extends Component<
 
             menuOpaque: true,
             toggleMenuOpaque: this.toggleMenuOpaque,
+
+            toggledDefaults: false,
+            toggleDefaults: this.toggleDefaults,
         }
     }
 
@@ -219,6 +222,12 @@ class EnhancedImage extends Component<
     private toggleSettings = () => {
         this.setState((prevState: any) => ({
             toggledSettings: !prevState.toggledSettings,
+        }));
+    }
+
+    private toggleDefaults = () => {
+        this.setState((prevState: any) => ({
+            toggledDefaults: !prevState.toggledDefaults,
         }));
     }
 

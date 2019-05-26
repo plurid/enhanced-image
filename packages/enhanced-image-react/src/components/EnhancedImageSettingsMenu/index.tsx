@@ -28,17 +28,31 @@ import EnhancedImageSliderItem from '../EnhancedImageSliderItem';
 
 import sliders from '../../data/sliders';
 
+import {
+    SLIDER_VALUE_DEFAULTS,
+} from '../../data/constants';
 
 
 
 class EnhancedImageSettingsMenu extends Component<any, any> {
     static contextType = Context;
 
+    state = {
+        previousColorValues: {
+            invertValue: 0,
+            contrastValue: 100,
+            hueValue: 0,
+            saturationValue: 100,
+            brightnessValue: 100,
+        },
+    };
+
     public render() {
         const {
             about,
             theme,
             toggledEditable,
+            toggledDefaults,
 
             invertValue,
             menuOpaque,
@@ -157,16 +171,16 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
                     <li>
                         <EnhancedImageButtonCheckmark
                             theme={theme}
-                            toggle={this.toggleEditable}
+                            toggle={this.toggleDefaults}
                             text="Toggle Defaults"
-                            checked={toggledEditable}
+                            checked={toggledDefaults}
                         />
                     </li>
 
                     <li>
                         <EnhancedImageButtonItem
                             theme={theme}
-                            atClick={this.extractText}
+                            atClick={this.resetToDefaults}
                             icon={ResetIcon}
                             text="Reset to Defaults"
                         />
@@ -229,6 +243,76 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
 
         invertValue === 0 ? setColorValue('invert', 1) : setColorValue('invert', 0);
     }
+
+    private toggleDefaults = () => {
+        const {
+            invertValue,
+            contrastValue,
+            hueValue,
+            saturationValue,
+            brightnessValue,
+            toggledDefaults,
+        } = this.context;
+
+        if (toggledDefaults) {
+            const {
+                previousColorValues,
+            } = this.state;
+
+            const {
+                toggleDefaults,
+                setColorValue,
+            } = this.context;
+
+            const previousInvertValue = previousColorValues.invertValue;
+            const previousContrastValue = previousColorValues.contrastValue;
+            const previousSaturationValue = previousColorValues.saturationValue;
+            const previousBrightnessValue = previousColorValues.brightnessValue;
+
+            setColorValue('invert', previousInvertValue);
+            setColorValue('contrast', previousContrastValue);
+            setColorValue('saturation', previousSaturationValue);
+            setColorValue('brightness', previousBrightnessValue);
+
+            toggleDefaults();
+        } else {
+            const {
+                toggleDefaults,
+            } = this.context;
+
+            const previousColorValues = {
+                invertValue,
+                contrastValue,
+                hueValue,
+                saturationValue,
+                brightnessValue,
+            };
+
+            this.setState({
+                previousColorValues,
+            },
+                () => {
+                    toggleDefaults();
+                    this.resetToDefaults();
+                }
+            );
+        }
+    }
+
+    private resetToDefaults = () => {
+        const {
+            setColorValue
+        } = this.context;
+
+        setColorValue('invert', 0);
+
+        for (let slider of sliders) {
+            const { type } = slider;
+
+            setColorValue(type, SLIDER_VALUE_DEFAULTS[type]);
+        }
+    }
+
 
     private toggleEditable = () => {
         const {
