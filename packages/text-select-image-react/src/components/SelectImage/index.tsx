@@ -23,6 +23,11 @@ class SelectImage extends Component<any, any> {
             const {
                 imageText,
             } = selectText;
+
+            if (!imageText) {
+                return null;
+            }
+
             renderSelectText = imageText.map((text: any) => {
                 return (
                     <TextImage
