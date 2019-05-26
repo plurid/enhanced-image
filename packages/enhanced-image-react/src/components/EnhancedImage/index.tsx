@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
-// import { StyledEnhancedImage } from './styled';
+import { StyledEnhancedImage } from './styled';
 
-// import Context from '../../context';
+import Context from '../../context';
 
 // import SelectImage from '../SelectImage';
-// import TextSelectImageSettings from '../TextSelectImageSettings';
+import EnhancedImageSettings from '../EnhancedImageSettings';
 // import Spinner from '../Spinner';
 
-// import {
-//     UPDATE_DEBOUNCE,
-//     PLURID_API,
-// } from '../../data/constants';
+import {
+    UPDATE_DEBOUNCE,
+    PLURID_API,
+} from '../../data/constants';
 
-// import themes from '../../data/themes';
+import themes from '../../data/themes';
 
 // import computeContentId from '../../utils/contentId';
 // import uuidv4 from '../../utils/uuid';
@@ -90,115 +90,130 @@ class EnhancedImage extends Component<
     any, any
     // ITextSelectImageProps, Partial<ITextSelectImageState>
 > {
-    // static contextType = Context;
+    static contextType = Context;
 
     constructor(props: any) {
         super(props);
 
-        // const apiEndpoint = this.props.apiEndpoint || PLURID_API;
+        const apiEndpoint = this.props.apiEndpoint || PLURID_API;
         // this.client = apolloClient(apiEndpoint);
 
-        // this.state = {
-        //     apiEndpoint,
-        //     updateDebounce: this.props.updateDebounce || UPDATE_DEBOUNCE,
+        this.state = {
+            apiEndpoint,
+            updateDebounce: this.props.updateDebounce || UPDATE_DEBOUNCE,
 
-        //     loading: false,
-        //     editorWidth: 0,
+            loading: false,
+            editorWidth: 0,
 
-        //     imageLoaded: false,
-        //     imageHeight: 0,
-        //     imageWidth: 0,
-        //     imageNaturalHeight: 0,
-        //     imageNaturalWidth: 0,
+            imageLoaded: false,
+            imageHeight: 0,
+            imageWidth: 0,
+            imageNaturalHeight: 0,
+            imageNaturalWidth: 0,
 
-        //     toggleSettingsButton: this.toggleSettingsButton,
-        //     toggledSettingsButton: false,
-        //     toggleSettings: this.toggleSettings,
-        //     toggledSettings: false,
-        //     toggleEditable: this.toggleEditable,
-        //     toggledEditable: false,
-
-        //     createTextImage: this.createTextImage,
-        //     duplicateTextImage: this.duplicateTextImage,
-        //     updateTextImage: this.updateTextImage,
-        //     updateTextImageField: this.updateTextImageField,
-        //     deleteTextImage: this.deleteTextImage,
-        //     setEditorWidth: this.setEditorWidth,
-        // }
+            toggleSettingsButton: this.toggleSettingsButton,
+            toggledSettingsButton: false,
+            toggleSettings: this.toggleSettings,
+            toggledSettings: false,
+            // toggleEditable: this.toggleEditable,
+            toggledEditable: false,
+        }
     }
 
     async componentDidMount() {
-        // const {
-        //     about,
-        //     controls,
-        //     theme
-        // } = this.props;
+        const {
+            about,
+            controls,
+            theme
+        } = this.props;
 
-        // const _about = about === undefined ? this.context.about : about;
-        // const _controls = controls === undefined ? this.context.controls : controls;
-        // const _theme = theme === undefined ? this.context.theme : themes[theme];
-        // const _themeName = theme === undefined ? this.context.themeName : theme;
+        const _about = about === undefined ? this.context.about : about;
+        const _controls = controls === undefined ? this.context.controls : controls;
+        const _theme = theme === undefined ? this.context.theme : themes[theme];
+        const _themeName = theme === undefined ? this.context.themeName : theme;
 
         // const selectText = await this.getText();
 
-        // this.setState({
-        //     about: _about,
-        //     controls: _controls,
-        //     theme: _theme,
-        //     themeName: _themeName,
-        //     selectText,
-        // });
+        this.setState({
+            about: _about,
+            controls: _controls,
+            theme: _theme,
+            themeName: _themeName,
+            selectText: {},
+        });
     }
 
     public render() {
-        // const {
-        //     src,
-        //     alt,
-        // } = this.props;
-        // const {
-        //     controls,
-        //     theme,
-        //     imageLoaded,
-        //     loading,
-        //     imageWidth,
-        //     toggledEditable,
-        //     toggledSettingsButton,
-        //     selectText,
-        // } = this.state;
+        const {
+            src,
+            alt,
+        } = this.props;
+        const {
+            controls,
+            theme,
+            imageLoaded,
+            loading,
+            imageWidth,
+            toggledEditable,
+            toggledSettingsButton,
+            selectText,
+        } = this.state;
 
 
         return (
-            <div>
-                Enhanced Image
-            </div>
-            // <Context.Provider value={this.state}>
-            //     <StyledTextSelectImage
-            //         theme={theme}
-            //         toggledEditable={toggledEditable}
-            //         imageWidth={imageWidth}
-            //         onMouseEnter={this.toggleSettingsButton}
-            //         onMouseLeave={this.toggleSettingsButton}
-            //     >
-            //         <img
-            //             src={src}
-            //             alt={alt || 'Image'}
-            //             onLoad={this.handleLoadedImage}
-            //         />
+            <Context.Provider value={this.state}>
+                <StyledEnhancedImage
+                    theme={theme}
+                    // toggledEditable={toggledEditable}
+                    imageWidth={imageWidth}
+                    onMouseEnter={this.toggleSettingsButton}
+                    onMouseLeave={this.toggleSettingsButton}
+                >
+                    <img
+                        src={src}
+                        alt={alt || 'Image'}
+                        onLoad={this.handleLoadedImage}
+                    />
 
-            //         {imageLoaded && (
-            //             <SelectImage />
-            //         )}
+                    {toggledSettingsButton && controls && (
+                        <EnhancedImageSettings />
+                    )}
 
-            //         {toggledSettingsButton && controls && (
-            //             <TextSelectImageSettings />
-            //         )}
-
-            //         {loading && (
-            //             <Spinner />
-            //         )}
-            //     </StyledTextSelectImage>
-            // </Context.Provider>
+                    {/* {loading && (
+                        <Spinner />
+                    )} */}
+                </StyledEnhancedImage>
+            </Context.Provider>
         );
+    }
+
+    private toggleSettingsButton = () => {
+        this.setState((prevState: any) => ({
+            toggledSettingsButton: !prevState.toggledSettingsButton,
+        }));
+    }
+
+    private toggleSettings = () => {
+        this.setState((prevState: any) => ({
+            toggledSettings: !prevState.toggledSettings,
+        }));
+    }
+
+    private handleLoadedImage = async (image: any) => {
+        const {
+            offsetHeight,
+            offsetWidth,
+            naturalHeight,
+            naturalWidth,
+        } = image.target;
+
+        this.setState({
+            imageLoaded: true,
+            imageWidth: offsetWidth,
+            imageHeight: offsetHeight,
+            imageNaturalHeight: naturalHeight,
+            imageNaturalWidth: naturalWidth,
+        });
     }
 }
 
