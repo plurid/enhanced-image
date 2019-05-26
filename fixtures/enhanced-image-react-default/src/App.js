@@ -16,6 +16,7 @@ class App extends Component {
                 >
                     <EnhancedImage
                         src={foodImage}
+                        // theme="night"
                     />
                 </div>
             </div>

@@ -8,13 +8,13 @@ export const StyledEnhancedImage: any = styled.div`
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Helvetica, Arial, sans-serif;
     position: relative;
-    overflow: ${(props: any) => {
+    /* overflow: ${(props: any) => {
         if (props.toggledEditable && props.imageWidth < 745) {
             return 'visible';
         }
 
         return 'hidden';
-    }};
+    }}; */
 
     img {
         user-select: none;
