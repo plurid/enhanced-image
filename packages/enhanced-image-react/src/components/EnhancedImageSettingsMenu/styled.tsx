@@ -2,7 +2,16 @@ import styled from 'styled-components';
 
 
 
-export const StyledEnhancedImageSettingsMenu = styled.div`
+export const StyledEnhancedImageSettingsMenu: any = styled.div`
+    opacity: ${(props: any) => {
+        if (props.menuOpaque) {
+            return 1;
+        } else {
+            return 0.75;
+        }
+    }};
+
+    transition: opacity 600ms linear;
     z-index: 9999;
 
     ul {
@@ -15,8 +24,8 @@ export const StyledEnhancedImageSettingsMenu = styled.div`
                 return backgroundColor;
             }
         }};
-        box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
 
+        box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
         min-width: 130px;
         width: 150px;
         display: flex;

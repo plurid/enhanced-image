@@ -28,6 +28,8 @@ export const StyledEnhancedImageSliderInputContainer: any = styled.div`
         -webkit-appearance: none;
         width: 100%;
         margin: 6.5px 0;
+        padding: 5px 0;
+        background: transparent;
     }
 
     input[type=range]:focus {

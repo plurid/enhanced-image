@@ -117,6 +117,16 @@ class EnhancedImage extends Component<
             toggledSettings: false,
             // toggleEditable: this.toggleEditable,
             toggledEditable: false,
+
+            invertValue: 0,
+            contrastValue: 100,
+            hueValue: 0,
+            saturationValue: 100,
+            brightnessValue: 100,
+            setColorValue: this.setColorValue,
+
+            menuOpaque: true,
+            toggleMenuOpaque: this.toggleMenuOpaque,
         }
     }
 
@@ -157,8 +167,12 @@ class EnhancedImage extends Component<
             toggledEditable,
             toggledSettingsButton,
             selectText,
+            invertValue,
+            contrastValue,
+            hueValue,
+            saturationValue,
+            brightnessValue,
         } = this.state;
-
 
         return (
             <Context.Provider value={this.state}>
@@ -172,6 +186,15 @@ class EnhancedImage extends Component<
                     <img
                         src={src}
                         alt={alt || 'Image'}
+                        style={{
+                            filter: `
+                                invert(${invertValue})
+                                contrast(${contrastValue}%)
+                                hue-rotate(${hueValue}deg)
+                                saturate(${saturationValue}%)
+                                brightness(${brightnessValue}%)
+                            `,
+                        }}
                         onLoad={this.handleLoadedImage}
                     />
 
@@ -196,6 +219,19 @@ class EnhancedImage extends Component<
     private toggleSettings = () => {
         this.setState((prevState: any) => ({
             toggledSettings: !prevState.toggledSettings,
+        }));
+    }
+
+    private setColorValue = (type: string, value: number) => {
+        const colorItem = `${type}Value`;
+        this.setState({
+            [colorItem]: value,
+        });
+    }
+
+    private toggleMenuOpaque = () => {
+        this.setState((prevState: any) => ({
+            menuOpaque: !prevState.menuOpaque,
         }));
     }
 
