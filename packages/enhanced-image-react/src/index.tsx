@@ -1,3 +1,4 @@
-import * as React from 'react';
+import EnhancedImage from './components/EnhancedImage';
 
-export default class EnhancedImage extends React.Component {}
+
+export default EnhancedImage;

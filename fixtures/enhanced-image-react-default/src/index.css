@@ -10,10 +10,11 @@ html, body {
     height: 100%;
     margin: 0;
     width: 100%;
-    background-color: black;
+    background-color: hsl(220, 20%, 20%);
+    color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
 }
 
-html {
-    overflow: hidden;
+.app {
+    text-align: center;
 }
