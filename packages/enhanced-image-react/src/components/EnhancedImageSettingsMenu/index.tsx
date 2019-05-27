@@ -180,7 +180,7 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
                     <li>
                         <EnhancedImageButtonItem
                             theme={theme}
-                            atClick={this.resetToDefaults}
+                            atClick={this.handleResetToDefaults}
                             icon={ResetIcon}
                             text="Reset to Defaults"
                         />
@@ -266,11 +266,13 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
 
             const previousInvertValue = previousColorValues.invertValue;
             const previousContrastValue = previousColorValues.contrastValue;
+            const previousHueValue = previousColorValues.hueValue;
             const previousSaturationValue = previousColorValues.saturationValue;
             const previousBrightnessValue = previousColorValues.brightnessValue;
 
             setColorValue('invert', previousInvertValue);
             setColorValue('contrast', previousContrastValue);
+            setColorValue('hue', previousHueValue);
             setColorValue('saturation', previousSaturationValue);
             setColorValue('brightness', previousBrightnessValue);
 
@@ -311,6 +313,18 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
 
             setColorValue(type, SLIDER_VALUE_DEFAULTS[type]);
         }
+    }
+
+    private handleResetToDefaults = () => {
+        const {
+            toggleDefaults,
+            toggledDefaults,
+        } = this.context;
+
+        if (toggledDefaults) {
+            toggleDefaults();
+        }
+        this.resetToDefaults();
     }
 
 

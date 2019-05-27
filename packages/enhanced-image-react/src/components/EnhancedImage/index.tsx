@@ -235,7 +235,17 @@ class EnhancedImage extends Component<
         const colorItem = `${type}Value`;
         this.setState({
             [colorItem]: value,
-        });
+        },
+            // () => {
+            //     const {
+            //         toggledDefaults
+            //     } = this.state
+            //     if (toggledDefaults) {
+            //         this.toggleDefaults();
+            //     }
+            //     console.log(this.state.toggledDefaults);
+            // }
+        );
     }
 
     private toggleMenuOpaque = () => {
