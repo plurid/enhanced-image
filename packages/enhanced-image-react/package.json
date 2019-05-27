@@ -50,6 +50,7 @@
     },
     "devDependencies": {
         "@svgr/rollup": "^4.2.0",
+        "@types/crypto-js": "^3.1.43",
         "@types/enzyme": "^3.9.3",
         "@types/enzyme-adapter-react-16": "^1.0.5",
         "@types/jest": "^24.0.13",
@@ -80,5 +81,8 @@
         "tslint-config-prettier": "^1.18.0",
         "tslint-react": "^4.0.0",
         "typescript": "^3.4.5"
+    },
+    "dependencies": {
+        "crypto-js": "^3.1.9-1"
     }
 }
