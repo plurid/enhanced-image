@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import sha256 from 'crypto-js/sha256';
 
 import { StyledEnhancedImage } from './styled';
 
@@ -7,6 +8,9 @@ import Context from '../../context';
 // import SelectImage from '../SelectImage';
 import EnhancedImageSettings from '../EnhancedImageSettings';
 // import Spinner from '../Spinner';
+
+import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
+import { loadImage } from '../../utils/image';
 
 import {
     UPDATE_DEBOUNCE,
@@ -110,6 +114,8 @@ class EnhancedImage extends Component<
             imageWidth: 0,
             imageNaturalHeight: 0,
             imageNaturalWidth: 0,
+            imageSha: '',
+            imageSrc: this.props.src,
 
             toggleSettingsButton: this.toggleSettingsButton,
             toggledSettingsButton: false,
@@ -235,17 +241,7 @@ class EnhancedImage extends Component<
         const colorItem = `${type}Value`;
         this.setState({
             [colorItem]: value,
-        },
-            // () => {
-            //     const {
-            //         toggledDefaults
-            //     } = this.state
-            //     if (toggledDefaults) {
-            //         this.toggleDefaults();
-            //     }
-            //     console.log(this.state.toggledDefaults);
-            // }
-        );
+        });
     }
 
     private toggleMenuOpaque = () => {
@@ -262,12 +258,35 @@ class EnhancedImage extends Component<
             naturalWidth,
         } = image.target;
 
+        this.computeImageSha();
+
         this.setState({
             imageLoaded: true,
             imageWidth: offsetWidth,
             imageHeight: offsetHeight,
             imageNaturalHeight: naturalHeight,
             imageNaturalWidth: naturalWidth,
+        });
+    }
+
+    private computeImageSha = async () => {
+        const {
+            src
+        } = this.props;
+
+        const image: any = await loadImage(src);
+        const { height, width } = image;
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const context: any = canvas.getContext('2d');
+        context.drawImage(image, 0, 0, width, height);
+        const imageData = context.getImageData(0, 0, width, height);
+        const buffer = imageData.data;
+        const imageSha = sha256(arrayBufferToWordArray(buffer)).toString();
+
+        this.setState({
+            imageSha,
         });
     }
 }

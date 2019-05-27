@@ -32,10 +32,17 @@ import {
     SLIDER_VALUE_DEFAULTS,
 } from '../../data/constants';
 
+import {
+    loadImage,
+    dataURIToBlob,
+} from '../../utils/image';
+
 
 
 class EnhancedImageSettingsMenu extends Component<any, any> {
     static contextType = Context;
+
+    saveButton: any;
 
     state = {
         previousColorValues: {
@@ -46,6 +53,12 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
             brightnessValue: 100,
         },
     };
+
+    constructor(props: any) {
+        super(props);
+
+        this.saveButton = React.createRef();
+    }
 
     public render() {
         const {
@@ -200,19 +213,25 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
                     <li>
                         <EnhancedImageButtonItem
                             theme={theme}
-                            atClick={this.extractText}
+                            atClick={this.shareImage}
                             icon={ShareIcon}
                             text="Share Image"
                         />
                     </li>
 
-                    <li>
-                        <EnhancedImageButtonItem
-                            theme={theme}
-                            atClick={this.extractText}
-                            icon={SaveIcon}
-                            text="Save Image"
-                        />
+                    <li
+                        onMouseEnter={this.saveImage}
+                    >
+                        <a
+                            ref={this.saveButton}
+                        >
+                            <EnhancedImageButtonItem
+                                theme={theme}
+                                atClick={this.saveImage}
+                                icon={SaveIcon}
+                                text="Save Image"
+                            />
+                        </a>
                     </li>
 
                     {about && (
@@ -234,6 +253,69 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
         );
     }
 
+    private shareImage = async () => {
+        const {
+            imageSha,
+            invertValue,
+            contrastValue,
+            hueValue,
+            saturationValue,
+            brightnessValue,
+        } = this.context;
+
+        const invertStr = invertValue ? 'I100' : 'I0';
+        const contrastStr = 'C' + contrastValue;
+        const hueStr = 'H' + hueValue;
+        const saturationStr = 'S' + saturationValue;
+        const lightnessStr = 'L' + brightnessValue;
+        const enhance = `${invertStr}-${contrastStr}-${hueStr}-${saturationStr}-${lightnessStr}`;
+
+        const baseLink = 'https://depict.plurid.com/';
+        const imageLink = imageSha + '/' + enhance;
+        const url = baseLink + imageLink;
+        window.open(url, '_blank');
+
+        // to check if image is already uploaded to depict,
+        // if it is, then go to the link
+        // else, upload, and go to link
+    }
+
+    private saveImage = async () => {
+        const {
+            imageSrc,
+            invertValue,
+            contrastValue,
+            hueValue,
+            saturationValue,
+            brightnessValue,
+        } = this.context;
+
+        const imageName = imageSrc;
+        const image: any = await loadImage(imageSrc);
+        const { height, width } = image;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const context: any = canvas.getContext('2d');
+        context.filter = `
+            invert(${invertValue ? 100 : 0}%)
+            contrast(${contrastValue}%)
+            hue-rotate(${hueValue}deg)
+            saturate(${saturationValue}%)
+            brightness(${brightnessValue}%)
+        `;
+        context.drawImage(image, 0, 0, width, height);
+        const imageData = canvas.toDataURL('image/png');
+        const blob = dataURIToBlob(imageData);
+
+        this.download(blob, imageName);
+    }
+
+    private download = async (image: any, imageName: string) => {
+        (this.saveButton as any).current.href = await URL.createObjectURL(image);
+        (this.saveButton as any).current.download = imageName;
+    }
 
     private toggleInvert = () => {
         const {
@@ -326,7 +408,6 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
         }
         this.resetToDefaults();
     }
-
 
     private toggleEditable = () => {
         const {
