@@ -95,8 +95,14 @@ class EnhancedImageSliderItem extends Component<
         } = this.props;
 
         const {
+            toggleDefaults,
+            toggledDefaults,
             setColorValue,
         } = this.context;
+
+        if (toggledDefaults) {
+            toggleDefaults();
+        }
 
         setColorValue(type, value);
     }
