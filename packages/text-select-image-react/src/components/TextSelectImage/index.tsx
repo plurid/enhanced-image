@@ -239,8 +239,8 @@ class TextSelectImage extends Component<
 
         const newTextImage = {
             id: `tsi-text-${uuidv4()}`,
-            xPercentage: 5,
-            yPercentage: 5,
+            xCoordPercentage: 5,
+            yCoordPercentage: 5,
             perspective: '',
             rotation: '',
             skew: '',
@@ -255,7 +255,7 @@ class TextSelectImage extends Component<
             content: 'New Text',
             link: false,
             linkTo: '',
-            wiewable: false,
+            viewable: false,
         };
 
         imageText.push(newTextImage);
@@ -297,6 +297,7 @@ class TextSelectImage extends Component<
 
         const updatedImageText = imageText.map((imgText: any) => {
             if (imgText.id === text.id) {
+                console.log(text);
                 return text;
             }
             return imgText;
@@ -388,7 +389,7 @@ class TextSelectImage extends Component<
                 .query({
                     query: getTextSelectImage,
                     variables: {
-                        imageSha: imageSha + '.webp.txt',
+                        imageSha,
                     },
                 });
 

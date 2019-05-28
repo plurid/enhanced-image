@@ -39,8 +39,8 @@ class TextImageEditor extends Component<any, any> {
 
     state = {
         id: this.props.text.id,
-        xPercentage: this.props.text.xPercentage,
-        yPercentage: this.props.text.yPercentage,
+        xCoordPercentage: this.props.text.xCoordPercentage,
+        yCoordPercentage: this.props.text.yCoordPercentage,
         perspective: this.props.text.perspective,
         rotation: this.props.text.rotation,
         skew: this.props.text.skew,
@@ -249,13 +249,13 @@ class TextImageEditor extends Component<any, any> {
         const {
             updateTextImage,
             imageHeight,
-            imagwWidth,
+            imageWidth,
         } = this.context;
 
         const {
             id,
-            xPercentage,
-            yPercentage,
+            xCoordPercentage,
+            yCoordPercentage,
             perspective,
             rotation,
             skew,
@@ -274,15 +274,16 @@ class TextImageEditor extends Component<any, any> {
         } = this.state;
 
         const fontSizePercentage = percentageFromValue(fontSize, imageHeight);
-        const letterSpacingPercentage = percentageFromValue(letterSpacing, imagwWidth);
-        const wordSpacingPercentage = percentageFromValue(wordSpacing, imagwWidth);
+        const letterSpacingPercentage = percentageFromValue(letterSpacing, imageWidth);
+        const wordSpacingPercentage = percentageFromValue(wordSpacing, imageWidth);
 
-        console.log(fontSizePercentage, imageHeight);
+        // console.log(fontSizePercentage, imageHeight);
+        console.log(this.props.text);
 
         const text = {
             id,
-            xPercentage,
-            yPercentage,
+            xCoordPercentage,
+            yCoordPercentage,
             perspective,
             rotation,
             skew,
