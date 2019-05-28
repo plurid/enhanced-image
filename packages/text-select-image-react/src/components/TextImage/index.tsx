@@ -135,6 +135,16 @@ class TextImage extends Component<
         }
     }
 
+    public getSnapshotBeforeUpdate(prevProps: any, prevState: any) {
+        if (prevProps.text.fontSizePercentage !== this.props.text.fontSizePercentage
+            || prevProps.text.letterSpacingPercentage !== this.props.text.letterSpacingPercentage
+            || prevProps.text.wordSpacingPercentage !== this.props.text.wordSpacingPercentage
+        ) {
+            this.processCoords();
+        }
+        return null;
+    }
+
     public componentWillUnmount() {
         document.removeEventListener('mouseup', this.dragMouseUp);
         document.removeEventListener('mousemove', this.dragMouseMove);
@@ -315,15 +325,18 @@ class TextImage extends Component<
         const xCoord = valueFromPercentage(xCoordPercentage, imageWidth);
         const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
         const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
-        const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
-        const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
+
+        console.log(this.props.text);
+        // console.log(letterSpacingPercentage, wordSpacingPercentage);
+        // const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
+        // const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
 
         this.setState({
             xCoord,
             yCoord,
             fontSize,
-            letterSpacing,
-            wordSpacing,
+            // letterSpacing,
+            // wordSpacing,
         });
     }
 
