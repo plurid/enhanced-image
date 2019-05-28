@@ -10,6 +10,7 @@ import {
 import {
     SLIDER_NAMES,
     SLIDER_INPUT_DEFAULTS,
+    SLIDER_VALUE_DEFAULTS,
 } from '../../data/constants';
 
 import Context from '../../context';
@@ -54,7 +55,6 @@ class EnhancedImageSliderItem extends Component<
                     {SLIDER_NAMES[type]}
 
                     <StyledEnhancedImageSliderValue>
-                        {/* {this.sliderValue}{this.valueSign} */}
                         {value}{valueSign || SLIDER_INPUT_DEFAULTS.valueSign}
                     </StyledEnhancedImageSliderValue>
                 </StyledEnhancedImageSliderType>
@@ -74,7 +74,7 @@ class EnhancedImageSliderItem extends Component<
                         onChange={this.handleSliderInput}
                         onMouseDown={toggleMenuOpaque}
                         onMouseUp={toggleMenuOpaque}
-                        // onDblClick={this.setSlider.bind(this, type, SLIDER_DEFAULTS[type])}
+                        onDoubleClick={this.handleDoubleClick}
                     />
                 </StyledEnhancedImageSliderInputContainer>
             </StyledEnhancedImageSliderItem>
@@ -105,6 +105,18 @@ class EnhancedImageSliderItem extends Component<
         }
 
         setColorValue(type, value);
+    }
+
+    private handleDoubleClick = () => {
+        const {
+            type
+        } = this.props;
+
+        const {
+            setColorValue,
+        } = this.context;
+
+        setColorValue(type, SLIDER_VALUE_DEFAULTS[type]);
     }
 }
 
