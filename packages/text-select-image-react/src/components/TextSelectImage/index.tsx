@@ -39,6 +39,8 @@ interface ITextSelectImageProps {
     src: string;
     theme?: string;
     imageText?: any;
+    imageStyle?: any;
+    atLoad?: any;
 
     // To be specified when using another API than https://api.plurid.com
     // GraphlQL-based
@@ -155,6 +157,7 @@ class TextSelectImage extends Component<
         const {
             src,
             alt,
+            imageStyle,
         } = this.props;
         const {
             controls,
@@ -185,6 +188,7 @@ class TextSelectImage extends Component<
                         src={src}
                         alt={alt || 'Image'}
                         onLoad={this.handleLoadedImage}
+                        style={{...imageStyle}}
                     />
 
                     {imageLoaded && (
@@ -337,30 +341,31 @@ class TextSelectImage extends Component<
      * to get the data based on the contentId of the image.
      */
     private getText = async () => {
-        // const { apiEndpoint } = this.state;
         // const { apiKey } = this.props;
 
         const contentId = await computeContentId(this.props.src);
 
-        const query = await this.client
-            .query({
-                query: getTextSelectImage,
-                variables: {
-                    imageSha: contentId,
-                },
-            });
+        try {
+            const query = await this.client
+                .query({
+                    query: getTextSelectImage,
+                    variables: {
+                        imageSha: contentId,
+                    },
+                });
 
-        console.log(query);
+            const { status, textSelectImage } = query.data.textSelectImage;
 
-        const { status, textSelectImage } = query.data.textSelectImage;
+            if (!status) {
+                return {};
+            }
 
-        if (!status) {
+            const selectText = this.processText(textSelectImage);
+
+            return selectText;
+        } catch(err) {
             return {};
         }
-
-        const selectText = this.processText(textSelectImage);
-
-        return selectText;
     }
 
     private processText = (data: any) => {
@@ -400,11 +405,19 @@ class TextSelectImage extends Component<
 
     private handleLoadedImage = async (image: any) => {
         const {
+            atLoad,
+        } = this.props;
+
+        const {
             offsetHeight,
             offsetWidth,
             naturalHeight,
             naturalWidth,
         } = image.target;
+
+        if (atLoad) {
+            await atLoad(image);
+        }
 
         this.setState({
             imageLoaded: true,
