@@ -30,6 +30,16 @@ import {
 
 
 
+const emptyTextSelectImage = {
+    createdBy: '',
+    imageSha: '',
+    imagePath: '',
+    imageSource: '',
+    imageHeight: 0,
+    imageWidth: 0,
+    imageText: [],
+};
+
 const apolloClient = (uri: string) => {
     return new ApolloClient({
         uri,
@@ -142,7 +152,7 @@ class TextSelectImage extends Component<
             getText: this.getText,
             getAndSetText: this.getAndSetText,
             extractText: this.extractText,
-        }
+        };
     }
 
     async componentDidMount() {
@@ -158,14 +168,13 @@ class TextSelectImage extends Component<
         const _themeName = theme === undefined ? this.context.themeName : theme;
 
         await this.computeImageSha();
-        // const selectText = await this.getText();
 
         this.setState({
             about: _about,
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
-            selectText: {},
+            selectText: emptyTextSelectImage,
         });
     }
 
@@ -379,7 +388,7 @@ class TextSelectImage extends Component<
                 .query({
                     query: getTextSelectImage,
                     variables: {
-                        imageSha,
+                        imageSha: imageSha + '.webp.txt',
                     },
                 });
 
@@ -387,14 +396,14 @@ class TextSelectImage extends Component<
             console.log(query);
 
             if (!status) {
-                return {};
+                return emptyTextSelectImage;
             }
 
             const selectText = this.processText(textSelectImage);
 
             return selectText;
         } catch(err) {
-            return {};
+            return emptyTextSelectImage;
         }
     }
 
