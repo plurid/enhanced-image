@@ -20,8 +20,13 @@ import uuidv4 from '../../utils/uuid';
 
 import ApolloClient from 'apollo-boost';
 
-import { getTextSelectImage } from '../../graphql/query';
-import { updateTextSelectImage } from '../../graphql/mutation';
+import {
+    getTextSelectImage,
+    extractTextSelectImage,
+} from '../../graphql/query';
+import {
+    updateTextSelectImage,
+} from '../../graphql/mutation';
 
 
 
@@ -379,12 +384,11 @@ class TextSelectImage extends Component<
                 });
 
             const { status, textSelectImage } = query.data.textSelectImage;
+            console.log(query);
 
             if (!status) {
                 return {};
             }
-
-            console.log(textSelectImage);
 
             const selectText = this.processText(textSelectImage);
 
@@ -468,8 +472,33 @@ class TextSelectImage extends Component<
         });
     }
 
-    private extractText = () => {
-        console.log('extract text');
+    private extractText = async () => {
+        const {
+            imageSha,
+        } = this.state;
+
+        try {
+            const query = await this.client
+                .query({
+                    query: extractTextSelectImage,
+                    variables: {
+                        imageSrc: this.props.src,
+                        imageSha,
+                    },
+                });
+
+            const { status, textSelectImage } = query.data.extractTextSelectImage;
+            console.log(query);
+            console.log(textSelectImage);
+
+            if (!status) {
+                return {};
+            }
+
+            return {};
+        } catch(err) {
+            return {};
+        }
     }
 }
 

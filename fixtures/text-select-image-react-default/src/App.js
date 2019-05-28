@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import foodImage from './assets/food-vegetables-text.jpg';
+// import foodImage from './assets/food-vegetables-text.jpg';
 // import populationDensityEurope from './assets/population-density-europe.png';
+import image from './assets/image.jpg';
 
 import TextSelectImage from '@plurid/text-select-image-react';
 
@@ -16,7 +17,7 @@ class App extends Component {
                 >
                     <TextSelectImage
                         theme="night"
-                        src={foodImage}
+                        src={image}
                         controls={true}
                         apiEndpoint="http://localhost:3360/graphql"
                     />

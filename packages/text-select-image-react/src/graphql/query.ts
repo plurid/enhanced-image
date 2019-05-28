@@ -49,3 +49,20 @@ export const getTextSelectImage = gql`
         }
     }
 `
+
+
+export const extractTextSelectImage = gql`
+    query ExtractTextSelectImage($imageSrc: String!, $imageSha: String!) {
+        extractTextSelectImage(imageSrc: $imageSrc, imageSha: $imageSha) {
+            status
+            textSelectImage {
+                imagePath
+                imageSource
+            }
+            errors {
+                path
+                message
+            }
+        }
+    }
+`;
