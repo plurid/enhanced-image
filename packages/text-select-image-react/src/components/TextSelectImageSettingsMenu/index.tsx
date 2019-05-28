@@ -111,9 +111,23 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
     }
 
     private getText = () => {
+        const {
+            toggleSettings,
+            getAndSetText,
+        } = this.context;
+
+        toggleSettings();
+        getAndSetText();
     }
 
     private extractText = () => {
+        const {
+            toggleSettings,
+            extractText,
+        } = this.context;
+
+        toggleSettings();
+        extractText();
     }
 
     private about = () => {

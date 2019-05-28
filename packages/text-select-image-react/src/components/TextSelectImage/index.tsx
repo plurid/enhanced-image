@@ -66,6 +66,7 @@ interface ITextSelectImageState {
     loading: boolean;
 
     imageLoaded: boolean;
+    imageSha: string;
     imageHeight: number;
     imageWidth: number;
     imageNaturalHeight: number;
@@ -85,6 +86,10 @@ interface ITextSelectImageState {
     updateTextImageField: (id: string, element: string, value: any) => any;
     deleteTextImage: (id: string) => any;
     setEditorWidth: (value: number) => any;
+
+    getText: any;
+    getAndSetText: any;
+    extractText: any;
 }
 
 
@@ -109,6 +114,7 @@ class TextSelectImage extends Component<
             editorWidth: 0,
 
             imageLoaded: false,
+            imageSha: '',
             imageHeight: 0,
             imageWidth: 0,
             imageNaturalHeight: 0,
@@ -127,6 +133,10 @@ class TextSelectImage extends Component<
             updateTextImageField: this.updateTextImageField,
             deleteTextImage: this.deleteTextImage,
             setEditorWidth: this.setEditorWidth,
+
+            getText: this.getText,
+            getAndSetText: this.getAndSetText,
+            extractText: this.extractText,
         }
     }
 
@@ -142,14 +152,15 @@ class TextSelectImage extends Component<
         const _theme = theme === undefined ? this.context.theme : themes[theme];
         const _themeName = theme === undefined ? this.context.themeName : theme;
 
-        const selectText = await this.getText();
+        await this.computeImageSha();
+        // const selectText = await this.getText();
 
         this.setState({
             about: _about,
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
-            selectText,
+            selectText: {},
         });
     }
 
@@ -336,6 +347,17 @@ class TextSelectImage extends Component<
         }));
     }
 
+    private computeImageSha = async () => {
+        const {
+            src,
+        } = this.props;
+
+        const imageSha = await computeContentId(src);
+        this.setState({
+            imageSha,
+        });
+    }
+
     /**
      * Graphql query to the apiEndpoint (with apiKey if it exists)
      * to get the data based on the contentId of the image.
@@ -343,14 +365,16 @@ class TextSelectImage extends Component<
     private getText = async () => {
         // const { apiKey } = this.props;
 
-        const contentId = await computeContentId(this.props.src);
+        const {
+            imageSha,
+        } = this.state;
 
         try {
             const query = await this.client
                 .query({
                     query: getTextSelectImage,
                     variables: {
-                        imageSha: contentId,
+                        imageSha,
                     },
                 });
 
@@ -360,12 +384,22 @@ class TextSelectImage extends Component<
                 return {};
             }
 
+            console.log(textSelectImage);
+
             const selectText = this.processText(textSelectImage);
 
             return selectText;
         } catch(err) {
             return {};
         }
+    }
+
+    private getAndSetText = async () => {
+        const selectText = await this.getText();
+
+        this.setState({
+            selectText,
+        });
     }
 
     private processText = (data: any) => {
@@ -432,6 +466,10 @@ class TextSelectImage extends Component<
         this.setState({
             editorWidth,
         });
+    }
+
+    private extractText = () => {
+        console.log('extract text');
     }
 }
 
