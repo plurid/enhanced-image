@@ -19,6 +19,8 @@ import {
 
 import themes from '../../data/themes';
 
+import TextSelectImage from '@plurid/text-select-image-react';
+
 // import computeContentId from '../../utils/contentId';
 // import uuidv4 from '../../utils/uuid';
 
@@ -96,11 +98,15 @@ class EnhancedImage extends Component<
 > {
     static contextType = Context;
 
+    textSelectImage: any;
+
     constructor(props: any) {
         super(props);
 
         const apiEndpoint = this.props.apiEndpoint || PLURID_API;
         // this.client = apolloClient(apiEndpoint);
+
+        this.textSelectImage = React.createRef();
 
         this.state = {
             apiEndpoint,
@@ -121,7 +127,7 @@ class EnhancedImage extends Component<
             toggledSettingsButton: false,
             toggleSettings: this.toggleSettings,
             toggledSettings: false,
-            // toggleEditable: this.toggleEditable,
+            toggleEditable: this.toggleEditable,
             toggledEditable: false,
 
             invertValue: 0,
@@ -136,7 +142,9 @@ class EnhancedImage extends Component<
 
             toggledDefaults: false,
             toggleDefaults: this.toggleDefaults,
-        }
+
+            textSelectImage: this.textSelectImage,
+        };
     }
 
     async componentDidMount() {
@@ -192,10 +200,13 @@ class EnhancedImage extends Component<
                     onMouseEnter={this.toggleSettingsButton}
                     onMouseLeave={this.toggleSettingsButton}
                 >
-                    <img
+                    <TextSelectImage
                         src={src}
                         alt={alt || 'Image'}
-                        style={{
+                        theme={theme}
+                        apiEndpoint="http://localhost:3360/graphql"
+                        atLoad={this.handleLoadedImage}
+                        imageStyle={{
                             filter: `
                                 invert(${invertValue})
                                 contrast(${contrastValue}%)
@@ -204,7 +215,7 @@ class EnhancedImage extends Component<
                                 brightness(${brightnessValue}%)
                             `,
                         }}
-                        onLoad={this.handleLoadedImage}
+                        ref={this.textSelectImage}
                     />
 
                     {toggledSettingsButton && controls && (
@@ -234,6 +245,15 @@ class EnhancedImage extends Component<
     private toggleDefaults = () => {
         this.setState((prevState: any) => ({
             toggledDefaults: !prevState.toggledDefaults,
+        }));
+    }
+
+    private toggleEditable = () => {
+        this.toggleSettings();
+        this.textSelectImage.current.toggleEditable();
+
+        this.setState((prevState: any) => ({
+            toggledEditable: !prevState.toggledEditable,
         }));
     }
 

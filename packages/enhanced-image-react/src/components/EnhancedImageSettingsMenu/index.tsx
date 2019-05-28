@@ -411,22 +411,20 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
 
     private toggleEditable = () => {
         const {
-            toggleSettings,
             toggleEditable,
         } = this.context;
 
-        toggleSettings();
         toggleEditable();
     }
 
     private addText = () => {
         const {
             toggleSettings,
-            createTextImage,
+            textSelectImage,
         } = this.context;
 
         toggleSettings();
-        createTextImage();
+        textSelectImage.current.createTextImage();
     }
 
     private getText = () => {
