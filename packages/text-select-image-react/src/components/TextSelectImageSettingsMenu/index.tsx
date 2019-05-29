@@ -4,6 +4,7 @@ import Context from '../../context';
 
 import AboutIcon from '../../assets/about-icon';
 import AddTextIcon from '../../assets/add-text-icon';
+import SaveImageTextIcon from '../../assets/save-image-text-icon';
 import GetTextIcon from '../../assets/get-text-icon';
 import ExtractTextIcon from '../../assets/extract-text-icon';
 
@@ -48,6 +49,15 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
                             atClick={this.addText}
                             icon={AddTextIcon}
                             text="Add Text"
+                        />
+                    </li>
+
+                    <li>
+                        <TextSelectImageButtonItem
+                            theme={theme}
+                            atClick={this.saveText}
+                            icon={SaveImageTextIcon}
+                            text="Save Image Text"
                         />
                     </li>
 
@@ -108,6 +118,16 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
 
         toggleSettings();
         createTextImage();
+    }
+
+    private saveText = () => {
+        const {
+            toggleSettings,
+            saveImageText,
+        } = this.context;
+
+        toggleSettings();
+        saveImageText();
     }
 
     private getText = () => {

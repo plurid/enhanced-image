@@ -228,7 +228,7 @@ class TextImageEditor extends Component<any, any> {
 
 
     private changeValue = (type: string, value: number | string) => {
-        console.log(type, value);
+        // console.log(type, value);
 
         this.setState({
             [type]: value,
@@ -278,7 +278,7 @@ class TextImageEditor extends Component<any, any> {
         const wordSpacingPercentage = percentageFromValue(wordSpacing, imageWidth);
 
         // console.log(fontSizePercentage, imageHeight);
-        console.log(this.props.text);
+        // console.log(this.props.text);
 
         const text = {
             id,

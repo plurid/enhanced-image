@@ -102,9 +102,10 @@ interface ITextSelectImageState {
     deleteTextImage: (id: string) => any;
     setEditorWidth: (value: number) => any;
 
-    getText: any;
-    getAndSetText: any;
-    extractText: any;
+    getText: () => any;
+    getAndSetText: () => any;
+    extractText: () => any;
+    saveImageText: () => any;
 }
 
 
@@ -152,6 +153,7 @@ class TextSelectImage extends Component<
             getText: this.getText,
             getAndSetText: this.getAndSetText,
             extractText: this.extractText,
+            saveImageText: this.saveImageText,
         };
     }
 
@@ -174,7 +176,7 @@ class TextSelectImage extends Component<
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
-            selectText: emptyTextSelectImage,
+            // selectText: emptyTextSelectImage,
         });
     }
 
@@ -443,6 +445,106 @@ class TextSelectImage extends Component<
         };
 
         return selectText;
+    }
+
+
+    private saveImageText = async () => {
+        // graphql mutation to save the text to the database
+        console.log('saving the text');
+
+        const {
+            imageSha,
+        } = this.state;
+
+        try {
+            const imageText = [
+                {
+                    "id": "99aee8df70494cc99b32d4b1612f02f2",
+                    "currentVersionId": "tsi-text-ab9c018963ca46719b5e78b7ddb612b3",
+                    "versions": [
+                        {
+                        "createdBy": "9275a194b1464ab1a76730271a3aad75",
+                        "id": "tsi-text-ab9c018963ca46719b5e78b7ddb612b3",
+                        "xCoordPercentage": 25.3750,
+                        "yCoordPercentage": 36.0690,
+                        "perspective": "",
+                        "rotation": "",
+                        "skew": "",
+                        "color": "red",
+                        "fontFamily": "Arial",
+                        "fontSizePercentage": 7.4467,
+                        "bold": true,
+                        "italic": false,
+                        "letterSpacingPercentage": 0.1750,
+                        "lineHeight": "auto",
+                        "wordSpacingPercentage": 0,
+                        "content": "eat.yourvegetables.com",
+                        "link": true,
+                        "linkTo": "https://github.com/plurid/text-select-image",
+                        "viewable": false
+                        }
+                    ]
+                },
+                {
+                    "id": "d820f6fb53564c9aa690be800737f19f",
+                    "currentVersionId": "tsi-text-cfef2e114e6540fe980a7136046a9fb0",
+                    "versions": [
+                        {
+                            "createdBy": "9275a194b1464ab1a76730271a3aad75",
+                            "id": "tsi-text-cfef2e114e6540fe980a7136046a9fb0",
+                            "xCoordPercentage": 28.75,
+                            "yCoordPercentage": 62.3661,
+                            "perspective": "",
+                            "rotation": "",
+                            "skew": "",
+                            "color": "black",
+                            "fontFamily": "Arial",
+                            "fontSizePercentage": 8.1448,
+                            "bold": true,
+                            "italic": false,
+                            "letterSpacingPercentage": -0.0625,
+                            "lineHeight": "auto",
+                            "wordSpacingPercentage": 0.35,
+                            "content": "aaaEat your vegetables!",
+                            "link": false,
+                            "linkTo": "",
+                            "viewable": false
+                        }
+                    ]
+                }
+            ];
+
+            const input = {
+                imageSha,
+                imageText,
+            };
+
+            const mutation = await this.client
+                .mutate({
+                    mutation: updateTextSelectImage,
+                    variables: {
+                        input,
+                    },
+                });
+
+            console.log(mutation);
+            const { status, textSelectImage } = mutation.data.textSelectImage;
+
+            if (!status) {
+                return false;
+            }
+
+            const selectText = this.processText(textSelectImage);
+
+            this.setState({
+                selectText,
+            });
+
+            return true;
+        } catch(err) {
+            console.log(err);
+            return false;
+        }
     }
 
     private updateText = () => {
