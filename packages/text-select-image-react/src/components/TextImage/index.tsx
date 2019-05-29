@@ -326,17 +326,17 @@ class TextImage extends Component<
         const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
         const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
 
-        console.log(this.props.text);
+        // console.log(this.props.text);
         // console.log(letterSpacingPercentage, wordSpacingPercentage);
-        // const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
-        // const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
+        const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
+        const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
 
         this.setState({
             xCoord,
             yCoord,
             fontSize,
-            // letterSpacing,
-            // wordSpacing,
+            letterSpacing,
+            wordSpacing,
         });
     }
 
