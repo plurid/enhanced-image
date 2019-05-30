@@ -53,19 +53,17 @@ interface ITextSelectImageProps {
     controls?: boolean;
     src: string;
     theme?: string;
-    imageText?: any;
+    // imageText?: any;
     imageStyle?: any;
     atLoad?: any;
 
     // To be specified when using another API than https://api.plurid.com
     // GraphlQL-based
     apiEndpoint?: string;
-
     // The apiKey contains the domain allowed to make requests
     // To be specified when using as a service provider
     // apiKey obtained from https://depict.plurid.com/api
     apiKey?: string;
-
     updateDebounce?: number;
 }
 
@@ -115,20 +113,22 @@ class TextSelectImage extends Component<
 > {
     static contextType = Context;
 
-    client: any;
+    client: ApolloClient<any>;
 
     constructor(props: ITextSelectImageProps) {
         super(props);
 
+        // console.log('CONSTRUCTOR');
+
         const apiEndpoint = this.props.apiEndpoint || PLURID_API;
+        const updateDebounce = this.props.updateDebounce || UPDATE_DEBOUNCE;
         this.client = apolloClient(apiEndpoint);
 
         this.state = {
             apiEndpoint,
-            updateDebounce: this.props.updateDebounce || UPDATE_DEBOUNCE,
+            updateDebounce,
 
             loading: false,
-            editorWidth: 0,
 
             imageLoaded: false,
             imageSha: '',
@@ -149,16 +149,22 @@ class TextSelectImage extends Component<
             updateTextImage: this.updateTextImage,
             updateTextImageField: this.updateTextImageField,
             deleteTextImage: this.deleteTextImage,
+
+            editorWidth: 0,
             setEditorWidth: this.setEditorWidth,
 
             getText: this.getText,
             getAndSetText: this.getAndSetText,
             extractText: this.extractText,
             saveImageText: this.saveImageText,
+
+            selectText: emptyTextSelectImage,
         };
     }
 
     async componentDidMount() {
+        // console.log('MOUNT');
+
         const {
             about,
             controls,
@@ -175,16 +181,18 @@ class TextSelectImage extends Component<
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
-            selectText: emptyTextSelectImage,
         });
     }
 
     public render() {
+        // console.log('RENDER');
+
         const {
             src,
             alt,
             imageStyle,
         } = this.props;
+
         const {
             controls,
             theme,
@@ -193,15 +201,14 @@ class TextSelectImage extends Component<
             imageWidth,
             toggledEditable,
             toggledSettingsButton,
-            selectText,
+            // selectText,
         } = this.state;
 
-        if (selectText) {
+        // if (selectText) {
             // console.log(selectText.imageText[1].fontSizePercentage);
             // console.log(selectText.imageText[1].content);
-        }
-
-        console.log(this.state.imageSha);
+        // }
+        // console.log(this.state.imageSha);
 
         return (
             <Context.Provider value={this.state}>
@@ -365,54 +372,45 @@ class TextSelectImage extends Component<
         }));
     }
 
+    private setEditorWidth = (editorWidth: number) => {
+        this.setState({
+            editorWidth,
+        });
+    }
+
     private computeImageSha = async () => {
         const { src } = this.props;
         const imageSha = await computeImageSha(src);
         this.setState({ imageSha });
     }
 
-    /**
-     * Graphql query to the apiEndpoint (with apiKey if it exists)
-     * to get the data based on the contentId of the image.
-     */
-    private getText = async () => {
-        // const { apiKey } = this.props;
+    private handleLoadedImage = async (image: any) => {
+        const {
+            atLoad,
+        } = this.props;
 
         const {
-            imageSha,
-        } = this.state;
+            offsetHeight,
+            offsetWidth,
+            naturalHeight,
+            naturalWidth,
+        } = image.target;
 
-        try {
-            const query = await this.client
-                .query({
-                    query: getTextSelectImage,
-                    variables: {
-                        imageSha,
-                    },
-                });
-
-            const { status, textSelectImage } = query.data.textSelectImage;
-            console.log(query);
-
-            if (!status) {
-                return emptyTextSelectImage;
-            }
-
-            const selectText = this.processText(textSelectImage);
-
-            return selectText;
-        } catch(err) {
-            return emptyTextSelectImage;
+        if (atLoad) {
+            await atLoad(image);
         }
-    }
-
-    private getAndSetText = async () => {
-        const selectText = await this.getText();
 
         this.setState({
-            selectText,
-        });
+            imageLoaded: true,
+            imageWidth: offsetWidth,
+            imageHeight: offsetHeight,
+            imageNaturalHeight: naturalHeight,
+            imageNaturalWidth: naturalWidth,
+        },
+            await this.computeImageSha
+        );
     }
+
 
     private processText = (data: any) => {
         const {
@@ -443,6 +441,87 @@ class TextSelectImage extends Component<
         return selectText;
     }
 
+    /**
+     * Graphql query to the apiEndpoint (with apiKey if it exists)
+     * to get the data based on the contentId of the image.
+     */
+    private getText = async () => {
+        // const { apiKey } = this.props;
+
+        const {
+            imageSha,
+        } = this.state;
+
+        try {
+            this.setState({
+                loading: true,
+            });
+
+            const query = await this.client
+                .query({
+                    query: getTextSelectImage,
+                    variables: {
+                        imageSha,
+                    },
+                });
+
+            const { status, textSelectImage } = query.data.textSelectImage;
+            console.log(query);
+
+            if (!query.loading) {
+                this.setState({
+                    loading: false,
+                });
+            }
+
+            if (!status) {
+                return emptyTextSelectImage;
+            }
+
+            const selectText = this.processText(textSelectImage);
+
+            return selectText;
+        } catch(err) {
+            return emptyTextSelectImage;
+        }
+    }
+
+    private getAndSetText = async () => {
+        const selectText = await this.getText();
+
+        this.setState({
+            selectText,
+        });
+    }
+
+    private extractText = async () => {
+        const {
+            imageSha,
+        } = this.state;
+
+        try {
+            const query = await this.client
+                .query({
+                    query: extractTextSelectImage,
+                    variables: {
+                        imageSrc: this.props.src,
+                        imageSha,
+                    },
+                });
+
+            const { status, textSelectImage } = query.data.extractTextSelectImage;
+            console.log(query);
+            console.log(textSelectImage);
+
+            if (!status) {
+                return {};
+            }
+
+            return {};
+        } catch(err) {
+            return {};
+        }
+    }
 
     private saveImageText = async () => {
         // graphql mutation to save the text to the database
@@ -515,6 +594,10 @@ class TextSelectImage extends Component<
                 imageText,
             };
 
+            this.setState({
+                loading: true,
+            });
+
             const mutation = await this.client
                 .mutate({
                     mutation: updateTextSelectImage,
@@ -522,6 +605,12 @@ class TextSelectImage extends Component<
                         input,
                     },
                 });
+
+            if (!mutation.loading) {
+                this.setState({
+                    loading: false,
+                });
+            }
 
             console.log(mutation);
             const { status, textSelectImage } = mutation.data.updateTextSelectImage;
@@ -547,68 +636,6 @@ class TextSelectImage extends Component<
         // to debounce the update to database every updateDebounce seconds
 
         const { updateDebounce } = this.state;
-    }
-
-    private handleLoadedImage = async (image: any) => {
-        const {
-            atLoad,
-        } = this.props;
-
-        const {
-            offsetHeight,
-            offsetWidth,
-            naturalHeight,
-            naturalWidth,
-        } = image.target;
-
-        if (atLoad) {
-            await atLoad(image);
-        }
-
-        this.setState({
-            imageLoaded: true,
-            imageWidth: offsetWidth,
-            imageHeight: offsetHeight,
-            imageNaturalHeight: naturalHeight,
-            imageNaturalWidth: naturalWidth,
-        },
-            await this.computeImageSha
-        );
-    }
-
-    private setEditorWidth = (editorWidth: number) => {
-        this.setState({
-            editorWidth,
-        });
-    }
-
-    private extractText = async () => {
-        const {
-            imageSha,
-        } = this.state;
-
-        try {
-            const query = await this.client
-                .query({
-                    query: extractTextSelectImage,
-                    variables: {
-                        imageSrc: this.props.src,
-                        imageSha,
-                    },
-                });
-
-            const { status, textSelectImage } = query.data.extractTextSelectImage;
-            console.log(query);
-            console.log(textSelectImage);
-
-            if (!status) {
-                return {};
-            }
-
-            return {};
-        } catch(err) {
-            return {};
-        }
     }
 }
 
