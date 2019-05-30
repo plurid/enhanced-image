@@ -17,6 +17,7 @@ export const StyledTextSelectImage: any = styled.div`
     }};
 
     img {
+        display: block;
         user-select: none;
         pointer-events: all;
         width: 100%;
