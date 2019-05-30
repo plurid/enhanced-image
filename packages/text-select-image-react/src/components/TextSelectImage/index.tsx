@@ -201,9 +201,10 @@ class TextSelectImage extends Component<
             imageWidth,
             toggledEditable,
             toggledSettingsButton,
-            // selectText,
+            selectText,
         } = this.state;
 
+        console.log(selectText);
         // if (selectText) {
             // console.log(selectText.imageText[1].fontSizePercentage);
             // console.log(selectText.imageText[1].content);
@@ -381,7 +382,10 @@ class TextSelectImage extends Component<
     private computeImageSha = async () => {
         const { src } = this.props;
         const imageSha = await computeImageSha(src);
-        this.setState({ imageSha });
+        this.setState({ imageSha },
+            // to be used in production (?)
+            // this.getAndSetText
+        );
     }
 
     private handleLoadedImage = async (image: any) => {
