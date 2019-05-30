@@ -15,7 +15,7 @@ import {
 
 import themes from '../../data/themes';
 
-import computeContentId from '../../utils/contentId';
+import computeImageSha from '../../utils/computeImageSha';
 import uuidv4 from '../../utils/uuid';
 
 import ApolloClient from 'apollo-boost';
@@ -26,7 +26,7 @@ import {
 } from '../../graphql/query';
 import {
     updateTextSelectImage,
-} from '../../graphql/mutation';
+} from '../../graphql/mutate';
 
 
 
@@ -44,7 +44,7 @@ const apolloClient = (uri: string) => {
     return new ApolloClient({
         uri,
     });
-}
+};
 
 
 interface ITextSelectImageProps {
@@ -77,9 +77,8 @@ interface ITextSelectImageState {
     themeName: string;
     about: boolean;
     controls: boolean;
-    editorWidth: number;
-    loading: boolean;
 
+    loading: boolean;
     imageLoaded: boolean;
     imageSha: string;
     imageHeight: number;
@@ -95,12 +94,14 @@ interface ITextSelectImageState {
     toggledEditable: boolean;
     selectText: any;
 
+    editorWidth: number;
+    setEditorWidth: (value: number) => any;
+
     createTextImage: () => any;
     duplicateTextImage: (duplicateId: string) => any;
     updateTextImage: (text: any) => any;
     updateTextImageField: (id: string, element: string, value: any) => any;
     deleteTextImage: (id: string) => any;
-    setEditorWidth: (value: number) => any;
 
     getText: () => any;
     getAndSetText: () => any;
@@ -169,14 +170,12 @@ class TextSelectImage extends Component<
         const _theme = theme === undefined ? this.context.theme : themes[theme];
         const _themeName = theme === undefined ? this.context.themeName : theme;
 
-        await this.computeImageSha();
-
         this.setState({
             about: _about,
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
-            // selectText: emptyTextSelectImage,
+            selectText: emptyTextSelectImage,
         });
     }
 
@@ -201,6 +200,8 @@ class TextSelectImage extends Component<
             // console.log(selectText.imageText[1].fontSizePercentage);
             // console.log(selectText.imageText[1].content);
         }
+
+        console.log(this.state.imageSha);
 
         return (
             <Context.Provider value={this.state}>
@@ -365,14 +366,9 @@ class TextSelectImage extends Component<
     }
 
     private computeImageSha = async () => {
-        const {
-            src,
-        } = this.props;
-
-        const imageSha = await computeContentId(src);
-        this.setState({
-            imageSha,
-        });
+        const { src } = this.props;
+        const imageSha = await computeImageSha(src);
+        this.setState({ imageSha });
     }
 
     /**
@@ -528,7 +524,7 @@ class TextSelectImage extends Component<
                 });
 
             console.log(mutation);
-            const { status, textSelectImage } = mutation.data.textSelectImage;
+            const { status, textSelectImage } = mutation.data.updateTextSelectImage;
 
             if (!status) {
                 return false;
@@ -575,7 +571,9 @@ class TextSelectImage extends Component<
             imageHeight: offsetHeight,
             imageNaturalHeight: naturalHeight,
             imageNaturalWidth: naturalWidth,
-        });
+        },
+            await this.computeImageSha
+        );
     }
 
     private setEditorWidth = (editorWidth: number) => {

@@ -8,7 +8,7 @@ import sha256 from 'crypto-js/sha256';
 /**
  * Compute a unique SHA from the image data
  */
-const computeContentId = async (src: string) => {
+const computeImageSha = async function(src: string) {
     const image: any = await loadImage(src);
     const { height, width } = image;
     const canvas = document.createElement('canvas');
@@ -25,4 +25,4 @@ const computeContentId = async (src: string) => {
 }
 
 
-export default computeContentId;
+export default computeImageSha;
