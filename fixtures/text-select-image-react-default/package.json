@@ -7,10 +7,18 @@
     "private": true,
     "dependencies": {
         "@plurid/text-select-image-react": "*",
+        "apollo-cache-inmemory": "^1.6.0",
+        "apollo-client": "^2.6.0",
+        "apollo-link": "^1.2.11",
+        "apollo-link-error": "^1.1.10",
+        "apollo-link-http": "^1.5.14",
+        "graphql-tag": "^2.10.1",
         "prop-types": "^15.6.2",
         "react": "^16.4.1",
+        "react-apollo": "^2.5.6",
         "react-dom": "^16.4.1",
-        "react-scripts": "^1.1.4"
+        "react-scripts": "^1.1.4",
+        "styled-components": "^4.2.1"
     },
     "scripts": {
         "start": "react-scripts start",
