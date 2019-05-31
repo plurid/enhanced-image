@@ -19,6 +19,7 @@ import {
     valueFromPercentage,
     percentageFromValue,
 } from '../../utils/percentage';
+import { getVersionById } from '../../utils/textImage';
 
 
 // interface ITextImageProps {
@@ -53,6 +54,7 @@ import {
 // }
 
 
+
 class TextImage extends Component<
     any, any
     // ITextImageProps, ITextImageState
@@ -62,7 +64,8 @@ class TextImage extends Component<
     private textImage: any;
 
     state = {
-        content: this.props.text.content,
+        textVersion: {},
+        content: '',
         contentInput: '',
         showEditor: false,
         showMore: false,
@@ -102,15 +105,29 @@ class TextImage extends Component<
         document.addEventListener('mouseup', this.dragMouseUp);
         document.addEventListener('mousemove', this.dragMouseMove);
 
+        const {
+            text
+        } = this.props;
+
+        const {
+            currentVersionId,
+            versions,
+        } = text;
+
+        const textVersion = getVersionById(currentVersionId, versions);
+
         this.setState({
+            textVersion,
+
             imageWidth: this.context.imageWidth,
             imageHeight: this.context.imageHeight,
             editorWidth: this.context.editorWidth,
         },
-            this.editorPosition
+            () => {
+                this.editorPosition();
+                this.processCoords();
+            }
         );
-
-        this.processCoords();
     }
 
     public componentDidUpdate() {
@@ -136,10 +153,8 @@ class TextImage extends Component<
     }
 
     public getSnapshotBeforeUpdate(prevProps: any, prevState: any) {
-        if (prevProps.text.fontSizePercentage !== this.props.text.fontSizePercentage
-            || prevProps.text.letterSpacingPercentage !== this.props.text.letterSpacingPercentage
-            || prevProps.text.wordSpacingPercentage !== this.props.text.wordSpacingPercentage
-        ) {
+        console.log(prevProps.text);
+        if (JSON.stringify(prevProps.text) !== JSON.stringify(this.props.text)) {
             this.processCoords();
         }
         return null;
@@ -152,7 +167,7 @@ class TextImage extends Component<
 
     public render() {
         const {
-            content,
+            textVersion,
             showEditor,
             showMore,
 
@@ -171,23 +186,27 @@ class TextImage extends Component<
             editorYCoord,
         } = this.state;
 
-        const { text } = this.props;
-
         const {
             color,
             fontFamily,
             bold,
             italic,
             lineHeight,
-            // content,
+            content,
             link,
             linkTo,
-        } = text;
+        }: any = textVersion;
 
         const {
             theme,
             toggledEditable,
         } = this.context;
+
+        const {
+            text
+        } = this.props;
+
+        // console.log('VERSION', getVersionById(text.currentVersionId, text.versions));
 
         const editableDiv = (
             <StyledEditableDiv
@@ -279,7 +298,8 @@ class TextImage extends Component<
                             toggleTextViewable={this.toggleTextViewable}
                             textViewable={textViewable}
 
-                            text={text}
+                            version={textVersion}
+                            textId={text.id}
 
                             xCoord={editorXCoord}
                             yCoord={editorYCoord}
@@ -320,16 +340,16 @@ class TextImage extends Component<
             fontSizePercentage,
             letterSpacingPercentage,
             wordSpacingPercentage,
-        } = this.props.text;
+        }: any = this.state.textVersion;
 
         const xCoord = valueFromPercentage(xCoordPercentage, imageWidth);
         const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
-        const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
+        // console.log(xCoord, yCoord);
 
-        // console.log(this.props.text);
-        // console.log(letterSpacingPercentage, wordSpacingPercentage);
+        const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
         const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
         const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
+        // console.log(fontSize, letterSpacingPercentage, wordSpacingPercentage);
 
         this.setState({
             xCoord,
