@@ -12,7 +12,7 @@ class SelectImage extends Component<any, any> {
     static contextType = Context;
 
     public render() {
-        console.log('RENDER SelectImage');
+        // console.log('RENDER SelectImage');
         // console.log(this.context);
         const {
             imageText,

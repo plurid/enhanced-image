@@ -10,7 +10,6 @@ import {
 } from './interfaces';
 import { StyledTextSelectImage } from './styled';
 
-import themes from '../../data/themes';
 import {
     UPDATE_DEBOUNCE,
     PLURID_API,
@@ -20,6 +19,7 @@ import {
     emptyTextSelectImage,
     newTextImageVersion,
 } from '../../data/initializers';
+import themes from '../../data/themes';
 
 import uuidv4 from '../../utils/uuid';
 import computeImageSha from '../../utils/computeImageSha';
@@ -218,19 +218,25 @@ class TextSelectImage extends Component<
     private updateTextImage = (imageTextId: string, version: any) => {
         const { imageText } = this.state;
 
-        const updatedImageText = imageText.map((imgText: any) => {
+        const updatedImageText: any[] = [];
+        imageText.map((imgText: any) => {
             if (imgText.id === imageTextId) {
-                let currentVersion = getVersionById(imgText.currentVersionId, imgText.versions);
+                const currentVersion = getVersionById(imgText.currentVersionId, imgText.versions);
                 if (currentVersion.content === version.content) {
                     imgText = updateVersion(imgText, version);
-                    return imgText;
+                    updatedImageText.push(imgText);
+                    return true;
                 } else {
                     imgText = pushNewVersion(imgText, version);
-                    return imgText;
+                    updatedImageText.push(imgText);
+                    return true;
                 }
             }
-            return imgText;
+            updatedImageText.push(imgText);
+            return true;
         });
+
+        console.log(updatedImageText);
 
         this.setState({
             imageText: updatedImageText,

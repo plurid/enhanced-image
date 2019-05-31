@@ -35,6 +35,7 @@ export const updateVersion = (imageText: any, version: any) => {
     return imageText;
 }
 
+
 export const pushNewVersion = (imageText: any, version: any) => {
     const versionId = `tsi-text-${uuidv4()}`;
 
@@ -43,4 +44,31 @@ export const pushNewVersion = (imageText: any, version: any) => {
     imageText.versions.push(version);
 
     return imageText;
+}
+
+
+export const checkDifferentTexts = (
+    previousText: any,
+    currentText: any
+): boolean => {
+    if (previousText.currentVersionId === currentText.currentVersionId) {
+        const previousTextVersion = getVersionById(
+            previousText.currentVersionId,
+            previousText.versions
+        );
+        const currentTextVersion = getVersionById(
+            currentText.currentVersionId,
+            currentText.versions
+        );
+
+        // console.log(previousTextVersion)
+        // console.log(currentTextVersion);
+
+        if (previousTextVersion !== currentTextVersion) {
+            // console.log('AAAA');
+            return true;
+        }
+        return false;
+    }
+    return true;
 }
