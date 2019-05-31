@@ -18,7 +18,11 @@ import themes from '../../data/themes';
 import computeImageSha from '../../utils/computeImageSha';
 import uuidv4 from '../../utils/uuid';
 
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+import { onError } from 'apollo-link-error';
+import { ApolloLink } from 'apollo-link';
 
 import {
     getTextSelectImage,
@@ -41,9 +45,25 @@ const emptyTextSelectImage = {
 };
 
 const apolloClient = (uri: string) => {
-    return new ApolloClient({
-        uri,
+    const client = new ApolloClient({
+        link: ApolloLink.from([
+            onError(({ graphQLErrors, networkError }) => {
+                if (graphQLErrors)
+                    graphQLErrors.map(({ message, locations, path }) =>
+                    console.log(
+                        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+                    ),
+                    );
+                if (networkError) console.log(`[Network error]: ${networkError}`);
+            }),
+            new HttpLink({
+                uri,
+            })
+        ]),
+        cache: new InMemoryCache(),
     });
+
+    return client;
 };
 
 
@@ -467,6 +487,7 @@ class TextSelectImage extends Component<
                     variables: {
                         imageSha,
                     },
+                    fetchPolicy: 'no-cache',
                 });
 
             const { status, textSelectImage } = query.data.textSelectImage;
@@ -511,6 +532,7 @@ class TextSelectImage extends Component<
                         imageSrc: this.props.src,
                         imageSha,
                     },
+                    fetchPolicy: 'no-cache',
                 });
 
             const { status, textSelectImage } = query.data.extractTextSelectImage;
