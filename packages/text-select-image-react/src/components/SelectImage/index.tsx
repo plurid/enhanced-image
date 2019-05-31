@@ -12,23 +12,16 @@ class SelectImage extends Component<any, any> {
     static contextType = Context;
 
     public render() {
-        const {
-            selectText,
-        } = this.context;
-
+        // console.log('RENDER SelectImage');
         // console.log(this.context);
+        const {
+            imageText,
+        } = this.context;
+        console.log('imageText', imageText);
 
-        let renderSelectText;
-        if (selectText) {
-            const {
-                imageText,
-            } = selectText;
-
-            if (!imageText) {
-                return null;
-            }
-
-            renderSelectText = imageText.map((text: any) => {
+        let renderImageText;
+        if (imageText) {
+            renderImageText = imageText.map((text: any) => {
                 return (
                     <TextImage
                         key={text.id}
@@ -36,11 +29,13 @@ class SelectImage extends Component<any, any> {
                     />
                 );
             });
+        } else {
+            return null;
         }
 
         return (
             <StyledSelectImage>
-                {renderSelectText}
+                {renderImageText}
             </StyledSelectImage>
         );
     }

@@ -32,7 +32,15 @@ import {
     updateTextSelectImage,
 } from '../../graphql/mutate';
 
+import {
+    getVersionById,
+    updateVersion,
+    pushNewVersion,
+} from '../../utils/textImage';
 
+
+
+const emptyImageText: any[] = [];
 
 const emptyTextSelectImage = {
     createdBy: '',
@@ -41,8 +49,9 @@ const emptyTextSelectImage = {
     imageSource: '',
     imageHeight: 0,
     imageWidth: 0,
-    imageText: [],
+    imageText: emptyImageText,
 };
+
 
 const apolloClient = (uri: string) => {
     const client = new ApolloClient({
@@ -103,6 +112,7 @@ interface ITextSelectImageState {
     imageWidth: number;
     imageNaturalHeight: number;
     imageNaturalWidth: number;
+    imageText: any;
 
     toggleSettingsButton: () => void;
     toggledSettingsButton: boolean;
@@ -110,14 +120,13 @@ interface ITextSelectImageState {
     toggledSettings: boolean;
     toggleEditable: () => void;
     toggledEditable: boolean;
-    selectText: any;
 
     editorWidth: number;
     setEditorWidth: (value: number) => any;
 
     createTextImage: () => any;
     duplicateTextImage: (duplicateId: string) => any;
-    updateTextImage: (text: any) => any;
+    updateTextImage: (imageTextId: string, version: any) => any;
     updateTextImageField: (id: string, element: string, value: any) => any;
     deleteTextImage: (id: string) => any;
 
@@ -156,6 +165,7 @@ class TextSelectImage extends Component<
             imageWidth: 0,
             imageNaturalHeight: 0,
             imageNaturalWidth: 0,
+            imageText: emptyImageText,
 
             toggleSettingsButton: this.toggleSettingsButton,
             toggledSettingsButton: false,
@@ -177,8 +187,6 @@ class TextSelectImage extends Component<
             getAndSetText: this.getAndSetText,
             extractText: this.extractText,
             saveImageText: this.saveImageText,
-
-            selectText: emptyTextSelectImage,
         };
     }
 
@@ -221,15 +229,10 @@ class TextSelectImage extends Component<
             imageWidth,
             toggledEditable,
             toggledSettingsButton,
-            selectText,
+            // imageText,
         } = this.state;
 
-        console.log(selectText);
-        // if (selectText) {
-            // console.log(selectText.imageText[1].fontSizePercentage);
-            // console.log(selectText.imageText[1].content);
-        // }
-        // console.log(this.state.imageSha);
+        // console.log(imageText);
 
         return (
             <Context.Provider value={this.state}>
@@ -265,11 +268,12 @@ class TextSelectImage extends Component<
 
 
     private createTextImage = () => {
-        const { selectText } = this.state;
-        const { imageText } = selectText;
+        const { imageText } = this.state;
 
-        const newTextImage = {
-            id: `tsi-text-${uuidv4()}`,
+        const id = `tsi-text-${uuidv4()}`;
+
+        const newTextImageVersion = {
+            id,
             xCoordPercentage: 5,
             yCoordPercentage: 5,
             perspective: '',
@@ -289,23 +293,29 @@ class TextSelectImage extends Component<
             viewable: false,
         };
 
+        const newTextImage = {
+            id: uuidv4(),
+            currentVersionId: id,
+            versions: [
+                newTextImageVersion,
+            ],
+        };
+
         imageText.push(newTextImage);
-        selectText.imageText = imageText;
 
         this.setState({
-            selectText,
+            imageText,
         });
     }
 
     private duplicateTextImage = (duplicateId: string) => {
-        const { selectText } = this.state;
-        const { imageText } = selectText;
+        const { imageText } = this.state;
 
         const updatedImageText: any[] = [];
         imageText.map((imgText: any) => {
             if (imgText.id === duplicateId) {
                 const duplicateText = { ...imgText };
-                duplicateText.id = `tsi-text-${uuidv4()}`;
+                duplicateText.id = `${uuidv4()}`;
                 if (duplicateText.yPercentage < 80) {
                     duplicateText.yPercentage = duplicateText.yPercentage + 12;
                 } else {
@@ -315,34 +325,36 @@ class TextSelectImage extends Component<
             }
             updatedImageText.push(imgText);
         });
-        selectText.imageText = updatedImageText;
 
         this.setState({
-            selectText,
+            imageText,
         });
     }
 
-    private updateTextImage = (text: any) => {
-        const { selectText } = this.state;
-        const { imageText } = selectText;
+    private updateTextImage = (imageTextId: string, version: any) => {
+        const { imageText } = this.state;
 
         const updatedImageText = imageText.map((imgText: any) => {
-            if (imgText.id === text.id) {
-                console.log(text);
-                return text;
+            if (imgText.id === imageTextId) {
+                let currentVersion = getVersionById(imgText.currentVersionId, imgText.versions);
+                if (currentVersion.content === version.content) {
+                    imgText = updateVersion(imgText, version);
+                    return imgText;
+                } else {
+                    imgText = pushNewVersion(imgText, version);
+                    return imgText;
+                }
             }
             return imgText;
         });
-        selectText.imageText = updatedImageText;
 
         this.setState({
-            selectText,
+            imageText: updatedImageText,
         });
     }
 
     private updateTextImageField = (id: string, element: string, value: any) => {
-        const { selectText } = this.state;
-        const { imageText } = selectText;
+        const { imageText } = this.state;
 
         const updatedImageText = imageText.map((imgText: any) => {
             if (imgText.id === id) {
@@ -351,16 +363,14 @@ class TextSelectImage extends Component<
             }
             return imgText;
         });
-        selectText.imageText = updatedImageText;
 
         this.setState({
-            selectText,
+            imageText: updatedImageText,
         });
     }
 
     private deleteTextImage = (id: string) => {
-        const { selectText } = this.state;
-        const { imageText } = selectText;
+        const { imageText } = this.state;
 
         const updatedImageText = imageText.filter((imgText: any) => {
             if (imgText.id === id) {
@@ -368,10 +378,9 @@ class TextSelectImage extends Component<
             }
             return imgText;
         });
-        selectText.imageText = updatedImageText;
 
         this.setState({
-            selectText,
+            imageText: updatedImageText,
         });
     }
 
@@ -512,10 +521,10 @@ class TextSelectImage extends Component<
     }
 
     private getAndSetText = async () => {
-        const selectText = await this.getText();
+        const imageText = await this.getText();
 
         this.setState({
-            selectText,
+            imageText,
         });
     }
 
@@ -558,7 +567,7 @@ class TextSelectImage extends Component<
         } = this.state;
 
         try {
-            const imageText = [
+            const imageTextTest = [
                 {
                     "id": "99aee8df70494cc99b32d4b1612f02f2",
                     "currentVersionId": "tsi-text-ab9c018963ca46719b5e78b7ddb612b3",
@@ -617,7 +626,7 @@ class TextSelectImage extends Component<
 
             const input = {
                 imageSha,
-                imageText,
+                imageText: imageTextTest,
             };
 
             this.setState({
@@ -645,10 +654,10 @@ class TextSelectImage extends Component<
                 return false;
             }
 
-            const selectText = this.processText(textSelectImage);
+            const imageText = this.processText(textSelectImage);
 
             this.setState({
-                selectText,
+                imageText,
             });
 
             return true;

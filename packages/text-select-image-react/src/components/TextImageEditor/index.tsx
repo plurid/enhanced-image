@@ -30,6 +30,8 @@ import DuplicateIcon from '../../assets/duplicate-icon';
 import DeleteIcon from '../../assets/delete-icon';
 
 import { percentageFromValue } from '../../utils/percentage';
+import uuidv4 from '../../utils/uuid';
+
 
 
 class TextImageEditor extends Component<any, any> {
@@ -38,26 +40,26 @@ class TextImageEditor extends Component<any, any> {
     editor: any = React.createRef();
 
     state = {
-        id: this.props.text.id,
-        xCoordPercentage: this.props.text.xCoordPercentage,
-        yCoordPercentage: this.props.text.yCoordPercentage,
-        perspective: this.props.text.perspective,
-        rotation: this.props.text.rotation,
-        skew: this.props.text.skew,
-        color: this.props.text.color,
-        fontFamily: this.props.text.fontFamily,
+        id: this.props.version.id,
+        xCoordPercentage: this.props.version.xCoordPercentage,
+        yCoordPercentage: this.props.version.yCoordPercentage,
+        perspective: this.props.version.perspective,
+        rotation: this.props.version.rotation,
+        skew: this.props.version.skew,
+        color: this.props.version.color,
+        fontFamily: this.props.version.fontFamily,
         fontSize: this.props.fontSize,
-        bold: this.props.text.bold,
-        italic: this.props.text.italic,
+        bold: this.props.version.bold,
+        italic: this.props.version.italic,
         letterSpacing: this.props.letterSpacing,
-        lineHeight: this.props.text.lineHeight,
+        lineHeight: this.props.version.lineHeight,
         wordSpacing: this.props.wordSpacing,
-        content: this.props.text.content,
-        link: this.props.text.link,
-        linkTo: this.props.text.linkTo,
-        viewable: this.props.text.viewable,
+        content: this.props.version.content,
+        link: this.props.version.link,
+        linkTo: this.props.version.linkTo,
+        viewable: this.props.version.viewable,
 
-        text: this.props.text,
+        // text: this.props.text,
     };
 
     componentDidMount() {
@@ -253,7 +255,6 @@ class TextImageEditor extends Component<any, any> {
         } = this.context;
 
         const {
-            id,
             xCoordPercentage,
             yCoordPercentage,
             perspective,
@@ -277,11 +278,10 @@ class TextImageEditor extends Component<any, any> {
         const letterSpacingPercentage = percentageFromValue(letterSpacing, imageWidth);
         const wordSpacingPercentage = percentageFromValue(wordSpacing, imageWidth);
 
-        // console.log(fontSizePercentage, imageHeight);
-        // console.log(this.props.text);
+        // const versionId = `tsi-text-${uuidv4()}`;
 
-        const text = {
-            id,
+        const version = {
+            // id: versionId,
             xCoordPercentage,
             yCoordPercentage,
             perspective,
@@ -299,9 +299,13 @@ class TextImageEditor extends Component<any, any> {
             link,
             linkTo,
             viewable,
-        }
+        };
 
-        updateTextImage(text);
+        const {
+            textId,
+        } = this.props;
+
+        updateTextImage(textId, version);
     }
 
     private updateField = (element: any, value: any) => {
@@ -322,10 +326,10 @@ class TextImageEditor extends Component<any, any> {
         } = this.context;
 
         const {
-            text
-        } = this.state;
+            textId
+        } = this.props;
 
-        duplicateTextImage(text.id);
+        duplicateTextImage(textId);
     }
 
     private delete = () => {
