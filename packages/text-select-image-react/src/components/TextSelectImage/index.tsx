@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
-
-import { StyledTextSelectImage } from './styled';
-
 import Context from '../../context';
-
 import SelectImage from '../SelectImage';
 import TextSelectImageSettings from '../TextSelectImageSettings';
 import Spinner from '../Spinner';
 
 import {
+    ITextSelectImageProps,
+    ITextSelectImageState,
+} from './interfaces';
+import { StyledTextSelectImage } from './styled';
+
+import themes from '../../data/themes';
+import {
     UPDATE_DEBOUNCE,
     PLURID_API,
 } from '../../data/constants';
+import {
+    emptyImageText,
+    emptyTextSelectImage,
+    newTextImageVersion,
+} from '../../data/initializers';
 
-import themes from '../../data/themes';
-
-import computeImageSha from '../../utils/computeImageSha';
 import uuidv4 from '../../utils/uuid';
+import computeImageSha from '../../utils/computeImageSha';
+import {
+    getVersionById,
+    updateVersion,
+    pushNewVersion,
+} from '../../utils/textImage';
 
 import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
-
+import graphqlClient from '../../graphql/client';
 import {
     getTextSelectImage,
     extractTextSelectImage,
@@ -32,109 +39,6 @@ import {
     updateTextSelectImage,
 } from '../../graphql/mutate';
 
-import {
-    getVersionById,
-    updateVersion,
-    pushNewVersion,
-} from '../../utils/textImage';
-
-
-
-const emptyImageText: any[] = [];
-
-const emptyTextSelectImage = {
-    createdBy: '',
-    imageSha: '',
-    imagePath: '',
-    imageSource: '',
-    imageHeight: 0,
-    imageWidth: 0,
-    imageText: emptyImageText,
-};
-
-
-const apolloClient = (uri: string) => {
-    const client = new ApolloClient({
-        link: ApolloLink.from([
-            onError(({ graphQLErrors, networkError }) => {
-                if (graphQLErrors)
-                    graphQLErrors.map(({ message, locations, path }) =>
-                    console.log(
-                        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-                    ),
-                    );
-                if (networkError) console.log(`[Network error]: ${networkError}`);
-            }),
-            new HttpLink({
-                uri,
-            })
-        ]),
-        cache: new InMemoryCache(),
-    });
-
-    return client;
-};
-
-
-interface ITextSelectImageProps {
-    about?: boolean;
-    alt?: string;
-    controls?: boolean;
-    src: string;
-    theme?: string;
-    // imageText?: any;
-    imageStyle?: any;
-    atLoad?: any;
-
-    // To be specified when using another API than https://api.plurid.com
-    // GraphlQL-based
-    apiEndpoint?: string;
-    // The apiKey contains the domain allowed to make requests
-    // To be specified when using as a service provider
-    // apiKey obtained from https://depict.plurid.com/api
-    apiKey?: string;
-    updateDebounce?: number;
-}
-
-interface ITextSelectImageState {
-    apiEndpoint: string;
-    updateDebounce: number;
-
-    theme: any;
-    themeName: string;
-    about: boolean;
-    controls: boolean;
-
-    loading: boolean;
-    imageLoaded: boolean;
-    imageSha: string;
-    imageHeight: number;
-    imageWidth: number;
-    imageNaturalHeight: number;
-    imageNaturalWidth: number;
-    imageText: any;
-
-    toggleSettingsButton: () => void;
-    toggledSettingsButton: boolean;
-    toggleSettings: () => void;
-    toggledSettings: boolean;
-    toggleEditable: () => void;
-    toggledEditable: boolean;
-
-    editorWidth: number;
-    setEditorWidth: (value: number) => any;
-
-    createTextImage: () => any;
-    duplicateTextImage: (duplicateId: string) => any;
-    updateTextImage: (imageTextId: string, version: any) => any;
-    updateTextImageField: (id: string, element: string, value: any) => any;
-    deleteTextImage: (id: string) => any;
-
-    getText: () => any;
-    getAndSetText: () => any;
-    extractText: () => any;
-    saveImageText: () => any;
-}
 
 
 class TextSelectImage extends Component<
@@ -148,10 +52,9 @@ class TextSelectImage extends Component<
         super(props);
 
         // console.log('CONSTRUCTOR');
-
         const apiEndpoint = this.props.apiEndpoint || PLURID_API;
         const updateDebounce = this.props.updateDebounce || UPDATE_DEBOUNCE;
-        this.client = apolloClient(apiEndpoint);
+        this.client = graphqlClient(apiEndpoint);
 
         this.state = {
             apiEndpoint,
@@ -270,32 +173,13 @@ class TextSelectImage extends Component<
     private createTextImage = () => {
         const { imageText } = this.state;
 
-        const id = `tsi-text-${uuidv4()}`;
+        const versionId = `text-version-${uuidv4()}`;
+        newTextImageVersion.id = versionId;
 
-        const newTextImageVersion = {
-            id,
-            xCoordPercentage: 5,
-            yCoordPercentage: 5,
-            perspective: '',
-            rotation: '',
-            skew: '',
-            color: 'red',
-            fontFamily: 'Arial',
-            fontSizePercentage: 7,
-            bold: false,
-            italic: false,
-            letterSpacingPercentage: 0,
-            lineHeight: 'auto',
-            wordSpacingPercentage: 0,
-            content: 'New Text',
-            link: false,
-            linkTo: '',
-            viewable: false,
-        };
-
+        const textImageId = `text-image-${uuidv4()}`;
         const newTextImage = {
-            id: uuidv4(),
-            currentVersionId: id,
+            id: textImageId,
+            currentVersionId: versionId,
             versions: [
                 newTextImageVersion,
             ],
@@ -443,7 +327,6 @@ class TextSelectImage extends Component<
             await this.computeImageSha
         );
     }
-
 
     private processText = (data: any) => {
         const {

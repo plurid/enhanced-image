@@ -1,9 +1,18 @@
 const foodText = {
-    id: 'tsi-image-b634e1b7-a46c-443f-8b9d-02bc2745a768',
+    createdAt: 1559291724185,
+    createdBy: '9275a194b1464ab1a76730271a3aad75',
+    imageSha: 'a42924a6232db0b33e2d215a31e305cfce818458feb3d1031e0ee390bd206e4f',
+    imagePath: '/path/to/image/on/google/storage',
+    imageSource: '/initial/path/to/image',
     imageHeight: 1225,
     imageWidth: 2300,
     imageText: [
         {
+            createdAt: 1559291724185,
+            editedAt: 1559291724186,
+            generated: true,
+            userEdit: false,
+            adminEdit: false,
             id: 'tsi-text-c2eec1b1-bc3d-451c-bbb0-7c5bad18286e',
             xCoordPercentage: 25.375,
             yCoordPercentage: 36.069,
@@ -24,6 +33,11 @@ const foodText = {
             viewable: false,
         },
         {
+            createdAt: 1559291724185,
+            editedAt: 1559291724186,
+            generated: true,
+            userEdit: false,
+            adminEdit: false,
             id: 'tsi-text-cfef2e11-4e65-40fe-980a-7136046a9fb0',
             xCoordPercentage: 28.75,
             yCoordPercentage: 62.3661,
