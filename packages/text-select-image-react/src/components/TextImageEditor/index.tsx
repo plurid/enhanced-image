@@ -303,9 +303,11 @@ class TextImageEditor extends Component<any, any> {
 
         const {
             textId,
+            processCoords,
         } = this.props;
 
         updateTextImage(textId, version);
+        processCoords();
     }
 
     private updateField = (element: any, value: any) => {
@@ -338,10 +340,10 @@ class TextImageEditor extends Component<any, any> {
         } = this.context;
 
         const {
-            text,
-        } = this.state;
+            version,
+        } = this.props;
 
-        deleteTextImage(text.id);
+        deleteTextImage(version.id);
     }
 }
 

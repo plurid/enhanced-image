@@ -15,6 +15,7 @@ export const emptyTextSelectImage = {
 export const newTextImageVersion: any = {
     computerGenerated: false,
     userGenerated: true,
+    ownerGenerated: false,
     adminGenerated: false,
     xCoordPercentage: 5,
     yCoordPercentage: 5,

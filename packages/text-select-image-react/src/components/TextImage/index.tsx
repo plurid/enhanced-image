@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-
+import Context from '../../context';
+import TextImageEditor from '../TextImageEditor';
+import TextImageMore from '../TextImageMore';
 import {
     StyledTextImage,
     StyledTextImageTextContent,
     StyledEditableDiv,
 } from './styled';
 
-import Context from '../../context';
-
-// import { ITextImage } from '../../interfaces/image-text';
-
-import TextImageEditor from '../TextImageEditor';
-import TextImageMore from '../TextImageMore';
+import {
+    ITextImageProps,
+    ITextImageState,
+} from './interfaces';
 
 import { EDITOR_HEIGHT } from '../../data/constants';
 
@@ -19,39 +19,10 @@ import {
     valueFromPercentage,
     percentageFromValue,
 } from '../../utils/percentage';
-import { getVersionById } from '../../utils/textImage';
-
-
-// interface ITextImageProps {
-//     textImage: ITextImage;
-// }
-
-// interface ITextImageState {
-//     text: ITextImage;
-//     xCoord: number;
-//     yCoord: number;
-//     textEditable: boolean;
-//     draggable: boolean;
-//     dragging: boolean;
-//     showEditor: boolean;
-//     pos1: number;
-//     pos2: number;
-//     pos3: number;
-//     pos4: number;
-//     fontSizeValue: number;
-//     letterSpacingValue: number;
-//     wordSpacingValue: number;
-//     fontFamilyValue: string;
-//     colorValue: string;
-//     colorValueStyle: string;
-//     textBold: boolean;
-//     textItalic: boolean;
-//     textContent: string;
-//     textChanged: boolean;
-//     textViewable: boolean;
-//     editorXCoord: number;
-//     editorYCoord: number;
-// }
+import {
+    getVersionById,
+    checkDifferentTexts,
+} from '../../utils/textImage';
 
 
 
@@ -63,7 +34,7 @@ class TextImage extends Component<
 
     private textImage: any;
 
-    state = {
+    public state = {
         textVersion: {},
         content: '',
         contentInput: '',
@@ -153,8 +124,8 @@ class TextImage extends Component<
     }
 
     public getSnapshotBeforeUpdate(prevProps: any, prevState: any) {
-        console.log(prevProps.text);
-        if (JSON.stringify(prevProps.text) !== JSON.stringify(this.props.text)) {
+        // console.log(prevProps.text);
+        if (checkDifferentTexts(prevProps.text, this.props.text)) {
             this.processCoords();
         }
         return null;
@@ -207,6 +178,8 @@ class TextImage extends Component<
         } = this.props;
 
         // console.log('VERSION', getVersionById(text.currentVersionId, text.versions));
+        // console.log('text', text);
+        // console.log('fontSize', fontSize);
 
         const editableDiv = (
             <StyledEditableDiv
@@ -317,10 +290,6 @@ class TextImage extends Component<
     }
 
     private handleChange = (event: any) => {
-        const {
-            contentInput,
-        } = this.state;
-
         const value = event.target.innerText;
 
         this.setState({
@@ -349,7 +318,7 @@ class TextImage extends Component<
         const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
         const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
         const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
-        // console.log(fontSize, letterSpacingPercentage, wordSpacingPercentage);
+        console.log(fontSize, letterSpacingPercentage, wordSpacingPercentage);
 
         this.setState({
             xCoord,

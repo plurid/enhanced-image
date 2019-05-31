@@ -8,4 +8,6 @@ export const DEFAULT_THEME = 'gradient';
 export const ABOUT_URL = 'https://github.com/plurid/text-select-image';
 
 
-export const PLURID_API = 'https://api.plurid.dev/graphql';
+const PLURID_API_DEV = 'https://api.plurid.dev/graphql';
+const PLURID_API_PROD = 'https://api.plurid.com/graphql';
+export const PLURID_API = PLURID_API_DEV;
