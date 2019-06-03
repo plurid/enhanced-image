@@ -246,12 +246,16 @@ class TextSelectImage extends Component<
     private updateTextImageField = (id: string, element: string, value: any) => {
         const { imageText } = this.state;
 
-        const updatedImageText = imageText.map((imgText: any) => {
+        const updatedImageText: any[] = [];
+        imageText.map((imgText: any) => {
             if (imgText.id === id) {
-                imgText[element] = value;
-                return imgText;
+                const currentVersion = getVersionById(imgText.currentVersionId, imgText.versions);
+                currentVersion[element] = value;
+                updatedImageText.push(updateVersion(imgText, currentVersion));
+                return;
             }
-            return imgText;
+            updatedImageText.push(imgText);
+            return;
         });
 
         this.setState({

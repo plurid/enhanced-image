@@ -249,14 +249,14 @@ class TextImageEditor extends Component<any, any> {
 
     private update = () => {
         const {
-            updateTextImage,
+            // updateTextImage,
             imageHeight,
             imageWidth,
         } = this.context;
 
         const {
-            xCoordPercentage,
-            yCoordPercentage,
+            // xCoordPercentage,
+            // yCoordPercentage,
             perspective,
             rotation,
             skew,
@@ -282,8 +282,8 @@ class TextImageEditor extends Component<any, any> {
 
         const version = {
             // id: versionId,
-            xCoordPercentage,
-            yCoordPercentage,
+            // xCoordPercentage,
+            // yCoordPercentage,
             perspective,
             rotation,
             skew,
@@ -302,12 +302,18 @@ class TextImageEditor extends Component<any, any> {
         };
 
         const {
-            textId,
-            processCoords,
+            update,
         } = this.props;
 
-        updateTextImage(textId, version);
-        processCoords();
+        update(version);
+
+        // const {
+        //     textId,
+        //     processCoords,
+        // } = this.props;
+
+        // updateTextImage(textId, version);
+        // processCoords();
     }
 
     private updateField = (element: any, value: any) => {
