@@ -393,7 +393,7 @@ class TextSelectImage extends Component<
                 });
 
             const { status, textSelectImage } = query.data.textSelectImage;
-            // console.log(textSelectImage);
+            console.log(textSelectImage);
 
             if (!query.loading) {
                 this.setState({
@@ -409,12 +409,14 @@ class TextSelectImage extends Component<
 
             return textSelectImage.imageText;
         } catch(err) {
-            return emptyTextSelectImage;
+            return [];
         }
     }
 
     private getAndSetText = async () => {
         const imageText = await this.getText();
+
+        console.log('BBBB');
 
         this.setState({
             imageText,

@@ -64,7 +64,6 @@ export const StyledTextImageTextContent: any = styled.div`
 
         return 'initial';
     }};
-
 `;
 
 
