@@ -144,6 +144,9 @@ class EnhancedImage extends Component<
             toggleDefaults: this.toggleDefaults,
 
             textSelectImage: this.textSelectImage,
+
+            getText: this.getText,
+            extractText: this.extractText,
         };
     }
 
@@ -255,6 +258,14 @@ class EnhancedImage extends Component<
         this.setState((prevState: any) => ({
             toggledEditable: !prevState.toggledEditable,
         }));
+    }
+
+    private getText = () => {
+        this.textSelectImage.current.getAndSetText();
+    }
+
+    private extractText = () => {
+        this.textSelectImage.current.extractText();
     }
 
     private setColorValue = (type: string, value: number) => {

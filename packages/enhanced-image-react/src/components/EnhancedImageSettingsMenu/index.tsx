@@ -428,9 +428,23 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
     }
 
     private getText = () => {
+        const {
+            toggleSettings,
+            getText,
+        } = this.context;
+
+        toggleSettings();
+        getText();
     }
 
     private extractText = () => {
+        const {
+            toggleSettings,
+            extractText,
+        } = this.context;
+
+        toggleSettings();
+        extractText();
     }
 
     private about = () => {
