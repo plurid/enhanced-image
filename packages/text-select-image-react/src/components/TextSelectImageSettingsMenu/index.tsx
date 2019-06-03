@@ -130,24 +130,25 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
         saveImageText();
     }
 
-    private getText = () => {
+    private getText = async () => {
         const {
             toggleSettings,
             getAndSetText,
         } = this.context;
 
         toggleSettings();
-        getAndSetText();
+        // console.log('aaa');
+        await getAndSetText();
     }
 
-    private extractText = () => {
+    private extractText = async () => {
         const {
             toggleSettings,
             extractText,
         } = this.context;
 
         toggleSettings();
-        extractText();
+        await extractText();
     }
 
     private about = () => {
