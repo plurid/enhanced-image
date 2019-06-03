@@ -260,12 +260,12 @@ class EnhancedImage extends Component<
         }));
     }
 
-    private getText = () => {
-        this.textSelectImage.current.getAndSetText();
+    private getText = async () => {
+        await this.textSelectImage.current.getAndSetText();
     }
 
-    private extractText = () => {
-        this.textSelectImage.current.extractText();
+    private extractText = async () => {
+        await this.textSelectImage.current.extractText();
     }
 
     private setColorValue = (type: string, value: number) => {
