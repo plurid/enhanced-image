@@ -427,24 +427,24 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
         textSelectImage.current.createTextImage();
     }
 
-    private getText = () => {
+    private getText = async () => {
         const {
             toggleSettings,
             getText,
         } = this.context;
 
         toggleSettings();
-        getText();
+        await getText();
     }
 
-    private extractText = () => {
+    private extractText = async () => {
         const {
             toggleSettings,
             extractText,
         } = this.context;
 
         toggleSettings();
-        extractText();
+        await extractText();
     }
 
     private about = () => {
