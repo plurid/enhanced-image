@@ -61,11 +61,7 @@ export const checkDifferentTexts = (
             currentText.versions
         );
 
-        // console.log(previousTextVersion)
-        // console.log(currentTextVersion);
-
         if (previousTextVersion !== currentTextVersion) {
-            // console.log('AAAA');
             return true;
         }
         return false;
