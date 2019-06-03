@@ -393,7 +393,7 @@ class TextSelectImage extends Component<
                 });
 
             const { status, textSelectImage } = query.data.textSelectImage;
-            console.log(query);
+            // console.log(textSelectImage);
 
             if (!query.loading) {
                 this.setState({
@@ -405,9 +405,9 @@ class TextSelectImage extends Component<
                 return emptyTextSelectImage;
             }
 
-            const selectText = this.processText(textSelectImage);
+            // const selectText = this.processText(textSelectImage);
 
-            return selectText;
+            return textSelectImage.imageText;
         } catch(err) {
             return emptyTextSelectImage;
         }

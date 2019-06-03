@@ -349,11 +349,11 @@ class TextImage extends Component<
             wordSpacingPercentage,
         }: any = getVersionById(currentVersionId, versions);
 
-        console.log(getVersionById(currentVersionId, versions).xCoordPercentage);
+        // console.log(getVersionById(currentVersionId, versions).xCoordPercentage);
 
         const xCoord = valueFromPercentage(xCoordPercentage, imageWidth);
         const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
-        console.log(xCoordPercentage, xCoord);
+        // console.log(xCoordPercentage, xCoord);
 
         const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
         const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);

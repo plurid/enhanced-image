@@ -24,7 +24,7 @@ class SelectImage extends Component<any, any> {
             renderImageText = imageText.map((text: any) => {
                 return (
                     <TextImage
-                        key={text.id}
+                        key={text.currentVersionId}
                         text={text}
                     />
                 );
