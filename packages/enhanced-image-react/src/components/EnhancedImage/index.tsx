@@ -192,6 +192,7 @@ class EnhancedImage extends Component<
             hueValue,
             saturationValue,
             brightnessValue,
+            apiEndpoint,
         } = this.state;
 
         return (
@@ -207,7 +208,7 @@ class EnhancedImage extends Component<
                         src={src}
                         alt={alt || 'Image'}
                         theme={theme}
-                        apiEndpoint="http://localhost:3360/graphql"
+                        apiEndpoint={apiEndpoint}
                         atLoad={this.handleLoadedImage}
                         imageStyle={{
                             filter: `
