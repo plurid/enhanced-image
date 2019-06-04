@@ -189,6 +189,7 @@ class TextImage extends Component<
             toggledEditable,
             imageHeight,
             imageWidth,
+            contentMoreLimit,
         } = this.context;
 
         const xCoord = valueFromPercentage(xCoordPercentage, imageWidth);
@@ -272,7 +273,7 @@ class TextImage extends Component<
                 >
                     {textContent}
 
-                    {showMore && !toggledEditable && (
+                    {showMore && !toggledEditable && content.length > contentMoreLimit && (
                         <TextImageMore
                             content={content}
                             toggleShow={this.toggleShowMore}
