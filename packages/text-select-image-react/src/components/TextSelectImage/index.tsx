@@ -28,6 +28,7 @@ import {
     getVersionById,
     updateVersion,
     pushNewVersion,
+    duplicateTextImage,
 } from '../../utils/textImage';
 
 import { ApolloClient } from 'apollo-client';
@@ -198,23 +199,10 @@ class TextSelectImage extends Component<
     private duplicateTextImage = (duplicateId: string) => {
         const { imageText } = this.state;
 
-        const updatedImageText: any[] = [];
-        imageText.map((imgText: any) => {
-            if (imgText.id === duplicateId) {
-                const duplicateText = { ...imgText };
-                duplicateText.id = `${uuidv4()}`;
-                if (duplicateText.yPercentage < 80) {
-                    duplicateText.yPercentage = duplicateText.yPercentage + 12;
-                } else {
-                    duplicateText.yPercentage = duplicateText.yPercentage - 12;
-                }
-                updatedImageText.push(duplicateText);
-            }
-            updatedImageText.push(imgText);
-        });
+        const updatedImageText: any[] = duplicateTextImage(duplicateId, imageText);
 
         this.setState({
-            imageText,
+            imageText: updatedImageText,
         });
     }
 

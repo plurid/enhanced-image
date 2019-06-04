@@ -30,7 +30,6 @@ import DuplicateIcon from '../../assets/duplicate-icon';
 import DeleteIcon from '../../assets/delete-icon';
 
 import { percentageFromValue } from '../../utils/percentage';
-import uuidv4 from '../../utils/uuid';
 
 
 

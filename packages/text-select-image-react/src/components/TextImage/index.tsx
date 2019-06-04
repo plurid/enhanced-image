@@ -147,8 +147,6 @@ class TextImage extends Component<
             showEditor,
             showMore,
 
-            // yCoord,
-            // xCoord,
             fontSize,
             letterSpacing,
             wordSpacing,
@@ -171,6 +169,12 @@ class TextImage extends Component<
             versions,
         } = text;
 
+        const currentVersion = getVersionById(currentVersionId, versions);
+
+        if (!currentVersion) {
+            return (<></>);
+        }
+
         const {
             color,
             fontFamily,
@@ -182,7 +186,7 @@ class TextImage extends Component<
             linkTo,
             xCoordPercentage,
             yCoordPercentage
-        }: any = getVersionById(currentVersionId, versions);
+        }: any = currentVersion
 
         const {
             theme,
