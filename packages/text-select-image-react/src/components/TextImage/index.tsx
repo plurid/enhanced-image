@@ -40,6 +40,7 @@ class TextImage extends Component<
         contentInput: '',
         showEditor: false,
         showMore: false,
+        selected: false,
 
         xCoord: 0,
         yCoord: 0,
@@ -146,6 +147,7 @@ class TextImage extends Component<
             textVersion,
             showEditor,
             showMore,
+            selected,
 
             fontSize,
             letterSpacing,
@@ -200,11 +202,6 @@ class TextImage extends Component<
         const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
 
 
-        // console.log('VERSION', getVersionById(text.currentVersionId, text.versions));
-        // console.log('text', text);
-        // console.log('fontSize', fontSize);
-        // console.log((textVersion as any).fontSizePercentage);
-
         const editableDiv = (
             <StyledEditableDiv
                 toggledEditable={toggledEditable}
@@ -219,6 +216,7 @@ class TextImage extends Component<
         const textContent = (
             <StyledTextImageTextContent
                 theme={theme}
+                selected={selected}
                 toggledEditable={toggledEditable}
                 editMode={textEditable}
                 dragMode={textDraggable}
@@ -240,8 +238,6 @@ class TextImage extends Component<
             </StyledTextImageTextContent>
         );
 
-        // console.log(text.fontSizePercentage);
-        // console.log(this.context.selectText)
 
         return (
             <div>
@@ -578,6 +574,7 @@ class TextImage extends Component<
         if (toggledEditable) {
             this.setState((prevState: any) => ({
                 showEditor: !prevState.showEditor,
+                selected: !prevState.selected,
             }));
         }
 

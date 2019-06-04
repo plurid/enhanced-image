@@ -64,6 +64,14 @@ export const StyledTextImageTextContent: any = styled.div`
 
         return 'initial';
     }};
+
+    border: 1px solid ${(props: any) => {
+        if (props.toggledEditable && props.selected) {
+            return 'hsla(220, 2%, 10%, 0.6)';
+        } else {
+            return 'transparent';
+        }
+    }};
 `;
 
 
