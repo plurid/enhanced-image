@@ -174,7 +174,6 @@ class TextSelectImage extends Component<
         );
     }
 
-
     private createTextImage = () => {
         const { imageText } = this.state;
 
@@ -237,11 +236,7 @@ class TextSelectImage extends Component<
         });
     }
 
-    private updateTextImageField = (
-        textId: string,
-        element: string,
-        value: any
-    ) => {
+    private updateTextImageField = (textId: string, element: string, value: any) => {
         const { imageText } = this.state;
 
         const updatedImageText: any[] = [];
@@ -263,10 +258,7 @@ class TextSelectImage extends Component<
         });
     }
 
-    private updateTextImageBatch = (
-        textId: string,
-        elements: any,
-    ) => {
+    private updateTextImageBatch = (textId: string, elements: any) => {
         const { imageText } = this.state;
 
         const updatedImageText: any[] = [];

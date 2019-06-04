@@ -55,6 +55,7 @@ export interface ITextSelectImageState {
     duplicateTextImage: (duplicateId: string) => any;
     updateTextImage: (imageTextId: string, version: any) => any;
     updateTextImageField: (id: string, element: string, value: any) => any;
+    updateTextImageBatch: (id: string, elements: any[]) => any;
     deleteTextImage: (id: string) => any;
 
     getText: () => any;

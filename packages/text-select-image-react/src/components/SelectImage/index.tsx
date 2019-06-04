@@ -13,11 +13,10 @@ class SelectImage extends Component<any, any> {
 
     public render() {
         // console.log('RENDER SelectImage');
-        // console.log(this.context);
         const {
             imageText,
         } = this.context;
-        console.log('imageText in SelectImage', imageText);
+        // console.log('imageText in SelectImage', imageText);
 
         let renderImageText = (<></>);
         if (typeof imageText === 'object' && imageText.length > 0) {

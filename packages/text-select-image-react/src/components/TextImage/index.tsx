@@ -125,9 +125,6 @@ class TextImage extends Component<
             showMore,
             selected,
 
-            // xCoord,
-            // yCoord,
-
             textEditable,
             textDraggable,
             dragging,
@@ -147,7 +144,6 @@ class TextImage extends Component<
         } = text;
 
         const currentVersion = getVersionById(currentVersionId, versions);
-
         if (!currentVersion) {
             return (<></>);
         }
@@ -166,7 +162,7 @@ class TextImage extends Component<
             fontSizePercentage,
             letterSpacingPercentage,
             wordSpacingPercentage,
-        }: any = currentVersion
+        }: any = currentVersion;
 
         const {
             theme,
@@ -178,7 +174,6 @@ class TextImage extends Component<
 
         const xCoord = valueFromPercentage(xCoordPercentage, imageWidth);
         const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
-        console.log(xCoord, yCoord);
 
         const fontSize = valueFromPercentage(fontSizePercentage, imageHeight);
         const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
@@ -284,9 +279,6 @@ class TextImage extends Component<
                             fontSize={fontSize}
                             letterSpacing={letterSpacing}
                             wordSpacing={wordSpacing}
-
-                            processCoords={this.processCoords}
-                            update={this.update}
                         />
                     )}
                 </StyledTextImage>
@@ -299,59 +291,6 @@ class TextImage extends Component<
 
         this.setState({
             contentInput: value,
-        });
-    }
-
-    private update = (version: any) => {
-        const {
-            updateTextImage,
-        } = this.context;
-
-        const {
-            text,
-        } = this.props;
-
-        updateTextImage(text.id, version);
-        this.processCoords();
-    }
-
-    private processCoords = () => {
-        const {
-            imageHeight,
-            imageWidth,
-        } = this.context;
-
-        const {
-            currentVersionId,
-            versions,
-        } = this.props.text;
-
-        const {
-            xCoordPercentage,
-            yCoordPercentage,
-            fontSizePercentage,
-            letterSpacingPercentage,
-            wordSpacingPercentage,
-        }: any = getVersionById(currentVersionId, versions);
-
-        // console.log(getVersionById(currentVersionId, versions).xCoordPercentage);
-
-        const xCoord = valueFromPercentage(xCoordPercentage, imageWidth);
-        const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
-        // console.log(xCoordPercentage, xCoord);
-
-        const fontSize = Math.ceil(valueFromPercentage(fontSizePercentage, imageHeight));
-        const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
-        const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
-        // console.log(fontSizePercentage);
-        // console.log(fontSize, letterSpacingPercentage, wordSpacingPercentage);
-
-        this.setState({
-            xCoord,
-            yCoord,
-            fontSize,
-            letterSpacing,
-            wordSpacing,
         });
     }
 
