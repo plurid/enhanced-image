@@ -1,30 +1,37 @@
+import {
+    ITextSelectImageData,
+    IImageTextVersion,
+} from '../interfaces/image-text';
+
 export const emptyImageText: any[] = [];
 
 
-export const emptyTextSelectImage = {
-    createdBy: '',
+export const emptyTextSelectImage: ITextSelectImageData = {
     imageSha: '',
     imagePath: '',
     imageSource: '',
     imageHeight: 0,
     imageWidth: 0,
     imageText: emptyImageText,
+    createdBy: '',
 };
 
 
-export const newTextImageVersion: any = {
+export const newTextImageVersion: IImageTextVersion = {
+    id: '',
+    createdBy: '',
     computerGenerated: false,
     userGenerated: true,
     ownerGenerated: false,
     adminGenerated: false,
     xCoordPercentage: 5,
-    yCoordPercentage: 5,
+    yCoordPercentage: 10,
     perspective: '',
     rotation: '',
     skew: '',
-    color: 'red',
+    color: 'white',
     fontFamily: 'Arial',
-    fontSizePercentage: 7,
+    fontSizePercentage: 5,
     bold: false,
     italic: false,
     letterSpacingPercentage: 0,

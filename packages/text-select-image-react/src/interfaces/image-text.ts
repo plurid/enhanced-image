@@ -1,5 +1,10 @@
 export interface IImageTextVersion {
     id: string;
+    createdBy: string;
+    computerGenerated: boolean;
+    userGenerated: boolean;
+    ownerGenerated: boolean;
+    adminGenerated: boolean;
     xCoordPercentage: number;
     yCoordPercentage: number;
     perspective: string;
@@ -34,4 +39,5 @@ export interface ITextSelectImageData {
     imageHeight: number;
     imageWidth: number;
     imageText: IImageText[];
+    createdBy: string;
 }
