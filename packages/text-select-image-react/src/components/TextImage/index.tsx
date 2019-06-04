@@ -593,7 +593,20 @@ class TextImage extends Component<
         } = this.state;
 
         if (textEditable) {
-            this.saveContentInput();
+            const {
+                text
+            } = this.props;
+
+            const {
+                currentVersionId,
+                versions,
+            } = text;
+
+            const currentVersion = getVersionById(currentVersionId, versions);
+
+            this.setState({
+                contentInput: currentVersion.content
+            });
         }
 
         this.setState((prevState: any) => ({
