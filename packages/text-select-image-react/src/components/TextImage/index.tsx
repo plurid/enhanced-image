@@ -191,8 +191,6 @@ class TextImage extends Component<
             </StyledEditableDiv>
         );
 
-        console.log(toggledEditable);
-
         const textContent = (
             <StyledTextImageTextContent
                 theme={theme}
@@ -277,6 +275,7 @@ class TextImage extends Component<
                             textViewable={textViewable}
 
                             toggleEditor={this.toggleShowEditor}
+                            toggleSelected={this.toggleSelected}
 
                             version={currentVersion}
                             textId={text.id}
@@ -627,6 +626,12 @@ class TextImage extends Component<
     private toggleTextViewable = () => {
         this.setState((prevState: any) => ({
             textViewable: !prevState.textViewable,
+        }));
+    }
+
+    private toggleSelected = () => {
+        this.setState((prevState: any) => ({
+            selected: !prevState.selected,
         }));
     }
 
