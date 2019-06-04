@@ -1,4 +1,7 @@
 import uuidv4 from './uuid';
+import {
+    IImageText,
+} from '../interfaces/image-text';
 
 
 
@@ -72,11 +75,11 @@ export const checkDifferentTexts = (
 
 export const duplicateTextImage = (
     duplicateId: string,
-    imageText: any,
-) => {
-    const updatedImageText: any[] = [];
+    imageText: IImageText[],
+): IImageText[] => {
+    const updatedImageText: IImageText[] = [];
 
-    imageText.map((imgText: any) => {
+    imageText.map((imgText: IImageText) => {
         updatedImageText.push(imgText);
 
         if (imgText.id === duplicateId) {
