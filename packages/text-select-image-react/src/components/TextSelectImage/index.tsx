@@ -366,38 +366,38 @@ class TextSelectImage extends Component<
         );
     }
 
-    private processText = (data: any) => {
-        const {
-            imageText,
-            imageHeight,
-            imageWidth,
-        } = data;
+    // private processText = (data: any) => {
+    //     const {
+    //         imageText,
+    //         imageHeight,
+    //         imageWidth,
+    //     } = data;
 
-        const imgText: any[] = [];
+    //     const imgText: any[] = [];
 
-        for (let text of imageText) {
-            let txt = {};
-            const { currentVersionId, versions } = text;
-            for (let version of versions) {
-                if (version.id === currentVersionId) {
-                    txt = { ...version };
-                }
-            }
-            imgText.push(txt);
-        }
+    //     for (let text of imageText) {
+    //         let txt = {};
+    //         const { currentVersionId, versions } = text;
+    //         for (let version of versions) {
+    //             if (version.id === currentVersionId) {
+    //                 txt = { ...version };
+    //             }
+    //         }
+    //         imgText.push(txt);
+    //     }
 
-        const selectText = {
-            imageHeight,
-            imageWidth,
-            imageText: imgText,
-        };
+    //     const selectText = {
+    //         imageHeight,
+    //         imageWidth,
+    //         imageText: imgText,
+    //     };
 
-        return selectText;
-    }
+    //     return selectText;
+    // }
 
     /**
      * Graphql query to the apiEndpoint (with apiKey if it exists)
-     * to get the data based on the contentId of the image.
+     * to get the data based on the imageSha of the image.
      */
     private getText = async () => {
         // const { apiKey } = this.props;
@@ -421,7 +421,7 @@ class TextSelectImage extends Component<
                 });
 
             const { status, textSelectImage } = query.data.textSelectImage;
-            console.log(textSelectImage);
+            // console.log(textSelectImage);
 
             if (!query.loading) {
                 this.setState({
@@ -442,7 +442,7 @@ class TextSelectImage extends Component<
     }
 
     private getAndSetText = async () => {
-        console.log('CALLED getAndSetText');
+        // console.log('CALLED getAndSetText');
         const imageText = await this.getText();
 
         this.setState({
@@ -450,13 +450,17 @@ class TextSelectImage extends Component<
         });
     }
 
+    /**
+     * Graphql query to the apiEndpoint (with apiKey if it exists)
+     * to extract the data from the image on the imageSha.
+     */
     private extractText = async () => {
         const {
             imageSha,
         } = this.state;
 
         const imageSrc = new URL(this.props.src, window.location.href).href;
-        console.log(imageSrc);
+        // console.log(imageSrc);
 
         try {
             const query = await this.client
@@ -483,76 +487,85 @@ class TextSelectImage extends Component<
         }
     }
 
-    private saveImageText = async () => {
-        // graphql mutation to save the text to the database
-        console.log('saving the text');
-
-        const {
-            imageSha,
-        } = this.state;
-
-        try {
-            const imageTextTest = [
+    private processImageText = (imageText: any) => {
+        return [
+            {
+              "id": "tsi-text-dce8dd0e5fdb4289bb63c3dd5bf81991",
+              "currentVersionId": "tsi-version-c2eec1b1bc3d451cbbb07c5bad18286e",
+              "versions": [
                 {
-                    "id": "99aee8df70494cc99b32d4b1612f02f2",
-                    "currentVersionId": "tsi-text-ab9c018963ca46719b5e78b7ddb612b3",
-                    "versions": [
-                        {
-                        "createdBy": "9275a194b1464ab1a76730271a3aad75",
-                        "id": "tsi-text-ab9c018963ca46719b5e78b7ddb612b3",
-                        "xCoordPercentage": 25.3750,
-                        "yCoordPercentage": 36.0690,
-                        "perspective": "",
-                        "rotation": "",
-                        "skew": "",
-                        "color": "red",
-                        "fontFamily": "Arial",
-                        "fontSizePercentage": 7.4467,
-                        "bold": true,
-                        "italic": false,
-                        "letterSpacingPercentage": 0.1750,
-                        "lineHeight": "auto",
-                        "wordSpacingPercentage": 0,
-                        "content": "eat.yourvegetables.com",
-                        "link": true,
-                        "linkTo": "https://github.com/plurid/text-select-image",
-                        "viewable": false
-                        }
-                    ]
-                },
-                {
-                    "id": "d820f6fb53564c9aa690be800737f19f",
-                    "currentVersionId": "tsi-text-cfef2e114e6540fe980a7136046a9fb0",
-                    "versions": [
-                        {
-                            "createdBy": "9275a194b1464ab1a76730271a3aad75",
-                            "id": "tsi-text-cfef2e114e6540fe980a7136046a9fb0",
-                            "xCoordPercentage": 28.75,
-                            "yCoordPercentage": 62.3661,
-                            "perspective": "",
-                            "rotation": "",
-                            "skew": "",
-                            "color": "black",
-                            "fontFamily": "Arial",
-                            "fontSizePercentage": 8.1448,
-                            "bold": true,
-                            "italic": false,
-                            "letterSpacingPercentage": -0.0625,
-                            "lineHeight": "auto",
-                            "wordSpacingPercentage": 0.35,
-                            "content": "aaaEat your vegetables!",
-                            "link": false,
-                            "linkTo": "",
-                            "viewable": false
-                        }
-                    ]
+                   "createdBy": "9275a194b1464ab1a76730271a3aad75",
+                   "id": "tsi-version-c2eec1b1bc3d451cbbb07c5bad18286e",
+                   "xCoordPercentage": 25.3750,
+                   "yCoordPercentage": 36.0690,
+                   "perspective": "",
+                   "rotation": "",
+                   "skew": "",
+                   "color": "red",
+                   "fontFamily": "Arial",
+                   "fontSizePercentage": 7.4467,
+                   "bold": true,
+                   "italic": false,
+                   "letterSpacingPercentage": 0.1750,
+                   "lineHeight": "auto",
+                   "wordSpacingPercentage": 0,
+                   "content": "eat.yourvegetables.com",
+                   "link": true,
+                   "linkTo": "https://github.com/plurid/text-select-image",
+                   "viewable": false
                 }
-            ];
+              ]
+            },
+            {
+              "id": "tsi-text-f3160c7e5d274372a41f9ba0c073e935",
+              "currentVersionId": "tsi-version-cfef2e114e6540fe980a7136046a9fb0",
+              "versions": [
+                {
+                   "createdBy": "9275a194b1464ab1a76730271a3aad75",
+                   "id": "tsi-version-cfef2e114e6540fe980a7136046a9fb0",
+                   "xCoordPercentage": 28.75,
+                   "yCoordPercentage": 62.3661,
+                   "perspective": "",
+                   "rotation": "",
+                   "skew": "",
+                   "color": "black",
+                   "fontFamily": "Arial",
+                   "fontSizePercentage": 8.1448,
+                   "bold": true,
+                   "italic": false,
+                   "letterSpacingPercentage": -0.0625,
+                   "lineHeight": "auto",
+                   "wordSpacingPercentage": 0.35,
+                   "content": "Eat your vegetables!",
+                   "link": false,
+                   "linkTo": "",
+                   "viewable": false
+                }
+              ]
+            }
+        ];
+    }
+
+    /**
+     * Graphql mutation to the apiEndpoint (with apiKey if it exists)
+     * to mutate the data of the image based on the imageSha.
+     */
+    private saveImageText = async () => {
+        try {
+            const {
+                imageSha,
+                imageText,
+            } = this.state;
+
+            const updateImageText = this.processImageText(imageText);
 
             const input = {
                 imageSha,
-                imageText: imageTextTest,
+                imageText: updateImageText,
             };
+
+            console.log(imageSha);
+            console.log(imageText);
 
             this.setState({
                 loading: true,
@@ -575,14 +588,13 @@ class TextSelectImage extends Component<
             console.log(mutation);
             const { status, textSelectImage } = mutation.data.updateTextSelectImage;
 
+            // // if the image does not exist, it should create it based on the sha and save the data
             if (!status) {
                 return false;
             }
 
-            const imageText = this.processText(textSelectImage);
-
             this.setState({
-                imageText,
+                imageText: textSelectImage.imageText,
             });
 
             return true;

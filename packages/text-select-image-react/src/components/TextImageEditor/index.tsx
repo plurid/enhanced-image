@@ -256,7 +256,7 @@ class TextImageEditor extends Component<any, any> {
                 val = value;
         }
 
-        console.log(el, val);
+        // console.log(el, val);
 
         updateTextImageField(textId, el, val);
     }

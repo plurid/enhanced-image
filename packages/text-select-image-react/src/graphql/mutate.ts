@@ -22,6 +22,9 @@ export const updateTextSelectImage = gql`
                     currentVersionId
                     versions {
                         id
+                        user {
+                            username
+                        }
                         xCoordPercentage
                         yCoordPercentage
                         perspective
