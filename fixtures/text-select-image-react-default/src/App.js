@@ -21,6 +21,7 @@ class App extends Component {
                         theme="night"
                         src={populationDensityEurope}
                         controls={true}
+                        // getTextOnLoad={true}
                         apiEndpoint="http://192.168.1.2:3360/graphql"
                         // apiEndpoint="https://api.plurid.com/graphql"
                     />

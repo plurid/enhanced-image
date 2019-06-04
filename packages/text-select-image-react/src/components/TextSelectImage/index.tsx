@@ -296,9 +296,18 @@ class TextSelectImage extends Component<
     private computeImageSha = async () => {
         const { src } = this.props;
         const imageSha = await computeImageSha(src);
-        this.setState({ imageSha },
-            // to be used in production (?)
-            // this.getAndSetText
+        this.setState({
+            imageSha,
+        },
+            async () => {
+                const {
+                    getTextOnLoad,
+                } = this.props;
+
+                if (getTextOnLoad) {
+                    await this.getAndSetText();
+                }
+            }
         );
     }
 
@@ -405,6 +414,7 @@ class TextSelectImage extends Component<
     }
 
     private getAndSetText = async () => {
+        console.log('CALLED getAndSetText');
         const imageText = await this.getText();
 
         this.setState({

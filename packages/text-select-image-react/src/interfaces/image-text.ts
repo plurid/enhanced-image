@@ -1,4 +1,4 @@
-export interface ITextImage {
+export interface IImageTextVersion {
     id: string;
     xCoordPercentage: number;
     yCoordPercentage: number;
@@ -20,9 +20,18 @@ export interface ITextImage {
 }
 
 
-export interface ITextSelectImageData {
+export interface IImageText {
     id: string;
+    currentVersionId: string;
+    versions: IImageTextVersion[];
+}
+
+
+export interface ITextSelectImageData {
+    imageSha: string;
+    imagePath: string;
+    imageSource: string;
     imageHeight: number;
     imageWidth: number;
-    imageText: ITextImage[];
+    imageText: IImageText[];
 }

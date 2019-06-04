@@ -17,7 +17,8 @@ export interface ITextSelectImageProps {
     apiKey?: string;
     updateDebounce?: number;
 
-    moreLimit: number;
+    moreLimit?: number;
+    getTextOnLoad?: boolean;
 }
 
 
