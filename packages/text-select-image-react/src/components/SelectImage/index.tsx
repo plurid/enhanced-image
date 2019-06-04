@@ -19,8 +19,8 @@ class SelectImage extends Component<any, any> {
         } = this.context;
         // console.log('imageText', imageText);
 
-        let renderImageText;
-        if (imageText) {
+        let renderImageText = (<></>);
+        if (typeof imageText === 'object' && imageText.length > 0) {
             renderImageText = imageText.map((text: any) => {
                 return (
                     <TextImage
@@ -29,8 +29,6 @@ class SelectImage extends Component<any, any> {
                     />
                 );
             });
-        } else {
-            return null;
         }
 
         return (

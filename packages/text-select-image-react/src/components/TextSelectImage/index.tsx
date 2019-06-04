@@ -416,8 +416,6 @@ class TextSelectImage extends Component<
     private getAndSetText = async () => {
         const imageText = await this.getText();
 
-        console.log('BBBB');
-
         this.setState({
             imageText,
         });
