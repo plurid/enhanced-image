@@ -21,20 +21,15 @@ export const StyledTextImage: any = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-
-    a {
-        color: inherit;
-    }
 `;
 
 
 export const StyledTextImageTextContent: any = styled.div`
     color: ${(props: any) => {
-        if (props.viewable) {
+        if (props.viewable || props.toggledEditable) {
             return props.color;
         }
-
-        return 'inherit';
+        return 'transparent';
     }};
 
     background: ${(props: any) => {
@@ -72,6 +67,16 @@ export const StyledTextImageTextContent: any = styled.div`
             return 'transparent';
         }
     }};
+`;
+
+
+export const StyledTextImageTextContentLink: any = styled.a`
+    color: ${(props: any) => {
+        if (props.viewable) {
+            return props.color;
+        }
+        return 'transparent';
+    }} !important;
 `;
 
 
