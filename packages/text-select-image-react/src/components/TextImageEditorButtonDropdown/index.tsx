@@ -140,6 +140,11 @@ class TextImageEditorButtonDropdown extends Component<any, any> {
     }
 
     private clickSelect = (selected: string) => {
+        const {
+            toggleEditor
+        } = this.props;
+
+        toggleEditor();
         this.toggleDropdown();
         this.select(selected);
     }
