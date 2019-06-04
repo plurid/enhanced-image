@@ -68,3 +68,40 @@ export const checkDifferentTexts = (
     }
     return true;
 }
+
+
+export const duplicateTextImage = (
+    duplicateId: string,
+    imageText: any,
+) => {
+    const updatedImageText: any[] = [];
+
+    imageText.map((imgText: any) => {
+        updatedImageText.push(imgText);
+
+        if (imgText.id === duplicateId) {
+            const duplicateTextId = `text-image-${uuidv4()}`;
+            const currentVersionId = imgText.currentVersionId;
+            const getVersion = getVersionById(currentVersionId, imgText.versions);
+            const currentVersion = { ...getVersion };
+            const newVersionId = `text-version-${uuidv4()}`;
+            currentVersion.id = newVersionId;
+            if (currentVersion.yCoordPercentage < 80) {
+                currentVersion.yCoordPercentage = currentVersion.yCoordPercentage + 12;
+            } else {
+                currentVersion.yCoordPercentage = currentVersion.yCoordPercentage - 12;
+            }
+            const versions = [currentVersion];
+
+            const duplicateText = {
+                id: duplicateTextId,
+                currentVersionId: newVersionId,
+                versions,
+            };
+
+            updatedImageText.push(duplicateText);
+        }
+    });
+
+    return updatedImageText;
+}

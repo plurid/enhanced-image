@@ -17,7 +17,7 @@ class SelectImage extends Component<any, any> {
         const {
             imageText,
         } = this.context;
-        // console.log('imageText', imageText);
+        console.log('imageText in SelectImage', imageText);
 
         let renderImageText = (<></>);
         if (typeof imageText === 'object' && imageText.length > 0) {
