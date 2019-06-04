@@ -26,6 +26,7 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
         const {
             about,
             theme,
+            toggleEditable,
             toggledEditable,
         } = this.context;
 
@@ -37,7 +38,7 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
                     <li>
                         <TextSelectImageButtonCheckmark
                             theme={theme}
-                            toggle={this.toggleEditable}
+                            toggle={toggleEditable}
                             text="Edit Text"
                             checked={toggledEditable}
                         />
@@ -100,16 +101,6 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
         );
     }
 
-    private toggleEditable = () => {
-        const {
-            toggleSettings,
-            toggleEditable,
-        } = this.context;
-
-        toggleSettings();
-        toggleEditable();
-    }
-
     private addText = () => {
         const {
             toggleSettings,
@@ -137,7 +128,6 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
         } = this.context;
 
         toggleSettings();
-        // console.log('aaa');
         await getAndSetText();
     }
 

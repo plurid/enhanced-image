@@ -83,6 +83,7 @@ class TextSelectImage extends Component<
             duplicateTextImage: this.duplicateTextImage,
             updateTextImage: this.updateTextImage,
             updateTextImageField: this.updateTextImageField,
+            updateTextImageBatch: this.updateTextImageBatch,
             deleteTextImage: this.deleteTextImage,
 
             editorWidth: 0,
@@ -249,6 +250,33 @@ class TextSelectImage extends Component<
                 const version = getVersionById(imgText.currentVersionId, imgText.versions);
                 const currentVersion = {...version};
                 currentVersion[element] = value;
+                updatedImageText.push(updateVersion({...imgText}, currentVersion));
+                return;
+            }
+
+            updatedImageText.push({...imgText});
+            return;
+        });
+
+        this.setState({
+            imageText: updatedImageText,
+        });
+    }
+
+    private updateTextImageBatch = (
+        textId: string,
+        elements: any,
+    ) => {
+        const { imageText } = this.state;
+
+        const updatedImageText: any[] = [];
+        imageText.map((imgText: any) => {
+            if (imgText.id === textId) {
+                const version = getVersionById(imgText.currentVersionId, imgText.versions);
+                const currentVersion = {...version};
+                for (let element of elements) {
+                    currentVersion[element.type] = element.value;
+                }
                 updatedImageText.push(updateVersion({...imgText}, currentVersion));
                 return;
             }

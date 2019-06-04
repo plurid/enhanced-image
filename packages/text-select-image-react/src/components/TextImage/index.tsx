@@ -273,6 +273,8 @@ class TextImage extends Component<
                             toggleTextViewable={this.toggleTextViewable}
                             textViewable={textViewable}
 
+                            toggleEditor={this.toggleShowEditor}
+
                             version={currentVersion}
                             textId={text.id}
 
@@ -458,7 +460,7 @@ class TextImage extends Component<
 
     private saveCoords = () => {
         const {
-            updateTextImageField,
+            updateTextImageBatch,
         } = this.context;
 
         const {
@@ -467,9 +469,17 @@ class TextImage extends Component<
 
         const { xCoordPercentage, yCoordPercentage } = this.coordsToPercentage();
 
-        updateTextImageField(text.id, 'xCoordPercentage', xCoordPercentage);
-        updateTextImageField(text.id, 'yCoordPercentage', yCoordPercentage);
-        // this.processCoords();
+        const elements = [
+            {
+                type: 'xCoordPercentage',
+                value: xCoordPercentage,
+            },
+            {
+                type: 'yCoordPercentage',
+                value: yCoordPercentage,
+            }
+        ]
+        updateTextImageBatch(text.id, elements);
     }
 
     private coordsToPercentage = () => {
@@ -551,6 +561,12 @@ class TextImage extends Component<
         this.setState({
             dragging: false,
         });
+    }
+
+    private toggleShowEditor = () => {
+        this.setState((prevState: any) => ({
+            showEditor: !prevState.showEditor,
+        }));
     }
 
     private handleMouseEnter = () => {
