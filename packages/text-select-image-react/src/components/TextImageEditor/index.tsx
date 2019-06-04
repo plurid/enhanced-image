@@ -29,50 +29,34 @@ import WordSpacingIcon from '../../assets/word-spacing-icon';
 import DuplicateIcon from '../../assets/duplicate-icon';
 import DeleteIcon from '../../assets/delete-icon';
 
-import { percentageFromValue } from '../../utils/percentage';
+import {
+    percentageFromValue,
+    valueFromPercentage,
+} from '../../utils/percentage';
 
 
 
 class TextImageEditor extends Component<any, any> {
     static contextType = Context;
+    public editor: any = React.createRef();
 
-    editor: any = React.createRef();
-
-    state = {
-        id: this.props.version.id,
-        xCoordPercentage: this.props.version.xCoordPercentage,
-        yCoordPercentage: this.props.version.yCoordPercentage,
-        perspective: this.props.version.perspective,
-        rotation: this.props.version.rotation,
-        skew: this.props.version.skew,
-        color: this.props.version.color,
-        fontFamily: this.props.version.fontFamily,
-        fontSize: this.props.fontSize,
-        bold: this.props.version.bold,
-        italic: this.props.version.italic,
-        letterSpacing: this.props.letterSpacing,
-        lineHeight: this.props.version.lineHeight,
-        wordSpacing: this.props.wordSpacing,
-        content: this.props.version.content,
-        link: this.props.version.link,
-        linkTo: this.props.version.linkTo,
-        viewable: this.props.version.viewable,
-
-        // text: this.props.text,
-    };
-
-    componentDidMount() {
+    public componentDidMount() {
         const {
             setEditorWidth,
         } = this.context
 
         const editorWidth = this.editor.current.offsetWidth;
         // console.log('editorWidth', editorWidth);
-
         setEditorWidth(editorWidth);
     }
 
     public render() {
+        const {
+            theme,
+            imageHeight,
+            imageWidth,
+        } = this.context;
+
         const {
             toggleTextEditable,
             textEditable,
@@ -83,26 +67,24 @@ class TextImageEditor extends Component<any, any> {
             toggleEditor,
             xCoord,
             yCoord,
+            version,
         } = this.props;
 
         const {
-            theme,
-        } = this.context;
-
-        const {
             color,
+            fontSizePercentage,
             fontFamily,
-            fontSize,
             bold,
             italic,
-            letterSpacing,
-            // lineHeight,
-            wordSpacing,
-            // content,
             link,
             linkTo,
-            // viewable,
-        } = this.state;
+            wordSpacingPercentage,
+            letterSpacingPercentage,
+        } = version;
+
+        const fontSize = Math.round(valueFromPercentage(fontSizePercentage, imageHeight));
+        const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
+        const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
 
         return (
             <StyledTextImageEditor
@@ -143,7 +125,7 @@ class TextImageEditor extends Component<any, any> {
                 <TextImageEditorButtonIncrements
                     theme={theme}
                     type="fontSize"
-                    changeValue={this.changeValue}
+                    changeValue={this.updateField}
                     value={fontSize}
                     icon={FontSizeIcon}
                 />
@@ -153,7 +135,7 @@ class TextImageEditor extends Component<any, any> {
                     alterStyle="fontFamily"
                     selected={fontFamily}
                     selectables={selectableFonts}
-                    changeSelected={this.changeValue}
+                    changeSelected={this.updateField}
                     toggleEditor={toggleEditor}
                     textDraggable={textDraggable}
                     toggleTextDraggable={toggleTextDraggable}
@@ -161,24 +143,24 @@ class TextImageEditor extends Component<any, any> {
 
                 <TextImageEditorButtonInput
                     theme={theme}
-                    toggle={this.toggleElement.bind(this, 'link')}
+                    toggle={this.updateField.bind(this, 'link')}
                     toggled={link}
                     icon={LinkIcon}
                     value={linkTo}
                     valueType="linkTo"
-                    changeValue={this.changeValue}
+                    changeValue={this.updateField.bind(this, 'linkTo')}
                 />
 
                 <TextImageEditorButtonToggle
                     theme={theme}
-                    toggle={this.toggleElement.bind(this, 'bold')}
+                    toggle={this.updateField.bind(this, 'bold')}
                     toggled={bold}
                     icon={BoldIcon}
                 />
 
                 <TextImageEditorButtonToggle
                     theme={theme}
-                    toggle={this.toggleElement.bind(this, 'italic')}
+                    toggle={this.updateField.bind(this, 'italic')}
                     toggled={italic}
                     icon={ItalicIcon}
                 />
@@ -186,7 +168,7 @@ class TextImageEditor extends Component<any, any> {
                 <TextImageEditorButtonIncrements
                     theme={theme}
                     type="letterSpacing"
-                    changeValue={this.changeValue}
+                    changeValue={this.updateField}
                     value={letterSpacing}
                     icon={LetterSpacingIcon}
                     step={0.1}
@@ -195,14 +177,14 @@ class TextImageEditor extends Component<any, any> {
                 <TextImageEditorButtonIncrements
                     theme={theme}
                     type="wordSpacing"
-                    changeValue={this.changeValue}
+                    changeValue={this.updateField}
                     value={wordSpacing}
                     icon={WordSpacingIcon}
                     step={0.1}
                 />
 
                 <TextImageEditorButtonsColors
-                    changeValue={this.changeValue}
+                    changeValue={this.updateField}
                     color={color}
                 />
 
@@ -227,104 +209,54 @@ class TextImageEditor extends Component<any, any> {
         );
     }
 
-
-    private changeValue = (type: string, value: number | string) => {
-        // console.log(type, value);
-
-        this.setState({
-            [type]: value,
-        },
-            this.update
-        );
-    }
-
-    private toggleElement = (element: string) => {
-        this.setState((prevState: any) => ({
-            [element]: !prevState[element],
-        }),
-            this.update
-        );
-    }
-
-    private update = () => {
+    private updateField = (element: any, value?: any) => {
         const {
-            // updateTextImage,
+            updateTextImageField,
             imageHeight,
             imageWidth,
         } = this.context;
 
         const {
-            // xCoordPercentage,
-            // yCoordPercentage,
-            perspective,
-            rotation,
-            skew,
-            color,
-            fontFamily,
-            fontSize,
-            bold,
-            italic,
-            letterSpacing,
-            lineHeight,
-            wordSpacing,
-            content,
-            link,
-            linkTo,
-            viewable,
-        } = this.state;
-
-        const fontSizePercentage = percentageFromValue(fontSize, imageHeight);
-        const letterSpacingPercentage = percentageFromValue(letterSpacing, imageWidth);
-        const wordSpacingPercentage = percentageFromValue(wordSpacing, imageWidth);
-
-        // const versionId = `tsi-text-${uuidv4()}`;
-
-        const version = {
-            // id: versionId,
-            // xCoordPercentage,
-            // yCoordPercentage,
-            perspective,
-            rotation,
-            skew,
-            color,
-            fontFamily,
-            fontSizePercentage,
-            bold,
-            italic,
-            letterSpacingPercentage,
-            lineHeight,
-            wordSpacingPercentage,
-            content,
-            link,
-            linkTo,
-            viewable,
-        };
-
-        const {
-            update,
+            textId,
+            version,
         } = this.props;
 
-        update(version);
+        let el = '';
+        let val: string | number | boolean | undefined;
 
-        // const {
-        //     textId,
-        //     processCoords,
-        // } = this.props;
+        switch(element) {
+            case 'fontSize':
+                el = 'fontSizePercentage';
+                val = percentageFromValue(value, imageHeight);
+                break;
+            case 'letterSpacing':
+                el = 'letterSpacingPercentage';
+                val = percentageFromValue(value, imageWidth);
+                break;
+            case 'wordSpacing':
+                el = 'wordSpacingPercentage';
+                val = percentageFromValue(value, imageWidth);
+                break;
+            case 'link':
+                el = 'link';
+                val = !version.link;
+                break;
+            case 'bold':
+                el = 'bold';
+                val = !version.bold;
+                break;
+            case 'italic':
+                el = 'italic';
+                val = !version.italic;
+                break;
+            default:
+                el = element;
+                val = value;
+        }
 
-        // updateTextImage(textId, version);
-        // processCoords();
-    }
+        console.log(el, val);
 
-    private updateField = (element: any, value: any) => {
-        const {
-            updateTextImageField,
-        } = this.context;
-
-        const {
-            id,
-        } = this.state;
-
-        updateTextImageField(id, element, value);
+        updateTextImageField(textId, el, val);
     }
 
     private duplicate = () => {
