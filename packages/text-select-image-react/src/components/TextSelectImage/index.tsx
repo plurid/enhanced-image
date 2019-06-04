@@ -236,18 +236,24 @@ class TextSelectImage extends Component<
         });
     }
 
-    private updateTextImageField = (id: string, element: string, value: any) => {
+    private updateTextImageField = (
+        textId: string,
+        element: string,
+        value: any
+    ) => {
         const { imageText } = this.state;
 
         const updatedImageText: any[] = [];
         imageText.map((imgText: any) => {
-            if (imgText.id === id) {
-                const currentVersion = getVersionById(imgText.currentVersionId, imgText.versions);
+            if (imgText.id === textId) {
+                const version = getVersionById(imgText.currentVersionId, imgText.versions);
+                const currentVersion = {...version};
                 currentVersion[element] = value;
-                updatedImageText.push(updateVersion(imgText, currentVersion));
+                updatedImageText.push(updateVersion({...imgText}, currentVersion));
                 return;
             }
-            updatedImageText.push(imgText);
+
+            updatedImageText.push({...imgText});
             return;
         });
 

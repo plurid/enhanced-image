@@ -58,13 +58,7 @@ class TextImage extends Component<
         editorXCoord: 0,
         editorYCoord: -EDITOR_HEIGHT,
 
-        imageWidth: 0,
-        imageHeight: 0,
         editorWidth: 744,
-
-        fontSize: 12,
-        letterSpacing: 0,
-        wordSpacing: 0,
     };
 
     constructor(props: any) {
@@ -90,14 +84,10 @@ class TextImage extends Component<
 
         this.setState({
             textVersion,
-
-            imageWidth: this.context.imageWidth,
-            imageHeight: this.context.imageHeight,
             editorWidth: this.context.editorWidth,
         },
             () => {
                 this.editorPosition();
-                this.processCoords();
             }
         );
     }
@@ -124,19 +114,6 @@ class TextImage extends Component<
         }
     }
 
-    // public getSnapshotBeforeUpdate(prevProps: any, prevState: any) {
-    //     // console.log(prevProps.text);
-    //     // console.log('AAA');
-    //     if (checkDifferentTexts(prevProps.text, this.props.text)) {
-    //         // console.log('BBB');
-    //         const textVersion = getVersionById(this.props.text.id, this.props.text.versions);
-    //         this.setState({
-    //             textVersion,
-    //         });
-    //     }
-    //     return null;
-    // }
-
     public componentWillUnmount() {
         document.removeEventListener('mouseup', this.dragMouseUp);
         document.removeEventListener('mousemove', this.dragMouseMove);
@@ -144,14 +121,12 @@ class TextImage extends Component<
 
     public render() {
         const {
-            textVersion,
             showEditor,
             showMore,
             selected,
 
-            fontSize,
-            letterSpacing,
-            wordSpacing,
+            // xCoord,
+            // yCoord,
 
             textEditable,
             textDraggable,
@@ -187,7 +162,10 @@ class TextImage extends Component<
             link,
             linkTo,
             xCoordPercentage,
-            yCoordPercentage
+            yCoordPercentage,
+            fontSizePercentage,
+            letterSpacingPercentage,
+            wordSpacingPercentage,
         }: any = currentVersion
 
         const {
@@ -200,7 +178,11 @@ class TextImage extends Component<
 
         const xCoord = valueFromPercentage(xCoordPercentage, imageWidth);
         const yCoord = valueFromPercentage(yCoordPercentage, imageHeight);
+        console.log(xCoord, yCoord);
 
+        const fontSize = valueFromPercentage(fontSizePercentage, imageHeight);
+        const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
+        const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
 
         const editableDiv = (
             <StyledEditableDiv
@@ -291,7 +273,7 @@ class TextImage extends Component<
                             toggleTextViewable={this.toggleTextViewable}
                             textViewable={textViewable}
 
-                            version={textVersion}
+                            version={currentVersion}
                             textId={text.id}
 
                             xCoord={editorXCoord}
@@ -487,16 +469,19 @@ class TextImage extends Component<
 
         updateTextImageField(text.id, 'xCoordPercentage', xCoordPercentage);
         updateTextImageField(text.id, 'yCoordPercentage', yCoordPercentage);
-        this.processCoords();
+        // this.processCoords();
     }
 
     private coordsToPercentage = () => {
         const {
             xCoord,
             yCoord,
+        } = this.state;
+
+        const {
             imageHeight,
             imageWidth,
-        } = this.state;
+        } = this.context;
 
         const xCoordPercentage = percentageFromValue(xCoord, imageWidth);
         const yCoordPercentage = percentageFromValue(yCoord, imageHeight);
