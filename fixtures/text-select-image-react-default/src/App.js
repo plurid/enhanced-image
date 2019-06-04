@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import foodImage from './assets/food-vegetables-text.jpg';
+// import foodImage from './assets/food-vegetables-text.jpg';
 import populationDensityEurope from './assets/population-density-europe.png';
 // import populationDensityEuropeB from './assets/population-density-europe-b.png';
 // import webP from './assets/89d1516a7cf15e086f3cd605a606ce6df78ecc4c3899499cc95a7dca9e30fb4c.webp';
@@ -21,7 +21,7 @@ class App extends Component {
                         theme="night"
                         src={populationDensityEurope}
                         controls={true}
-                        apiEndpoint="http://192.168.1.2:3360/graphql"
+                        // apiEndpoint="http://192.168.1.2:3360/graphql"
                         // apiEndpoint="https://api.plurid.com/graphql"
                     />
                 </div>
