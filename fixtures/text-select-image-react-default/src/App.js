@@ -19,6 +19,7 @@ class App extends Component {
                 >
                     <TextSelectImage
                         theme="night"
+                        // src={foodImage}
                         src={populationDensityEurope}
                         controls={true}
                         // getTextOnLoad={true}

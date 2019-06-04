@@ -19,6 +19,7 @@ export const getTextSelectImage = gql`
                 imageHeight
                 imageWidth
                 imageText {
+                    id
                     currentVersionId
                     versions {
                         id
