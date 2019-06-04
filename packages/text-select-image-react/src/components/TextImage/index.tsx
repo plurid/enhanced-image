@@ -5,6 +5,7 @@ import TextImageMore from '../TextImageMore';
 import {
     StyledTextImage,
     StyledTextImageTextContent,
+    StyledTextImageTextContentLink,
     StyledEditableDiv,
 } from './styled';
 
@@ -190,6 +191,8 @@ class TextImage extends Component<
             </StyledEditableDiv>
         );
 
+        console.log(toggledEditable);
+
         const textContent = (
             <StyledTextImageTextContent
                 theme={theme}
@@ -205,9 +208,14 @@ class TextImage extends Component<
             >
                 {link && !toggledEditable
                     ? (
-                        <a href={linkTo} target="_blank">
+                        <StyledTextImageTextContentLink
+                            href={linkTo}
+                            target="_blank"
+                            viewable={textViewable}
+                            color={color}
+                        >
                             {editableDiv}
-                        </a>
+                        </StyledTextImageTextContentLink>
                     ) : (
                         <>{editableDiv}</>
                     )

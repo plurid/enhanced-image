@@ -148,7 +148,7 @@ class TextImageEditor extends Component<any, any> {
                     icon={LinkIcon}
                     value={linkTo}
                     valueType="linkTo"
-                    changeValue={this.updateField.bind(this, 'linkTo')}
+                    changeValue={this.updateField}
                 />
 
                 <TextImageEditorButtonToggle
@@ -221,8 +221,8 @@ class TextImageEditor extends Component<any, any> {
             version,
         } = this.props;
 
-        let el = '';
-        let val: string | number | boolean | undefined;
+        let el = element;
+        let val: string | number | boolean | undefined = value;
 
         switch(element) {
             case 'fontSize':
