@@ -16,12 +16,15 @@ export interface ITextSelectImageProps {
     // apiKey obtained from https://depict.plurid.com/api
     apiKey?: string;
     updateDebounce?: number;
+
+    moreLimit: number;
 }
 
 
 export interface ITextSelectImageState {
     apiEndpoint: string;
     updateDebounce: number;
+    contentMoreLimit: number;
 
     theme: any;
     themeName: string;

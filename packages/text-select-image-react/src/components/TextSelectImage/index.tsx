@@ -13,6 +13,7 @@ import { StyledTextSelectImage } from './styled';
 import {
     UPDATE_DEBOUNCE,
     PLURID_API,
+    CONTENT_MORE_LIMIT,
 } from '../../data/constants';
 import {
     emptyImageText,
@@ -90,6 +91,8 @@ class TextSelectImage extends Component<
             getAndSetText: this.getAndSetText,
             extractText: this.extractText,
             saveImageText: this.saveImageText,
+
+            contentMoreLimit: this.props.moreLimit || CONTENT_MORE_LIMIT,
         };
     }
 
@@ -426,12 +429,15 @@ class TextSelectImage extends Component<
             imageSha,
         } = this.state;
 
+        const imageSrc = new URL(this.props.src, window.location.href).href;
+        console.log(imageSrc);
+
         try {
             const query = await this.client
                 .query({
                     query: extractTextSelectImage,
                     variables: {
-                        imageSrc: this.props.src,
+                        imageSrc: imageSrc,
                         imageSha,
                     },
                     fetchPolicy: 'no-cache',
