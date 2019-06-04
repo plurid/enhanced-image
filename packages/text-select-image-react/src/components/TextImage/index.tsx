@@ -569,7 +569,7 @@ class TextImage extends Component<
 
     private saveContentInput = () => {
         const {
-            contentInput
+            contentInput,
         } = this.state;
 
         const {
@@ -589,24 +589,31 @@ class TextImage extends Component<
 
     private toggleTextEditable = () => {
         const {
-            textEditable
+            textEditable,
+            contentInput,
         } = this.state;
 
         if (textEditable) {
-            const {
-                text
-            } = this.props;
+            if (contentInput === '') {
+                const {
+                    text,
+                } = this.props;
 
-            const {
-                currentVersionId,
-                versions,
-            } = text;
+                const {
+                    currentVersionId,
+                    versions,
+                } = text;
 
-            const currentVersion = getVersionById(currentVersionId, versions);
+                const currentVersion = getVersionById(currentVersionId, versions);
 
-            this.setState({
-                contentInput: currentVersion.content
-            });
+                this.setState({
+                    contentInput: currentVersion.content,
+                },
+                    this.saveContentInput
+                );
+            } else {
+                this.saveContentInput();
+            }
         }
 
         this.setState((prevState: any) => ({
