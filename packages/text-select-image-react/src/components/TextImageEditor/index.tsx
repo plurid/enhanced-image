@@ -65,6 +65,7 @@ class TextImageEditor extends Component<any, any> {
             toggleTextViewable,
             textViewable,
             toggleEditor,
+            toggleSelected,
             xCoord,
             yCoord,
             version,
@@ -139,6 +140,7 @@ class TextImageEditor extends Component<any, any> {
                     toggleEditor={toggleEditor}
                     textDraggable={textDraggable}
                     toggleTextDraggable={toggleTextDraggable}
+                    toggleTextSelected={toggleSelected}
                 />
 
                 <TextImageEditorButtonInput
