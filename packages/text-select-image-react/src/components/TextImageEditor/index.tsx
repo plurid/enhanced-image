@@ -330,7 +330,19 @@ class TextImageEditor extends Component<any, any> {
     private duplicate = () => {
         const {
             duplicateTextImage,
+            toggleTextEditable,
+            textEditable,
+            toggleTextDraggable,
+            textDraggable,
         } = this.context;
+
+        if (textEditable) {
+            toggleTextEditable();
+        }
+
+        if (textDraggable) {
+            toggleTextDraggable();
+        }
 
         const {
             textId
@@ -342,13 +354,25 @@ class TextImageEditor extends Component<any, any> {
     private delete = () => {
         const {
             deleteTextImage,
+            toggleTextEditable,
+            textEditable,
+            toggleTextDraggable,
+            textDraggable,
         } = this.context;
 
+        if (textEditable) {
+            toggleTextEditable();
+        }
+
+        if (textDraggable) {
+            toggleTextDraggable();
+        }
+
         const {
-            version,
+            textId,
         } = this.props;
 
-        deleteTextImage(version.id);
+        deleteTextImage(textId);
     }
 }
 

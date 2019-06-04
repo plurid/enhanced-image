@@ -178,21 +178,23 @@ class TextSelectImage extends Component<
         const { imageText } = this.state;
 
         const versionId = `tsi-version-${uuidv4()}`;
-        newTextImageVersion.id = versionId;
+        const newVersion = { ...newTextImageVersion };
+        newVersion.id = versionId;
 
         const textImageId = `tsi-text-${uuidv4()}`;
         const newTextImage = {
             id: textImageId,
             currentVersionId: versionId,
             versions: [
-                newTextImageVersion,
+                newVersion,
             ],
         };
 
-        imageText.push(newTextImage);
+        const updatedImageText = [...imageText];
+        updatedImageText.push(newTextImage);
 
         this.setState({
-            imageText,
+            imageText: updatedImageText,
         });
     }
 

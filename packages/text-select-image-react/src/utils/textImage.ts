@@ -80,14 +80,14 @@ export const duplicateTextImage = (
     const updatedImageText: IImageText[] = [];
 
     imageText.map((imgText: IImageText) => {
-        updatedImageText.push(imgText);
+        updatedImageText.push({ ...imgText });
 
         if (imgText.id === duplicateId) {
-            const duplicateTextId = `text-image-${uuidv4()}`;
+            const duplicateTextId = `tsi-text-${uuidv4()}`;
             const currentVersionId = imgText.currentVersionId;
             const getVersion = getVersionById(currentVersionId, imgText.versions);
             const currentVersion = { ...getVersion };
-            const newVersionId = `text-version-${uuidv4()}`;
+            const newVersionId = `tsi-version-${uuidv4()}`;
             currentVersion.id = newVersionId;
             if (currentVersion.yCoordPercentage < 80) {
                 currentVersion.yCoordPercentage = currentVersion.yCoordPercentage + 12;
@@ -102,7 +102,7 @@ export const duplicateTextImage = (
                 versions,
             };
 
-            updatedImageText.push(duplicateText);
+            updatedImageText.push({ ...duplicateText });
         }
     });
 
