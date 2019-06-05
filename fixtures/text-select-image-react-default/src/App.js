@@ -21,6 +21,7 @@ class App extends Component {
                         theme="night"
                         // src={foodImage}
                         src={populationDensityEurope}
+                        // src={populationDensityEuropeB}
                         controls={true}
                         // getTextOnLoad={true}
                         apiEndpoint="http://192.168.1.2:3360/graphql"
