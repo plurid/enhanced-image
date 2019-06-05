@@ -453,7 +453,7 @@ class TextSelectImage extends Component<
                 imageText,
             },
                 () => {
-                    this.setMessage('');
+                    this.setMessage('Rendered Text.', 2500);
                 }
             );
         } else {
@@ -525,7 +525,7 @@ class TextSelectImage extends Component<
                         intervalIterations += 1;
                         const imageText = await this.getText();
                         if (imageText.length > 0) {
-                            this.setMessage('Rendering Text.', 2500);
+                            this.setMessage('Rendered Text.', 2500);
                             this.setState({
                                 imageText,
                                 loading: false,
