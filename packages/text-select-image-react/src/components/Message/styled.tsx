@@ -13,7 +13,7 @@ export const StyledMessage = styled.div`
     left: 50%;
     bottom: 25px;
     transform: translateX(-50%);
-    background-color: hsla(220, 2%, 10%, 0.2);
+    background-color: hsla(220, 2%, 10%, 0.3);
     padding: 4px;
     user-select: none;
     pointer-events: none;
