@@ -40,6 +40,7 @@ export interface ITextSelectImageState {
     imageNaturalHeight: number;
     imageNaturalWidth: number;
     imageText: any;
+    message: string;
 
     toggleSettingsButton: () => void;
     toggledSettingsButton: boolean;
