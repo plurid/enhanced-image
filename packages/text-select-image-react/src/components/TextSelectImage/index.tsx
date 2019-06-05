@@ -3,6 +3,7 @@ import Context from '../../context';
 import SelectImage from '../SelectImage';
 import TextSelectImageSettings from '../TextSelectImageSettings';
 import Spinner from '../Spinner';
+import Message from '../Message';
 
 import {
     ITextSelectImageProps,
@@ -50,6 +51,8 @@ class TextSelectImage extends Component<
 
     client: ApolloClient<any>;
 
+    private extractInterval: any;
+
     constructor(props: ITextSelectImageProps) {
         super(props);
 
@@ -71,6 +74,7 @@ class TextSelectImage extends Component<
             imageNaturalHeight: 0,
             imageNaturalWidth: 0,
             imageText: emptyImageText,
+            message: '',
 
             toggleSettingsButton: this.toggleSettingsButton,
             toggledSettingsButton: false,
@@ -137,6 +141,7 @@ class TextSelectImage extends Component<
             imageWidth,
             toggledEditable,
             toggledSettingsButton,
+            message,
             // imageText,
         } = this.state;
 
@@ -169,6 +174,12 @@ class TextSelectImage extends Component<
                     {loading && (
                         <Spinner />
                     )}
+
+                    {message && (
+                        <Message
+                            text={message}
+                        />
+                    )}
                 </StyledTextSelectImage>
             </Context.Provider>
         );
@@ -176,6 +187,7 @@ class TextSelectImage extends Component<
 
     private createTextImage = () => {
         const { imageText } = this.state;
+        console.log(imageText);
 
         const versionId = `tsi-version-${uuidv4()}`;
         const newVersion = { ...newTextImageVersion };
@@ -366,34 +378,27 @@ class TextSelectImage extends Component<
         );
     }
 
-    // private processText = (data: any) => {
-    //     const {
-    //         imageText,
-    //         imageHeight,
-    //         imageWidth,
-    //     } = data;
+    private setMessage = (message: string, time?: number) => {
+        if (!time) {
+            this.setState({
+                message,
+            });
+            return;
+        }
 
-    //     const imgText: any[] = [];
-
-    //     for (let text of imageText) {
-    //         let txt = {};
-    //         const { currentVersionId, versions } = text;
-    //         for (let version of versions) {
-    //             if (version.id === currentVersionId) {
-    //                 txt = { ...version };
-    //             }
-    //         }
-    //         imgText.push(txt);
-    //     }
-
-    //     const selectText = {
-    //         imageHeight,
-    //         imageWidth,
-    //         imageText: imgText,
-    //     };
-
-    //     return selectText;
-    // }
+        this.setState({
+            message,
+        },
+            () => {
+                setTimeout(() => {
+                    this.setState({
+                        message: '',
+                    });
+                }, time)
+            }
+        );
+        return;
+    }
 
     /**
      * Graphql query to the apiEndpoint (with apiKey if it exists)
@@ -421,7 +426,6 @@ class TextSelectImage extends Component<
                 });
 
             const { status, textSelectImage } = query.data.textSelectImage;
-            // console.log(textSelectImage);
 
             if (!query.loading) {
                 this.setState({
@@ -430,10 +434,8 @@ class TextSelectImage extends Component<
             }
 
             if (!status) {
-                return emptyTextSelectImage;
+                return [];
             }
-
-            // const selectText = this.processText(textSelectImage);
 
             return textSelectImage.imageText;
         } catch(err) {
@@ -442,12 +444,27 @@ class TextSelectImage extends Component<
     }
 
     private getAndSetText = async () => {
-        // console.log('CALLED getAndSetText');
+        this.setMessage('Obtaining Text. Please Wait.');
+
         const imageText = await this.getText();
 
-        this.setState({
-            imageText,
-        });
+        if (imageText.length > 0) {
+            this.setState({
+                imageText,
+            },
+                () => {
+                    this.setMessage('');
+                }
+            );
+        } else {
+            this.setState({
+                imageText,
+            },
+                () => {
+                    this.setMessage('No Text Stored. Add or Extract Text.', 2500);
+                }
+            );
+        }
     }
 
     /**
@@ -455,14 +472,17 @@ class TextSelectImage extends Component<
      * to extract the data from the image on the imageSha.
      */
     private extractText = async () => {
-        const {
-            imageSha,
-        } = this.state;
-
-        const imageSrc = new URL(this.props.src, window.location.href).href;
-        // console.log(imageSrc);
-
         try {
+            const {
+                imageSha,
+            } = this.state;
+
+            const imageSrc = new URL(this.props.src, window.location.href).href;
+
+            this.setState({
+                loading: true,
+            });
+
             const query = await this.client
                 .query({
                     query: extractTextSelectImage,
@@ -473,12 +493,64 @@ class TextSelectImage extends Component<
                     fetchPolicy: 'no-cache',
                 });
 
-            const { status, textSelectImage } = query.data.extractTextSelectImage;
-            console.log(query);
-            console.log(textSelectImage);
+            if (!query.loading) {
+                this.setState({
+                    loading: false,
+                });
+            }
+
+            const { status, errors } = query.data.extractTextSelectImage;
 
             if (!status) {
+                const [error] = errors;
+
+                if (error.path === 'exists/TextSelectImage') {
+                    this.setMessage('Text Extracted Already.', 3000);
+                }
+
                 return {};
+            }
+
+            if (status) {
+                let intervalIterations = 0;
+
+                this.setMessage('Extracting Text. Please Wait.');
+
+                this.setState({
+                    loading: true,
+                });
+
+                this.extractInterval = setInterval(async () => {
+                    try {
+                        intervalIterations += 1;
+                        const imageText = await this.getText();
+                        if (imageText.length > 0) {
+                            this.setMessage('Rendering Text.', 2500);
+                            this.setState({
+                                imageText,
+                                loading: false,
+                            },
+                                () => {
+                                    clearInterval(this.extractInterval);
+                                }
+                            );
+                        }
+
+                        if (intervalIterations > 5) {
+                            this.setMessage('Could Not Extract Text.', 4000);
+                            this.setState({
+                                imageText,
+                                loading: false,
+                            },
+                                () => {
+                                    clearInterval(this.extractInterval);
+                                }
+                            );
+                        }
+                    } catch(err) {
+                        console.log(err);
+                    }
+                }, 3000);
             }
 
             return {};
