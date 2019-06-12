@@ -451,6 +451,7 @@ class TextSelectImage extends Component<
         if (imageText.length > 0) {
             this.setState({
                 imageText,
+                loading: false,
             },
                 () => {
                     this.setMessage('Rendered Text.', 2500);
@@ -459,6 +460,7 @@ class TextSelectImage extends Component<
         } else {
             this.setState({
                 imageText,
+                loading: false,
             },
                 () => {
                     this.setMessage('No Text Stored. Add or Extract Text.', 2500);
