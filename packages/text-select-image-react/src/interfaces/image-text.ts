@@ -1,10 +1,10 @@
 export interface IImageTextVersion {
     id: string;
-    createdBy: string;
-    computerGenerated: boolean;
-    userGenerated: boolean;
-    ownerGenerated: boolean;
-    adminGenerated: boolean;
+    // createdBy: string;
+    // computerGenerated: boolean;
+    // userGenerated: boolean;
+    // ownerGenerated: boolean;
+    // adminGenerated: boolean;
     xCoordPercentage: number;
     yCoordPercentage: number;
     perspective: string;

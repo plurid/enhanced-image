@@ -187,7 +187,6 @@ class TextSelectImage extends Component<
 
     private createTextImage = () => {
         const { imageText } = this.state;
-        console.log(imageText);
 
         const versionId = `tsi-version-${uuidv4()}`;
         const newVersion = { ...newTextImageVersion };
@@ -573,6 +572,8 @@ class TextSelectImage extends Component<
                 const newVersion = { ...version };
                 delete newVersion.__typename;
                 delete newVersion.createdAt;
+                delete newVersion.createdBy;
+                delete newVersion.generatedBy;
                 versions.push(newVersion);
             }
             item.versions = versions;
