@@ -19,11 +19,11 @@ export const emptyTextSelectImage: ITextSelectImageData = {
 
 export const newTextImageVersion: IImageTextVersion = {
     id: '',
-    createdBy: '',
-    computerGenerated: false,
-    userGenerated: true,
-    ownerGenerated: false,
-    adminGenerated: false,
+    // createdBy: '',
+    // computerGenerated: false,
+    // userGenerated: true,
+    // ownerGenerated: false,
+    // adminGenerated: false,
     xCoordPercentage: 5,
     yCoordPercentage: 10,
     perspective: '',
