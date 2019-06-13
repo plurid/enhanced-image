@@ -23,10 +23,7 @@ export const getTextSelectImage = gql`
                     currentVersionId
                     versions {
                         id
-                        createdAt
-                        user {
-                            username
-                        }
+                        createdBy
                         xCoordPercentage
                         yCoordPercentage
                         perspective
