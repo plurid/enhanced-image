@@ -562,62 +562,24 @@ class TextSelectImage extends Component<
     }
 
     private processImageText = (imageText: any) => {
-        return [
-            {
-              "id": "tsi-text-dce8dd0e5fdb4289bb63c3dd5bf81991",
-              "currentVersionId": "tsi-version-c2eec1b1bc3d451cbbb07c5bad18286e",
-              "versions": [
-                {
-                   "createdBy": "9275a194b1464ab1a76730271a3aad75",
-                   "id": "tsi-version-c2eec1b1bc3d451cbbb07c5bad18286e",
-                   "xCoordPercentage": 25.3750,
-                   "yCoordPercentage": 36.0690,
-                   "perspective": "",
-                   "rotation": "",
-                   "skew": "",
-                   "color": "red",
-                   "fontFamily": "Arial",
-                   "fontSizePercentage": 7.4467,
-                   "bold": true,
-                   "italic": false,
-                   "letterSpacingPercentage": 0.1750,
-                   "lineHeight": "auto",
-                   "wordSpacingPercentage": 0,
-                   "content": "eat.yourvegetables.com",
-                   "link": true,
-                   "linkTo": "https://github.com/plurid/text-select-image",
-                   "viewable": false
-                }
-              ]
-            },
-            {
-              "id": "tsi-text-f3160c7e5d274372a41f9ba0c073e935",
-              "currentVersionId": "tsi-version-cfef2e114e6540fe980a7136046a9fb0",
-              "versions": [
-                {
-                   "createdBy": "9275a194b1464ab1a76730271a3aad75",
-                   "id": "tsi-version-cfef2e114e6540fe980a7136046a9fb0",
-                   "xCoordPercentage": 28.75,
-                   "yCoordPercentage": 62.3661,
-                   "perspective": "",
-                   "rotation": "",
-                   "skew": "",
-                   "color": "black",
-                   "fontFamily": "Arial",
-                   "fontSizePercentage": 8.1448,
-                   "bold": true,
-                   "italic": false,
-                   "letterSpacingPercentage": -0.0625,
-                   "lineHeight": "auto",
-                   "wordSpacingPercentage": 0.35,
-                   "content": "Eat your vegetables!",
-                   "link": false,
-                   "linkTo": "",
-                   "viewable": false
-                }
-              ]
+        const updatedImageText: any[] = [];
+
+        for (const imageTextItem of imageText) {
+            const item: any = {};
+            item.currentVersionId = imageTextItem.currentVersionId;
+            item.id = imageTextItem.id;
+            const versions: any[] = [];
+            for (const version of imageTextItem.versions) {
+                const newVersion = { ...version };
+                delete newVersion.__typename;
+                delete newVersion.createdAt;
+                versions.push(newVersion);
             }
-        ];
+            item.versions = versions;
+            updatedImageText.push(item);
+        }
+
+        return updatedImageText;
     }
 
     /**
@@ -638,12 +600,14 @@ class TextSelectImage extends Component<
                 imageText: updateImageText,
             };
 
-            console.log(imageSha);
-            console.log(imageText);
+            // console.log(imageSha);
+            // console.log(imageText);
 
             this.setState({
                 loading: true,
             });
+
+            this.setMessage('Saving Image Text.');
 
             const mutation = await this.client
                 .mutate({
@@ -659,21 +623,24 @@ class TextSelectImage extends Component<
                 });
             }
 
-            console.log(mutation);
+            // console.log(mutation);
             const { status, textSelectImage } = mutation.data.updateTextSelectImage;
 
             // // if the image does not exist, it should create it based on the sha and save the data
             if (!status) {
+                this.setMessage('Could Not Save.', 2500);
+
                 return false;
             }
 
-            this.setState({
-                imageText: textSelectImage.imageText,
-            });
-
+            // this.setState({
+            //     imageText: textSelectImage.imageText,
+            // });
+            this.setMessage('Saved Image Text.', 2500);
             return true;
         } catch(err) {
-            console.log(err);
+            // console.log(err);
+            this.setMessage('Could Not Save.', 2500);
             return false;
         }
     }
