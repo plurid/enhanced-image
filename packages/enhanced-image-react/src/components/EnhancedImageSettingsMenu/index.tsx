@@ -62,11 +62,11 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
 
     public render() {
         const {
+            imageHeight,
             about,
             theme,
             toggledEditable,
             toggledDefaults,
-
             invertValue,
             menuOpaque,
         } = this.context;
@@ -75,6 +75,7 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
             <StyledEnhancedImageSettingsMenu
                 theme={theme}
                 menuOpaque={menuOpaque}
+                imageHeight={imageHeight}
             >
                 <ul>
                     <li>
