@@ -14,6 +14,16 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     transition: opacity 600ms linear;
     z-index: 9999;
 
+    /* height - 30px - 20px */
+    height: ${(props: any) => {
+        console.log(props.imageHeight);
+
+        return props.imageHeight - 70 + 'px';
+    }};
+    overflow: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+
     ul {
         background-color: ${props => props.theme.backgroundColor};
         background: ${props => {
@@ -34,7 +44,9 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
         user-select: none;
         border-radius: 10px;
         padding: 0;
+        margin: 0;
         font-size: 13px;
+        line-height: 1.1;
     }
 
     ul li {
