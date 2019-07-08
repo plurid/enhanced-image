@@ -312,9 +312,7 @@ class EnhancedImage extends Component<
         canvas.width = width;
         canvas.height = height;
         const context: any = canvas.getContext('2d');
-        console.log(image);
         context.drawImage(image, 0, 0, width, height);
-        console.log('ENHANCED IMAGE COMPUTE IMAGE SHA');
         const imageData = context.getImageData(0, 0, width, height);
         const buffer = imageData.data;
         const imageSha = sha256(arrayBufferToWordArray(buffer)).toString();
