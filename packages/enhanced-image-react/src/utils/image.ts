@@ -3,6 +3,7 @@ export const loadImage = (url: string) => {
         (response) => {
             const image = new Image();
             image.onload = (() => response(image));
+            image.crossOrigin = 'anonymous';
             image.src = url;
         },
     );
