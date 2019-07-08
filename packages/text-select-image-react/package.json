@@ -1,6 +1,6 @@
 {
     "name": "@plurid/text-select-image-react",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "React Component to select the text from images",
     "keywords": [
         "text",
@@ -32,6 +32,7 @@
         "npm": ">=5"
     },
     "scripts": {
+        "prepublishOnly": "yarn build.clean",
         "clean": "rm -rf ./dist",
         "test": "cross-env CI=1 react-scripts-ts test --env=jsdom",
         "test.watch": "react-scripts-ts test --env=jsdom",
