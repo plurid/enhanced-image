@@ -103,7 +103,7 @@ class TextSelectImage extends Component<
     }
 
     async componentDidMount() {
-        console.log('MOUNT');
+        // console.log('MOUNT');
 
         const {
             about,

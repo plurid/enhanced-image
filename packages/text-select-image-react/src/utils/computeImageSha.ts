@@ -18,7 +18,6 @@ const computeImageSha = async function(src: string) {
     context.drawImage(image, 0, 0, width, height);
     const imageData = context.getImageData(0, 0, width, height);
     const buffer = imageData.data;
-    console.log('TEXT SELECT COMPUTE IMAGE SHA');
     const sha = sha256(arrayBufferToWordArray(buffer));
     const shaString = sha.toString();
 
