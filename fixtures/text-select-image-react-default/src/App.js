@@ -25,8 +25,8 @@ class App extends Component {
                         // src={image}
                         controls={true}
                         // getTextOnLoad={true}
-                        apiEndpoint="http://192.168.1.3:3360/graphql"
-                        // apiEndpoint="http://localhost:3360/graphql"
+                        apiEndpoint="http://192.168.1.3:33600/graphql"
+                        // apiEndpoint="http://localhost:33600/graphql"
                         // apiEndpoint="https://api.plurid.com/graphql"
                     />
                 </div>
