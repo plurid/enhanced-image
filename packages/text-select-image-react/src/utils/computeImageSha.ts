@@ -1,6 +1,7 @@
 import { loadImage } from './image';
 import { arrayBufferToWordArray } from './arrayBuffer';
 
+import CryptoJS from 'crypto-js';
 import sha256 from 'crypto-js/sha256';
 
 
@@ -10,16 +11,15 @@ import sha256 from 'crypto-js/sha256';
  */
 const computeImageSha = async function(src: string) {
     const image: any = await loadImage(src);
-    const { height, width } = image;
+    const { width, height } = image;
     const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
     const context: any = canvas.getContext('2d');
     context.drawImage(image, 0, 0, width, height);
     const imageData = context.getImageData(0, 0, width, height);
-    const buffer = imageData.data;
-    const sha = sha256(arrayBufferToWordArray(buffer));
-    const shaString = sha.toString();
+    const sha = sha256(arrayBufferToWordArray(imageData.data));
+    const shaString = sha.toString(CryptoJS.enc.Hex);
 
     return shaString;
 }

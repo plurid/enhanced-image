@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 // import foodImage from './assets/food-vegetables-text.jpg';
-import populationDensityEurope from './assets/population-density-europe.png';
+// import img from './assets/img.png';
+import img2 from './assets/img2.jpg';
+// import imageBlack from './assets/image-black.jpg';
+// import populationDensityEurope from './assets/population-density-europe.png';
 // import populationDensityEuropeB from './assets/population-density-europe-b.png';
 // import webP from './assets/89d1516a7cf15e086f3cd605a606ce6df78ecc4c3899499cc95a7dca9e30fb4c.webp';
 // import image from './assets/image.jpg';
@@ -20,7 +23,7 @@ class App extends Component {
                     <TextSelectImage
                         theme="night"
                         // src={foodImage}
-                        src={populationDensityEurope}
+                        src={img2}
                         // src={populationDensityEuropeB}
                         // src={image}
                         controls={true}
