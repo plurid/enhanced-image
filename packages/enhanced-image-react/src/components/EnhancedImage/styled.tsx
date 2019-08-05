@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const StyledEnhancedImage: any = styled.div`
     box-sizing: border-box;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colorPrimary};
     position: relative;
     font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -16,7 +16,7 @@ export const StyledEnhancedImage: any = styled.div`
     }
 
     a {
-        color: ${props => props.theme.color};
+        color: ${props => props.theme.colorPrimary};
         text-decoration: none;
     }
 `;

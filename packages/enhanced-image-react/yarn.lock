@@ -721,6 +721,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.4.tgz#a87b4b04e5ae14a88d48ebef15015f6b7d1f5677"
   integrity sha512-kBa+cDHOR9jpRJ+kcGMsysrls0leukrm68DmFQoMIWQcXdr2cZvyvypWuGYT7U+9kAExUE7+T7r6G3C3A6L8MQ==
 
+"@plurid/apps.utilities.themes@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@plurid/apps.utilities.themes/-/apps.utilities.themes-0.1.2.tgz#dfa72e47e81e93f1c579c17beac4f84ef32a5cca"
+  integrity sha512-UHeEJZH8kU9MUGecylbmNglkKnm9zBYsY7u3guAOpyQeQ1BYYqeyecaWsKCux3d3tUpQFDJk63fwqVf/p64xIA==
+
 "@plurid/text-select-image-react@*":
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/@plurid/text-select-image-react/-/text-select-image-react-0.1.9.tgz#ac448dd8b7efe0cb554fb3d0915767e6a420316c"
@@ -839,11 +844,6 @@
   integrity sha512-aczowyAJNfrkBV+HS8DyAA87OnvkqGrrOmm5s7V6Jbgimzv/1ZoAy91cLJX8GQrUS60KufD7EIzA2LbK8HV4hg==
   dependencies:
     "@types/node" "*"
-
-"@types/crypto-js@^3.1.43":
-  version "3.1.43"
-  resolved "https://registry.yarnpkg.com/@types/crypto-js/-/crypto-js-3.1.43.tgz#b859347d6289ba13e347c335a4c9efa63337a748"
-  integrity sha512-EHe/YKctU3IYNBsDmSOPX/7jLHPRlx8WaiDKSY9JCTnJ8XJeM4c0ZJvx+9Gxmr2s2ihI92R+3U/gNL1sq5oRuQ==
 
 "@types/enzyme-adapter-react-16@^1.0.5":
   version "1.0.5"

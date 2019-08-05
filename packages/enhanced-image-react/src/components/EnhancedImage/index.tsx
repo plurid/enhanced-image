@@ -22,7 +22,10 @@ import {
     PLURID_API,
 } from '../../data/constants';
 
-import themes from '../../data/themes';
+// import themes from '../../data/themes';
+
+import themes from '@plurid/apps.utilities.themes';
+import { enhancedTheme } from '../../data/themes';
 
 import TextSelectImage from '@plurid/text-select-image-react';
 
@@ -92,7 +95,11 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
 
         const _about = about === undefined ? this.context.about : about;
         const _controls = controls === undefined ? this.context.controls : controls;
-        const _theme = theme === undefined ? this.context.theme : themes[theme];
+        const _theme = theme === undefined
+            ? this.context.theme
+            : theme === 'enhanced'
+                ? enhancedTheme
+                : themes[theme];
         const _themeName = theme === undefined ? this.context.themeName : theme;
 
         // const selectText = await this.getText();
@@ -129,6 +136,8 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
             brightnessValue,
             apiEndpoint,
         } = this.state;
+
+        console.log(theme);
 
         return (
             <Context.Provider value={this.state}>
