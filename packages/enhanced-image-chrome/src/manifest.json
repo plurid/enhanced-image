@@ -16,7 +16,8 @@
         "management",
         "<all_urls>",
         "contextMenus",
-        "cookies"
+        "cookies",
+        "storage"
     ],
     "content_scripts": [{
         "matches": ["<all_urls>"],

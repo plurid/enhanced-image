@@ -137,7 +137,7 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
             apiEndpoint,
         } = this.state;
 
-        console.log(theme);
+        // console.log(theme);
 
         return (
             <Context.Provider value={this.state}>

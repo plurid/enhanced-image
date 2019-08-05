@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import EnhancedImage from '@plurid/enhanced-image-react';
 
+import { chromeStorage } from '../utils';
 
 
-function contentscriptMain() {
+
+async function contentscript() {
     const isImage = (location: string) => {
         let imagePage = false;
 
@@ -42,6 +43,8 @@ function contentscriptMain() {
                 root.id = rootId;
                 document.body.appendChild(root);
 
+                const { theme } = await chromeStorage.get('theme');
+
                 ReactDOM.render(
                     <EnhancedImage
                         src={src}
@@ -49,7 +52,7 @@ function contentscriptMain() {
                         height={height}
                         width={width}
                         about={false}
-                        theme="depict"
+                        theme={theme}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
@@ -70,6 +73,11 @@ function contentscriptMain() {
         }
     }
 }
+
+
+async function contentscriptMain() {
+    await contentscript();
+};
 
 
 contentscriptMain();

@@ -1,10 +1,11 @@
 import React from 'react';
+import themes from '@plurid/apps.utilities.themes';
 
 import Context from './context';
 
 import Options from './containers/Options';
 
-import themes from '@plurid/apps.utilities.themes';
+import { chromeStorage } from '../utils';
 
 
 
@@ -18,6 +19,15 @@ class App extends React.Component<any, any> {
         };
     }
 
+    async componentDidMount() {
+        const { theme } = await chromeStorage.get('theme');
+        if (theme) {
+            this.setState({
+                theme: (themes as any)[theme],
+            });
+        }
+    }
+
     public render() {
         return (
             <Context.Provider value={this.state}>
@@ -27,6 +37,10 @@ class App extends React.Component<any, any> {
     }
 
     private setTheme = (theme: string) => {
+        chrome.storage.sync.set({theme: theme}, function() {
+            console.log('Value is set to ' + theme);
+        });
+
         this.setState({
             theme: (themes as any)[theme],
         });
