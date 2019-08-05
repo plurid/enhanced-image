@@ -35,7 +35,17 @@
         "lint": "eslint --quiet -f codeframe src"
     },
     "dependencies": {
+        "@plurid/enhanced-image-react": "*",
+        "apollo-cache-inmemory": "^1.6.2",
+        "apollo-client": "^2.6.3",
+        "apollo-link": "^1.2.12",
+        "apollo-link-error": "^1.1.11",
+        "apollo-link-http": "^1.5.15",
+        "graphql": "^14.4.2",
+        "graphql-tag": "^2.10.1",
+        "prop-types": "^15.7.2",
         "react": "^16.8.6",
+        "react-apollo": "^2.5.8",
         "react-dom": "^16.8.6",
         "styled-components": "^4.3.2"
     },

@@ -13,7 +13,7 @@ const base = {
     context: __dirname,
     entry: {
         background: './src/background/index.ts',
-        contentscript: './src/contentscript/index.ts',
+        contentscript: './src/contentscript/index.tsx',
         popup: './src/popup/index.tsx',
         options: './src/options/index.tsx',
     },

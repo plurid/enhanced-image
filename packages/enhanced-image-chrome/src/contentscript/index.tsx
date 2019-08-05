@@ -1,3 +1,10 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import EnhancedImage from '@plurid/enhanced-image-react';
+
+
+
 function contentscriptMain() {
     const isImage = (location: string) => {
         let imagePage = false;
@@ -16,6 +23,21 @@ function contentscriptMain() {
     }
 
     const href = location.href;
+
+    if (isImage(href)) {
+        document.body.removeChild(document.body.firstChild);
+
+        const div = document.createElement('div');
+        div.id = 'root-enh-img';
+        document.body.appendChild(div);
+
+        ReactDOM.render(
+            <EnhancedImage
+                src={href}
+            />,
+            document.getElementById('root-enh-img') as HTMLElement,
+        );
+    }
 
     // if (isImage(href)) {
     //     const script = document.createElement('script');
