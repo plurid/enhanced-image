@@ -46,10 +46,8 @@ function contentscriptMain() {
                     <EnhancedImage
                         src={src}
                         alt={alt ? alt : undefined}
-                        style={{
-                            height: height + 'px',
-                            width: width + 'px',
-                        }}
+                        height={height}
+                        width={width}
                         noAbout={true}
                     />,
                     document.getElementById(rootId) as HTMLElement,
