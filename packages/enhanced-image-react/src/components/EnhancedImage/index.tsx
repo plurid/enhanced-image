@@ -222,9 +222,9 @@ class EnhancedImage extends Component<
                         ref={this.textSelectImage}
                     />
 
-                    {/* {toggledSettingsButton && controls && ( */}
+                    {toggledSettingsButton && controls && (
                         <EnhancedImageSettings />
-                    {/* )} */}
+                    )}
 
                     {/* {loading && (
                         <Spinner />
@@ -290,7 +290,7 @@ class EnhancedImage extends Component<
             naturalWidth,
         } = image.target;
 
-        this.computeImageSha();
+        // this.computeImageSha();
 
         this.setState({
             imageLoaded: true,

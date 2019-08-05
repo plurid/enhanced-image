@@ -33,10 +33,10 @@ class EnhancedImageSettings extends Component<any, any> {
                     {SettingsIcon}
                 </StyledEnhancedImageSettingsButton>
 
-                {/* {toggledSettings && ( */}
+                {toggledSettings && (
                     <EnhancedImageSettingsMenu
                     />
-                {/* )} */}
+                )}
             </StyledEnhancedImageSettings>
         );
     }

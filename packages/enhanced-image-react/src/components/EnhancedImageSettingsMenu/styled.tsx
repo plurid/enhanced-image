@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 
+const SETTINGS_MENU_TOP = 70;
 
 export const StyledEnhancedImageSettingsMenu: any = styled.div`
     box-sizing: border-box;
@@ -15,11 +16,10 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     transition: opacity 600ms linear;
     z-index: 9999;
 
-    /* height - 30px - 20px */
     height: ${(props: any) => {
-        console.log(props.imageHeight);
-
-        return props.imageHeight - 70 + 'px';
+        const auto = (props.settingsMenuHeight + SETTINGS_MENU_TOP) < props.imageHeight;
+        const height = auto ? 'auto' : props.imageHeight - SETTINGS_MENU_TOP + 'px';
+        return height;
     }};
     overflow: auto;
     border-radius: 10px;
