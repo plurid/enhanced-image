@@ -1,4 +1,4 @@
-export interface EnhancedImageProperties {
+export interface EnhancedImageProps {
     src: string;
     alt?: string;
     height?: number;
