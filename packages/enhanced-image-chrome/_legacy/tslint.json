@@ -2,8 +2,7 @@
     "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
     "defaultSeverity": "warning",
     "rules": {
-        "no-console": false,
-        "interface-name": false
+        "no-console": false
     },
     "linterOptions": {
         "exclude": [
