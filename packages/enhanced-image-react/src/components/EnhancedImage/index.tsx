@@ -181,6 +181,8 @@ class EnhancedImage extends Component<
         const {
             src,
             alt,
+            height,
+            width,
         } = this.props;
         const {
             controls,
@@ -207,6 +209,7 @@ class EnhancedImage extends Component<
                     imageWidth={imageWidth}
                     onMouseEnter={this.toggleSettingsButton}
                     onMouseLeave={this.toggleSettingsButton}
+                    onMouseMove={this.handleMouseMove}
                 >
                     <TextSelectImage
                         src={src}
@@ -222,6 +225,8 @@ class EnhancedImage extends Component<
                                 saturate(${saturationValue}%)
                                 brightness(${brightnessValue}%)
                             `,
+                            width: width ? width + 'px' : '100%',
+                            height: height ? height + 'px' : 'auto',
                         }}
                         ref={this.textSelectImage}
                     />
@@ -303,6 +308,16 @@ class EnhancedImage extends Component<
             imageNaturalHeight: naturalHeight,
             imageNaturalWidth: naturalWidth,
         });
+    }
+
+    private handleMouseMove = () => {
+        const {
+            toggledSettingsButton,
+        } = this.state;
+
+        if (!toggledSettingsButton) {
+            this.toggleSettingsButton();
+        }
     }
 
     private computeImageSha = async () => {
