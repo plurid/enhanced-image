@@ -1,17 +1,40 @@
-import * as React from 'react';
+import React from 'react';
+import themes from '@plurid/apps.utilities.themes';
 
-import Popup from './components/Popup';
+import Context from './context';
+
+import Popup from './containers/Popup';
+
+import { chromeStorage } from '../utils';
 
 
 
 class App extends React.Component {
+    constructor(props: any) {
+        super(props);
+
+        this.state = {
+            theme: themes.depict,
+        };
+    }
+
+    async componentDidMount() {
+        const { theme } = await chromeStorage.get('theme');
+        if (theme) {
+            this.setState({
+                theme: (themes as any)[theme],
+            });
+        }
+    }
+
     public render() {
         return (
-            <div>
+            <Context.Provider value={this.state}>
                 <Popup />
-            </div>
+            </Context.Provider>
         );
     }
 }
+
 
 export default App;
