@@ -18,30 +18,48 @@
         "email": "feedback@plurid.com",
         "url": "https://github.com/plurid/enhanced-image/issues"
     },
-    "publishConfig": {
-        "access": "public"
-    },
+    "homepage": "https://plurid.com/depict",
     "files": [
         "dist/"
     ],
     "scripts": {
-        "start": "react-scripts-ts start",
-        "build": "react-scripts-ts build && yarn copyvendor",
-        "test": "react-scripts-ts test --env=jsdom",
-        "copyvendor": "cp -r ./vendor/enhanced-image-html ./build/",
-        "eject": "react-scripts eject"
+        "clean": "rm -rf dist && rm -rf build && rm -rf dist-zip",
+        "dev": "yarn clean && NODE_ENV=development webpack --watch",
+        "build": "yarn clean && NODE_ENV=production webpack",
+        "distribute": "yarn clean && NODE_ENV=production webpack && node scripts/zip.js",
+        "test": "npm run unit-test && npm run e2e-test",
+        "test.production": "NODE_ENV=production npm run unit-test && npm run e2e-test",
+        "unit-test": "jest __tests__/.*.spec.js --silent",
+        "e2e-test": "jest __e2e-tests__ --runInBand --silent",
+        "test.jest": "jest",
+        "lint": "eslint --quiet -f codeframe src"
     },
     "dependencies": {
-        "react": "^16.8.4",
-        "react-dom": "^16.8.4",
-        "react-scripts-ts": "3.1.0"
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "styled-components": "^4.3.2"
     },
     "devDependencies": {
-        "@types/chrome": "^0.0.82",
-        "@types/jest": "^24.0.11",
-        "@types/node": "^11.11.5",
-        "@types/react": "^16.8.8",
-        "@types/react-dom": "^16.8.3",
-        "typescript": "^3.3.4000"
+        "@babel/core": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/preset-typescript": "^7.3.3",
+        "@babel/register": "^7.5.5",
+        "@types/chrome": "^0.0.87",
+        "@types/jest": "^24.0.16",
+        "@types/node": "^12.6.9",
+        "@types/react": "^16.8.24",
+        "@types/react-dom": "^16.8.5",
+        "@types/styled-components": "^4.1.18",
+        "copy-webpack-plugin": "^5.0.4",
+        "css-loader": "^3.1.0",
+        "html-webpack-plugin": "^3.2.0",
+        "jest": "^24.8.0",
+        "ts-jest": "^24.0.2",
+        "ts-loader": "^6.0.4",
+        "typescript": "^3.5.3",
+        "webpack": "^4.39.1",
+        "webpack-cli": "^3.3.6",
+        "zip-folder": "^1.0.0"
     }
 }

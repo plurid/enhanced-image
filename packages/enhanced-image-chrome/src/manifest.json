@@ -1,0 +1,46 @@
+{
+    "manifest_version": 2,
+    "name": "Enhanced Image",
+    "short_name" : "EnhImg",
+    "description": "Select image text and translate it, generate similar images, colorize the image.",
+    "author": "Plurid, Inc.",
+    "version": "0.0.1",
+    "icons" : {
+        "16" : "assets/icons/icon16.png",
+        "32" : "assets/icons/icon32.png",
+        "48" : "assets/icons/icon48.png",
+        "128" : "assets/icons/icon128.png"
+    },
+    "permissions": [
+        "activeTab",
+        "management",
+        "<all_urls>",
+        "contextMenus",
+        "cookies"
+    ],
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": [
+            "contentscript.js"
+        ],
+        "run_at": "document_end"
+    }],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "web_accessible_resources": [
+        "enhanced-image-html/dist/**.js"
+    ],
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    },
+    "browser_action" : {
+        "default_title" : "Holocene Epoch Timestamp",
+        "default_icon" : "assets/icons/icon.png",
+        "default_popup" : "popup.html"
+    },
+    "incognito": "spanning",
+    "content_security_policy": "script-src 'self' 'sha256-5As4+3YpY62+l38PsxCEkjB1R4YtyktBtRScTJ3fyLU='; object-src 'self'"
+}
