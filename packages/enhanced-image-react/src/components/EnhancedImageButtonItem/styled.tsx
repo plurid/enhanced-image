@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 
 export const StyledEnhancedImageButtonItem = styled.div`
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     padding: 7px 10px;

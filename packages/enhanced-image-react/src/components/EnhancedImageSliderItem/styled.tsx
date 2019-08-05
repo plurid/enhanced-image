@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 
 export const StyledEnhancedImageSliderItem = styled.div`
+    box-sizing: border-box;
     padding: 7px 10px;
     height: 50px;
 `;
