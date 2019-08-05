@@ -7,7 +7,7 @@ import {
 } from './styled';
 
 import {
-    EnhancedImageProperties,
+    EnhancedImageProps,
     EnhancedImageState,
 } from './interfaces';
 
@@ -28,9 +28,7 @@ import TextSelectImage from '@plurid/text-select-image-react';
 
 
 
-class EnhancedImage extends Component<
-    EnhancedImageProperties, EnhancedImageState
-> {
+class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
     static contextType = Context;
 
     textSelectImage: any;
@@ -143,7 +141,7 @@ class EnhancedImage extends Component<
                     onMouseMove={this.handleMouseMove}
                 >
                     <TextSelectImage
-                        src={src}
+                        src={src || ''}
                         alt={alt || 'Image'}
                         theme={theme}
                         apiEndpoint={apiEndpoint}

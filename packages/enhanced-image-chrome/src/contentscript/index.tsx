@@ -45,10 +45,10 @@ function contentscriptMain() {
                 ReactDOM.render(
                     <EnhancedImage
                         src={src}
-                        alt={alt ? alt : undefined}
+                        alt={alt ? alt : ''}
                         height={height}
                         width={width}
-                        noAbout={true}
+                        about={false}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
