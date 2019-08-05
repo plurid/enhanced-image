@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export const StyledDropdown = styled.div`
     text-align: right;
     position: relative;
+    user-select: none;
 `;
 
 

@@ -8,6 +8,7 @@ import Dropdown from '../../components/Dropdown';
 
 import {
     StyledOptions,
+    StyledOptionsContainer,
     StyledOptionsItemLeftRight,
 } from './styled';
 
@@ -28,23 +29,29 @@ const Options: React.FC<any> = (properties) => {
     // });
 
     return (
-        <StyledOptions>
-            <h1>
-                Options
-            </h1>
+        <StyledOptions
+            theme={theme}
+        >
+            <StyledOptionsContainer>
+                <div style={{ width: '250px'}}>
+                    <h1>
+                        Options
+                    </h1>
 
-            <StyledOptionsItemLeftRight>
-                <div>
-                    theme
+                    <StyledOptionsItemLeftRight>
+                        <div>
+                            theme
+                        </div>
+
+                        <Dropdown
+                            theme={theme}
+                            selected={theme.name}
+                            items={Object.keys(themes)}
+                            onSelect={setTheme}
+                        />
+                    </StyledOptionsItemLeftRight>
                 </div>
-
-                <Dropdown
-                    theme={theme}
-                    selected={theme.name}
-                    items={Object.keys(themes)}
-                    onSelect={setTheme}
-                />
-            </StyledOptionsItemLeftRight>
+            </StyledOptionsContainer>
         </StyledOptions>
     );
 }

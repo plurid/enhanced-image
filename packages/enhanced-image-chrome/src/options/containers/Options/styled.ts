@@ -2,8 +2,24 @@ import styled from 'styled-components';
 
 
 
-export const StyledOptions = styled.div`
-    min-height: 400px;
+export const StyledOptions: any = styled.div`
+    background-color: ${(props: any) => {
+        return props.theme.backgroundColorPrimary;
+    }};
+    color: ${(props: any) => {
+        return props.theme.colorPrimary;
+    }};
+    height: 500px;
+    width: 100%;
+    margin: 0 auto;
+`;
+
+
+export const StyledOptionsContainer: any = styled.div`
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
 `;
 
 
