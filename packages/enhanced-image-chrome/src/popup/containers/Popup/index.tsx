@@ -1,12 +1,23 @@
-import * as React from 'react';
+import React, {
+    useContext,
+} from 'react';
+
+import Context from '../../context';
 
 import {
     StyledPopup,
+    StyledPopupContainer,
 } from './styled';
 
 
 
 const Popup: React.FC<any> = (properties) => {
+    const context: any = useContext(Context);
+
+    const {
+        theme,
+    } = context;
+
     // const openOptions = () => {
     //     chrome.runtime.openOptionsPage();
     // }
@@ -25,8 +36,16 @@ const Popup: React.FC<any> = (properties) => {
     // );
 
     return (
-        <StyledPopup>
+        <StyledPopup
+            theme={theme}
+        >
+            <StyledPopupContainer>
+                Enhanced Image
 
+                <div>
+                    view options
+                </div>
+            </StyledPopupContainer>
         </StyledPopup>
     );
 }
