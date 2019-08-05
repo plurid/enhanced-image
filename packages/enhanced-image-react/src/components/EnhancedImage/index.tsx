@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import sha256 from 'crypto-js/sha256';
 
 import './styles.css';
 
@@ -7,14 +6,16 @@ import {
     StyledEnhancedImage,
 } from './styled';
 
+import {
+    EnhancedImageProperties,
+    EnhancedImageState,
+} from './interfaces';
+
 import Context from '../../context';
 
 // import SelectImage from '../SelectImage';
 import EnhancedImageSettings from '../EnhancedImageSettings';
 // import Spinner from '../Spinner';
-
-import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
-import { loadImage } from '../../utils/image';
 
 import {
     UPDATE_DEBOUNCE,
@@ -25,80 +26,10 @@ import themes from '../../data/themes';
 
 import TextSelectImage from '@plurid/text-select-image-react';
 
-// import computeContentId from '../../utils/contentId';
-// import uuidv4 from '../../utils/uuid';
-
-// import ApolloClient from 'apollo-boost';
-
-// import { getTextSelectImage } from '../../graphql/query';
-// import { updateTextSelectImage } from '../../graphql/mutation';
-
-
-
-// const apolloClient = (uri: string) => {
-//     return new ApolloClient({
-//         uri,
-//     });
-// }
-
-
-// interface ITextSelectImageProps {
-//     about?: boolean;
-//     alt?: string;
-//     controls?: boolean;
-//     src: string;
-//     theme?: string;
-//     imageText?: any;
-
-//     // To be specified when using another API than https://api.plurid.com
-//     // GraphlQL-based
-//     apiEndpoint?: string;
-
-//     // The apiKey contains the domain allowed to make requests
-//     // To be specified when using as a service provider
-//     // apiKey obtained from https://depict.plurid.com/api
-//     apiKey?: string;
-
-//     updateDebounce?: number;
-// }
-
-// interface ITextSelectImageState {
-//     apiEndpoint: string;
-//     updateDebounce: number;
-
-//     theme: any;
-//     themeName: string;
-//     about: boolean;
-//     controls: boolean;
-//     editorWidth: number;
-//     loading: boolean;
-
-//     imageLoaded: boolean;
-//     imageHeight: number;
-//     imageWidth: number;
-//     imageNaturalHeight: number;
-//     imageNaturalWidth: number;
-
-//     toggleSettingsButton: () => void;
-//     toggledSettingsButton: boolean;
-//     toggleSettings: () => void;
-//     toggledSettings: boolean;
-//     toggleEditable: () => void;
-//     toggledEditable: boolean;
-//     selectText: any;
-
-//     createTextImage: () => any;
-//     duplicateTextImage: (duplicateId: string) => any;
-//     updateTextImage: (text: any) => any;
-//     updateTextImageField: (id: string, element: string, value: any) => any;
-//     deleteTextImage: (id: string) => any;
-//     setEditorWidth: (value: number) => any;
-// }
 
 
 class EnhancedImage extends Component<
-    any, any
-    // ITextSelectImageProps, Partial<ITextSelectImageState>
+    EnhancedImageProperties, EnhancedImageState
 > {
     static contextType = Context;
 
@@ -321,24 +252,24 @@ class EnhancedImage extends Component<
     }
 
     private computeImageSha = async () => {
-        const {
-            src
-        } = this.props;
+        // const {
+        //     src
+        // } = this.props;
 
-        const image: any = await loadImage(src);
-        const { height, width } = image;
-        const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
-        const context: any = canvas.getContext('2d');
-        context.drawImage(image, 0, 0, width, height);
-        const imageData = context.getImageData(0, 0, width, height);
-        const buffer = imageData.data;
-        const imageSha = sha256(arrayBufferToWordArray(buffer)).toString();
+        // const image: any = await loadImage(src);
+        // const { height, width } = image;
+        // const canvas = document.createElement('canvas');
+        // canvas.width = width;
+        // canvas.height = height;
+        // const context: any = canvas.getContext('2d');
+        // context.drawImage(image, 0, 0, width, height);
+        // const imageData = context.getImageData(0, 0, width, height);
+        // const buffer = imageData.data;
+        // const imageSha = sha256(arrayBufferToWordArray(buffer)).toString();
 
-        this.setState({
-            imageSha,
-        });
+        // this.setState({
+        //     imageSha,
+        // });
     }
 }
 

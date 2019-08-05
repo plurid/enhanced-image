@@ -5,19 +5,15 @@ import {
     StyledEnhancedImageButtonItemIcon,
 } from './styled';
 
+import {
+    EnhancedImageButtonItemProperties,
+    EnhancedImageButtonItemState,
+} from './interfaces';
 
-
-// interface IEnhancedImageButtonItemProps {
-//     icon: JSX.Element;
-//     text: string;
-//     atClick: (event: any) => void;
-//     theme: any;
-// }
 
 
 class EnhancedImageButtonItem extends Component<
-    // IEnhancedImageButtonItemProps, any
-    any, any
+    EnhancedImageButtonItemProperties, EnhancedImageButtonItemState
 > {
     public render() {
         const {

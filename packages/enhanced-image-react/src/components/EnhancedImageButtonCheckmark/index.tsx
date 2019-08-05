@@ -5,18 +5,15 @@ import {
     StyledEnhancedImageButtonCheckmarkCheckbox,
 } from './styled';
 
+import {
+    EnhancedImageButtonCheckmarkProperties,
+    EnhancedImageButtonCheckmarkState,
+} from './interfaces';
 
-
-interface IEnhancedImageButtonCheckmarkProps {
-    checked: boolean;
-    text: string;
-    toggle: () => void;
-    theme: any;
-}
 
 
 class EnhancedImageButtonCheckmark extends Component<
-    IEnhancedImageButtonCheckmarkProps, any
+    EnhancedImageButtonCheckmarkProperties, EnhancedImageButtonCheckmarkState
 > {
     public render() {
         const {
