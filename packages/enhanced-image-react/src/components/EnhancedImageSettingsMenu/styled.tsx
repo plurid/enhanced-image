@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 
 export const StyledEnhancedImageSettingsMenu: any = styled.div`
+    box-sizing: border-box;
     opacity: ${(props: any) => {
         if (props.menuOpaque) {
             return 1;
@@ -50,6 +51,7 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     }
 
     ul li {
+        line-height: 1.1;
         min-height: 32px;
     }
 

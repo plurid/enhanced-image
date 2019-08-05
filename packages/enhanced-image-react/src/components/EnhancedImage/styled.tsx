@@ -16,6 +16,8 @@ export const StyledEnhancedImage: any = styled.div`
         return 'hidden';
     }}; */
 
+    line-height: 1;
+
     img {
         user-select: none;
         pointer-events: all;

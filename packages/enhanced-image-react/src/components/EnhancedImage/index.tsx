@@ -222,9 +222,9 @@ class EnhancedImage extends Component<
                         ref={this.textSelectImage}
                     />
 
-                    {toggledSettingsButton && controls && (
+                    {/* {toggledSettingsButton && controls && ( */}
                         <EnhancedImageSettings />
-                    )}
+                    {/* )} */}
 
                     {/* {loading && (
                         <Spinner />

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 
 export const StyledEnhancedImageButtonCheckmark = styled.div`
+    box-sizing: border-box;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -13,6 +14,7 @@ export const StyledEnhancedImageButtonCheckmark = styled.div`
 
 
 export const StyledEnhancedImageButtonCheckmarkCheckbox: any = styled.div`
+    box-sizing: border-box;
     display: block;
     height: 13px;
     width: 13px;
