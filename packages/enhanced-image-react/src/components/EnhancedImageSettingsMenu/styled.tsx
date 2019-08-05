@@ -32,13 +32,13 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
         font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
             'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 
-        background-color: ${props => props.theme.backgroundColor};
+        background-color: ${props => props.theme.backgroundColorPrimary};
         background: ${props => {
-            const { backgroundGradient, backgroundColor } = props.theme;
+            const { backgroundGradient, backgroundColorPrimary } = props.theme;
             if (backgroundGradient) {
                 return backgroundGradient;
             } else {
-                return backgroundColor;
+                return backgroundColorPrimary;
             }
         }};
 
@@ -75,7 +75,7 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     }
 
     ul li:hover {
-        background-color: ${props => props.theme.backgroundColorHover};
+        background-color: ${props => props.theme.backgroundColorTertiary};
     }
 
     hr {

@@ -1,6 +1,6 @@
 export const UPDATE_DEBOUNCE = 5000;
 
-export const DEFAULT_THEME = 'gradient';
+export const DEFAULT_THEME = 'enhanced';
 
 export const ABOUT_URL = 'https://github.com/plurid/enhanced-image';
 

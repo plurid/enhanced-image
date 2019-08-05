@@ -17,7 +17,8 @@ class App extends Component {
                     <EnhancedImage
                         src={foodImage}
                         alt="food"
-                        // theme="night"
+                        theme="depict"
+                        about={false}
                         // apiEndpoint="https://api.plurid.dev/graphql"
                         apiEndpoint="http://192.168.1.2:3360/graphql"
                     />
