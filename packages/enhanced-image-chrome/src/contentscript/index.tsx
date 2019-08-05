@@ -25,66 +25,51 @@ function contentscriptMain() {
     const href = location.href;
 
     if (isImage(href)) {
-        document.body.removeChild(document.body.firstChild);
+        const imagesArray = Array.from(document.images);
 
-        const div = document.createElement('div');
-        div.id = 'root-enh-img';
-        document.body.appendChild(div);
+        for (let i = 0; i < imagesArray.length; i++) {
+            const image = imagesArray[i];
+            if (image) {
+                const height = image.offsetHeight;
+                const width = image.offsetWidth;
+                const src = image.src;
+                const alt = image.alt;
 
-        ReactDOM.render(
-            <EnhancedImage
-                src={href}
-            />,
-            document.getElementById('root-enh-img') as HTMLElement,
-        );
+                document.body.removeChild(image);
+
+                const rootId = `root-enhanced-image-${i}`;
+                const root = document.createElement('div');
+                root.id = rootId;
+                document.body.appendChild(root);
+
+                ReactDOM.render(
+                    <EnhancedImage
+                        src={src}
+                        alt={alt ? alt : undefined}
+                        style={{
+                            height: height + 'px',
+                            width: width + 'px',
+                        }}
+                        noAbout={true}
+                    />,
+                    document.getElementById(rootId) as HTMLElement,
+                );
+
+                // if (image.classList) {
+                //     enhancedImage.setAttribute('classes', image.classList + "");
+                // }
+
+                // enhancedImage.setAttribute('text-select', 'true');
+                // enhancedImage.setAttribute('no-about', 'true');
+                // enhancedImage.setAttribute('icon', 'textselect');
+
+                // // enhancedImage.setAttribute('styling', "width: 500px;");
+                // // console.log(enhancedImage);
+
+                // image.parentElement.replaceChild(enhancedImage, image);
+            }
+        }
     }
-
-    // if (isImage(href)) {
-    //     const script = document.createElement('script');
-    //     script.src = chrome.extension.getURL('enhanced-image-html/dist/enhanced-image-html.js');
-    //     document.body.appendChild(script);
-
-    //     const imagesArr = Array.from(document.images);
-
-    //     for (let i = 0; i < imagesArr.length; i++) {
-    //         const image = imagesArr[i];
-    //         if (image) {
-    //             // if (image.width > 400) {
-    //                 // console.log(image);
-    //                 // console.log(image.width);
-    //                 const enhancedImage = document.createElement('enhanced-image');
-
-    //                 // console.log(image.src);
-    //                 enhancedImage.setAttribute('src', image.src);
-
-    //                 if (image.alt) {
-    //                     enhancedImage.setAttribute('alt', image.alt);
-    //                 }
-
-    //                 if (image.height) {
-    //                     enhancedImage.setAttribute('height', image.height + '');
-    //                 }
-
-    //                 if (image.width) {
-    //                     enhancedImage.setAttribute('width', image.width + '');
-    //                 }
-
-    //                 if (image.classList) {
-    //                     enhancedImage.setAttribute('classes', image.classList + "");
-    //                 }
-
-    //                 enhancedImage.setAttribute('text-select', 'true');
-    //                 enhancedImage.setAttribute('no-about', 'true');
-    //                 enhancedImage.setAttribute('icon', 'textselect');
-
-    //                 // enhancedImage.setAttribute('styling', "width: 500px;");
-    //                 // console.log(enhancedImage);
-
-    //                 image.parentElement.replaceChild(enhancedImage, image);
-    //             // }
-    //         }
-    //     }
-    // }
 }
 
 
