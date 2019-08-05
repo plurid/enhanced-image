@@ -49,6 +49,7 @@ function contentscriptMain() {
                         height={height}
                         width={width}
                         about={false}
+                        theme="depict"
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
