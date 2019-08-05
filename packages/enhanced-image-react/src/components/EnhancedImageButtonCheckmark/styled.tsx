@@ -10,6 +10,9 @@ export const StyledEnhancedImageButtonCheckmark = styled.div`
     justify-content: space-between;
     padding: 7px 10px;
     height: 32px;
+
+    font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 `;
 
 

@@ -5,18 +5,9 @@ import styled from 'styled-components';
 export const StyledEnhancedImage: any = styled.div`
     box-sizing: border-box;
     color: ${props => props.theme.color};
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
     position: relative;
-    /* overflow: ${(props: any) => {
-        if (props.toggledEditable && props.imageWidth < 745) {
-            return 'visible';
-        }
-
-        return 'hidden';
-    }}; */
-
-    line-height: 1;
+    font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 
     img {
         user-select: none;

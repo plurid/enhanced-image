@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import sha256 from 'crypto-js/sha256';
 
-import { StyledEnhancedImage } from './styled';
+import './styles.css';
+
+import {
+    StyledEnhancedImage,
+} from './styled';
 
 import Context from '../../context';
 

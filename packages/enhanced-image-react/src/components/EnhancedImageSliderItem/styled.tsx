@@ -6,6 +6,8 @@ export const StyledEnhancedImageSliderItem = styled.div`
     box-sizing: border-box;
     padding: 7px 10px;
     height: 50px;
+    font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 `;
 
 

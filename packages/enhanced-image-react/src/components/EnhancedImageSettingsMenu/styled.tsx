@@ -4,6 +4,9 @@ import styled from 'styled-components';
 const SETTINGS_MENU_TOP = 70;
 
 export const StyledEnhancedImageSettingsMenu: any = styled.div`
+    font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
     box-sizing: border-box;
     opacity: ${(props: any) => {
         if (props.menuOpaque) {
@@ -26,6 +29,9 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     margin-top: 10px;
 
     ul {
+        font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+            'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
         background-color: ${props => props.theme.backgroundColor};
         background: ${props => {
             const { backgroundGradient, backgroundColor } = props.theme;
@@ -53,6 +59,9 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     ul li {
         line-height: 1.1;
         min-height: 32px;
+
+        font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+            'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     }
 
     ul li:first-child {
