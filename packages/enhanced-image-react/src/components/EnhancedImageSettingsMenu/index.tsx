@@ -42,9 +42,12 @@ import {
 class EnhancedImageSettingsMenu extends Component<any, any> {
     static contextType = Context;
 
+    settingsMenu: React.RefObject<HTMLDivElement> = React.createRef();
+
     saveButton: any;
 
     state = {
+        settingsMenuHeight: 0,
         previousColorValues: {
             invertValue: 0,
             contrastValue: 100,
@@ -60,7 +63,20 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
         this.saveButton = React.createRef();
     }
 
+    componentDidMount() {
+        if (this.settingsMenu.current) {
+            const settingsMenuHeight = this.settingsMenu.current.offsetHeight;
+            this.setState({
+                settingsMenuHeight,
+            });
+        }
+    }
+
     public render() {
+        const {
+            settingsMenuHeight,
+        } = this.state;
+
         const {
             imageHeight,
             about,
@@ -73,9 +89,11 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
 
         return (
             <StyledEnhancedImageSettingsMenu
+                ref={this.settingsMenu}
                 theme={theme}
                 menuOpaque={menuOpaque}
                 imageHeight={imageHeight}
+                settingsMenuHeight={settingsMenuHeight}
             >
                 <ul>
                     <li>
