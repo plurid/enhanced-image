@@ -12,6 +12,15 @@ import CreateAccountButton from '../CreateAccountButton';
 import InputText from '../InputText';
 import Button from '../Button';
 
+import client from '../../graphql/client';
+import {
+    LOGIN_BY_USERNAME,
+    LOGIN_BY_EMAIL,
+} from '../../graphql/mutate';
+import {
+    CURRENT_USER,
+} from '../../graphql/query';
+
 
 
 interface LoginViewProps {
@@ -31,8 +40,24 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
     } = props;
 
 
-    const login = () => {
-        setLoggingMessage('could not login');
+    const login = async () => {
+        const mutate = await client.mutate({
+            mutation: LOGIN_BY_USERNAME,
+            variables: {
+                username,
+                password,
+            }
+        });
+
+        const query = await client.query({
+            query: CURRENT_USER,
+        });
+
+        console.log(mutate);
+        console.log(query);
+        // chrome.cookies.getAll({}, cookies => console.log(JSON.stringify(cookies)));
+        // chrome.cookies.get({url: 'http://localhost:33600', name: 'token'}, (cookie: any) => {console.log(cookie)});
+        // setLoggingMessage('could not login');
     }
 
     return (
@@ -41,7 +66,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 <InputText
                     theme={theme}
                     value={username}
-                    placeholder="username"
+                    placeholder="username or email"
                     atChange={(event: any) => setUsername(event.target.value)}
                 />
             </StyledLoginInput>
