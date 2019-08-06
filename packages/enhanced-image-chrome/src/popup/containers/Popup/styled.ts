@@ -11,7 +11,7 @@ export const StyledPopup: any = styled.div`
     }};
 
     height: 200px;
-    width: 250px;
+    width: 300px;
     text-align: left;
     user-select: none;
 
@@ -26,7 +26,7 @@ export const StyledPopup: any = styled.div`
 
 export const StyledPopupContainer: any = styled.div`
     height: 100%;
-    width: 200px;
+    width: 260px;
     display: grid;
     align-items: center;
     margin: 0 auto;
@@ -42,6 +42,14 @@ export const StyledOptionsItemLeftRight = styled.div`
         width: 14px;
         height: 14px;
         margin: 5px;
-        fill: white;
     }
+`;
+
+
+export const StyledHR: any = styled.hr`
+    width: 70%;
+    border: none;
+    border-top: 1px solid ${(props: any) => {
+        return props.theme.colorPrimary;
+    }};
 `;

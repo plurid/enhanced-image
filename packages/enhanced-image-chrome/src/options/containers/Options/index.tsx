@@ -4,7 +4,8 @@ import React, {
 
 import Context from '../../context';
 
-import Dropdown from '../../components/Dropdown';
+import Dropdown from '../../../components/Dropdown';
+import ButtonCheckmark from '../../../components/ButtonCheckmark';
 
 import {
     StyledOptions,

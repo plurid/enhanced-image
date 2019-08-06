@@ -5,10 +5,14 @@ import React, {
 
 import Context from '../../context';
 
+import ButtonSwitch from '../../../components/ButtonSwitch';
+import ButtonInline from '../../../components/ButtonInline';
+
 import {
     StyledPopup,
     StyledPopupContainer,
     StyledOptionsItemLeftRight,
+    StyledHR,
 } from './styled';
 
 import ExternalLinkIcon from '../../../assets/buttons/external-link-icon';
@@ -17,7 +21,8 @@ import ExternalLinkIcon from '../../../assets/buttons/external-link-icon';
 
 const Popup: React.FC<any> = (properties) => {
     const [extensionOnOff, setExtensionOnOff] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
     const context: any = useContext(Context);
 
     const {
@@ -27,6 +32,35 @@ const Popup: React.FC<any> = (properties) => {
     const openOptions = () => {
         chrome.runtime.openOptionsPage();
     }
+
+    const LoginView = (
+        <div>
+            <div>
+                username
+            </div>
+
+            <div>
+                password
+            </div>
+
+            <div>
+                login
+            </div>
+
+            <div>
+                <ButtonInline
+                    atClick={() => setShowLogin(false)}
+                    theme={theme}
+                >
+                    cancel
+                </ButtonInline>
+
+                <div>
+                    create account
+                </div>
+            </div>
+        </div>
+    );
 
     // chrome.runtime.onMessage.addListener(
     //     function(request, sender, sendResponse) {
@@ -46,69 +80,106 @@ const Popup: React.FC<any> = (properties) => {
             theme={theme}
         >
             <StyledPopupContainer>
-                <StyledOptionsItemLeftRight
-                    style={{marginTop: '30px'}}
-                >
-                    enhanced image is
-
-                    <div
-                        onClick={() => setExtensionOnOff(!extensionOnOff)}
-                    >
-                        {extensionOnOff ? 'on' : 'off'}
-                    </div>
-                </StyledOptionsItemLeftRight>
-
-                {loggedIn
-                    ? (
-                        <StyledOptionsItemLeftRight>
+                {!showLogin && (
+                    <>
+                        <StyledOptionsItemLeftRight
+                            style={{marginTop: '30px', display: 'flex', alignItems: 'center'}}
+                        >
                             <div>
-                                logged in as
+                                enhanced image is {extensionOnOff ? 'on' : 'off'}
                             </div>
 
-                            <div>
-                                caveljan
-                            </div>
+                            <ButtonSwitch
+                                checked={extensionOnOff}
+                                toggle={() => setExtensionOnOff(!extensionOnOff)}
+                                theme={theme}
+                            />
                         </StyledOptionsItemLeftRight>
-                    ) : (
-                        <StyledOptionsItemLeftRight>
-                            <div>
-                                login
-                            </div>
 
-                            <div>
-                                <a href="https://account.plurid.com">
-                                    create account
-                                    <span>
-                                        {ExternalLinkIcon}
-                                    </span>
-                                </a>
-                            </div>
-                        </StyledOptionsItemLeftRight>
-                    )
-                }
+                        {loggedIn
+                            ? (
+                                <StyledOptionsItemLeftRight>
+                                    <div>
+                                        logged in as
+                                    </div>
 
-                {loggedIn && (
-                    <StyledOptionsItemLeftRight>
-                        <div>
-                            transformations
+                                    <div>
+                                        caveljan
+                                    </div>
+                                </StyledOptionsItemLeftRight>
+                            ) : (
+                                <StyledOptionsItemLeftRight
+                                    style={{display: 'flex', alignItems: 'center'}}
+                                >
+                                    <ButtonInline
+                                        atClick={() => setShowLogin(true)}
+                                        theme={theme}
+                                    >
+                                        login
+                                    </ButtonInline>
+
+                                    <div>
+                                        <a
+                                            href="https://account.plurid.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <ButtonInline
+                                                atClick={() => {}}
+                                                theme={theme}
+                                                styles={{display: 'flex', alignItems: 'center'}}
+                                            >
+                                                <div>
+                                                    create account
+                                                </div>
+
+                                                <div
+                                                    style={{display: 'flex', alignItems: 'center'}}
+                                                >
+                                                    {ExternalLinkIcon}
+                                                </div>
+                                            </ButtonInline>
+                                        </a>
+                                    </div>
+                                </StyledOptionsItemLeftRight>
+                            )
+                        }
+
+                        {loggedIn && (
+                            <StyledOptionsItemLeftRight>
+                                <div>
+                                    transformations
+                                </div>
+
+                                <div style={{textAlign: 'right'}}>
+                                    50 <br/> get more
+                                </div>
+                            </StyledOptionsItemLeftRight>
+                        )}
+
+                        <StyledHR
+                            theme={theme}
+                        />
+
+                        <div
+                            style={{textAlign: 'center', marginBottom: '30px'}}
+                        >
+                            <ButtonInline
+                                theme={theme}
+                                atClick={openOptions}
+                            >
+                                view options
+                            </ButtonInline>
                         </div>
-
-                        <div style={{textAlign: 'right'}}>
-                            50 <br/> get more
-                        </div>
-                    </StyledOptionsItemLeftRight>
+                    </>
                 )}
 
-                <hr
-                    style={{width: '70%'}}
-                />
 
-                <div
-                    style={{textAlign: 'center', marginBottom: '30px'}}
-                    onClick={openOptions}
-                >
-                    view options
-                </div>
+                {showLogin && (
+                    <>
+                        {LoginView}
+                    </>
+                )}
             </StyledPopupContainer>
         </StyledPopup>
     );
