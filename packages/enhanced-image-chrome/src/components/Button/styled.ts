@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 export const StyledButton: any = styled.div`
     button {
+        /* background: ${(props: any) => {
+            return props.theme.backgroundColorSecondary;
+        }}; */
         background-color: ${(props: any) => {
             return props.theme.backgroundColorSecondary;
         }};
