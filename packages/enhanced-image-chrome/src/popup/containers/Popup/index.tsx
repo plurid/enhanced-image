@@ -1,5 +1,6 @@
 import React, {
     useState,
+    useEffect,
     useContext,
 } from 'react';
 
@@ -17,6 +18,8 @@ import {
     StyledHR,
 } from './styled';
 
+import { chromeStorage } from '../../../utils';
+
 
 
 const Popup: React.FC<any> = (properties) => {
@@ -33,25 +36,25 @@ const Popup: React.FC<any> = (properties) => {
         chrome.runtime.openOptionsPage();
     }
 
+    const setLoggedInUser = (user: any) => {
+        setLoggedIn(true);
+        console.log(user);
+    }
+
     const loginView = (
         <LoginView
             theme={theme}
             cancelLoginView={() => setShowLogin(false)}
+            setLoggedInUser={setLoggedInUser}
         />
     );
 
-    // chrome.runtime.onMessage.addListener(
-    //     function(request, sender, sendResponse) {
-    //         console.log(request);
-
-    //         console.log(sender.tab ?
-    //                     "from a content script:" + sender.tab.url :
-    //                     "from the extension");
-    //         if (request.greeting == "hello") {
-    //             sendResponse({farewell: "goodbye"});
-    //         }
-    //     }
-    // );
+    useEffect(() => {
+        const setExtensionState = async () => {
+            await chromeStorage.set({extensionOn: extensionOnOff});
+        }
+        setExtensionState();
+    }, [extensionOnOff]);
 
     return (
         <StyledPopup
@@ -100,29 +103,6 @@ const Popup: React.FC<any> = (properties) => {
                                     <CreateAccountButton
                                         theme={theme}
                                     />
-                                    {/* <div>
-                                        <a
-                                            href="https://account.plurid.com"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            <ButtonInline
-                                                atClick={() => {}}
-                                                theme={theme}
-                                                styles={{display: 'flex', alignItems: 'center'}}
-                                            >
-                                                <div>
-                                                    create account
-                                                </div>
-
-                                                <div
-                                                    style={{display: 'flex', alignItems: 'center'}}
-                                                >
-                                                    {ExternalLinkIcon}
-                                                </div>
-                                            </ButtonInline>
-                                        </a>
-                                    </div> */}
                                 </StyledOptionsItemLeftRight>
                             )
                         }

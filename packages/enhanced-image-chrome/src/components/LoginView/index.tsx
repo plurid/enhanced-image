@@ -25,8 +25,9 @@ import {
 
 
 interface LoginViewProps {
-    cancelLoginView: any;
     theme: any;
+    cancelLoginView: () => void;
+    setLoggedInUser: (user: any) => any;
 }
 
 
@@ -45,8 +46,9 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
     const [loadingButton, setLoadingButton] = useState(false);
 
     const {
-        cancelLoginView,
         theme,
+        cancelLoginView,
+        setLoggedInUser,
     } = props;
 
     useEffect(() => {
@@ -86,9 +88,9 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 return;
             }
 
+            setLoggedInUser(data.user);
             cancelLoginView();
         }
-
 
         const mutate = await client.mutate({
             mutation: LOGIN_BY_USERNAME,
@@ -110,6 +112,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
             return;
         }
 
+        setLoggedInUser(data.user);
         cancelLoginView();
         return;
 
