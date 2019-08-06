@@ -15,12 +15,12 @@ export const StyledPopup: any = styled.div`
     text-align: left;
     user-select: none;
 
-     a {
+    a {
         color: ${(props: any) => {
             return props.theme.colorSecondary;
         }};
         text-decoration: none;
-     }
+    }
 `;
 
 
@@ -28,28 +28,18 @@ export const StyledPopupContainer: any = styled.div`
     height: 100%;
     width: 260px;
     display: grid;
-    align-items: center;
     margin: 0 auto;
 `;
 
 
-export const StyledOptionsItemLeftRight = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0;
-
-    svg {
-        width: 14px;
-        height: 14px;
-        margin: 5px;
-    }
+export const StyledPopupContainerItemsView: any = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 200px 60px;
+    align-items: center;
 `;
 
 
-export const StyledHR: any = styled.hr`
-    width: 70%;
-    border: none;
-    border-top: 1px solid ${(props: any) => {
-        return props.theme.colorPrimary;
-    }};
+export const StyledViewOptionsButton: any = styled.div`
+    text-align: center;
 `;
