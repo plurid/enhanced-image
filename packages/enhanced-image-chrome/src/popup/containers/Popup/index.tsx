@@ -111,7 +111,6 @@ const Popup: React.FC<any> = (properties) => {
             theme={theme}
         >
             <StyledPopupContainer>
-                {!showLogin && (
                     <StyledPopupContainerItemsView>
                         <ItemExtensionOnOff
                             theme={theme}
@@ -120,19 +119,29 @@ const Popup: React.FC<any> = (properties) => {
                         />
 
                         <div>
-                            {!loggedIn && (
-                                <ItemNotLoggedIn
-                                    theme={theme}
-                                    setShowLogin={() => setShowLogin(true)}
-                                />
+                            {!showLogin && (
+                                <>
+                                    {!loggedIn && (
+                                        <ItemNotLoggedIn
+                                            theme={theme}
+                                            setShowLogin={() => setShowLogin(true)}
+                                        />
+                                    )}
+
+                                    {loggedIn &&(
+                                        <LoggedInView
+                                            theme={theme}
+                                            user={user}
+                                            logout={logout}
+                                        />
+                                    )}
+                                </>
                             )}
 
-                            {loggedIn &&(
-                                <LoggedInView
-                                    theme={theme}
-                                    user={user}
-                                    logout={logout}
-                                />
+                            {showLogin && (
+                                <>
+                                    {loginView}
+                                </>
                             )}
                         </div>
 
@@ -145,13 +154,6 @@ const Popup: React.FC<any> = (properties) => {
                             </ButtonInline>
                         </StyledViewOptionsButton>
                     </StyledPopupContainerItemsView>
-                )}
-
-                {showLogin && (
-                    <>
-                        {loginView}
-                    </>
-                )}
             </StyledPopupContainer>
         </StyledPopup>
     );

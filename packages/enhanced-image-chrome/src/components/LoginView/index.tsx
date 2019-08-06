@@ -148,7 +148,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
             </StyledLoginInput>
 
             <div
-                style={{height: '40px', width: '90%', margin: '0 auto'}}
+                style={{height: '40px', width: '90%', margin: '0 auto', marginBottom: '20px'}}
             >
                 {showLoginButton && (
                     <Button
@@ -156,7 +156,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                         text={loginWithEmail ? 'Login with Email' : 'Login'}
                         atClick={login}
                         loading={loadingButton}
-                        loadingText="Logging in..."
+                        loadingText="logging in..."
                     />
                 )}
             </div>
