@@ -8,6 +8,9 @@ import {
 import Button from '../Button';
 import TotalTransformations from '../TotalTransformations';
 import ItemLoggedInAs from '../ItemLoggedInAs';
+import ItemActivate from '../ItemActivate';
+
+import { PLURID_ACCOUNT_DOMAIN } from '../../constants';
 
 
 
@@ -39,25 +42,17 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
                 logout={logout}
             />
 
-            <StyledOptionsItemLeftRight>
-                <div>
-                    ingress
-                </div>
+            <ItemActivate
+                theme={theme}
+                type="ingress"
+                active={depict.access.ingress.active}
+            />
 
-                <div>
-                    {depict.access.ingress.active ? 'active' : 'not active'}
-                </div>
-            </StyledOptionsItemLeftRight>
-
-            <StyledOptionsItemLeftRight>
-                <div>
-                    subscription
-                </div>
-
-                <div>
-                    {depict.access.subscription.active ? 'active' : 'not active'}
-                </div>
-            </StyledOptionsItemLeftRight>
+            <ItemActivate
+                theme={theme}
+                type="subscription"
+                active={depict.access.subscription.active}
+            />
 
             <StyledOptionsItemLeftRight>
                 <div>
@@ -71,9 +66,9 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
                 </div>
             </StyledOptionsItemLeftRight>
 
-            <div style={{width: '50%', margin: '0px auto', marginTop: '10px'}}>
+            <div style={{width: '50%', margin: '0px auto', marginTop: '30px'}}>
                 <a
-                    href="https://account.plurid.com/depict"
+                    href={PLURID_ACCOUNT_DOMAIN}
                     target="_blank"
                     rel="noopener noreferrer"
                 >

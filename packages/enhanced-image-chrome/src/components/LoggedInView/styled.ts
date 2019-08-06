@@ -10,7 +10,7 @@ export const StyledOptionsItemLeftRight = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 5px 0;
+    margin: 15px 0;
 
     svg {
         width: 14px;
