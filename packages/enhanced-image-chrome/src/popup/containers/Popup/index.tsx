@@ -111,49 +111,49 @@ const Popup: React.FC<any> = (properties) => {
             theme={theme}
         >
             <StyledPopupContainer>
-                    <StyledPopupContainerItemsView>
-                        <ItemExtensionOnOff
+                <StyledPopupContainerItemsView>
+                    <ItemExtensionOnOff
+                        theme={theme}
+                        extensionOnOff={extensionOnOff}
+                        setExtensionOnOff={() => setExtensionOnOff(!extensionOnOff)}
+                    />
+
+                    <div>
+                        {!showLogin && (
+                            <>
+                                {!loggedIn && (
+                                    <ItemNotLoggedIn
+                                        theme={theme}
+                                        setShowLogin={() => setShowLogin(true)}
+                                    />
+                                )}
+
+                                {loggedIn &&(
+                                    <LoggedInView
+                                        theme={theme}
+                                        user={user}
+                                        logout={logout}
+                                    />
+                                )}
+                            </>
+                        )}
+
+                        {showLogin && (
+                            <>
+                                {loginView}
+                            </>
+                        )}
+                    </div>
+
+                    <StyledViewOptionsButton>
+                        <ButtonInline
                             theme={theme}
-                            extensionOnOff={extensionOnOff}
-                            setExtensionOnOff={() => setExtensionOnOff(!extensionOnOff)}
-                        />
-
-                        <div>
-                            {!showLogin && (
-                                <>
-                                    {!loggedIn && (
-                                        <ItemNotLoggedIn
-                                            theme={theme}
-                                            setShowLogin={() => setShowLogin(true)}
-                                        />
-                                    )}
-
-                                    {loggedIn &&(
-                                        <LoggedInView
-                                            theme={theme}
-                                            user={user}
-                                            logout={logout}
-                                        />
-                                    )}
-                                </>
-                            )}
-
-                            {showLogin && (
-                                <>
-                                    {loginView}
-                                </>
-                            )}
-                        </div>
-
-                        <StyledViewOptionsButton>
-                            <ButtonInline
-                                theme={theme}
-                                atClick={openOptions}
-                            >
-                                view options
-                            </ButtonInline>
-                        </StyledViewOptionsButton>
-                    </StyledPopupContainerItemsView>
+                            atClick={openOptions}
+                        >
+                            view options
+                        </ButtonInline>
+                    </StyledViewOptionsButton>
+                </StyledPopupContainerItemsView>
             </StyledPopupContainer>
         </StyledPopup>
     );

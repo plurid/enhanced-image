@@ -28,3 +28,22 @@ export const StyledOptionsItemLeftRight = styled.div`
     justify-content: space-between;
     margin: 15px 0;
 `;
+
+
+export const StyledStateContainer = styled.div`
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    h1 {
+        margin: 0px;
+    }
+`;
+
+export const StyledUIContainer = styled.div`
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    h1 {
+        margin: 0px;
+    }
+`;

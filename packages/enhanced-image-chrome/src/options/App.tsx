@@ -14,16 +14,18 @@ class App extends React.Component<any, any> {
         super(props);
 
         this.state = {
-            theme: themes.depict,
+            theme: themes.dusk,
             setTheme: this.setTheme,
         };
     }
 
     async componentDidMount() {
         const { theme } = await chromeStorage.get('theme');
+        const selectedTheme = (themes as any)[theme];
+
         if (theme) {
             this.setState({
-                theme: (themes as any)[theme],
+                theme: selectedTheme,
             });
         }
     }
@@ -36,14 +38,12 @@ class App extends React.Component<any, any> {
         );
     }
 
-    private setTheme = (theme: string) => {
-        chrome.storage.sync.set({theme: theme}, function() {
-            console.log('Value is set to ' + theme);
-        });
-
+    private setTheme = async (theme: string) => {
         this.setState({
             theme: (themes as any)[theme],
         });
+
+        await chromeStorage.set({theme});
     }
 }
 
