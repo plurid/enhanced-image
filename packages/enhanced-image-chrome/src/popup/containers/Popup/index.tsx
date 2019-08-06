@@ -17,7 +17,7 @@ import ExternalLinkIcon from '../../../assets/buttons/external-link-icon';
 
 const Popup: React.FC<any> = (properties) => {
     const [extensionOnOff, setExtensionOnOff] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(true);
     const context: any = useContext(Context);
 
     const {
