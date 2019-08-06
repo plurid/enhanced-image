@@ -23,7 +23,7 @@ import { chromeStorage } from '../../../utils';
 
 
 const Popup: React.FC<any> = (properties) => {
-    const [extensionOnOff, setExtensionOnOff] = useState(false);
+    const [extensionOnOff, setExtensionOnOff] = useState(true);
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [user, setUser] = useState(undefined);

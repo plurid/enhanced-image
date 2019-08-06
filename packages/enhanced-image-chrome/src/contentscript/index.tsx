@@ -25,6 +25,12 @@ async function contentscript() {
 
     const href = location.href;
 
+    const { extensionOn } = await chromeStorage.get('extensionOn');
+
+    if (!extensionOn) {
+        return;
+    }
+
     if (isImage(href)) {
         const imagesArray = Array.from(document.images);
 
