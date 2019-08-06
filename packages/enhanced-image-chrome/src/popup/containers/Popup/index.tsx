@@ -22,11 +22,33 @@ import { chromeStorage } from '../../../utils';
 
 
 
+
+const TotalTransformations: React.FC<any> = (properties) => {
+    const {
+        imageTransformations,
+    } = properties;
+
+    const {
+        free,
+        paid,
+        subscription,
+    } = imageTransformations;
+
+    const total = free + paid + subscription;
+
+    return (
+        <>
+            {total}
+        </>
+    );
+}
+
 const Popup: React.FC<any> = (properties) => {
     const [extensionOnOff, setExtensionOnOff] = useState(true);
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [user, setUser] = useState(undefined);
+    const [depict, setDepict] = useState(undefined);
     const context: any = useContext(Context);
 
     const {
@@ -40,6 +62,11 @@ const Popup: React.FC<any> = (properties) => {
     const setLoggedInUser = (user: any) => {
         setLoggedIn(true);
         setUser(user);
+        const {
+            depict,
+        } = user.products;
+        setDepict(depict);
+
         console.log(user);
     }
 
@@ -124,7 +151,11 @@ const Popup: React.FC<any> = (properties) => {
                                 </div>
 
                                 <div style={{textAlign: 'right'}}>
-                                    50 <br/> get more
+                                    <TotalTransformations
+                                        imageTransformations={depict.access.imageTransformations}
+                                    />
+                                    <br/>
+                                    get more
                                 </div>
                             </StyledOptionsItemLeftRight>
                         )}
