@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {
+    useState,
+} from 'react';
 
 import {
     StyledLoginView,
+    StyledLoginInput,
 } from './styled';
 
 import ButtonInline from '../ButtonInline';
 import CreateAccountButton from '../CreateAccountButton';
+import InputText from '../InputText';
 
 
 
@@ -16,6 +20,9 @@ interface LoginViewProps {
 
 
 const LoginView: React.FC<LoginViewProps> = (props) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     const {
         cancelLoginView,
         theme,
@@ -23,13 +30,24 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
 
     return (
         <StyledLoginView>
-            <div>
-                username
-            </div>
+            <StyledLoginInput>
+                <InputText
+                    theme={theme}
+                    value={username}
+                    placeholder="username"
+                    atChange={(event: any) => setUsername(event.target.value)}
+                />
+            </StyledLoginInput>
 
-            <div>
-                password
-            </div>
+            <StyledLoginInput>
+                <InputText
+                    theme={theme}
+                    value={password}
+                    placeholder="password"
+                    password={true}
+                    atChange={(event: any) => setPassword(event.target.value)}
+                />
+            </StyledLoginInput>
 
             <div>
                 login
