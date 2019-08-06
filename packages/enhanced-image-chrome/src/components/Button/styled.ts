@@ -7,9 +7,9 @@ export const StyledButton: any = styled.div`
         /* background: ${(props: any) => {
             return props.theme.backgroundColorSecondary;
         }}; */
-        background-color: ${(props: any) => {
+        /* background-color: ${(props: any) => {
             return props.theme.backgroundColorSecondary;
-        }};
+        }}; */
         color: ${(props: any) => {
             return props.theme.colorPrimary;
         }};
