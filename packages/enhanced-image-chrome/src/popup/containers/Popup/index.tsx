@@ -27,6 +27,11 @@ import {
     deleteTypenames,
 } from '../../../utils';
 
+import client from '../../../graphql/client';
+import {
+    LOGOUT
+} from '../../../graphql/mutate';
+
 
 
 const Popup: React.FC<any> = (properties) => {
@@ -34,8 +39,8 @@ const Popup: React.FC<any> = (properties) => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [user, setUser] = useState(undefined);
-    const context: any = useContext(Context);
 
+    const context: any = useContext(Context);
     const {
         theme,
     } = context;
@@ -87,6 +92,20 @@ const Popup: React.FC<any> = (properties) => {
         setExtensionState();
     }, [extensionOnOff]);
 
+    const logout = async () => {
+        setLoggedIn(false);
+        setUser(undefined);
+
+        try {
+            await chromeStorage.remove('user');
+
+            await client.mutate({
+                mutation: LOGOUT
+            });
+        } catch (err) {
+        }
+    }
+
     return (
         <StyledPopup
             theme={theme}
@@ -112,6 +131,7 @@ const Popup: React.FC<any> = (properties) => {
                                 <LoggedInView
                                     theme={theme}
                                     user={user}
+                                    logout={logout}
                                 />
                             )}
                         </div>
