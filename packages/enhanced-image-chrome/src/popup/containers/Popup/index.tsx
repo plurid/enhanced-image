@@ -192,18 +192,20 @@ const Popup: React.FC<any> = (properties) => {
                                 </StyledOptionsItemLeftRight>
 
                                 <div style={{width: '50%', margin: '0px auto', marginTop: '10px'}}>
-                                    <Button
-                                        theme={theme}
-                                        text="Get More"
-                                        atClick={() => {}}
-                                    />
+                                    <a
+                                        href="https://account.plurid.com/depict"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <Button
+                                            theme={theme}
+                                            text="Get More"
+                                            atClick={() => {}}
+                                        />
+                                    </a>
                                 </div>
                             </>
                         )}
-
-                        {/* <StyledHR
-                            theme={theme}
-                        /> */}
 
                         <div
                             style={{textAlign: 'center', marginBottom: '20px'}}
