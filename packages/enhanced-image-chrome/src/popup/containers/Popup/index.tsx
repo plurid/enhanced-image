@@ -7,6 +7,7 @@ import React, {
 import Context from '../../context';
 
 
+import Button from '../../../components/Button';
 import ButtonSwitch from '../../../components/ButtonSwitch';
 import ButtonInline from '../../../components/ButtonInline';
 import CreateAccountButton from '../../../components/CreateAccountButton';
@@ -115,7 +116,7 @@ const Popup: React.FC<any> = (properties) => {
                 {!showLogin && (
                     <>
                         <StyledOptionsItemLeftRight
-                            style={{marginTop: '30px', display: 'flex', alignItems: 'center'}}
+                            style={{marginTop: '20px', display: 'flex', alignItems: 'center'}}
                         >
                             <div>
                                 enhanced image is {extensionOnOff ? 'on' : 'off'}
@@ -128,8 +129,26 @@ const Popup: React.FC<any> = (properties) => {
                             />
                         </StyledOptionsItemLeftRight>
 
-                        {loggedIn
-                            ? (
+                        {!loggedIn && (
+                            <StyledOptionsItemLeftRight
+                                style={{display: 'flex', alignItems: 'center'}}
+                            >
+                                <ButtonInline
+                                    atClick={() => setShowLogin(true)}
+                                    theme={theme}
+                                >
+                                    login
+                                </ButtonInline>
+
+
+                                <CreateAccountButton
+                                    theme={theme}
+                                />
+                            </StyledOptionsItemLeftRight>
+                        )}
+
+                        {loggedIn &&(
+                            <>
                                 <StyledOptionsItemLeftRight>
                                     <div>
                                         logged in as
@@ -139,47 +158,55 @@ const Popup: React.FC<any> = (properties) => {
                                         {user.username}
                                     </div>
                                 </StyledOptionsItemLeftRight>
-                            ) : (
-                                <StyledOptionsItemLeftRight
-                                    style={{display: 'flex', alignItems: 'center'}}
-                                >
-                                    <ButtonInline
-                                        atClick={() => setShowLogin(true)}
-                                        theme={theme}
-                                    >
-                                        login
-                                    </ButtonInline>
 
+                                <StyledOptionsItemLeftRight>
+                                    <div>
+                                        ingress
+                                    </div>
 
-                                    <CreateAccountButton
-                                        theme={theme}
-                                    />
+                                    <div>
+                                        {depict.access.ingress.active ? 'active' : 'not active'}
+                                    </div>
                                 </StyledOptionsItemLeftRight>
-                            )
-                        }
 
-                        {loggedIn && (
-                            <StyledOptionsItemLeftRight>
-                                <div>
-                                    transformations
-                                </div>
+                                <StyledOptionsItemLeftRight>
+                                    <div>
+                                        subscription
+                                    </div>
 
-                                <div style={{textAlign: 'right'}}>
-                                    <TotalTransformations
-                                        imageTransformations={depict.access.imageTransformations}
+                                    <div>
+                                        {depict.access.subscription.active ? 'active' : 'not active'}
+                                    </div>
+                                </StyledOptionsItemLeftRight>
+
+                                <StyledOptionsItemLeftRight>
+                                    <div>
+                                        transformations
+                                    </div>
+
+                                    <div style={{textAlign: 'right'}}>
+                                        <TotalTransformations
+                                            imageTransformations={depict.access.imageTransformations}
+                                        />
+                                    </div>
+                                </StyledOptionsItemLeftRight>
+
+                                <div style={{width: '50%', margin: '0px auto', marginTop: '10px'}}>
+                                    <Button
+                                        theme={theme}
+                                        text="Get More"
+                                        atClick={() => {}}
                                     />
-                                    <br/>
-                                    get more
                                 </div>
-                            </StyledOptionsItemLeftRight>
+                            </>
                         )}
 
-                        <StyledHR
+                        {/* <StyledHR
                             theme={theme}
-                        />
+                        /> */}
 
                         <div
-                            style={{textAlign: 'center', marginBottom: '30px'}}
+                            style={{textAlign: 'center', marginBottom: '20px'}}
                         >
                             <ButtonInline
                                 theme={theme}

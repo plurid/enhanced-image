@@ -19,7 +19,7 @@ export const StyledButton: any = styled.div`
         outline: none;
         padding: 0;
         text-align: center;
-        font-size: 14px;
+        font-size: 13px;
         width: 100%;
         height: 30px;
         border-radius: 30px;

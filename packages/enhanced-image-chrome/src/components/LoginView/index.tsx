@@ -153,10 +153,10 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 {showLoginButton && (
                     <Button
                         theme={theme}
-                        text={loginWithEmail ? 'login with email' : 'login'}
+                        text={loginWithEmail ? 'Login with Email' : 'Login'}
                         atClick={login}
                         loading={loadingButton}
-                        loadingText="logging in..."
+                        loadingText="Logging in..."
                     />
                 )}
             </div>

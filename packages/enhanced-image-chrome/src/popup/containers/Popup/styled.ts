@@ -10,7 +10,7 @@ export const StyledPopup: any = styled.div`
         return props.theme.colorPrimary;
     }};
 
-    height: 200px;
+    height: 320px;
     width: 300px;
     text-align: left;
     user-select: none;
