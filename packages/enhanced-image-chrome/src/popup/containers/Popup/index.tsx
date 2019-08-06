@@ -7,6 +7,8 @@ import Context from '../../context';
 
 import ButtonSwitch from '../../../components/ButtonSwitch';
 import ButtonInline from '../../../components/ButtonInline';
+import CreateAccountButton from '../../../components/CreateAccountButton';
+import LoginView from '../../../components/LoginView';
 
 import {
     StyledPopup,
@@ -14,8 +16,6 @@ import {
     StyledOptionsItemLeftRight,
     StyledHR,
 } from './styled';
-
-import ExternalLinkIcon from '../../../assets/buttons/external-link-icon';
 
 
 
@@ -33,33 +33,11 @@ const Popup: React.FC<any> = (properties) => {
         chrome.runtime.openOptionsPage();
     }
 
-    const LoginView = (
-        <div>
-            <div>
-                username
-            </div>
-
-            <div>
-                password
-            </div>
-
-            <div>
-                login
-            </div>
-
-            <div>
-                <ButtonInline
-                    atClick={() => setShowLogin(false)}
-                    theme={theme}
-                >
-                    cancel
-                </ButtonInline>
-
-                <div>
-                    create account
-                </div>
-            </div>
-        </div>
+    const loginView = (
+        <LoginView
+            theme={theme}
+            cancelLoginView={() => setShowLogin(false)}
+        />
     );
 
     // chrome.runtime.onMessage.addListener(
@@ -118,7 +96,11 @@ const Popup: React.FC<any> = (properties) => {
                                         login
                                     </ButtonInline>
 
-                                    <div>
+
+                                    <CreateAccountButton
+                                        theme={theme}
+                                    />
+                                    {/* <div>
                                         <a
                                             href="https://account.plurid.com"
                                             target="_blank"
@@ -140,7 +122,7 @@ const Popup: React.FC<any> = (properties) => {
                                                 </div>
                                             </ButtonInline>
                                         </a>
-                                    </div>
+                                    </div> */}
                                 </StyledOptionsItemLeftRight>
                             )
                         }
@@ -177,7 +159,7 @@ const Popup: React.FC<any> = (properties) => {
 
                 {showLogin && (
                     <>
-                        {LoginView}
+                        {loginView}
                     </>
                 )}
             </StyledPopupContainer>
