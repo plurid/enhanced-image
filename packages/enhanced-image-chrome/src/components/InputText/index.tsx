@@ -33,6 +33,10 @@ const InputText: React.FC<InputTextProps> = (props) => {
                 value={value}
                 onChange={atChange}
                 placeholder={placeholder ? placeholder : ''}
+                spellCheck={false}
+                autoCapitalize="false"
+                autoComplete="false"
+                autoCorrect="false"
             />
         </StyledInputText>
     );
