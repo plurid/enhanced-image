@@ -27,6 +27,7 @@ const CreateAccountButton: React.FC<CreateAccountButtonProps> = (props) => {
                 href={PLURID_ACCOUNT_DOMAIN}
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{outline: 'none'}}
             >
                 <ButtonInline
                     atClick={() => {}}
