@@ -6,10 +6,12 @@ import React, {
 
 import Context from '../../context';
 
+
 import ButtonSwitch from '../../../components/ButtonSwitch';
 import ButtonInline from '../../../components/ButtonInline';
 import CreateAccountButton from '../../../components/CreateAccountButton';
 import LoginView from '../../../components/LoginView';
+import TotalTransformations from '../../../components/TotalTransformations';
 
 import {
     StyledPopup,
@@ -18,30 +20,18 @@ import {
     StyledHR,
 } from './styled';
 
-import { chromeStorage } from '../../../utils';
+import {
+    chromeStorage,
+    deleteTypenames,
+} from '../../../utils';
 
 
+import client from '../../../graphql/client';
+import {
+    CURRENT_USER,
+} from '../../../graphql/query';
 
 
-const TotalTransformations: React.FC<any> = (properties) => {
-    const {
-        imageTransformations,
-    } = properties;
-
-    const {
-        free,
-        paid,
-        subscription,
-    } = imageTransformations;
-
-    const total = free + paid + subscription;
-
-    return (
-        <>
-            {total}
-        </>
-    );
-}
 
 const Popup: React.FC<any> = (properties) => {
     const [extensionOnOff, setExtensionOnOff] = useState(true);
@@ -59,15 +49,19 @@ const Popup: React.FC<any> = (properties) => {
         chrome.runtime.openOptionsPage();
     }
 
-    const setLoggedInUser = (user: any) => {
-        setLoggedIn(true);
+    const handleLoggedInUser = (user: any) => {
         setUser(user);
         const {
             depict,
         } = user.products;
         setDepict(depict);
+        setLoggedIn(true);
+    }
 
-        console.log(user);
+    const setLoggedInUser = async (_user: any) => {
+        const user = deleteTypenames(_user);
+        handleLoggedInUser(user);
+        await chromeStorage.set({user});
     }
 
     const loginView = (
@@ -83,7 +77,27 @@ const Popup: React.FC<any> = (properties) => {
             const { extensionOn } = await chromeStorage.get('extensionOn');
             setExtensionOnOff(!!extensionOn);
         }
+
+        const getCurrentUser = async () => {
+            const { user } = await chromeStorage.get('user');
+            if (user) {
+                handleLoggedInUser(user);
+            }
+
+            // const query = await client.query({
+            //     query: CURRENT_USER,
+            // });
+
+            // const data = query.data.currentUser;
+
+            // if (data.status) {
+            //     console.log(query);
+            //     // setLoggedInUser(data.user);
+            // }
+        }
+
         getExtensionState();
+        getCurrentUser();
     }, []);
 
     useEffect(() => {

@@ -16,12 +16,8 @@ export const CURRENT_USER = gql`
                 products {
                     ...DepictProductFragment
                 }
-                depictImages {
-                    ...DepictImageDataFragment
-                }
             }
         }
     }
     ${DepictProductFragment}
-    ${DepictImageDataFragment}
 `;
