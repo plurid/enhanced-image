@@ -10,6 +10,7 @@ import {
 import ButtonInline from '../ButtonInline';
 import CreateAccountButton from '../CreateAccountButton';
 import InputText from '../InputText';
+import Button from '../Button';
 
 
 
@@ -22,11 +23,17 @@ interface LoginViewProps {
 const LoginView: React.FC<LoginViewProps> = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loggingMessage, setLoggingMessage] = useState('');
 
     const {
         cancelLoginView,
         theme,
     } = props;
+
+
+    const login = () => {
+        setLoggingMessage('could not login');
+    }
 
     return (
         <StyledLoginView>
@@ -49,23 +56,40 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 />
             </StyledLoginInput>
 
-            <div>
-                login
+            <div
+                style={{width: '90%', margin: '0 auto'}}
+            >
+                <Button
+                    theme={theme}
+                    text="login"
+                    atClick={login}
+                    loadingText="logging in..."
+                />
             </div>
 
             <div
-                style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}
+                style={{display: 'flex', alignItems: 'center', height: '20px', justifyContent: 'space-around'}}
             >
-                <ButtonInline
-                    atClick={cancelLoginView}
-                    theme={theme}
-                >
-                    cancel
-                </ButtonInline>
+                {!loggingMessage && (
+                    <>
+                        <ButtonInline
+                            atClick={cancelLoginView}
+                            theme={theme}
+                        >
+                            cancel
+                        </ButtonInline>
 
-                <CreateAccountButton
-                    theme={theme}
-                />
+                        <CreateAccountButton
+                            theme={theme}
+                        />
+                    </>
+                )}
+
+                {loggingMessage && (
+                    <div>
+                        {loggingMessage}
+                    </div>
+                )}
             </div>
         </StyledLoginView>
     );
