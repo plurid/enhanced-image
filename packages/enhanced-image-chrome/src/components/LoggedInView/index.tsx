@@ -7,12 +7,14 @@ import {
 
 import Button from '../Button';
 import TotalTransformations from '../TotalTransformations';
+import ItemLoggedInAs from '../ItemLoggedInAs';
 
 
 
 interface LoggedInViewProps {
     theme: any;
     user: any;
+    logout: any;
 }
 
 
@@ -20,6 +22,7 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
     const {
         theme,
         user,
+        logout,
     } = props;
 
     const {
@@ -30,15 +33,11 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
         <StyledLoggedInView
             theme={theme}
         >
-            <StyledOptionsItemLeftRight>
-                <div>
-                    logged in as
-                </div>
-
-                <div>
-                    {user.username}
-                </div>
-            </StyledOptionsItemLeftRight>
+            <ItemLoggedInAs
+                theme={theme}
+                username={user.username}
+                logout={logout}
+            />
 
             <StyledOptionsItemLeftRight>
                 <div>
