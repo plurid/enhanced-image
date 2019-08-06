@@ -85,26 +85,26 @@ export const DepictProductFragment = gql`
             access {
                 ...DepictProductAccessFragment
             }
-            profile {
-                ...DepictProductProfileFragment
-            }
-            ui {
-                ...DepictProductUIFragment
-            }
-            personalization {
-                ...DepictProductPersonalizationFragment
-            }
-            sittings {
-                ...DepictProductSittingsFragment
-            }
+            # profile {
+            #     ...DepictProductProfileFragment
+            # }
+            # ui {
+            #     ...DepictProductUIFragment
+            # }
+            # personalization {
+            #     ...DepictProductPersonalizationFragment
+            # }
+            # sittings {
+            #     ...DepictProductSittingsFragment
+            # }
         }
     }
     ${DepictProductAccessFragment}
-    ${DepictProductProfileFragment}
-    ${DepictProductUIFragment}
-    ${DepictProductPersonalizationFragment}
-    ${DepictProductSittingsFragment}
 `;
+    // ${DepictProductProfileFragment}
+    // ${DepictProductUIFragment}
+    // ${DepictProductPersonalizationFragment}
+    // ${DepictProductSittingsFragment}
 
 
 export const DepictImageDataFragment = gql`
