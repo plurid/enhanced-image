@@ -1,5 +1,9 @@
 import gql from 'graphql-tag';
 
+import {
+    DepictProductFragment,
+} from './fragments';
+
 
 
 export const LOGIN_BY_USERNAME = gql`
@@ -12,6 +16,9 @@ export const LOGIN_BY_USERNAME = gql`
             user {
                 id
                 username
+                products {
+                    ...DepictProductFragment
+                }
             }
             errors {
                 path
@@ -19,6 +26,7 @@ export const LOGIN_BY_USERNAME = gql`
             }
         }
     }
+    ${DepictProductFragment}
 `;
 
 
@@ -32,6 +40,9 @@ export const LOGIN_BY_EMAIL = gql`
             user {
                 id
                 username
+                products {
+                    ...DepictProductFragment
+                }
             }
             errors {
                 path

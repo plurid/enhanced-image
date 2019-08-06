@@ -26,6 +26,7 @@ const Popup: React.FC<any> = (properties) => {
     const [extensionOnOff, setExtensionOnOff] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
+    const [user, setUser] = useState(undefined);
     const context: any = useContext(Context);
 
     const {
@@ -38,6 +39,7 @@ const Popup: React.FC<any> = (properties) => {
 
     const setLoggedInUser = (user: any) => {
         setLoggedIn(true);
+        setUser(user);
         console.log(user);
     }
 
@@ -48,6 +50,14 @@ const Popup: React.FC<any> = (properties) => {
             setLoggedInUser={setLoggedInUser}
         />
     );
+
+    useEffect(() => {
+        const getExtensionState = async () => {
+            const { extensionOn } = await chromeStorage.get('extensionOn');
+            setExtensionOnOff(!!extensionOn);
+        }
+        getExtensionState();
+    }, []);
 
     useEffect(() => {
         const setExtensionState = async () => {
@@ -85,7 +95,7 @@ const Popup: React.FC<any> = (properties) => {
                                     </div>
 
                                     <div>
-                                        caveljan
+                                        {user.username}
                                     </div>
                                 </StyledOptionsItemLeftRight>
                             ) : (
