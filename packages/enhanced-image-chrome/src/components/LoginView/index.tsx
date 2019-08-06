@@ -1,5 +1,6 @@
 import React, {
     useState,
+    useEffect,
 } from 'react';
 
 import {
@@ -29,18 +30,66 @@ interface LoginViewProps {
 }
 
 
+const isEmail = (value: string) => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(value).toLowerCase());
+}
+
+
 const LoginView: React.FC<LoginViewProps> = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showLoginButton, setShowLoginButton] = useState(false);
+    const [loginWithEmail, setLoginWithEmail] = useState(false);
     const [loggingMessage, setLoggingMessage] = useState('');
+    const [loadingButton, setLoadingButton] = useState(false);
 
     const {
         cancelLoginView,
         theme,
     } = props;
 
+    useEffect(() => {
+        if (username.length !== 0 && password.length !==0) {
+            setShowLoginButton(true);
+        } else {
+            setShowLoginButton(false);
+        }
+
+        if (isEmail(username)) {
+            setLoginWithEmail(true);
+        } else {
+            setLoginWithEmail(false);
+        }
+    }, [username, password]);
 
     const login = async () => {
+        setLoadingButton(true);
+        if (loginWithEmail) {
+            const mutate = await client.mutate({
+                mutation: LOGIN_BY_EMAIL,
+                variables: {
+                    email: username,
+                    password,
+                }
+            });
+            console.log('login with email', mutate);
+
+            const data = mutate.data.loginByEmail;
+            setLoadingButton(false);
+
+            if (!data.status) {
+                setLoggingMessage('could not login');
+                setTimeout(() => {
+                    setLoggingMessage('');
+                }, 2000);
+                return;
+            }
+
+            cancelLoginView();
+        }
+
+
         const mutate = await client.mutate({
             mutation: LOGIN_BY_USERNAME,
             variables: {
@@ -48,16 +97,30 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 password,
             }
         });
+        console.log('login with username', mutate);
 
-        const query = await client.query({
-            query: CURRENT_USER,
-        });
+        const data = mutate.data.loginByUsername;
+        setLoadingButton(false);
 
-        console.log(mutate);
-        console.log(query);
+        if (!data.status) {
+            setLoggingMessage('could not login');
+            setTimeout(() => {
+                setLoggingMessage('');
+            }, 2000);
+            return;
+        }
+
+        cancelLoginView();
+        return;
+
+        // const query = await client.query({
+        //     query: CURRENT_USER,
+        // });
+
+        // console.log(query);
+
         // chrome.cookies.getAll({}, cookies => console.log(JSON.stringify(cookies)));
         // chrome.cookies.get({url: 'http://localhost:33600', name: 'token'}, (cookie: any) => {console.log(cookie)});
-        // setLoggingMessage('could not login');
     }
 
     return (
@@ -82,14 +145,17 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
             </StyledLoginInput>
 
             <div
-                style={{width: '90%', margin: '0 auto'}}
+                style={{height: '40px', width: '90%', margin: '0 auto'}}
             >
-                <Button
-                    theme={theme}
-                    text="login"
-                    atClick={login}
-                    loadingText="logging in..."
-                />
+                {showLoginButton && (
+                    <Button
+                        theme={theme}
+                        text={loginWithEmail ? 'login with email' : 'login'}
+                        atClick={login}
+                        loading={loadingButton}
+                        loadingText="logging in..."
+                    />
+                )}
             </div>
 
             <div

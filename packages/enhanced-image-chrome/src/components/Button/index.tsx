@@ -12,7 +12,6 @@ interface ButtonProps {
     theme: any;
     text: string;
     atClick: any;
-    disabled?: boolean;
     loading?: boolean;
     loadingText?: string;
 }
@@ -23,17 +22,11 @@ const Button: React.FC<ButtonProps> = (props) => {
         theme,
         text,
         atClick,
-        disabled,
         loading,
         loadingText,
     } = props;
 
-    const [disabledButton, setDisabledButton] = useState(disabled ? disabled : false);
-    const [loadingButton, setLoadingButton] = useState(loading ? loading : false);
-
     const handleClick = () => {
-        setDisabledButton(true);
-        setLoadingButton(true);
         atClick();
     }
 
@@ -43,9 +36,9 @@ const Button: React.FC<ButtonProps> = (props) => {
         >
            <button
                 onClick={handleClick}
-                disabled={disabledButton}
+                disabled={loading}
            >
-               {loadingButton ? loadingText : text}
+               {loading ? loadingText : text}
            </button>
         </StyledButton>
     );

@@ -38,6 +38,6 @@ export const StyledButton: any = styled.div`
         box-shadow: 0px 5px 5px 0px ${(props: any) => {
             return props.theme.shadow;
         }};
-        cursor: not-allowed;
+        cursor: none;
     }
 `;
