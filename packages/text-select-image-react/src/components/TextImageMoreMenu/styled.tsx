@@ -9,16 +9,16 @@ export const StyledTextImageMoreMenu = styled.div`
     z-index: 9999;
 
     ul {
-        background-color: ${props => props.theme.backgroundColor};
+        background-color: ${props => props.theme.backgroundColorPrimary};
         background: ${props => {
-            const { backgroundGradient, backgroundColor } = props.theme;
+            const { backgroundGradient, backgroundColorPrimary } = props.theme;
             if (backgroundGradient) {
                 return backgroundGradient;
             } else {
-                return backgroundColor;
+                return backgroundColorPrimary;
             }
         }};
-        color: ${props => props.theme.color};
+        color: ${props => props.theme.colorPrimary};
 
         box-shadow: 0px 0px 5px 1px hsla(220, 10%, 2%, 0.7);
 
@@ -49,7 +49,7 @@ export const StyledTextImageMoreMenu = styled.div`
     }
 
     ul li:hover {
-        background-color: ${props => props.theme.backgroundColorHover};
+        background-color: ${props => props.theme.backgroundColorSecondary};
     }
 
     hr {

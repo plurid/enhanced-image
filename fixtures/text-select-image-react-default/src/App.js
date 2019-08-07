@@ -21,7 +21,7 @@ class App extends Component {
                     style={ {width: 900, margin: '150px auto'} }
                 >
                     <TextSelectImage
-                        theme="night"
+                        theme="depict"
                         // src={foodImage}
                         src={img2}
                         // src={populationDensityEuropeB}

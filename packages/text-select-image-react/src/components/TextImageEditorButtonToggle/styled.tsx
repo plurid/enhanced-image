@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export const StyledTextImageEditorButtonToggle: any = styled.div`
     background-color: ${(props: any) => {
         if (props.toggled) {
-            return props.theme.backgroundColorHover;
+            return props.theme.backgroundColorSecondary;
         } else {
             return 'transparent';
         }
@@ -18,11 +18,11 @@ export const StyledTextImageEditorButtonToggle: any = styled.div`
     min-width: 32px;
 
     :hover {
-        background-color: ${props => props.theme.backgroundColorHover};
+        background-color: ${props => props.theme.backgroundColorSecondary};
     }
 
     svg {
-        fill: ${props => props.theme.color};
+        fill: ${props => props.theme.colorPrimary};
         height: 14px;
         width: 14px;
     }

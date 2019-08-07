@@ -36,6 +36,7 @@ const themes = {
         `,
         backgroundColorHover: 'hsla(290, 30%, 25%, 0.3)',
         color: 'hsl(220, 2%, 95%)',
+        colorPrimary: 'hsl(220, 2%, 95%)',
         colorSecondary: 'hsl(220, 2%, 75%)',
     },
 };

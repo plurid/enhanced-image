@@ -21,7 +21,8 @@ import {
     emptyTextSelectImage,
     newTextImageVersion,
 } from '../../data/initializers';
-import themes from '../../data/themes';
+// import themes from '../../data/themes';
+import themes from '@plurid/apps.utilities.themes';
 
 import uuidv4 from '../../utils/uuid';
 import computeImageSha from '../../utils/computeImageSha';

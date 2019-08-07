@@ -9,7 +9,7 @@ export const StyledTextImageEditorButtonInput = styled.div`
     display: grid;
 
     svg {
-        fill: ${props => props.theme.color};
+        fill: ${props => props.theme.colorPrimary};
         height: 14px;
         width: 14px;
     }
@@ -29,7 +29,7 @@ export const StyledTextImageEditorButtonInputContainer = styled.div`
         width: 110px;
         border: none;
         background: ${props => props.theme.backgroundColorSecondary};
-        color: ${props => props.theme.color};
+        color: ${props => props.theme.colorPrimary};
         text-align: left;
         outline: none;
         padding: 3px 6px;
@@ -46,7 +46,7 @@ export const StyledTextImageEditorButtonInputGotoLink = styled.div`
     user-select: none;
 
     svg {
-        fill: ${props => props.theme.color};
+        fill: ${props => props.theme.colorPrimary};
         height: 14px;
         width: 14px;
     }

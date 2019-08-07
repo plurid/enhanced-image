@@ -13,7 +13,7 @@ export const StyledTextImageEditorButtonsColors: any = styled.div`
 export const StyledTextImageEditorButtonColors: any = styled.div`
     background-color: ${(props: any) => {
         if (props.selected) {
-            return props.theme.backgroundColorHover;
+            return props.theme.backgroundColorSecondary;
         }
         switch (props.color) {
             case 'black':

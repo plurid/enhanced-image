@@ -16,10 +16,10 @@ export const StyledTextSelectImageButtonCheckmarkCheckbox: any = styled.div`
     height: 13px;
     width: 13px;
     border-radius: 50%;
-    border: 2px solid ${props => props.theme.color};
+    border: 2px solid ${props => props.theme.colorPrimary};
     background-color: ${(props: any) => {
         if (props.isChecked) {
-            return props.theme.color;
+            return props.theme.colorPrimary;
         }
         return 'transparent';
     }};
