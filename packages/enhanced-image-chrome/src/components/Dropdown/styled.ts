@@ -23,11 +23,14 @@ export const StyledDropdownList: any = styled.div`
     }};
 
     position: absolute;
-    top: 20px;
+    top: -110px;
     right: 0px;
     border-radius: 10px;
+    border-bottom-right-radius: 0;
     width: 60px;
-    z-index: 9999;
+    max-height: 100px;
+    overflow-y: auto;
+    z-index: 9990;
     box-shadow: 0px 3px 5px 1px hsla(327, 94%, 10%, 0.7);
 
     ul {

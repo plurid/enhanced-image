@@ -7,4 +7,8 @@ export const StyledItemLoggedInAs: any = styled.div`
     align-items: center;
     justify-content: space-between;
     margin: 15px 0;
+
+    a {
+        text-decoration: none;
+    }
 `;
