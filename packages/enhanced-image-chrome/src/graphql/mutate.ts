@@ -60,3 +60,17 @@ export const LOGOUT = gql`
         }
     }
 `;
+
+
+export const INITIALIZE_DEPICT_USER = gql`
+    mutation InitializeDepictUser {
+        initializeDepictUser {
+            status
+            errors {
+                path
+                message
+                type
+            }
+        }
+    }
+`;

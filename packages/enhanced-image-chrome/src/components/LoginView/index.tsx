@@ -17,6 +17,7 @@ import client from '../../graphql/client';
 import {
     LOGIN_BY_USERNAME,
     LOGIN_BY_EMAIL,
+    INITIALIZE_DEPICT_USER,
 } from '../../graphql/mutate';
 import {
     CURRENT_USER,
@@ -65,19 +66,84 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
         }
     }, [username, password]);
 
-    const login = async () => {
-        setLoadingButton(true);
-        if (loginWithEmail) {
+    const initializeUser = async () => {
+        try {
             const mutate = await client.mutate({
-                mutation: LOGIN_BY_EMAIL,
+                mutation: INITIALIZE_DEPICT_USER,
+            });
+
+            const data = mutate.data.initializeDepictUser;
+
+            if (data.status) {
+                const query = await client.query({
+                    query: CURRENT_USER,
+                });
+                const data = query.data.currentUser;
+                if (data.status) {
+                    return data.user;
+                }
+            }
+
+            return null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    const login = async () => {
+        try {
+            setLoadingButton(true);
+            if (loginWithEmail) {
+                const mutate = await client.mutate({
+                    mutation: LOGIN_BY_EMAIL,
+                    variables: {
+                        email: username,
+                        password,
+                    }
+                });
+
+                const data = mutate.data.loginByEmail;
+                setLoadingButton(false);
+
+                if (!data.status) {
+                    setLoggingMessage('could not login');
+                    setTimeout(() => {
+                        setLoggingMessage('');
+                    }, 2000);
+                    return;
+                }
+
+                if (data.user.products !== null) {
+                    if (data.user.products.depict !== null) {
+                        setLoggedInUser(data.user);
+                        cancelLoginView();
+                    }
+                } else {
+                    const user = await initializeUser();
+
+                    if (!user) {
+                        setLoggingMessage('could not login');
+                        setTimeout(() => {
+                            setLoggingMessage('');
+                        }, 2000);
+                        return;
+                    }
+
+                    setLoggedInUser(user);
+                    cancelLoginView();
+                    return;
+                }
+            }
+
+            const mutate = await client.mutate({
+                mutation: LOGIN_BY_USERNAME,
                 variables: {
-                    email: username,
+                    username,
                     password,
                 }
             });
-            console.log('login with email', mutate);
 
-            const data = mutate.data.loginByEmail;
+            const data = mutate.data.loginByUsername;
             setLoadingButton(false);
 
             if (!data.status) {
@@ -88,42 +154,28 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 return;
             }
 
-            setLoggedInUser(data.user);
-            cancelLoginView();
-        }
+            if (data.user.products !== null) {
+                if (data.user.products.depict !== null) {
+                    setLoggedInUser(data.user);
+                    cancelLoginView();
+                }
+            } else {
+                const user = await initializeUser();
 
-        const mutate = await client.mutate({
-            mutation: LOGIN_BY_USERNAME,
-            variables: {
-                username,
-                password,
+                if (!user) {
+                    setLoggingMessage('could not login');
+                    setTimeout(() => {
+                        setLoggingMessage('');
+                    }, 2000);
+                    return;
+                }
+
+                setLoggedInUser(user);
+                cancelLoginView();
+                return;
             }
-        });
-        console.log('login with username', mutate);
-
-        const data = mutate.data.loginByUsername;
-        setLoadingButton(false);
-
-        if (!data.status) {
-            setLoggingMessage('could not login');
-            setTimeout(() => {
-                setLoggingMessage('');
-            }, 2000);
-            return;
+        } catch (error) {
         }
-
-        setLoggedInUser(data.user);
-        cancelLoginView();
-        return;
-
-        // const query = await client.query({
-        //     query: CURRENT_USER,
-        // });
-
-        // console.log(query);
-
-        // chrome.cookies.getAll({}, cookies => console.log(JSON.stringify(cookies)));
-        // chrome.cookies.get({url: 'http://localhost:33600', name: 'token'}, (cookie: any) => {console.log(cookie)});
     }
 
     return (

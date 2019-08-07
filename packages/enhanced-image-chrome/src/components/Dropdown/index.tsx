@@ -1,6 +1,5 @@
 import React, {
     useState,
-    useEffect,
 } from 'react';
 
 import {
@@ -29,14 +28,11 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
         theme,
     } = props;
 
-    console.log(selected);
-
     return (
         <StyledDropdown>
             <StyledDropdownSelected
                 onClick={() => {
                     setShowList(!showList);
-                    // setDropdownToggled(kind)
                 }}
             >
                 {selected}
