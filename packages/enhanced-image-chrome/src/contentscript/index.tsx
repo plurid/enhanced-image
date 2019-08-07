@@ -50,6 +50,7 @@ async function contentscript() {
                 document.body.appendChild(root);
 
                 const { theme } = await chromeStorage.get('theme');
+                const { user } = await chromeStorage.get('user');
 
                 ReactDOM.render(
                     <EnhancedImage
@@ -59,6 +60,7 @@ async function contentscript() {
                         width={width}
                         about={false}
                         theme={theme || 'depict'}
+                        textFunctions={!!user}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );

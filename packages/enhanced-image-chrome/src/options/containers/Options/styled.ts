@@ -11,16 +11,25 @@ export const StyledOptions: any = styled.div`
     }};
     height: 500px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0px auto;
     user-select: none;
+    overflow: hidden;
 `;
 
 
 export const StyledOptionsContainer: any = styled.div`
     width: 100%;
-    height: 100%;
+    height: 500px;
     display: grid;
-    place-content: center;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+`;
+
+
+export const StyledOptionsWrapper: any = styled.div`
+    width: 250px;
+    margin: 30px auto;
 `;
 
 

@@ -11,12 +11,14 @@ import LoginView from '../../../components/LoginView';
 import Dropdown from '../../../components/Dropdown';
 import ItemExtensionOnOff from '../../../components/ItemExtensionOnOff';
 import ItemNotLoggedIn from '../../../components/ItemNotLoggedIn';
+import ButtonCheckmark from '../../../components/ButtonCheckmark';
 
 import LoggedInView from '../../../components/LoggedInView';
 
 import {
     StyledOptions,
     StyledOptionsContainer,
+    StyledOptionsWrapper,
     StyledOptionsItemLeftRight,
     StyledStateContainer,
     StyledUIContainer,
@@ -38,6 +40,7 @@ const Options: React.FC<any> = (properties) => {
     const [extensionOnOff, setExtensionOnOff] = useState(true);
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
+    const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(false);
     const [user, setUser] = useState(undefined);
 
     const context: any = useContext(Context);
@@ -109,7 +112,7 @@ const Options: React.FC<any> = (properties) => {
             theme={theme}
         >
             <StyledOptionsContainer>
-                <div style={{ width: '250px'}}>
+                <StyledOptionsWrapper>
                     <StyledStateContainer>
                         <h1>
                             state
@@ -168,9 +171,15 @@ const Options: React.FC<any> = (properties) => {
                                 onSelect={setTheme}
                             />
                         </StyledOptionsItemLeftRight>
-                    </StyledUIContainer>
 
-                </div>
+                        <ButtonCheckmark
+                            checked={getImageTextAtLoad}
+                            text="get image text at load"
+                            theme={theme}
+                            toggle={() => setGetImageTextAtLoad(!getImageTextAtLoad)}
+                        />
+                    </StyledUIContainer>
+                </StyledOptionsWrapper>
             </StyledOptionsContainer>
         </StyledOptions>
     );

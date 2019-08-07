@@ -90,7 +90,8 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
         const {
             about,
             controls,
-            theme
+            theme,
+            textFunctions,
         } = this.props;
 
         const _about = about === undefined ? this.context.about : about;
@@ -101,6 +102,7 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
                 ? enhancedTheme
                 : themes[theme];
         const _themeName = theme === undefined ? this.context.themeName : theme;
+        const _textFunctions = textFunctions === undefined ? true : textFunctions;
 
         // const selectText = await this.getText();
 
@@ -110,6 +112,7 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
             theme: _theme,
             themeName: _themeName,
             selectText: {},
+            textFunctions: _textFunctions,
         });
     }
 
@@ -119,6 +122,7 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
             alt,
             height,
             width,
+            textFunctions,
         } = this.props;
         const {
             controls,
@@ -152,6 +156,7 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
                     <TextSelectImage
                         src={src || ''}
                         alt={alt || 'Image'}
+                        // textFunctions={textFunctions}
                         theme={theme}
                         apiEndpoint={apiEndpoint}
                         atLoad={this.handleLoadedImage}
