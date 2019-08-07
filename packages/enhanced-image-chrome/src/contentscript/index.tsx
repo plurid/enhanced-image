@@ -37,6 +37,10 @@ async function contentscript() {
         for (let i = 0; i < imagesArray.length; i++) {
             const image = imagesArray[i];
             if (image) {
+                if (image.getAttribute('data-depict')) {
+                    return;
+                }
+
                 const height = image.offsetHeight;
                 const width = image.offsetWidth;
                 const src = image.src;
