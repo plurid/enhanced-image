@@ -6,7 +6,7 @@ export const StyledTotalTransformations: any = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 15px 0;
+    margin: 0;
     position: relative;
 
     a {

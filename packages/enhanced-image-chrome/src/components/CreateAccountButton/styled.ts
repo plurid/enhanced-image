@@ -8,4 +8,8 @@ export const StyledCreateAccountButton: any = styled.div`
         height: 14px;
         margin: 5px;
     }
+
+    a {
+        text-decoration: none;
+    }
 `;

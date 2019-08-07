@@ -32,6 +32,10 @@ export const StyledOptionsItemLeftRight = styled.div`
 
 
 export const StyledStateContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 21px 60px 200px;
+
     margin-top: 20px;
     margin-bottom: 20px;
 

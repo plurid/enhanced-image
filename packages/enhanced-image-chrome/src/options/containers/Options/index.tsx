@@ -112,7 +112,7 @@ const Options: React.FC<any> = (properties) => {
                 <div style={{ width: '250px'}}>
                     <StyledStateContainer>
                         <h1>
-                            State
+                            state
                         </h1>
 
                         <ItemExtensionOnOff
@@ -121,7 +121,9 @@ const Options: React.FC<any> = (properties) => {
                             setExtensionOnOff={() => setExtensionOnOff(!extensionOnOff)}
                         />
 
-                        <div>
+                        <div
+                            style={{display: 'grid', alignItems: 'center'}}
+                        >
                             {!showLogin && (
                                 <>
                                     {!loggedIn && (
@@ -151,7 +153,7 @@ const Options: React.FC<any> = (properties) => {
 
                     <StyledUIContainer>
                         <h1>
-                            User Interface
+                            user interface
                         </h1>
 
                         <StyledOptionsItemLeftRight>
