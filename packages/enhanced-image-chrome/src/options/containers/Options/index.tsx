@@ -153,7 +153,7 @@ const Options: React.FC<any> = (properties) => {
 
                     <StyledUIContainer>
                         <h1>
-                            user interface
+                            interface
                         </h1>
 
                         <StyledOptionsItemLeftRight>
