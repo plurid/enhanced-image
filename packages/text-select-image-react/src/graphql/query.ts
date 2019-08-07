@@ -1,5 +1,31 @@
 import gql from 'graphql-tag';
 
+import {
+    DepictImageDataFragment,
+} from './fragments';
+
+
+
+export const GET_DEPICT_IMAGE_DATA_BY_URL = gql`
+    query GetDepictImageDataByURL($imageURL: String!) {
+        getDepictImageDataByURL(imageURL: $imageURL) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+            depictImageData {
+                ...DepictImageDataFragment
+            }
+        }
+    }
+    ${DepictImageDataFragment}
+`;
+
+
+
+
 
 
 export const getTextSelectImage = gql`

@@ -1,6 +1,7 @@
 export interface ITextSelectImageProps {
     about?: boolean;
     alt?: string;
+    textFunctions?: boolean;
     controls?: boolean;
     src: string;
     theme?: string;
@@ -31,6 +32,7 @@ export interface ITextSelectImageState {
     themeName: string;
     about: boolean;
     controls: boolean;
+    textFunctions?: boolean;
 
     loading: boolean;
     imageLoaded: boolean;

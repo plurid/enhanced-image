@@ -108,7 +108,7 @@ class TextSelectImage extends Component<
         const {
             about,
             controls,
-            theme
+            theme,
         } = this.props;
 
         const _about = about === undefined ? this.context.about : about;
@@ -121,6 +121,7 @@ class TextSelectImage extends Component<
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
+            textFunctions: this.props.textFunctions,
         });
     }
 
@@ -329,6 +330,13 @@ class TextSelectImage extends Component<
     private setEditorWidth = (editorWidth: number) => {
         this.setState({
             editorWidth,
+        });
+    }
+
+
+    private getImageSha = async () => {
+        const query = await this.client.query({
+            query: '',
         });
     }
 
