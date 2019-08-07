@@ -85,6 +85,7 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
             toggledDefaults,
             invertValue,
             menuOpaque,
+            textFunctions,
         } = this.context;
 
         return (
@@ -96,54 +97,58 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
                 settingsMenuHeight={settingsMenuHeight}
             >
                 <ul>
-                    <li>
-                        <EnhancedImageButtonCheckmark
-                            theme={theme}
-                            toggle={this.toggleEditable}
-                            text="Edit Text"
-                            checked={toggledEditable}
-                        />
-                    </li>
+                    {textFunctions && (
+                        <>
+                            <li>
+                                <EnhancedImageButtonCheckmark
+                                    theme={theme}
+                                    toggle={this.toggleEditable}
+                                    text="Edit Text"
+                                    checked={toggledEditable}
+                                />
+                            </li>
 
-                    <li>
-                        <EnhancedImageButtonItem
-                            theme={theme}
-                            atClick={this.addText}
-                            icon={AddTextIcon}
-                            text="Add Text"
-                        />
-                    </li>
+                            <li>
+                                <EnhancedImageButtonItem
+                                    theme={theme}
+                                    atClick={this.addText}
+                                    icon={AddTextIcon}
+                                    text="Add Text"
+                                />
+                            </li>
 
-                    <hr />
+                            <hr />
 
-                    <li>
-                        <EnhancedImageButtonItem
-                            theme={theme}
-                            atClick={this.getText}
-                            icon={GetTextIcon}
-                            text="Get Text"
-                        />
-                    </li>
+                            <li>
+                                <EnhancedImageButtonItem
+                                    theme={theme}
+                                    atClick={this.getText}
+                                    icon={GetTextIcon}
+                                    text="Get Text"
+                                />
+                            </li>
 
-                    <li>
-                        <EnhancedImageButtonItem
-                            theme={theme}
-                            atClick={this.extractText}
-                            icon={ExtractTextIcon}
-                            text="Extract Text"
-                        />
-                    </li>
+                            <li>
+                                <EnhancedImageButtonItem
+                                    theme={theme}
+                                    atClick={this.extractText}
+                                    icon={ExtractTextIcon}
+                                    text="Extract Text"
+                                />
+                            </li>
 
-                    {/* <li>
-                        <EnhancedImageButtonItem
-                            theme={theme}
-                            atClick={this.transviewText}
-                            icon={TransviewTextIcon}
-                            text="Transview Text"
-                        />
-                    </li> */}
+                            {/* <li>
+                                <EnhancedImageButtonItem
+                                    theme={theme}
+                                    atClick={this.transviewText}
+                                    icon={TransviewTextIcon}
+                                    text="Transview Text"
+                                />
+                            </li> */}
 
-                    <hr />
+                            <hr />
+                        </>
+                    )}
 
                     {/* <li>
                         <EnhancedImageButtonItem

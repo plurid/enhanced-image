@@ -1,5 +1,6 @@
 export interface EnhancedImageProps {
     src: string;
+    textFunctions?: boolean;
     alt?: string;
     height?: number;
     width?: number;
@@ -31,6 +32,7 @@ export interface EnhancedImageState {
     // controls: boolean;
     // editorWidth: number;
     // loading: boolean;
+    // textFunctions?: boolean;
 
     // imageLoaded: boolean;
     // imageHeight: number;
