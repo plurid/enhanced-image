@@ -14,7 +14,7 @@ class App extends React.Component<any, any> {
         super(props);
 
         this.state = {
-            theme: themes.dusk,
+            theme: themes.depict,
             setTheme: this.setTheme,
         };
     }
