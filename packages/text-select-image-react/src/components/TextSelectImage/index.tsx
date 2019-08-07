@@ -163,6 +163,7 @@ class TextSelectImage extends Component<
                         alt={alt || 'Image'}
                         onLoad={this.handleLoadedImage}
                         style={{...imageStyle}}
+                        data-depict={true}
                     />
 
                     {imageLoaded && (
