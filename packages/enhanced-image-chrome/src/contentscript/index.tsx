@@ -58,7 +58,7 @@ async function contentscript() {
                         height={height}
                         width={width}
                         about={false}
-                        theme={theme}
+                        theme={theme || 'depict'}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
