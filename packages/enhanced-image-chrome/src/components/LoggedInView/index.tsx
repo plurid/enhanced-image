@@ -61,6 +61,7 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
 
                 <div style={{textAlign: 'right'}}>
                     <TotalTransformations
+                        theme={theme}
                         imageTransformations={depict.access.imageTransformations}
                     />
                 </div>

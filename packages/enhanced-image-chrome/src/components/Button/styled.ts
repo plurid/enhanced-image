@@ -4,20 +4,18 @@ import styled from 'styled-components';
 
 export const StyledButton: any = styled.div`
     button {
-        /* background: ${(props: any) => {
+        background: ${(props: any) => {
             return props.theme.backgroundColorSecondary;
-        }}; */
-        /* background-color: ${(props: any) => {
-            return props.theme.backgroundColorSecondary;
-        }}; */
+        }};
         color: ${(props: any) => {
             return props.theme.colorPrimary;
         }};
-        cursor: pointer;
-        user-select: none;
         box-shadow: 0px 5px 5px 0px ${(props: any) => {
             return props.theme.shadow;
         }};
+        cursor: pointer;
+        user-select: none;
+        text-shadow: none;
         border: none;
         outline: none;
         padding: 0;
@@ -27,20 +25,32 @@ export const StyledButton: any = styled.div`
         height: 30px;
         border-radius: 30px;
         margin-bottom: 10px;
-        transition: box-shadow 100ms linear;
+        transition: box-shadow 100ms linear !important;
+    }
+
+    button:hover {
+        color: ${(props: any) => {
+            return props.theme.colorPrimary;
+        }} !important;
+        background: ${(props: any) => {
+            return props.theme.backgroundColorSecondary;
+        }} !important;
+        box-shadow: 0px 3px 3px 0px ${(props: any) => {
+            return props.theme.shadow;
+        }} !important;
     }
 
     button:active {
-        box-shadow: 0px 2px 2px 0px ${(props: any) => {
+        box-shadow: 0px 1px 1px 0px ${(props: any) => {
             return props.theme.shadow;
-        }};
+        }} !important;
     }
 
     button:disabled {
         opacity: 0.5;
         box-shadow: 0px 5px 5px 0px ${(props: any) => {
             return props.theme.shadow;
-        }};
+        }} !important;
         cursor: none;
     }
 `;
