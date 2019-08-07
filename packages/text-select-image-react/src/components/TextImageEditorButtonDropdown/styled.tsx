@@ -14,7 +14,7 @@ export const StyledTextImageEditorButtonDropdownSelected = styled.div`
         width: 110px;
         border: none;
         background: ${props => props.theme.backgroundColorSecondary};
-        color: ${props => props.theme.color};
+        color: ${props => props.theme.colorPrimary};
         text-align: left;
         outline: none;
         padding: 3px 6px;
@@ -62,13 +62,13 @@ export const StyledTextImageEditorButtonDropdownListItem: any = styled.li`
         // console.log(index, cursor);
 
         if (index === cursor) {
-            return theme.backgroundColor;
+            return theme.backgroundColorPrimary;
         }
 
         return theme.backgroundColorSecondary;
     }};
 
     :hover {
-        background: ${props => props.theme.backgroundColor};
+        background: ${props => props.theme.backgroundColorPrimary};
     }
 `;

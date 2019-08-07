@@ -8,8 +8,8 @@ export const StyledTextImageEditorButtonIncrement = styled.div`
     margin: 5px;
 
     input {
-        background: ${props => props.theme.backgroundColorHover};
-        color: ${props => props.theme.color};
+        background: ${props => props.theme.backgroundColorSecondary};
+        color: ${props => props.theme.colorPrimary};
         height: 20px;
         width: 30px;
         border: none;
@@ -37,7 +37,7 @@ export const StyledTextImageEditorButtonIncrementIcon = styled.div`
     margin: 5px;
 
     svg {
-        fill: ${props => props.theme.color};
+        fill: ${props => props.theme.colorPrimary};
         height: 14px;
         width: 14px;
     }
@@ -45,7 +45,7 @@ export const StyledTextImageEditorButtonIncrementIcon = styled.div`
 
 
 export const StyledTextImageEditorButtonIncrements: any = styled.div`
-    background: ${props => props.theme.backgroundColorHover};
+    background: ${props => props.theme.backgroundColorSecondary};
 
     display: grid;
     grid-template-columns: 1fr;
@@ -61,7 +61,7 @@ export const StyledTextImageEditorButtonIncrements: any = styled.div`
 
 
 export const StyledTextImageEditorButtonIncrementButton = styled.div`
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colorPrimary};
     background-color: ${props => props.theme.backgroundColorSecondary};
 
     width: 12px;
@@ -73,7 +73,7 @@ export const StyledTextImageEditorButtonIncrementButton = styled.div`
     user-select: none;
 
     :hover {
-        background-color: ${props => props.theme.backgroundColorHover};
+        background-color: ${props => props.theme.backgroundColorSecondary};
     }
 `;
 

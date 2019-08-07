@@ -3,16 +3,16 @@ import styled from 'styled-components';
 
 
 export const StyledTextImageEditor: any = styled.div`
-    background-color: ${props => props.theme.backgroundColor};
+    background-color: ${props => props.theme.backgroundColorPrimary};
     background: ${props => {
-        const { backgroundGradient, backgroundColor } = props.theme;
+        const { backgroundGradient, backgroundColorPrimary } = props.theme;
         if (backgroundGradient) {
             return backgroundGradient;
         } else {
-            return backgroundColor;
+            return backgroundColorPrimary;
         }
     }};
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.colorPrimary};
 
     position: absolute;
     top: -34px;

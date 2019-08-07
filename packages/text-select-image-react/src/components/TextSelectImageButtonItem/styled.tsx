@@ -21,6 +21,6 @@ export const StyledTextSelectImageButtonItemIcon = styled.div`
     svg {
         width: 14px;
         height: 14px;
-        fill: ${props => props.theme.color};
+        fill: ${props => props.theme.colorPrimary};
     }
 `;
