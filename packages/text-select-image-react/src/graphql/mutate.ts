@@ -24,6 +24,24 @@ export const UPLOAD_DEPICT_WEB_IMAGE = gql`
 `;
 
 
+export const UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN = gql`
+    mutation UploadDepictImageByURLWithUserToken($imageURL: String!, $userToken: String!) {
+        uploadDepictImageByURLWithUserToken(imageURL: $imageURL, userToken: $userToken) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+            depictImageData {
+                ...DepictImageDataFragment
+            }
+        }
+    }
+    ${DepictImageDataFragment}
+`;
+
+
 export const updateTextSelectImage = gql`
     mutation UpdateTextSelectImage ($input: UpdateTextSelectImageInput!) {
         updateTextSelectImage(input: $input) {
