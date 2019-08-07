@@ -38,8 +38,10 @@ import graphqlClient from '../../graphql/client';
 import {
     getTextSelectImage,
     extractTextSelectImage,
+    GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN,
 } from '../../graphql/query';
 import {
+    UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
     updateTextSelectImage,
 } from '../../graphql/mutate';
 
@@ -416,9 +418,9 @@ class TextSelectImage extends Component<
     private getText = async () => {
         // const { apiKey } = this.props;
 
-        const {
-            imageSha,
-        } = this.state;
+        // const {
+        //     imageSha,
+        // } = this.state;
 
         try {
             this.setState({
@@ -427,14 +429,17 @@ class TextSelectImage extends Component<
 
             const query = await this.client
                 .query({
-                    query: getTextSelectImage,
+                    query: GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN,
                     variables: {
-                        imageSha,
+                        imageURL: 'https://external-preview.redd.it/CwmzLmNULCsaguLhpFRU9Khm6HCAJnVUpDTa7iOS05o.jpg?auto=webp&s=f08b5bd9be2fe069b75f083b7eb7fd325989d3bd',
+                        userToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiOTI3NWExOTRiMTQ2NGFiMWE3NjczMDI3MWEzYWFkNzUiLCJ1c2VybmFtZSI6ImNhdmVsIn0sImlhdCI6MTU2NTE3MDcwNSwiZXhwIjoxNTY1MTc0MzA1LCJpc3MiOiJsb2NhbGhvc3QifQ.fhMXLe3MxqT0It9y8O3x2emk5YNrXhtvWV7WFBEwXh0',
                     },
                     fetchPolicy: 'no-cache',
                 });
 
-            const { status, textSelectImage } = query.data.textSelectImage;
+            console.log(query);
+
+            const { status, depictImageData } = query.data.getDepictImageDataByURLWithUserToken;
 
             if (!query.loading) {
                 this.setState({
@@ -446,7 +451,7 @@ class TextSelectImage extends Component<
                 return [];
             }
 
-            return textSelectImage.imageText;
+            return depictImageData.imageText;
         } catch(err) {
             return [];
         }
@@ -484,33 +489,35 @@ class TextSelectImage extends Component<
      */
     private extractText = async () => {
         try {
-            const {
-                imageSha,
-            } = this.state;
+            // const {
+            //     imageSha,
+            // } = this.state;
 
-            const imageSrc = new URL(this.props.src, window.location.href).href;
+            // const imageSrc = new URL(this.props.src, window.location.href).href;
 
             this.setState({
                 loading: true,
             });
 
-            const query = await this.client
-                .query({
-                    query: extractTextSelectImage,
+            const mutation = await this.client
+                .mutate({
+                    mutation: UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
                     variables: {
-                        imageSrc: imageSrc,
-                        imageSha,
+                        imageURL: 'https://external-preview.redd.it/CwmzLmNULCsaguLhpFRU9Khm6HCAJnVUpDTa7iOS05o.jpg?auto=webp&s=f08b5bd9be2fe069b75f083b7eb7fd325989d3bd',
+                        userToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiOTI3NWExOTRiMTQ2NGFiMWE3NjczMDI3MWEzYWFkNzUiLCJ1c2VybmFtZSI6ImNhdmVsIn0sImlhdCI6MTU2NTE3MDcwNSwiZXhwIjoxNTY1MTc0MzA1LCJpc3MiOiJsb2NhbGhvc3QifQ.fhMXLe3MxqT0It9y8O3x2emk5YNrXhtvWV7WFBEwXh0',
                     },
                     fetchPolicy: 'no-cache',
                 });
 
-            if (!query.loading) {
+            console.log(mutation);
+
+            if (!mutation.loading) {
                 this.setState({
                     loading: false,
                 });
             }
 
-            const { status, errors } = query.data.extractTextSelectImage;
+            const { status, errors } = mutation.data.uploadDepictImageByURLWithUserToken;
 
             if (!status) {
                 const [error] = errors;
