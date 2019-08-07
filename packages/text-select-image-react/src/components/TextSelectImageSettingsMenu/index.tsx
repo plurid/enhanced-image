@@ -28,6 +28,7 @@ class TextSelectImageSettingsMenu extends Component<any, any> {
             theme,
             toggleEditable,
             toggledEditable,
+            textFunctions,
         } = this.context;
 
         return (
