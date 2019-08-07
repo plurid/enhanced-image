@@ -106,7 +106,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 setLoadingButton(false);
 
                 if (!data.status) {
-                    setLoggingMessage('could not login');
+                    setLoggingMessage('could not login. try again');
                     setTimeout(() => {
                         setLoggingMessage('');
                     }, 2000);
@@ -122,7 +122,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                     const user = await initializeUser();
 
                     if (!user) {
-                        setLoggingMessage('could not login');
+                        setLoggingMessage('could not login. try again');
                         setTimeout(() => {
                             setLoggingMessage('');
                         }, 2000);
@@ -147,7 +147,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
             setLoadingButton(false);
 
             if (!data.status) {
-                setLoggingMessage('could not login');
+                setLoggingMessage('could not login. try again');
                 setTimeout(() => {
                     setLoggingMessage('');
                 }, 2000);
@@ -163,7 +163,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 const user = await initializeUser();
 
                 if (!user) {
-                    setLoggingMessage('could not login');
+                    setLoggingMessage('could not login. try again');
                     setTimeout(() => {
                         setLoggingMessage('');
                     }, 2000);
