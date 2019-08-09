@@ -40,7 +40,7 @@ import {
     extractTextSelectImage,
     GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY,
     GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN,
-    GET_DEPICT_IMAGE_DATA_WITH_DEPICT_IMAGE_ID,
+    GET_DEPICT_IMAGE_DATA_BY_ID,
 } from '../../graphql/query';
 import {
     UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
@@ -514,7 +514,7 @@ class TextSelectImage extends Component<
 
             const query = await this.client
                 .query({
-                    query: GET_DEPICT_IMAGE_DATA_WITH_DEPICT_IMAGE_ID,
+                    query: GET_DEPICT_IMAGE_DATA_BY_ID,
                     variables: {
                         depictImageID,
                     },
@@ -523,7 +523,7 @@ class TextSelectImage extends Component<
 
             console.log(query);
 
-            const { status, depictImageData } = query.data.getDepictImageDataByURLWithDepictImageID;
+            const { status, depictImageData } = query.data.getDepictImageDataByID;
 
             if (!query.loading) {
                 this.setState({
