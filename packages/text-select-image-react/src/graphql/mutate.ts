@@ -42,6 +42,63 @@ export const UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN = gql`
 `;
 
 
+// uploads image if does not exist, extracts the text
+export const EXTRACT_DEPICT_IMAGE_TEXT_BY_URL_WITH_USER_TOKEN = gql`
+    mutation ExtractDepictImageTextByURLWithUserToken($imageURL: String!, $userToken: String!) {
+        extractDepictImageTextByURLWithUserToken(imageURL: $imageURL, userToken: $userToken) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+            depictImageData {
+                ...DepictImageDataFragment
+            }
+        }
+    }
+    ${DepictImageDataFragment}
+`;
+
+
+// uploads image if does not exist, extracts the text
+export const EXTRACT_DEPICT_IMAGE_TEXT_BY_URL_WITH_API_KEY = gql`
+    mutation ExtractDepictImageTextByURLWithApiKey($imageURL: String!, $apiKey: String!) {
+        extractDepictImageTextByURLWithApiKey(imageURL: $imageURL, apiKey: $apiKey) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+            depictImageData {
+                ...DepictImageDataFragment
+            }
+        }
+    }
+    ${DepictImageDataFragment}
+`;
+
+
+// image is already uploaded on depict servers, extracts the text
+export const EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID = gql`
+    mutation ExtractDepictImageTextWithDepictImageID($depictImageID: String!) {
+        extractDepictImageTextWithDepictImageID(depictImageID: $depictImageID) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+            depictImageData {
+                ...DepictImageDataFragment
+            }
+        }
+    }
+    ${DepictImageDataFragment}
+`;
+
+
 export const updateTextSelectImage = gql`
     mutation UpdateTextSelectImage ($input: UpdateTextSelectImageInput!) {
         updateTextSelectImage(input: $input) {

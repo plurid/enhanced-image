@@ -24,8 +24,40 @@ export const GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN = gql`
 `;
 
 
+export const GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY = gql`
+    query GetDepictImageDataByURLWithApiKey($imageURL: String!, $apiKey: String!) {
+        getDepictImageDataByURLWithApiKey(imageURL: $imageURL, apiKey: $apiKey) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+            depictImageData {
+                ...DepictImageDataFragment
+            }
+        }
+    }
+    ${DepictImageDataFragment}
+`;
 
 
+export const GET_DEPICT_IMAGE_DATA_WITH_DEPICT_IMAGE_ID = gql`
+    query GetDepictImageDataWithDepictImageID($depictImageID: String!) {
+        getDepictImageDataWithDepictImageID(depictImageID: $depictImageID) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+            depictImageData {
+                ...DepictImageDataFragment
+            }
+        }
+    }
+    ${DepictImageDataFragment}
+`;
 
 
 export const getTextSelectImage = gql`
