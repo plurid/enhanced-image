@@ -42,9 +42,9 @@ export const GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY = gql`
 `;
 
 
-export const GET_DEPICT_IMAGE_DATA_WITH_DEPICT_IMAGE_ID = gql`
-    query GetDepictImageDataWithDepictImageID($depictImageID: String!) {
-        getDepictImageDataWithDepictImageID(depictImageID: $depictImageID) {
+export const GET_DEPICT_IMAGE_DATA_BY_ID = gql`
+    query GetDepictImageDataByID($depictImageID: String!) {
+        getDepictImageDataByID(depictImageID: $depictImageID) {
             status
             errors {
                 path
