@@ -16,6 +16,9 @@ export interface ITextSelectImageProps {
     // To be specified when using as a service provider
     // apiKey obtained from https://depict.plurid.com/api
     apiKey?: string;
+    userToken?: string;
+    depictImageID?: string;
+
     updateDebounce?: number;
 
     moreLimit?: number;
@@ -36,6 +39,7 @@ export interface ITextSelectImageState {
 
     loading: boolean;
     imageLoaded: boolean;
+    imageURL: string;
     imageSha: string;
     imageHeight: number;
     imageWidth: number;

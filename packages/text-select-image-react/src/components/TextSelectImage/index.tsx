@@ -38,7 +38,9 @@ import graphqlClient from '../../graphql/client';
 import {
     getTextSelectImage,
     extractTextSelectImage,
+    GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY,
     GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN,
+    GET_DEPICT_IMAGE_DATA_WITH_DEPICT_IMAGE_ID,
 } from '../../graphql/query';
 import {
     UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
@@ -71,6 +73,7 @@ class TextSelectImage extends Component<
             loading: false,
 
             imageLoaded: false,
+            imageURL: '',
             imageSha: '',
             imageHeight: 0,
             imageWidth: 0,
@@ -411,28 +414,70 @@ class TextSelectImage extends Component<
         return;
     }
 
-    /**
-     * Graphql query to the apiEndpoint (with apiKey if it exists)
-     * to get the data based on the imageSha of the image.
-     */
-    private getText = async () => {
-        // const { apiKey } = this.props;
-
-        // const {
-        //     imageSha,
-        // } = this.state;
-
+    private getTextWithApiKey = async () => {
         try {
             this.setState({
                 loading: true,
             });
 
+            const {
+                imageURL,
+            } = this.state;
+
+            const {
+                apiKey,
+            } = this.props;
+
+            const query = await this.client
+                .query({
+                    query: GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY,
+                    variables: {
+                        imageURL,
+                        apiKey,
+                    },
+                    fetchPolicy: 'no-cache',
+                });
+
+            console.log(query);
+
+            const { status, depictImageData } = query.data.getDepictImageDataByURLWithApiKey;
+
+            if (!query.loading) {
+                this.setState({
+                    loading: false,
+                });
+            }
+
+            if (!status) {
+                return [];
+            }
+
+            return depictImageData.imageText;
+        } catch (error) {
+            return [];
+        }
+    }
+
+    private getTextWithUserToken = async () => {
+        try {
+            this.setState({
+                loading: true,
+            });
+
+            const {
+                userToken,
+            } = this.props;
+
+            const {
+                imageURL,
+            } = this.state;
+
             const query = await this.client
                 .query({
                     query: GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN,
                     variables: {
-                        imageURL: 'https://external-preview.redd.it/CwmzLmNULCsaguLhpFRU9Khm6HCAJnVUpDTa7iOS05o.jpg?auto=webp&s=f08b5bd9be2fe069b75f083b7eb7fd325989d3bd',
-                        userToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiOTI3NWExOTRiMTQ2NGFiMWE3NjczMDI3MWEzYWFkNzUiLCJ1c2VybmFtZSI6ImNhdmVsIn0sImlhdCI6MTU2NTE3MDcwNSwiZXhwIjoxNTY1MTc0MzA1LCJpc3MiOiJsb2NhbGhvc3QifQ.fhMXLe3MxqT0It9y8O3x2emk5YNrXhtvWV7WFBEwXh0',
+                        imageURL,
+                        userToken,
                     },
                     fetchPolicy: 'no-cache',
                 });
@@ -457,10 +502,78 @@ class TextSelectImage extends Component<
         }
     }
 
+    private getTextWithDepictImageID = async () => {
+        try {
+            this.setState({
+                loading: true,
+            });
+
+            const {
+                depictImageID,
+            } = this.props;
+
+            const query = await this.client
+                .query({
+                    query: GET_DEPICT_IMAGE_DATA_WITH_DEPICT_IMAGE_ID,
+                    variables: {
+                        depictImageID,
+                    },
+                    fetchPolicy: 'no-cache',
+                });
+
+            console.log(query);
+
+            const { status, depictImageData } = query.data.getDepictImageDataByURLWithDepictImageID;
+
+            if (!query.loading) {
+                this.setState({
+                    loading: false,
+                });
+            }
+
+            if (!status) {
+                return [];
+            }
+
+            return depictImageData.imageText;
+        } catch (error) {
+            return [];
+        }
+    }
+
+    /**
+     * Graphql query to the apiEndpoint (with apiKey if it exists)
+     * to get the data based on the imageSha of the image.
+     */
+    private getText = async () => {
+        const {
+            apiKey,
+            userToken,
+            depictImageID,
+        } = this.props;
+
+        if (apiKey) {
+            const imageText = this.getTextWithApiKey();
+            return imageText;
+        }
+
+        if (userToken) {
+            const imageText = this.getTextWithUserToken();
+            return imageText;
+        }
+
+        if (depictImageID) {
+            const imageText = this.getTextWithDepictImageID();
+            return imageText;
+        }
+
+        return [];
+    }
+
     private getAndSetText = async () => {
         this.setMessage('Obtaining Text. Please Wait.');
 
-        const imageText = await this.getText();
+        const imageText: any[] = await this.getText();
 
         if (imageText.length > 0) {
             this.setState({
@@ -483,28 +596,31 @@ class TextSelectImage extends Component<
         }
     }
 
-    /**
-     * Graphql query to the apiEndpoint (with apiKey if it exists)
-     * to extract the data from the image on the imageSha.
-     */
-    private extractText = async () => {
+
+    private extractTextWithApiKey = async () => {
         try {
-            // const {
-            //     imageSha,
-            // } = this.state;
+            return {};
+        } catch (error) {
+            return {};
+        }
+    }
 
-            // const imageSrc = new URL(this.props.src, window.location.href).href;
+    private extractTextWithUserToken = async () => {
+        try {
+            const {
+                userToken
+            } = this.props;
 
-            this.setState({
-                loading: true,
-            });
+            const {
+                imageURL,
+            } = this.state;
 
             const mutation = await this.client
                 .mutate({
                     mutation: UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
                     variables: {
-                        imageURL: 'https://external-preview.redd.it/CwmzLmNULCsaguLhpFRU9Khm6HCAJnVUpDTa7iOS05o.jpg?auto=webp&s=f08b5bd9be2fe069b75f083b7eb7fd325989d3bd',
-                        userToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiOTI3NWExOTRiMTQ2NGFiMWE3NjczMDI3MWEzYWFkNzUiLCJ1c2VybmFtZSI6ImNhdmVsIn0sImlhdCI6MTU2NTE3MDcwNSwiZXhwIjoxNTY1MTc0MzA1LCJpc3MiOiJsb2NhbGhvc3QifQ.fhMXLe3MxqT0It9y8O3x2emk5YNrXhtvWV7WFBEwXh0',
+                        imageURL,
+                        userToken,
                     },
                     fetchPolicy: 'no-cache',
                 });
@@ -569,6 +685,50 @@ class TextSelectImage extends Component<
                         console.log(err);
                     }
                 }, 3000);
+            }
+            return {};
+        } catch (error) {
+            return {};
+        }
+    }
+
+    private extractTextWithUserDepictImageID = async () => {
+        try {
+            return {};
+        } catch (error) {
+            return {};
+        }
+    }
+
+    /**
+     * Graphql query to the apiEndpoint (with apiKey if it exists)
+     * to extract the data from the image on the imageSha.
+     */
+    private extractText = async () => {
+        try {
+            this.setState({
+                loading: true,
+            });
+
+            const {
+                apiKey,
+                userToken,
+                depictImageID,
+            } = this.props;
+
+            if (apiKey) {
+                const imageText = await this.extractTextWithApiKey();
+                return imageText;
+            }
+
+            if (userToken) {
+                const imageText = await this.extractTextWithUserToken();
+                return imageText;
+            }
+
+            if (depictImageID) {
+                const imageText = await this.extractTextWithUserDepictImageID();
+                return imageText;
             }
 
             return {};
