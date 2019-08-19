@@ -123,6 +123,7 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
             height,
             width,
             textFunctions,
+            depictImageID,
         } = this.props;
         const {
             controls,
@@ -159,6 +160,7 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
                         // textFunctions={textFunctions}
                         theme={theme}
                         apiEndpoint={apiEndpoint}
+                        depictImageID={depictImageID}
                         atLoad={this.handleLoadedImage}
                         imageStyle={{
                             filter: `

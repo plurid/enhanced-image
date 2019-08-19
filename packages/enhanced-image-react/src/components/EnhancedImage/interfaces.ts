@@ -18,6 +18,8 @@ export interface EnhancedImageProps {
     // To be specified when using as a service provider
     // apiKey obtained from https://depict.plurid.com/api
     apiKey?: string;
+
+    depictImageID?: string;
 }
 
 
