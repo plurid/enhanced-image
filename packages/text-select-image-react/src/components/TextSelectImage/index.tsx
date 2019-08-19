@@ -707,7 +707,9 @@ class TextSelectImage extends Component<
                 .mutate({
                     mutation: EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID,
                     variables: {
-                        depictImageID,
+                        input: {
+                            imageID: depictImageID,
+                        },
                     },
                     fetchPolicy: 'no-cache',
                 });
