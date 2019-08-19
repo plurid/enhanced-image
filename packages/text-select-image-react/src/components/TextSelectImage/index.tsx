@@ -45,6 +45,7 @@ import {
 import {
     UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
     updateTextSelectImage,
+    EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID,
 } from '../../graphql/mutate';
 
 
@@ -694,7 +695,40 @@ class TextSelectImage extends Component<
 
     private extractTextWithUserDepictImageID = async () => {
         try {
-            return {};
+            this.setState({
+                loading: true,
+            });
+
+            const {
+                depictImageID,
+            } = this.props;
+
+            const mutation = await this.client
+                .mutate({
+                    mutation: EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID,
+                    variables: {
+                        depictImageID,
+                    },
+                    fetchPolicy: 'no-cache',
+                });
+
+            console.log(mutation);
+
+            const { status, depictImageData } = mutation
+                .data
+                .extractDepictImageTextWithDepictImageID;
+
+            if (!mutation.loading) {
+                this.setState({
+                    loading: false,
+                });
+            }
+
+            if (!status) {
+                return [];
+            }
+
+            return depictImageData.imageText;
         } catch (error) {
             return {};
         }
