@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 import {
-    DepictImageDataFragment,
+    TextSelectImage_DepictImageDataFragment,
 } from './fragments';
 
 
@@ -16,11 +16,11 @@ export const GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN = gql`
                 type
             }
             depictImageData {
-                ...DepictImageDataFragment
+                ...TextSelectImage_DepictImageDataFragment
             }
         }
     }
-    ${DepictImageDataFragment}
+    ${TextSelectImage_DepictImageDataFragment}
 `;
 
 
@@ -34,17 +34,17 @@ export const GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY = gql`
                 type
             }
             depictImageData {
-                ...DepictImageDataFragment
+                ...TextSelectImage_DepictImageDataFragment
             }
         }
     }
-    ${DepictImageDataFragment}
+    ${TextSelectImage_DepictImageDataFragment}
 `;
 
 
-export const GET_DEPICT_IMAGE_DATA_BY_ID = gql`
-    query GetDepictImageDataByID($depictImageID: String!) {
-        getDepictImageDataByID(depictImageID: $depictImageID) {
+export const GET_DEPICT_IMAGE_DATA_BY_IMAGE_ID = gql`
+    query GetDepictImageDataByImageID($imageID: String!) {
+        getDepictImageDataByImageID(imageID: $imageID) {
             status
             errors {
                 path
@@ -52,11 +52,11 @@ export const GET_DEPICT_IMAGE_DATA_BY_ID = gql`
                 type
             }
             depictImageData {
-                ...DepictImageDataFragment
+                ...TextSelectImage_DepictImageDataFragment
             }
         }
     }
-    ${DepictImageDataFragment}
+    ${TextSelectImage_DepictImageDataFragment}
 `;
 
 

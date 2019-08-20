@@ -36,16 +36,13 @@ import {
 import { ApolloClient } from 'apollo-client';
 import graphqlClient from '../../graphql/client';
 import {
-    getTextSelectImage,
-    extractTextSelectImage,
+    GET_DEPICT_IMAGE_DATA_BY_IMAGE_ID,
     GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY,
     GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN,
-    GET_DEPICT_IMAGE_DATA_BY_ID,
 } from '../../graphql/query';
 import {
-    UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
-    updateTextSelectImage,
     EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID,
+    UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
 } from '../../graphql/mutate';
 
 
@@ -150,10 +147,10 @@ class TextSelectImage extends Component<
             toggledEditable,
             toggledSettingsButton,
             message,
-            // imageText,
+            imageText,
         } = this.state;
 
-        // console.log(imageText);
+        console.log(imageText);
 
         return (
             <Context.Provider value={this.state}>
@@ -515,16 +512,15 @@ class TextSelectImage extends Component<
 
             const query = await this.client
                 .query({
-                    query: GET_DEPICT_IMAGE_DATA_BY_ID,
+                    query: GET_DEPICT_IMAGE_DATA_BY_IMAGE_ID,
                     variables: {
-                        depictImageID,
+                        imageID: depictImageID,
                     },
                     fetchPolicy: 'no-cache',
                 });
 
-            console.log(query);
-
-            const { status, depictImageData } = query.data.getDepictImageDataByID;
+            // console.log(query);
+            const { status, depictImageData } = query.data.getDepictImageDataByImageID;
 
             if (!query.loading) {
                 this.setState({
@@ -554,17 +550,17 @@ class TextSelectImage extends Component<
         } = this.props;
 
         if (apiKey) {
-            const imageText = this.getTextWithApiKey();
+            const imageText = await this.getTextWithApiKey();
             return imageText;
         }
 
         if (userToken) {
-            const imageText = this.getTextWithUserToken();
+            const imageText = await this.getTextWithUserToken();
             return imageText;
         }
 
         if (depictImageID) {
-            const imageText = this.getTextWithDepictImageID();
+            const imageText = await this.getTextWithDepictImageID();
             return imageText;
         }
 
