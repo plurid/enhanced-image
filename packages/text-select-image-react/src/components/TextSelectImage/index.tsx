@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import Context from '../../context';
-import SelectImage from '../SelectImage';
-import TextSelectImageSettings from '../TextSelectImageSettings';
-import Spinner from '../Spinner';
-import Message from '../Message';
+import {
+    StyledTextSelectImage,
+    StyledImageContainer,
+} from './styled';
 
 import {
     ITextSelectImageProps,
     ITextSelectImageState,
 } from './interfaces';
-import { StyledTextSelectImage } from './styled';
+
+import SelectImage from '../SelectImage';
+import TextSelectImageSettings from '../TextSelectImageSettings';
+import Spinner from '../Spinner';
+import Message from '../Message';
 
 import {
     UPDATE_DEBOUNCE,
@@ -20,17 +24,6 @@ import {
     emptyImageText,
     newTextImageVersion,
 } from '../../data/initializers';
-
-import themes from '@plurid/apps.utilities.themes';
-
-import uuidv4 from '../../utils/uuid';
-import computeImageSha from '../../utils/computeImageSha';
-import {
-    getVersionById,
-    updateVersion,
-    pushNewVersion,
-    duplicateTextImage,
-} from '../../utils/textImage';
 
 import { ApolloClient } from 'apollo-client';
 import graphqlClient from '../../graphql/client';
@@ -43,6 +36,17 @@ import {
     EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID,
     UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
 } from '../../graphql/mutate';
+
+import uuidv4 from '../../utils/uuid';
+import computeImageSha from '../../utils/computeImageSha';
+import {
+    getVersionById,
+    updateVersion,
+    pushNewVersion,
+    duplicateTextImage,
+} from '../../utils/textImage';
+
+import themes from '@plurid/apps.utilities.themes';
 
 
 
@@ -130,7 +134,6 @@ class TextSelectImage extends Component<
 
     public render() {
         // console.log('RENDER');
-
         const {
             src,
             alt,
@@ -146,11 +149,10 @@ class TextSelectImage extends Component<
             toggledEditable,
             toggledSettingsButton,
             message,
-            imageText,
+            // imageText,
         } = this.state;
 
-        console.log(imageText);
-
+        // console.log(imageText);
         return (
             <Context.Provider value={this.state}>
                 <StyledTextSelectImage
@@ -160,17 +162,19 @@ class TextSelectImage extends Component<
                     onMouseEnter={this.toggleSettingsButton}
                     onMouseLeave={this.toggleSettingsButton}
                 >
-                    <img
-                        src={src}
-                        alt={alt || 'Image'}
-                        onLoad={this.handleLoadedImage}
-                        style={{...imageStyle}}
-                        data-depict={true}
-                    />
+                    <StyledImageContainer>
+                        <img
+                            src={src}
+                            alt={alt || 'Image'}
+                            onLoad={this.handleLoadedImage}
+                            style={{...imageStyle}}
+                            data-depict={true}
+                        />
 
-                    {imageLoaded && (
-                        <SelectImage />
-                    )}
+                        {imageLoaded && (
+                            <SelectImage />
+                        )}
+                    </StyledImageContainer>
 
                     {toggledSettingsButton && controls && (
                         <TextSelectImageSettings />
