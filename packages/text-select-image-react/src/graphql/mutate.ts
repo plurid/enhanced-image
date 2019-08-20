@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 import {
-    DepictImageDataFragment,
+    TextSelectImage_DepictImageDataFragment,
 } from './fragments';
 
 
@@ -16,11 +16,11 @@ export const UPLOAD_DEPICT_WEB_IMAGE = gql`
                 type
             }
             depictImageData {
-                ...DepictImageDataFragment
+                ...TextSelectImage_DepictImageDataFragment
             }
         }
     }
-    ${DepictImageDataFragment}
+    ${TextSelectImage_DepictImageDataFragment}
 `;
 
 
@@ -34,11 +34,11 @@ export const UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN = gql`
                 type
             }
             depictImageData {
-                ...DepictImageDataFragment
+                ...TextSelectImage_DepictImageDataFragment
             }
         }
     }
-    ${DepictImageDataFragment}
+    ${TextSelectImage_DepictImageDataFragment}
 `;
 
 
@@ -53,11 +53,11 @@ export const EXTRACT_DEPICT_IMAGE_TEXT_BY_URL_WITH_USER_TOKEN = gql`
                 type
             }
             depictImageData {
-                ...DepictImageDataFragment
+                ...TextSelectImage_DepictImageDataFragment
             }
         }
     }
-    ${DepictImageDataFragment}
+    ${TextSelectImage_DepictImageDataFragment}
 `;
 
 
@@ -72,11 +72,11 @@ export const EXTRACT_DEPICT_IMAGE_TEXT_BY_URL_WITH_API_KEY = gql`
                 type
             }
             depictImageData {
-                ...DepictImageDataFragment
+                ...TextSelectImage_DepictImageDataFragment
             }
         }
     }
-    ${DepictImageDataFragment}
+    ${TextSelectImage_DepictImageDataFragment}
 `;
 
 
@@ -91,11 +91,11 @@ export const EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID = gql`
                 type
             }
             depictImageData {
-                ...DepictImageDataFragment
+                ...TextSelectImage_DepictImageDataFragment
             }
         }
     }
-    ${DepictImageDataFragment}
+    ${TextSelectImage_DepictImageDataFragment}
 `;
 
 

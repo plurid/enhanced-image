@@ -2,62 +2,32 @@ import gql from 'graphql-tag';
 
 
 
-export const DepictImageDataFragment = gql`
-    fragment DepictImageDataFragment on DepictImageData {
+export const TextSelectImage_DepictImageDataFragment = gql`
+    fragment TextSelectImage_DepictImageDataFragment on DepictImageData {
         imageSHA
-        # imageShortSHA
-        # imageFilename
-        # publicImage
-        # uploadedBy
-        # user {
-        #     username
-        # }
         imageText {
             id
             currentVersionId
             versions {
-                id
+                bold
+                color
                 content
+                fontFamily
+                fontSizePercentage
+                id
+                italic
+                letterSpacingPercentage
+                lineHeight
+                link
+                linkTo
+                perspective
+                rotation
+                skew
+                viewable
+                wordSpacingPercentage
+                xCoordPercentage
+                yCoordPercentage
             }
         }
-        # createdAt
-        # metadata {
-        #     title
-        #     description
-        #     topics {
-        #         id
-        #         name
-        #     }
-        #     album {
-        #         id
-        #         text
-        #     }
-        #     date {
-        #         timestamp
-        #         text
-        #     }
-        #     event {
-        #         detimeEventId
-        #         text
-        #     }
-        #     location {
-        #         coordinates {
-        #             latitude
-        #             longitude
-        #         }
-        #         text
-        #     }
-        #     technical {
-        #         channels
-        #         chromaSubsampling
-        #         density
-        #         format
-        #         hasAlpha
-        #         height
-        #         size
-        #         space
-        #         width
-        #     }
-        # }
     }
 `;
