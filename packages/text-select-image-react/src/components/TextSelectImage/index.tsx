@@ -40,6 +40,9 @@ import {
 import uuidv4 from '../../utils/uuid';
 import computeImageSha from '../../utils/computeImageSha';
 import {
+    deleteTypenames,
+} from '../../utils/graphql';
+import {
     getVersionById,
     updateVersion,
     pushNewVersion,
@@ -149,10 +152,10 @@ class TextSelectImage extends Component<
             toggledEditable,
             toggledSettingsButton,
             message,
-            // imageText,
+            imageText,
         } = this.state;
 
-        // console.log(imageText);
+        console.log(imageText);
         return (
             <Context.Provider value={this.state}>
                 <StyledTextSelectImage
@@ -574,10 +577,11 @@ class TextSelectImage extends Component<
         this.setMessage('Obtaining Text. Please Wait.');
 
         const imageText: any[] = await this.getText();
+        console.log('imageText', imageText);
 
         if (imageText.length > 0) {
             this.setState({
-                imageText,
+                imageText: deleteTypenames(imageText),
                 loading: false,
             },
                 () => {
