@@ -20,7 +20,7 @@ class App extends Component {
         return (
             <div className="app">
                 <div
-                    style={ {width: 900, height: 500, margin: '150px auto'} }
+                    style={ {width: 900, margin: '150px auto'} }
                 >
                     <TextSelectImage
                         theme="depict"

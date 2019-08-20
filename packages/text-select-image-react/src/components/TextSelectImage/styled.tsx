@@ -8,6 +8,7 @@ export const StyledTextSelectImage: any = styled.div`
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Helvetica, Arial, sans-serif;
     position: relative;
+    height: 100%;
     overflow: ${(props: any) => {
         if (props.toggledEditable && props.imageWidth < 745) {
             return 'visible';
@@ -27,4 +28,11 @@ export const StyledTextSelectImage: any = styled.div`
         color: ${props => props.theme.color};
         text-decoration: none;
     }
+`;
+
+
+export const StyledImageContainer: any = styled.div`
+    position: relative;
+    overflow: auto;
+    height: 100%;
 `;
