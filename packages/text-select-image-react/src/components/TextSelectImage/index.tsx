@@ -18,10 +18,9 @@ import {
 } from '../../data/constants';
 import {
     emptyImageText,
-    emptyTextSelectImage,
     newTextImageVersion,
 } from '../../data/initializers';
-// import themes from '../../data/themes';
+
 import themes from '@plurid/apps.utilities.themes';
 
 import uuidv4 from '../../utils/uuid';
@@ -821,7 +820,7 @@ class TextSelectImage extends Component<
 
             const mutation = await this.client
                 .mutate({
-                    mutation: updateTextSelectImage,
+                    mutation: '',
                     variables: {
                         input,
                     },
