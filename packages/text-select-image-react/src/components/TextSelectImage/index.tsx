@@ -86,6 +86,7 @@ class TextSelectImage extends Component<
             imageNaturalWidth: 0,
             imageText: emptyImageText,
             message: '',
+            messageLink: '',
 
             toggleSettingsButton: this.toggleSettingsButton,
             toggledSettingsButton: false,
@@ -156,6 +157,7 @@ class TextSelectImage extends Component<
             toggledEditable,
             toggledSettingsButton,
             message,
+            messageLink,
             imageText,
             textSelectImageElHeight,
         } = this.state;
@@ -199,6 +201,7 @@ class TextSelectImage extends Component<
                     {message && (
                         <Message
                             text={message}
+                            link={messageLink}
                         />
                     )}
                 </StyledTextSelectImage>
@@ -405,21 +408,24 @@ class TextSelectImage extends Component<
         );
     }
 
-    private setMessage = (message: string, time?: number) => {
+    private setMessage = (message: string, time?: number, link?: string) => {
         if (!time) {
             this.setState({
                 message,
+                messageLink: link,
             });
             return;
         }
 
         this.setState({
             message,
+            messageLink: link,
         },
             () => {
                 setTimeout(() => {
                     this.setState({
                         message: '',
+                        messageLink: '',
                     });
                 }, time)
             }
@@ -450,10 +456,13 @@ class TextSelectImage extends Component<
                     },
                     fetchPolicy: 'no-cache',
                 });
+            console.log('query with API Key', query);
 
-            console.log(query);
-
-            const { status, depictImageData } = query.data.getDepictImageDataByURLWithApiKey;
+            const {
+                status,
+                depictImageData,
+                errors,
+            } = query.data.getDepictImageDataByURLWithApiKey;
 
             if (!query.loading) {
                 this.setState({
@@ -462,12 +471,27 @@ class TextSelectImage extends Component<
             }
 
             if (!status) {
-                return [];
+                const response = {
+                    status: false,
+                    imageText: [],
+                    error: errors[0].type,
+                };
+                return response;
             }
 
-            return depictImageData.imageText;
+            const response = {
+                status: true,
+                imageText: depictImageData.imageText,
+                error: '',
+            };
+            return response;
         } catch (error) {
-            return [];
+            const response = {
+                status: false,
+                imageText: [],
+                error: 'BAD_REQUEST',
+            };
+            return response;
         }
     }
 
@@ -494,10 +518,13 @@ class TextSelectImage extends Component<
                     },
                     fetchPolicy: 'no-cache',
                 });
+            console.log('query with User Token', query);
 
-            console.log(query);
-
-            const { status, depictImageData } = query.data.getDepictImageDataByURLWithUserToken;
+            const {
+                status,
+                depictImageData,
+                errors,
+            } = query.data.getDepictImageDataByURLWithUserToken;
 
             if (!query.loading) {
                 this.setState({
@@ -506,12 +533,27 @@ class TextSelectImage extends Component<
             }
 
             if (!status) {
-                return [];
+                const response = {
+                    status: false,
+                    imageText: [],
+                    error: errors[0].type,
+                };
+                return response;
             }
 
-            return depictImageData.imageText;
-        } catch(err) {
-            return [];
+            const response = {
+                status: true,
+                imageText: depictImageData.imageText,
+                error: '',
+            };
+            return response;
+        } catch (error) {
+            const response = {
+                status: false,
+                imageText: [],
+                error: 'BAD_REQUEST',
+            };
+            return response;
         }
     }
 
@@ -533,9 +575,13 @@ class TextSelectImage extends Component<
                     },
                     fetchPolicy: 'no-cache',
                 });
+            console.log('query by ImageID', query);
 
-            // console.log(query);
-            const { status, depictImageData } = query.data.getDepictImageDataByImageID;
+            const {
+                status,
+                depictImageData,
+                errors,
+            } = query.data.getDepictImageDataByImageID;
 
             if (!query.loading) {
                 this.setState({
@@ -544,12 +590,27 @@ class TextSelectImage extends Component<
             }
 
             if (!status) {
-                return [];
+                const response = {
+                    status: false,
+                    imageText: [],
+                    error: errors[0].type,
+                };
+                return response;
             }
 
-            return depictImageData.imageText;
+            const response = {
+                status: true,
+                imageText: depictImageData.imageText,
+                error: '',
+            };
+            return response;
         } catch (error) {
-            return [];
+            const response = {
+                status: false,
+                imageText: [],
+                error: 'BAD_REQUEST',
+            };
+            return response;
         }
     }
 
@@ -565,32 +626,42 @@ class TextSelectImage extends Component<
         } = this.props;
 
         if (apiKey) {
-            const imageText = await this.getTextWithApiKey();
-            return imageText;
+            const response = await this.getTextWithApiKey();
+            return response;
         }
 
         if (userToken) {
-            const imageText = await this.getTextWithUserToken();
-            return imageText;
+            const response = await this.getTextWithUserToken();
+            return response;
         }
 
         if (depictImageID) {
-            const imageText = await this.getTextWithDepictImageID();
-            return imageText;
+            const response = await this.getTextWithDepictImageID();
+            return response;
         }
 
-        return [];
+        const response = {
+            status: false,
+            imageText: [],
+            error: 'BAD_REQUEST',
+        }
+        return response;
     }
 
     private getAndSetText = async () => {
         this.setMessage('Obtaining Text. Please Wait.');
 
-        const imageText: any[] = await this.getText();
-        console.log('imageText', imageText);
+        const {
+            status,
+            error,
+            imageText
+        } = await this.getText();
 
-        if (imageText.length > 0) {
+        if (status && imageText.length > 0) {
+            const clearedImageText = deleteTypenames(imageText);
+
             this.setState({
-                imageText: deleteTypenames(imageText),
+                imageText: clearedImageText,
                 loading: false,
             },
                 () => {
@@ -599,11 +670,31 @@ class TextSelectImage extends Component<
             );
         } else {
             this.setState({
-                imageText,
+                imageText: [],
                 loading: false,
             },
                 () => {
-                    this.setMessage('No Text Stored. Add or Extract Text.', 2500);
+                    switch(error) {
+                        case 'UNAUTHORIZED':
+                            this.setMessage(
+                                'Request Unauthorized. Check Access on',
+                                6000,
+                                'account.plurid.com/depict',
+                            );
+                            break;
+                        case 'NOT_FOUND':
+                            this.setMessage('No Text Stored. Add or Extract Text.', 2500);
+                            break;
+                        case 'INVALID_API_KEY':
+                            this.setMessage(
+                                'API Key is Invalid. Check Access on',
+                                6000,
+                                'account.plurid.com/depict/api',
+                            );
+                            break;
+                        default:
+                            this.setMessage('Something is Wrong. Try Again.', 2500);
+                    }
                 }
             );
         }
@@ -671,17 +762,17 @@ class TextSelectImage extends Component<
                     try {
                         intervalIterations += 1;
                         const imageText = await this.getText();
-                        if (imageText.length > 0) {
-                            this.setMessage('Rendered Text.', 2500);
-                            this.setState({
-                                imageText,
-                                loading: false,
-                            },
-                                () => {
-                                    clearInterval(this.extractInterval);
-                                }
-                            );
-                        }
+                        // if (imageText.length > 0) {
+                        //     this.setMessage('Rendered Text.', 2500);
+                        //     this.setState({
+                        //         imageText,
+                        //         loading: false,
+                        //     },
+                        //         () => {
+                        //             clearInterval(this.extractInterval);
+                        //         }
+                        //     );
+                        // }
 
                         if (intervalIterations > 5) {
                             this.setMessage('Could Not Extract Text.', 4000);
