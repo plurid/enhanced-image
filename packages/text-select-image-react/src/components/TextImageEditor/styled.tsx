@@ -14,6 +14,21 @@ export const StyledTextImageEditor: any = styled.div`
     }};
     color: ${props => props.theme.colorPrimary};
 
+    width: ${(props: any) => {
+        if (props.fullWidth) {
+            return props.imageWidth + 'px';
+        }
+        return 'auto';
+    }};
+    overflow-x: auto;
+    overflow-y: hidden;
+    ::-webkit-scrollbar { /* WebKit */
+        width: 0;
+        height: 0;
+    }
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+
     position: absolute;
     top: -34px;
     cursor: default;
