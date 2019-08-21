@@ -46,7 +46,6 @@ class TextImageEditor extends Component<any, any> {
         } = this.context
 
         const editorWidth = this.editor.current.offsetWidth;
-        // console.log('editorWidth', editorWidth);
         setEditorWidth(editorWidth);
     }
 
@@ -55,6 +54,7 @@ class TextImageEditor extends Component<any, any> {
             theme,
             imageHeight,
             imageWidth,
+            editorWidth,
         } = this.context;
 
         const {
@@ -87,9 +87,13 @@ class TextImageEditor extends Component<any, any> {
         const letterSpacing = valueFromPercentage(letterSpacingPercentage, imageWidth);
         const wordSpacing = valueFromPercentage(wordSpacingPercentage, imageWidth);
 
+        const fullWidth = imageWidth <= editorWidth;
+
         return (
             <StyledTextImageEditor
                 theme={theme}
+                fullWidth={fullWidth}
+                imageWidth={imageWidth}
                 style={{
                     left: xCoord + 'px',
                     top: yCoord + 'px',
