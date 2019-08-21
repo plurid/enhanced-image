@@ -22,8 +22,6 @@ import {
     PLURID_API,
 } from '../../data/constants';
 
-// import themes from '../../data/themes';
-
 import themes from '@plurid/apps.utilities.themes';
 import { enhancedTheme } from '../../data/themes';
 
@@ -102,16 +100,14 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
                 ? enhancedTheme
                 : themes[theme];
         const _themeName = theme === undefined ? this.context.themeName : theme;
-        const _textFunctions = textFunctions === undefined ? true : textFunctions;
 
-        // const selectText = await this.getText();
+        const _textFunctions = textFunctions === undefined ? true : textFunctions;
 
         this.setState({
             about: _about,
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
-            selectText: {},
             textFunctions: _textFunctions,
         });
     }
@@ -122,19 +118,21 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
             alt,
             height,
             width,
-            textFunctions,
+            // textFunctions,
+            theme,
+            apiKey,
+            userToken,
             depictImageID,
         } = this.props;
         const {
             controls,
-            theme,
+            theme: themeData,
             themeName,
-            imageLoaded,
-            loading,
+            // imageLoaded,
+            // loading,
             imageWidth,
-            toggledEditable,
+            // toggledEditable,
             toggledSettingsButton,
-            selectText,
             invertValue,
             contrastValue,
             hueValue,
@@ -143,12 +141,10 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
             apiEndpoint,
         } = this.state;
 
-        // console.log(theme);
-
         return (
             <Context.Provider value={this.state}>
                 <StyledEnhancedImage
-                    theme={theme}
+                    theme={themeData}
                     // toggledEditable={toggledEditable}
                     imageWidth={imageWidth}
                     onMouseEnter={this.toggleSettingsButton}
@@ -156,12 +152,18 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
                     onMouseMove={this.handleMouseMove}
                 >
                     <TextSelectImage
+                        ref={this.textSelectImage}
+
                         src={src || ''}
-                        alt={alt || 'Image'}
-                        // textFunctions={textFunctions}
-                        theme={themeName}
+                        alt={alt || ''}
+
+                        theme={theme || themeName}
                         apiEndpoint={apiEndpoint}
+                        apiKey={apiKey}
+                        userToken={userToken}
                         depictImageID={depictImageID}
+                        // textFunctions={textFunctions}
+
                         atLoad={this.handleLoadedImage}
                         imageStyle={{
                             filter: `
@@ -174,7 +176,6 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
                             width: width ? width + 'px' : '100%',
                             height: height ? height + 'px' : 'auto',
                         }}
-                        ref={this.textSelectImage}
                     />
 
                     {toggledSettingsButton && controls && (
@@ -264,27 +265,6 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
         if (!toggledSettingsButton) {
             this.toggleSettingsButton();
         }
-    }
-
-    private computeImageSha = async () => {
-        // const {
-        //     src
-        // } = this.props;
-
-        // const image: any = await loadImage(src);
-        // const { height, width } = image;
-        // const canvas = document.createElement('canvas');
-        // canvas.width = width;
-        // canvas.height = height;
-        // const context: any = canvas.getContext('2d');
-        // context.drawImage(image, 0, 0, width, height);
-        // const imageData = context.getImageData(0, 0, width, height);
-        // const buffer = imageData.data;
-        // const imageSha = sha256(arrayBufferToWordArray(buffer)).toString();
-
-        // this.setState({
-        //     imageSha,
-        // });
     }
 }
 
