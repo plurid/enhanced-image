@@ -4,16 +4,21 @@ import styled from 'styled-components';
 
 export const StyledTextSelectImage: any = styled.div`
     box-sizing: border-box;
-    color: ${props => props.theme.color};
+    position: relative;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Helvetica, Arial, sans-serif;
-    position: relative;
-    height: 100%;
+
+    color: ${props => props.theme.color};
+    height: ${(props: any) => {
+        if (props.imageHeight <= props.elementHeight) {
+            return props.imageHeight + 'px';
+        }
+        return '100%';
+    }};
     overflow: ${(props: any) => {
         if (props.toggledEditable && props.imageWidth < 745) {
             return 'visible';
         }
-
         return 'hidden';
     }};
 

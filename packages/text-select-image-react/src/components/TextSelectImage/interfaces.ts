@@ -37,6 +37,8 @@ export interface ITextSelectImageState {
     controls: boolean;
     textFunctions?: boolean;
 
+    textSelectImageElHeight: number;
+
     loading: boolean;
     imageLoaded: boolean;
     imageURL: string;
