@@ -58,9 +58,11 @@ class TextSelectImage extends Component<
 > {
     static contextType = Context;
 
+
     client: ApolloClient<any>;
 
     private extractInterval: any;
+    private textSelectImageEl: React.RefObject<HTMLDivElement> = React.createRef();
 
     constructor(props: ITextSelectImageProps) {
         super(props);
@@ -126,12 +128,15 @@ class TextSelectImage extends Component<
         const _theme = theme === undefined ? this.context.theme : themes[theme];
         const _themeName = theme === undefined ? this.context.themeName : theme;
 
+        const textSelectImageElHeight = this.textSelectImageEl.current!.offsetHeight;
+
         this.setState({
             about: _about,
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
             textFunctions: this.props.textFunctions,
+            textSelectImageElHeight,
         });
     }
 
@@ -149,21 +154,27 @@ class TextSelectImage extends Component<
             imageLoaded,
             loading,
             imageWidth,
+            imageHeight,
             toggledEditable,
             toggledSettingsButton,
             message,
             imageText,
+            textSelectImageElHeight,
         } = this.state;
 
         console.log(imageText);
+
         return (
             <Context.Provider value={this.state}>
                 <StyledTextSelectImage
                     theme={theme}
                     toggledEditable={toggledEditable}
                     imageWidth={imageWidth}
+                    imageHeight={imageHeight}
                     onMouseEnter={this.toggleSettingsButton}
                     onMouseLeave={this.toggleSettingsButton}
+                    ref={this.textSelectImageEl}
+                    elementHeight={textSelectImageElHeight}
                 >
                     <StyledImageContainer>
                         <img
