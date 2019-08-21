@@ -8,7 +8,12 @@ import Context from '../../context';
 
 
 
-class Message extends Component<any, any> {
+interface MessageProperties {
+    text: string;
+    link: string | undefined;
+}
+
+class Message extends Component<MessageProperties, {}> {
     static contextType = Context;
 
     public render() {
@@ -16,12 +21,34 @@ class Message extends Component<any, any> {
         } = this.context;
 
         const {
-            text
+            text,
+            link,
         } = this.props;
 
+        const message = link
+            ? (
+                <>
+                    {text}
+                    <br />
+                    <a
+                        href={`https://${link}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {link}
+                    </a>.
+                </>
+            ) : (
+                <>
+                    {text}
+                </>
+            );
+
         return (
-            <StyledMessage>
-                {text}
+            <StyledMessage
+                link={link}
+            >
+                {message}
             </StyledMessage>
         );
     }

@@ -7,15 +7,25 @@ const translateUp = keyframes`
     to { bottom: 25px; }
 `;
 
-export const StyledMessage = styled.div`
+export const StyledMessage: any = styled.div`
     color: white;
     position: absolute;
     left: 50%;
     bottom: 25px;
     transform: translateX(-50%);
     background-color: hsla(220, 2%, 10%, 0.3);
-    padding: 4px;
+    padding: 4px 10px;
     user-select: none;
-    pointer-events: none;
+    pointer-events: ${(props: any) => {
+        if (props.link) {
+            return 'auto';
+        }
+        return 'none';
+    }};
     animation: ${translateUp} 400ms ease-in-out forwards;
+
+    a {
+        text-decoration: none;
+        color: #ccc;
+    }
 `;
