@@ -25,18 +25,6 @@ import {
     newTextImageVersion,
 } from '../../data/initializers';
 
-import { ApolloClient } from 'apollo-client';
-import graphqlClient from '../../graphql/client';
-import {
-    GET_DEPICT_IMAGE_DATA_BY_IMAGE_ID,
-    GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY,
-    GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN,
-} from '../../graphql/query';
-import {
-    EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID,
-    UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
-} from '../../graphql/mutate';
-
 import uuidv4 from '../../utils/uuid';
 import computeImageSha from '../../utils/computeImageSha';
 import {
@@ -49,6 +37,18 @@ import {
     duplicateTextImage,
 } from '../../utils/textImage';
 
+import { ApolloClient } from 'apollo-client';
+import graphqlClient from '../../graphql/client';
+import {
+    GET_DEPICT_IMAGE_DATA_BY_IMAGE_ID,
+    GET_DEPICT_IMAGE_DATA_BY_URL_WITH_API_KEY,
+    GET_DEPICT_IMAGE_DATA_BY_URL_WITH_USER_TOKEN,
+} from '../../graphql/query';
+import {
+    EXTRACT_DEPICT_IMAGE_TEXT_WITH_DEPICT_IMAGE_ID,
+    UPLOAD_DEPICT_IMAGE_BY_URL_WITH_USER_TOKEN,
+} from '../../graphql/mutate';
+
 import themes from '@plurid/apps.utilities.themes';
 
 
@@ -57,7 +57,6 @@ class TextSelectImage extends Component<
     ITextSelectImageProps, Partial<ITextSelectImageState>
 > {
     static contextType = Context;
-
 
     client: ApolloClient<any>;
 
@@ -116,7 +115,6 @@ class TextSelectImage extends Component<
 
     async componentDidMount() {
         // console.log('MOUNT');
-
         const {
             about,
             controls,
@@ -162,7 +160,7 @@ class TextSelectImage extends Component<
             textSelectImageElHeight,
         } = this.state;
 
-        console.log(imageText);
+        // console.log(imageText);
 
         return (
             <Context.Provider value={this.state}>
