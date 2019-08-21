@@ -19,7 +19,7 @@ class App extends Component {
                         alt="food"
                         theme="depict"
                         about={false}
-                        apiEndpoint="http://192.168.1.2:3360/graphql"
+                        apiEndpoint="http://192.168.1.2:33600/graphql"
                         // apiEndpoint="https://api.plurid.dev/graphql"
                         // textFunctions={false}
                     />
