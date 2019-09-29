@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 
 export const StyledEnhancedImageButtonItem = styled.div`
-    box-sizing: border-box;
     display: flex;
     align-items: center;
     padding: 7px 10px;
@@ -23,6 +22,6 @@ export const StyledEnhancedImageButtonItemIcon = styled.div`
     svg {
         width: 14px;
         height: 14px;
-        fill: ${props => props.theme.colorPrimary};
+        fill: ${props => props.theme.color};
     }
 `;

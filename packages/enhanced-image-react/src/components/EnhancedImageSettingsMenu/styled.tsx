@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
 
-const SETTINGS_MENU_TOP = 70;
 
 export const StyledEnhancedImageSettingsMenu: any = styled.div`
-    font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-        'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-
-    box-sizing: border-box;
     opacity: ${(props: any) => {
         if (props.menuOpaque) {
             return 1;
@@ -19,26 +14,24 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     transition: opacity 600ms linear;
     z-index: 9999;
 
+    /* height - 30px - 20px */
     height: ${(props: any) => {
-        const auto = (props.settingsMenuHeight + SETTINGS_MENU_TOP) < props.imageHeight;
-        const height = auto ? 'auto' : props.imageHeight - SETTINGS_MENU_TOP + 'px';
-        return height;
+        console.log(props.imageHeight);
+
+        return props.imageHeight - 70 + 'px';
     }};
     overflow: auto;
     border-radius: 10px;
     margin-top: 10px;
 
     ul {
-        font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-            'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-
-        background-color: ${props => props.theme.backgroundColorPrimary};
+        background-color: ${props => props.theme.backgroundColor};
         background: ${props => {
-            const { backgroundGradient, backgroundColorPrimary } = props.theme;
+            const { backgroundGradient, backgroundColor } = props.theme;
             if (backgroundGradient) {
                 return backgroundGradient;
             } else {
-                return backgroundColorPrimary;
+                return backgroundColor;
             }
         }};
 
@@ -57,11 +50,7 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     }
 
     ul li {
-        line-height: 1.1;
         min-height: 32px;
-
-        font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-            'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     }
 
     ul li:first-child {
@@ -75,7 +64,7 @@ export const StyledEnhancedImageSettingsMenu: any = styled.div`
     }
 
     ul li:hover {
-        background-color: ${props => props.theme.backgroundColorTertiary};
+        background-color: ${props => props.theme.backgroundColorHover};
     }
 
     hr {

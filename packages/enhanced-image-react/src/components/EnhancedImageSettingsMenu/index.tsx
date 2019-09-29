@@ -42,12 +42,9 @@ import {
 class EnhancedImageSettingsMenu extends Component<any, any> {
     static contextType = Context;
 
-    settingsMenu: React.RefObject<HTMLDivElement> = React.createRef();
-
     saveButton: any;
 
     state = {
-        settingsMenuHeight: 0,
         previousColorValues: {
             invertValue: 0,
             contrastValue: 100,
@@ -63,20 +60,7 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
         this.saveButton = React.createRef();
     }
 
-    componentDidMount() {
-        if (this.settingsMenu.current) {
-            const settingsMenuHeight = this.settingsMenu.current.offsetHeight;
-            this.setState({
-                settingsMenuHeight,
-            });
-        }
-    }
-
     public render() {
-        const {
-            settingsMenuHeight,
-        } = this.state;
-
         const {
             imageHeight,
             about,
@@ -85,70 +69,63 @@ class EnhancedImageSettingsMenu extends Component<any, any> {
             toggledDefaults,
             invertValue,
             menuOpaque,
-            textFunctions,
         } = this.context;
 
         return (
             <StyledEnhancedImageSettingsMenu
-                ref={this.settingsMenu}
                 theme={theme}
                 menuOpaque={menuOpaque}
                 imageHeight={imageHeight}
-                settingsMenuHeight={settingsMenuHeight}
             >
                 <ul>
-                    {textFunctions && (
-                        <>
-                            <li>
-                                <EnhancedImageButtonCheckmark
-                                    theme={theme}
-                                    toggle={this.toggleEditable}
-                                    text="Edit Text"
-                                    checked={toggledEditable}
-                                />
-                            </li>
+                    <li>
+                        <EnhancedImageButtonCheckmark
+                            theme={theme}
+                            toggle={this.toggleEditable}
+                            text="Edit Text"
+                            checked={toggledEditable}
+                        />
+                    </li>
 
-                            <li>
-                                <EnhancedImageButtonItem
-                                    theme={theme}
-                                    atClick={this.addText}
-                                    icon={AddTextIcon}
-                                    text="Add Text"
-                                />
-                            </li>
+                    <li>
+                        <EnhancedImageButtonItem
+                            theme={theme}
+                            atClick={this.addText}
+                            icon={AddTextIcon}
+                            text="Add Text"
+                        />
+                    </li>
 
-                            <hr />
+                    <hr />
 
-                            <li>
-                                <EnhancedImageButtonItem
-                                    theme={theme}
-                                    atClick={this.getText}
-                                    icon={GetTextIcon}
-                                    text="Get Text"
-                                />
-                            </li>
+                    <li>
+                        <EnhancedImageButtonItem
+                            theme={theme}
+                            atClick={this.getText}
+                            icon={GetTextIcon}
+                            text="Get Text"
+                        />
+                    </li>
 
-                            <li>
-                                <EnhancedImageButtonItem
-                                    theme={theme}
-                                    atClick={this.extractText}
-                                    icon={ExtractTextIcon}
-                                    text="Extract Text"
-                                />
-                            </li>
+                    <li>
+                        <EnhancedImageButtonItem
+                            theme={theme}
+                            atClick={this.extractText}
+                            icon={ExtractTextIcon}
+                            text="Extract Text"
+                        />
+                    </li>
 
-                            {/* <li>
-                                <EnhancedImageButtonItem
-                                    theme={theme}
-                                    atClick={this.transviewText}
-                                    icon={TransviewTextIcon}
-                                    text="Transview Text"
-                                />
-                            </li> */}
+                    {/* <li>
+                        <EnhancedImageButtonItem
+                            theme={theme}
+                            atClick={this.transviewText}
+                            icon={TransviewTextIcon}
+                            text="Transview Text"
+                        />
+                    </li> */}
 
-                            <hr />
-                        </>
-                    )}
+                    <hr />
 
                     {/* <li>
                         <EnhancedImageButtonItem

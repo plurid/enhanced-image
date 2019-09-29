@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { enhancedTheme } from './data/themes';
+import themes from './data/themes';
 import { DEFAULT_THEME } from './data/constants';
 
 
@@ -22,7 +22,7 @@ export interface IContext {
 
 const initialContext = {
     about: true,
-    theme: enhancedTheme,
+    theme: themes[DEFAULT_THEME],
     themeName: DEFAULT_THEME,
     controls: true,
     toggleSettings: () => {},

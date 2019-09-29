@@ -3,11 +3,8 @@ import styled from 'styled-components';
 
 
 export const StyledEnhancedImageSliderItem = styled.div`
-    box-sizing: border-box;
     padding: 7px 10px;
     height: 50px;
-    font-family: 'Ubuntu', 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-        'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 `;
 
 
@@ -43,21 +40,21 @@ export const StyledEnhancedImageSliderInputContainer: any = styled.div`
         width: 100%;
         height: 2px;
         cursor: pointer;
-        background: ${(props: any) => props.theme.colorPrimary };
+        background: ${(props: any) => props.theme.color };
         border-radius: 0px;
     }
 
     input[type=range]::-webkit-slider-thumb {
-        border: 2px solid ${(props: any) => props.theme.colorPrimary };
+        border: 2px solid ${(props: any) => props.theme.color };
         height: 15px;
         width: 15px;
         border-radius: 50px;
         background: ${(props: any) => {
             if (props.hovered) {
-                return props.theme.colorPrimary;
+                return props.theme.color;
             }
 
-            return props.theme.backgroundColorPrimary;
+            return props.theme.backgroundColor;
         }};
         cursor: pointer;
         -webkit-appearance: none;
@@ -65,28 +62,28 @@ export const StyledEnhancedImageSliderInputContainer: any = styled.div`
     }
 
     input[type=range]:focus::-webkit-slider-runnable-track {
-        background: ${(props: any) => props.theme.colorPrimary };
+        background: ${(props: any) => props.theme.color };
     }
 
     input[type=range]::-moz-range-track {
         width: 100%;
         height: 2px;
         cursor: pointer;
-        background: ${(props: any) => props.theme.colorPrimary };
+        background: ${(props: any) => props.theme.color };
         border-radius: 0px;
     }
 
     input[type=range]::-moz-range-thumb {
-        border: 2px solid ${(props: any) => props.theme.colorPrimary };
+        border: 2px solid ${(props: any) => props.theme.color };
         height: 15px;
         width: 15px;
         border-radius: 50px;
         background: ${(props: any) => {
             if (props.hovered) {
-                return props.theme.colorPrimary;
+                return props.theme.color;
             }
 
-            return props.theme.backgroundColorPrimary;
+            return props.theme.backgroundColor;
         }};
         cursor: pointer;
     }
@@ -101,36 +98,36 @@ export const StyledEnhancedImageSliderInputContainer: any = styled.div`
     }
 
     input[type=range]::-ms-fill-lower {
-        background: ${(props: any) => props.theme.colorPrimary };
+        background: ${(props: any) => props.theme.color };
         border-radius: 0px;
     }
 
     input[type=range]::-ms-fill-upper {
-        background: ${(props: any) => props.theme.colorPrimary };
+        background: ${(props: any) => props.theme.color };
         border-radius: 0px;
     }
 
     input[type=range]::-ms-thumb {
-        border: 2px solid ${(props: any) => props.theme.colorPrimary };
+        border: 2px solid ${(props: any) => props.theme.color };
         height: 15px;
         width: 15px;
         border-radius: 50px;
         background: ${(props: any) => {
             if (props.hovered) {
-                return props.theme.colorPrimary;
+                return props.theme.color;
             }
 
-            return props.theme.backgroundColorPrimary;
+            return props.theme.backgroundColor;
         }};
         cursor: pointer;
         height: 2px;
     }
 
     input[type=range]:focus::-ms-fill-lower {
-        background: ${(props: any) => props.theme.colorPrimary };
+        background: ${(props: any) => props.theme.color };
     }
 
     input[type=range]:focus::-ms-fill-upper {
-        background: ${(props: any) => props.theme.colorPrimary };
+        background: ${(props: any) => props.theme.color };
     }
 `;
