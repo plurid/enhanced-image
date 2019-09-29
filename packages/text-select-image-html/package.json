@@ -1,0 +1,49 @@
+{
+    "name": "@plurid/text-select-image-html",
+    "version": "0.1.1",
+    "description": "HTML Custom Image Element to select the text from images",
+    "keywords": [
+        "text",
+        "image",
+        "html"
+    ],
+    "author": "Jan Cavel <caveljan@plurid.com> (https://plurid.com)",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plurid/text-select-image"
+    },
+    "bugs": {
+        "email": "feedback@plurid.com",
+        "url": "https://github.com/plurid/text-select-image/issues"
+    },
+    "homepage": "https://github.com/plurid/text-select-image/blob/master/packages/text-select-image-html",
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist/"
+    ],
+    "module": "dist/esm/index.js",
+    "main": "dist/index.js",
+    "types": "dist/types/components.d.ts",
+    "collection": "dist/collection/collection-manifest.json",
+    "scripts": {
+        "clean": "rm -rf ./.stencil && rm -rf ./www && rm -rf ./dist",
+        "build": "yarn clean && stencil build --docs",
+        "start": "yarn clean && stencil build --dev --watch --serve",
+        "test": "stencil test --spec",
+        "test.e2e": "stencil test --e2e",
+        "test.complete": "stencil test --spec --e2e",
+        "test.watch": "stencil test --spec --e2e --watchAll"
+    },
+    "devDependencies": {
+        "@stencil/core": "^1.0.2",
+        "@types/jest": "24.0.13",
+        "@types/puppeteer": "1.12.4",
+        "jest": "24.8.0",
+        "jest-cli": "24.8.0",
+        "puppeteer": "1.17.0",
+        "stencil-inline-svg": "0.0.2"
+    }
+}

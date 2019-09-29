@@ -1,0 +1,44 @@
+.text-image-editor-dropdown {
+    position: relative;
+}
+
+.text-image-editor-dropdown input {
+    width: 110px;
+    border: none;
+    background: hsl(220, 2%, 30%);
+    color: white;
+    text-align: left;
+    outline: none;
+    padding: 3px 6px;
+}
+
+
+.text-image-editor-dropdown-list {
+    position: absolute;
+    top: 19px;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: grid;
+    align-content: flex-start;
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.text-image-editor-dropdown-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.text-image-editor-dropdown-list ul li {
+    cursor: pointer;
+    padding: 4px 6px;
+    font-size: 11px;
+    background-color: hsl(220, 2%, 15%);
+}
+
+.text-image-editor-dropdown-list ul li:hover {
+    background-color: hsl(220, 2%, 60%);
+}

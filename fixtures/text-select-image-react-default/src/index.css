@@ -1,0 +1,20 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+    font-kerning: auto;
+    text-rendering: optimizeLegibility;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+    background-color: hsl(220, 20%, 20%);
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
+}
+
+.app {
+    text-align: center;
+}
