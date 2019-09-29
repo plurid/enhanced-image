@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
+import sha256 from 'crypto-js/sha256';
 
-import './styles.css';
-
-import {
-    StyledEnhancedImage,
-} from './styled';
-
-import {
-    EnhancedImageProps,
-    EnhancedImageState,
-} from './interfaces';
+import { StyledEnhancedImage } from './styled';
 
 import Context from '../../context';
 
@@ -17,19 +9,93 @@ import Context from '../../context';
 import EnhancedImageSettings from '../EnhancedImageSettings';
 // import Spinner from '../Spinner';
 
+import { arrayBufferToWordArray } from '../../utils/arrayBuffer';
+import { loadImage } from '../../utils/image';
+
 import {
     UPDATE_DEBOUNCE,
     PLURID_API,
 } from '../../data/constants';
 
-import themes from '@plurid/apps.utilities.themes';
-import { enhancedTheme } from '../../data/themes';
+import themes from '../../data/themes';
 
 import TextSelectImage from '@plurid/text-select-image-react';
 
+// import computeContentId from '../../utils/contentId';
+// import uuidv4 from '../../utils/uuid';
+
+// import ApolloClient from 'apollo-boost';
+
+// import { getTextSelectImage } from '../../graphql/query';
+// import { updateTextSelectImage } from '../../graphql/mutation';
 
 
-class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
+
+// const apolloClient = (uri: string) => {
+//     return new ApolloClient({
+//         uri,
+//     });
+// }
+
+
+// interface ITextSelectImageProps {
+//     about?: boolean;
+//     alt?: string;
+//     controls?: boolean;
+//     src: string;
+//     theme?: string;
+//     imageText?: any;
+
+//     // To be specified when using another API than https://api.plurid.com
+//     // GraphlQL-based
+//     apiEndpoint?: string;
+
+//     // The apiKey contains the domain allowed to make requests
+//     // To be specified when using as a service provider
+//     // apiKey obtained from https://depict.plurid.com/api
+//     apiKey?: string;
+
+//     updateDebounce?: number;
+// }
+
+// interface ITextSelectImageState {
+//     apiEndpoint: string;
+//     updateDebounce: number;
+
+//     theme: any;
+//     themeName: string;
+//     about: boolean;
+//     controls: boolean;
+//     editorWidth: number;
+//     loading: boolean;
+
+//     imageLoaded: boolean;
+//     imageHeight: number;
+//     imageWidth: number;
+//     imageNaturalHeight: number;
+//     imageNaturalWidth: number;
+
+//     toggleSettingsButton: () => void;
+//     toggledSettingsButton: boolean;
+//     toggleSettings: () => void;
+//     toggledSettings: boolean;
+//     toggleEditable: () => void;
+//     toggledEditable: boolean;
+//     selectText: any;
+
+//     createTextImage: () => any;
+//     duplicateTextImage: (duplicateId: string) => any;
+//     updateTextImage: (text: any) => any;
+//     updateTextImageField: (id: string, element: string, value: any) => any;
+//     deleteTextImage: (id: string) => any;
+//     setEditorWidth: (value: number) => any;
+// }
+
+
+class EnhancedImage extends Component<
+    any, any
+    // ITextSelectImageProps, Partial<ITextSelectImageState>
+> {
     static contextType = Context;
 
     textSelectImage: any;
@@ -88,27 +154,22 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
         const {
             about,
             controls,
-            theme,
-            textFunctions,
+            theme
         } = this.props;
 
         const _about = about === undefined ? this.context.about : about;
         const _controls = controls === undefined ? this.context.controls : controls;
-        const _theme = theme === undefined
-            ? this.context.theme
-            : theme === 'enhanced'
-                ? enhancedTheme
-                : themes[theme];
+        const _theme = theme === undefined ? this.context.theme : themes[theme];
         const _themeName = theme === undefined ? this.context.themeName : theme;
 
-        const _textFunctions = textFunctions === undefined ? true : textFunctions;
+        // const selectText = await this.getText();
 
         this.setState({
             about: _about,
             controls: _controls,
             theme: _theme,
             themeName: _themeName,
-            textFunctions: _textFunctions,
+            selectText: {},
         });
     }
 
@@ -116,23 +177,16 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
         const {
             src,
             alt,
-            height,
-            width,
-            // textFunctions,
-            theme,
-            apiKey,
-            userToken,
-            depictImageID,
         } = this.props;
         const {
             controls,
-            theme: themeData,
-            themeName,
-            // imageLoaded,
-            // loading,
+            theme,
+            imageLoaded,
+            loading,
             imageWidth,
-            // toggledEditable,
+            toggledEditable,
             toggledSettingsButton,
+            selectText,
             invertValue,
             contrastValue,
             hueValue,
@@ -144,26 +198,17 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
         return (
             <Context.Provider value={this.state}>
                 <StyledEnhancedImage
-                    theme={themeData}
+                    theme={theme}
                     // toggledEditable={toggledEditable}
                     imageWidth={imageWidth}
                     onMouseEnter={this.toggleSettingsButton}
                     onMouseLeave={this.toggleSettingsButton}
-                    onMouseMove={this.handleMouseMove}
                 >
                     <TextSelectImage
-                        ref={this.textSelectImage}
-
-                        src={src || ''}
-                        alt={alt || ''}
-
-                        theme={theme || themeName}
+                        src={src}
+                        alt={alt || 'Image'}
+                        theme={theme}
                         apiEndpoint={apiEndpoint}
-                        apiKey={apiKey}
-                        userToken={userToken}
-                        depictImageID={depictImageID}
-                        // textFunctions={textFunctions}
-
                         atLoad={this.handleLoadedImage}
                         imageStyle={{
                             filter: `
@@ -173,9 +218,8 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
                                 saturate(${saturationValue}%)
                                 brightness(${brightnessValue}%)
                             `,
-                            width: width ? width + 'px' : '100%',
-                            height: height ? height + 'px' : 'auto',
                         }}
+                        ref={this.textSelectImage}
                     />
 
                     {toggledSettingsButton && controls && (
@@ -246,7 +290,7 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
             naturalWidth,
         } = image.target;
 
-        // this.computeImageSha();
+        this.computeImageSha();
 
         this.setState({
             imageLoaded: true,
@@ -257,14 +301,25 @@ class EnhancedImage extends Component<EnhancedImageProps, EnhancedImageState> {
         });
     }
 
-    private handleMouseMove = () => {
+    private computeImageSha = async () => {
         const {
-            toggledSettingsButton,
-        } = this.state;
+            src
+        } = this.props;
 
-        if (!toggledSettingsButton) {
-            this.toggleSettingsButton();
-        }
+        const image: any = await loadImage(src);
+        const { height, width } = image;
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const context: any = canvas.getContext('2d');
+        context.drawImage(image, 0, 0, width, height);
+        const imageData = context.getImageData(0, 0, width, height);
+        const buffer = imageData.data;
+        const imageSha = sha256(arrayBufferToWordArray(buffer)).toString();
+
+        this.setState({
+            imageSha,
+        });
     }
 }
 
