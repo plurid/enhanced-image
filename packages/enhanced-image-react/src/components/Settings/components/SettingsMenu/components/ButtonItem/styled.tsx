@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledEnhancedImageButtonItem = styled.div`
+export const StyledButtonItem = styled.div`
     display: flex;
     align-items: center;
     padding: 7px 10px;
@@ -11,7 +11,7 @@ export const StyledEnhancedImageButtonItem = styled.div`
 `;
 
 
-export const StyledEnhancedImageButtonItemIcon = styled.div`
+export const StyledButtonItemIcon = styled.div`
     height: 14px;
     width: 14px;
     margin-right: 8px;
@@ -22,6 +22,6 @@ export const StyledEnhancedImageButtonItemIcon = styled.div`
     svg {
         width: 14px;
         height: 14px;
-        fill: ${props => props.theme.color};
+        fill: ${props => props.theme.colorPrimary};
     }
 `;

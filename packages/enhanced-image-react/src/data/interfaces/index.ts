@@ -86,9 +86,9 @@ export interface Context {
 
     imageText: ImageText[];
 
-    // addText: () => void;
+    addText: () => void;
+    getText: () => Promise<void>;
     // saveText: () => Promise<void>;
-    // getText: () => Promise<void>;
     // updateText: (id: string) => void;
     // deleteText: (id: string) => void;
 }
