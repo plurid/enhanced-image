@@ -37,8 +37,8 @@
         "clean": "rm -rf ./dist",
         "spec": "jest",
         "lint": "eslint ./src --ext .ts,.tsx",
-        "start": "yarn clean && rollup -c -w --environment MODE_ENV:local",
-        "build.dev": "yarn clean && rollup -c --environment MODE_ENV:local",
+        "start": "yarn clean && rollup -c -w --environment MODE_ENV:development",
+        "build.dev": "yarn clean && rollup -c --environment MODE_ENV:development",
         "build.prod": "yarn clean && rollup -c --environment MODE_ENV:production",
         "build": "yarn lint && yarn spec && yarn build.prod",
         "prepublishOnly": "yarn build"
@@ -68,6 +68,7 @@
         "rollup-plugin-node-resolve": "^5.2.0",
         "rollup-plugin-peer-deps-external": "^2.2.0",
         "rollup-plugin-postcss": "^2.0.3",
+        "rollup-plugin-replace": "^2.2.0",
         "rollup-plugin-typescript2": "^0.24.3",
         "rollup-plugin-url": "^2.2.2",
         "styled-components": "^4.1.3",
