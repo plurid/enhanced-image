@@ -21,6 +21,12 @@ const Image: React.FC<{}> = () => {
         alt,
         imageStyle,
         handleLoadedImage,
+
+        imageColorsInvert,
+        imageColorsContrast,
+        imageColorsHue,
+        imageColorsSaturation,
+        imageColorsBrightness,
     } = context;
 
     return (
@@ -28,7 +34,16 @@ const Image: React.FC<{}> = () => {
             <img
                 src={src}
                 alt={alt}
-                style={{...imageStyle}}
+                style={{
+                    ...imageStyle,
+                    filter: `
+                        invert(${imageColorsInvert ? 1 : 0})
+                        contrast(${imageColorsContrast}%)
+                        hue-rotate(${imageColorsHue}deg)
+                        saturate(${imageColorsSaturation}%)
+                        brightness(${imageColorsBrightness}%)
+                    `,
+                }}
                 onLoad={handleLoadedImage}
             />
         </StyledImage>
