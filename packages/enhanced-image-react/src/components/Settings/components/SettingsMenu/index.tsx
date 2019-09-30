@@ -27,6 +27,9 @@ import AboutIcon from '../../../../assets/icons/settings-menu/about';
 
 import ButtonCheckmark from './components/ButtonCheckmark';
 import ButtonItem from './components/ButtonItem';
+import SliderItem from './components/SliderItem';
+
+import sliders from '../../../../data/constants/sliders';
 
 
 
@@ -54,6 +57,9 @@ const SettingsMenu: React.FC<any> = () => {
 
         generateImage,
         colorizeImage,
+
+        imageColorsInvert,
+        setImageColorsInvert,
     } = context;
 
     const resetToDefaults = () => {}
@@ -143,15 +149,15 @@ const SettingsMenu: React.FC<any> = () => {
                 </li>
 
                 <li>
-                    {/* <ButtonCheckmark
+                    <ButtonCheckmark
                         theme={theme}
-                        toggle={toggleInvert}
+                        toggle={() => setImageColorsInvert(invert => !invert)}
                         text="Invert Colors"
-                        checked={!!invertValue}
-                    /> */}
+                        checked={imageColorsInvert}
+                    />
                 </li>
 
-                {/* {
+                {
                     sliders.map(slider => {
                         const {
                             type,
@@ -166,18 +172,18 @@ const SettingsMenu: React.FC<any> = () => {
                             <li
                                 key={type}
                             >
-                                <EnhancedImageSliderItem
+                                <SliderItem
                                     theme={theme}
                                     type={type}
                                     min={min}
                                     max={max}
-                                    value={this.context[sliderValue]}
+                                    value={context[sliderValue]}
                                     valueSign={valueSign}
                                 />
                             </li>
                         )
                     })
-                } */}
+                }
 
                 <li>
                     {/* <ButtonCheckmark
@@ -218,10 +224,10 @@ const SettingsMenu: React.FC<any> = () => {
                 </li>
 
                 <li
-                    // onMouseEnter={this.saveImage}
+                    // onMouseEnter={saveImage}
                 >
                     <a
-                        // ref={this.saveButton}
+                        // ref={saveButton}
                     >
                         <ButtonItem
                             theme={theme}

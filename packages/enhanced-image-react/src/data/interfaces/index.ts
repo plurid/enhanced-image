@@ -99,6 +99,17 @@ export interface Context {
 
     generateImage: () => Promise<void>;
     colorizeImage: () => Promise<void>;
+
+    imageColorsInvert: boolean;
+    setImageColorsInvert: Dispatch<SetStateAction<boolean>>;
+    imageColorsContrast: number;
+    setImageColorsContrast: Dispatch<SetStateAction<number>>;
+    imageColorsHue: number;
+    setImageColorsHue: Dispatch<SetStateAction<number>>;
+    imageColorsSaturation: number;
+    setImageColorsSaturation: Dispatch<SetStateAction<number>>;
+    imageColorsBrightness: number;
+    setImageColorsBrightness: Dispatch<SetStateAction<number>>;
 }
 
 

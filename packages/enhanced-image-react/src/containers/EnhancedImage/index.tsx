@@ -86,6 +86,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const [imageText, setImageText] = useState<ImageText[]>([]);
 
+    const [imageColorsInvert, setImageColorsInvert] = useState(false);
+    const [imageColorsContrast, setImageColorsContrast] = useState(100);
+    const [imageColorsHue, setImageColorsHue] = useState(0);
+    const [imageColorsSaturation, setImageColorsSaturation] = useState(100);
+    const [imageColorsBrightness, setImageColorsBrightness] = useState(100);
+
     const imageContainer = useRef<HTMLDivElement>(null);
 
     const handleLoadedImage = async (
@@ -198,6 +204,17 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         generateImage,
         colorizeImage,
+
+        imageColorsInvert,
+        setImageColorsInvert,
+        imageColorsContrast,
+        setImageColorsContrast,
+        imageColorsHue,
+        setImageColorsHue,
+        imageColorsSaturation,
+        setImageColorsSaturation,
+        imageColorsBrightness,
+        setImageColorsBrightness,
     };
 
     return (

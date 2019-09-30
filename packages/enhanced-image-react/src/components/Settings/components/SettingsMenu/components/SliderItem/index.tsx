@@ -11,9 +11,9 @@ import {
     SLIDER_NAMES,
     SLIDER_INPUT_DEFAULTS,
     SLIDER_VALUE_DEFAULTS,
-} from '../../data/constants';
+} from '../../../../../../data/constants';
 
-import Context from '../../context';
+import Context from '../../../../../../services/utilities/context';
 
 
 
