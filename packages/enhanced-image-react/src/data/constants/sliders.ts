@@ -1,9 +1,7 @@
-interface Slider {
-    type: string;
-    min?: number;
-    max?: number;
-    valueSign?: string;
-}
+import {
+    Slider,
+} from '../interfaces';
+
 
 
 const sliders: Slider[] = [
