@@ -45,7 +45,7 @@ const SliderItem: React.FC<SliderItemProperties> = (properties) => {
     const [hovered, setHovered] = useState(false);
 
     const handleDoubleClick = () => {
-
+        handleInput(SLIDER_VALUE_DEFAULTS[type]);
     }
 
     return (

@@ -22,11 +22,11 @@ export const SLIDER_NAMES = {
 };
 
 export const SLIDER_VALUE_DEFAULTS = {
-    invert: 0,
-    contrast: 100,
-    hue: 0,
-    saturation: 100,
-    brightness: 100,
+    Invert: 0,
+    Contrast: 100,
+    Hue: 0,
+    Saturation: 100,
+    Brightness: 100,
 };
 
 export const SLIDER_INPUT_DEFAULTS = {
