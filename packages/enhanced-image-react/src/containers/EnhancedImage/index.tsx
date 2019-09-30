@@ -63,7 +63,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [imageDimensions, setImageDimensions] = useState<ImageDimensions>(initialImageDimensions);
 
     const handleLoadedImage = async (
-        loadedImage: React.SyntheticEvent<HTMLImageElement, EventTarget>
+        loadedImage: React.SyntheticEvent<HTMLImageElement, Event>
     ) => {
         const image = loadedImage.currentTarget;
 

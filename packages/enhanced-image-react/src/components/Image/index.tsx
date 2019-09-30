@@ -20,7 +20,7 @@ const Image: React.FC<{}> = () => {
         src,
         alt,
         imageStyle,
-        handleLoadedImage
+        handleLoadedImage,
     } = context;
 
     return (
@@ -28,8 +28,8 @@ const Image: React.FC<{}> = () => {
             <img
                 src={src}
                 alt={alt}
-                onLoad={handleLoadedImage}
                 style={{...imageStyle}}
+                onLoad={handleLoadedImage}
             />
         </StyledImage>
     );
