@@ -2,24 +2,24 @@ import styled from 'styled-components';
 
 
 
-export const StyledEnhancedImageSliderItem = styled.div`
+export const StyledSliderItem = styled.div`
     padding: 7px 10px;
     height: 50px;
 `;
 
 
-export const StyledEnhancedImageSliderType = styled.div`
+export const StyledSliderType = styled.div`
     text-align: left;
 `;
 
 
-export const StyledEnhancedImageSliderValue = styled.div`
+export const StyledSliderValue = styled.div`
     float: right;
     font-size: 12px;
 `;
 
 
-export const StyledEnhancedImageSliderInputContainer: any = styled.div`
+export const StyledSliderInputContainer: any = styled.div`
     /*
         article: https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
         tool: http://danielstern.ca/range.css/
