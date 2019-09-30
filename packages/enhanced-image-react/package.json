@@ -72,6 +72,7 @@
         "typescript": "^3.6.3"
     },
     "dependencies": {
+        "@plurid/utilities.themes": "^0.1.2",
         "apollo-cache-inmemory": "^1.6.3",
         "apollo-client": "^2.6.4",
         "apollo-link": "^1.2.13",
