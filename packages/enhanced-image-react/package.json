@@ -35,11 +35,13 @@
     },
     "scripts": {
         "clean": "rm -rf ./dist",
-        "build": "yarn clean && yarn test && yarn lint && yarn build.rollup",
-        "build.rollup": "rollup -c",
-        "build.clean": "yarn clean && yarn build.rollup",
-        "start": "yarn clean && rollup -c -w",
-        "prepublishOnly": "yarn build.clean"
+        "spec": "jest",
+        "lint": "eslint ./src --ext .ts,.tsx",
+        "start": "yarn clean && rollup -c -w --environment MODE_ENV:local",
+        "build.dev": "yarn clean && rollup -c --environment MODE_ENV:local",
+        "build.prod": "yarn clean && rollup -c --environment MODE_ENV:production",
+        "build": "yarn lint && yarn spec && yarn build.prod",
+        "prepublishOnly": "yarn build"
     },
     "peerDependencies": {
         "react": ">=16",
