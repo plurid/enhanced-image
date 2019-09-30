@@ -22,6 +22,7 @@ import {
     PLURID_API_ENDPOINT,
     SLIDER_VALUE_DEFAULTS,
     ABOUT_URL,
+    DEPICT_DOMAIN,
 } from '../../data/constants';
 
 import {
@@ -95,6 +96,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [imageColorsBrightness, setImageColorsBrightness] = useState(SLIDER_VALUE_DEFAULTS.Brightness);
 
     const [toggledDefaults, toggleDefaults] = useState(false);
+
+    const [imageSHA, setImageSHA] = useState('');
 
     const imageContainer = useRef<HTMLDivElement>(null);
 
@@ -176,7 +179,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const shareImage = () => {
-
+        const enhanced = '/';
+        const imageLink = imageSHA + enhanced;
+        const url = DEPICT_DOMAIN + imageLink;
+        window.open(url, '_blank');
     }
 
     const viewAbout = () => {

@@ -13,6 +13,13 @@ export const PLURID_API_ENDPOINT = environment.production
     ? PLURID_API_ENDPOINT_PROD
     : PLURID_API_ENDPOINT_DEV;
 
+const DEPICT_DOMAIN_DEV = 'https://depict.plurid.dev';
+const DEPICT_DOMAIN_PROD = 'https://depict.plurid.com';
+export const DEPICT_DOMAIN = environment.production
+    ? DEPICT_DOMAIN_PROD
+    : DEPICT_DOMAIN_DEV;
+
+
 
 export const SLIDER_NAMES = {
     Contrast: 'Contrast',
