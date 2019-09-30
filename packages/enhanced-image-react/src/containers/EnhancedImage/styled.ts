@@ -16,10 +16,3 @@ export const StyledEnhancedImage = styled.div`
         width: 100%;
     }
 `;
-
-
-export const StyledImageContainer: any = styled.div`
-    position: relative;
-    overflow: auto;
-    height: 100%;
-`;
