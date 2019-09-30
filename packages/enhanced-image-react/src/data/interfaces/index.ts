@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import themes, { Theme } from '@plurid/utilities.themes';
 
 
@@ -62,80 +64,42 @@ export interface Context {
     userToken: string | undefined;
     depictImageID: string | undefined;
 
-
     handleLoadedImage: (image: React.SyntheticEvent<HTMLImageElement, Event>) => Promise<void>;
     loadedImage: boolean;
 
     imageDimensions: ImageDimensions,
-
-
-    // setMessage: Dispatch<SetStateAction<string>>;
-    // setMessageTimed: (message: string, time: number) => void;
-    // setShowSpinner: Dispatch<SetStateAction<boolean>>;
-
-    // showSettingsButton: boolean;
-    // setShowSettingsButton: Dispatch<SetStateAction<boolean>>;
-
-    // showSettingsMenu: boolean;
-    // setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
-
-    // editableText: boolean;
-    // setEditableText: Dispatch<SetStateAction<boolean>>;
-
-    // loadedVideo: boolean;
-
-    // videoDuration: number;
-
-    // videoDimensions: VideoDimensions;
     // videoContainerDimensions: VideoContainerDimensions;
     // videoBoxDimensions: VideoBoxDimensions;
 
-    // videoPlaying: boolean;
-    // playVideo: () => void,
-    // pauseVideo: () => void,
+    setMessage: Dispatch<SetStateAction<string>>;
+    setMessageTimed: (message: string, time: number) => void;
+    setShowSpinner: Dispatch<SetStateAction<boolean>>;
 
-    // loopVideo: boolean;
-    // setLoopVideo: Dispatch<SetStateAction<boolean>>;
-    // loopVideoStart: number;
-    // setLoopVideoStart: Dispatch<SetStateAction<number>>;
-    // loopVideoEnd: number;
-    // setLoopVideoEnd: Dispatch<SetStateAction<number>>;
+    showSettingsButton: boolean;
+    setShowSettingsButton: Dispatch<SetStateAction<boolean>>;
 
-    // microviewVideo: boolean;
-    // setMicroviewVideo: Dispatch<SetStateAction<boolean>>;
-    // microviewVideoStart: number;
-    // setMicroviewVideoStart: Dispatch<SetStateAction<number>>;
-    // microviewVideoEnd: number;
-    // setMicroviewVideoEnd: Dispatch<SetStateAction<number>>;
+    showSettingsMenu: boolean;
+    setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
 
-    // videoVolume: number;
-    // toggleVideoVolume: () => void;
-    // handleVideoVolume: (volume: number) => void;
+    editableText: boolean;
+    setEditableText: Dispatch<SetStateAction<boolean>>;
 
-    // videoPlaybackRate: number;
-    // handleVideoPlaybackRate: (videoPlaybackRate: number) => void;
-
-    // videoTime: number;
-    // handleVideoTime: (videoTime: number) => void;
-
-    // qualitySource: any;
-    // setQualitySource: any;
-
-    // showTimescrollTime: boolean;
-    // setShowTimescrollTime: Dispatch<SetStateAction<boolean>>;
-
-    // showTimescrollText: boolean;
-    // setShowTimescrollText: Dispatch<SetStateAction<boolean>>;
-
-    // videoText: VideoText[];
+    imageText: ImageText[];
 
     // addText: () => void;
     // saveText: () => Promise<void>;
     // getText: () => Promise<void>;
+    // updateText: (id: string) => void;
+    // deleteText: (id: string) => void;
 }
 
 
 export interface ImageDimensions {
     width: number;
     height: number;
+}
+
+
+export interface ImageText {
+
 }

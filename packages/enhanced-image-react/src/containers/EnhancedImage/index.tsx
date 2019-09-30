@@ -1,5 +1,6 @@
 import React, {
     useState,
+    useRef,
 } from 'react';
 
 import './styles.css';
@@ -14,6 +15,7 @@ import {
     EnhancedImageProperties,
     Context as IContext,
     ImageDimensions,
+    ImageText,
 } from '../../data/interfaces';
 
 import {
@@ -25,6 +27,10 @@ import {
 } from '../../data/constants/initializers';
 
 import Image from '../../components/Image';
+import Text from '../../components/Text';
+import Settings from '../../components/Settings';
+import Message from '../../components/Message';
+import Spinner from '../../components/Spinner';
 
 import themes, { Theme } from '@plurid/utilities.themes';
 
@@ -50,6 +56,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         depictImageID,
     } = properties;
 
+    if (!src) {
+        return (
+            <div>
+                add the src property to display the image
+            </div>
+        );
+    }
+
     const _theme: Theme = theme && themes[theme]
         ? themes[theme]
         : themes.plurid;
@@ -61,6 +75,18 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const [loadedImage, setLoadedImage] = useState(false);
     const [imageDimensions, setImageDimensions] = useState<ImageDimensions>(initialImageDimensions);
+
+    const [showSpinner, setShowSpinner] = useState(false);
+    const [message, setMessage] = useState('');
+
+    const [showSettingsButton, setShowSettingsButton] = useState(false);
+    const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+
+    const [editableText, setEditableText] = useState(false);
+
+    const [imageText, setImageText] = useState<ImageText[]>([]);
+
+    const imageContainer = useRef<HTMLDivElement>(null);
 
     const handleLoadedImage = async (
         loadedImage: React.SyntheticEvent<HTMLImageElement, Event>
@@ -85,6 +111,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setLoadedImage(true);
     }
 
+    const setMessageTimed = (
+        message: string,
+        time: number
+    ) => {
+        setMessage(message);
+        setTimeout(() => {
+            setMessage('');
+        }, time);
+    }
+
     const context: IContext = {
         src,
         srcset,
@@ -103,6 +139,21 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         loadedImage,
 
         imageDimensions,
+
+        setMessage,
+        setMessageTimed,
+        setShowSpinner,
+
+        showSettingsButton,
+        setShowSettingsButton,
+
+        showSettingsMenu,
+        setShowSettingsMenu,
+
+        editableText,
+        setEditableText,
+
+        imageText,
     };
 
     return (
@@ -111,8 +162,30 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         >
             <StyledEnhancedImage
                 theme={context.theme}
+                onMouseEnter={() => setShowSettingsButton(true)}
+                onMouseLeave={() => setShowSettingsButton(false)}
+                onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
+                ref={imageContainer}
             >
                 <Image />
+
+                {loadedImage && (
+                    <Text />
+                )}
+
+                {loadedImage && showSettingsButton && (
+                    <Settings />
+                )}
+
+                {message && (
+                    <Message
+                        text={message}
+                    />
+                )}
+
+                {showSpinner && (
+                    <Spinner />
+                )}
             </StyledEnhancedImage>
         </Context.Provider>
     );
