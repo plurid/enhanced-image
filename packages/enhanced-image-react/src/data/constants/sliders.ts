@@ -6,21 +6,21 @@ import {
 
 const sliders: Slider[] = [
     {
-        type: 'contrast',
+        type: 'Contrast',
         max: 200,
     },
     {
-        type: 'hue',
+        type: 'Hue',
         min: -180,
         max: 180,
         valueSign: '°',
     },
     {
-        type: 'saturation',
+        type: 'Saturation',
         max: 200,
     },
     {
-        type: 'brightness',
+        type: 'Brightness',
         max: 200,
     },
 ];

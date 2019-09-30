@@ -174,7 +174,8 @@ const SettingsMenu: React.FC<any> = () => {
                             valueSign
                         } = slider;
 
-                        const sliderValue = `${slider.type}Value`;
+                        const sliderValue = `imageColors${slider.type}`;
+                        const handleInput = `setImageColors${slider.type}`;
 
                         return (
                             <li
@@ -187,6 +188,7 @@ const SettingsMenu: React.FC<any> = () => {
                                     max={max}
                                     value={context[sliderValue]}
                                     valueSign={valueSign}
+                                    handleInput={(value: number) => context[handleInput](value)}
                                 />
                             </li>
                         )

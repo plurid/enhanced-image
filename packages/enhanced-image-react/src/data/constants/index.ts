@@ -15,10 +15,10 @@ export const PLURID_API_ENDPOINT = environment.production
 
 
 export const SLIDER_NAMES = {
-    contrast: 'Contrast',
-    hue: 'Hue Rotation',
-    saturation: 'Saturation',
-    brightness: 'Lightness',
+    Contrast: 'Contrast',
+    Hue: 'Hue Rotation',
+    Saturation: 'Saturation',
+    Brightness: 'Lightness',
 };
 
 export const SLIDER_VALUE_DEFAULTS = {
