@@ -138,7 +138,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const getText = async () => {
-
+        setImageText([]);
     }
 
     const extractText = async () => {
@@ -251,7 +251,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 theme={context.theme}
                 onMouseEnter={() => setShowSettingsButton(true)}
                 onMouseLeave={() => setShowSettingsButton(false)}
-                onMouseMove={() => !showSettingsButton ? setShowSettingsButton(true) : null}
+                onMouseMove={() => !showSettingsButton
+                    ? setShowSettingsButton(true)
+                    : null
+                }
                 ref={imageContainer}
             >
                 <Image />
