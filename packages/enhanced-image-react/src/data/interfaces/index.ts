@@ -18,11 +18,10 @@ export interface EnhancedImageProperties {
     theme?: keyof typeof themes;
     height?: number;
     about?: boolean;
-
     /**
-     * Inline styling object for the image.
+     * Inline React style object for the image.
      */
-    imageStyle?: any;
+    imageStyle?: React.CSSProperties;
 
     /**
      * Function to be run after the image is loaded.
@@ -36,7 +35,6 @@ export interface EnhancedImageProperties {
      * Default: https://api.plurid.com.
      */
     apiEndpoint?: string;
-
     /**
      * API key obtained from https://account.plurid.com/depict/api when using
      * the default apiEndpoint.
@@ -59,11 +57,15 @@ export interface Context {
     theme: Theme;
     height: number;
     about: boolean;
+    imageStyle: React.CSSProperties;
 
     apiEndpoint: string;
-    apiKey?: string;
-    userToken?: string;
-    depictImageID?: string;
+    apiKey: string | undefined;
+    userToken: string | undefined;
+    depictImageID: string | undefined;
+
+
+    handleLoadedImage: () => void;
 
     // setMessage: Dispatch<SetStateAction<string>>;
     // setMessageTimed: (message: string, time: number) => void;

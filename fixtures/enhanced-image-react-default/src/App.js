@@ -20,6 +20,7 @@ class App extends Component {
                         // theme="night"
                         // apiEndpoint="https://api.plurid.dev/graphql"
                         apiEndpoint="http://192.168.1.2:3360/graphql"
+                        // imageStyle={ { width: '300px' } }
                     />
                 </div>
             </div>
