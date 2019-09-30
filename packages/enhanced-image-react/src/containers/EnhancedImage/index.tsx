@@ -62,8 +62,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [loadedImage, setLoadedImage] = useState(false);
     const [imageDimensions, setImageDimensions] = useState<ImageDimensions>(initialImageDimensions);
 
-    const handleLoadedImage = async (loadedImage: React.SyntheticEvent<HTMLImageElement, Event>) => {
-        const image: HTMLImageElement = (loadedImage as any).target;
+    const handleLoadedImage = async (
+        loadedImage: React.SyntheticEvent<HTMLImageElement, EventTarget>
+    ) => {
+        const image = loadedImage.currentTarget;
 
         if (atLoad) {
             await atLoad(image);
@@ -82,17 +84,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         setLoadedImage(true);
     }
-
-    // const handleLoadedVideo = async (video: any) => {
-
-    //     setLoadedVideo(true);
-
-    //     const videoDuration = video.target.duration;
-    //     setVideoDuration(videoDuration);
-
-    //     setLoopVideoEnd(videoDuration);
-    //     setMicroviewVideoEnd(videoDuration);
-    // }
 
     const context: IContext = {
         src,
