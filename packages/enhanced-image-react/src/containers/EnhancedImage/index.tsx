@@ -4,10 +4,11 @@ import {
     StyledEnhancedImage,
 } from './styled';
 
+import {
+    EnhancedImageProperties,
+} from '../../data/interfaces';
 
 
-interface EnhancedImageProperties {
-}
 
 const EnhancedImage: React.FC<EnhancedImageProperties> = () => {
     return (
