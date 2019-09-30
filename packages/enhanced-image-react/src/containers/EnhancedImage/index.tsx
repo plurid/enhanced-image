@@ -192,8 +192,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         window.open(ABOUT_URL, '_blank');
     }
 
-    useEffect(() => {
+    const toggleDefaults = () => {
         if (defaultsToggled) {
+            setImageColorsInvert(!!previousImageColors.invert);
+            setImageColorsContrast(previousImageColors.contrast);
+            setImageColorsHue(previousImageColors.hue);
+            setImageColorsSaturation(previousImageColors.saturation);
+            setImageColorsBrightness(previousImageColors.brightness);
+
+            setDefaultsToggled(false);
+        } else {
             const previousColorValues = {
                 invert: imageColorsInvert ? 1 : 0,
                 contrast: imageColorsContrast,
@@ -204,21 +212,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
             setPreviousImageColors(previousColorValues);
             resetToDefaults();
-        } else {
-            setImageColorsInvert(!!previousImageColors.invert);
-            setImageColorsContrast(previousImageColors.contrast);
-            setImageColorsHue(previousImageColors.hue);
-            setImageColorsSaturation(previousImageColors.saturation);
-            setImageColorsBrightness(previousImageColors.brightness);
+            setDefaultsToggled(true);
         }
-    }, [
-        defaultsToggled,
-    ]);
+    }
 
     useEffect(() => {
         if (defaultsToggled) {
             if (
-                imageColorsInvert === true
+                imageColorsInvert !== false
                 || imageColorsContrast !== SLIDER_VALUE_DEFAULTS.Contrast
                 || imageColorsHue !== SLIDER_VALUE_DEFAULTS.Hue
                 || imageColorsSaturation !== SLIDER_VALUE_DEFAULTS.Saturation
@@ -293,7 +294,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setImageColorsBrightness,
 
         defaultsToggled,
-        setDefaultsToggled,
+        toggleDefaults,
 
         resetToDefaults,
         viewFullscreen,
