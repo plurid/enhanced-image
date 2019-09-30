@@ -8,19 +8,22 @@ import {
 
 import Context from '../../../../services/utilities/context';
 
-import AboutIcon from '../../../../assets/icons/settings-menu/about';
 import AddTextIcon from '../../../../assets/icons/settings-menu/add-text';
+import SaveTextIcon from '../../../../assets/icons/settings-menu/save-text';
+
 import GetTextIcon from '../../../../assets/icons/settings-menu/get-text';
 import ExtractTextIcon from '../../../../assets/icons/settings-menu/extract-text';
-// import TransviewTextIcon from '../../../../assets/icons/settings-menu/transview-text';
+import TransviewTextIcon from '../../../../assets/icons/settings-menu/transview-text';
 
-// import GenerateImageIcon from '../../../../assets/icons/settings-menu/generate-image';
-// import ColorizeImageIcon from '../../../../assets/icons/settings-menu/colorize-image';
+import GenerateImageIcon from '../../../../assets/icons/settings-menu/generate-image';
+import ColorizeImageIcon from '../../../../assets/icons/settings-menu/colorize-image';
 
 import ResetIcon from '../../../../assets/icons/settings-menu/reset';
 import FullscreenIcon from '../../../../assets/icons/settings-menu/fullscreen';
 import ShareIcon from '../../../../assets/icons/settings-menu/share';
 import SaveIcon from '../../../../assets/icons/settings-menu/save';
+
+import AboutIcon from '../../../../assets/icons/settings-menu/about';
 
 import ButtonCheckmark from './components/ButtonCheckmark';
 import ButtonItem from './components/ButtonItem';
@@ -35,15 +38,28 @@ const SettingsMenu: React.FC<any> = () => {
 
     const {
         theme,
+        about,
 
         editableText,
         setEditableText,
 
         addText,
-        getText,
+        saveText,
 
-        about,
+        getText,
+        extractText,
+        transviewText,
+
+        saveImage,
+
+        generateImage,
+        colorizeImage,
     } = context;
+
+    const resetToDefaults = () => {}
+    const viewFullscreen = () => {}
+    const shareImage = () => {}
+    const viewAbout = () => {}
 
     return (
         <StyledSettingsMenu
@@ -68,6 +84,15 @@ const SettingsMenu: React.FC<any> = () => {
                     />
                 </li>
 
+                <li>
+                    <ButtonItem
+                        theme={theme}
+                        atClick={saveText}
+                        icon={SaveTextIcon}
+                        text="Save Text"
+                    />
+                </li>
+
                 <hr />
 
                 <li>
@@ -80,47 +105,47 @@ const SettingsMenu: React.FC<any> = () => {
                 </li>
 
                 <li>
-                    {/* <ButtonItem
+                    <ButtonItem
                         theme={theme}
-                        atClick={this.extractText}
+                        atClick={extractText}
                         icon={ExtractTextIcon}
                         text="Extract Text"
-                    /> */}
+                    />
                 </li>
 
                 <li>
-                    {/* <ButtonItem
+                    <ButtonItem
                         theme={theme}
-                        atClick={this.transviewText}
+                        atClick={transviewText}
                         icon={TransviewTextIcon}
                         text="Transview Text"
-                    /> */}
+                    />
                 </li>
 
                 <hr />
 
                 <li>
-                    {/* <ButtonItem
+                    <ButtonItem
                         theme={theme}
-                        atClick={this.generateImage}
+                        atClick={generateImage}
                         icon={GenerateImageIcon}
                         text="Generate Image"
-                    /> */}
+                    />
                 </li>
 
                 <li>
-                    {/* <ButtonItem
+                    <ButtonItem
                         theme={theme}
-                        atClick={this.colorizeImage}
+                        atClick={colorizeImage}
                         icon={ColorizeImageIcon}
                         text="Colorize Image"
-                    /> */}
+                    />
                 </li>
 
                 <li>
-                    {/* <EnhancedImageButtonCheckmark
+                    {/* <ButtonCheckmark
                         theme={theme}
-                        toggle={this.toggleInvert}
+                        toggle={toggleInvert}
                         text="Invert Colors"
                         checked={!!invertValue}
                     /> */}
@@ -155,57 +180,57 @@ const SettingsMenu: React.FC<any> = () => {
                 } */}
 
                 <li>
-                    {/* <EnhancedImageButtonCheckmark
+                    {/* <ButtonCheckmark
                         theme={theme}
-                        toggle={this.toggleDefaults}
+                        toggle={toggleDefaults}
                         text="Toggle Defaults"
                         checked={toggledDefaults}
                     /> */}
                 </li>
 
                 <li>
-                    {/* <ButtonItem
+                    <ButtonItem
                         theme={theme}
-                        atClick={this.handleResetToDefaults}
+                        atClick={resetToDefaults}
                         icon={ResetIcon}
                         text="Reset to Defaults"
-                    /> */}
+                    />
                 </li>
 
                 <hr />
 
                 <li>
-                    {/* <ButtonItem
+                    <ButtonItem
                         theme={theme}
-                        atClick={this.extractText}
+                        atClick={viewFullscreen}
                         icon={FullscreenIcon}
                         text="View Fullscreen"
-                    /> */}
+                    />
                 </li>
 
                 <li>
-                    {/* <ButtonItem
+                    <ButtonItem
                         theme={theme}
-                        atClick={this.shareImage}
+                        atClick={shareImage}
                         icon={ShareIcon}
                         text="Share Image"
-                    /> */}
+                    />
                 </li>
 
-                {/* <li
-                    onMouseEnter={this.saveImage}
+                <li
+                    // onMouseEnter={this.saveImage}
                 >
                     <a
-                        ref={this.saveButton}
+                        // ref={this.saveButton}
                     >
                         <ButtonItem
                             theme={theme}
-                            atClick={this.saveImage}
+                            atClick={saveImage}
                             icon={SaveIcon}
                             text="Save Image"
                         />
                     </a>
-                </li> */}
+                </li>
 
                 {about && (
                     <hr />
@@ -213,12 +238,12 @@ const SettingsMenu: React.FC<any> = () => {
 
                 {about && (
                     <li>
-                        {/* <ButtonItem
+                        <ButtonItem
                             theme={theme}
-                            atClick={this.about}
+                            atClick={viewAbout}
                             icon={AboutIcon}
                             text="About eImage"
-                        /> */}
+                        />
                     </li>
                 )}
             </ul>

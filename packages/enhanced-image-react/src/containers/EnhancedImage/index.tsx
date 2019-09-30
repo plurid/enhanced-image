@@ -125,7 +125,31 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     }
 
+    const saveText = async () => {
+
+    }
+
     const getText = async () => {
+
+    }
+
+    const extractText = async () => {
+
+    }
+
+    const transviewText = async () => {
+
+    }
+
+    const saveImage = async () => {
+
+    }
+
+    const generateImage = async () => {
+
+    }
+
+    const colorizeImage = async () => {
 
     }
 
@@ -164,7 +188,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         imageText,
 
         addText,
+        saveText,
+
         getText,
+        extractText,
+        transviewText,
+
+        saveImage,
+
+        generateImage,
+        colorizeImage,
     };
 
     return (
