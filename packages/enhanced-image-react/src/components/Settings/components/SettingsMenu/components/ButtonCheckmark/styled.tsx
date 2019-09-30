@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledEnhancedImageButtonCheckmark = styled.div`
+export const StyledButtonCheckmark = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -12,15 +12,15 @@ export const StyledEnhancedImageButtonCheckmark = styled.div`
 `;
 
 
-export const StyledEnhancedImageButtonCheckmarkCheckbox: any = styled.div`
+export const StyledButtonCheckmarkCheckbox: any = styled.div`
     display: block;
     height: 13px;
     width: 13px;
     border-radius: 50%;
-    border: 2px solid ${props => props.theme.color};
+    border: 2px solid ${props => props.theme.colorPrimary};
     background-color: ${(props: any) => {
         if (props.isChecked) {
-            return props.theme.color;
+            return props.theme.colorPrimary;
         }
         return 'transparent';
     }};

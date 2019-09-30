@@ -22,6 +22,9 @@ import FullscreenIcon from '../../../../assets/icons/settings-menu/fullscreen';
 import ShareIcon from '../../../../assets/icons/settings-menu/share';
 import SaveIcon from '../../../../assets/icons/settings-menu/save';
 
+import ButtonCheckmark from './components/ButtonCheckmark';
+import ButtonItem from './components/ButtonItem';
+
 
 
 const SettingsMenu: React.FC<any> = () => {
@@ -32,6 +35,14 @@ const SettingsMenu: React.FC<any> = () => {
 
     const {
         theme,
+
+        editableText,
+        setEditableText,
+
+        addText,
+        getText,
+
+        about,
     } = context;
 
     return (
@@ -40,38 +51,36 @@ const SettingsMenu: React.FC<any> = () => {
         >
             <ul>
                 <li>
-                    {/* <EnhancedImageButtonCheckmark
+                    <ButtonCheckmark
                         theme={theme}
-                        toggle={this.toggleEditable}
+                        toggle={() => setEditableText(show => !show)}
                         text="Edit Text"
-                        checked={toggledEditable}
-                    /> */}
+                        checked={editableText}
+                    />
                 </li>
 
                 <li>
-                    {/* <li>
-                        <EnhancedImageButtonItem
-                            theme={theme}
-                            atClick={this.addText}
-                            icon={AddTextIcon}
-                            text="Add Text"
-                        />
-                    </li> */}
+                    <ButtonItem
+                        theme={theme}
+                        atClick={addText}
+                        icon={AddTextIcon}
+                        text="Add Text"
+                    />
                 </li>
 
                 <hr />
 
                 <li>
-                    {/* <EnhancedImageButtonItem
+                    <ButtonItem
                         theme={theme}
-                        atClick={this.getText}
+                        atClick={getText}
                         icon={GetTextIcon}
                         text="Get Text"
-                    /> */}
+                    />
                 </li>
 
                 <li>
-                    {/* <EnhancedImageButtonItem
+                    {/* <ButtonItem
                         theme={theme}
                         atClick={this.extractText}
                         icon={ExtractTextIcon}
@@ -80,7 +89,7 @@ const SettingsMenu: React.FC<any> = () => {
                 </li>
 
                 <li>
-                    {/* <EnhancedImageButtonItem
+                    {/* <ButtonItem
                         theme={theme}
                         atClick={this.transviewText}
                         icon={TransviewTextIcon}
@@ -91,7 +100,7 @@ const SettingsMenu: React.FC<any> = () => {
                 <hr />
 
                 <li>
-                    {/* <EnhancedImageButtonItem
+                    {/* <ButtonItem
                         theme={theme}
                         atClick={this.generateImage}
                         icon={GenerateImageIcon}
@@ -100,7 +109,7 @@ const SettingsMenu: React.FC<any> = () => {
                 </li>
 
                 <li>
-                    {/* <EnhancedImageButtonItem
+                    {/* <ButtonItem
                         theme={theme}
                         atClick={this.colorizeImage}
                         icon={ColorizeImageIcon}
@@ -116,6 +125,102 @@ const SettingsMenu: React.FC<any> = () => {
                         checked={!!invertValue}
                     /> */}
                 </li>
+
+                {/* {
+                    sliders.map(slider => {
+                        const {
+                            type,
+                            min,
+                            max,
+                            valueSign
+                        } = slider;
+
+                        const sliderValue = `${slider.type}Value`;
+
+                        return (
+                            <li
+                                key={type}
+                            >
+                                <EnhancedImageSliderItem
+                                    theme={theme}
+                                    type={type}
+                                    min={min}
+                                    max={max}
+                                    value={this.context[sliderValue]}
+                                    valueSign={valueSign}
+                                />
+                            </li>
+                        )
+                    })
+                } */}
+
+                <li>
+                    {/* <EnhancedImageButtonCheckmark
+                        theme={theme}
+                        toggle={this.toggleDefaults}
+                        text="Toggle Defaults"
+                        checked={toggledDefaults}
+                    /> */}
+                </li>
+
+                <li>
+                    {/* <ButtonItem
+                        theme={theme}
+                        atClick={this.handleResetToDefaults}
+                        icon={ResetIcon}
+                        text="Reset to Defaults"
+                    /> */}
+                </li>
+
+                <hr />
+
+                <li>
+                    {/* <ButtonItem
+                        theme={theme}
+                        atClick={this.extractText}
+                        icon={FullscreenIcon}
+                        text="View Fullscreen"
+                    /> */}
+                </li>
+
+                <li>
+                    {/* <ButtonItem
+                        theme={theme}
+                        atClick={this.shareImage}
+                        icon={ShareIcon}
+                        text="Share Image"
+                    /> */}
+                </li>
+
+                {/* <li
+                    onMouseEnter={this.saveImage}
+                >
+                    <a
+                        ref={this.saveButton}
+                    >
+                        <ButtonItem
+                            theme={theme}
+                            atClick={this.saveImage}
+                            icon={SaveIcon}
+                            text="Save Image"
+                        />
+                    </a>
+                </li> */}
+
+                {about && (
+                    <hr />
+                )}
+
+                {about && (
+                    <li>
+                        {/* <ButtonItem
+                            theme={theme}
+                            atClick={this.about}
+                            icon={AboutIcon}
+                            text="About eImage"
+                        /> */}
+                    </li>
+                )}
             </ul>
         </StyledSettingsMenu>
     );
@@ -123,102 +228,3 @@ const SettingsMenu: React.FC<any> = () => {
 
 
 export default SettingsMenu;
-
-
-
-
-    // {
-    //     sliders.map(slider => {
-    //         const {
-    //             type,
-    //             min,
-    //             max,
-    //             valueSign
-    //         } = slider;
-
-    //         const sliderValue = `${slider.type}Value`;
-
-    //         return (
-    //             <li
-    //                 key={type}
-    //             >
-    //                 <EnhancedImageSliderItem
-    //                     theme={theme}
-    //                     type={type}
-    //                     min={min}
-    //                     max={max}
-    //                     value={this.context[sliderValue]}
-    //                     valueSign={valueSign}
-    //                 />
-    //             </li>
-    //         )
-    //     })
-    // }
-
-    // <li>
-    //     <EnhancedImageButtonCheckmark
-    //         theme={theme}
-    //         toggle={this.toggleDefaults}
-    //         text="Toggle Defaults"
-    //         checked={toggledDefaults}
-    //     />
-    // </li>
-
-    // <li>
-    //     <EnhancedImageButtonItem
-    //         theme={theme}
-    //         atClick={this.handleResetToDefaults}
-    //         icon={ResetIcon}
-    //         text="Reset to Defaults"
-    //     />
-    // </li>
-
-    // <hr />
-
-    // <li>
-    //     <EnhancedImageButtonItem
-    //         theme={theme}
-    //         atClick={this.extractText}
-    //         icon={FullscreenIcon}
-    //         text="View Fullscreen"
-    //     />
-    // </li>
-
-    // <li>
-    //     <EnhancedImageButtonItem
-    //         theme={theme}
-    //         atClick={this.shareImage}
-    //         icon={ShareIcon}
-    //         text="Share Image"
-    //     />
-    // </li>
-
-    // <li
-    //     onMouseEnter={this.saveImage}
-    // >
-    //     <a
-    //         ref={this.saveButton}
-    //     >
-    //         <EnhancedImageButtonItem
-    //             theme={theme}
-    //             atClick={this.saveImage}
-    //             icon={SaveIcon}
-    //             text="Save Image"
-    //         />
-    //     </a>
-    // </li>
-
-    // {about && (
-    //     <hr />
-    // )}
-
-    // {about && (
-    //     <li>
-    //         <EnhancedImageButtonItem
-    //             theme={theme}
-    //             atClick={this.about}
-    //             icon={AboutIcon}
-    //             text="About eImage"
-    //         />
-    //     </li>
-    // )}

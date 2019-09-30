@@ -121,6 +121,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         }, time);
     }
 
+    const addText = () => {
+
+    }
+
+    const getText = async () => {
+
+    }
+
     const context: IContext = {
         src,
         srcset,
@@ -154,6 +162,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setEditableText,
 
         imageText,
+
+        addText,
+        getText,
     };
 
     return (
