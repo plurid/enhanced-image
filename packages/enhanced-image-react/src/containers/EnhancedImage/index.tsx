@@ -21,6 +21,7 @@ import {
 import {
     PLURID_API_ENDPOINT,
     SLIDER_VALUE_DEFAULTS,
+    ABOUT_URL,
 } from '../../data/constants';
 
 import {
@@ -179,7 +180,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const viewAbout = () => {
-
+        window.open(ABOUT_URL, '_blank');
     }
 
     const context: IContext = {
