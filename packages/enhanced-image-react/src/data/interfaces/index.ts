@@ -87,10 +87,18 @@ export interface Context {
     imageText: ImageText[];
 
     addText: () => void;
+    saveText: () => Promise<void>;
+
     getText: () => Promise<void>;
-    // saveText: () => Promise<void>;
+    extractText: () => Promise<void>;
+    transviewText: () => Promise<void>;
     // updateText: (id: string) => void;
     // deleteText: (id: string) => void;
+
+    saveImage: () => void;
+
+    generateImage: () => Promise<void>;
+    colorizeImage: () => Promise<void>;
 }
 
 
