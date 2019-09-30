@@ -63,12 +63,17 @@ const SettingsMenu: React.FC<any> = () => {
 
         toggledDefaults,
         toggleDefaults,
+
+        resetToDefaults,
+        viewFullscreen,
+        shareImage,
+        viewAbout,
     } = context;
 
-    const resetToDefaults = () => {}
-    const viewFullscreen = () => {}
-    const shareImage = () => {}
-    const viewAbout = () => {}
+    // const resetToDefaults = () => {}
+    // const viewFullscreen = () => {}
+    // const shareImage = () => {}
+    // const viewAbout = () => {}
 
     return (
         <StyledSettingsMenu

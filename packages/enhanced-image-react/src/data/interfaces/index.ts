@@ -113,6 +113,11 @@ export interface Context {
 
     toggledDefaults: boolean;
     toggleDefaults: Dispatch<SetStateAction<boolean>>;
+
+    resetToDefaults: () => void;
+    viewFullscreen: () => void;
+    shareImage: () => void;
+    viewAbout: () => void;
 }
 
 
