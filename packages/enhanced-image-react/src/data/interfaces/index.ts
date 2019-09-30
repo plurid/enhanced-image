@@ -1,4 +1,4 @@
-import themes from '@plurid/utilities.themes';
+import themes, { Theme } from '@plurid/utilities.themes';
 
 
 
@@ -16,11 +16,8 @@ export interface EnhancedImageProperties {
     alt?: string;
 
     theme?: keyof typeof themes;
-    controls?: boolean;
     height?: number;
     about?: boolean;
-    loop?: boolean;
-    microview?: boolean;
 
     /**
      * Inline styling object for the image.
@@ -51,4 +48,84 @@ export interface EnhancedImageProperties {
     // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
+}
+
+
+export interface Context {
+    src: string;
+    srcset?: string;
+    alt: string;
+
+    theme: Theme;
+    height: number;
+    about: boolean;
+
+    apiEndpoint: string;
+    apiKey?: string;
+    userToken?: string;
+    depictImageID?: string;
+
+    // setMessage: Dispatch<SetStateAction<string>>;
+    // setMessageTimed: (message: string, time: number) => void;
+    // setShowSpinner: Dispatch<SetStateAction<boolean>>;
+
+    // showSettingsButton: boolean;
+    // setShowSettingsButton: Dispatch<SetStateAction<boolean>>;
+
+    // showSettingsMenu: boolean;
+    // setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
+
+    // editableText: boolean;
+    // setEditableText: Dispatch<SetStateAction<boolean>>;
+
+    // loadedVideo: boolean;
+
+    // videoDuration: number;
+
+    // videoDimensions: VideoDimensions;
+    // videoContainerDimensions: VideoContainerDimensions;
+    // videoBoxDimensions: VideoBoxDimensions;
+
+    // videoPlaying: boolean;
+    // playVideo: () => void,
+    // pauseVideo: () => void,
+
+    // loopVideo: boolean;
+    // setLoopVideo: Dispatch<SetStateAction<boolean>>;
+    // loopVideoStart: number;
+    // setLoopVideoStart: Dispatch<SetStateAction<number>>;
+    // loopVideoEnd: number;
+    // setLoopVideoEnd: Dispatch<SetStateAction<number>>;
+
+    // microviewVideo: boolean;
+    // setMicroviewVideo: Dispatch<SetStateAction<boolean>>;
+    // microviewVideoStart: number;
+    // setMicroviewVideoStart: Dispatch<SetStateAction<number>>;
+    // microviewVideoEnd: number;
+    // setMicroviewVideoEnd: Dispatch<SetStateAction<number>>;
+
+    // videoVolume: number;
+    // toggleVideoVolume: () => void;
+    // handleVideoVolume: (volume: number) => void;
+
+    // videoPlaybackRate: number;
+    // handleVideoPlaybackRate: (videoPlaybackRate: number) => void;
+
+    // videoTime: number;
+    // handleVideoTime: (videoTime: number) => void;
+
+    // qualitySource: any;
+    // setQualitySource: any;
+
+    // showTimescrollTime: boolean;
+    // setShowTimescrollTime: Dispatch<SetStateAction<boolean>>;
+
+    // showTimescrollText: boolean;
+    // setShowTimescrollText: Dispatch<SetStateAction<boolean>>;
+
+    // videoText: VideoText[];
+
+    // addText: () => void;
+    // saveText: () => Promise<void>;
+    // getText: () => Promise<void>;
 }
