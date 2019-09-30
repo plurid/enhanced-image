@@ -16,7 +16,6 @@ export interface EnhancedImageProperties {
     alt?: string;
 
     theme?: keyof typeof themes;
-    height?: number;
     about?: boolean;
     /**
      * Inline React style object for the image.
@@ -55,7 +54,6 @@ export interface Context {
     alt: string;
 
     theme: Theme;
-    height: number;
     about: boolean;
     imageStyle: React.CSSProperties;
 
@@ -65,7 +63,11 @@ export interface Context {
     depictImageID: string | undefined;
 
 
-    handleLoadedImage: () => void;
+    handleLoadedImage: (image: any) => Promise<void>;
+    loadedImage: boolean;
+
+    imageDimensions: ImageDimensions,
+
 
     // setMessage: Dispatch<SetStateAction<string>>;
     // setMessageTimed: (message: string, time: number) => void;
@@ -130,4 +132,10 @@ export interface Context {
     // addText: () => void;
     // saveText: () => Promise<void>;
     // getText: () => Promise<void>;
+}
+
+
+export interface ImageDimensions {
+    width: number;
+    height: number;
 }

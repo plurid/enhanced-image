@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useState,
+} from 'react';
 
 import './styles.css';
 import {
@@ -11,11 +13,16 @@ import Context from '../../services/utilities/context';
 import {
     EnhancedImageProperties,
     Context as IContext,
+    ImageDimensions,
 } from '../../data/interfaces';
 
 import {
     PLURID_API_ENDPOINT,
 } from '../../data/constants';
+
+import {
+    initialImageDimensions,
+} from '../../data/constants/initializers';
 
 import Image from '../../components/Image';
 
@@ -30,7 +37,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         alt,
 
         theme,
-        height,
         about,
 
         imageStyle,
@@ -48,14 +54,45 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         ? themes[theme]
         : themes.plurid;
     const _alt = alt || '';
-    const _height = height || 500;
     const _about = about === undefined ? true : about;
     const _imageStyle = imageStyle ? imageStyle : {};
 
     const _apiEndpoint = apiEndpoint ? apiEndpoint : PLURID_API_ENDPOINT;
 
-    const handleLoadedImage = () => {
+    const [loadedImage, setLoadedImage] = useState(false);
+    const [imageDimensions, setImageDimensions] = useState<ImageDimensions>(initialImageDimensions);
+
+    const handleLoadedImage = async (loadedImage: React.SyntheticEvent<HTMLImageElement, Event>) => {
+        const image: HTMLImageElement = (loadedImage as any).target;
+
+        if (atLoad) {
+            await atLoad(image);
+        }
+
+        const {
+            width,
+            height,
+        } = image;
+
+        const imageDimensions: ImageDimensions = {
+            width,
+            height,
+        };
+        setImageDimensions(imageDimensions);
+
+        setLoadedImage(true);
     }
+
+    // const handleLoadedVideo = async (video: any) => {
+
+    //     setLoadedVideo(true);
+
+    //     const videoDuration = video.target.duration;
+    //     setVideoDuration(videoDuration);
+
+    //     setLoopVideoEnd(videoDuration);
+    //     setMicroviewVideoEnd(videoDuration);
+    // }
 
     const context: IContext = {
         src,
@@ -63,7 +100,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         alt: _alt,
 
         theme: _theme,
-        height: _height,
         about: _about,
         imageStyle: _imageStyle,
 
@@ -73,6 +109,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         depictImageID,
 
         handleLoadedImage,
+        loadedImage,
+
+        imageDimensions,
     };
 
     return (
