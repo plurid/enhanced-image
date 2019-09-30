@@ -161,6 +161,22 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     }
 
+    const resetToDefaults = () => {
+
+    }
+
+    const viewFullscreen = () => {
+
+    }
+
+    const shareImage = () => {
+
+    }
+
+    const viewAbout = () => {
+
+    }
+
     const context: IContext = {
         src,
         srcset,
@@ -220,6 +236,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         toggledDefaults,
         toggleDefaults,
+
+        resetToDefaults,
+        viewFullscreen,
+        shareImage,
+        viewAbout,
     };
 
     return (
