@@ -4,7 +4,7 @@ import React from 'react';
 
 const SVG = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 902 902">
-        <title>About Text Select Image</title>
+        <title>About Enhanced Image</title>
 
         <g>
             <g>
