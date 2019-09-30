@@ -110,6 +110,9 @@ export interface Context {
     setImageColorsSaturation: Dispatch<SetStateAction<number>>;
     imageColorsBrightness: number;
     setImageColorsBrightness: Dispatch<SetStateAction<number>>;
+
+    toggledDefaults: boolean;
+    toggleDefaults: Dispatch<SetStateAction<boolean>>;
 }
 
 

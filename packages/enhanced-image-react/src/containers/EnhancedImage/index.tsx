@@ -92,6 +92,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [imageColorsSaturation, setImageColorsSaturation] = useState(100);
     const [imageColorsBrightness, setImageColorsBrightness] = useState(100);
 
+    const [toggledDefaults, toggleDefaults] = useState(false);
+
     const imageContainer = useRef<HTMLDivElement>(null);
 
     const handleLoadedImage = async (
@@ -215,6 +217,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setImageColorsSaturation,
         imageColorsBrightness,
         setImageColorsBrightness,
+
+        toggledDefaults,
+        toggleDefaults,
     };
 
     return (
