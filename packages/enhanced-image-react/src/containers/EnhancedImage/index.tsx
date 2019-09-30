@@ -15,8 +15,11 @@ import {
     EnhancedImageProperties,
     Context as IContext,
     ImageDimensions,
-    ImageText,
 } from '../../data/interfaces';
+
+import {
+    ImageText,
+} from '../../data/interfaces/text';
 
 import {
     PLURID_API_ENDPOINT,

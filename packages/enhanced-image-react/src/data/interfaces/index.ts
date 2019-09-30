@@ -125,8 +125,3 @@ export interface ImageDimensions {
     width: number;
     height: number;
 }
-
-
-export interface ImageText {
-
-}
