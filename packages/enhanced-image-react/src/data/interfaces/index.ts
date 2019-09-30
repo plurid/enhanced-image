@@ -63,7 +63,7 @@ export interface Context {
     depictImageID: string | undefined;
 
 
-    handleLoadedImage: (image: React.SyntheticEvent<HTMLImageElement, EventTarget>) => Promise<void>;
+    handleLoadedImage: (image: React.SyntheticEvent<HTMLImageElement, Event>) => Promise<void>;
     loadedImage: boolean;
 
     imageDimensions: ImageDimensions,
