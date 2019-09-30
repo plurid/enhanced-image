@@ -60,6 +60,9 @@ const SettingsMenu: React.FC<any> = () => {
 
         imageColorsInvert,
         setImageColorsInvert,
+
+        toggledDefaults,
+        toggleDefaults,
     } = context;
 
     const resetToDefaults = () => {}
@@ -186,12 +189,12 @@ const SettingsMenu: React.FC<any> = () => {
                 }
 
                 <li>
-                    {/* <ButtonCheckmark
+                    <ButtonCheckmark
                         theme={theme}
-                        toggle={toggleDefaults}
+                        toggle={() => toggleDefaults(show => !show)}
                         text="Toggle Defaults"
                         checked={toggledDefaults}
-                    /> */}
+                    />
                 </li>
 
                 <li>
