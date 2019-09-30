@@ -1,12 +1,12 @@
 import React, {
     useState,
     useRef,
+    useEffect,
 } from 'react';
 
 import './styles.css';
 import {
     StyledEnhancedImage,
-    StyledImageContainer,
 } from './styled';
 
 import Context from '../../services/utilities/context';
@@ -27,6 +27,7 @@ import {
 
 import {
     initialImageDimensions,
+    initialPreviousImageColors,
 } from '../../data/constants/initializers';
 
 import Image from '../../components/Image';
@@ -95,7 +96,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [imageColorsSaturation, setImageColorsSaturation] = useState(SLIDER_VALUE_DEFAULTS.Saturation);
     const [imageColorsBrightness, setImageColorsBrightness] = useState(SLIDER_VALUE_DEFAULTS.Brightness);
 
-    const [toggledDefaults, toggleDefaults] = useState(false);
+    const [defaultsToggled, setDefaultsToggled] = useState(false);
+
+    const [previousImageColors, setPreviousImageColors] = useState(initialPreviousImageColors);
 
     const [imageSHA, setImageSHA] = useState('');
 
@@ -189,6 +192,49 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         window.open(ABOUT_URL, '_blank');
     }
 
+    useEffect(() => {
+        if (defaultsToggled) {
+            const previousColorValues = {
+                invert: imageColorsInvert ? 1 : 0,
+                contrast: imageColorsContrast,
+                hue: imageColorsHue,
+                saturation: imageColorsSaturation,
+                brightness: imageColorsBrightness,
+            };
+
+            setPreviousImageColors(previousColorValues);
+            resetToDefaults();
+        } else {
+            setImageColorsInvert(!!previousImageColors.invert);
+            setImageColorsContrast(previousImageColors.contrast);
+            setImageColorsHue(previousImageColors.hue);
+            setImageColorsSaturation(previousImageColors.saturation);
+            setImageColorsBrightness(previousImageColors.brightness);
+        }
+    }, [
+        defaultsToggled,
+    ]);
+
+    useEffect(() => {
+        if (defaultsToggled) {
+            if (
+                imageColorsInvert === true
+                || imageColorsContrast !== SLIDER_VALUE_DEFAULTS.Contrast
+                || imageColorsHue !== SLIDER_VALUE_DEFAULTS.Hue
+                || imageColorsSaturation !== SLIDER_VALUE_DEFAULTS.Saturation
+                || imageColorsBrightness !== SLIDER_VALUE_DEFAULTS.Brightness
+            ) {
+                setDefaultsToggled(false);
+            }
+        }
+    }, [
+        imageColorsInvert,
+        imageColorsContrast,
+        imageColorsHue,
+        imageColorsSaturation,
+        imageColorsBrightness,
+    ]);
+
     const context: IContext = {
         src,
         srcset,
@@ -246,8 +292,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         imageColorsBrightness,
         setImageColorsBrightness,
 
-        toggledDefaults,
-        toggleDefaults,
+        defaultsToggled,
+        setDefaultsToggled,
 
         resetToDefaults,
         viewFullscreen,

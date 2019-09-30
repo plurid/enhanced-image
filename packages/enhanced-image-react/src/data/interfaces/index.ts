@@ -111,8 +111,8 @@ export interface Context {
     imageColorsBrightness: number;
     setImageColorsBrightness: Dispatch<SetStateAction<number>>;
 
-    toggledDefaults: boolean;
-    toggleDefaults: Dispatch<SetStateAction<boolean>>;
+    defaultsToggled: boolean;
+    setDefaultsToggled: Dispatch<SetStateAction<boolean>>;
 
     resetToDefaults: () => void;
     viewFullscreen: () => void;
