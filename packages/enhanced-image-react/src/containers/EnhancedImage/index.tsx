@@ -20,6 +20,7 @@ import {
 
 import {
     PLURID_API_ENDPOINT,
+    SLIDER_VALUE_DEFAULTS,
 } from '../../data/constants';
 
 import {
@@ -86,11 +87,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const [imageText, setImageText] = useState<ImageText[]>([]);
 
-    const [imageColorsInvert, setImageColorsInvert] = useState(false);
-    const [imageColorsContrast, setImageColorsContrast] = useState(100);
-    const [imageColorsHue, setImageColorsHue] = useState(0);
-    const [imageColorsSaturation, setImageColorsSaturation] = useState(100);
-    const [imageColorsBrightness, setImageColorsBrightness] = useState(100);
+    const [imageColorsInvert, setImageColorsInvert] = useState(!!SLIDER_VALUE_DEFAULTS.Invert);
+    const [imageColorsContrast, setImageColorsContrast] = useState(SLIDER_VALUE_DEFAULTS.Contrast);
+    const [imageColorsHue, setImageColorsHue] = useState(SLIDER_VALUE_DEFAULTS.Hue);
+    const [imageColorsSaturation, setImageColorsSaturation] = useState(SLIDER_VALUE_DEFAULTS.Saturation);
+    const [imageColorsBrightness, setImageColorsBrightness] = useState(SLIDER_VALUE_DEFAULTS.Brightness);
 
     const [toggledDefaults, toggleDefaults] = useState(false);
 
@@ -162,7 +163,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const resetToDefaults = () => {
-
+        setImageColorsInvert(!!SLIDER_VALUE_DEFAULTS.Invert);
+        setImageColorsContrast(SLIDER_VALUE_DEFAULTS.Contrast);
+        setImageColorsHue(SLIDER_VALUE_DEFAULTS.Hue);
+        setImageColorsSaturation(SLIDER_VALUE_DEFAULTS.Saturation);
+        setImageColorsBrightness(SLIDER_VALUE_DEFAULTS.Brightness);
     }
 
     const viewFullscreen = () => {
