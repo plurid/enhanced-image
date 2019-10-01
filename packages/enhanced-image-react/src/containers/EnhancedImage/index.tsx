@@ -4,6 +4,9 @@ import React, {
     useEffect,
 } from 'react';
 
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+
 import './styles.css';
 import {
     StyledEnhancedImage,
@@ -39,6 +42,8 @@ import Message from '../../components/Message';
 import Spinner from '../../components/Spinner';
 
 import uuid from '../../services/utilities/uuid';
+
+import client from '../../services/graphql/client';
 
 import themes, { Theme } from '@plurid/utilities.themes';
 
@@ -117,6 +122,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [flipHorizontal, setFlipHorizontal] = useState(false);
 
     const [imageSHA, setImageSHA] = useState('');
+
+    const graphqlClient= useRef<ApolloClient<unknown>>(client(_apiEndpoint));
 
     const imageContainer = useRef<HTMLDivElement>(null);
 
@@ -215,6 +222,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const getText = async () => {
         console.log(TEST_DATA);
         setImageText(TEST_DATA);
+
+        // const query = await graphqlClient.current.query({
+        //     query: QUERY,
+        // });
     }
 
     const extractText = async () => {
@@ -387,40 +398,44 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     };
 
     return (
-        <Context.Provider
-            value={context}
+        <ApolloProvider
+            client={graphqlClient.current}
         >
-            <StyledEnhancedImage
-                theme={context.theme}
-                onMouseEnter={() => setShowSettingsButton(true)}
-                onMouseLeave={() => setShowSettingsButton(false)}
-                onMouseMove={() => !showSettingsButton
-                    ? setShowSettingsButton(true)
-                    : null
-                }
-                ref={imageContainer}
+            <Context.Provider
+                value={context}
             >
-                <Image />
+                <StyledEnhancedImage
+                    theme={context.theme}
+                    onMouseEnter={() => setShowSettingsButton(true)}
+                    onMouseLeave={() => setShowSettingsButton(false)}
+                    onMouseMove={() => !showSettingsButton
+                        ? setShowSettingsButton(true)
+                        : null
+                    }
+                    ref={imageContainer}
+                >
+                    <Image />
 
-                {loadedImage && (
-                    <Text />
-                )}
+                    {loadedImage && (
+                        <Text />
+                    )}
 
-                {loadedImage && showSettingsButton && (
-                    <Settings />
-                )}
+                    {loadedImage && showSettingsButton && (
+                        <Settings />
+                    )}
 
-                {message && (
-                    <Message
-                        text={message}
-                    />
-                )}
+                    {message && (
+                        <Message
+                            text={message}
+                        />
+                    )}
 
-                {showSpinner && (
-                    <Spinner />
-                )}
-            </StyledEnhancedImage>
-        </Context.Provider>
+                    {showSpinner && (
+                        <Spinner />
+                    )}
+                </StyledEnhancedImage>
+            </Context.Provider>
+        </ApolloProvider>
     );
 }
 
