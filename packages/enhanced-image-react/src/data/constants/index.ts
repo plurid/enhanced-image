@@ -9,7 +9,7 @@ export const ABOUT_URL = 'https://github.com/plurid/enhanced-image';
 
 const PLURID_API_ENDPOINT_PROD = 'https://api.plurid.com/graphql';
 const PLURID_API_ENDPOINT_DEV = 'https://api.plurid.dev/graphql';
-const PLURID_API_ENDPOINT_LOCAL = 'http://localhost:33600/playground';
+const PLURID_API_ENDPOINT_LOCAL = 'http://localhost:33600/graphql';
 export const PLURID_API_ENDPOINT = environment.production
     ? PLURID_API_ENDPOINT_PROD
     : environment.local
