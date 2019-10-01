@@ -15,11 +15,9 @@ import {
     EnhancedImageProperties,
     Context as IContext,
     ImageDimensions,
-} from '../../data/interfaces';
-
-import {
+    ImageBoxDimensions,
     ImageText,
-} from '../../data/interfaces/text';
+} from '../../data/interfaces';
 
 import {
     PLURID_API_ENDPOINT,
@@ -30,6 +28,7 @@ import {
 
 import {
     initialImageDimensions,
+    initialImageBoxDimensions,
     initialPreviousImageColors,
 } from '../../data/constants/initializers';
 
@@ -41,6 +40,8 @@ import Spinner from '../../components/Spinner';
 
 import themes, { Theme } from '@plurid/utilities.themes';
 
+// test data import
+import TEST_DATA from '../../__specs-data__/data';
 
 
 const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
@@ -83,6 +84,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const [loadedImage, setLoadedImage] = useState(false);
     const [imageDimensions, setImageDimensions] = useState<ImageDimensions>(initialImageDimensions);
+    const [imageBoxDimensions, setImageBoxDimensions] = useState<ImageBoxDimensions>(initialImageBoxDimensions);
 
     const [showSpinner, setShowSpinner] = useState(false);
     const [message, setMessage] = useState('');
@@ -136,6 +138,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         };
         setImageDimensions(imageDimensions);
 
+        const imageBoxDimensions: ImageBoxDimensions = {
+            width,
+            height,
+            top: 0,
+            left: 0,
+        };
+        setImageBoxDimensions(imageBoxDimensions);
+
         setLoadedImage(true);
     }
 
@@ -158,7 +168,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const getText = async () => {
-        setImageText([]);
+        setImageText(TEST_DATA);
     }
 
     const extractText = async () => {
@@ -267,6 +277,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         loadedImage,
 
         imageDimensions,
+        imageBoxDimensions,
 
         setMessage,
         setMessageTimed,
