@@ -168,6 +168,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const getText = async () => {
+        console.log(TEST_DATA);
         setImageText(TEST_DATA);
     }
 

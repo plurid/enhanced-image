@@ -13,7 +13,7 @@ import Context from '../../../../../../services/utilities/context';
 
 import ButtonDropdown from './components/ButtonDropdown';
 import ButtonIncrements from './components/ButtonIncrements';
-import ButtonTimeIncrements from './components/ButtonTimeIncrements';
+// import ButtonTimeIncrements from './components/ButtonTimeIncrements';
 import ButtonInput from './components/ButtonInput';
 import ButtonToggle from './components/ButtonToggle';
 import ButtonsColors from './components/ButtonsColors';
@@ -21,22 +21,17 @@ import ButtonClick from './components/ButtonClick';
 
 import { selectableFonts } from '../../../../../../data/constants/fonts';
 
-import SelectTextIcon from '../../../../../../assets/select-text-icon';
-import GrabIcon from '../../../../../../assets/grab-icon';
-import ViewableIcon from '../../../../../../assets/viewable-icon';
-import NotViewableIcon from '../../../../../../assets/not-viewable-icon';
-import AlwaysShowOnIcon from '../../../../../../assets/always-show-on-icon';
-import AlwaysShowOffIcon from '../../../../../../assets/always-show-off-icon';
-import StartTimeIcon from '../../../../../../assets/start-time-icon';
-import EndTimeIcon from '../../../../../../assets/end-time-icon';
-import FontSizeIcon from '../../../../../../assets/font-size-icon';
-import LinkIcon from '../../../../../../assets/link-icon';
-import BoldIcon from '../../../../../../assets/bold-icon';
-import ItalicIcon from '../../../../../../assets/italic-icon';
-import LetterSpacingIcon from '../../../../../../assets/letter-spacing-icon';
-import WordSpacingIcon from '../../../../../../assets/word-spacing-icon';
-import DuplicateIcon from '../../../../../../assets/duplicate-icon';
-import DeleteIcon from '../../../../../../assets/delete-icon';
+import SelectTextIcon from '../../../../../../assets/icons/text-editor/select-text';
+import GrabIcon from '../../../../../../assets/icons/text-editor/grab';
+import ViewableIcon from '../../../../../../assets/icons/text-editor/viewable';
+import FontSizeIcon from '../../../../../../assets/icons/text-editor/font-size';
+import LinkIcon from '../../../../../../assets/icons/text-editor/link';
+import BoldIcon from '../../../../../../assets/icons/text-editor/bold';
+import ItalicIcon from '../../../../../../assets/icons/text-editor/italic';
+import LetterSpacingIcon from '../../../../../../assets/icons/text-editor/letter-spacing';
+import WordSpacingIcon from '../../../../../../assets/icons/text-editor/word-spacing';
+import DuplicateIcon from '../../../../../../assets/icons/text-editor/duplicate';
+import DeleteIcon from '../../../../../../assets/icons/text-editor/delete';
 
 // import {
 //     percentageFromValue,
@@ -44,28 +39,28 @@ import DeleteIcon from '../../../../../../assets/delete-icon';
 // } from '../../utils/percentage';
 
 import {
-    VideoTextVersionTextline,
+    ImageTextVersionTextline,
 } from '../../../../../../data/interfaces';
 
 
+
 interface TextEditorProperties {
-    data: VideoTextVersionTextline;
+    data: ImageTextVersionTextline;
 }
-
-
 
 const TextEditor: React.FC<TextEditorProperties> = (properties) => {
     const context = useContext(Context);
     if (!context) {
         return (<></>);
     }
+
     const {
         theme,
 
         editableText,
         setEditableText,
 
-        videoBoxDimensions,
+        imageBoxDimensions,
     } = context;
 
     const editor = useRef<HTMLDivElement>(null);
@@ -111,47 +106,12 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 &nbsp;
             </StyledVerticalDivider>
 
-            <ButtonToggle
-                theme={theme}
-                toggle={() => {}}
-                toggled={false}
-                icon={AlwaysShowOnIcon}
-                // toggle={toggleTextAlwaysShow}
-                // toggled={textAlwaysShow}
-                // icon={textAlwaysShow ? AlwaysShowOnIcon : AlwaysShowOffIcon}
-            />
-
-            <ButtonTimeIncrements
-                theme={theme}
-                type="startTime"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
-                time={data.startTime}
-                icon={StartTimeIcon}
-            />
-
-            <ButtonTimeIncrements
-                theme={theme}
-                type="endTime"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
-                time={data.endTime}
-                icon={EndTimeIcon}
-                iconAfter={true}
-            />
-
-            <StyledVerticalDivider
-                theme={theme}
-            >
-                &nbsp;
-            </StyledVerticalDivider>
-
             <ButtonIncrements
                 theme={theme}
                 type="fontSize"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.fontSizePercentage * videoBoxDimensions.height / 100}
+                value={data.fontSizePercentage * imageBoxDimensions.height / 100}
                 icon={FontSizeIcon}
             />
 
@@ -206,7 +166,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 type="letterSpacing"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.letterSpacingPercentage * videoBoxDimensions.width / 100}
+                value={data.letterSpacingPercentage * imageBoxDimensions.width / 100}
                 icon={LetterSpacingIcon}
                 step={0.1}
             />
@@ -216,7 +176,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 type="wordSpacing"
                 changeValue={() => {}}
                 // changeValue={this.updateField}
-                value={data.wordSpacingPercentage * videoBoxDimensions.width / 100}
+                value={data.wordSpacingPercentage * imageBoxDimensions.width / 100}
                 icon={WordSpacingIcon}
                 step={0.1}
             />

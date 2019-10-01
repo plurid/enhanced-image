@@ -8,7 +8,7 @@ import {
 
 import TextVideoEditorButtonToggle from '../ButtonToggle';
 
-import GoToLinkIcon from '../../../../../../../../assets/gotolink-icon';
+import GoToLinkIcon from '../../../../../../../../assets/icons/text-editor/gotolink';
 
 
 

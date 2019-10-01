@@ -6,8 +6,8 @@ import React, {
 } from 'react';
 
 import {
-    VideoText,
-    VideoTextVersionTextline,
+    ImageText,
+    ImageTextVersionTextline,
 } from '../../../../data/interfaces';
 
 import Context from '../../../../services/utilities/context';
@@ -31,12 +31,12 @@ import {
 
 import {
     getVersionById,
-} from '../../../../services/utilities/videoText';
+} from '../../../../services/utilities/imageText';
 
 
 
 interface TextlineProperties {
-    data: VideoText;
+    data: ImageText;
 }
 
 const Textline: React.FC<TextlineProperties> = (properties) => {
@@ -51,12 +51,12 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const {
         editableText,
-        videoBoxDimensions,
+        imageBoxDimensions,
     } = context;
 
     const timeoutMouseOver = useRef(0);
 
-    const [currentVersion, setCurrentVersion] = useState<VideoTextVersionTextline>();
+    const [currentVersion, setCurrentVersion] = useState<ImageTextVersionTextline>();
 
     const [textYCoord, setTextYCoord] = useState('0px');
     const [textXCoord, setTextXCoord] = useState('0px');
@@ -97,25 +97,25 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     useEffect(() => {
         if (currentVersion) {
-            setTextXCoord(currentVersion.xCoordPercentage * videoBoxDimensions.width / 100 + 'px');
-            setTextYCoord(currentVersion.yCoordPercentage * videoBoxDimensions.height / 100 + 'px');
+            setTextXCoord(currentVersion.xCoordPercentage * imageBoxDimensions.width / 100 + 'px');
+            setTextYCoord(currentVersion.yCoordPercentage * imageBoxDimensions.height / 100 + 'px');
 
             setFontWeight(currentVersion.fontWeight);
             setFontStyle(currentVersion.fontStyle);
             setFontFamily(currentVersion.fontFamily);
-            setFontSize(currentVersion.fontSizePercentage * videoBoxDimensions.height / 100 + 'px');
-            setLetterSpacing(currentVersion.letterSpacingPercentage * videoBoxDimensions.width / 100 + 'px');
-            setWordSpacing(currentVersion.wordSpacingPercentage * videoBoxDimensions.width / 100 + 'px');
+            setFontSize(currentVersion.fontSizePercentage * imageBoxDimensions.height / 100 + 'px');
+            setLetterSpacing(currentVersion.letterSpacingPercentage * imageBoxDimensions.width / 100 + 'px');
+            setWordSpacing(currentVersion.wordSpacingPercentage * imageBoxDimensions.width / 100 + 'px');
 
             if (currentVersion.lineHeightPercentage === 0) {
                 setLineHeight('auto');
             } else {
-                setLineHeight(currentVersion.lineHeightPercentage * videoBoxDimensions.height / 100 + 'px');
+                setLineHeight(currentVersion.lineHeightPercentage * imageBoxDimensions.height / 100 + 'px');
             }
         }
     }, [
         currentVersion,
-        videoBoxDimensions,
+        imageBoxDimensions,
     ]);
 
     useEffect(() => {

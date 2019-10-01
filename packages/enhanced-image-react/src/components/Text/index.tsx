@@ -12,16 +12,12 @@ import {
 
 import Context from '../../services/utilities/context';
 
-// import Textarea from './components/Textarea';
-// import Textline from './components/Textline';
+import Textarea from './components/Textarea';
+import Textline from './components/Textline';
 
-// import {
-//     getVersionById,
-// } from '../../services/utilities/videoText';
-
-// import {
-//     valueIsBetween,
-// } from '../../services/utilities/number';
+import {
+    getVersionById,
+} from '../../services/utilities/imageText';
 
 
 
@@ -47,42 +43,27 @@ const Text: React.FC<any> = () => {
             }}
         >
             {imageText.map((textItem: ImageText) => {
-                // const currentVersion = getVersionById(textItem);
-                // if (!currentVersion) {
-                //     return;
-                // }
+                const currentVersion = getVersionById(textItem);
+                if (!currentVersion) {
+                    return;
+                }
 
-                // const {
-                //     startTime,
-                //     endTime,
-                //     alwaysShow,
-                // } = currentVersion;
-
-                // /**
-                //  * FUTURE: to do some kind of caching here
-                //  * to check only for a subset of videoTexts which I know
-                //  * are near (+/- 20 seconds);
-                //  */
-                // const textInTimeframe = valueIsBetween(videoTime, startTime, endTime);
-
-                // if (textInTimeframe || alwaysShow) {
-                //     switch (currentVersion.type) {
-                //         case 'TEXTAREA':
-                //             return (
-                //                 <Textarea
-                //                     key={textItem.id}
-                //                     data={textItem}
-                //                 />
-                //             );
-                //         case 'TEXTLINE':
-                //             return (
-                //                 <Textline
-                //                     key={textItem.id}
-                //                     data={textItem}
-                //                 />
-                //             );
-                //     }
-                // }
+                switch (currentVersion.type) {
+                    case 'TEXTAREA':
+                        return (
+                            <Textarea
+                                key={textItem.id}
+                                data={textItem}
+                            />
+                        );
+                    case 'TEXTLINE':
+                        return (
+                            <Textline
+                                key={textItem.id}
+                                data={textItem}
+                            />
+                        );
+                }
 
                 return;
             })}
