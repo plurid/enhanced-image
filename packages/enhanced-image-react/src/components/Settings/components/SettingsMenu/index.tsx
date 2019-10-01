@@ -28,6 +28,7 @@ import AboutIcon from '../../../../assets/icons/settings-menu/about';
 import ButtonCheckmark from './components/ButtonCheckmark';
 import ButtonItem from './components/ButtonItem';
 import SliderItem from './components/SliderItem';
+import Drawer from './components/Drawer';
 
 import sliders from '../../../../data/constants/sliders';
 
@@ -79,190 +80,205 @@ const SettingsMenu: React.FC<any> = () => {
         <StyledSettingsMenu
             theme={theme}
         >
-            <ul>
-                <li>
-                    <ButtonCheckmark
-                        theme={theme}
-                        toggle={() => setEditableText(show => !show)}
-                        text="Edit Text"
-                        checked={editableText}
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={addText}
-                        icon={AddTextIcon}
-                        text="Add Text"
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={saveText}
-                        icon={SaveTextIcon}
-                        text="Save Text"
-                    />
-                </li>
-
-                <hr />
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={getText}
-                        icon={GetTextIcon}
-                        text="Get Text"
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={extractText}
-                        icon={ExtractTextIcon}
-                        text="Extract Text"
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={transviewText}
-                        icon={TransviewTextIcon}
-                        text="Transview Text"
-                    />
-                </li>
-
-                <hr />
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={generateImage}
-                        icon={GenerateImageIcon}
-                        text="Generate Image"
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={colorizeImage}
-                        icon={ColorizeImageIcon}
-                        text="Colorize Image"
-                    />
-                </li>
-
-                <li>
-                    <ButtonCheckmark
-                        theme={theme}
-                        toggle={() => setImageColorsInvert(invert => !invert)}
-                        text="Invert Colors"
-                        checked={imageColorsInvert}
-                    />
-                </li>
-
-                {
-                    sliders.map(slider => {
-                        const {
-                            type,
-                            min,
-                            max,
-                            valueSign
-                        } = slider;
-
-                        const sliderValue = `imageColors${slider.type}`;
-                        const handleInput = `setImageColors${slider.type}`;
-
-                        return (
-                            <li
-                                key={type}
-                            >
-                                <SliderItem
-                                    theme={theme}
-                                    type={type}
-                                    min={min}
-                                    max={max}
-                                    value={context[sliderValue]}
-                                    valueSign={valueSign}
-                                    handleInput={(value: number) => context[handleInput](value)}
-                                />
-                            </li>
-                        )
-                    })
-                }
-
-                <li>
-                    <ButtonCheckmark
-                        theme={theme}
-                        toggle={() => toggleDefaults()}
-                        text="Toggle Defaults"
-                        checked={defaultsToggled}
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={resetToDefaults}
-                        icon={ResetIcon}
-                        text="Reset to Defaults"
-                    />
-                </li>
-
-                <hr />
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={viewFullscreen}
-                        icon={FullscreenIcon}
-                        text="View Fullscreen"
-                    />
-                </li>
-
-                <li>
-                    <ButtonItem
-                        theme={theme}
-                        atClick={shareImage}
-                        icon={ShareIcon}
-                        text="Share Image"
-                    />
-                </li>
-
-                <li
-                    // onMouseEnter={saveImage}
-                >
-                    <a
-                        // ref={saveButton}
-                    >
-                        <ButtonItem
+            <Drawer
+                title="Text"
+                theme={theme}
+            >
+                <ul>
+                    <li>
+                        <ButtonCheckmark
                             theme={theme}
-                            atClick={saveImage}
-                            icon={SaveIcon}
-                            text="Save Image"
+                            toggle={() => setEditableText(show => !show)}
+                            text="Edit Text"
+                            checked={editableText}
                         />
-                    </a>
-                </li>
+                    </li>
 
-                {about && (
-                    <hr />
-                )}
-
-                {about && (
                     <li>
                         <ButtonItem
                             theme={theme}
-                            atClick={viewAbout}
-                            icon={AboutIcon}
-                            text="About eImage"
+                            atClick={addText}
+                            icon={AddTextIcon}
+                            text="Add Text"
                         />
                     </li>
-                )}
-            </ul>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={saveText}
+                            icon={SaveTextIcon}
+                            text="Save Text"
+                        />
+                    </li>
+
+                    <hr />
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={getText}
+                            icon={GetTextIcon}
+                            text="Get Text"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={extractText}
+                            icon={ExtractTextIcon}
+                            text="Extract Text"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={transviewText}
+                            icon={TransviewTextIcon}
+                            text="Transview Text"
+                        />
+                    </li>
+                </ul>
+            </Drawer>
+
+            <Drawer
+                title="Color"
+                theme={theme}
+            >
+                <ul>
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={generateImage}
+                            icon={GenerateImageIcon}
+                            text="Generate Image"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={colorizeImage}
+                            icon={ColorizeImageIcon}
+                            text="Colorize Image"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonCheckmark
+                            theme={theme}
+                            toggle={() => setImageColorsInvert(invert => !invert)}
+                            text="Invert Colors"
+                            checked={imageColorsInvert}
+                        />
+                    </li>
+
+                    {
+                        sliders.map(slider => {
+                            const {
+                                type,
+                                min,
+                                max,
+                                valueSign
+                            } = slider;
+
+                            const sliderValue = `imageColors${slider.type}`;
+                            const handleInput = `setImageColors${slider.type}`;
+
+                            return (
+                                <li
+                                    key={type}
+                                >
+                                    <SliderItem
+                                        theme={theme}
+                                        type={type}
+                                        min={min}
+                                        max={max}
+                                        value={context[sliderValue]}
+                                        valueSign={valueSign}
+                                        handleInput={(value: number) => context[handleInput](value)}
+                                    />
+                                </li>
+                            )
+                        })
+                    }
+
+                    <li>
+                        <ButtonCheckmark
+                            theme={theme}
+                            toggle={() => toggleDefaults()}
+                            text="Toggle Defaults"
+                            checked={defaultsToggled}
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={resetToDefaults}
+                            icon={ResetIcon}
+                            text="Reset to Defaults"
+                        />
+                    </li>
+                </ul>
+            </Drawer>
+
+            <Drawer
+                title="Varia"
+                theme={theme}
+            >
+                <ul>
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={viewFullscreen}
+                            icon={FullscreenIcon}
+                            text="View Fullscreen"
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonItem
+                            theme={theme}
+                            atClick={shareImage}
+                            icon={ShareIcon}
+                            text="Share Image"
+                        />
+                    </li>
+
+                    <li
+                        // onMouseEnter={saveImage}
+                    >
+                        <a
+                            // ref={saveButton}
+                        >
+                            <ButtonItem
+                                theme={theme}
+                                atClick={saveImage}
+                                icon={SaveIcon}
+                                text="Save Image"
+                            />
+                        </a>
+                    </li>
+
+                    {about && (
+                        <hr />
+                    )}
+
+                    {about && (
+                        <li>
+                            <ButtonItem
+                                theme={theme}
+                                atClick={viewAbout}
+                                icon={AboutIcon}
+                                text="About eImage"
+                            />
+                        </li>
+                    )}
+                </ul>
+            </Drawer>
         </StyledSettingsMenu>
     );
 }

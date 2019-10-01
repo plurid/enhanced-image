@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 
 export const StyledSettingsMenu: any = styled.div`
+    width: 150px;
     height: ${(props: any) => {
         if (props.height) {
             return props.height + 'px';
@@ -15,19 +16,12 @@ export const StyledSettingsMenu: any = styled.div`
     border-radius: 10px;
     transition: opacity 600ms linear;
     z-index: 9999;
+    background-color: ${props => props.theme.backgroundColorPrimaryAlpha};
     box-shadow: 0px 0px 5px 1px ${props => props.theme.boxShadowUmbraColor};
+    overflow: hidden;
 
     ul {
-        background-color: ${props => props.theme.backgroundColorPrimary};
-        background: ${props => {
-            const { backgroundGradient, backgroundColorPrimary } = props.theme;
-            if (backgroundGradient) {
-                return backgroundGradient;
-            } else {
-                return backgroundColorPrimary;
-            }
-        }};
-
+        background-color: ${props => props.theme.backgroundColorPrimaryAlpha};
         min-width: 130px;
         width: 150px;
         display: flex;
