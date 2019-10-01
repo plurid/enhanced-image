@@ -21,6 +21,8 @@ export const DEPICT_DOMAIN = environment.production
 
 
 
+export const SETTINGS_MENU_HEIGHT_DIFFERENCE = 70;
+
 export const SLIDER_NAMES = {
     Contrast: 'Contrast',
     Hue: 'Hue Rotation',
