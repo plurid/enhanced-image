@@ -45,3 +45,8 @@ export const SLIDER_INPUT_DEFAULTS = {
     max: 100,
     valueSign: '%',
 };
+
+
+export const REQUEST_ERRORS = {
+    BAD_REQUEST: 'BAD_REQUEST',
+}

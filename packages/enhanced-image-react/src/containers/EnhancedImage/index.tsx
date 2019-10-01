@@ -27,6 +27,7 @@ import {
     SLIDER_VALUE_DEFAULTS,
     ABOUT_URL,
     DEPICT_DOMAIN,
+    REQUEST_ERRORS,
 } from '../../data/constants';
 
 import {
@@ -229,7 +230,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const response = {
             status: false,
             imageText: [],
-            error: 'BAD_REQUEST',
+            error: REQUEST_ERRORS.BAD_REQUEST,
         }
         return response;
     }
@@ -239,7 +240,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const response = {
             status: false,
             imageText: [],
-            error: 'BAD_REQUEST',
+            error: REQUEST_ERRORS.BAD_REQUEST,
         }
         return response;
     }
@@ -249,7 +250,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const response = {
             status: false,
             imageText: [],
-            error: 'BAD_REQUEST',
+            error: REQUEST_ERRORS.BAD_REQUEST,
         }
         return response;
     }
@@ -279,7 +280,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const response = {
             status: false,
             imageText: [],
-            error: 'BAD_REQUEST',
+            error: REQUEST_ERRORS.BAD_REQUEST,
         }
         return response;
     }
@@ -302,8 +303,82 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         }
     }
 
-    const extractText = async () => {
 
+
+    const extractTextWithApiKey = async () => {
+        // console.log(TEST_DATA);
+        // const query = await graphqlClient.current.query({
+        //     query: QUERY,
+        // });
+
+        const response = {
+            status: false,
+            imageText: [],
+            error: REQUEST_ERRORS.BAD_REQUEST,
+        }
+        return response;
+    }
+
+    const extractTextWithUserToken = async () => {
+
+        const response = {
+            status: false,
+            imageText: [],
+            error: REQUEST_ERRORS.BAD_REQUEST,
+        }
+        return response;
+    }
+
+    const extractTextWithDepictImageID = async () => {
+
+        const response = {
+            status: false,
+            imageText: [],
+            error: REQUEST_ERRORS.BAD_REQUEST,
+        }
+        return response;
+    }
+
+    const handleExtractText = async () => {
+        if (apiKey) {
+            const response = await extractTextWithApiKey();
+            return response;
+        }
+
+        if (userToken) {
+            const response = await extractTextWithUserToken();
+            return response;
+        }
+
+        if (depictImageID) {
+            const response = await extractTextWithDepictImageID();
+            return response;
+        }
+
+        const response = {
+            status: false,
+            imageText: [],
+            error: REQUEST_ERRORS.BAD_REQUEST,
+        }
+        return response;
+    }
+
+    const extractText = async () => {
+        setShowSpinner(true);
+        setMessage('Extracting Text');
+
+        const { status, imageText, error } = await handleExtractText();
+
+        if (status) {
+            setShowSpinner(false);
+            setMessageTimed('Text Extracted and Rendered', 2000);
+            setImageText(imageText);
+        }
+
+        if (error) {
+            setShowSpinner(false);
+            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+        }
     }
 
     const transviewText = async () => {
