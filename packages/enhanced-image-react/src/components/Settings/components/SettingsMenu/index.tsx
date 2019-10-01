@@ -42,6 +42,7 @@ const SettingsMenu: React.FC<any> = () => {
 
     const {
         theme,
+        transparentUI,
         about,
 
         editableText,
@@ -71,14 +72,10 @@ const SettingsMenu: React.FC<any> = () => {
         viewAbout,
     } = context;
 
-    // const resetToDefaults = () => {}
-    // const viewFullscreen = () => {}
-    // const shareImage = () => {}
-    // const viewAbout = () => {}
-
     return (
         <StyledSettingsMenu
             theme={theme}
+            transparentUI={transparentUI}
         >
             <Drawer
                 title="Text"
