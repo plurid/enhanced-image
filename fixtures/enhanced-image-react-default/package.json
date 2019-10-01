@@ -7,6 +7,7 @@
     "private": true,
     "dependencies": {
         "@plurid/enhanced-image-react": "*",
+        "graphql": "^14.5.8",
         "react": "^16.10.1",
         "react-dom": "^16.10.1",
         "react-scripts": "^3.1.2",
