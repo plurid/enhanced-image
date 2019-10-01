@@ -33,6 +33,7 @@ const Settings: React.FC<any> = () => {
             theme={theme}
         >
             <StyledSettingsButton
+                theme={theme}
                 onClick={() => setShowSettingsMenu(show => !show)}
             >
                 {SettingsIcon}
