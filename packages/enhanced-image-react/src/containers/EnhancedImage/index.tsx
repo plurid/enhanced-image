@@ -47,6 +47,12 @@ import uuid from '../../services/utilities/uuid';
 import client from '../../services/graphql/client';
 
 import {
+    GET_TEXT_WITH_API_KEY,
+    GET_TEXT_WITH_USER_TOKEN,
+    GET_TEXT_WITH_DEPICT_IMAGE_ID,
+} from '../../services/graphql/query';
+
+import {
     EXTRACT_TEXT_WITH_API_KEY,
     EXTRACT_TEXT_WITH_USER_TOKEN,
     EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID,
@@ -226,12 +232,29 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     }
 
-
+    // GET TEXT
     const getTextWithApiKey = async () => {
-        // console.log(TEST_DATA);
-        // const query = await graphqlClient.current.query({
-        //     query: QUERY,
-        // });
+        const input = {
+            apiKey,
+            imageSrc: src,
+        };
+        const query = await graphqlClient.current.query({
+            query: GET_TEXT_WITH_API_KEY,
+            variables: {
+                input,
+            },
+        });
+
+        const data = query.data.getTextWithApiKey;
+
+        if (data.status) {
+            const response = {
+                status: true,
+                imageText: data.imageText,
+                error: undefined,
+            };
+            return response;
+        }
 
         const response = {
             status: false,
@@ -242,6 +265,27 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const getTextWithUserToken = async () => {
+        const input = {
+            userToken,
+            imageSrc: src,
+        };
+        const query = await graphqlClient.current.query({
+            query: GET_TEXT_WITH_USER_TOKEN,
+            variables: {
+                input,
+            },
+        });
+
+        const data = query.data.getTextWithUserToken;
+
+        if (data.status) {
+            const response = {
+                status: true,
+                imageText: data.imageText,
+                error: undefined,
+            };
+            return response;
+        }
 
         const response = {
             status: false,
@@ -252,6 +296,27 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const getTextWithDepictImageID = async () => {
+        const input = {
+            depictImageID,
+            imageSrc: src,
+        };
+        const query = await graphqlClient.current.query({
+            query: GET_TEXT_WITH_DEPICT_IMAGE_ID,
+            variables: {
+                input,
+            },
+        });
+
+        const data = query.data.getTextWithDepictImageID;
+
+        if (data.status) {
+            const response = {
+                status: true,
+                imageText: data.imageText,
+                error: undefined,
+            };
+            return response;
+        }
 
         const response = {
             status: false,
@@ -277,12 +342,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             return response;
         }
 
-        // const response = {
-        //     status: true,
-        //     imageText: TEST_DATA,
-        //     error: '',
-        // }
-        // return response;
         const response = {
             status: false,
             imageText: [],
@@ -295,21 +354,27 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setShowSpinner(true);
         setMessage('Fetching Text');
 
-        const { status, imageText, error } = await handleGetText();
+        const {
+            status,
+            imageText,
+            error,
+        } = await handleGetText();
+
+        if (error) {
+            setShowSpinner(false);
+            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            return;
+        }
 
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Rendered', 2000);
             setImageText(imageText);
-        }
-
-        if (error) {
-            setShowSpinner(false);
-            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            return;
         }
     }
 
-
+    // EXTRACT TEXT
     const extractTextWithApiKey = async () => {
         const input = {
             apiKey,
@@ -328,6 +393,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             const response = {
                 status: true,
                 imageText: data.imageText,
+                error: undefined,
             };
             return response;
         }
@@ -358,6 +424,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             const response = {
                 status: true,
                 imageText: data.imageText,
+                error: undefined,
             };
             return response;
         }
@@ -388,6 +455,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             const response = {
                 status: true,
                 imageText: data.imageText,
+                error: undefined,
             };
             return response;
         }
@@ -428,17 +496,23 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setShowSpinner(true);
         setMessage('Extracting Text');
 
-        const { status, imageText, error } = await handleExtractText();
+        const {
+            status,
+            imageText,
+            error,
+        } = await handleExtractText();
+
+        if (error) {
+            setShowSpinner(false);
+            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            return;
+        }
 
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Extracted and Rendered', 2000);
             setImageText(imageText);
-        }
-
-        if (error) {
-            setShowSpinner(false);
-            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            return;
         }
     }
 
