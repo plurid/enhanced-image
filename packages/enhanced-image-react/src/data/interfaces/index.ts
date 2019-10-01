@@ -2,6 +2,10 @@ import { Dispatch, SetStateAction } from 'react';
 
 import themes, { Theme } from '@plurid/utilities.themes';
 
+import {
+    ImageText,
+} from './text';
+
 
 
 export interface Slider {
@@ -17,12 +21,13 @@ export interface EnhancedImageProperties {
     srcset?: string;
     alt?: string;
 
-    theme?: keyof typeof themes;
-    about?: boolean;
     /**
      * Inline React style object for the image.
      */
     imageStyle?: React.CSSProperties;
+    theme?: keyof typeof themes;
+    transparentUI?: boolean;
+    about?: boolean;
 
     /**
      * Function to be run after the image is loaded.
@@ -55,9 +60,10 @@ export interface Context {
     srcset?: string;
     alt: string;
 
-    theme: Theme;
-    about: boolean;
     imageStyle: React.CSSProperties;
+    theme: Theme;
+    transparentUI: boolean;
+    about: boolean;
 
     apiEndpoint: string;
     apiKey: string | undefined;
