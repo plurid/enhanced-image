@@ -270,6 +270,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             return response;
         }
 
+        // const response = {
+        //     status: true,
+        //     imageText: TEST_DATA,
+        //     error: '',
+        // }
+        // return response;
         const response = {
             status: false,
             imageText: [],
@@ -279,14 +285,20 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const getText = async () => {
+        setShowSpinner(true);
+        setMessage('Fetching Text');
+
         const { status, imageText, error } = await handleGetText();
 
         if (status) {
+            setShowSpinner(false);
+            setMessageTimed('Text Rendered', 2000);
             setImageText(imageText);
         }
 
         if (error) {
-            setMessageTimed('Something Went Wrong. Please Try Again.', 2000);
+            setShowSpinner(false);
+            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
         }
     }
 
