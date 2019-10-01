@@ -4,6 +4,7 @@ import themes, { Theme } from '@plurid/utilities.themes';
 
 import {
     ImageText,
+    ImageTextVersionTextline,
 } from './text';
 
 
@@ -156,5 +157,6 @@ export interface ImageBoxDimensions {
 
 
 export {
-    ImageText
+    ImageText,
+    ImageTextVersionTextline,
 }

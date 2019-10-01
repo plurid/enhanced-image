@@ -130,7 +130,7 @@ const SettingsMenu: React.FC<any> = () => {
                     <li>
                         <ButtonItem
                             theme={theme}
-                            atClick={getText}
+                            atClick={async () => await getText()}
                             icon={GetTextIcon}
                             text="Get Text"
                         />
