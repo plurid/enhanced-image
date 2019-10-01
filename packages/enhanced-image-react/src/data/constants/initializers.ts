@@ -4,6 +4,14 @@ export const initialImageDimensions = {
 };
 
 
+export const initialImageBoxDimensions = {
+    width: 0,
+    height: 0,
+    top: 0,
+    left: 0,
+};
+
+
 export const initialPreviousImageColors = {
     invert: 0,
     contrast: 100,

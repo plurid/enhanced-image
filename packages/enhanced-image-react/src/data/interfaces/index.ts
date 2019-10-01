@@ -74,8 +74,8 @@ export interface Context {
     loadedImage: boolean;
 
     imageDimensions: ImageDimensions,
+    imageBoxDimensions: ImageBoxDimensions;
     // videoContainerDimensions: VideoContainerDimensions;
-    // videoBoxDimensions: VideoBoxDimensions;
 
     setMessage: Dispatch<SetStateAction<string>>;
     setMessageTimed: (message: string, time: number) => void;
@@ -144,4 +144,17 @@ export interface Context {
 export interface ImageDimensions {
     width: number;
     height: number;
+}
+
+
+export interface ImageBoxDimensions {
+    width: number;
+    height: number;
+    left: number;
+    top: number;
+}
+
+
+export {
+    ImageText
 }
