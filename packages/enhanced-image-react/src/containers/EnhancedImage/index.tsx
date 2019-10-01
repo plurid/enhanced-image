@@ -219,13 +219,75 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     }
 
-    const getText = async () => {
-        console.log(TEST_DATA);
-        setImageText(TEST_DATA);
 
+    const getTextWithApiKey = async () => {
+        // console.log(TEST_DATA);
         // const query = await graphqlClient.current.query({
         //     query: QUERY,
         // });
+
+        const response = {
+            status: false,
+            imageText: [],
+            error: 'BAD_REQUEST',
+        }
+        return response;
+    }
+
+    const getTextWithUserToken = async () => {
+
+        const response = {
+            status: false,
+            imageText: [],
+            error: 'BAD_REQUEST',
+        }
+        return response;
+    }
+
+    const getTextWithDepictImageID = async () => {
+
+        const response = {
+            status: false,
+            imageText: [],
+            error: 'BAD_REQUEST',
+        }
+        return response;
+    }
+
+    const handleGetText = async () => {
+        if (apiKey) {
+            const response = await getTextWithApiKey();
+            return response;
+        }
+
+        if (userToken) {
+            const response = await getTextWithUserToken();
+            return response;
+        }
+
+        if (depictImageID) {
+            const response = await getTextWithDepictImageID();
+            return response;
+        }
+
+        const response = {
+            status: false,
+            imageText: [],
+            error: 'BAD_REQUEST',
+        }
+        return response;
+    }
+
+    const getText = async () => {
+        const { status, imageText, error } = await handleGetText();
+
+        if (status) {
+            setImageText(imageText);
+        }
+
+        if (error) {
+            setMessageTimed('Something Went Wrong. Please Try Again.', 2000);
+        }
     }
 
     const extractText = async () => {
