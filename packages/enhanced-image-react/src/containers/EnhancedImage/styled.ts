@@ -8,6 +8,7 @@ export const StyledEnhancedImage = styled.div`
     font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI',
         Roboto, Helvetica, Arial, sans-serif;
     position: relative;
+    overflow: auto;
 
     img {
         display: block;
