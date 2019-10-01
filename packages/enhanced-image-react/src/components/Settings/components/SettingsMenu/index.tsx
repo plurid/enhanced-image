@@ -1,6 +1,8 @@
 import React, {
     useContext,
     useRef,
+    useState,
+    useLayoutEffect,
 } from 'react';
 
 import {
@@ -30,6 +32,10 @@ import ButtonCheckmark from './components/ButtonCheckmark';
 import ButtonItem from './components/ButtonItem';
 import SliderItem from './components/SliderItem';
 import Drawer from './components/Drawer';
+
+import {
+    SETTINGS_MENU_HEIGHT_DIFFERENCE,
+} from '../../../../data/constants';
 
 import sliders from '../../../../data/constants/sliders';
 
@@ -91,12 +97,33 @@ const SettingsMenu: React.FC<any> = () => {
 
     const settingsMenu = useRef<HTMLDivElement>(null);
 
+    const [menuHeight, setMenuHeight] = useState<number | boolean>(false);
+
+    useLayoutEffect(() => {
+        if (settingsMenu.current) {
+            const menuHeight = settingsMenu.current.getBoundingClientRect().height;
+            const imageHeight = imageBoxDimensions.height;
+
+            if (menuHeight + SETTINGS_MENU_HEIGHT_DIFFERENCE <= imageHeight) {
+                setMenuHeight(false);
+            } else {
+                setMenuHeight(imageHeight - SETTINGS_MENU_HEIGHT_DIFFERENCE);
+            }
+        }
+    }, [
+        settingsMenu.current,
+        expandTextDrawer,
+        expandColorDrawer,
+        expandTopologyDrawer,
+        expandVariaDrawer,
+    ]);
+
     return (
         <StyledSettingsMenu
             theme={theme}
             transparentUI={transparentUI}
             ref={settingsMenu}
-            height={settingsMenu.current && settingsMenu.current.offsetHeight < imageBoxDimensions.height}
+            menuHeight={menuHeight}
         >
             <Drawer
                 title="Text"

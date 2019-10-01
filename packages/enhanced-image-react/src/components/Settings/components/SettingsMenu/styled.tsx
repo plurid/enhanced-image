@@ -5,8 +5,8 @@ import styled from 'styled-components';
 export const StyledSettingsMenu: any = styled.div`
     width: 150px;
     height: ${(props: any) => {
-        if (props.height) {
-            return props.height + 'px';
+        if (props.menuHeight) {
+            return props.menuHeight + 'px';
         } else {
             return 'auto';
         }
