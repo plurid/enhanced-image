@@ -129,10 +129,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             await atLoad(image);
         }
 
+        const dimensions = image.getBoundingClientRect();
         const {
             width,
             height,
-        } = image;
+        } = dimensions;
 
         const imageDimensions: ImageDimensions = {
             width,
