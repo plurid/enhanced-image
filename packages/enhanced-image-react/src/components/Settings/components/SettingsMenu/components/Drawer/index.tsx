@@ -1,6 +1,4 @@
-import React, {
-    useState,
-} from 'react';
+import React from 'react';
 
 import {
     StyledDrawer,
@@ -14,22 +12,24 @@ import { Theme } from '@plurid/utilities.themes';
 interface DrawerProperties {
     title: string;
     theme: Theme;
+    expand: boolean;
+    toggleExpand: () => void;
 }
 
 const Drawer: React.FC<DrawerProperties> = (properties) => {
     const {
         title,
         theme,
+        expand,
+        toggleExpand,
         children,
     } = properties;
-
-    const [expand, setExpand] = useState(false);
 
     return (
         <StyledDrawer>
             <StyledDrawerTitle
                 theme={theme}
-                onClick={() => setExpand(expand => !expand)}
+                onClick={() => toggleExpand()}
             >
                 {title}
             </StyledDrawerTitle>
@@ -44,5 +44,6 @@ const Drawer: React.FC<DrawerProperties> = (properties) => {
         </StyledDrawer>
     );
 }
+
 
 export default Drawer;

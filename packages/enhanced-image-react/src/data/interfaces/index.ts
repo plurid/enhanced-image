@@ -87,6 +87,15 @@ export interface Context {
     showSettingsMenu: boolean;
     setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
 
+    expandTextDrawer: boolean;
+    setExpandTextDrawer: Dispatch<SetStateAction<boolean>>;
+    expandColorDrawer: boolean;
+    setExpandColorDrawer: Dispatch<SetStateAction<boolean>>;
+    expandTopologyDrawer: boolean;
+    setExpandTopologyDrawer: Dispatch<SetStateAction<boolean>>;
+    expandVariaDrawer: boolean;
+    setExpandVariaDrawer: Dispatch<SetStateAction<boolean>>;
+
     editableText: boolean;
     setEditableText: Dispatch<SetStateAction<boolean>>;
 
