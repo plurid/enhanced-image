@@ -23,7 +23,7 @@ export const StyledSettingsMenu: any = styled.div`
         return props.theme.backgroundColorTertiary;
     }};
     box-shadow: 0px 0px 5px 1px ${props => props.theme.boxShadowUmbraColor};
-    overflow: hidden;
+    overflow: auto;
 
     ul {
         background-color: ${(props: any) => {
