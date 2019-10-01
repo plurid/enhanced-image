@@ -16,12 +16,22 @@ export const StyledSettingsMenu: any = styled.div`
     border-radius: 10px;
     transition: opacity 600ms linear;
     z-index: 9999;
-    background-color: ${props => props.theme.backgroundColorPrimaryAlpha};
+    background-color: ${(props: any) => {
+        if (props.transparentUI) {
+            return props.theme.backgroundColorPrimaryAlpha;
+        }
+        return props.theme.backgroundColorTertiary;
+    }};
     box-shadow: 0px 0px 5px 1px ${props => props.theme.boxShadowUmbraColor};
     overflow: hidden;
 
     ul {
-        background-color: ${props => props.theme.backgroundColorPrimaryAlpha};
+        background-color: ${(props: any) => {
+            if (props.transparentUI) {
+                return props.theme.backgroundColorPrimaryAlpha;
+            }
+            return props.theme.backgroundColorPrimary;
+        }};
         min-width: 130px;
         width: 150px;
         display: flex;
