@@ -410,14 +410,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 imageURL: src,
                 apiKey,
             };
-            const query = await graphqlClient.current.query({
-                query: EXTRACT_TEXT_WITH_API_KEY,
+            const mutation = await graphqlClient.current.mutate({
+                mutation: EXTRACT_TEXT_WITH_API_KEY,
                 variables: {
                     input,
                 },
             });
 
-            const data = query.data.extractTextWithApiKey;
+            const data = mutation.data.extractTextWithApiKey;
 
             if (!data.status) {
                 const response = {
@@ -450,14 +450,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 imageURL: src,
                 userToken,
             };
-            const query = await graphqlClient.current.query({
-                query: EXTRACT_TEXT_WITH_USER_TOKEN,
+            const mutation = await graphqlClient.current.mutate({
+                mutation: EXTRACT_TEXT_WITH_USER_TOKEN,
                 variables: {
                     input,
                 },
             });
 
-            const data = query.data.extractTextWithUserToken;
+            const data = mutation.data.extractTextWithUserToken;
 
             if (!data.status) {
                 const response = {
@@ -490,14 +490,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 imageURL: src,
                 depictImageID,
             };
-            const query = await graphqlClient.current.query({
-                query: EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID,
+            const mutation = await graphqlClient.current.mutate({
+                mutation: EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID,
                 variables: {
                     input,
                 },
             });
 
-            const data = query.data.extractTextWithDepictImageID;
+            const data = mutation.data.extractTextWithDepictImageID;
 
             if (!data.status) {
                 const response = {
