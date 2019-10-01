@@ -19,10 +19,10 @@ class App extends Component {
                         alt="food"
                         // theme="night"
                         // apiEndpoint="https://api.plurid.dev/graphql"
-                        apiEndpoint="http://192.168.1.2:3360/graphql"
+                        // apiEndpoint="http://192.168.1.2:3360/graphql"
                         // imageStyle={ { width: '300px' } }
                         transparentUI={true}
-                        apiKey=""
+                        apiKey="a"
                         userToken=""
                         depictImageID=""
                     />
