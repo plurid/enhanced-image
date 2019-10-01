@@ -119,8 +119,13 @@ export interface Context {
 
     defaultsToggled: boolean;
     toggleDefaults: () => void;
-
     resetToDefaults: () => void;
+
+    flipVertical: boolean;
+    setFlipVertical: Dispatch<SetStateAction<boolean>>;
+    flipHorizontal: boolean;
+    setFlipHorizontal: Dispatch<SetStateAction<boolean>>;
+
     viewFullscreen: () => void;
     shareImage: () => void;
     viewAbout: () => void;
