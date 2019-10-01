@@ -235,8 +235,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     // GET TEXT
     const getTextWithApiKey = async () => {
         const input = {
+            imageURL: src,
             apiKey,
-            imageSrc: src,
         };
         const query = await graphqlClient.current.query({
             query: GET_TEXT_WITH_API_KEY,
@@ -266,8 +266,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const getTextWithUserToken = async () => {
         const input = {
+            imageURL: src,
             userToken,
-            imageSrc: src,
         };
         const query = await graphqlClient.current.query({
             query: GET_TEXT_WITH_USER_TOKEN,
@@ -297,8 +297,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const getTextWithDepictImageID = async () => {
         const input = {
+            imageURL: src,
             depictImageID,
-            imageSrc: src,
         };
         const query = await graphqlClient.current.query({
             query: GET_TEXT_WITH_DEPICT_IMAGE_ID,
@@ -377,8 +377,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     // EXTRACT TEXT
     const extractTextWithApiKey = async () => {
         const input = {
+            imageURL: src,
             apiKey,
-            imageSrc: src,
         };
         const query = await graphqlClient.current.query({
             query: EXTRACT_TEXT_WITH_API_KEY,
@@ -408,8 +408,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const extractTextWithUserToken = async () => {
         const input = {
+            imageURL: src,
             userToken,
-            imageSrc: src,
         };
         const query = await graphqlClient.current.query({
             query: EXTRACT_TEXT_WITH_USER_TOKEN,
@@ -439,8 +439,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const extractTextWithDepictImageID = async () => {
         const input = {
+            imageURL: src,
             depictImageID,
-            imageSrc: src,
         };
         const query = await graphqlClient.current.query({
             query: EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID,
