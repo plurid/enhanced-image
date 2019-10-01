@@ -35,16 +35,14 @@ export default {
             modules: true,
         }),
         url(),
-        resolve(),
+        resolve({
+            modulesOnly: true,
+        }),
         typescript({
             check: false,
             rollupCommonJSResolveHack: true,
             clean: true
         }),
-        commonjs({
-            namedExports: {
-                'node_modules/graphql/language/parser.js': [ 'parser' ]
-            }
-        }),
+        commonjs(),
     ],
 }
