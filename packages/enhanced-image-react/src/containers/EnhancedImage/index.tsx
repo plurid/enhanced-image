@@ -104,6 +104,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const [previousImageColors, setPreviousImageColors] = useState(initialPreviousImageColors);
 
+    const [flipVertical, setFlipVertical] = useState(false);
+    const [flipHorizontal, setFlipHorizontal] = useState(false);
+
     const [imageSHA, setImageSHA] = useState('');
 
     const imageContainer = useRef<HTMLDivElement>(null);
@@ -300,8 +303,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         defaultsToggled,
         toggleDefaults,
-
         resetToDefaults,
+
+        flipVertical,
+        setFlipVertical,
+        flipHorizontal,
+        setFlipHorizontal,
+
         viewFullscreen,
         shareImage,
         viewAbout,

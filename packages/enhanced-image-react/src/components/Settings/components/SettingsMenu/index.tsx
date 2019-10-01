@@ -65,8 +65,13 @@ const SettingsMenu: React.FC<any> = () => {
 
         defaultsToggled,
         toggleDefaults,
-
         resetToDefaults,
+
+        flipVertical,
+        setFlipVertical,
+        flipHorizontal,
+        setFlipHorizontal,
+
         viewFullscreen,
         shareImage,
         viewAbout,
@@ -217,6 +222,31 @@ const SettingsMenu: React.FC<any> = () => {
                             atClick={resetToDefaults}
                             icon={ResetIcon}
                             text="Reset to Defaults"
+                        />
+                    </li>
+                </ul>
+            </Drawer>
+
+            <Drawer
+                title="Topology"
+                theme={theme}
+            >
+                <ul>
+                    <li>
+                        <ButtonCheckmark
+                            theme={theme}
+                            toggle={() => setFlipVertical(flip => !flip)}
+                            text="Flip Vertical"
+                            checked={flipVertical}
+                        />
+                    </li>
+
+                    <li>
+                        <ButtonCheckmark
+                            theme={theme}
+                            toggle={() => setFlipHorizontal(flip => !flip)}
+                            text="Flip Horizontal"
+                            checked={flipHorizontal}
                         />
                     </li>
                 </ul>
