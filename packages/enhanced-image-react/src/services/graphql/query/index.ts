@@ -63,15 +63,39 @@ export const extractTextSelectImage = gql`
 
 
 export const GET_TEXT_WITH_API_KEY = gql`
-
+    query EnhancedImageGetTextWithApiKey($input: InputEnhancedImageGetTextWithApiKey!) {
+        enhancedImageGetTextWithApiKey(input: $input) {
+            status
+            errors {
+                path
+                message
+            }
+        }
+    }
 `;
 
 
 export const GET_TEXT_WITH_USER_TOKEN = gql`
-
+    query EnhancedImageGetTextWithUserToken($input: InputEnhancedImageGetTextWithUserToken!) {
+        enhancedImageGetTextWithUserToken(input: $input) {
+            status
+            errors {
+                path
+                message
+            }
+        }
+    }
 `;
 
 
 export const GET_TEXT_WITH_DEPICT_IMAGE_ID = gql`
-
+    query EnhancedImageGetTextWithDepictImageID($input: InputEnhancedImageGetTextWithDepictImageID!) {
+        enhancedImageGetTextWithDepictImageID(input: $input) {
+            status
+            errors {
+                path
+                message
+            }
+        }
+    }
 `;
