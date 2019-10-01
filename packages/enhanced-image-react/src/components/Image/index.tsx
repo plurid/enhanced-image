@@ -1,5 +1,7 @@
 import React, {
     useContext,
+    useState,
+    useEffect,
 } from 'react';
 
 import {
@@ -27,7 +29,38 @@ const Image: React.FC<{}> = () => {
         imageColorsHue,
         imageColorsSaturation,
         imageColorsBrightness,
+
+        flipVertical,
+        flipHorizontal,
     } = context;
+
+    const [filter, setFilter] = useState('');
+    const [transform, setTransform] = useState('');
+
+    useEffect(() => {
+        const filter = `
+            invert(${imageColorsInvert ? 1 : 0})
+            contrast(${imageColorsContrast}%)
+            hue-rotate(${imageColorsHue}deg)
+            saturate(${imageColorsSaturation}%)
+            brightness(${imageColorsBrightness}%)
+        `;
+        setFilter(filter);
+    }, [
+        imageColorsInvert,
+        imageColorsContrast,
+        imageColorsHue,
+        imageColorsSaturation,
+        imageColorsBrightness,
+    ]);
+
+    useEffect(() => {
+        const transform = `${flipVertical ? 'scaleX(-1)': ''} ${flipHorizontal ? 'scaleY(-1' : ''}`;
+        setTransform(transform);
+    }, [
+        flipVertical,
+        flipHorizontal,
+    ]);
 
     return (
         <StyledImage>
@@ -36,13 +69,8 @@ const Image: React.FC<{}> = () => {
                 alt={alt}
                 style={{
                     ...imageStyle,
-                    filter: `
-                        invert(${imageColorsInvert ? 1 : 0})
-                        contrast(${imageColorsContrast}%)
-                        hue-rotate(${imageColorsHue}deg)
-                        saturate(${imageColorsSaturation}%)
-                        brightness(${imageColorsBrightness}%)
-                    `,
+                    filter,
+                    transform,
                 }}
                 onLoad={handleLoadedImage}
             />
