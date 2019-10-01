@@ -16,10 +16,10 @@ import SaveTextIcon from '../../../../assets/icons/settings-menu/save-text';
 
 import GetTextIcon from '../../../../assets/icons/settings-menu/get-text';
 import ExtractTextIcon from '../../../../assets/icons/settings-menu/extract-text';
-import TransviewTextIcon from '../../../../assets/icons/settings-menu/transview-text';
+// import TransviewTextIcon from '../../../../assets/icons/settings-menu/transview-text';
 
-import GenerateImageIcon from '../../../../assets/icons/settings-menu/generate-image';
-import ColorizeImageIcon from '../../../../assets/icons/settings-menu/colorize-image';
+// import GenerateImageIcon from '../../../../assets/icons/settings-menu/generate-image';
+// import ColorizeImageIcon from '../../../../assets/icons/settings-menu/colorize-image';
 
 import ResetIcon from '../../../../assets/icons/settings-menu/reset';
 import FullscreenIcon from '../../../../assets/icons/settings-menu/fullscreen';
@@ -71,12 +71,12 @@ const SettingsMenu: React.FC<any> = () => {
 
         getText,
         extractText,
-        transviewText,
+        // transviewText,
 
         saveImage,
 
-        generateImage,
-        colorizeImage,
+        // generateImage,
+        // colorizeImage,
 
         imageColorsInvert,
         setImageColorsInvert,
@@ -179,14 +179,14 @@ const SettingsMenu: React.FC<any> = () => {
                         />
                     </li>
 
-                    <li>
+                    {/* <li>
                         <ButtonItem
                             theme={theme}
                             atClick={transviewText}
                             icon={TransviewTextIcon}
                             text="Transview Text"
                         />
-                    </li>
+                    </li> */}
                 </ul>
             </Drawer>
 
@@ -197,23 +197,23 @@ const SettingsMenu: React.FC<any> = () => {
                 toggleExpand={() => setExpandColorDrawer(expand => !expand)}
             >
                 <ul>
-                    <li>
+                    {/* <li>
                         <ButtonItem
                             theme={theme}
                             atClick={generateImage}
                             icon={GenerateImageIcon}
                             text="Generate Image"
                         />
-                    </li>
+                    </li> */}
 
-                    <li>
+                    {/* <li>
                         <ButtonItem
                             theme={theme}
                             atClick={colorizeImage}
                             icon={ColorizeImageIcon}
                             text="Colorize Image"
                         />
-                    </li>
+                    </li> */}
 
                     <li>
                         <ButtonCheckmark
