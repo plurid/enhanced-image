@@ -45,6 +45,15 @@ const SettingsMenu: React.FC<any> = () => {
         transparentUI,
         about,
 
+        expandTextDrawer,
+        setExpandTextDrawer,
+        expandColorDrawer,
+        setExpandColorDrawer,
+        expandTopologyDrawer,
+        setExpandTopologyDrawer,
+        expandVariaDrawer,
+        setExpandVariaDrawer,
+
         editableText,
         setEditableText,
 
@@ -85,6 +94,8 @@ const SettingsMenu: React.FC<any> = () => {
             <Drawer
                 title="Text"
                 theme={theme}
+                expand={expandTextDrawer}
+                toggleExpand={() => setExpandTextDrawer(expand => !expand)}
             >
                 <ul>
                     <li>
@@ -148,6 +159,8 @@ const SettingsMenu: React.FC<any> = () => {
             <Drawer
                 title="Color"
                 theme={theme}
+                expand={expandColorDrawer}
+                toggleExpand={() => setExpandColorDrawer(expand => !expand)}
             >
                 <ul>
                     <li>
@@ -230,6 +243,8 @@ const SettingsMenu: React.FC<any> = () => {
             <Drawer
                 title="Topology"
                 theme={theme}
+                expand={expandTopologyDrawer}
+                toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
             >
                 <ul>
                     <li>
@@ -255,6 +270,8 @@ const SettingsMenu: React.FC<any> = () => {
             <Drawer
                 title="Varia"
                 theme={theme}
+                expand={expandVariaDrawer}
+                toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
             >
                 <ul>
                     <li>
