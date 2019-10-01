@@ -46,6 +46,12 @@ import uuid from '../../services/utilities/uuid';
 
 import client from '../../services/graphql/client';
 
+import {
+    EXTRACT_TEXT_WITH_API_KEY,
+    EXTRACT_TEXT_WITH_USER_TOKEN,
+    EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID,
+} from '../../services/graphql/mutate';
+
 import themes, { Theme } from '@plurid/utilities.themes';
 
 // test data import
@@ -304,12 +310,27 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
 
-
     const extractTextWithApiKey = async () => {
-        // console.log(TEST_DATA);
-        // const query = await graphqlClient.current.query({
-        //     query: QUERY,
-        // });
+        const input = {
+            apiKey,
+            imageSrc: src,
+        };
+        const query = await graphqlClient.current.query({
+            query: EXTRACT_TEXT_WITH_API_KEY,
+            variables: {
+                input,
+            },
+        });
+
+        const data = query.data.extractTextWithApiKey;
+
+        if (data.status) {
+            const response = {
+                status: true,
+                imageText: data.imageText,
+            };
+            return response;
+        }
 
         const response = {
             status: false,
@@ -320,6 +341,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const extractTextWithUserToken = async () => {
+        const input = {
+            userToken,
+            imageSrc: src,
+        };
+        const query = await graphqlClient.current.query({
+            query: EXTRACT_TEXT_WITH_USER_TOKEN,
+            variables: {
+                input,
+            },
+        });
+
+        const data = query.data.extractTextWithUserToken;
+
+        if (data.status) {
+            const response = {
+                status: true,
+                imageText: data.imageText,
+            };
+            return response;
+        }
 
         const response = {
             status: false,
@@ -330,6 +371,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const extractTextWithDepictImageID = async () => {
+        const input = {
+            depictImageID,
+            imageSrc: src,
+        };
+        const query = await graphqlClient.current.query({
+            query: EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID,
+            variables: {
+                input,
+            },
+        });
+
+        const data = query.data.extractTextWithDepictImageID;
+
+        if (data.status) {
+            const response = {
+                status: true,
+                imageText: data.imageText,
+            };
+            return response;
+        }
 
         const response = {
             status: false,

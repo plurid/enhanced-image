@@ -48,3 +48,18 @@ export const updateTextSelectImage = gql`
         }
     }
 `;
+
+
+export const EXTRACT_TEXT_WITH_API_KEY = gql`
+
+`;
+
+
+export const EXTRACT_TEXT_WITH_USER_TOKEN = gql`
+
+`;
+
+
+export const EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID = gql`
+
+`;
