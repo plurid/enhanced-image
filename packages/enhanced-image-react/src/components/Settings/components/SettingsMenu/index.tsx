@@ -1,5 +1,6 @@
 import React, {
     useContext,
+    useRef,
 } from 'react';
 
 import {
@@ -88,11 +89,14 @@ const SettingsMenu: React.FC<any> = () => {
         viewAbout,
     } = context;
 
+    const settingsMenu = useRef<HTMLDivElement>(null);
+
     return (
         <StyledSettingsMenu
             theme={theme}
             transparentUI={transparentUI}
-            height={imageBoxDimensions.height}
+            ref={settingsMenu}
+            height={settingsMenu.current && settingsMenu.current.offsetHeight < imageBoxDimensions.height}
         >
             <Drawer
                 title="Text"

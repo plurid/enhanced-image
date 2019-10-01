@@ -41,6 +41,10 @@ export default {
             rollupCommonJSResolveHack: true,
             clean: true
         }),
-        commonjs(),
+        commonjs({
+            namedExports: {
+                'node_modules/graphql/language/parser.js': [ 'parser' ]
+            }
+        }),
     ],
 }
