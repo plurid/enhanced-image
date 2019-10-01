@@ -54,6 +54,8 @@ const SettingsMenu: React.FC<any> = () => {
         expandVariaDrawer,
         setExpandVariaDrawer,
 
+        imageBoxDimensions,
+
         editableText,
         setEditableText,
 
@@ -90,6 +92,7 @@ const SettingsMenu: React.FC<any> = () => {
         <StyledSettingsMenu
             theme={theme}
             transparentUI={transparentUI}
+            height={imageBoxDimensions.height}
         >
             <Drawer
                 title="Text"
