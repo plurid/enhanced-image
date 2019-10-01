@@ -38,6 +38,8 @@ import Settings from '../../components/Settings';
 import Message from '../../components/Message';
 import Spinner from '../../components/Spinner';
 
+import uuid from '../../services/utilities/uuid';
+
 import themes, { Theme } from '@plurid/utilities.themes';
 
 // test data import
@@ -160,7 +162,49 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const addText = () => {
+        setMessageTimed('Added New Text', 1500);
 
+        const newTextID = uuid();
+        const newTextVersionID = uuid();
+
+        const newText: ImageText = {
+            id: newTextID,
+            currentVersionId: newTextVersionID,
+            versions: [
+                {
+                    id: newTextVersionID,
+                    type: 'TEXTLINE',
+
+                    xCoordPercentage: 5,
+                    yCoordPercentage: 9,
+
+                    perspective: '',
+                    rotation: '',
+                    skew: '',
+
+                    viewable: false,
+                    alwaysShow: false,
+
+                    color: 'white',
+
+                    fontWeight: 'normal',
+                    fontStyle: 'normal',
+                    fontFamily: 'Arial',
+                    fontSizePercentage: 7,
+                    letterSpacingPercentage: 0,
+                    wordSpacingPercentage: 0,
+                    lineHeightPercentage: 0,
+
+                    content: 'New Text',
+
+                    link: false,
+                    linkTo: '',
+                },
+            ],
+        };
+
+        const updatedTexts = [...imageText, newText];
+        setImageText(updatedTexts);
     }
 
     const saveText = async () => {
