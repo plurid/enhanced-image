@@ -49,10 +49,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         srcset,
         alt,
 
-        theme,
-        about,
-
         imageStyle,
+        theme,
+        transparentUI,
+        about,
 
         atLoad,
 
@@ -71,12 +71,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         );
     }
 
+    const _alt = alt || '';
+    const _imageStyle = imageStyle ? imageStyle : {};
     const _theme: Theme = theme && themes[theme]
         ? themes[theme]
         : themes.plurid;
-    const _alt = alt || '';
+    const _transparentUI = transparentUI === undefined ? true : transparentUI;
     const _about = about === undefined ? true : about;
-    const _imageStyle = imageStyle ? imageStyle : {};
 
     const _apiEndpoint = apiEndpoint ? apiEndpoint : PLURID_API_ENDPOINT;
 
@@ -244,9 +245,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         srcset,
         alt: _alt,
 
-        theme: _theme,
-        about: _about,
         imageStyle: _imageStyle,
+        theme: _theme,
+        transparentUI: _transparentUI,
+        about: _about,
 
         apiEndpoint: _apiEndpoint,
         apiKey,
