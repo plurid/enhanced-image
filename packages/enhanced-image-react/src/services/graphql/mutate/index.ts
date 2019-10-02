@@ -1,5 +1,9 @@
 import gql from 'graphql-tag';
 
+import {
+    EnhancedImageDataFragment,
+} from '../fragments';
+
 
 
 export const updateTextSelectImage = gql`
@@ -58,8 +62,12 @@ export const EXTRACT_TEXT_WITH_API_KEY = gql`
                 path
                 message
             }
+            imageData {
+                ...EnhancedImage_EnhancedImageDataFragment
+            }
         }
     }
+    ${EnhancedImageDataFragment}
 `;
 
 

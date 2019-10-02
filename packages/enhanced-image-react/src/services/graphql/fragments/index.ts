@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 
 
-export const TextSelectImage_DepictImageDataFragment = gql`
-    fragment TextSelectImage_DepictImageDataFragment on DepictImageData {
+export const EnhancedImageDataFragment = gql`
+    fragment EnhancedImage_EnhancedImageDataFragment on EnhancedImageData {
         imageSHA
         imageText {
             id
