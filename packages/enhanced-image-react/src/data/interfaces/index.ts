@@ -48,7 +48,7 @@ export interface EnhancedImageProperties {
      */
     apiKey?: string;
     userToken?: string;
-    depictImageID?: string;
+    imageID?: string;
 
     // updateDebounce?: number;
     // moreLimit?: number;
@@ -69,7 +69,7 @@ export interface Context {
     apiEndpoint: string;
     apiKey: string | undefined;
     userToken: string | undefined;
-    depictImageID: string | undefined;
+    imageID: string | undefined;
 
     handleLoadedImage: (image: React.SyntheticEvent<HTMLImageElement, Event>) => Promise<void>;
     loadedImage: boolean;

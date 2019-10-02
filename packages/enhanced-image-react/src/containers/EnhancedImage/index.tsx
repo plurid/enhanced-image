@@ -49,19 +49,17 @@ import client from '../../services/graphql/client';
 import {
     GET_TEXT_WITH_API_KEY,
     GET_TEXT_WITH_USER_TOKEN,
-    GET_TEXT_WITH_DEPICT_IMAGE_ID,
+    GET_TEXT_WITH_IMAGE_ID,
 } from '../../services/graphql/query';
 
 import {
     EXTRACT_TEXT_WITH_API_KEY,
     EXTRACT_TEXT_WITH_USER_TOKEN,
-    EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID,
+    EXTRACT_TEXT_WITH_IMAGE_ID,
 } from '../../services/graphql/mutate';
 
 import themes, { Theme } from '@plurid/utilities.themes';
 
-// test data import
-import TEST_DATA from '../../__specs-data__/data';
 
 
 const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
@@ -81,7 +79,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         apiKey,
         userToken,
-        depictImageID,
+        imageID,
     } = properties;
 
     if (!src) {
@@ -314,20 +312,20 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         }
     }
 
-    const getTextWithDepictImageID = async () => {
+    const getTextWithImageID = async () => {
         try {
             const input = {
                 imageURL: src,
-                depictImageID,
+                imageID,
             };
             const query = await graphqlClient.current.query({
-                query: GET_TEXT_WITH_DEPICT_IMAGE_ID,
+                query: GET_TEXT_WITH_IMAGE_ID,
                 variables: {
                     input,
                 },
             });
 
-            const data = query.data.enhancedImageGetTextWithDepictImageID;
+            const data = query.data.enhancedImageGetTextWithImageID;
 
             if (!data.status) {
                 const response = {
@@ -365,8 +363,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             return response;
         }
 
-        if (depictImageID) {
-            const response = await getTextWithDepictImageID();
+        if (imageID) {
+            const response = await getTextWithImageID();
             return response;
         }
 
@@ -484,20 +482,20 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         }
     }
 
-    const extractTextWithDepictImageID = async () => {
+    const extractTextWithImageID = async () => {
         try {
             const input = {
                 imageURL: src,
-                depictImageID,
+                imageID,
             };
             const mutation = await graphqlClient.current.mutate({
-                mutation: EXTRACT_TEXT_WITH_DEPICT_IMAGE_ID,
+                mutation: EXTRACT_TEXT_WITH_IMAGE_ID,
                 variables: {
                     input,
                 },
             });
 
-            const data = mutation.data.enhancedImageExtractTextWithDepictImageID;
+            const data = mutation.data.enhancedImageExtractTextWithImageID;
 
             if (!data.status) {
                 const response = {
@@ -535,8 +533,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             return response;
         }
 
-        if (depictImageID) {
-            const response = await extractTextWithDepictImageID();
+        if (imageID) {
+            const response = await extractTextWithImageID();
             return response;
         }
 
@@ -672,7 +670,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         apiEndpoint: _apiEndpoint,
         apiKey,
         userToken,
-        depictImageID,
+        imageID,
 
         handleLoadedImage,
         loadedImage,
