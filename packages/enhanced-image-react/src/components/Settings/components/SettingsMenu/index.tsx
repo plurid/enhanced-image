@@ -52,6 +52,8 @@ const SettingsMenu: React.FC<any> = () => {
         transparentUI,
         about,
 
+        databaseImageID,
+
         expandTextDrawer,
         setExpandTextDrawer,
         expandColorDrawer,
@@ -319,14 +321,16 @@ const SettingsMenu: React.FC<any> = () => {
                             />
                         </li>
 
-                        <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={shareImage}
-                                icon={ShareIcon}
-                                text="Share Image"
-                            />
-                        </li>
+                        {databaseImageID && (
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={shareImage}
+                                    icon={ShareIcon}
+                                    text="Share Image"
+                                />
+                            </li>
+                        )}
 
                         <li
                             // onMouseEnter={saveImage}

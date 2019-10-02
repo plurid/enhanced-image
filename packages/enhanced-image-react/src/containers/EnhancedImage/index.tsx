@@ -628,9 +628,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const shareImage = () => {
-        const enhanced = '/';
-        const imageLink = databaseImageID + enhanced;
-        const url = DEPICT_DOMAIN + imageLink;
+        const enhanced = '';
+        const imageLocation = '/' + databaseImageID.slice(0, 16) + enhanced;
+        const url = DEPICT_DOMAIN + imageLocation;
         window.open(url, '_blank');
     }
 
@@ -696,6 +696,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         apiKey,
         userToken,
         imageID,
+
+        databaseImageID,
 
         handleLoadedImage,
         loadedImage,
