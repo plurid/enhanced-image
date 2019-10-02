@@ -81,8 +81,13 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [editable, setEditable] = useState(false);
 
     const [positions, setPositions] = useState({
-        X: 0,
-        Y: 0,
+        x: 0,
+        y: 0,
+    });
+
+    const [editorPositions, setEditorPositions] = useState({
+        x: 0,
+        y: -34,
     });
 
     const handleMouseEnter = () => {
@@ -106,11 +111,51 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             const pageY = event.pageY;
 
             const positions = {
-                X: pageX,
-                Y: pageY,
+                x: pageX,
+                y: pageY,
             };
             setPositions(positions);
         }
+    }
+
+
+    const handleEditorPosition = () => {
+        // const {
+        //     videoBoxWidth,
+        //     editorWidth,
+        // } = this.context;
+
+        // // console.log(editorWidth);
+
+        // const {
+        //     offsetLeft,
+        //     offsetTop,
+        //     offsetHeight,
+        // } = this.textVideo.current;
+
+        // // Do not let editor to go to the right.
+        // let editorXCoord = offsetLeft + editorWidth > videoBoxWidth
+        //     ? -1 * (offsetLeft + editorWidth - videoBoxWidth)
+        //     : -17;
+
+        // // Do not let editor to go to the left.
+        // if (offsetLeft < 17) {
+        //     editorXCoord = offsetLeft * -1;
+        // }
+
+        // if (editorWidth === 0) {
+        //     editorXCoord = - offsetLeft;
+        // }
+
+        // // Do not let editor to go to over the top.
+        // let editorYCoord = offsetTop < 34
+        //     ?  offsetHeight
+        //     : -34;
+
+        // this.setState({
+        //     editorXCoord,
+        //     editorYCoord,
+        // });
     }
 
     useEffect(() => {
@@ -199,12 +244,12 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 const pageX = event.pageX;
                 const pageY = event.pageY;
 
-                const differenceX = pageX - positions.X;
-                const differenceY = pageY - positions.Y;
+                const differenceX = pageX - positions.x;
+                const differenceY = pageY - positions.y;
 
                 const updatedPositions = {
-                    X: pageX,
-                    Y: pageY,
+                    x: pageX,
+                    y: pageY,
                 }
                 setPositions(updatedPositions);
 
@@ -260,7 +305,11 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 </StyledTextContent>
             )}
 
-            {showEditor && currentVersion && !dragging && (
+            {
+                // showEditor &&
+                currentVersion &&
+                // && !dragging &&
+                (
                 <TextEditor
                     data={currentVersion}
 
@@ -269,6 +318,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
                     draggable={draggable}
                     setDraggable={setDraggable}
+
+                    positions={editorPositions}
                 />
             )}
         </StyledTextItem>
@@ -279,14 +330,6 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 export default Textline;
 
 
-
-// class TextVideo extends Component<
-//     any, any
-//     // ITextVideoProps, ITextVideoState
-// > {
-//     static contextType = Context;
-
-//     private textVideo: any;
 
 //     public state = {
 //         textVersion: {},
@@ -314,16 +357,7 @@ export default Textline;
 //         editorWidth: 744,
 //     };
 
-//     constructor(props: any) {
-//         super(props);
-
-//         this.textVideo = React.createRef();
-//     }
-
 //     public componentDidMount() {
-//         document.addEventListener('mouseup', this.dragMouseUp);
-//         document.addEventListener('mousemove', this.dragMouseMove);
-
 //         const {
 //             text
 //         } = this.props;
@@ -365,11 +399,6 @@ export default Textline;
 //                 this.toggleTextDraggable();
 //             }
 //         }
-//     }
-
-//     public componentWillUnmount() {
-//         document.removeEventListener('mouseup', this.dragMouseUp);
-//         document.removeEventListener('mousemove', this.dragMouseMove);
 //     }
 
 //     public render() {
@@ -700,67 +729,6 @@ export default Textline;
 //             xCoordPercentage,
 //             yCoordPercentage,
 //         };
-//     }
-
-//     private dragMouseDown = (event: any) => {
-//         const { textDraggable } = this.state;
-//         if (!textDraggable) {
-//             return;
-//         }
-
-//         event.preventDefault();
-
-//         const pageX = event.pageX;
-//         const pageY = event.pageY;
-
-//         this.setState({
-//             dragging: true,
-//             pos3: pageX,
-//             pos4: pageY,
-//         });
-//     }
-
-//     private dragMouseMove = (event: any) => {
-//         const { dragging } = this.state;
-//         if (!dragging) {
-//             return;
-//         }
-
-//         event.preventDefault();
-
-//         const {
-//             pos3,
-//             pos4,
-//         } = this.state;
-
-//         const { offsetLeft, offsetTop } = this.textVideo.current;
-
-//         const pageX = event.pageX;
-//         const pageY = event.pageY;
-
-//         // calculate the new cursor position:
-//         const diffX = pageX - pos3;
-//         const diffY = pageY - pos4;
-
-//         this.setState({
-//             pos1: pos3,
-//             pos2: pos4,
-//             pos3: pageX,
-//             pos4: pageY,
-//             xCoord: offsetLeft + diffX,
-//             yCoord: offsetTop + diffY,
-//         },
-//             () => {
-//                 this.editorPosition();
-//                 this.saveCoords();
-//             }
-//         );
-//     }
-
-//     private dragMouseUp = () => {
-//         this.setState({
-//             dragging: false,
-//         });
 //     }
 
 //     private toggleShowEditor = () => {
