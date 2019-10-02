@@ -78,6 +78,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [draggable, setDraggable] = useState(false);
     const [dragging, setDragging] = useState(false);
 
+    const [editable, setEditable] = useState(false);
+
     const [pos1, setPos1] = useState(0);
     const [pos2, setPos2] = useState(0);
     const [pos3, setPos3] = useState(0);
@@ -98,13 +100,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const handleMouseDown = (event: any) => {
         if (draggable) {
-            console.log('mouse down');
             setDragging(true);
 
             const pageX = event.pageX;
             const pageY = event.pageY;
-
-            console.log(pageX, pageY);
 
             setPos3(pageX);
             setPos4(pageY);
@@ -235,7 +234,6 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            onMouseDown={(event: any) => handleMouseDown(event)}
             style={{
                 left: textXCoord,
                 top: textYCoord,
@@ -252,6 +250,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         >
             {currentVersion && (
                 <StyledTextContent
+                    onMouseDown={(event: any) => handleMouseDown(event)}
                     dragMode={draggable}
                     draggingMode={dragging}
                     editableText={editableText}
@@ -265,6 +264,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             {showEditor && currentVersion && !dragging && (
                 <TextEditor
                     data={currentVersion}
+
+                    editable={editable}
+                    setEditable={setEditable}
 
                     draggable={draggable}
                     setDraggable={setDraggable}

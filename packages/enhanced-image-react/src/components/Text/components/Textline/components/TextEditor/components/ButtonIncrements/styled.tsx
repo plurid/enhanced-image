@@ -6,6 +6,7 @@ export const StyledTextVideoEditorButtonIncrement = styled.div`
     display: flex;
     align-items: center;
     margin: 5px;
+    user-select: none;
 
     input {
         background: ${props => props.theme.backgroundColorSecondary};
