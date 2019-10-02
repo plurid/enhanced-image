@@ -260,7 +260,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
             const response = {
                 status: true,
-                imageText: data.imageText,
+                imageText: data.imageData.imageText,
                 error: undefined,
             };
             return response;
@@ -300,7 +300,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
             const response = {
                 status: true,
-                imageText: data.imageText,
+                imageText: data.imageData.imageText,
                 error: undefined,
             };
             return response;
@@ -340,7 +340,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
             const response = {
                 status: true,
-                imageText: data.imageText,
+                imageText: data.imageData.imageText,
                 error: undefined,
             };
             return response;
@@ -470,7 +470,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
             const response = {
                 status: true,
-                imageText: data.imageText,
+                imageText: data.imageData.imageText,
                 error: undefined,
             };
             return response;
@@ -510,7 +510,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
             const response = {
                 status: true,
-                imageText: data.imageText,
+                imageText: data.imageData.imageText,
                 error: undefined,
             };
             return response;
