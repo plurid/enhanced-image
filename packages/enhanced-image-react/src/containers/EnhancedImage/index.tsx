@@ -568,6 +568,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Extracted and Rendered', 2000);
+            console.log('imageText', imageText);
             setImageText(imageText);
             return;
         }

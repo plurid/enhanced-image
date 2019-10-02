@@ -10,12 +10,12 @@ export interface ImageTextVersion {
     skew: string;
 
     viewable: boolean;
-    alwaysShow: boolean;
 }
 
 
 export interface ImageTextVersionTextarea extends ImageTextVersion {
     type: 'TEXTAREA';
+    content: string;
     [key: string]: any;
 }
 

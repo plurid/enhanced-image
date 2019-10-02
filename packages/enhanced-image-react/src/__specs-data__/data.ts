@@ -21,7 +21,6 @@ const data: ImageText[] = [
                 skew: '',
 
                 viewable: false,
-                alwaysShow: false,
 
                 color: 'red',
 
