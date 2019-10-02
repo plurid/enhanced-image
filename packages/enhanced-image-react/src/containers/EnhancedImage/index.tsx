@@ -204,7 +204,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     skew: '',
 
                     viewable: false,
-                    alwaysShow: false,
 
                     color: 'white',
 
@@ -247,7 +246,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             });
             // console.log(query);
 
-            const data = query.data.getTextWithApiKey;
+            const data = query.data.enhancedImageGetTextWithApiKey;
 
             if (!data.status) {
                 const response = {
@@ -288,7 +287,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 },
             });
 
-            const data = query.data.getTextWithUserToken;
+            const data = query.data.enhancedImageGetTextWithUserToken;
 
             if (!data.status) {
                 const response = {
@@ -328,7 +327,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 },
             });
 
-            const data = query.data.getTextWithDepictImageID;
+            const data = query.data.enhancedImageGetTextWithDepictImageID;
 
             if (!data.status) {
                 const response = {
@@ -458,7 +457,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 },
             });
 
-            const data = mutation.data.extractTextWithUserToken;
+            const data = mutation.data.enhancedImageExtractTextWithUserToken;
 
             if (!data.status) {
                 const response = {
@@ -498,7 +497,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 },
             });
 
-            const data = mutation.data.extractTextWithDepictImageID;
+            const data = mutation.data.enhancedImageExtractTextWithDepictImageID;
 
             if (!data.status) {
                 const response = {
@@ -568,7 +567,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Extracted and Rendered', 2000);
-            console.log('imageText', imageText);
             setImageText(imageText);
             return;
         }
