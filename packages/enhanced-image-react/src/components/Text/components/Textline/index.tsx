@@ -87,6 +87,14 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }, 700);
     }
 
+    const handleMouseDown = () => {
+        console.log('mouse down');
+    }
+
+    const handleMouseMove = () => {
+        console.log('mouse move');
+    }
+
     useEffect(() => {
         const currentVersion = getVersionById(data);
 
@@ -146,6 +154,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
+            onMouseDown={() => handleMouseDown()}
+            onMouseMove={() => handleMouseMove()}
             style={{
                 top: textYCoord,
                 left: textXCoord,
