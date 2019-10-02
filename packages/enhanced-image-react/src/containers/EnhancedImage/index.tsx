@@ -594,6 +594,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setImageColorsHue(SLIDER_VALUE_DEFAULTS.Hue);
         setImageColorsSaturation(SLIDER_VALUE_DEFAULTS.Saturation);
         setImageColorsBrightness(SLIDER_VALUE_DEFAULTS.Brightness);
+
+        if (defaultsToggled) {
+            setDefaultsToggled(false);
+        }
     }
 
     const viewFullscreen = () => {
