@@ -40,6 +40,14 @@ export const StyledTextContent: any = styled.div`
         return 'transparent';
     }};
 
+    user-select: ${(props: any) => {
+        if (props.draggingMode) {
+            return 'none';
+        }
+
+        return 'text';
+    }};
+
     cursor: ${(props: any) => {
         if (props.draggingMode) {
             return 'grabbing';

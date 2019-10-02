@@ -46,6 +46,9 @@ import {
 
 interface TextEditorProperties {
     data: ImageTextVersionTextline;
+
+    draggable: boolean;
+    setDraggable: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TextEditor: React.FC<TextEditorProperties> = (properties) => {
@@ -67,6 +70,9 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
     const {
         data,
+
+        draggable,
+        setDraggable,
     } = properties;
 
     return (
@@ -83,10 +89,8 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
             <ButtonToggle
                 theme={theme}
-                // toggle={toggleTextDraggable}
-                // toggled={textDraggable}
-                toggle={() => {}}
-                toggled={false}
+                toggle={() => setDraggable(draggable => !draggable)}
+                toggled={draggable}
                 icon={GrabIcon}
             />
 
@@ -182,6 +186,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
             />
 
             <ButtonsColors
+                theme={theme}
                 changeValue={() => {}}
                 // changeValue={this.updateField}
                 color={data.color}
