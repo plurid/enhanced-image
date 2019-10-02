@@ -104,64 +104,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             const pageX = event.pageX;
             const pageY = event.pageY;
 
+            console.log(pageX, pageY);
+
             setPos3(pageX);
             setPos4(pageY);
-        }
-    }
-
-    const handleMouseUp = () => {
-        if (draggable) {
-            setDragging(false);
-        }
-        console.log('mouse up');
-    }
-
-    const handleMouseMove = (event: any) => {
-        if (!dragging) {
-            return;
-        }
-
-        event.preventDefault();
-
-        console.log('dragging');
-        if (textItem.current) {
-            const { offsetLeft, offsetTop } = textItem.current;
-
-            const pageX = event.pageX;
-            const pageY = event.pageY;
-
-            // calculate the new cursor position:
-            const diffX = pageX - pos3;
-            const diffY = pageY - pos4;
-
-            const textXCoord = offsetLeft + diffX + 'px';
-            const textYCoord = offsetTop + diffY + 'px';
-
-            console.log(pos3, pos4, pageX, pageY, textXCoord, textYCoord);
-
-            setPos1(pos3);
-            setPos2(pos4);
-            setPos3(pageX);
-            setPos4(pageY);
-            setTextXCoord(textXCoord);
-            setTextYCoord(textYCoord);
-
-
-            // this.setState({
-            //     pos1: pos3,
-            //     pos2: pos4,
-            //     pos3: pageX,
-            //     pos4: pageY,
-            //     xCoord: offsetLeft + diffX,
-            //     yCoord: offsetTop + diffY,
-            // },
-            //     () => {
-            //         this.editorPosition();
-            //         this.saveCoords();
-            //     }
-            // );
-
-            console.log('mouse move');
         }
     }
 
@@ -221,11 +167,15 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     ]);
 
     useEffect(() => {
-        window.addEventListener('mousemove', handleMouseMove);
+        const handleMouseUp = () => {
+            if (draggable) {
+                setDragging(false);
+            }
+        }
+
         window.addEventListener('mouseup', handleMouseUp);
 
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseup', handleMouseUp);
         }
     }, [
@@ -233,16 +183,62 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         draggable,
     ]);
 
+    useEffect(() => {
+        const handleMouseMove = (event: any) => {
+            if (!dragging) {
+                return;
+            }
+
+            event.preventDefault();
+
+            if (textItem.current) {
+                const { offsetLeft, offsetTop } = textItem.current;
+
+                const pageX = event.pageX;
+                const pageY = event.pageY;
+
+                // calculate the new cursor position:
+                const diffX = pageX - pos3;
+                const diffY = pageY - pos4;
+
+                const textXCoord = offsetLeft + diffX + 'px';
+                const textYCoord = offsetTop + diffY + 'px';
+
+                // console.log(pos3, pos4, pageX, pageY, textXCoord, textYCoord);
+
+                setPos1(pos3);
+                setPos2(pos4);
+                setPos3(pageX);
+                setPos4(pageY);
+                setTextXCoord(textXCoord);
+                setTextYCoord(textYCoord);
+            }
+        }
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        }
+    }, [
+        dragging,
+        draggable,
+        pos1,
+        pos2,
+        pos3,
+        pos4,
+        textXCoord,
+        textYCoord,
+    ]);
+
     return (
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
             onMouseDown={(event: any) => handleMouseDown(event)}
-            // onMouseUp={() => handleMouseUp()}
-            // onMouseMove={() => handleMouseMove()}
             style={{
-                top: textYCoord,
                 left: textXCoord,
+                top: textYCoord,
                 color: textColor,
                 fontFamily,
                 fontSize,
@@ -266,7 +262,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 </StyledTextContent>
             )}
 
-            {showEditor && currentVersion && (
+            {showEditor && currentVersion && !dragging && (
                 <TextEditor
                     data={currentVersion}
 
