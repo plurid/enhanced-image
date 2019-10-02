@@ -1,5 +1,7 @@
 import React, {
     useContext,
+    useState,
+    useEffect
 } from 'react';
 
 import {
@@ -29,11 +31,22 @@ const Text: React.FC<any> = () => {
 
     const {
         imageBoxDimensions,
-
         imageText,
+        flipHorizontal,
+        flipVertical,
     } = context;
 
     console.log('imageText from Text', imageText);
+
+    const [transform, setTransform] = useState('');
+
+    useEffect(() => {
+        const transform = `${flipVertical ? 'scaleX(-1)': ''} ${flipHorizontal ? 'scaleY(-1' : ''}`;
+        setTransform(transform);
+    }, [
+        flipVertical,
+        flipHorizontal,
+    ]);
 
     return (
         <StyledText
@@ -42,6 +55,7 @@ const Text: React.FC<any> = () => {
                 height: imageBoxDimensions.height + 'px',
                 left: imageBoxDimensions.left + 'px',
                 top: imageBoxDimensions.top + 'px',
+                transform,
             }}
         >
             {imageText.map((textItem: ImageText) => {
