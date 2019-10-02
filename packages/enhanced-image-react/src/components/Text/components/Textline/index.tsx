@@ -305,23 +305,23 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 </StyledTextContent>
             )}
 
-            {
-                // showEditor &&
-                currentVersion &&
-                // && !dragging &&
-                (
-                <TextEditor
-                    data={currentVersion}
+            {showEditor
+                && currentVersion
+                && !dragging
+                && (
+                    <TextEditor
+                        data={currentVersion}
 
-                    editable={editable}
-                    setEditable={setEditable}
+                        editable={editable}
+                        setEditable={setEditable}
 
-                    draggable={draggable}
-                    setDraggable={setDraggable}
+                        draggable={draggable}
+                        setDraggable={setDraggable}
 
-                    positions={editorPositions}
-                />
-            )}
+                        positions={editorPositions}
+                    />
+                )
+            }
         </StyledTextItem>
     );
 }

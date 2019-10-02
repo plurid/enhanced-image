@@ -5,12 +5,13 @@ import styled from 'styled-components';
 export const StyledDrawer = styled.div`
     display: flex;
     flex-direction: column;
+    flex-flow: row;
     height: 100%;
 `;
 
 
 export const StyledDrawerTitle = styled.div`
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     user-select: none;
     cursor: pointer;
     text-align: left;
