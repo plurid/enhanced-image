@@ -61,9 +61,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
     const {
         theme,
-
-        editableText,
-        setEditableText,
+        transparentUI,
 
         imageBoxDimensions,
     } = context;
@@ -84,6 +82,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         <StyledTextEditor
             theme={theme}
             ref={editor}
+            transparentUI={transparentUI}
         >
             <ButtonToggle
                 theme={theme}

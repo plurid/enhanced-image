@@ -3,14 +3,12 @@ import styled from 'styled-components';
 
 
 export const StyledTextEditor: any = styled.div`
-    background-color: ${props => props.theme.backgroundColorPrimary};
-    background: ${props => {
-        const { backgroundGradient, backgroundColorPrimary } = props.theme;
-        if (backgroundGradient) {
-            return backgroundGradient;
-        } else {
-            return backgroundColorPrimary;
+    background-color: ${(props: any) => {
+        if (props.transparentUI) {
+            return props.theme.backgroundColorPrimaryAlpha;
         }
+
+        return props.theme.backgroundColorPrimary;
     }};
     color: ${props => props.theme.colorPrimary};
 
