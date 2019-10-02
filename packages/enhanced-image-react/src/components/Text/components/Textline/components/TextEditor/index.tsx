@@ -1,7 +1,7 @@
 import React, {
     useContext,
     useRef,
-    useEffect,
+    useState,
 } from 'react';
 
 import {
@@ -18,6 +18,7 @@ import ButtonInput from './components/ButtonInput';
 import ButtonToggle from './components/ButtonToggle';
 import ButtonsColors from './components/ButtonsColors';
 import ButtonClick from './components/ButtonClick';
+import Drawer from './components/Drawer';
 
 import { selectableFonts } from '../../../../../../data/constants/fonts';
 
@@ -51,6 +52,10 @@ interface TextEditorProperties {
     setEditable: React.Dispatch<React.SetStateAction<boolean>>;
     draggable: boolean;
     setDraggable: React.Dispatch<React.SetStateAction<boolean>>;
+    positions: {
+        x: number;
+        y: number;
+    };
 }
 
 const TextEditor: React.FC<TextEditorProperties> = (properties) => {
@@ -66,10 +71,10 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         imageBoxDimensions,
     } = context;
 
-    const editor = useRef<HTMLDivElement>(null);
-
     const {
         data,
+
+        positions,
 
         editable,
         setEditable,
@@ -78,11 +83,19 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         setDraggable,
     } = properties;
 
+    const editor = useRef<HTMLDivElement>(null);
+
+    const [expandFormat, setExpandFormat] = useState(false);
+
     return (
         <StyledTextEditor
             theme={theme}
             ref={editor}
             transparentUI={transparentUI}
+            style={{
+                left: positions.x + 'px',
+                top: positions.y + 'px',
+            }}
         >
             <ButtonToggle
                 theme={theme}
@@ -114,87 +127,94 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 &nbsp;
             </StyledVerticalDivider>
 
-            <ButtonIncrements
+            <Drawer
                 theme={theme}
-                type="fontSize"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
-                value={data.fontSizePercentage * imageBoxDimensions.height / 100}
-                icon={FontSizeIcon}
-            />
+                title="Format"
+                expand={expandFormat}
+                toggleExpand={() => setExpandFormat(expand => !expand)}
+            >
+                <ButtonIncrements
+                    theme={theme}
+                    type="fontSize"
+                    changeValue={() => {}}
+                    // changeValue={this.updateField}
+                    value={data.fontSizePercentage * imageBoxDimensions.height / 100}
+                    icon={FontSizeIcon}
+                />
 
-            <ButtonDropdown
-                theme={theme}
-                type="fontFamily"
-                alterStyle="fontFamily"
-                selected={data.fontFamily}
-                selectables={selectableFonts}
-                changeSelected={() => {}}
-                // changeSelected={this.updateField}
-                toggleEditor={() => {}}
-                textDraggable={false}
-                toggleTextDraggable={() => {}}
-                toggleTextSelected={() => {}}
-                // toggleEditor={toggleEditor}
-                // textDraggable={textDraggable}
-                // toggleTextDraggable={toggleTextDraggable}
-                // toggleTextSelected={toggleSelected}
-            />
+                <ButtonDropdown
+                    theme={theme}
+                    type="fontFamily"
+                    alterStyle="fontFamily"
+                    selected={data.fontFamily}
+                    selectables={selectableFonts}
+                    changeSelected={() => {}}
+                    // changeSelected={this.updateField}
+                    toggleEditor={() => {}}
+                    textDraggable={false}
+                    toggleTextDraggable={() => {}}
+                    toggleTextSelected={() => {}}
+                    // toggleEditor={toggleEditor}
+                    // textDraggable={textDraggable}
+                    // toggleTextDraggable={toggleTextDraggable}
+                    // toggleTextSelected={toggleSelected}
+                />
 
-            <ButtonInput
-                theme={theme}
-                toggle={() => {}}
-                // toggle={this.updateField.bind(this, 'link')}
-                toggled={data.link}
-                icon={LinkIcon}
-                value={data.linkTo}
-                valueType="linkTo"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
-            />
+                <ButtonInput
+                    theme={theme}
+                    toggle={() => {}}
+                    // toggle={this.updateField.bind(this, 'link')}
+                    toggled={data.link}
+                    icon={LinkIcon}
+                    value={data.linkTo}
+                    valueType="linkTo"
+                    changeValue={() => {}}
+                    // changeValue={this.updateField}
+                />
 
-            <ButtonToggle
-                theme={theme}
-                toggle={() => {}}
-                // toggle={this.updateField.bind(this, 'bold')}
-                toggled={data.fontWeight === 'bold'}
-                icon={BoldIcon}
-            />
+                <ButtonToggle
+                    theme={theme}
+                    toggle={() => {}}
+                    // toggle={this.updateField.bind(this, 'bold')}
+                    toggled={data.fontWeight === 'bold'}
+                    icon={BoldIcon}
+                />
 
-            <ButtonToggle
-                theme={theme}
-                toggle={() => {}}
-                // toggle={this.updateField.bind(this, 'italic')}
-                toggled={data.fontStyle === 'italic'}
-                icon={ItalicIcon}
-            />
+                <ButtonToggle
+                    theme={theme}
+                    toggle={() => {}}
+                    // toggle={this.updateField.bind(this, 'italic')}
+                    toggled={data.fontStyle === 'italic'}
+                    icon={ItalicIcon}
+                />
 
-            <ButtonIncrements
-                theme={theme}
-                type="letterSpacing"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
-                value={data.letterSpacingPercentage * imageBoxDimensions.width / 100}
-                icon={LetterSpacingIcon}
-                step={0.1}
-            />
+                <ButtonIncrements
+                    theme={theme}
+                    type="letterSpacing"
+                    changeValue={() => {}}
+                    // changeValue={this.updateField}
+                    value={data.letterSpacingPercentage * imageBoxDimensions.width / 100}
+                    icon={LetterSpacingIcon}
+                    step={0.1}
+                />
 
-            <ButtonIncrements
-                theme={theme}
-                type="wordSpacing"
-                changeValue={() => {}}
-                // changeValue={this.updateField}
-                value={data.wordSpacingPercentage * imageBoxDimensions.width / 100}
-                icon={WordSpacingIcon}
-                step={0.1}
-            />
+                <ButtonIncrements
+                    theme={theme}
+                    type="wordSpacing"
+                    changeValue={() => {}}
+                    // changeValue={this.updateField}
+                    value={data.wordSpacingPercentage * imageBoxDimensions.width / 100}
+                    icon={WordSpacingIcon}
+                    step={0.1}
+                />
 
-            <ButtonsColors
-                theme={theme}
-                changeValue={() => {}}
-                // changeValue={this.updateField}
-                color={data.color}
-            />
+                <ButtonsColors
+                    theme={theme}
+                    changeValue={() => {}}
+                    // changeValue={this.updateField}
+                    color={data.color}
+                />
+            </Drawer>
 
             <StyledVerticalDivider
                 theme={theme}
