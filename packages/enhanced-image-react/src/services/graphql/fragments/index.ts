@@ -9,24 +9,32 @@ export const EnhancedImageDataFragment = gql`
             id
             currentVersionId
             versions {
-                bold
-                color
-                content
-                fontFamily
-                fontSizePercentage
-                id
-                italic
-                letterSpacingPercentage
-                lineHeight
-                link
-                linkTo
-                perspective
-                rotation
-                skew
-                viewable
-                wordSpacingPercentage
-                xCoordPercentage
-                yCoordPercentage
+                ... on DepictImageTextVersionTextline {
+                    id
+                    type
+
+                    xCoordPercentage
+                    yCoordPercentage
+
+                    perspective
+                    rotation
+                    skew
+
+                    viewable
+
+                    fontWeight
+                    fontStyle
+                    fontFamily
+                    fontSizePercentage
+                    letterSpacingPercentage
+                    lineHeight
+                    wordSpacingPercentage
+
+                    content
+
+                    link
+                    linkTo
+                }
             }
         }
     }
