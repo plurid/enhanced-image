@@ -55,6 +55,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     } = context;
 
     const timeoutMouseOver = useRef(0);
+    const textItem = useRef<HTMLDivElement>();
 
     const [currentVersion, setCurrentVersion] = useState<ImageTextVersionTextline>();
 
@@ -74,6 +75,14 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const [mouseOver, setMouseOver] = useState(false);
 
+    const [draggable, setDraggable] = useState(false);
+    const [dragging, setDragging] = useState(false);
+
+    const [pos1, setPos1] = useState(0);
+    const [pos2, setPos2] = useState(0);
+    const [pos3, setPos3] = useState(0);
+    const [pos4, setPos4] = useState(0);
+
     const handleMouseEnter = () => {
         clearTimeout(timeoutMouseOver.current);
         setMouseOver(true);
@@ -87,12 +96,73 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }, 700);
     }
 
-    const handleMouseDown = () => {
-        console.log('mouse down');
+    const handleMouseDown = (event: any) => {
+        if (draggable) {
+            console.log('mouse down');
+            setDragging(true);
+
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+
+            setPos3(pageX);
+            setPos4(pageY);
+        }
     }
 
-    const handleMouseMove = () => {
-        console.log('mouse move');
+    const handleMouseUp = () => {
+        if (draggable) {
+            setDragging(false);
+        }
+        console.log('mouse up');
+    }
+
+    const handleMouseMove = (event: any) => {
+        if (!dragging) {
+            return;
+        }
+
+        event.preventDefault();
+
+        console.log('dragging');
+        if (textItem.current) {
+            const { offsetLeft, offsetTop } = textItem.current;
+
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+
+            // calculate the new cursor position:
+            const diffX = pageX - pos3;
+            const diffY = pageY - pos4;
+
+            const textXCoord = offsetLeft + diffX + 'px';
+            const textYCoord = offsetTop + diffY + 'px';
+
+            console.log(pos3, pos4, pageX, pageY, textXCoord, textYCoord);
+
+            setPos1(pos3);
+            setPos2(pos4);
+            setPos3(pageX);
+            setPos4(pageY);
+            setTextXCoord(textXCoord);
+            setTextYCoord(textYCoord);
+
+
+            // this.setState({
+            //     pos1: pos3,
+            //     pos2: pos4,
+            //     pos3: pageX,
+            //     pos4: pageY,
+            //     xCoord: offsetLeft + diffX,
+            //     yCoord: offsetTop + diffY,
+            // },
+            //     () => {
+            //         this.editorPosition();
+            //         this.saveCoords();
+            //     }
+            // );
+
+            console.log('mouse move');
+        }
     }
 
     useEffect(() => {
@@ -150,12 +220,26 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         mouseOver,
     ]);
 
+    useEffect(() => {
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleMouseUp);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseup', handleMouseUp);
+        }
+    }, [
+        dragging,
+        draggable,
+    ]);
+
     return (
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            onMouseDown={() => handleMouseDown()}
-            onMouseMove={() => handleMouseMove()}
+            onMouseDown={(event: any) => handleMouseDown(event)}
+            // onMouseUp={() => handleMouseUp()}
+            // onMouseMove={() => handleMouseMove()}
             style={{
                 top: textYCoord,
                 left: textXCoord,
@@ -168,14 +252,26 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 wordSpacing,
                 lineHeight,
             }}
+            ref={textItem}
         >
             {currentVersion && (
-                <>{currentVersion.content}</>
+                <StyledTextContent
+                    dragMode={draggable}
+                    draggingMode={dragging}
+                    editableText={editableText}
+                    viewable={currentVersion && currentVersion.viewable}
+                    color={currentVersion && currentVersion.color}
+                >
+                    {currentVersion.content}
+                </StyledTextContent>
             )}
 
             {showEditor && currentVersion && (
                 <TextEditor
                     data={currentVersion}
+
+                    draggable={draggable}
+                    setDraggable={setDraggable}
                 />
             )}
         </StyledTextItem>
