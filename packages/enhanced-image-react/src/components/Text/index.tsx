@@ -33,6 +33,8 @@ const Text: React.FC<any> = () => {
         imageText,
     } = context;
 
+    console.log('imageText bb', imageText);
+
     return (
         <StyledText
             style={{
