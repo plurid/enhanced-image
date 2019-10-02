@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 
 export const EnhancedImageDataFragment = gql`
     fragment EnhancedImage_EnhancedImageDataFragment on EnhancedImageData {
-        imageSHA
+        imageID
         imageText {
             id
             currentVersionId
