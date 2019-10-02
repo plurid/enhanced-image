@@ -132,7 +132,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [flipVertical, setFlipVertical] = useState(false);
     const [flipHorizontal, setFlipHorizontal] = useState(false);
 
-    const [imageSHA, setImageSHA] = useState('');
+    const [databaseImageID, setDatabaseImageID] = useState('');
 
     const graphqlClient= useRef<ApolloClient<unknown>>(client(_apiEndpoint));
 
@@ -249,23 +249,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             if (!data.status) {
                 const response = {
                     status: false,
-                    imageText: [],
+                    imageData: {},
                     error: REQUEST_ERRORS.BAD_REQUEST,
                 }
                 return response;
-
             }
+
+            const {
+                imageData,
+            } = data;
 
             const response = {
                 status: true,
-                imageText: data.imageData.imageText,
+                imageData,
                 error: undefined,
             };
             return response;
         } catch (error) {
             const response = {
                 status: false,
-                imageText: [],
+                imageData: {},
                 error: REQUEST_ERRORS.BAD_REQUEST,
             }
             return response;
@@ -290,22 +293,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             if (!data.status) {
                 const response = {
                     status: false,
-                    imageText: [],
+                    imageData: {},
                     error: REQUEST_ERRORS.BAD_REQUEST,
                 }
                 return response;
             }
 
+            const {
+                imageData,
+            } = data;
+
             const response = {
                 status: true,
-                imageText: data.imageData.imageText,
+                imageData,
                 error: undefined,
             };
             return response;
         } catch (error) {
             const response = {
                 status: false,
-                imageText: [],
+                imageData: {},
                 error: REQUEST_ERRORS.BAD_REQUEST,
             }
             return response;
@@ -330,22 +337,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             if (!data.status) {
                 const response = {
                     status: false,
-                    imageText: [],
+                    imageData: {},
                     error: REQUEST_ERRORS.BAD_REQUEST,
                 }
                 return response;
             }
 
+            const {
+                imageData,
+            } = data;
+
             const response = {
                 status: true,
-                imageText: data.imageData.imageText,
+                imageData,
                 error: undefined,
             };
             return response;
         } catch (error) {
             const response = {
                 status: false,
-                imageText: [],
+                imageData: {},
                 error: REQUEST_ERRORS.BAD_REQUEST,
             }
             return response;
@@ -370,7 +381,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         const response = {
             status: false,
-            imageText: [],
+            imageData: {},
             error: REQUEST_ERRORS.BAD_REQUEST,
         }
         return response;
@@ -382,7 +393,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         const {
             status,
-            imageText,
+            imageData,
             error,
         } = await handleGetText();
 
@@ -395,7 +406,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Rendered', 2000);
-            setImageText(imageText);
+            setDatabaseImageID(imageData.imageID);
+            setImageText(imageData.imageText);
             return;
         }
     }
@@ -420,22 +432,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             if (!data.status) {
                 const response = {
                     status: false,
-                    imageText: [],
+                    imageData: {},
                     error: REQUEST_ERRORS.BAD_REQUEST,
                 }
                 return response;
             }
 
+            const {
+                imageData,
+            } = data;
+
             const response = {
                 status: true,
-                imageText: data.imageData.imageText,
+                imageData,
                 error: undefined,
             };
             return response;
         } catch (error) {
             const response = {
                 status: false,
-                imageText: [],
+                imageData: {},
                 error: REQUEST_ERRORS.BAD_REQUEST,
             }
             return response;
@@ -460,22 +476,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             if (!data.status) {
                 const response = {
                     status: false,
-                    imageText: [],
+                    imageData: {},
                     error: REQUEST_ERRORS.BAD_REQUEST,
                 }
                 return response;
             }
 
+            const {
+                imageData,
+            } = data;
+
             const response = {
                 status: true,
-                imageText: data.imageData.imageText,
+                imageData,
                 error: undefined,
             };
             return response;
         } catch (error) {
             const response = {
                 status: false,
-                imageText: [],
+                imageData: {},
                 error: REQUEST_ERRORS.BAD_REQUEST,
             }
             return response;
@@ -500,22 +520,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             if (!data.status) {
                 const response = {
                     status: false,
-                    imageText: [],
+                    imageData: {},
                     error: REQUEST_ERRORS.BAD_REQUEST,
                 }
                 return response;
             }
 
+            const {
+                imageData,
+            } = data;
+
             const response = {
                 status: true,
-                imageText: data.imageData.imageText,
+                imageData,
                 error: undefined,
             };
             return response;
         } catch (error) {
             const response = {
                 status: false,
-                imageText: [],
+                imageData: {},
                 error: REQUEST_ERRORS.BAD_REQUEST,
             }
             return response;
@@ -540,7 +564,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         const response = {
             status: false,
-            imageText: [],
+            imageData: {},
             error: REQUEST_ERRORS.BAD_REQUEST,
         }
         return response;
@@ -552,7 +576,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         const {
             status,
-            imageText,
+            imageData,
             error,
         } = await handleExtractText();
 
@@ -565,7 +589,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Extracted and Rendered', 2000);
-            setImageText(imageText);
+            setDatabaseImageID(imageData.imageID);
+            setImageText(imageData.imageText);
             return;
         }
     }
@@ -604,7 +629,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const shareImage = () => {
         const enhanced = '/';
-        const imageLink = imageSHA + enhanced;
+        const imageLink = databaseImageID + enhanced;
         const url = DEPICT_DOMAIN + imageLink;
         window.open(url, '_blank');
     }
