@@ -1,5 +1,9 @@
 import gql from 'graphql-tag';
 
+import {
+    EnhancedImageDataFragment,
+} from '../fragments';
+
 
 
 export const getTextSelectImage = gql`
@@ -70,8 +74,12 @@ export const GET_TEXT_WITH_API_KEY = gql`
                 path
                 message
             }
+            imageData {
+                ...EnhancedImage_EnhancedImageDataFragment
+            }
         }
     }
+    ${EnhancedImageDataFragment}
 `;
 
 
@@ -83,8 +91,12 @@ export const GET_TEXT_WITH_USER_TOKEN = gql`
                 path
                 message
             }
+            imageData {
+                ...EnhancedImage_EnhancedImageDataFragment
+            }
         }
     }
+    ${EnhancedImageDataFragment}
 `;
 
 
@@ -96,6 +108,10 @@ export const GET_TEXT_WITH_DEPICT_IMAGE_ID = gql`
                 path
                 message
             }
+            imageData {
+                ...EnhancedImage_EnhancedImageDataFragment
+            }
         }
     }
+    ${EnhancedImageDataFragment}
 `;
