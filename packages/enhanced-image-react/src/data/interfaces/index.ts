@@ -71,6 +71,8 @@ export interface Context {
     userToken: string | undefined;
     imageID: string | undefined;
 
+    databaseImageID: string;
+
     handleLoadedImage: (image: React.SyntheticEvent<HTMLImageElement, Event>) => Promise<void>;
     loadedImage: boolean;
 
