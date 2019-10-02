@@ -80,10 +80,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const [editable, setEditable] = useState(false);
 
-    const [pos1, setPos1] = useState(0);
-    const [pos2, setPos2] = useState(0);
-    const [pos3, setPos3] = useState(0);
-    const [pos4, setPos4] = useState(0);
+    const [positions, setPositions] = useState({
+        X: 0,
+        Y: 0,
+    });
 
     const handleMouseEnter = () => {
         clearTimeout(timeoutMouseOver.current);
@@ -105,8 +105,11 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             const pageX = event.pageX;
             const pageY = event.pageY;
 
-            setPos3(pageX);
-            setPos4(pageY);
+            const positions = {
+                X: pageX,
+                Y: pageY,
+            };
+            setPositions(positions);
         }
     }
 
@@ -196,19 +199,18 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 const pageX = event.pageX;
                 const pageY = event.pageY;
 
-                // calculate the new cursor position:
-                const diffX = pageX - pos3;
-                const diffY = pageY - pos4;
+                const differenceX = pageX - positions.X;
+                const differenceY = pageY - positions.Y;
 
-                const textXCoord = offsetLeft + diffX + 'px';
-                const textYCoord = offsetTop + diffY + 'px';
+                const updatedPositions = {
+                    X: pageX,
+                    Y: pageY,
+                }
+                setPositions(updatedPositions);
 
-                // console.log(pos3, pos4, pageX, pageY, textXCoord, textYCoord);
+                const textXCoord = offsetLeft + differenceX + 'px';
+                const textYCoord = offsetTop + differenceY + 'px';
 
-                setPos1(pos3);
-                setPos2(pos4);
-                setPos3(pageX);
-                setPos4(pageY);
                 setTextXCoord(textXCoord);
                 setTextYCoord(textYCoord);
             }
@@ -222,10 +224,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     }, [
         dragging,
         draggable,
-        pos1,
-        pos2,
-        pos3,
-        pos4,
+        positions,
         textXCoord,
         textYCoord,
     ]);
