@@ -117,13 +117,11 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 updateTextItemField(textItem.id, 'fontSizePercentage', fontSizePercentage);
                 break;
             case 'letterSpacing':
-                const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.height);
-                console.log('value', value);
-                console.log('letterSpacingPercentage', letterSpacingPercentage);
+                const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
                 updateTextItemField(textItem.id, 'letterSpacingPercentage', letterSpacingPercentage);
                 break;
             case 'wordSpacing':
-                const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.height);
+                const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
                 updateTextItemField(textItem.id, 'wordSpacingPercentage', wordSpacingPercentage);
                 break;
         }

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonIncrement: any = styled.div`
+export const StyledButtonIncrement: any = styled.div`
     display: flex;
     align-items: center;
     margin: 5px;
@@ -43,7 +43,7 @@ export const StyledTextVideoEditorButtonIncrement: any = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementIcon: any = styled.div`
+export const StyledButtonIncrementIcon: any = styled.div`
     display: flex;
     align-items: center;
     margin: 5px;
@@ -56,7 +56,7 @@ export const StyledTextVideoEditorButtonIncrementIcon: any = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrements: any = styled.div`
+export const StyledButtonIncrements: any = styled.div`
     background: ${(props: any) => {
         if (props.transparentUI) {
             return props.theme.backgroundColorSecondaryAlpha;
@@ -77,7 +77,7 @@ export const StyledTextVideoEditorButtonIncrements: any = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementButton: any = styled.div`
+export const StyledButtonIncrementButton: any = styled.div`
     color: ${props => props.theme.colorPrimary};
     background: ${(props: any) => {
         if (props.transparentUI) {
@@ -100,7 +100,7 @@ export const StyledTextVideoEditorButtonIncrementButton: any = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonIncrementsUnit: any = styled.div`
+export const StyledButtonIncrementsUnit: any = styled.div`
     font-size: 12px;
     user-select: none;
 `;
