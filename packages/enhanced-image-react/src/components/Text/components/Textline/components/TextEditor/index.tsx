@@ -39,6 +39,10 @@ import {
     ImageTextVersionTextline,
 } from '../../../../../../data/interfaces';
 
+import {
+    percentageFromValue,
+} from '../../../../../../services/utilities/percentage';
+
 
 
 interface TextEditorProperties {
@@ -74,6 +78,8 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
         duplicateTextItem,
         deleteTextItem,
+
+        updateTextItemField,
     } = context;
 
     const {
@@ -102,6 +108,23 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         editor,
         expandFormat,
     ]);
+
+    const updateField = (type: string, value: number) => {
+        switch (type) {
+            case 'fontSize':
+                const fontSizePercentage = percentageFromValue(value, imageBoxDimensions.height);
+                updateTextItemField(textItem.id, 'fontSizePercentage', fontSizePercentage);
+                break;
+            case 'letterSpacing':
+                const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.height);
+                updateTextItemField(textItem.id, 'letterSpacingPercentage', letterSpacingPercentage);
+                break;
+            case 'wordSpacing':
+                const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.height);
+                updateTextItemField(textItem.id, 'wordSpacingPercentage', wordSpacingPercentage);
+                break;
+        }
+    }
 
     return (
         <StyledTextEditor
@@ -149,8 +172,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     theme={theme}
                     transparentUI={transparentUI}
                     type="fontSize"
-                    changeValue={() => {}}
-                    // changeValue={this.updateField}
+                    changeValue={updateField}
                     value={currentVersion.fontSizePercentage * imageBoxDimensions.height / 100}
                     icon={FontSizeIcon}
                 />
@@ -189,7 +211,6 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 <ButtonToggle
                     theme={theme}
                     toggle={() => {}}
-                    // toggle={this.updateField.bind(this, 'bold')}
                     toggled={currentVersion.fontWeight === 'bold'}
                     icon={BoldIcon}
                 />
@@ -197,7 +218,6 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 <ButtonToggle
                     theme={theme}
                     toggle={() => {}}
-                    // toggle={this.updateField.bind(this, 'italic')}
                     toggled={currentVersion.fontStyle === 'italic'}
                     icon={ItalicIcon}
                 />
@@ -206,8 +226,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     theme={theme}
                     transparentUI={transparentUI}
                     type="letterSpacing"
-                    changeValue={() => {}}
-                    // changeValue={this.updateField}
+                    changeValue={updateField}
                     value={currentVersion.letterSpacingPercentage * imageBoxDimensions.width / 100}
                     icon={LetterSpacingIcon}
                     step={0.1}
@@ -217,8 +236,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     theme={theme}
                     transparentUI={transparentUI}
                     type="wordSpacing"
-                    changeValue={() => {}}
-                    // changeValue={this.updateField}
+                    changeValue={updateField}
                     value={currentVersion.wordSpacingPercentage * imageBoxDimensions.width / 100}
                     icon={WordSpacingIcon}
                     step={0.1}

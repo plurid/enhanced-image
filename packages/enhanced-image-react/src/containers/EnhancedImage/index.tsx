@@ -763,6 +763,30 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setImageText([...updatedImageText]);
     }
 
+    const updateTextItemField = (
+        versionID: string,
+        type: string,
+        value: number | string,
+    ) => {
+        const updatedImageText = imageText.map(text => {
+            if (text.id === versionID) {
+                const currentVersion = getVersionById(text);
+                if (currentVersion) {
+                    const updatedVersion = { ...currentVersion };
+                    updatedVersion[type] = value;
+                    const updatedText = updateVersion(text, updatedVersion);
+                    return { ...updatedText };
+                }
+
+                return { ...text };
+            }
+
+            return { ...text };
+        });
+
+        setImageText([...updatedImageText]);
+    }
+
     useEffect(() => {
         if (defaultsToggled) {
             if (
@@ -871,6 +895,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         duplicateTextItem,
         deleteTextItem,
         updateTextCoordinates,
+        updateTextItemField,
     };
 
     return (

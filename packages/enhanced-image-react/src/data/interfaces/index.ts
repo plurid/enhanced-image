@@ -148,6 +148,8 @@ export interface Context {
     duplicateTextItem: (versionID: string) => void;
     deleteTextItem: (versionID: string) => void;
     updateTextCoordinates: (versionID: string, coordinates: any) => void;
+
+    updateTextItemField: (versionID: string, type: string, value: number | string) => void;
 }
 
 
