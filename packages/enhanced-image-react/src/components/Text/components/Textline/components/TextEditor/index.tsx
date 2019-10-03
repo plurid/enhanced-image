@@ -13,7 +13,6 @@ import Context from '../../../../../../services/utilities/context';
 
 import ButtonDropdown from './components/ButtonDropdown';
 import ButtonIncrements from './components/ButtonIncrements';
-// import ButtonTimeIncrements from './components/ButtonTimeIncrements';
 import ButtonInput from './components/ButtonInput';
 import ButtonToggle from './components/ButtonToggle';
 import ButtonsColors from './components/ButtonsColors';
@@ -35,19 +34,16 @@ import WordSpacingIcon from '../../../../../../assets/icons/text-editor/word-spa
 import DuplicateIcon from '../../../../../../assets/icons/text-editor/duplicate';
 import DeleteIcon from '../../../../../../assets/icons/text-editor/delete';
 
-// import {
-//     percentageFromValue,
-//     valueFromPercentage,
-// } from '../../utils/percentage';
-
 import {
+    ImageText,
     ImageTextVersionTextline,
 } from '../../../../../../data/interfaces';
 
 
 
 interface TextEditorProperties {
-    data: ImageTextVersionTextline;
+    textItem: ImageText;
+    currentVersion: ImageTextVersionTextline;
 
     editable: boolean;
     setEditable: React.Dispatch<React.SetStateAction<boolean>>;
@@ -75,10 +71,14 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         transparentUI,
 
         imageBoxDimensions,
+
+        duplicateTextItem,
+        deleteTextItem,
     } = context;
 
     const {
-        data,
+        textItem,
+        currentVersion,
 
         editable,
         setEditable,
@@ -150,7 +150,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     type="fontSize"
                     changeValue={() => {}}
                     // changeValue={this.updateField}
-                    value={data.fontSizePercentage * imageBoxDimensions.height / 100}
+                    value={currentVersion.fontSizePercentage * imageBoxDimensions.height / 100}
                     icon={FontSizeIcon}
                 />
 
@@ -158,7 +158,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     theme={theme}
                     type="fontFamily"
                     alterStyle="fontFamily"
-                    selected={data.fontFamily}
+                    selected={currentVersion.fontFamily}
                     selectables={selectableFonts}
                     changeSelected={() => {}}
                     // changeSelected={this.updateField}
@@ -176,9 +176,9 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     theme={theme}
                     toggle={() => {}}
                     // toggle={this.updateField.bind(this, 'link')}
-                    toggled={data.link}
+                    toggled={currentVersion.link}
                     icon={LinkIcon}
-                    value={data.linkTo}
+                    value={currentVersion.linkTo}
                     valueType="linkTo"
                     changeValue={() => {}}
                     // changeValue={this.updateField}
@@ -188,7 +188,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     theme={theme}
                     toggle={() => {}}
                     // toggle={this.updateField.bind(this, 'bold')}
-                    toggled={data.fontWeight === 'bold'}
+                    toggled={currentVersion.fontWeight === 'bold'}
                     icon={BoldIcon}
                 />
 
@@ -196,7 +196,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     theme={theme}
                     toggle={() => {}}
                     // toggle={this.updateField.bind(this, 'italic')}
-                    toggled={data.fontStyle === 'italic'}
+                    toggled={currentVersion.fontStyle === 'italic'}
                     icon={ItalicIcon}
                 />
 
@@ -205,7 +205,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     type="letterSpacing"
                     changeValue={() => {}}
                     // changeValue={this.updateField}
-                    value={data.letterSpacingPercentage * imageBoxDimensions.width / 100}
+                    value={currentVersion.letterSpacingPercentage * imageBoxDimensions.width / 100}
                     icon={LetterSpacingIcon}
                     step={0.1}
                 />
@@ -215,7 +215,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     type="wordSpacing"
                     changeValue={() => {}}
                     // changeValue={this.updateField}
-                    value={data.wordSpacingPercentage * imageBoxDimensions.width / 100}
+                    value={currentVersion.wordSpacingPercentage * imageBoxDimensions.width / 100}
                     icon={WordSpacingIcon}
                     step={0.1}
                 />
@@ -224,7 +224,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     theme={theme}
                     changeValue={() => {}}
                     // changeValue={this.updateField}
-                    color={data.color}
+                    color={currentVersion.color}
                 />
             </Drawer>
 
@@ -237,21 +237,19 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
             <ButtonToggle
                 theme={theme}
                 toggle={() => setViewable()}
-                toggled={data.viewable}
-                icon={data.viewable ? ViewableIcon : NotViewableIcon}
+                toggled={currentVersion.viewable}
+                icon={currentVersion.viewable ? ViewableIcon : NotViewableIcon}
             />
 
             <ButtonClick
                 theme={theme}
-                atClick={() => {}}
-                // atClick={this.duplicate}
+                atClick={() => duplicateTextItem(textItem.id)}
                 icon={DuplicateIcon}
             />
 
             <ButtonClick
                 theme={theme}
-                atClick={() => {}}
-                // atClick={this.delete}
+                atClick={() => deleteTextItem(textItem.id)}
                 icon={DeleteIcon}
             />
         </StyledTextEditor>

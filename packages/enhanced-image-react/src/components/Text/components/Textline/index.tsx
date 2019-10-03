@@ -350,7 +350,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 && !dragging
                 && (
                     <TextEditor
-                        data={currentVersion}
+                        textItem={data}
+                        currentVersion={currentVersion}
 
                         editable={editable}
                         setEditable={setEditable}
