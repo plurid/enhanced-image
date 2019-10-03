@@ -75,6 +75,9 @@ export const StyledTextContent: any = styled.div`
             return 'transparent';
         }
     }};
+
+    min-width: 30px;
+    min-height: 20px;
 `;
 
 
