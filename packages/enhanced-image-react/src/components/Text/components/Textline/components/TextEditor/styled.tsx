@@ -27,6 +27,7 @@ export const StyledTextEditor: any = styled.div`
     font-style: normal;
     margin: 0;
     z-index: 9999;
+    user-select: none;
     box-shadow: 0px 2px 4px 0px hsla(220, 2%, 10%, 0.9);
     font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
