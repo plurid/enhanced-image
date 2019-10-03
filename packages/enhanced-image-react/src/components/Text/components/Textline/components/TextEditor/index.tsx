@@ -52,10 +52,14 @@ interface TextEditorProperties {
     setEditable: React.Dispatch<React.SetStateAction<boolean>>;
     draggable: boolean;
     setDraggable: React.Dispatch<React.SetStateAction<boolean>>;
+
     positions: {
         x: number;
         y: number;
     };
+    expandFormat: boolean;
+    setExpandFormat: React.Dispatch<React.SetStateAction<boolean>>;
+
 }
 
 const TextEditor: React.FC<TextEditorProperties> = (properties) => {
@@ -74,18 +78,17 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
     const {
         data,
 
-        positions,
-
         editable,
         setEditable,
-
         draggable,
         setDraggable,
+
+        positions,
+        expandFormat,
+        setExpandFormat,
     } = properties;
 
     const editor = useRef<HTMLDivElement>(null);
-
-    const [expandFormat, setExpandFormat] = useState(false);
 
     return (
         <StyledTextEditor
