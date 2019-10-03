@@ -79,6 +79,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [dragging, setDragging] = useState(false);
 
     const [editable, setEditable] = useState(false);
+    const [viewable, setViewable] = useState(false);
 
     const [positions, setPositions] = useState({
         x: 0,
@@ -86,11 +87,11 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     });
 
     const [editorPositions, setEditorPositions] = useState({
-        x: 0,
+        x: -17,
         y: -34,
     });
-
-    const [expandFormat, setExpandFormat] = useState(false);
+    const [editorExpandFormat, setEditorExpandFormat] = useState(false);
+    const [editorWidth, setEditorWidth] = useState(0);
 
     const handleMouseEnter = () => {
         clearTimeout(timeoutMouseOver.current);
@@ -120,44 +121,39 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }
     }
 
-
     const handleEditorPosition = () => {
-        // const {
-        //     videoBoxWidth,
-        //     editorWidth,
-        // } = this.context;
+        if (textItem.current) {
+            const {
+                offsetLeft,
+                offsetTop,
+                offsetHeight,
+            } = textItem.current;
 
-        // // console.log(editorWidth);
+            // Do not let editor to go to the right.
+            let editorXCoord = offsetLeft + editorWidth > imageBoxDimensions.width
+                ? -1 * (offsetLeft + editorWidth - imageBoxDimensions.width)
+                : -17;
 
-        // const {
-        //     offsetLeft,
-        //     offsetTop,
-        //     offsetHeight,
-        // } = this.textVideo.current;
+            // Do not let editor to go to the left.
+            if (offsetLeft < 17) {
+                editorXCoord = offsetLeft * -1;
+            }
 
-        // // Do not let editor to go to the right.
-        // let editorXCoord = offsetLeft + editorWidth > videoBoxWidth
-        //     ? -1 * (offsetLeft + editorWidth - videoBoxWidth)
-        //     : -17;
+            if (editorWidth === 0) {
+                editorXCoord = - offsetLeft;
+            }
 
-        // // Do not let editor to go to the left.
-        // if (offsetLeft < 17) {
-        //     editorXCoord = offsetLeft * -1;
-        // }
+            // Do not let editor to go to over the top.
+            let editorYCoord = offsetTop < 34
+                ?  offsetHeight
+                : -34;
 
-        // if (editorWidth === 0) {
-        //     editorXCoord = - offsetLeft;
-        // }
-
-        // // Do not let editor to go to over the top.
-        // let editorYCoord = offsetTop < 34
-        //     ?  offsetHeight
-        //     : -34;
-
-        // this.setState({
-        //     editorXCoord,
-        //     editorYCoord,
-        // });
+            const editorPositions = {
+                x: editorXCoord,
+                y: editorYCoord,
+            }
+            setEditorPositions(editorPositions);
+        }
     }
 
     useEffect(() => {
@@ -276,6 +272,13 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         textYCoord,
     ]);
 
+    useEffect(() => {
+        handleEditorPosition();
+    }, [
+        editorWidth,
+        dragging,
+    ]);
+
     return (
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
@@ -320,9 +323,13 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                         draggable={draggable}
                         setDraggable={setDraggable}
 
+                        viewable={viewable}
+                        setViewable={setViewable}
+
                         positions={editorPositions}
-                        expandFormat={expandFormat}
-                        setExpandFormat={setExpandFormat}
+                        expandFormat={editorExpandFormat}
+                        setExpandFormat={setEditorExpandFormat}
+                        setWidth={setEditorWidth}
                     />
                 )
             }
