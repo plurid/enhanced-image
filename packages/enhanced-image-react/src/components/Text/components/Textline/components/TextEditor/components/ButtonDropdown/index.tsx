@@ -35,6 +35,7 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
 
         const {
             theme,
+            transparentUI,
         } = this.props;
 
         return (
@@ -43,6 +44,7 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
             >
                 <StyledTextVideoEditorButtonDropdownSelected
                     theme={theme}
+                    transparentUI={transparentUI}
                 >
                     <input
                         type="text"
@@ -56,6 +58,7 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
                 {toggledDropdown && (
                     <StyledTextVideoEditorButtonDropdownList
                         theme={theme}
+                        transparentUI={transparentUI}
                         ref={this.dropdown}
                     >
                         <ul>
