@@ -674,14 +674,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     const updatedVersion = { ...currentVersion };
                     updatedVersion.content = value;
                     const updatedText = updateVersion(text, updatedVersion);
-                    return updatedText;
+                    return { ...updatedText };
                 }
+
+                return { ...text };
             }
 
-            return text;
+            return { ...text };
         });
 
-        setImageText(updatedImageText);
+        setImageText([...updatedImageText]);
     }
 
     const toggleVersionViewable = (versionID: string) => {
