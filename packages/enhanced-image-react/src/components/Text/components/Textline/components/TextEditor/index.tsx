@@ -40,6 +40,7 @@ import {
 } from '../../../../../../data/interfaces';
 
 import {
+    valueFromPercentage,
     percentageFromValue,
 } from '../../../../../../services/utilities/percentage';
 
@@ -117,6 +118,8 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 break;
             case 'letterSpacing':
                 const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.height);
+                console.log('value', value);
+                console.log('letterSpacingPercentage', letterSpacingPercentage);
                 updateTextItemField(textItem.id, 'letterSpacingPercentage', letterSpacingPercentage);
                 break;
             case 'wordSpacing':
@@ -173,7 +176,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     transparentUI={transparentUI}
                     type="fontSize"
                     changeValue={updateField}
-                    value={currentVersion.fontSizePercentage * imageBoxDimensions.height / 100}
+                    value={Math.round(valueFromPercentage(currentVersion.fontSizePercentage, imageBoxDimensions.height))}
                     icon={FontSizeIcon}
                 />
 
@@ -227,7 +230,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     transparentUI={transparentUI}
                     type="letterSpacing"
                     changeValue={updateField}
-                    value={currentVersion.letterSpacingPercentage * imageBoxDimensions.width / 100}
+                    value={valueFromPercentage(currentVersion.letterSpacingPercentage, imageBoxDimensions.width)}
                     icon={LetterSpacingIcon}
                     step={0.1}
                 />
@@ -237,7 +240,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     transparentUI={transparentUI}
                     type="wordSpacing"
                     changeValue={updateField}
-                    value={currentVersion.wordSpacingPercentage * imageBoxDimensions.width / 100}
+                    value={valueFromPercentage(currentVersion.wordSpacingPercentage, imageBoxDimensions.width)}
                     icon={WordSpacingIcon}
                     step={0.1}
                 />
