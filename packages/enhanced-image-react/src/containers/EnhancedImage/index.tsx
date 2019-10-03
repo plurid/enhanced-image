@@ -671,7 +671,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             const currentVersion = getVersionById(text);
             if (currentVersion && currentVersion.id === versionID) {
                 const updatedVersion = { ...currentVersion };
-                updatedVersion.viewable = !updatedVersion.viewable;
+                updatedVersion.viewable = !currentVersion.viewable;
                 const updatedText = updateVersion(text, updatedVersion);
                 return updatedText;
             }

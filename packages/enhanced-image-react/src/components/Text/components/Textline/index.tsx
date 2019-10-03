@@ -22,11 +22,6 @@ import {
     StyledEditableDiv,
 } from './styled';
 
-// import {
-//     valueFromPercentage,
-//     percentageFromValue,
-// } from '../../../../services/utilities/percentage';
-
 import {
     getVersionById,
 } from '../../../../services/utilities/imageText';
@@ -35,6 +30,7 @@ import {
 
 interface TextlineProperties {
     data: ImageText;
+    currentVersion: ImageTextVersionTextline;
 }
 
 const Textline: React.FC<TextlineProperties> = (properties) => {
@@ -44,7 +40,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     }
 
     const {
-        data,
+        currentVersion,
     } = properties;
 
     const {
@@ -55,8 +51,6 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const timeoutMouseOver = useRef(0);
     const textItem = useRef<HTMLDivElement>();
-
-    const [currentVersion, setCurrentVersion] = useState<ImageTextVersionTextline>();
 
     const [textYCoord, setTextYCoord] = useState('0px');
     const [textXCoord, setTextXCoord] = useState('0px');
@@ -162,21 +156,11 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const setVersionViewable = () => {
         if (currentVersion) {
+            // console.log(currentVersion.viewable);
             toggleVersionViewable(currentVersion.id);
         }
     }
 
-
-    /**
-     * Get currentVersion.
-     */
-    useEffect(() => {
-        const currentVersion = getVersionById(data);
-
-        if (currentVersion && currentVersion.type === 'TEXTLINE') {
-            setCurrentVersion(currentVersion);
-        }
-    }, [data]);
 
     /**
      * Compute format.

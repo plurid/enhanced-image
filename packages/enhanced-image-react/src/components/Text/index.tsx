@@ -36,7 +36,7 @@ const Text: React.FC<any> = () => {
         flipVertical,
     } = context;
 
-    console.log('imageText from Text', imageText);
+    // console.log('imageText from Text', imageText);
 
     const [transform, setTransform] = useState('');
 
@@ -77,6 +77,7 @@ const Text: React.FC<any> = () => {
                             <Textline
                                 key={textItem.id}
                                 data={textItem}
+                                currentVersion={currentVersion}
                             />
                         );
                 }
