@@ -742,6 +742,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setImageText(updatedImageText);
     }
 
+    const updateTextCoordinates = (versionID: string, coordinates: any) => {
+        const updatedImageText = imageText.map(text => {
+            if (text.id === versionID) {
+                const currentVersion = getVersionById(text);
+                if (currentVersion) {
+                    const updatedVersion = { ...currentVersion };
+                    updatedVersion.xCoordPercentage = coordinates.x;
+                    updatedVersion.yCoordPercentage = coordinates.y;
+                    const updatedText = updateVersion(text, updatedVersion);
+                    return { ...updatedText };
+                }
+
+                return { ...text };
+            }
+
+            return { ...text };
+        });
+
+        setImageText([...updatedImageText]);
+    }
 
     useEffect(() => {
         if (defaultsToggled) {
@@ -850,6 +870,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         toggleVersionViewable,
         duplicateTextItem,
         deleteTextItem,
+        updateTextCoordinates,
     };
 
     return (

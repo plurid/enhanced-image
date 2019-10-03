@@ -147,6 +147,7 @@ export interface Context {
     toggleVersionViewable: (versionID: string) => void;
     duplicateTextItem: (versionID: string) => void;
     deleteTextItem: (versionID: string) => void;
+    updateTextCoordinates: (versionID: string, coordinates: any) => void;
 }
 
 

@@ -22,6 +22,10 @@ import {
     StyledEditableDiv,
 } from './styled';
 
+import {
+    percentageFromValue,
+} from '../../../../services/utilities/percentage';
+
 
 
 interface TextlineProperties {
@@ -45,6 +49,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         imageBoxDimensions,
         toggleVersionViewable,
         updateVersionContent,
+        updateTextCoordinates,
     } = context;
 
     const timeoutMouseOver = useRef(0);
@@ -262,14 +267,29 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 const updatedPositions = {
                     x: pageX,
                     y: pageY,
-                }
+                };
                 setPositions(updatedPositions);
 
-                const textXCoord = offsetLeft + differenceX + 'px';
-                const textYCoord = offsetTop + differenceY + 'px';
-
+                const textXCoordinate = offsetLeft + differenceX;
+                const textYCoordinate = offsetTop + differenceY;
+                const textXCoord = textXCoordinate + 'px';
+                const textYCoord = textYCoordinate + 'px';
                 setTextXCoord(textXCoord);
                 setTextYCoord(textYCoord);
+
+                const xCoordPercentage = percentageFromValue(
+                    textXCoordinate,
+                    imageBoxDimensions.width
+                );
+                const yCoordPercentage = percentageFromValue(
+                    textYCoordinate,
+                    imageBoxDimensions.height
+                );
+                const coordinatesPercentage = {
+                    x: xCoordPercentage,
+                    y: yCoordPercentage,
+                };
+                updateTextCoordinates(data.id, coordinatesPercentage);
             }
         }
 
