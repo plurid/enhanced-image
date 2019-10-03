@@ -60,6 +60,7 @@ const Text: React.FC<any> = () => {
         >
             {imageText.map((textItem: ImageText) => {
                 const currentVersion = getVersionById(textItem);
+
                 if (!currentVersion) {
                     return;
                 }
