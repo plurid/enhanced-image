@@ -89,6 +89,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [editorExpandFormat, setEditorExpandFormat] = useState(false);
     const [editorWidth, setEditorWidth] = useState(0);
 
+    const [loaded, setLoaded] = useState(false);
+
     const handleMouseEnter = () => {
         clearTimeout(timeoutMouseOver.current);
         setMouseOver(true);
@@ -328,6 +330,13 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         editableText
     ]);
 
+    useEffect(() => {
+        setLoaded(true);
+    }, []);
+
+    if (!loaded) {
+        return (<></>);
+    }
 
     return (
         <StyledTextItem
