@@ -90,6 +90,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         y: -34,
     });
 
+    const [expandFormat, setExpandFormat] = useState(false);
+
     const handleMouseEnter = () => {
         clearTimeout(timeoutMouseOver.current);
         setMouseOver(true);
@@ -319,6 +321,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                         setDraggable={setDraggable}
 
                         positions={editorPositions}
+                        expandFormat={expandFormat}
+                        setExpandFormat={setExpandFormat}
                     />
                 )
             }
