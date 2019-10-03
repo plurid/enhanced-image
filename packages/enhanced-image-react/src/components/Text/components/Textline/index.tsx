@@ -70,7 +70,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [draggable, setDraggable] = useState(false);
     const [dragging, setDragging] = useState(false);
 
-    // const [textValue, setTextValue] = useState('');
+    const [textValue, setTextValue] = useState(currentVersion.content);
 
     const [positions, setPositions] = useState({
         x: 0,
@@ -296,17 +296,6 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         dragging,
     ]);
 
-    // /**
-    //  * Handle textValue.
-    //  */
-    // useEffect(() => {
-    //     // save text value to the current version
-    //     // console.log(textValue);
-    // }, [
-    //     textValue,
-    // ]);
-
-
     return (
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
@@ -340,7 +329,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                         suppressContentEditableWarning={true}
                         onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
                     >
-                        {currentVersion.content}
+                        {/* {currentVersion.content} */}
+                        {textValue}
                     </StyledEditableDiv>
                 </StyledTextContent>
             )}
