@@ -44,14 +44,17 @@ import Spinner from '../../components/Spinner';
 
 import uuid from '../../services/utilities/uuid';
 
-import client from '../../services/graphql/client';
+import {
+    getVersionById,
+    updateVersion,
+} from '../../services/utilities/imageText';
 
+import client from '../../services/graphql/client';
 import {
     GET_TEXT_WITH_API_KEY,
     GET_TEXT_WITH_USER_TOKEN,
     GET_TEXT_WITH_IMAGE_ID,
 } from '../../services/graphql/query';
-
 import {
     EXTRACT_TEXT_WITH_API_KEY,
     EXTRACT_TEXT_WITH_USER_TOKEN,
@@ -662,6 +665,24 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         }
     }
 
+
+    const toggleVersionViewable = (versionID: string) => {
+        const updatedImageText = imageText.map(text => {
+            const currentVersion = getVersionById(text);
+            if (currentVersion && currentVersion.id === versionID) {
+                const updatedVersion = { ...currentVersion };
+                updatedVersion.viewable = !updatedVersion.viewable;
+                const updatedText = updateVersion(text, updatedVersion);
+                return updatedText;
+            }
+
+            return text;
+        });
+
+        setImageText(updatedImageText);
+    }
+
+
     useEffect(() => {
         if (defaultsToggled) {
             if (
@@ -764,6 +785,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         viewFullscreen,
         shareImage,
         viewAbout,
+
+        toggleVersionViewable,
     };
 
     return (

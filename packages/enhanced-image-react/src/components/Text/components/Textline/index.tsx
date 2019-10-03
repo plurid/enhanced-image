@@ -22,8 +22,6 @@ import {
     StyledEditableDiv,
 } from './styled';
 
-// import { EDITOR_HEIGHT } from '../../../../data/constants/constants';
-
 // import {
 //     valueFromPercentage,
 //     percentageFromValue,
@@ -52,6 +50,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const {
         editableText,
         imageBoxDimensions,
+        toggleVersionViewable,
     } = context;
 
     const timeoutMouseOver = useRef(0);
@@ -161,8 +160,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         setTextValue(value);
     }
 
-    const setCurrentVersionViewable = () => {
-        // change viewable status of the current version
+    const setVersionViewable = () => {
+        if (currentVersion) {
+            toggleVersionViewable(currentVersion.id);
+        }
     }
 
 
@@ -372,7 +373,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                         setEditable={setEditable}
                         draggable={draggable}
                         setDraggable={setDraggable}
-                        setViewable={setCurrentVersionViewable}
+                        setViewable={setVersionViewable}
 
                         positions={editorPositions}
                         expandFormat={editorExpandFormat}

@@ -5,6 +5,7 @@ import themes, { Theme } from '@plurid/utilities.themes';
 import {
     ImageText,
     ImageTextVersionTextline,
+    ImageTextVersionTextarea,
 } from './text';
 
 
@@ -141,6 +142,8 @@ export interface Context {
     viewFullscreen: () => void;
     shareImage: () => void;
     viewAbout: () => void;
+
+    toggleVersionViewable: (versionID: string) => void;
 }
 
 
@@ -161,4 +164,5 @@ export interface ImageBoxDimensions {
 export {
     ImageText,
     ImageTextVersionTextline,
+    ImageTextVersionTextarea,
 }
