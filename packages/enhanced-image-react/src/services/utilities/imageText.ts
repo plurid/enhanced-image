@@ -2,6 +2,8 @@
 
 import {
     ImageText,
+    ImageTextVersionTextline,
+    ImageTextVersionTextarea,
 } from '../../data/interfaces';
 
 
@@ -18,22 +20,28 @@ export const getVersionById = (imageText: ImageText) => {
 }
 
 
-// export const updateVersion = (imageText: any, version: any) => {
-//     const {
-//         currentVersionId,
-//         versions,
-//     } = imageText;
+export const updateVersion = (
+    imageText: ImageText,
+    version: ImageTextVersionTextline | ImageTextVersionTextarea
+): ImageText => {
+    const {
+        id,
+    } = version;
 
-//     imageText.versions = versions.map((imgTxt: any) => {
-//         if (imgTxt.id === currentVersionId) {
-//             const updatedVersion = {...imgTxt, ...version};
-//             return updatedVersion;
-//         }
-//         return imgTxt;
-//     });
+    const updatedVersions = imageText.versions.map((
+        versionData: ImageTextVersionTextline | ImageTextVersionTextarea
+    ) => {
+        if (versionData.id === id) {
+            const updatedVersion: ImageTextVersionTextline | ImageTextVersionTextarea = {...versionData, ...version};
+            return updatedVersion;
+        }
+        return versionData;
+    });
 
-//     return imageText;
-// }
+    imageText.versions = updatedVersions;
+
+    return imageText;
+}
 
 
 // export const pushNewVersion = (imageText: any, version: any) => {
