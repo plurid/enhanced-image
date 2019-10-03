@@ -316,6 +316,19 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         dragging,
     ]);
 
+    /**
+     * Handle editableText.
+     */
+    useEffect(() => {
+        if (!editableText) {
+            setDraggable(false);
+            setEditable(false);
+        }
+    }, [
+        editableText
+    ]);
+
+
     return (
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
