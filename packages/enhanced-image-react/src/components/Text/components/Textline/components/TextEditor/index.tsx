@@ -53,8 +53,7 @@ interface TextEditorProperties {
     setEditable: React.Dispatch<React.SetStateAction<boolean>>;
     draggable: boolean;
     setDraggable: React.Dispatch<React.SetStateAction<boolean>>;
-    viewable: boolean;
-    setViewable: React.Dispatch<React.SetStateAction<boolean>>;
+    setViewable: () => void;
 
     positions: {
         x: number;
@@ -85,7 +84,6 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         setEditable,
         draggable,
         setDraggable,
-        viewable,
         setViewable,
 
         positions,
@@ -238,9 +236,9 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
             <ButtonToggle
                 theme={theme}
-                toggle={() => setViewable(viewable => !viewable)}
-                toggled={viewable}
-                icon={viewable ? ViewableIcon : NotViewableIcon}
+                toggle={() => setViewable()}
+                toggled={data.viewable}
+                icon={data.viewable ? ViewableIcon : NotViewableIcon}
             />
 
             <ButtonClick

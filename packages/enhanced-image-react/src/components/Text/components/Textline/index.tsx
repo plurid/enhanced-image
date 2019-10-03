@@ -78,7 +78,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [editable, setEditable] = useState(false);
     const [draggable, setDraggable] = useState(false);
     const [dragging, setDragging] = useState(false);
-    const [viewable, setViewable] = useState(false);
+
+    const [textValue, setTextValue] = useState(false);
 
     const [positions, setPositions] = useState({
         x: 0,
@@ -155,6 +156,19 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }
     }
 
+    const handleChange = (event: any) => {
+        const value = event.target.innerText;
+        setTextValue(value);
+    }
+
+    const setCurrentVersionViewable = () => {
+        // change viewable status of the current version
+    }
+
+
+    /**
+     * Get currentVersion.
+     */
     useEffect(() => {
         const currentVersion = getVersionById(data);
 
@@ -163,6 +177,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }
     }, [data]);
 
+    /**
+     * Compute format.
+     */
     useEffect(() => {
         if (currentVersion) {
             setTextXCoord(currentVersion.xCoordPercentage * imageBoxDimensions.width / 100 + 'px');
@@ -186,9 +203,14 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         imageBoxDimensions,
     ]);
 
+    /**
+     * Handle text color.
+     */
     useEffect(() => {
         if (currentVersion) {
             if (editableText) {
+                setTextColor(currentVersion.color);
+            } else if (currentVersion.viewable) {
                 setTextColor(currentVersion.color);
             } else {
                 setTextColor('transparent');
@@ -199,6 +221,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         editableText,
     ]);
 
+    /**
+     * Handle showEditor
+     */
     useEffect(() => {
         if (editableText && mouseOver) {
             setShowEditor(true);
@@ -210,6 +235,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         mouseOver,
     ]);
 
+    /**
+     * Handle dragging (mouseup).
+     */
     useEffect(() => {
         const handleMouseUp = () => {
             if (draggable) {
@@ -227,6 +255,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         draggable,
     ]);
 
+    /**
+     * Handle dragging (movemove).
+     */
     useEffect(() => {
         const handleMouseMove = (event: any) => {
             if (!dragging) {
@@ -271,6 +302,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         textYCoord,
     ]);
 
+    /**
+     * Handle editorWidth.
+     */
     useEffect(() => {
         handleEditorPosition();
     }, [
@@ -278,21 +312,16 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         dragging,
     ]);
 
-    // useEffect(() => {
-    //     if (draggable) {
-    //         setDraggable(false);
-    //     }
-    // }, [
-    //     editable,
-    // ]);
+    /**
+     * Handle textValue.
+     */
+    useEffect(() => {
+        // save text value to the current version
+        console.log(textValue);
+    }, [
+        textValue,
+    ]);
 
-    // useEffect(() => {
-    //     if (editable) {
-    //         setEditable(false);
-    //     }
-    // }, [
-    //     draggable,
-    // ]);
 
     return (
         <StyledTextItem
@@ -321,7 +350,14 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                     viewable={currentVersion && currentVersion.viewable}
                     color={currentVersion && currentVersion.color}
                 >
-                    {currentVersion.content}
+                    <StyledEditableDiv
+                        toggledEditable={editableText}
+                        contentEditable={editable}
+                        suppressContentEditableWarning={true}
+                        onInput={handleChange}
+                    >
+                        {currentVersion.content}
+                    </StyledEditableDiv>
                 </StyledTextContent>
             )}
 
@@ -334,12 +370,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
                         editable={editable}
                         setEditable={setEditable}
-
                         draggable={draggable}
                         setDraggable={setDraggable}
-
-                        viewable={viewable}
-                        setViewable={setViewable}
+                        setViewable={setCurrentVersionViewable}
 
                         positions={editorPositions}
                         expandFormat={editorExpandFormat}
