@@ -93,39 +93,5 @@ const ButtonIncrements: React.FC<ButtonIncrementsProperties> = (properties) => {
     );
 }
 
+
 export default ButtonIncrements;
-
-
-
-// // class TextVideoEditorButtonIncrements extends Component<any, any> {
-// //     public render() {
-// //         const {
-// //             icon,
-// //             unit,
-// //             value,
-// //             changeValue,
-// //             type,
-// //             step,
-// //             theme,
-// //             transparentUI,
-// //         } = this.props;
-
-// //         const stepValue = step || STEP;
-
-// //         console.log('value aaaa', value);
-// //         console.log('value stepValue', stepValue);
-
-// //         return (
-// //             <StyledTextVideoEditorButtonIncrement
-// //                 theme={theme}
-// //                 transparentUI={transparentUI}
-// //             >
-
-// //             </StyledTextVideoEditorButtonIncrement>
-// //         );
-// //     }
-
-// //     private round = (val: number) => {
-// //         return Math.round(val * 100) / 100;
-// //     }
-// // }
