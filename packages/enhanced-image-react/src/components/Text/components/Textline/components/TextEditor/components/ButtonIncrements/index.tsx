@@ -30,6 +30,8 @@ class TextVideoEditorButtonIncrements extends Component<any, any> {
 
         const stepValue = step || STEP;
 
+        console.log('value', value);
+
         return (
             <StyledTextVideoEditorButtonIncrement
                 theme={theme}
@@ -49,7 +51,8 @@ class TextVideoEditorButtonIncrements extends Component<any, any> {
                     <StyledTextVideoEditorButtonIncrementButton
                         theme={theme}
                         transparentUI={transparentUI}
-                        onClick={changeValue.bind(this, type, this.round(value + stepValue))}
+                        onClick={changeValue.bind(this, type, value + stepValue)}
+                        // onClick={changeValue.bind(this, type, this.round(value + stepValue))}
                     >
                         {UP_ARROW}
                     </StyledTextVideoEditorButtonIncrementButton>
@@ -57,7 +60,8 @@ class TextVideoEditorButtonIncrements extends Component<any, any> {
                     <StyledTextVideoEditorButtonIncrementButton
                         theme={theme}
                         transparentUI={transparentUI}
-                        onClick={changeValue.bind(this, type, this.round(value - stepValue))}
+                        onClick={changeValue.bind(this, type, value - stepValue)}
+                        // onClick={changeValue.bind(this, type, this.round(value - stepValue))}
                     >
                         {DOWN_ARROW}
                     </StyledTextVideoEditorButtonIncrementButton>
@@ -84,6 +88,7 @@ class TextVideoEditorButtonIncrements extends Component<any, any> {
         } = this.props;
 
         const value = e.target.value;
+        console.log('aabbb', value);
         changeValue(type, parseFloat(value));
     }
 
