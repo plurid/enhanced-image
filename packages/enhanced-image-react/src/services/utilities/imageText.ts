@@ -32,13 +32,13 @@ export const updateVersion = (
         versionData: ImageTextVersionTextline | ImageTextVersionTextarea
     ) => {
         if (versionData.id === id) {
-            const updatedVersion: ImageTextVersionTextline | ImageTextVersionTextarea = {...versionData, ...version};
+            const updatedVersion: ImageTextVersionTextline | ImageTextVersionTextarea = { ...version };
             return updatedVersion;
         }
         return versionData;
     });
 
-    imageText.versions = updatedVersions;
+    imageText.versions = [...updatedVersions];
 
     return imageText;
 }
