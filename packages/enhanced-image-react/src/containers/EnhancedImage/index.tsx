@@ -702,6 +702,22 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setImageText(updatedImageText);
     }
 
+    const duplicateTextItem = (versionID: string) => {
+
+    }
+
+    const deleteTextItem = (versionID: string) => {
+        const updatedImageText = imageText.filter(text => {
+            if (text.id === versionID) {
+                return false;
+            }
+
+            return text;
+        });
+
+        setImageText(updatedImageText);
+    }
+
 
     useEffect(() => {
         if (defaultsToggled) {
@@ -808,6 +824,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         updateVersionContent,
         toggleVersionViewable,
+        duplicateTextItem,
+        deleteTextItem,
     };
 
     return (
