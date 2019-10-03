@@ -17,10 +17,6 @@ export const StyledTextVideoEditorButtonToggle: any = styled.div`
     height: 100%;
     min-width: 32px;
 
-    :hover {
-        background-color: ${props => props.theme.backgroundColorSecondary};
-    }
-
     svg {
         fill: ${props => props.theme.colorPrimary};
         height: 14px;
