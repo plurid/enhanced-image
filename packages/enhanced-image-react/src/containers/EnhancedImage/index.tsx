@@ -703,7 +703,29 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const duplicateTextItem = (versionID: string) => {
+        const imgText = imageText.find(imgText => imgText.id === versionID);
 
+        if (imgText) {
+            const currentVersion = getVersionById(imgText);
+            if (currentVersion) {
+                const version = { ...currentVersion };
+                const currentVersionId = uuid();
+                version.id = currentVersionId;
+                version.yCoordPercentage = currentVersion.yCoordPercentage < 85
+                    ? currentVersion.yCoordPercentage + 10
+                    : currentVersion.yCoordPercentage - 10;
+
+                const id = uuid();
+                const updatedImgText: ImageText = {
+                    id,
+                    currentVersionId,
+                    versions: [version],
+                };
+
+                const updatedImageText = [...imageText, updatedImgText];
+                setImageText(updatedImageText);
+            }
+        }
     }
 
     const deleteTextItem = (versionID: string) => {
