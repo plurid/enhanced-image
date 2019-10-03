@@ -147,6 +147,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
             >
                 <ButtonIncrements
                     theme={theme}
+                    transparentUI={transparentUI}
                     type="fontSize"
                     changeValue={() => {}}
                     // changeValue={this.updateField}
@@ -156,6 +157,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonDropdown
                     theme={theme}
+                    transparentUI={transparentUI}
                     type="fontFamily"
                     alterStyle="fontFamily"
                     selected={currentVersion.fontFamily}
@@ -202,6 +204,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonIncrements
                     theme={theme}
+                    transparentUI={transparentUI}
                     type="letterSpacing"
                     changeValue={() => {}}
                     // changeValue={this.updateField}
@@ -212,6 +215,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonIncrements
                     theme={theme}
+                    transparentUI={transparentUI}
                     type="wordSpacing"
                     changeValue={() => {}}
                     // changeValue={this.updateField}

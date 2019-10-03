@@ -9,15 +9,27 @@ export const StyledTextVideoEditorButtonDropdown = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonDropdownSelected = styled.div`
+export const StyledTextVideoEditorButtonDropdownSelected: any = styled.div`
     input {
+        background: ${(props: any) => {
+            if (props.transparentUI) {
+                return props.theme.backgroundColorSecondaryAlpha;
+            }
+            return props.theme.backgroundColorSecondary;
+        }};
+        color: ${props => props.theme.colorPrimary};
+
         width: 110px;
         border: none;
-        background: ${props => props.theme.backgroundColorSecondary};
-        color: ${props => props.theme.colorPrimary};
         text-align: left;
         outline: none;
         padding: 3px 6px;
+    }
+
+    input:hover {
+        background: ${(props: any) => {
+            return props.theme.backgroundColorSecondary;
+        }};
     }
 `;
 
