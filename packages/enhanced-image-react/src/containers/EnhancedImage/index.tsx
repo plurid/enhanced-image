@@ -666,14 +666,34 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
 
+    const updateVersionContent = (versionID: string, value: string) => {
+        const updatedImageText = imageText.map(text => {
+            if (text.id === versionID) {
+                const currentVersion = getVersionById(text);
+                if (currentVersion) {
+                    const updatedVersion = { ...currentVersion };
+                    updatedVersion.content = value;
+                    const updatedText = updateVersion(text, updatedVersion);
+                    return updatedText;
+                }
+            }
+
+            return text;
+        });
+
+        setImageText(updatedImageText);
+    }
+
     const toggleVersionViewable = (versionID: string) => {
         const updatedImageText = imageText.map(text => {
-            const currentVersion = getVersionById(text);
-            if (currentVersion && currentVersion.id === versionID) {
-                const updatedVersion = { ...currentVersion };
-                updatedVersion.viewable = !currentVersion.viewable;
-                const updatedText = updateVersion(text, updatedVersion);
-                return updatedText;
+            if (text.id === versionID) {
+                const currentVersion = getVersionById(text);
+                if (currentVersion) {
+                    const updatedVersion = { ...currentVersion };
+                    updatedVersion.viewable = !currentVersion.viewable;
+                    const updatedText = updateVersion(text, updatedVersion);
+                    return updatedText;
+                }
             }
 
             return text;
@@ -786,6 +806,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         shareImage,
         viewAbout,
 
+        updateVersionContent,
         toggleVersionViewable,
     };
 

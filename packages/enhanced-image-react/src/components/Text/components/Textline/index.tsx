@@ -36,6 +36,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     }
 
     const {
+        data,
         currentVersion,
     } = properties;
 
@@ -43,6 +44,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         editableText,
         imageBoxDimensions,
         toggleVersionViewable,
+        updateVersionContent,
     } = context;
 
     const timeoutMouseOver = useRef(0);
@@ -68,7 +70,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [draggable, setDraggable] = useState(false);
     const [dragging, setDragging] = useState(false);
 
-    const [textValue, setTextValue] = useState('');
+    // const [textValue, setTextValue] = useState('');
 
     const [positions, setPositions] = useState({
         x: 0,
@@ -148,16 +150,14 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const handleChange = (event: React.SyntheticEvent<HTMLDivElement>) => {
         const value = event.currentTarget.innerText;
         if (value !== '') {
-            setTextValue(value);
+            updateVersionContent(data.id, value);
         } else {
-            setTextValue('New Text');
+            updateVersionContent(data.id, 'New Text');
         }
     }
 
     const setVersionViewable = () => {
-        if (currentVersion) {
-            toggleVersionViewable(currentVersion.id);
-        }
+        toggleVersionViewable(data.id);
     }
 
 
@@ -296,15 +296,15 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         dragging,
     ]);
 
-    /**
-     * Handle textValue.
-     */
-    useEffect(() => {
-        // save text value to the current version
-        // console.log(textValue);
-    }, [
-        textValue,
-    ]);
+    // /**
+    //  * Handle textValue.
+    //  */
+    // useEffect(() => {
+    //     // save text value to the current version
+    //     // console.log(textValue);
+    // }, [
+    //     textValue,
+    // ]);
 
 
     return (

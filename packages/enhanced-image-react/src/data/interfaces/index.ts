@@ -143,6 +143,7 @@ export interface Context {
     shareImage: () => void;
     viewAbout: () => void;
 
+    updateVersionContent: (versionID: string, value: string) => void;
     toggleVersionViewable: (versionID: string) => void;
 }
 
