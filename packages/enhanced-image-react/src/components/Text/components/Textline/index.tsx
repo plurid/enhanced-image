@@ -75,10 +75,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const [mouseOver, setMouseOver] = useState(false);
 
+    const [editable, setEditable] = useState(false);
     const [draggable, setDraggable] = useState(false);
     const [dragging, setDragging] = useState(false);
-
-    const [editable, setEditable] = useState(false);
     const [viewable, setViewable] = useState(false);
 
     const [positions, setPositions] = useState({
@@ -278,6 +277,22 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         editorWidth,
         dragging,
     ]);
+
+    // useEffect(() => {
+    //     if (draggable) {
+    //         setDraggable(false);
+    //     }
+    // }, [
+    //     editable,
+    // ]);
+
+    // useEffect(() => {
+    //     if (editable) {
+    //         setEditable(false);
+    //     }
+    // }, [
+    //     draggable,
+    // ]);
 
     return (
         <StyledTextItem

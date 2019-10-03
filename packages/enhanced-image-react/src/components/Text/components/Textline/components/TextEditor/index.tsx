@@ -117,23 +117,22 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         >
             <ButtonToggle
                 theme={theme}
-                toggle={() => setEditable(editable => !editable)}
+                toggle={() => {
+                    if (draggable) { setDraggable(false) }
+                    setEditable(editable => !editable)
+                }}
                 toggled={editable}
                 icon={SelectTextIcon}
             />
 
             <ButtonToggle
                 theme={theme}
-                toggle={() => setDraggable(draggable => !draggable)}
+                toggle={() => {
+                    if (editable) { setEditable(false) }
+                    setDraggable(draggable => !draggable)
+                }}
                 toggled={draggable}
                 icon={GrabIcon}
-            />
-
-            <ButtonToggle
-                theme={theme}
-                toggle={() => setViewable(viewable => !viewable)}
-                toggled={viewable}
-                icon={viewable ? ViewableIcon : NotViewableIcon}
             />
 
             <StyledVerticalDivider
@@ -236,6 +235,13 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
             >
                 &nbsp;
             </StyledVerticalDivider>
+
+            <ButtonToggle
+                theme={theme}
+                toggle={() => setViewable(viewable => !viewable)}
+                toggled={viewable}
+                icon={viewable ? ViewableIcon : NotViewableIcon}
+            />
 
             <ButtonClick
                 theme={theme}
