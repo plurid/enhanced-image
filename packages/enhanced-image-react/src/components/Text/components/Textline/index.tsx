@@ -22,10 +22,6 @@ import {
     StyledEditableDiv,
 } from './styled';
 
-import {
-    getVersionById,
-} from '../../../../services/utilities/imageText';
-
 
 
 interface TextlineProperties {
@@ -72,7 +68,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [draggable, setDraggable] = useState(false);
     const [dragging, setDragging] = useState(false);
 
-    const [textValue, setTextValue] = useState(false);
+    const [textValue, setTextValue] = useState('');
 
     const [positions, setPositions] = useState({
         x: 0,
@@ -99,7 +95,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }, 700);
     }
 
-    const handleMouseDown = (event: any) => {
+    const handleMouseDown = (event: MouseEvent) => {
         if (draggable) {
             setDragging(true);
 
@@ -149,14 +145,17 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }
     }
 
-    const handleChange = (event: any) => {
-        const value = event.target.innerText;
-        setTextValue(value);
+    const handleChange = (event: React.SyntheticEvent<HTMLDivElement>) => {
+        const value = event.currentTarget.innerText;
+        if (value !== '') {
+            setTextValue(value);
+        } else {
+            setTextValue('New Text');
+        }
     }
 
     const setVersionViewable = () => {
         if (currentVersion) {
-            // console.log(currentVersion.viewable);
             toggleVersionViewable(currentVersion.id);
         }
     }
@@ -302,7 +301,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
      */
     useEffect(() => {
         // save text value to the current version
-        console.log(textValue);
+        // console.log(textValue);
     }, [
         textValue,
     ]);
@@ -328,7 +327,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         >
             {currentVersion && (
                 <StyledTextContent
-                    onMouseDown={(event: any) => handleMouseDown(event)}
+                    onMouseDown={(event: MouseEvent) => handleMouseDown(event)}
                     dragMode={draggable}
                     draggingMode={dragging}
                     editableText={editableText}
@@ -339,7 +338,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                         toggledEditable={editableText}
                         contentEditable={editable}
                         suppressContentEditableWarning={true}
-                        onInput={handleChange}
+                        onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
                     >
                         {currentVersion.content}
                     </StyledEditableDiv>
