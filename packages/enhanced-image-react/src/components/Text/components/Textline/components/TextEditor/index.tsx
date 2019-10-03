@@ -1,7 +1,7 @@
 import React, {
     useContext,
     useRef,
-    useState,
+    useEffect,
 } from 'react';
 
 import {
@@ -25,6 +25,7 @@ import { selectableFonts } from '../../../../../../data/constants/fonts';
 import SelectTextIcon from '../../../../../../assets/icons/text-editor/select-text';
 import GrabIcon from '../../../../../../assets/icons/text-editor/grab';
 import ViewableIcon from '../../../../../../assets/icons/text-editor/viewable';
+import NotViewableIcon from '../../../../../../assets/icons/text-editor/not-viewable';
 import FontSizeIcon from '../../../../../../assets/icons/text-editor/font-size';
 import LinkIcon from '../../../../../../assets/icons/text-editor/link';
 import BoldIcon from '../../../../../../assets/icons/text-editor/bold';
@@ -52,6 +53,8 @@ interface TextEditorProperties {
     setEditable: React.Dispatch<React.SetStateAction<boolean>>;
     draggable: boolean;
     setDraggable: React.Dispatch<React.SetStateAction<boolean>>;
+    viewable: boolean;
+    setViewable: React.Dispatch<React.SetStateAction<boolean>>;
 
     positions: {
         x: number;
@@ -59,7 +62,7 @@ interface TextEditorProperties {
     };
     expandFormat: boolean;
     setExpandFormat: React.Dispatch<React.SetStateAction<boolean>>;
-
+    setWidth: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const TextEditor: React.FC<TextEditorProperties> = (properties) => {
@@ -82,13 +85,25 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         setEditable,
         draggable,
         setDraggable,
+        viewable,
+        setViewable,
 
         positions,
         expandFormat,
         setExpandFormat,
+        setWidth,
     } = properties;
 
     const editor = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (editor.current) {
+            setWidth(editor.current.offsetWidth);
+        }
+    }, [
+        editor,
+        expandFormat,
+    ]);
 
     return (
         <StyledTextEditor
@@ -116,12 +131,9 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
             <ButtonToggle
                 theme={theme}
-                // toggle={toggleTextViewable}
-                // toggled={textViewable}
-                toggle={() => {}}
-                toggled={false}
-                icon={ViewableIcon}
-                // icon={textViewable ? ViewableIcon : NotViewableIcon}
+                toggle={() => setViewable(viewable => !viewable)}
+                toggled={viewable}
+                icon={viewable ? ViewableIcon : NotViewableIcon}
             />
 
             <StyledVerticalDivider
