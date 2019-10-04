@@ -116,6 +116,9 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 const fontSizePercentage = percentageFromValue(value, imageBoxDimensions.height);
                 updateTextItemField(textItem.id, 'fontSizePercentage', fontSizePercentage);
                 break;
+            case 'fontFamily':
+                updateTextItemField(textItem.id, 'fontFamily', value);
+                break;
             case 'letterSpacing':
                 const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
                 updateTextItemField(textItem.id, 'letterSpacingPercentage', letterSpacingPercentage);
@@ -215,8 +218,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     alterStyle="fontFamily"
                     selected={currentVersion.fontFamily}
                     selectables={selectableFonts}
-                    changeSelected={() => {}}
-                    // changeSelected={this.updateField}
+                    changeSelected={updateField}
                     toggleEditor={() => {}}
                     textDraggable={false}
                     toggleTextDraggable={() => {}}
