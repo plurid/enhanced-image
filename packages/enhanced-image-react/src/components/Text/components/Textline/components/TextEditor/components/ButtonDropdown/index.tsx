@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
 import {
-    StyledTextVideoEditorButtonDropdown,
-    StyledTextVideoEditorButtonDropdownSelected,
-    StyledTextVideoEditorButtonDropdownList,
-    StyledTextVideoEditorButtonDropdownListItem,
+    StyledButtonDropdown,
+    StyledButtonDropdownSelected,
+    StyledButtonDropdownList,
+    StyledButtonDropdownListItem,
 } from './styled';
 
 
 
-class TextVideoEditorButtonDropdown extends Component<any, any> {
+class ButtonDropdown extends Component<any, any> {
     dropdown: any;
 
     constructor(props: any) {
@@ -39,10 +39,10 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
         } = this.props;
 
         return (
-            <StyledTextVideoEditorButtonDropdown
+            <StyledButtonDropdown
                 theme={theme}
             >
-                <StyledTextVideoEditorButtonDropdownSelected
+                <StyledButtonDropdownSelected
                     theme={theme}
                     transparentUI={transparentUI}
                 >
@@ -53,10 +53,10 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
                         onClick={this.toggleDropdown}
                         onKeyDown={this.handleKeyDown}
                     />
-                </StyledTextVideoEditorButtonDropdownSelected>
+                </StyledButtonDropdownSelected>
 
                 {toggledDropdown && (
-                    <StyledTextVideoEditorButtonDropdownList
+                    <StyledButtonDropdownList
                         theme={theme}
                         transparentUI={transparentUI}
                         ref={this.dropdown}
@@ -64,7 +64,7 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
                         <ul>
                             {filtered.map((select: any, index: any) => {
                                 return (
-                                    <StyledTextVideoEditorButtonDropdownListItem
+                                    <StyledButtonDropdownListItem
                                         key={index}
                                         onClick={this.clickSelect.bind(this, select)}
                                         onMouseEnter={this.select.bind(this, select)}
@@ -77,13 +77,13 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
                                         filtered={filtered}
                                     >
                                         {select}
-                                    </StyledTextVideoEditorButtonDropdownListItem>
+                                    </StyledButtonDropdownListItem>
                                 );
                             })}
                         </ul>
-                    </StyledTextVideoEditorButtonDropdownList>
+                    </StyledButtonDropdownList>
                 )}
-            </StyledTextVideoEditorButtonDropdown>
+            </StyledButtonDropdown>
         );
     }
 
@@ -244,4 +244,4 @@ class TextVideoEditorButtonDropdown extends Component<any, any> {
 }
 
 
-export default TextVideoEditorButtonDropdown;
+export default ButtonDropdown;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonClick: any = styled.div`
+export const StyledButtonClick: any = styled.div`
     cursor: pointer;
     display: grid;
     place-content: center;

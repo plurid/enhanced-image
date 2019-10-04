@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonDropdown = styled.div`
+export const StyledButtonDropdown = styled.div`
     display: grid;
     place-content: center;
     position: relative;
 `;
 
 
-export const StyledTextVideoEditorButtonDropdownSelected: any = styled.div`
+export const StyledButtonDropdownSelected: any = styled.div`
     input {
         background: ${(props: any) => {
             if (props.transparentUI) {
@@ -34,7 +34,7 @@ export const StyledTextVideoEditorButtonDropdownSelected: any = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonDropdownList: any = styled.div`
+export const StyledButtonDropdownList: any = styled.div`
     position: absolute;
     top: 27px;
     left: 0;
@@ -54,7 +54,7 @@ export const StyledTextVideoEditorButtonDropdownList: any = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonDropdownListItem: any = styled.li`
+export const StyledButtonDropdownListItem: any = styled.li`
     cursor: pointer;
     padding: 4px 6px;
     font-size: 11px;

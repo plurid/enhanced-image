@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonToggle: any = styled.div`
+export const StyledButtonToggle: any = styled.div`
     background-color: ${(props: any) => {
         if (props.toggled) {
             return props.theme.backgroundColorSecondary;

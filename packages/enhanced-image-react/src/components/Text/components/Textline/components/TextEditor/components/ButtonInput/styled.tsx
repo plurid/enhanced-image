@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonInput = styled.div`
+export const StyledButtonInput = styled.div`
     position: relative;
     height: 100%;
     width: 32px;
@@ -16,7 +16,7 @@ export const StyledTextVideoEditorButtonInput = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonInputContainer = styled.div`
+export const StyledButtonInputContainer = styled.div`
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -38,7 +38,7 @@ export const StyledTextVideoEditorButtonInputContainer = styled.div`
 `;
 
 
-export const StyledTextVideoEditorButtonInputGotoLink = styled.div`
+export const StyledButtonInputGotoLink = styled.div`
     height: 14px;
     width: 14px;
     padding-right: 20px;

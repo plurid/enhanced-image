@@ -1,38 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { StyledTextVideoEditorButtonToggle } from './styled';
+import { StyledButtonToggle } from './styled';
+
+import { Theme } from '@plurid/utilities.themes';
 
 
 
-interface TextVideoEditorButtonToggleProps {
-    icon: JSX.Element;
-    theme: any;
+interface ButtonToggleProperties {
+    theme: Theme;
     toggled: boolean;
     toggle: () => void;
+    icon: JSX.Element;
 }
 
+const ButtonToggle: React.FC<ButtonToggleProperties> = (properties) => {
+    const {
+        theme,
+        toggled,
+        toggle,
+        icon,
+    } = properties;
 
-class ButtonToggle extends Component<
-    TextVideoEditorButtonToggleProps, any
-> {
-    public render() {
-        const {
-            icon,
-            theme,
-            toggle,
-            toggled,
-        } = this.props;
-
-        return (
-            <StyledTextVideoEditorButtonToggle
-                theme={theme}
-                toggled={toggled}
-                onClick={toggle}
-            >
-                {icon}
-            </StyledTextVideoEditorButtonToggle>
-        );
-    }
+    return (
+        <StyledButtonToggle
+            theme={theme}
+            toggled={toggled}
+            onClick={toggle}
+        >
+            {icon}
+        </StyledButtonToggle>
+    );
 }
 
 
