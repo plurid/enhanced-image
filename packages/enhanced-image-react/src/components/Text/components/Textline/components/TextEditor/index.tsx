@@ -127,6 +127,22 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         }
     }
 
+    const toggleBold = () => {
+        if (currentVersion.fontWeight === 'bold') {
+            updateTextItemField(textItem.id, 'fontWeight', 'normal');
+        } else {
+            updateTextItemField(textItem.id, 'fontWeight', 'bold');
+        }
+    }
+
+    const toggleItalic = () => {
+        if (currentVersion.fontStyle === 'italic') {
+            updateTextItemField(textItem.id, 'fontStyle', 'normal');
+        } else {
+            updateTextItemField(textItem.id, 'fontStyle', 'italic');
+        }
+    }
+
     return (
         <StyledTextEditor
             theme={theme}
@@ -211,14 +227,14 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonToggle
                     theme={theme}
-                    toggle={() => {}}
+                    toggle={() => toggleBold()}
                     toggled={currentVersion.fontWeight === 'bold'}
                     icon={BoldIcon}
                 />
 
                 <ButtonToggle
                     theme={theme}
-                    toggle={() => {}}
+                    toggle={() => toggleItalic()}
                     toggled={currentVersion.fontStyle === 'italic'}
                     icon={ItalicIcon}
                 />
