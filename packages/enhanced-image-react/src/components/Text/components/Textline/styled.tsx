@@ -76,8 +76,8 @@ export const StyledTextContent: any = styled.div`
         }
     }};
 
-    min-width: 30px;
-    min-height: 20px;
+    min-width: 20px;
+    min-height: 10px;
 `;
 
 

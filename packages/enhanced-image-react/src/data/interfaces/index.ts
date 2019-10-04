@@ -149,7 +149,7 @@ export interface Context {
     deleteTextItem: (versionID: string) => void;
     updateTextCoordinates: (versionID: string, coordinates: any) => void;
 
-    updateTextItemField: (versionID: string, type: string, value: number | string) => void;
+    updateTextItemField: (versionID: string, type: string, value: number | string | boolean) => void;
 }
 
 

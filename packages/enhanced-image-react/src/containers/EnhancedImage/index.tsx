@@ -766,7 +766,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const updateTextItemField = (
         versionID: string,
         type: string,
-        value: number | string,
+        value: number | string | boolean,
     ) => {
         const updatedImageText = imageText.map(text => {
             if (text.id === versionID) {

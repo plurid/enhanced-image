@@ -124,6 +124,12 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                 const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
                 updateTextItemField(textItem.id, 'wordSpacingPercentage', wordSpacingPercentage);
                 break;
+            case 'linkTo':
+                updateTextItemField(textItem.id, 'linkTo', value);
+                break;
+            case 'color':
+                updateTextItemField(textItem.id, 'color', value);
+                break;
         }
     }
 
@@ -140,6 +146,14 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
             updateTextItemField(textItem.id, 'fontStyle', 'normal');
         } else {
             updateTextItemField(textItem.id, 'fontStyle', 'italic');
+        }
+    }
+
+    const toggleLink = () => {
+        if (currentVersion.link) {
+            updateTextItemField(textItem.id, 'link', false);
+        } else {
+            updateTextItemField(textItem.id, 'link', true);
         }
     }
 
@@ -215,14 +229,12 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonInput
                     theme={theme}
-                    toggle={() => {}}
-                    // toggle={this.updateField.bind(this, 'link')}
+                    toggle={() => toggleLink()}
                     toggled={currentVersion.link}
                     icon={LinkIcon}
                     value={currentVersion.linkTo}
                     valueType="linkTo"
-                    changeValue={() => {}}
-                    // changeValue={this.updateField}
+                    changeValue={updateField}
                 />
 
                 <ButtonToggle
@@ -261,8 +273,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonsColors
                     theme={theme}
-                    changeValue={() => {}}
-                    // changeValue={this.updateField}
+                    changeValue={updateField}
                     color={currentVersion.color}
                 />
             </Drawer>
