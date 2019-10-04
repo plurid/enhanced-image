@@ -1,36 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { StyledTextVideoEditorButtonClick } from './styled';
+import { StyledButtonClick } from './styled';
+
+import { Theme } from '@plurid/utilities.themes';
 
 
 
-interface TextVideoEditorButtonClickProps {
+interface ButtonClickProperties {
     icon: JSX.Element;
-    theme: any;
+    theme: Theme;
     atClick: () => void;
 }
 
+const ButtonClick: React.FC<ButtonClickProperties> = (properties) => {
+    const {
+        icon,
+        theme,
+        atClick,
+    } = properties;
 
-class TextVideoEditorButtonClick extends Component<
-    TextVideoEditorButtonClickProps, any
-> {
-    public render() {
-        const {
-            icon,
-            theme,
-            atClick,
-        } = this.props;
-
-        return (
-            <StyledTextVideoEditorButtonClick
-                theme={theme}
-                onClick={atClick}
-            >
-                {icon}
-            </StyledTextVideoEditorButtonClick>
-        );
-    }
+    return (
+        <StyledButtonClick
+            theme={theme}
+            onClick={atClick}
+        >
+            {icon}
+        </StyledButtonClick>
+    );
 }
 
 
-export default TextVideoEditorButtonClick;
+export default ButtonClick;

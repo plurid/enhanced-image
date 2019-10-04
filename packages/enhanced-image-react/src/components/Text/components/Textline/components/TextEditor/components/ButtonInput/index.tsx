@@ -1,85 +1,87 @@
-import React, { Component } from 'react';
+import React, {
+    useState,
+} from 'react';
 
 import {
-    StyledTextVideoEditorButtonInput,
-    StyledTextVideoEditorButtonInputContainer,
-    StyledTextVideoEditorButtonInputGotoLink,
+    StyledButtonInput,
+    StyledButtonInputContainer,
+    StyledButtonInputGotoLink,
 } from './styled';
 
-import TextVideoEditorButtonToggle from '../ButtonToggle';
+import ButtonToggle from '../ButtonToggle';
 
 import GoToLinkIcon from '../../../../../../../../assets/icons/text-editor/gotolink';
 
+import { Theme } from '@plurid/utilities.themes';
 
 
-class TextVideoEditorButtonInput extends Component<any, any> {
-    state = {
-        show: false,
-    };
 
-    public render() {
-        const {
-            icon,
-            value,
-            theme,
-            toggle,
-            toggled,
-        } = this.props;
+interface ButtonInputProperties {
+    theme: Theme;
+    icon: JSX.Element;
+    value: string;
+    toggle: () => void;
+    toggled: boolean;
+    valueType: string;
+    changeValue: (type: string, value: string | number | boolean) => void;
+}
 
-        const {
-            show,
-        } = this.state;
+const ButtonInput: React.FC<ButtonInputProperties> = (properties) => {
+    const {
+        icon,
+        value,
+        theme,
+        toggle,
+        toggled,
+        valueType,
+        changeValue,
+    } = properties;
 
-        return (
-            <StyledTextVideoEditorButtonInput
-                theme={theme}
-                onMouseEnter={this.showInput}
-                onMouseLeave={this.showInput}
-            >
-                <TextVideoEditorButtonToggle
-                    theme={theme}
-                    toggle={toggle}
-                    toggled={toggled}
-                    icon={icon}
-                />
+    const [show, setShow] = useState(false);
 
-                {show && (
-                    <StyledTextVideoEditorButtonInputContainer
-                        theme={theme}
-                    >
-                        <input
-                            type="text"
-                            value={value}
-                            onChange={this.handleInput}
-                        />
-                        <a href={value} target="_blank">
-                            <StyledTextVideoEditorButtonInputGotoLink
-                                theme={theme}
-                            >
-                                {GoToLinkIcon}
-                            </StyledTextVideoEditorButtonInputGotoLink>
-                        </a>
-                    </StyledTextVideoEditorButtonInputContainer>
-                )}
-            </StyledTextVideoEditorButtonInput>
-        );
-    }
-
-    private showInput = () => {
-        this.setState((prevState: any) => ({
-            show: !prevState.show,
-        }));
-    }
-
-    private handleInput = (event: any) => {
-        const {
-            valueType,
-            changeValue,
-        } = this.props;
-
+    const handleInput = (event: any) => {
         changeValue(valueType, event.target.value);
     }
+
+    return (
+        <StyledButtonInput
+            theme={theme}
+            onMouseEnter={() => setShow(show => !show)}
+            onMouseLeave={() => setShow(show => !show)}
+        >
+            <ButtonToggle
+                theme={theme}
+                toggle={toggle}
+                toggled={toggled}
+                icon={icon}
+            />
+
+            {show && (
+                <StyledButtonInputContainer
+                    theme={theme}
+                >
+                    <input
+                        type="text"
+                        value={value}
+                        onChange={handleInput}
+                    />
+
+                    <a
+                        href={value}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        <StyledButtonInputGotoLink
+                            theme={theme}
+                        >
+                            {GoToLinkIcon}
+                        </StyledButtonInputGotoLink>
+                    </a>
+                </StyledButtonInputContainer>
+            )}
+        </StyledButtonInput>
+    );
 }
 
 
-export default TextVideoEditorButtonInput;
+export default ButtonInput;
