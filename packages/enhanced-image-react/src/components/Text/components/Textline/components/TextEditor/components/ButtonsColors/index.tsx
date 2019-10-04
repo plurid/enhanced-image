@@ -16,14 +16,14 @@ const colors = [
 interface ButtonsColorsProperties {
     theme: Theme,
     selectedColor: string,
-    changeValue: any;
+    changeValue: (type: string, value: string) => void;
 }
 
 const ButtonsColors: React.FC<ButtonsColorsProperties> = (properties) => {
     const {
         theme,
         selectedColor,
-        changeValue
+        changeValue,
     } = properties;
 
     return (

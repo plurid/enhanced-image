@@ -110,22 +110,28 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         expandFormat,
     ]);
 
-    const updateField = (type: string, value: number) => {
+    const updateField = (type: string, value: number | string | boolean) => {
         switch (type) {
             case 'fontSize':
-                const fontSizePercentage = percentageFromValue(value, imageBoxDimensions.height);
-                updateTextItemField(textItem.id, 'fontSizePercentage', fontSizePercentage);
+                if (typeof value === 'number') {
+                    const fontSizePercentage = percentageFromValue(value, imageBoxDimensions.height);
+                    updateTextItemField(textItem.id, 'fontSizePercentage', fontSizePercentage);
+                }
                 break;
             case 'fontFamily':
                 updateTextItemField(textItem.id, 'fontFamily', value);
                 break;
             case 'letterSpacing':
-                const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
-                updateTextItemField(textItem.id, 'letterSpacingPercentage', letterSpacingPercentage);
+                if (typeof value === 'number') {
+                    const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
+                    updateTextItemField(textItem.id, 'letterSpacingPercentage', letterSpacingPercentage);
+                }
                 break;
             case 'wordSpacing':
-                const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
-                updateTextItemField(textItem.id, 'wordSpacingPercentage', wordSpacingPercentage);
+                if (typeof value === 'number') {
+                    const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
+                    updateTextItemField(textItem.id, 'wordSpacingPercentage', wordSpacingPercentage);
+                }
                 break;
             case 'linkTo':
                 updateTextItemField(textItem.id, 'linkTo', value);
@@ -136,27 +142,19 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         }
     }
 
-    const toggleBold = () => {
-        if (currentVersion.fontWeight === 'bold') {
-            updateTextItemField(textItem.id, 'fontWeight', 'normal');
+    const toggleTextFormat = (type: string, checkValue: string | boolean) => {
+        if (typeof checkValue === 'boolean') {
+            if (currentVersion[type]) {
+                updateTextItemField(textItem.id, type, false);
+            } else {
+                updateTextItemField(textItem.id, type, true);
+            }
         } else {
-            updateTextItemField(textItem.id, 'fontWeight', 'bold');
-        }
-    }
-
-    const toggleItalic = () => {
-        if (currentVersion.fontStyle === 'italic') {
-            updateTextItemField(textItem.id, 'fontStyle', 'normal');
-        } else {
-            updateTextItemField(textItem.id, 'fontStyle', 'italic');
-        }
-    }
-
-    const toggleLink = () => {
-        if (currentVersion.link) {
-            updateTextItemField(textItem.id, 'link', false);
-        } else {
-            updateTextItemField(textItem.id, 'link', true);
+            if (currentVersion[type] === checkValue) {
+                updateTextItemField(textItem.id, type, 'normal');
+            } else {
+                updateTextItemField(textItem.id, type, checkValue);
+            }
         }
     }
 
@@ -231,7 +229,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonInput
                     theme={theme}
-                    toggle={() => toggleLink()}
+                    toggle={() => toggleTextFormat('link', true)}
                     toggled={currentVersion.link}
                     icon={LinkIcon}
                     value={currentVersion.linkTo}
@@ -241,14 +239,14 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonToggle
                     theme={theme}
-                    toggle={() => toggleBold()}
+                    toggle={() => toggleTextFormat('fontWeight', 'bold')}
                     toggled={currentVersion.fontWeight === 'bold'}
                     icon={BoldIcon}
                 />
 
                 <ButtonToggle
                     theme={theme}
-                    toggle={() => toggleItalic()}
+                    toggle={() => toggleTextFormat('fontStyle', 'italic')}
                     toggled={currentVersion.fontStyle === 'italic'}
                     icon={ItalicIcon}
                 />
