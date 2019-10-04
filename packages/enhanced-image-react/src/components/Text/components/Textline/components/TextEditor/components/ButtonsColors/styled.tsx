@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextVideoEditorButtonsColors: any = styled.div`
+export const StyledButtonsColors: any = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
@@ -10,7 +10,8 @@ export const StyledTextVideoEditorButtonsColors: any = styled.div`
     place-content: center;
 `;
 
-export const StyledTextVideoEditorButtonColors: any = styled.div`
+
+export const StyledButtonColors: any = styled.div`
     background-color: ${(props: any) => {
         if (props.selected) {
             return props.theme.backgroundColorSecondary;
