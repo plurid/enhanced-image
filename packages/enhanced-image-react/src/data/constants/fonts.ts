@@ -12,6 +12,7 @@ export const selectableFonts = [
     'Lucida Console', 'Lucida Grande', 'Lucida Sans Unicode',
     'Monaco',
     'Tahoma', 'Times', 'Times New Roman', 'Trebuchet MS',
+    'Ubuntu',
     'Palatino', 'Palatino Linotype',
     'Verdana',
 ];
