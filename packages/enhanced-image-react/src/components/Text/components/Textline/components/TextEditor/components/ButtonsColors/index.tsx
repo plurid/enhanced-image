@@ -37,7 +37,7 @@ const ButtonsColors: React.FC<ButtonsColorsProperties> = (properties) => {
                         theme={theme}
                         color={color}
                         selected={color === selectedColor}
-                        onClick={changeValue('color', color)}
+                        onClick={() => changeValue('color', color)}
                     />
                 );
             })}
