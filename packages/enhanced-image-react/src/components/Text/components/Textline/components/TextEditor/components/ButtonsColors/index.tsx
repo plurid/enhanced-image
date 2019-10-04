@@ -1,45 +1,49 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
-    StyledTextVideoEditorButtonsColors,
-    StyledTextVideoEditorButtonColors,
+    StyledButtonsColors,
+    StyledButtonColors,
 } from './styled';
 
+import { Theme } from '@plurid/utilities.themes';
 
 
-const COLOR = 'color';
+
 const colors = [
     'black', 'red', 'white',
 ];
 
+interface ButtonsColorsProperties {
+    theme: Theme,
+    selectedColor: string,
+    changeValue: any;
+}
 
-class TextVideoEditorButtonsColors extends Component<any, any> {
-    public render() {
-        const {
-            theme,
-            colorValue,
-            changeValue,
-        } = this.props;
+const ButtonsColors: React.FC<ButtonsColorsProperties> = (properties) => {
+    const {
+        theme,
+        selectedColor,
+        changeValue
+    } = properties;
 
-        return (
-            <StyledTextVideoEditorButtonsColors
-                theme={theme}
-            >
-                {colors.map(color => {
-                    return (
-                        <StyledTextVideoEditorButtonColors
-                            key={color}
-                            theme={theme}
-                            color={color}
-                            colorValue={colorValue}
-                            onClick={changeValue.bind(this, COLOR, color)}
-                        />
-                    );
-                })}
-            </StyledTextVideoEditorButtonsColors>
-        );
-    }
+    return (
+        <StyledButtonsColors
+            theme={theme}
+        >
+            {colors.map(color => {
+                return (
+                    <StyledButtonColors
+                        key={color}
+                        theme={theme}
+                        color={color}
+                        selected={color === selectedColor}
+                        onClick={changeValue('color', color)}
+                    />
+                );
+            })}
+        </StyledButtonsColors>
+    );
 }
 
 
-export default TextVideoEditorButtonsColors;
+export default ButtonsColors;

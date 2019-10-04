@@ -275,8 +275,8 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
                 <ButtonsColors
                     theme={theme}
+                    selectedColor={currentVersion.color}
                     changeValue={updateField}
-                    color={currentVersion.color}
                 />
             </Drawer>
 
