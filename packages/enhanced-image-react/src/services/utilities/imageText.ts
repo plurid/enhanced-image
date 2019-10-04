@@ -44,6 +44,15 @@ export const updateVersion = (
 }
 
 
+export const imageURLFromSrc = (src: string) => {
+    if (src[0] === '/') {
+        return location.href + src;
+    }
+
+    return src;
+}
+
+
 // export const pushNewVersion = (imageText: any, version: any) => {
 //     const versionId = `tsi-text-${uuidv4()}`;
 

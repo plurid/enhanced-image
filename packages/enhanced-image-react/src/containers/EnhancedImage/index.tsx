@@ -47,6 +47,7 @@ import uuid from '../../services/utilities/uuid';
 import {
     getVersionById,
     updateVersion,
+    imageURLFromSrc,
 } from '../../services/utilities/imageText';
 
 import client from '../../services/graphql/client';
@@ -236,7 +237,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const getTextWithApiKey = async () => {
         try {
             const input = {
-                imageURL: src,
+                imageURL: imageURLFromSrc(src),
                 apiKey,
             };
             const query = await graphqlClient.current.query({
@@ -281,7 +282,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const getTextWithUserToken = async () => {
         try {
             const input = {
-                imageURL: src,
+                imageURL: imageURLFromSrc(src),
                 userToken,
             };
             const query = await graphqlClient.current.query({
@@ -325,7 +326,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const getTextWithImageID = async () => {
         try {
             const input = {
-                imageURL: src,
+                imageURL: imageURLFromSrc(src),
                 imageID,
             };
             const query = await graphqlClient.current.query({
@@ -419,7 +420,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const extractTextWithApiKey = async () => {
         try {
             const input = {
-                imageURL: src,
+                imageURL: imageURLFromSrc(src),
                 apiKey,
             };
             const mutation = await graphqlClient.current.mutate({
@@ -464,7 +465,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const extractTextWithUserToken = async () => {
         try {
             const input = {
-                imageURL: src,
+                imageURL: imageURLFromSrc(src),
                 userToken,
             };
             const mutation = await graphqlClient.current.mutate({
@@ -508,7 +509,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const extractTextWithImageID = async () => {
         try {
             const input = {
-                imageURL: src,
+                imageURL: imageURLFromSrc(src),
                 imageID,
             };
             const mutation = await graphqlClient.current.mutate({
