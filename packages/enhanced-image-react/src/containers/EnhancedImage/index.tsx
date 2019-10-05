@@ -429,7 +429,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     input,
                 },
             });
-            console.log(mutation);
+            // console.log(mutation);
 
             const data = mutation.data.enhancedImageExtractTextWithApiKey;
 
