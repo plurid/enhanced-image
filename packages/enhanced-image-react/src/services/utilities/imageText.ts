@@ -46,8 +46,7 @@ export const updateVersion = (
 
 export const imageURLFromSrc = (src: string) => {
     if (src[0] === '/') {
-        const origin = location.origin;
-        return origin.slice(0, origin.length - 1) + src;
+        return location.origin + src;
     }
 
     return src;
