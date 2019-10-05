@@ -236,8 +236,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     // GET TEXT
     const getTextWithApiKey = async () => {
         try {
-            console.log('_apiEndpoint');
-            console.log('imageURLFromSrc(src)', imageURLFromSrc(src));
             const input = {
                 imageURL: imageURLFromSrc(src),
                 apiKey,
@@ -272,7 +270,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             };
             return response;
         } catch (error) {
-            console.log(error);
             const response = {
                 status: false,
                 imageData: {},
