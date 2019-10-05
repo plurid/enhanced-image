@@ -9,6 +9,7 @@ export const StyledSettings = styled.div`
     display: grid;
     align-items: center;
     justify-items: right;
+    user-select: none;
 `;
 
 export const StyledSettingsButton = styled.div`

@@ -16,6 +16,8 @@ export const StyledSettingsMenu: any = styled.div`
     border-radius: 10px;
     transition: opacity 600ms linear;
     z-index: 9999;
+    user-select: none;
+
     background-color: ${(props: any) => {
         if (props.transparentUI) {
             return props.theme.backgroundColorPrimaryAlpha;
