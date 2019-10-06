@@ -64,3 +64,52 @@ export const EXTRACT_TEXT_WITH_IMAGE_ID = gql`
     }
     ${EnhancedImageDataFragment}
 `;
+
+
+
+export const SAVE_TEXT_WITH_API_KEY = gql`
+    mutation EnhancedImageSaveTextWithApiKey(
+        $input: InputEnhancedImageSaveTextWithApiKey!
+    ) {
+        enhancedImageSaveTextWithApiKey(input: $input) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+        }
+    }
+`;
+
+
+export const SAVE_TEXT_WITH_USER_TOKEN = gql`
+    mutation EnhancedImageSaveTextWithUserToken(
+        $input: InputEnhancedImageSaveTextWithUserToken!
+    ) {
+        enhancedImageSaveTextWithUserToken(input: $input) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+        }
+    }
+`;
+
+
+export const SAVE_TEXT_WITH_IMAGE_ID = gql`
+    mutation EnhancedImageSaveTextWithImageID(
+        $input: InputEnhancedImageSaveTextWithImageID!
+    ) {
+        enhancedImageSaveTextWithImageID(input: $input) {
+            status
+            errors {
+                path
+                message
+                type
+            }
+        }
+    }
+`;

@@ -60,6 +60,9 @@ import {
     EXTRACT_TEXT_WITH_API_KEY,
     EXTRACT_TEXT_WITH_USER_TOKEN,
     EXTRACT_TEXT_WITH_IMAGE_ID,
+    SAVE_TEXT_WITH_API_KEY,
+    SAVE_TEXT_WITH_USER_TOKEN,
+    SAVE_TEXT_WITH_IMAGE_ID,
 } from '../../services/graphql/mutate';
 
 import themes, { Theme } from '@plurid/utilities.themes';
@@ -229,8 +232,193 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setImageText(updatedTexts);
     }
 
-    const saveText = async () => {
 
+    // SAVE TEXT
+    const saveTextWithApiKey = async () => {
+        try {
+            const input = {
+                apiKey,
+                imageURL: imageURLFromSrc(src),
+                imageID,
+                imageText,
+            };
+            const mutation = await graphqlClient.current.mutate({
+                mutation: SAVE_TEXT_WITH_API_KEY,
+                variables: {
+                    input,
+                },
+            });
+            // console.log(mutation);
+
+            const data = mutation.data.enhancedImageSaveTextWithApiKey;
+
+            if (!data.status) {
+                const response = {
+                    status: false,
+                    imageData: {},
+                    error: REQUEST_ERRORS.BAD_REQUEST,
+                }
+                return response;
+            }
+
+            const {
+                imageData,
+            } = data;
+
+            const response = {
+                status: true,
+                imageData,
+                error: undefined,
+            };
+            return response;
+        } catch (error) {
+            const response = {
+                status: false,
+                imageData: {},
+                error: REQUEST_ERRORS.BAD_REQUEST,
+            }
+            return response;
+        }
+    }
+
+    const saveTextWithUserToken = async () => {
+        try {
+            const input = {
+                userToken,
+                imageURL: imageURLFromSrc(src),
+                imageID,
+                imageText,
+            };
+            const mutation = await graphqlClient.current.mutate({
+                mutation: SAVE_TEXT_WITH_USER_TOKEN,
+                variables: {
+                    input,
+                },
+            });
+
+            const data = mutation.data.enhancedImageSaveTextWithUserToken;
+
+            if (!data.status) {
+                const response = {
+                    status: false,
+                    imageData: {},
+                    error: REQUEST_ERRORS.BAD_REQUEST,
+                }
+                return response;
+            }
+
+            const {
+                imageData,
+            } = data;
+
+            const response = {
+                status: true,
+                imageData,
+                error: undefined,
+            };
+            return response;
+        } catch (error) {
+            const response = {
+                status: false,
+                imageData: {},
+                error: REQUEST_ERRORS.BAD_REQUEST,
+            }
+            return response;
+        }
+    }
+
+    const saveTextWithImageID = async () => {
+        try {
+            const input = {
+                imageID,
+                imageURL: imageURLFromSrc(src),
+                imageText,
+            };
+            const mutation = await graphqlClient.current.mutate({
+                mutation: SAVE_TEXT_WITH_IMAGE_ID,
+                variables: {
+                    input,
+                },
+            });
+
+            const data = mutation.data.enhancedImageSaveTextWithImageID;
+
+            if (!data.status) {
+                const response = {
+                    status: false,
+                    imageData: {},
+                    error: REQUEST_ERRORS.BAD_REQUEST,
+                }
+                return response;
+            }
+
+            const {
+                imageData,
+            } = data;
+
+            const response = {
+                status: true,
+                imageData,
+                error: undefined,
+            };
+            return response;
+        } catch (error) {
+            const response = {
+                status: false,
+                imageData: {},
+                error: REQUEST_ERRORS.BAD_REQUEST,
+            }
+            return response;
+        }
+    }
+
+    const handleSaveText = async () => {
+        if (apiKey) {
+            const response = await saveTextWithApiKey();
+            return response;
+        }
+
+        if (userToken) {
+            const response = await saveTextWithUserToken();
+            return response;
+        }
+
+        if (imageID) {
+            const response = await saveTextWithImageID();
+            return response;
+        }
+
+        const response = {
+            status: false,
+            imageData: {},
+            error: REQUEST_ERRORS.BAD_REQUEST,
+        }
+        return response;
+    }
+
+    const saveText = async () => {
+        setShowSpinner(true);
+        setMessage('Saving Text');
+
+        const {
+            status,
+            imageData,
+            error,
+        } = await handleSaveText();
+
+        if (error) {
+            setShowSpinner(false);
+            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            return;
+        }
+
+        if (status) {
+            setShowSpinner(false);
+            setMessageTimed('Text Saved', 2000);
+            setDatabaseImageID(imageData.imageID);
+            setImageText(imageData.imageText);
+            return;
+        }
     }
 
     // GET TEXT
