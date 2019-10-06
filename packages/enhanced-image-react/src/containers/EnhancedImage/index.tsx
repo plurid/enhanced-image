@@ -248,7 +248,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     input,
                 },
             });
-            // console.log(mutation);
+            console.log(mutation);
 
             const data = mutation.data.enhancedImageSaveTextWithApiKey;
 
@@ -415,11 +415,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Saved', 2000);
-            setDatabaseImageID(imageData.imageID);
-            setImageText(imageData.imageText);
+            console.log(imageData);
+            // setDatabaseImageID(imageData.imageID);
+            // setImageText(imageData.imageText);
             return;
         }
     }
+
 
     // GET TEXT
     const getTextWithApiKey = async () => {
@@ -434,7 +436,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     input,
                 },
             });
-            // console.log(query);
+            console.log('query', query);
 
             const data = query.data.enhancedImageGetTextWithApiKey;
 
@@ -458,6 +460,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             };
             return response;
         } catch (error) {
+            console.log(error);
             const response = {
                 status: false,
                 imageData: {},
@@ -603,6 +606,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             return;
         }
     }
+
 
     // EXTRACT TEXT
     const extractTextWithApiKey = async () => {
@@ -786,6 +790,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             return;
         }
     }
+
 
     const transviewText = async () => {
 
