@@ -78,8 +78,12 @@ export const SAVE_TEXT_WITH_API_KEY = gql`
                 message
                 type
             }
+            imageData {
+                ...EnhancedImage_EnhancedImageDataFragment
+            }
         }
     }
+    ${EnhancedImageDataFragment}
 `;
 
 
