@@ -114,8 +114,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [showSpinner, setShowSpinner] = useState(false);
     const [message, setMessage] = useState('');
 
-    const [showSettingsButton, setShowSettingsButton] = useState(false);
-    const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+    const [showSettingsButton, setShowSettingsButton] = useState(true);
+    const [showSettingsMenu, setShowSettingsMenu] = useState(true);
 
     const [expandTextDrawer, setExpandTextDrawer] = useState(false);
     const [expandColorDrawer, setExpandColorDrawer] = useState(false);
@@ -1101,12 +1101,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             >
                 <StyledEnhancedImage
                     theme={context.theme}
-                    onMouseEnter={() => setShowSettingsButton(true)}
-                    onMouseLeave={() => setShowSettingsButton(false)}
-                    onMouseMove={() => !showSettingsButton
-                        ? setShowSettingsButton(true)
-                        : null
-                    }
+                    // onMouseEnter={() => setShowSettingsButton(true)}
+                    // onMouseLeave={() => setShowSettingsButton(false)}
+                    // onMouseMove={() => !showSettingsButton
+                    //     ? setShowSettingsButton(true)
+                    //     : null
+                    // }
                     ref={imageContainer}
                 >
                     <Image />

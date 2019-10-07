@@ -17,6 +17,7 @@ export const StyledSettingsMenu: any = styled.div`
     transition: opacity 600ms linear;
     z-index: 9999;
     user-select: none;
+    box-sizing: border-box;
 
     background-color: ${(props: any) => {
         if (props.transparentUI) {
@@ -48,6 +49,7 @@ export const StyledSettingsMenu: any = styled.div`
 
     ul li {
         min-height: 32px;
+        box-sizing: border-box;
         color: ${props => props.theme.colorPrimary};
     }
 

@@ -9,6 +9,7 @@ export const StyledButtonCheckmark = styled.div`
     justify-content: space-between;
     padding: 7px 10px;
     height: 32px;
+    box-sizing: border-box;
 `;
 
 
