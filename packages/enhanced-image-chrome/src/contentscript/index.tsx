@@ -41,8 +41,8 @@ async function contentscript() {
                     return;
                 }
 
-                const height = image.offsetHeight;
-                const width = image.offsetWidth;
+                // const height = image.offsetHeight;
+                // const width = image.offsetWidth;
                 const src = image.src;
                 const alt = image.alt;
 
@@ -51,10 +51,11 @@ async function contentscript() {
                 const rootId = `root-enhanced-image-${i}`;
                 const root = document.createElement('div');
                 root.id = rootId;
+                root.style.cssText = 'margin: auto';
                 document.body.appendChild(root);
 
                 const { theme } = await chromeStorage.get('theme');
-                const { user } = await chromeStorage.get('user');
+                // const { user } = await chromeStorage.get('user');
 
                 ReactDOM.render(
                     <EnhancedImage
@@ -68,19 +69,6 @@ async function contentscript() {
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
-
-                // if (image.classList) {
-                //     enhancedImage.setAttribute('classes', image.classList + "");
-                // }
-
-                // enhancedImage.setAttribute('text-select', 'true');
-                // enhancedImage.setAttribute('no-about', 'true');
-                // enhancedImage.setAttribute('icon', 'textselect');
-
-                // // enhancedImage.setAttribute('styling', "width: 500px;");
-                // // console.log(enhancedImage);
-
-                // image.parentElement.replaceChild(enhancedImage, image);
             }
         }
     }
