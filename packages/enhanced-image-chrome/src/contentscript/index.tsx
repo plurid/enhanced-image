@@ -6,28 +6,29 @@ import { chromeStorage } from '../utils';
 
 
 
-async function contentscript() {
-    const isImage = (location: string) => {
-        let imagePage = false;
+const isImage = (location: string) => {
+    let imagePage = false;
 
-        const reFormats = /(\.png)|(\.jpe?g)|(\.gif)|(\.tif)|(\.svg)|(\.webp)$/;
-        imagePage = reFormats.test(location);
-        if (imagePage) {
-            return true;
-        }
-
-        const reBase64 = /^data:image/;
-        imagePage = reBase64.test(location);
-        if (imagePage) {
-            return true;
-        }
+    const reFormats = /(\.png)|(\.jpe?g)|(\.gif)|(\.tif)|(\.svg)|(\.webp)/;
+    imagePage = reFormats.test(location);
+    if (imagePage) {
+        return true;
     }
 
+    const reBase64 = /^data:image/;
+    imagePage = reBase64.test(location);
+    if (imagePage) {
+        return true;
+    }
+}
+
+async function contentscript() {
     const href = location.href;
 
     const { extensionOn } = await chromeStorage.get('extensionOn');
 
     if (!extensionOn) {
+        console.log('extension is off');
         return;
     }
 
