@@ -60,11 +60,11 @@ async function contentscript() {
                     <EnhancedImage
                         src={src}
                         alt={alt ? alt : ''}
-                        height={height}
-                        width={width}
-                        about={false}
+                        // height={height}
+                        // width={width}
+                        // about={false}
                         theme={theme || 'depict'}
-                        textFunctions={!!user}
+                        // textFunctions={!!user}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
