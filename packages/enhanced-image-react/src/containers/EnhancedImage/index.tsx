@@ -1107,6 +1107,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     //     ? setShowSettingsButton(true)
                     //     : null
                     // }
+                    style={{
+                        width: imageBoxDimensions.width !== 0 ? imageBoxDimensions.width + 'px' : '',
+                        height:  imageBoxDimensions.height !== 0 ? imageBoxDimensions.height + 'px' : '',
+                    }}
                     ref={imageContainer}
                 >
                     <Image />
