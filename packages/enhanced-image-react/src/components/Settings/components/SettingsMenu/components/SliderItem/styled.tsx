@@ -5,6 +5,8 @@ import styled from 'styled-components';
 export const StyledSliderItem = styled.div`
     padding: 7px 10px;
     height: 50px;
+    max-height: 50px;
+    box-sizing: border-box;
 `;
 
 
