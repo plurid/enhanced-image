@@ -3,7 +3,7 @@ import React, {
     useContext,
     useEffect,
 } from 'react';
-import themes from '@plurid/apps.utilities.themes';
+import themes from '@plurid/utilities.themes';
 
 import Context from '../../context';
 
