@@ -42,8 +42,8 @@ async function contentscript() {
                     return;
                 }
 
-                // const height = image.offsetHeight;
-                // const width = image.offsetWidth;
+                const height = image.offsetHeight;
+                const width = image.offsetWidth;
                 const src = image.src;
                 const alt = image.alt;
 
@@ -52,7 +52,7 @@ async function contentscript() {
                 const rootId = `root-enhanced-image-${i}`;
                 const root = document.createElement('div');
                 root.id = rootId;
-                root.style.cssText = 'margin: auto';
+                root.style.cssText = `margin: auto; height: ${height}px; width: ${width}px`;
                 document.body.appendChild(root);
 
                 const { theme } = await chromeStorage.get('theme');
