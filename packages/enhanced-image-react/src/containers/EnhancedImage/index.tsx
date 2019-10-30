@@ -65,7 +65,7 @@ import {
     SAVE_TEXT_WITH_IMAGE_ID,
 } from '../../services/graphql/mutate';
 
-import themes, { Theme } from '@plurid/utilities.themes';
+import themes, { Theme } from '@plurid/plurid-themes';
 
 
 
