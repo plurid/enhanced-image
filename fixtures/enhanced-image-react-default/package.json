@@ -6,7 +6,7 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "@plurid/enhanced-image-react": "^0.1.20",
+        "@plurid/enhanced-image-react": "^0.1.21",
         "graphql": "^14.5.8",
         "react": "^16.11.0",
         "react-dom": "^16.11.0",
