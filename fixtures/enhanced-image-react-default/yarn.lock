@@ -10,7 +10,7 @@
     ts-invariant "^0.4.4"
     tslib "^1.10.0"
 
-"@apollo/react-hooks@^3.1.2":
+"@apollo/react-hooks@^3.1.3":
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/@apollo/react-hooks/-/react-hooks-3.1.3.tgz#ad42c7af78e81fee0f30e53242640410d5bd0293"
   integrity sha512-reIRO9xKdfi+B4gT/o/hnXuopUnm7WED/ru8VQydPw+C/KG/05Ssg1ZdxFKHa3oxwiTUIDnevtccIH35POanbA==
@@ -1143,19 +1143,19 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@plurid/enhanced-image-react@^0.1.20":
-  version "0.1.20"
-  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.20.tgz#cc452c48df29a9dd19a1cf5f1729aab0b193c297"
-  integrity sha512-xzaPsMQYaLoZd1lEe3jtxVV9loo1FkaYJqhLJoPdOd+fzJVJYxLL2zfXfS9DzJEG3m6MSUUx/2FP1MDEpgJW6Q==
+"@plurid/enhanced-image-react@^0.1.21":
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.21.tgz#a31b8a82c9f1024d77904768ac58ba859620b348"
+  integrity sha512-bqdcrYcdqByoQhmV7LOn1yjqlRbiO8fZOX2G3o/HRkZtBlam4knrVzncfFPaAVNWtZLqE5fHUpVnrCpOvKD6mw==
   dependencies:
-    "@apollo/react-hooks" "^3.1.2"
-    "@plurid/utilities.themes" "^0.1.2"
+    "@apollo/react-hooks" "^3.1.3"
+    "@plurid/plurid-themes" "^0.1.0"
     apollo-boost "^0.4.4"
 
-"@plurid/utilities.themes@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@plurid/utilities.themes/-/utilities.themes-0.1.2.tgz#6ab76a71514d03c7a6c3b77f166596b0ba23eb3b"
-  integrity sha512-QNqTXFm6QXkKjqLgm+3gZRnIEH2oyhkAp9Q2AqxNhY3KVcSWA1BJVWR4eUgQKH2zu4ji4VMkQAUsVYbAo6p1yA==
+"@plurid/plurid-themes@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-themes/-/plurid-themes-0.1.0.tgz#aad3c518216a544d56fa93074b28abc2b4eddb09"
+  integrity sha512-Y5jMP99Jvg6bS5Q2yBN6FZXb9J47j8TvOCRxlsJ8y26+/pLkKAhxejEQzFOz4BMuS617XWOQDp0VcbiD/d7msQ==
 
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
