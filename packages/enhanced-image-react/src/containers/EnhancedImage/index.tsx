@@ -65,7 +65,9 @@ import {
     SAVE_TEXT_WITH_IMAGE_ID,
 } from '../../services/graphql/mutate';
 
-import themes, { Theme } from '@plurid/plurid-themes';
+import themes, {
+    Theme,
+} from '@plurid/plurid-themes';
 
 
 
@@ -114,8 +116,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [showSpinner, setShowSpinner] = useState(false);
     const [message, setMessage] = useState('');
 
-    const [showSettingsButton, setShowSettingsButton] = useState(true);
-    const [showSettingsMenu, setShowSettingsMenu] = useState(true);
+    const [showSettingsButton, setShowSettingsButton] = useState(false);
+    const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
     const [expandTextDrawer, setExpandTextDrawer] = useState(false);
     const [expandColorDrawer, setExpandColorDrawer] = useState(false);
@@ -1101,12 +1103,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             >
                 <StyledEnhancedImage
                     theme={context.theme}
-                    // onMouseEnter={() => setShowSettingsButton(true)}
-                    // onMouseLeave={() => setShowSettingsButton(false)}
-                    // onMouseMove={() => !showSettingsButton
-                    //     ? setShowSettingsButton(true)
-                    //     : null
-                    // }
+                    onMouseEnter={() => setShowSettingsButton(true)}
+                    onMouseLeave={() => setShowSettingsButton(false)}
+                    onMouseMove={() => !showSettingsButton
+                        ? setShowSettingsButton(true)
+                        : null
+                    }
                     style={{
                         width: imageBoxDimensions.width !== 0 ? imageBoxDimensions.width + 'px' : '',
                         height:  imageBoxDimensions.height !== 0 ? imageBoxDimensions.height + 'px' : '',
