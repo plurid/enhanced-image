@@ -7,10 +7,10 @@ import {
 
 
 export const GET_TEXT_WITH_API_KEY = gql`
-    query EnhancedImageGetTextWithApiKey(
-        $input: InputEnhancedImageGetTextWithApiKey!
+    query EnhancedImageGetTextWithAPIKey(
+        $input: InputEnhancedImageGetTextWithAPIKey!
     ) {
-        enhancedImageGetTextWithApiKey(input: $input) {
+        enhancedImageGetTextWithAPIKey(input: $input) {
             status
             errors {
                 path
