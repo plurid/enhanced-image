@@ -7,10 +7,10 @@ import {
 
 
 export const EXTRACT_TEXT_WITH_API_KEY = gql`
-    mutation EnhancedImageExtractTextWithApiKey(
-        $input: InputEnhancedImageExtractTextWithApiKey!
+    mutation EnhancedImageExtractTextWithAPIKey(
+        $input: InputEnhancedImageExtractTextWithAPIKey!
     ) {
-        enhancedImageExtractTextWithApiKey(input: $input) {
+        enhancedImageExtractTextWithAPIKey(input: $input) {
             status
             errors {
                 path
@@ -68,10 +68,10 @@ export const EXTRACT_TEXT_WITH_IMAGE_ID = gql`
 
 
 export const SAVE_TEXT_WITH_API_KEY = gql`
-    mutation EnhancedImageSaveTextWithApiKey(
-        $input: InputEnhancedImageSaveTextWithApiKey!
+    mutation EnhancedImageSaveTextWithAPIKey(
+        $input: InputEnhancedImageSaveTextWithAPIKey!
     ) {
-        enhancedImageSaveTextWithApiKey(input: $input) {
+        enhancedImageSaveTextWithAPIKey(input: $input) {
             status
             errors {
                 path
