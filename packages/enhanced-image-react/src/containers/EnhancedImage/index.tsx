@@ -28,6 +28,7 @@ import {
     ABOUT_URL,
     DEPICT_DOMAIN,
     REQUEST_ERRORS,
+    MESSAGE_TYPES,
 } from '../../data/constants';
 
 import {
@@ -51,19 +52,6 @@ import {
 } from '../../services/utilities/imageText';
 
 import client from '../../services/graphql/client';
-import {
-    GET_TEXT_WITH_API_KEY,
-    GET_TEXT_WITH_USER_TOKEN,
-    GET_TEXT_WITH_IMAGE_ID,
-} from '../../services/graphql/query';
-import {
-    EXTRACT_TEXT_WITH_API_KEY,
-    EXTRACT_TEXT_WITH_USER_TOKEN,
-    EXTRACT_TEXT_WITH_IMAGE_ID,
-    SAVE_TEXT_WITH_API_KEY,
-    SAVE_TEXT_WITH_USER_TOKEN,
-    SAVE_TEXT_WITH_IMAGE_ID,
-} from '../../services/graphql/mutate';
 
 import themes, {
     Theme,
@@ -251,7 +239,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'GET_TEXT_WITH_API_KEY',
+                type: MESSAGE_TYPES.GET_TEXT_WITH_API_KEY,
                 input,
             });
 
@@ -280,7 +268,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'GET_TEXT_WITH_USER_TOKEN',
+                type: MESSAGE_TYPES.GET_TEXT_WITH_USER_TOKEN,
                 input,
             });
         }
@@ -302,7 +290,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'GET_TEXT_WITH_IMAGE_ID',
+                type: MESSAGE_TYPES.GET_TEXT_WITH_IMAGE_ID,
                 input,
             });
         }
@@ -378,7 +366,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'EXTRACT_TEXT_WITH_API_KEY',
+                type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_API_KEY,
                 input,
             });
         }
@@ -400,7 +388,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'EXTRACT_TEXT_WITH_USER_TOKEN',
+                type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_USER_TOKEN,
                 input,
             });
         }
@@ -422,7 +410,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'EXTRACT_TEXT_WITH_IMAGE_ID',
+                type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_IMAGE_ID,
                 input,
             });
         }
