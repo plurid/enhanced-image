@@ -89,6 +89,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         apiKey,
         userToken,
         imageID,
+
+        sendMessage,
     } = properties;
 
     if (!src) {
@@ -427,13 +429,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     // GET TEXT
     const getTextWithApiKey = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                apiKey,
-            };
-            console.log(input);
+        const input = {
+            imageURL: imageURLFromSrc(src),
+            apiKey,
+        };
 
+        if (sendMessage) {
+            sendMessage({
+                type: 'GET_TEXT_WITH_API_KEY',
+                input,
+            });
+
+            const response = {
+                status: false,
+                imageData: {},
+                error: REQUEST_ERRORS.BAD_REQUEST,
+            }
+            return response;
+        }
+
+        try {
             const query = await graphqlClient.current.query({
                 query: GET_TEXT_WITH_API_KEY,
                 variables: {
@@ -465,7 +480,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             };
             return response;
         } catch (error) {
-            console.log(error);
             const response = {
                 status: false,
                 imageData: {},
