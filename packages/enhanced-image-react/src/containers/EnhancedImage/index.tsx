@@ -645,6 +645,21 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             const {
                 data,
             } = mutationResponse;
+            console.log(data);
+
+            if (data.imageText === []) {
+                console.log('empty');
+                const requery = await getTextWithApiKey();
+
+                if (requery.status) {
+                    const response = {
+                        status: true,
+                        imageData: requery.imageData,
+                        error: undefined,
+                    };
+                    return response;
+                }
+            }
 
             const response = {
                 status: true,
