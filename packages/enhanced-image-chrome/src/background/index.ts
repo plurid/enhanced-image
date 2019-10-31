@@ -1,4 +1,7 @@
-import { logic } from '@plurid/enhanced-image-react';
+import {
+    MESSAGE_TYPES,
+    logic,
+} from '@plurid/enhanced-image-react';
 
 
 
@@ -9,7 +12,7 @@ function backgroundMain() {
         contexts: ['image']
     }
 
-    chrome.runtime.onInstalled.addListener(function() {
+    chrome.runtime.onInstalled.addListener(() => {
         chrome.contextMenus.create(contextMenu);
     });
 
@@ -19,12 +22,39 @@ function backgroundMain() {
         }
     });
 
-
-    chrome.runtime.onMessage.addListener(function(request, sender) {
+    chrome.runtime.onMessage.addListener((request, sender) => {
         console.log(request.message);
         switch (request.message.type) {
-            case 'A':
+            case MESSAGE_TYPES.GET_TEXT_WITH_API_KEY:
                 // logic.getTextWithAPIKey();
+                break;
+            case MESSAGE_TYPES.GET_TEXT_WITH_USER_TOKEN:
+                // logic.getTextWithUserToken();
+                break;
+            case MESSAGE_TYPES.GET_TEXT_WITH_IMAGE_ID:
+                // logic.getTextWithImageID();
+                break;
+
+            case MESSAGE_TYPES.EXTRACT_TEXT_WITH_API_KEY:
+                // logic.extractTextWithAPIKey();
+                break;
+            case MESSAGE_TYPES.EXTRACT_TEXT_WITH_USER_TOKEN:
+                // logic.extractTextWithUserToken();
+                break;
+            case MESSAGE_TYPES.EXTRACT_TEXT_WITH_IMAGE_ID:
+                // logic.extractTextWithImageID();
+                break;
+
+            case MESSAGE_TYPES.SAVE_TEXT_WITH_API_KEY:
+                // logic.saveTextWithAPIKey();
+                break;
+            case MESSAGE_TYPES.SAVE_TEXT_WITH_USER_TOKEN:
+                // logic.saveTextWithUserToken();
+                break;
+            case MESSAGE_TYPES.SAVE_TEXT_WITH_IMAGE_ID:
+                // logic.saveTextWithImageID();
+                break;
+
             default:
                 return;
         }
