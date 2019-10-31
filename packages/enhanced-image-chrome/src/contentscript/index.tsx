@@ -34,7 +34,6 @@ async function contentscript() {
 
     if (isImage(href)) {
         const imagesArray = Array.from(document.images);
-        console.log(imagesArray);
 
         for (let i = 0; i < imagesArray.length; i++) {
             const image = imagesArray[i];
