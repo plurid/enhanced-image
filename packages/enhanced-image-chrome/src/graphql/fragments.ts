@@ -19,7 +19,7 @@ export const DepictProductAccessFragment = gql`
             active
             start
             end
-            type
+            plan
         }
         trial {
             active

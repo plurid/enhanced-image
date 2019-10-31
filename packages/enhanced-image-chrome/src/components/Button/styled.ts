@@ -11,7 +11,7 @@ export const StyledButton: any = styled.div`
             return props.theme.colorPrimary;
         }};
         box-shadow: 0px 5px 5px 0px ${(props: any) => {
-            return props.theme.shadow;
+            return props.theme.boxShadowUmbraColor;
         }};
         cursor: pointer;
         user-select: none;
@@ -36,20 +36,20 @@ export const StyledButton: any = styled.div`
             return props.theme.backgroundColorSecondary;
         }} !important;
         box-shadow: 0px 3px 3px 0px ${(props: any) => {
-            return props.theme.shadow;
+            return props.theme.boxShadowUmbraColor;
         }} !important;
     }
 
     button:active {
         box-shadow: 0px 1px 1px 0px ${(props: any) => {
-            return props.theme.shadow;
+            return props.theme.boxShadowUmbraColor;
         }} !important;
     }
 
     button:disabled {
         opacity: 0.5;
         box-shadow: 0px 5px 5px 0px ${(props: any) => {
-            return props.theme.shadow;
+            return props.theme.boxShadowUmbraColor;
         }} !important;
         cursor: none;
     }

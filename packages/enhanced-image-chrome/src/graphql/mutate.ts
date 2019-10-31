@@ -13,16 +13,21 @@ export const LOGIN_BY_USERNAME = gql`
             password: $password
         ) {
             status
-            user {
-                id
-                username
-                products {
-                    ...DepictProductFragment
+            data {
+                user {
+                    id
+                    username
+                    products {
+                        ...DepictProductFragment
+                    }
                 }
+                token
+                refreshToken
             }
             errors {
                 path
                 message
+                type
             }
         }
     }
@@ -37,16 +42,21 @@ export const LOGIN_BY_EMAIL = gql`
             password: $password
         ) {
             status
-            user {
-                id
-                username
-                products {
-                    ...DepictProductFragment
+            data {
+                user {
+                    id
+                    username
+                    products {
+                        ...DepictProductFragment
+                    }
                 }
+                token
+                refreshToken
             }
             errors {
                 path
                 message
+                type
             }
         }
     }

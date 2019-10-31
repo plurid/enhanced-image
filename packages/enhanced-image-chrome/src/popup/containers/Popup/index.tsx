@@ -100,7 +100,7 @@ const Popup: React.FC<any> = (properties) => {
             await chromeStorage.remove('user');
 
             await client.mutate({
-                mutation: LOGOUT
+                mutation: LOGOUT,
             });
         } catch (err) {
         }
