@@ -6,6 +6,15 @@ import { chromeStorage } from '../utilities';
 
 
 
+const sendMessage = (message: any) => {
+    chrome.runtime.sendMessage({message});
+}
+
+chrome.runtime.onMessage.addListener(function(request, sender) {
+    console.log(request.message);
+});
+
+
 const isImage = (location: string) => {
     let imagePage = false;
 
@@ -71,6 +80,7 @@ async function contentscript() {
 
                         // userToken={token}
                         // textFunctions={!!user}
+                        sendMessage={sendMessage}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );

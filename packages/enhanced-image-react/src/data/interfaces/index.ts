@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import themes, { Theme } from '@plurid/utilities.themes';
+import themes, { Theme } from '@plurid/plurid-themes';
 
 import {
     ImageText,
@@ -54,6 +54,7 @@ export interface EnhancedImageProperties {
     // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
+    sendMessage?: any;
 }
 
 
