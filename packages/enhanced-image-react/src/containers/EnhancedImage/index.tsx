@@ -69,6 +69,8 @@ import themes, {
     Theme,
 } from '@plurid/plurid-themes';
 
+import logic from '../../logic';
+
 
 
 const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
@@ -235,6 +237,319 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const updatedTexts = [...imageText, newText];
         setImageText(updatedTexts);
     }
+
+
+
+    // GET TEXT
+    const getTextWithApiKey = async (
+        apiKey: string,
+    ) => {
+        const input = {
+            imageURL: imageURLFromSrc(src),
+            apiKey,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'GET_TEXT_WITH_API_KEY',
+                input,
+            });
+
+            const response = {
+                status: false,
+                data: {},
+                error: REQUEST_ERRORS.BAD_REQUEST,
+            }
+            return response;
+        }
+
+        const response = await logic.getTextWithAPIKey(
+            input,
+            graphqlClient.current,
+        );
+        return response;
+    }
+
+    const getTextWithUserToken = async (
+        userToken: string,
+    ) => {
+        const input = {
+            imageURL: imageURLFromSrc(src),
+            userToken,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'GET_TEXT_WITH_USER_TOKEN',
+                input,
+            });
+        }
+
+        const response = await logic.getTextWithUserToken(
+            input,
+            graphqlClient.current,
+        );
+        return response;
+    }
+
+    const getTextWithImageID = async (
+        imageID: string,
+    ) => {
+        const input = {
+            imageURL: imageURLFromSrc(src),
+            imageID,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'GET_TEXT_WITH_IMAGE_ID',
+                input,
+            });
+        }
+
+        const response = await logic.getTextWithImageID(
+            input,
+            graphqlClient.current,
+        );
+        return response;
+    }
+
+    const handleGetText = async () => {
+        if (apiKey) {
+            return await getTextWithApiKey(apiKey);
+        }
+
+        if (userToken) {
+            return await getTextWithUserToken(userToken);
+        }
+
+        if (imageID) {
+            return await getTextWithImageID(imageID);
+        }
+
+        const response = {
+            status: false,
+            data: {},
+            error: REQUEST_ERRORS.BAD_REQUEST,
+        }
+        return response;
+    }
+
+    const getText = async () => {
+        setShowSpinner(true);
+        setMessage('Fetching Text');
+
+        const {
+            status,
+            data,
+            error,
+        } = await handleGetText();
+
+        if (error) {
+            if (error === REQUEST_ERRORS.NOT_FOUND) {
+                setShowSpinner(false);
+                setMessageTimed('Image Not Found. Extract or Add the Text.', 4000);
+                return;
+            }
+            setShowSpinner(false);
+            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            return;
+        }
+
+        if (status) {
+            setShowSpinner(false);
+            setMessageTimed('Text Rendered', 2000);
+            setDatabaseImageID(data.imageID);
+            setImageText(data.imageText);
+            return;
+        }
+    }
+
+
+
+    // EXTRACT TEXT
+    const extractTextWithApiKey = async () => {
+        try {
+            const input = {
+                imageURL: imageURLFromSrc(src),
+                apiKey,
+            };
+            const mutation = await graphqlClient.current.mutate({
+                mutation: EXTRACT_TEXT_WITH_API_KEY,
+                variables: {
+                    input,
+                },
+            });
+            console.log(mutation);
+
+            const mutationResponse = mutation.data.enhancedImageExtractTextWithAPIKey;
+
+            if (!mutationResponse.status) {
+                const response = {
+                    status: false,
+                    imageData: {},
+                    error: REQUEST_ERRORS.BAD_REQUEST,
+                }
+                return response;
+            }
+
+            const {
+                data,
+            } = mutationResponse;
+
+            const response = {
+                status: true,
+                imageData: data,
+                error: undefined,
+            };
+            return response;
+        } catch (error) {
+            const response = {
+                status: false,
+                imageData: {},
+                error: REQUEST_ERRORS.BAD_REQUEST,
+            }
+            return response;
+        }
+    }
+
+    const extractTextWithUserToken = async () => {
+        try {
+            const input = {
+                imageURL: imageURLFromSrc(src),
+                userToken,
+            };
+            const mutation = await graphqlClient.current.mutate({
+                mutation: EXTRACT_TEXT_WITH_USER_TOKEN,
+                variables: {
+                    input,
+                },
+            });
+
+            const data = mutation.data.enhancedImageExtractTextWithUserToken;
+
+            if (!data.status) {
+                const response = {
+                    status: false,
+                    imageData: {},
+                    error: REQUEST_ERRORS.BAD_REQUEST,
+                }
+                return response;
+            }
+
+            const {
+                imageData,
+            } = data;
+
+            const response = {
+                status: true,
+                imageData,
+                error: undefined,
+            };
+            return response;
+        } catch (error) {
+            const response = {
+                status: false,
+                imageData: {},
+                error: REQUEST_ERRORS.BAD_REQUEST,
+            }
+            return response;
+        }
+    }
+
+    const extractTextWithImageID = async () => {
+        try {
+            const input = {
+                imageURL: imageURLFromSrc(src),
+                imageID,
+            };
+            const mutation = await graphqlClient.current.mutate({
+                mutation: EXTRACT_TEXT_WITH_IMAGE_ID,
+                variables: {
+                    input,
+                },
+            });
+
+            const data = mutation.data.enhancedImageExtractTextWithImageID;
+
+            if (!data.status) {
+                const response = {
+                    status: false,
+                    imageData: {},
+                    error: REQUEST_ERRORS.BAD_REQUEST,
+                }
+                return response;
+            }
+
+            const {
+                imageData,
+            } = data;
+
+            const response = {
+                status: true,
+                imageData,
+                error: undefined,
+            };
+            return response;
+        } catch (error) {
+            const response = {
+                status: false,
+                imageData: {},
+                error: REQUEST_ERRORS.BAD_REQUEST,
+            }
+            return response;
+        }
+    }
+
+    const handleExtractText = async () => {
+        if (apiKey) {
+            const response = await extractTextWithApiKey();
+            return response;
+        }
+
+        if (userToken) {
+            const response = await extractTextWithUserToken();
+            return response;
+        }
+
+        if (imageID) {
+            const response = await extractTextWithImageID();
+            return response;
+        }
+
+        const response = {
+            status: false,
+            imageData: {},
+            error: REQUEST_ERRORS.BAD_REQUEST,
+        }
+        return response;
+    }
+
+    const extractText = async () => {
+        setShowSpinner(true);
+        setMessage('Extracting Text');
+
+        const {
+            status,
+            imageData,
+            error,
+        } = await handleExtractText();
+
+        if (error) {
+            setShowSpinner(false);
+            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            return;
+        }
+
+        if (status) {
+            setShowSpinner(false);
+            setMessageTimed('Text Extracted and Rendered', 2000);
+            setDatabaseImageID(imageData.imageID);
+            setImageText(imageData.imageText);
+            return;
+        }
+    }
+
 
 
     // SAVE TEXT
@@ -426,411 +741,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         }
     }
 
-
-    // GET TEXT
-    const getTextWithApiKey = async () => {
-        const input = {
-            imageURL: imageURLFromSrc(src),
-            apiKey,
-        };
-
-        if (sendMessage) {
-            sendMessage({
-                type: 'GET_TEXT_WITH_API_KEY',
-                input,
-            });
-
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
-        }
-
-        try {
-            const query = await graphqlClient.current.query({
-                query: GET_TEXT_WITH_API_KEY,
-                variables: {
-                    input,
-                },
-            });
-            console.log(query);
-
-            const queryResponse = query.data.enhancedImageGetTextWithAPIKey;
-
-            if (!queryResponse.status) {
-                const error = queryResponse.errors[0];
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: error.type,
-                };
-                return response;
-            }
-
-            const {
-                data,
-            } = queryResponse;
-
-            const response = {
-                status: true,
-                imageData: data,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
-        }
-    }
-
-    const getTextWithUserToken = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                userToken,
-            };
-            const query = await graphqlClient.current.query({
-                query: GET_TEXT_WITH_USER_TOKEN,
-                variables: {
-                    input,
-                },
-            });
-
-            const queryResponse = query.data.enhancedImageGetTextWithUserToken;
-
-            if (!queryResponse.status) {
-                const error = queryResponse.errors[0];
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: error.type,
-                };
-                return response;
-            }
-
-            const {
-                data,
-            } = queryResponse;
-
-            const response = {
-                status: true,
-                imageData: data,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
-        }
-    }
-
-    const getTextWithImageID = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                imageID,
-            };
-            const query = await graphqlClient.current.query({
-                query: GET_TEXT_WITH_IMAGE_ID,
-                variables: {
-                    input,
-                },
-            });
-
-            const queryResponse = query.data.enhancedImageGetTextWithImageID;
-
-            if (!queryResponse.status) {
-                const error = queryResponse.errors[0];
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: error.type,
-                };
-                return response;
-            }
-
-            const {
-                data,
-            } = queryResponse;
-
-            const response = {
-                status: true,
-                imageData: data,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
-        }
-    }
-
-    const handleGetText = async () => {
-        if (apiKey) {
-            const response = await getTextWithApiKey();
-            return response;
-        }
-
-        if (userToken) {
-            const response = await getTextWithUserToken();
-            return response;
-        }
-
-        if (imageID) {
-            const response = await getTextWithImageID();
-            return response;
-        }
-
-        const response = {
-            status: false,
-            imageData: {},
-            error: REQUEST_ERRORS.BAD_REQUEST,
-        }
-        return response;
-    }
-
-    const getText = async () => {
-        setShowSpinner(true);
-        setMessage('Fetching Text');
-
-        const {
-            status,
-            imageData,
-            error,
-        } = await handleGetText();
-
-        if (error) {
-            if (error === REQUEST_ERRORS.NOT_FOUND) {
-                setShowSpinner(false);
-                setMessageTimed('Image Not Found. Extract or Add the Text.', 4000);
-                return;
-            }
-            setShowSpinner(false);
-            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
-            return;
-        }
-
-        if (status) {
-            setShowSpinner(false);
-            setMessageTimed('Text Rendered', 2000);
-            setDatabaseImageID(imageData.imageID);
-            setImageText(imageData.imageText);
-            return;
-        }
-    }
-
-
-    // EXTRACT TEXT
-    const extractTextWithApiKey = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                apiKey,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: EXTRACT_TEXT_WITH_API_KEY,
-                variables: {
-                    input,
-                },
-            });
-            console.log(mutation);
-
-            const mutationResponse = mutation.data.enhancedImageExtractTextWithAPIKey;
-
-            if (!mutationResponse.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                data,
-            } = mutationResponse;
-            console.log(data);
-
-            if (data.imageText === []) {
-                console.log('empty');
-                const requery = await getTextWithApiKey();
-
-                if (requery.status) {
-                    const response = {
-                        status: true,
-                        imageData: requery.imageData,
-                        error: undefined,
-                    };
-                    return response;
-                }
-            }
-
-            const response = {
-                status: true,
-                imageData: data,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
-        }
-    }
-
-    const extractTextWithUserToken = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                userToken,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: EXTRACT_TEXT_WITH_USER_TOKEN,
-                variables: {
-                    input,
-                },
-            });
-
-            const data = mutation.data.enhancedImageExtractTextWithUserToken;
-
-            if (!data.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                imageData,
-            } = data;
-
-            const response = {
-                status: true,
-                imageData,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
-        }
-    }
-
-    const extractTextWithImageID = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                imageID,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: EXTRACT_TEXT_WITH_IMAGE_ID,
-                variables: {
-                    input,
-                },
-            });
-
-            const data = mutation.data.enhancedImageExtractTextWithImageID;
-
-            if (!data.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                imageData,
-            } = data;
-
-            const response = {
-                status: true,
-                imageData,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
-        }
-    }
-
-    const handleExtractText = async () => {
-        if (apiKey) {
-            const response = await extractTextWithApiKey();
-            return response;
-        }
-
-        if (userToken) {
-            const response = await extractTextWithUserToken();
-            return response;
-        }
-
-        if (imageID) {
-            const response = await extractTextWithImageID();
-            return response;
-        }
-
-        const response = {
-            status: false,
-            imageData: {},
-            error: REQUEST_ERRORS.BAD_REQUEST,
-        }
-        return response;
-    }
-
-    const extractText = async () => {
-        setShowSpinner(true);
-        setMessage('Extracting Text');
-
-        const {
-            status,
-            imageData,
-            error,
-        } = await handleExtractText();
-
-        if (error) {
-            setShowSpinner(false);
-            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
-            return;
-        }
-
-        if (status) {
-            setShowSpinner(false);
-            setMessageTimed('Text Extracted and Rendered', 2000);
-            setDatabaseImageID(imageData.imageID);
-            setImageText(imageData.imageText);
-            return;
-        }
-    }
 
 
     const transviewText = async () => {
