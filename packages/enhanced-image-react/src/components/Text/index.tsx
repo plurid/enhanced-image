@@ -36,7 +36,7 @@ const Text: React.FC<any> = () => {
         flipVertical,
     } = context;
 
-    console.log('imageText from Text', imageText);
+    // console.log('imageText from Text', imageText);
 
     const [transform, setTransform] = useState('');
 
