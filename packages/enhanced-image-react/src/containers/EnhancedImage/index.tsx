@@ -432,6 +432,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 imageURL: imageURLFromSrc(src),
                 apiKey,
             };
+            console.log(input);
+
             const query = await graphqlClient.current.query({
                 query: GET_TEXT_WITH_API_KEY,
                 variables: {
