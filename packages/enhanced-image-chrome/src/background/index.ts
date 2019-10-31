@@ -3,6 +3,8 @@ import {
     logic,
 } from '@plurid/enhanced-image-react';
 
+import client from '../graphql/client';
+
 
 
 function backgroundMain() {
@@ -22,38 +24,89 @@ function backgroundMain() {
         }
     });
 
-    chrome.runtime.onMessage.addListener((request, sender) => {
+    chrome.runtime.onMessage.addListener(async (request, sender) => {
         console.log(request.message);
-        switch (request.message.type) {
+        const {
+            type,
+            input,
+        } = request.message;
+
+        switch (type) {
             case MESSAGE_TYPES.GET_TEXT_WITH_API_KEY:
-                // logic.getTextWithAPIKey();
-                break;
+                {
+                    const response = await logic.getTextWithAPIKey(
+                        input,
+                        client,
+                    );
+                    console.log(response);
+                    break;
+                }
             case MESSAGE_TYPES.GET_TEXT_WITH_USER_TOKEN:
-                // logic.getTextWithUserToken();
-                break;
+                {
+                    const response = await logic.getTextWithUserToken(
+                        input,
+                        client,
+                    );
+                    break;
+                }
             case MESSAGE_TYPES.GET_TEXT_WITH_IMAGE_ID:
-                // logic.getTextWithImageID();
-                break;
+                {
+                    const response = await logic.getTextWithImageID(
+                        input,
+                        client,
+                    );
+                    break;
+                }
 
             case MESSAGE_TYPES.EXTRACT_TEXT_WITH_API_KEY:
-                // logic.extractTextWithAPIKey();
-                break;
+                {
+                    const response = await logic.extractTextWithAPIKey(
+                        input,
+                        client,
+                    );
+                    break;
+                }
             case MESSAGE_TYPES.EXTRACT_TEXT_WITH_USER_TOKEN:
-                // logic.extractTextWithUserToken();
-                break;
+                {
+                    const response = await logic.extractTextWithUserToken(
+                        input,
+                        client,
+                    );
+                    break;
+                }
             case MESSAGE_TYPES.EXTRACT_TEXT_WITH_IMAGE_ID:
-                // logic.extractTextWithImageID();
-                break;
+                {
+                    const response = await logic.extractTextWithImageID(
+                        input,
+                        client,
+                    );
+                    break;
+                }
 
             case MESSAGE_TYPES.SAVE_TEXT_WITH_API_KEY:
-                // logic.saveTextWithAPIKey();
-                break;
+                {
+                    const response = await logic.saveTextWithAPIKey(
+                        input,
+                        client,
+                    );
+                    break;
+                }
             case MESSAGE_TYPES.SAVE_TEXT_WITH_USER_TOKEN:
-                // logic.saveTextWithUserToken();
-                break;
+                {
+                    const response = await logic.saveTextWithUserToken(
+                        input,
+                        client,
+                    );
+                    break;
+                }
             case MESSAGE_TYPES.SAVE_TEXT_WITH_IMAGE_ID:
-                // logic.saveTextWithImageID();
-                break;
+                {
+                    const response = await logic.saveTextWithImageID(
+                        input,
+                        client,
+                    );
+                    break;
+                }
 
             default:
                 return;
