@@ -17,7 +17,7 @@ export const EXTRACT_TEXT_WITH_API_KEY = gql`
                 message
                 type
             }
-            imageData {
+            data {
                 ...EnhancedImage_EnhancedImageDataFragment
             }
         }
@@ -37,7 +37,7 @@ export const EXTRACT_TEXT_WITH_USER_TOKEN = gql`
                 message
                 type
             }
-            imageData {
+            data {
                 ...EnhancedImage_EnhancedImageDataFragment
             }
         }
@@ -57,7 +57,7 @@ export const EXTRACT_TEXT_WITH_IMAGE_ID = gql`
                 message
                 type
             }
-            imageData {
+            data {
                 ...EnhancedImage_EnhancedImageDataFragment
             }
         }
@@ -78,7 +78,7 @@ export const SAVE_TEXT_WITH_API_KEY = gql`
                 message
                 type
             }
-            imageData {
+            data {
                 ...EnhancedImage_EnhancedImageDataFragment
             }
         }
@@ -98,6 +98,9 @@ export const SAVE_TEXT_WITH_USER_TOKEN = gql`
                 message
                 type
             }
+            data {
+                ...EnhancedImage_EnhancedImageDataFragment
+            }
         }
     }
 `;
@@ -113,6 +116,9 @@ export const SAVE_TEXT_WITH_IMAGE_ID = gql`
                 path
                 message
                 type
+            }
+            data {
+                ...EnhancedImage_EnhancedImageDataFragment
             }
         }
     }

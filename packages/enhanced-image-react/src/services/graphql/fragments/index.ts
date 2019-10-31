@@ -27,7 +27,7 @@ export const EnhancedImageDataFragment = gql`
                     fontFamily
                     fontSizePercentage
                     letterSpacingPercentage
-                    lineHeight
+                    lineHeightPercentage
                     wordSpacingPercentage
 
                     content
