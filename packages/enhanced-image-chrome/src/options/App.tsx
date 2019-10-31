@@ -5,7 +5,7 @@ import Context from './context';
 
 import Options from './containers/Options';
 
-import { chromeStorage } from '../utils';
+import { chromeStorage } from '../utilities';
 
 
 
