@@ -1,3 +1,7 @@
+import { logic } from '@plurid/enhanced-image-react';
+
+
+
 function backgroundMain() {
     const contextMenu = {
         id: 'enhanced-image',
@@ -18,6 +22,12 @@ function backgroundMain() {
 
     chrome.runtime.onMessage.addListener(function(request, sender) {
         console.log(request.message);
+        switch (request.message.type) {
+            case 'A':
+                // logic.getTextWithAPIKey();
+            default:
+                return;
+        }
     });
 }
 
