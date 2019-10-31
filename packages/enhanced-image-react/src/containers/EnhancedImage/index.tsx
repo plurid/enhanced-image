@@ -438,6 +438,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     input,
                 },
             });
+            console.log(query);
 
             const queryResponse = query.data.enhancedImageGetTextWithAPIKey;
 

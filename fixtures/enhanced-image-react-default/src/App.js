@@ -23,8 +23,8 @@ class App extends Component {
                         // apiEndpoint="http://192.168.1.2:3360/graphql"
                         // imageStyle={ { width: '300px' } }
                         transparentUI={true}
-                        // apiKey="depict_228d11d4cfcf128a17ee61da"
-                        userToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM2NDdjM2E2Yzg1NGQ1ZmJmOTRlYjQ4ZmViMjZjNDkiLCJ1c2VybmFtZSI6ImNhdmVsamFuIn0sImlhdCI6MTU3MjUyNDYxMSwiZXhwIjoxNTcyNTI4MjExLCJpc3MiOiJsb2NhbGhvc3QifQ.chFDZGq5uWKd5nI0Mr1wr-eQxuhhLJEDvNYW2nISf3E"
+                        apiKey="depict_228d11d4cfcf128a17ee61da"
+                        // userToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM2NDdjM2E2Yzg1NGQ1ZmJmOTRlYjQ4ZmViMjZjNDkiLCJ1c2VybmFtZSI6ImNhdmVsamFuIn0sImlhdCI6MTU3MjUyNDYxMSwiZXhwIjoxNTcyNTI4MjExLCJpc3MiOiJsb2NhbGhvc3QifQ.chFDZGq5uWKd5nI0Mr1wr-eQxuhhLJEDvNYW2nISf3E"
                         depictImageID=""
                     />
                 </div>
