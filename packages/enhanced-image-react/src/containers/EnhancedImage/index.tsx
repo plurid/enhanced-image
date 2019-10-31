@@ -462,6 +462,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             };
             return response;
         } catch (error) {
+            console.log(error);
             const response = {
                 status: false,
                 imageData: {},
