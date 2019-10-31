@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-// import foodImage from './assets/food-vegetables-text.jpg';
-import populationDensityEurope from './assets/population-density-europe.png';
+import foodImage from './assets/food-vegetables-text.jpg';
+// import populationDensityEurope from './assets/population-density-europe.png';
 
 import EnhancedImage from '@plurid/enhanced-image-react';
 
@@ -15,8 +15,8 @@ class App extends Component {
                     style={ {width: 900, margin: '150px auto'} }
                 >
                     <EnhancedImage
-                        // src={foodImage}
-                        src={populationDensityEurope}
+                        src={foodImage}
+                        // src={populationDensityEurope}
                         alt="food"
                         // theme="night"
                         // apiEndpoint="https://api.plurid.dev/graphql"
