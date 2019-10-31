@@ -156,6 +156,12 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
 
             if (response.data.user.products !== null) {
                 if (response.data.user.products.depict !== null) {
+                    // console.log('chrome.cookies');
+                    // console.log(chrome.cookies.get());
+                    // chrome.cookies.get({'url': 'https://plurid.com', 'name': 'token'}, function(cookie) {
+                    //     console.log(cookie.value);
+                    // });
+
                     setLoggedInUser(response.data.user);
                     cancelLoginView();
                 }
