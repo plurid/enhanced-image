@@ -17,7 +17,7 @@ export const GET_TEXT_WITH_API_KEY = gql`
                 message
                 type
             }
-            imageData {
+            data {
                 ...EnhancedImage_EnhancedImageDataFragment
             }
         }
@@ -37,7 +37,7 @@ export const GET_TEXT_WITH_USER_TOKEN = gql`
                 message
                 type
             }
-            imageData {
+            data {
                 ...EnhancedImage_EnhancedImageDataFragment
             }
         }
@@ -57,7 +57,7 @@ export const GET_TEXT_WITH_IMAGE_ID = gql`
                 message
                 type
             }
-            imageData {
+            data {
                 ...EnhancedImage_EnhancedImageDataFragment
             }
         }

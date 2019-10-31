@@ -452,12 +452,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             }
 
             const {
-                imageData,
+                data,
             } = queryResponse;
 
             const response = {
                 status: true,
-                imageData,
+                imageData: data,
                 error: undefined,
             };
             return response;
@@ -497,12 +497,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             }
 
             const {
-                imageData,
+                data,
             } = queryResponse;
 
             const response = {
                 status: true,
-                imageData,
+                imageData: data,
                 error: undefined,
             };
             return response;
@@ -542,12 +542,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             }
 
             const {
-                imageData,
+                data,
             } = queryResponse;
 
             const response = {
                 status: true,
-                imageData,
+                imageData: data,
                 error: undefined,
             };
             return response;
@@ -629,11 +629,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     input,
                 },
             });
-            // console.log(mutation);
+            console.log(mutation);
 
-            const data = mutation.data.enhancedImageExtractTextWithApiKey;
+            const mutationResponse = mutation.data.enhancedImageExtractTextWithAPIKey;
 
-            if (!data.status) {
+            if (!mutationResponse.status) {
                 const response = {
                     status: false,
                     imageData: {},
@@ -643,12 +643,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             }
 
             const {
-                imageData,
-            } = data;
+                data,
+            } = mutationResponse;
 
             const response = {
                 status: true,
-                imageData,
+                imageData: data,
                 error: undefined,
             };
             return response;
