@@ -29,6 +29,7 @@ interface LoginViewProps {
     theme: any;
     cancelLoginView: () => void;
     setLoggedInUser: (user: any) => any;
+    setUserToken: (token: string) => void;
 }
 
 
@@ -50,6 +51,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
         theme,
         cancelLoginView,
         setLoggedInUser,
+        setUserToken,
     } = props;
 
     useEffect(() => {
@@ -163,6 +165,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                     // });
 
                     setLoggedInUser(response.data.user);
+                    setUserToken(response.data.token);
                     cancelLoginView();
                 }
             } else {

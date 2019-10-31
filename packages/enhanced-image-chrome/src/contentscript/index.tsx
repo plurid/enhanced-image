@@ -34,6 +34,7 @@ async function contentscript() {
 
     if (isImage(href)) {
         const imagesArray = Array.from(document.images);
+        console.log(imagesArray);
 
         for (let i = 0; i < imagesArray.length; i++) {
             const image = imagesArray[i];
@@ -56,7 +57,8 @@ async function contentscript() {
                 document.body.appendChild(root);
 
                 const { theme } = await chromeStorage.get('theme');
-                // const { user } = await chromeStorage.get('user');
+                const { token } = await chromeStorage.get('token');
+                // console.log(token);
 
                 ReactDOM.render(
                     <EnhancedImage
@@ -66,6 +68,9 @@ async function contentscript() {
                         // width={width}
                         // about={false}
                         theme={theme || 'depict'}
+                        apiKey="depict_228d11d4cfcf128a17ee61da"
+
+                        // userToken={token}
                         // textFunctions={!!user}
                     />,
                     document.getElementById(rootId) as HTMLElement,

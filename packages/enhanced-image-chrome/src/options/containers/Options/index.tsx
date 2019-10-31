@@ -61,11 +61,16 @@ const Options: React.FC<any> = (properties) => {
         await chromeStorage.set({user});
     }
 
+    const setUserToken = async (token: string) => {
+        await chromeStorage.set({token});
+    }
+
     const loginView = (
         <LoginView
             theme={theme}
             cancelLoginView={() => setShowLogin(false)}
             setLoggedInUser={setLoggedInUser}
+            setUserToken={setUserToken}
         />
     );
 
