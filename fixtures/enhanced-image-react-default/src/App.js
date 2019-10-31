@@ -22,7 +22,7 @@ class App extends Component {
                         // apiEndpoint="http://192.168.1.2:3360/graphql"
                         // imageStyle={ { width: '300px' } }
                         transparentUI={true}
-                        apiKey="depict_dcac375cdc95b8dba50a46e0"
+                        apiKey="depict_228d11d4cfcf128a17ee61da"
                         userToken=""
                         depictImageID=""
                     />

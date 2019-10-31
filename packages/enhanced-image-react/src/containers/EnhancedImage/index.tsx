@@ -438,22 +438,22 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                     input,
                 },
             });
-            console.log('query', query);
 
-            const data = query.data.enhancedImageGetTextWithApiKey;
+            const queryResponse = query.data.enhancedImageGetTextWithAPIKey;
 
-            if (!data.status) {
+            if (!queryResponse.status) {
+                const error = queryResponse.errors[0];
                 const response = {
                     status: false,
                     imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
+                    error: error.type,
+                };
                 return response;
             }
 
             const {
                 imageData,
-            } = data;
+            } = queryResponse;
 
             const response = {
                 status: true,
@@ -462,7 +462,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             };
             return response;
         } catch (error) {
-            console.log(error);
             const response = {
                 status: false,
                 imageData: {},
@@ -485,20 +484,21 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 },
             });
 
-            const data = query.data.enhancedImageGetTextWithUserToken;
+            const queryResponse = query.data.enhancedImageGetTextWithUserToken;
 
-            if (!data.status) {
+            if (!queryResponse.status) {
+                const error = queryResponse.errors[0];
                 const response = {
                     status: false,
                     imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
+                    error: error.type,
+                };
                 return response;
             }
 
             const {
                 imageData,
-            } = data;
+            } = queryResponse;
 
             const response = {
                 status: true,
@@ -529,20 +529,21 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 },
             });
 
-            const data = query.data.enhancedImageGetTextWithImageID;
+            const queryResponse = query.data.enhancedImageGetTextWithImageID;
 
-            if (!data.status) {
+            if (!queryResponse.status) {
+                const error = queryResponse.errors[0];
                 const response = {
                     status: false,
                     imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
+                    error: error.type,
+                };
                 return response;
             }
 
             const {
                 imageData,
-            } = data;
+            } = queryResponse;
 
             const response = {
                 status: true,
@@ -595,6 +596,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         } = await handleGetText();
 
         if (error) {
+            if (error === REQUEST_ERRORS.NOT_FOUND) {
+                setShowSpinner(false);
+                setMessageTimed('Image Not Found. Extract or Add the Text.', 4000);
+                return;
+            }
             setShowSpinner(false);
             setMessageTimed('Something Went Wrong. Please Try Again', 3000);
             return;

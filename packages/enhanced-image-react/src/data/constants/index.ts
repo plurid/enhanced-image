@@ -49,4 +49,5 @@ export const SLIDER_INPUT_DEFAULTS = {
 
 export const REQUEST_ERRORS = {
     BAD_REQUEST: 'BAD_REQUEST',
+    NOT_FOUND: 'NOT_FOUND',
 }
