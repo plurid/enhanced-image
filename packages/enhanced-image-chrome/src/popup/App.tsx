@@ -1,5 +1,5 @@
 import React from 'react';
-import themes from '@plurid/utilities.themes';
+import themes from '@plurid/plurid-themes';
 
 import Context from './context';
 
