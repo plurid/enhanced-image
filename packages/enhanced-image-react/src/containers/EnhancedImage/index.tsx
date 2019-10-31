@@ -368,159 +368,89 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
 
     // EXTRACT TEXT
-    const extractTextWithApiKey = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                apiKey,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: EXTRACT_TEXT_WITH_API_KEY,
-                variables: {
-                    input,
-                },
+    const extractTextWithApiKey = async (
+        apiKey: string,
+    ) => {
+        const input = {
+            imageURL: imageURLFromSrc(src),
+            apiKey,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'EXTRACT_TEXT_WITH_API_KEY',
+                input,
             });
-            console.log(mutation);
-
-            const mutationResponse = mutation.data.enhancedImageExtractTextWithAPIKey;
-
-            if (!mutationResponse.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                data,
-            } = mutationResponse;
-
-            const response = {
-                status: true,
-                imageData: data,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
         }
+
+        const response = await logic.extractTextWithAPIKey(
+            input,
+            graphqlClient.current,
+        );
+        return response;
     }
 
-    const extractTextWithUserToken = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                userToken,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: EXTRACT_TEXT_WITH_USER_TOKEN,
-                variables: {
-                    input,
-                },
+    const extractTextWithUserToken = async (
+        userToken: string,
+    ) => {
+        const input = {
+            imageURL: imageURLFromSrc(src),
+            userToken,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'EXTRACT_TEXT_WITH_USER_TOKEN',
+                input,
             });
-
-            const data = mutation.data.enhancedImageExtractTextWithUserToken;
-
-            if (!data.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                imageData,
-            } = data;
-
-            const response = {
-                status: true,
-                imageData,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
         }
+
+        const response = await logic.extractTextWithUserToken(
+            input,
+            graphqlClient.current,
+        );
+        return response;
     }
 
-    const extractTextWithImageID = async () => {
-        try {
-            const input = {
-                imageURL: imageURLFromSrc(src),
-                imageID,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: EXTRACT_TEXT_WITH_IMAGE_ID,
-                variables: {
-                    input,
-                },
+    const extractTextWithImageID = async (
+        imageID: string,
+    ) => {
+        const input = {
+            imageURL: imageURLFromSrc(src),
+            imageID,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'EXTRACT_TEXT_WITH_IMAGE_ID',
+                input,
             });
-
-            const data = mutation.data.enhancedImageExtractTextWithImageID;
-
-            if (!data.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                imageData,
-            } = data;
-
-            const response = {
-                status: true,
-                imageData,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
         }
+
+        const response = await logic.extractTextWithImageID(
+            input,
+            graphqlClient.current,
+        );
+        return response;
     }
 
     const handleExtractText = async () => {
         if (apiKey) {
-            const response = await extractTextWithApiKey();
-            return response;
+            return await extractTextWithApiKey(apiKey);
         }
 
         if (userToken) {
-            const response = await extractTextWithUserToken();
-            return response;
+            return await extractTextWithUserToken(userToken);
         }
 
         if (imageID) {
-            const response = await extractTextWithImageID();
-            return response;
+            return await extractTextWithImageID(imageID);
         }
 
         const response = {
             status: false,
-            imageData: {},
             error: REQUEST_ERRORS.BAD_REQUEST,
+            data: undefined,
         }
         return response;
     }
@@ -531,7 +461,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         const {
             status,
-            imageData,
+            data,
             error,
         } = await handleExtractText();
 
@@ -544,8 +474,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Extracted and Rendered', 2000);
-            setDatabaseImageID(imageData.imageID);
-            setImageText(imageData.imageText);
+            setDatabaseImageID(data.imageID);
+            setImageText(data.imageText);
             return;
         }
     }
@@ -553,164 +483,94 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
 
     // SAVE TEXT
-    const saveTextWithApiKey = async () => {
-        try {
-            const input = {
-                apiKey,
-                imageURL: imageURLFromSrc(src),
-                imageID,
-                imageText,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: SAVE_TEXT_WITH_API_KEY,
-                variables: {
-                    input,
-                },
+    const saveTextWithApiKey = async (
+        apiKey: string,
+    ) => {
+        const input = {
+            apiKey,
+            imageURL: imageURLFromSrc(src),
+            imageID: imageID || '',
+            imageText,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'SAVE_TEXT_WITH_API_KEY',
+                input,
             });
-            console.log(mutation);
-
-            const data = mutation.data.enhancedImageSaveTextWithApiKey;
-
-            if (!data.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                imageData,
-            } = data;
-
-            const response = {
-                status: true,
-                imageData,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
         }
+
+        const response = await logic.saveTextWithAPIKey(
+            input,
+            graphqlClient.current,
+        );
+        return response;
     }
 
-    const saveTextWithUserToken = async () => {
-        try {
-            const input = {
-                userToken,
-                imageURL: imageURLFromSrc(src),
-                imageID,
-                imageText,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: SAVE_TEXT_WITH_USER_TOKEN,
-                variables: {
-                    input,
-                },
+    const saveTextWithUserToken = async (
+        userToken: string,
+    ) => {
+        const input = {
+            userToken,
+            imageURL: imageURLFromSrc(src),
+            imageID: imageID || '',
+            imageText,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'SAVE_TEXT_WITH_USER_TOKEN',
+                input,
             });
-
-            const data = mutation.data.enhancedImageSaveTextWithUserToken;
-
-            if (!data.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                imageData,
-            } = data;
-
-            const response = {
-                status: true,
-                imageData,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
         }
+
+        const response = await logic.saveTextWithUserToken(
+            input,
+            graphqlClient.current,
+        );
+        return response;
     }
 
-    const saveTextWithImageID = async () => {
-        try {
-            const input = {
-                imageID,
-                imageURL: imageURLFromSrc(src),
-                imageText,
-            };
-            const mutation = await graphqlClient.current.mutate({
-                mutation: SAVE_TEXT_WITH_IMAGE_ID,
-                variables: {
-                    input,
-                },
+    const saveTextWithImageID = async (
+        imageID: string,
+    ) => {
+        const input = {
+            imageID,
+            imageURL: imageURLFromSrc(src),
+            imageText,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: 'SAVE_TEXT_WITH_IMAGE_ID',
+                input,
             });
-
-            const data = mutation.data.enhancedImageSaveTextWithImageID;
-
-            if (!data.status) {
-                const response = {
-                    status: false,
-                    imageData: {},
-                    error: REQUEST_ERRORS.BAD_REQUEST,
-                }
-                return response;
-            }
-
-            const {
-                imageData,
-            } = data;
-
-            const response = {
-                status: true,
-                imageData,
-                error: undefined,
-            };
-            return response;
-        } catch (error) {
-            const response = {
-                status: false,
-                imageData: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
-            }
-            return response;
         }
+
+        const response = await logic.saveTextWithImageID(
+            input,
+            graphqlClient.current,
+        );
+        return response;
     }
 
     const handleSaveText = async () => {
         if (apiKey) {
-            const response = await saveTextWithApiKey();
-            return response;
+            return await saveTextWithApiKey(apiKey);
         }
 
         if (userToken) {
-            const response = await saveTextWithUserToken();
-            return response;
+            return await saveTextWithUserToken(userToken);
         }
 
         if (imageID) {
-            const response = await saveTextWithImageID();
-            return response;
+            return await saveTextWithImageID(imageID);
         }
 
         const response = {
             status: false,
-            imageData: {},
             error: REQUEST_ERRORS.BAD_REQUEST,
+            data: undefined,
         }
         return response;
     }
@@ -721,8 +581,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         const {
             status,
-            imageData,
             error,
+            data,
         } = await handleSaveText();
 
         if (error) {
@@ -734,9 +594,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (status) {
             setShowSpinner(false);
             setMessageTimed('Text Saved', 2000);
-            console.log(imageData);
-            // setDatabaseImageID(imageData.imageID);
-            // setImageText(imageData.imageText);
+            setDatabaseImageID(data.imageID);
+            setImageText(data.imageText);
             return;
         }
     }
