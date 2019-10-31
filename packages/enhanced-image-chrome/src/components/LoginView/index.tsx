@@ -102,10 +102,10 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                     }
                 });
 
-                const data = mutate.data.loginByEmail;
+                const response = mutate.data.loginByEmail;
                 setLoadingButton(false);
 
-                if (!data.status) {
+                if (!response.status) {
                     setLoggingMessage('could not login. try again');
                     setTimeout(() => {
                         setLoggingMessage('');
@@ -113,9 +113,9 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                     return;
                 }
 
-                if (data.user.products !== null) {
-                    if (data.user.products.depict !== null) {
-                        setLoggedInUser(data.user);
+                if (response.data.products !== null) {
+                    if (response.data.products.depict !== null) {
+                        setLoggedInUser(response.data);
                         cancelLoginView();
                     }
                 } else {
@@ -140,13 +140,13 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 variables: {
                     username,
                     password,
-                }
+                },
             });
 
-            const data = mutate.data.loginByUsername;
+            const response = mutate.data.loginByUsername;
             setLoadingButton(false);
 
-            if (!data.status) {
+            if (!response.status) {
                 setLoggingMessage('could not login. try again');
                 setTimeout(() => {
                     setLoggingMessage('');
@@ -154,9 +154,9 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 return;
             }
 
-            if (data.user.products !== null) {
-                if (data.user.products.depict !== null) {
-                    setLoggedInUser(data.user);
+            if (response.data.user.products !== null) {
+                if (response.data.user.products.depict !== null) {
+                    setLoggedInUser(response.data.user);
                     cancelLoginView();
                 }
             } else {

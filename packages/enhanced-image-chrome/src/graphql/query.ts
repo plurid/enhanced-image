@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 import {
     DepictProductFragment,
-    DepictImageDataFragment,
+    // DepictImageDataFragment,
 } from './fragments';
 
 
@@ -11,7 +11,7 @@ export const CURRENT_USER = gql`
     query CurrentUser {
         currentUser {
             status
-            user {
+            data {
                 username
                 products {
                     ...DepictProductFragment
