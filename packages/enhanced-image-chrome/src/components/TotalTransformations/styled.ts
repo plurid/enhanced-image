@@ -23,7 +23,7 @@ export const StyledTotalTransformationsAll: any = styled.div`
         return props.theme.colorPrimary;
     }};
     box-shadow: 0px 5px 5px 0px ${(props: any) => {
-        return props.theme.shadow;
+        return props.theme.boxShadowUmbraColor;
     }};
     border-radius: 10px;
     border-top-right-radius: 0;

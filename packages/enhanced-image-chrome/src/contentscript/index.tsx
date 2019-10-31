@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import EnhancedImage from '@plurid/enhanced-image-react';
 
-import { chromeStorage } from '../utils';
+import { chromeStorage } from '../utilities';
 
 
 

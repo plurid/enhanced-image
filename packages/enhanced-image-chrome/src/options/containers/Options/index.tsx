@@ -27,7 +27,7 @@ import {
 import {
     chromeStorage,
     deleteTypenames,
-} from '../../../utils';
+} from '../../../utilities';
 
 import client from '../../../graphql/client';
 import {
