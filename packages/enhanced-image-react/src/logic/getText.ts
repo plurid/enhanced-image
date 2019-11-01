@@ -1,7 +1,10 @@
 import {
     ApolloClient,
-    NormalizedCacheObject,
-} from 'apollo-boost';
+} from 'apollo-client';
+
+import {
+    NormalizedCacheObject
+} from 'apollo-cache-inmemory';
 
 import {
     REQUEST_ERRORS,
