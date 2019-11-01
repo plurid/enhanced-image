@@ -7,11 +7,14 @@ import { chromeStorage } from '../utilities';
 
 
 const sendMessage = (message: any) => {
-    chrome.runtime.sendMessage({message});
+    console.log('message sent');
+    chrome.runtime.sendMessage({message}, (response) => {
+        console.log(response);
+    });
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender) {
-    console.log(request.message);
+chrome.runtime.onMessage.addListener(function(request, response) {
+    console.log(request, response);
 });
 
 
