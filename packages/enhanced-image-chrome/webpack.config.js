@@ -12,10 +12,10 @@ const { NODE_ENV = DEVELOPMENT } = process.env;
 const base = {
     context: __dirname,
     entry: {
-        background: './src/background/index.ts',
-        contentscript: './src/contentscript/index.tsx',
-        popup: './src/popup/index.tsx',
-        options: './src/options/index.tsx',
+        background: './src/programs/background/index.ts',
+        contentscript: './src/programs/contentscript/index.tsx',
+        popup: './src/programs/popup/index.tsx',
+        options: './src/programs/options/index.tsx',
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"]
@@ -44,12 +44,12 @@ const base = {
             { from: './src/assets', to: 'assets' }
         ]),
         new HtmlWebpackPlugin({
-            template: './src/popup/index.html',
+            template: './src/programs/popup/index.html',
             chunks: ['popup'],
             filename: 'popup.html',
         }),
         new HtmlWebpackPlugin({
-            template: './src/options/index.html',
+            template: './src/programs/options/index.html',
             chunks: ['options'],
             filename: 'options.html',
         }),

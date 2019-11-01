@@ -4,16 +4,19 @@ import React, {
     useContext,
 } from 'react';
 
+import {
+    deleteTypenames,
+} from '@plurid/plurid-functions';
+
 import Context from '../../context';
 
+import ButtonInline from '../../../../components/ButtonInline';
+import LoginView from '../../../../components/LoginView';
 
-import ButtonInline from '../../../components/ButtonInline';
-import LoginView from '../../../components/LoginView';
+import ItemExtensionOnOff from '../../../../components/ItemExtensionOnOff';
+import ItemNotLoggedIn from '../../../../components/ItemNotLoggedIn';
 
-import ItemExtensionOnOff from '../../../components/ItemExtensionOnOff';
-import ItemNotLoggedIn from '../../../components/ItemNotLoggedIn';
-
-import LoggedInView from '../../../components/LoggedInView';
+import LoggedInView from '../../../../components/LoggedInView';
 
 import {
     StyledPopup,
@@ -24,13 +27,12 @@ import {
 
 import {
     chromeStorage,
-    deleteTypenames,
-} from '../../../utilities';
+} from '../../../../services/utilities';
 
-import client from '../../../graphql/client';
+import client from '../../../../services/graphql/client';
 import {
     LOGOUT
-} from '../../../graphql/mutate';
+} from '../../../../services/graphql/mutate';
 
 
 

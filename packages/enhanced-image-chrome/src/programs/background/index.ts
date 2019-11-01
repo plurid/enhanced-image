@@ -3,7 +3,7 @@ import {
     logic,
 } from '@plurid/enhanced-image-react';
 
-import client from '../graphql/client';
+import client from '../../services/graphql/client';
 
 
 

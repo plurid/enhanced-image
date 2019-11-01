@@ -3,17 +3,22 @@ import React, {
     useContext,
     useEffect,
 } from 'react';
+
 import themes from '@plurid/plurid-themes';
+
+import {
+    deleteTypenames,
+} from '@plurid/plurid-functions';
 
 import Context from '../../context';
 
-import LoginView from '../../../components/LoginView';
-import Dropdown from '../../../components/Dropdown';
-import ItemExtensionOnOff from '../../../components/ItemExtensionOnOff';
-import ItemNotLoggedIn from '../../../components/ItemNotLoggedIn';
-import ButtonCheckmark from '../../../components/ButtonCheckmark';
+import LoginView from '../../../../components/LoginView';
+import Dropdown from '../../../../components/Dropdown';
+import ItemExtensionOnOff from '../../../../components/ItemExtensionOnOff';
+import ItemNotLoggedIn from '../../../../components/ItemNotLoggedIn';
+import ButtonCheckmark from '../../../../components/ButtonCheckmark';
 
-import LoggedInView from '../../../components/LoggedInView';
+import LoggedInView from '../../../../components/LoggedInView';
 
 import {
     StyledOptions,
@@ -26,13 +31,12 @@ import {
 
 import {
     chromeStorage,
-    deleteTypenames,
-} from '../../../utilities';
+} from '../../../../services/utilities';
 
-import client from '../../../graphql/client';
+import client from '../../../../services/graphql/client';
 import {
     LOGOUT
-} from '../../../graphql/mutate';
+} from '../../../../services/graphql/mutate';
 
 
 
