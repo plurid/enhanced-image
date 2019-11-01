@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 
 import ApolloClient from 'apollo-client';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
 import './styles.css';
 import {
@@ -80,6 +81,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         imageID,
 
         sendMessage,
+        data,
     } = properties;
 
     if (!src) {
@@ -134,7 +136,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const [databaseImageID, setDatabaseImageID] = useState('');
 
-    const graphqlClient= useRef<ApolloClient<unknown>>(client(_apiEndpoint));
+    const graphqlClient= useRef<ApolloClient<NormalizedCacheObject>>(client(_apiEndpoint));
 
     const imageContainer = useRef<HTMLDivElement>(null);
 
@@ -859,6 +861,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         imageColorsHue,
         imageColorsSaturation,
         imageColorsBrightness,
+    ]);
+
+    useEffect(() => {
+        console.log('Data has been set', data);
+    }, [
+        data,
     ]);
 
     const context: IContext = {
