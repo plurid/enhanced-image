@@ -32,7 +32,7 @@ export interface InputExtractTextWithApiKey {
  */
 export const extractTextWithAPIKey = async (
     input: InputExtractTextWithApiKey,
-    graphqlClient: any,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -89,7 +89,7 @@ export interface InputExtractTextWithUserToken {
  */
 export const extractTextWithUserToken = async (
     input: InputExtractTextWithUserToken,
-    graphqlClient: any,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -145,7 +145,7 @@ export interface InputExtractTextWithImageID {
  */
 export const extractTextWithImageID = async (
     input: InputExtractTextWithImageID,
-    graphqlClient: any,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({

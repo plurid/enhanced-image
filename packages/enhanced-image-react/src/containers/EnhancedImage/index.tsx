@@ -4,8 +4,7 @@ import React, {
     useEffect,
 } from 'react';
 
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-client';
 
 import './styles.css';
 import {
@@ -954,48 +953,44 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     };
 
     return (
-        <ApolloProvider
-            client={graphqlClient.current}
+        <Context.Provider
+            value={context}
         >
-            <Context.Provider
-                value={context}
+            <StyledEnhancedImage
+                theme={context.theme}
+                onMouseEnter={() => setShowSettingsButton(true)}
+                onMouseLeave={() => setShowSettingsButton(false)}
+                onMouseMove={() => !showSettingsButton
+                    ? setShowSettingsButton(true)
+                    : null
+                }
+                style={{
+                    width: imageBoxDimensions.width !== 0 ? imageBoxDimensions.width + 'px' : '',
+                    height:  imageBoxDimensions.height !== 0 ? imageBoxDimensions.height + 'px' : '',
+                }}
+                ref={imageContainer}
             >
-                <StyledEnhancedImage
-                    theme={context.theme}
-                    onMouseEnter={() => setShowSettingsButton(true)}
-                    onMouseLeave={() => setShowSettingsButton(false)}
-                    onMouseMove={() => !showSettingsButton
-                        ? setShowSettingsButton(true)
-                        : null
-                    }
-                    style={{
-                        width: imageBoxDimensions.width !== 0 ? imageBoxDimensions.width + 'px' : '',
-                        height:  imageBoxDimensions.height !== 0 ? imageBoxDimensions.height + 'px' : '',
-                    }}
-                    ref={imageContainer}
-                >
-                    <Image />
+                <Image />
 
-                    {loadedImage && (
-                        <Text />
-                    )}
+                {loadedImage && (
+                    <Text />
+                )}
 
-                    {loadedImage && showSettingsButton && (
-                        <Settings />
-                    )}
+                {loadedImage && showSettingsButton && (
+                    <Settings />
+                )}
 
-                    {message && (
-                        <Message
-                            text={message}
-                        />
-                    )}
+                {message && (
+                    <Message
+                        text={message}
+                    />
+                )}
 
-                    {showSpinner && (
-                        <Spinner />
-                    )}
-                </StyledEnhancedImage>
-            </Context.Provider>
-        </ApolloProvider>
+                {showSpinner && (
+                    <Spinner />
+                )}
+            </StyledEnhancedImage>
+        </Context.Provider>
     );
 }
 
