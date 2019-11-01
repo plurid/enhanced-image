@@ -6,7 +6,9 @@ import ReactDOM from 'react-dom';
 import EnhancedImage from '@plurid/enhanced-image-react';
 import themes from '@plurid/plurid-themes';
 
-import { chromeStorage } from '../../services/utilities';
+import {
+    chromeStorage,
+} from '../../services/utilities';
 
 
 
