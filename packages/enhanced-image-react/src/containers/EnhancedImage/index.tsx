@@ -499,6 +499,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         } = await handleExtractText();
 
         if (error) {
+            if (error === REQUEST_ERRORS.SENT_MESSAGE) {
+                setShowSpinner(false);
+                setMessageTimed('Waiting for the Text.', 4000);
+                return;
+            }
+
             setShowSpinner(false);
             setMessageTimed('Something Went Wrong. Please Try Again', 3000);
             return;
@@ -640,6 +646,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         } = await handleSaveText();
 
         if (error) {
+            if (error === REQUEST_ERRORS.SENT_MESSAGE) {
+                setShowSpinner(false);
+                setMessageTimed('Waiting for the Text.', 4000);
+                return;
+            }
+
             setShowSpinner(false);
             setMessageTimed('Something Went Wrong. Please Try Again', 3000);
             return;
