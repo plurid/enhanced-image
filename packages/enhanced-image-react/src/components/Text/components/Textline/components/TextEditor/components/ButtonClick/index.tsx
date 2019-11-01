@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StyledButtonClick } from './styled';
 
-import { Theme } from '@plurid/utilities.themes';
+import { Theme } from '@plurid/plurid-themes';
 
 
 

@@ -12,7 +12,7 @@ import ButtonToggle from '../ButtonToggle';
 
 import GoToLinkIcon from '../../../../../../../../assets/icons/text-editor/gotolink';
 
-import { Theme } from '@plurid/utilities.themes';
+import { Theme } from '@plurid/plurid-themes';
 
 
 
