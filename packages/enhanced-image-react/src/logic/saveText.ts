@@ -1,4 +1,7 @@
-import { ApolloClient } from 'apollo-boost';
+import {
+    ApolloClient,
+    NormalizedCacheObject,
+} from 'apollo-boost';
 
 import {
     REQUEST_ERRORS,
@@ -28,7 +31,7 @@ export interface InputSaveTextWithAPIKey {
  */
 export const saveTextWithAPIKey = async (
     input: InputSaveTextWithAPIKey,
-    graphqlClient: ApolloClient<any>,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -86,7 +89,7 @@ export interface InputSaveTextWithUserToken {
  */
 export const saveTextWithUserToken = async (
     input: InputSaveTextWithUserToken,
-    graphqlClient: ApolloClient<any>,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -145,7 +148,7 @@ export interface InputSaveTextWithImageID {
  */
 export const saveTextWithImageID = async (
     input: InputSaveTextWithImageID,
-    graphqlClient: ApolloClient<any>,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
