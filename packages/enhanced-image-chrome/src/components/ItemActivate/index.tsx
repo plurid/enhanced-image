@@ -8,7 +8,7 @@ import {
 
 import ButtonInline from '../ButtonInline';
 
-import { PLURID_ACCOUNT_DOMAIN } from '../../constants';
+import { PLURID_ACCOUNT_DOMAIN } from '../../data/constants';
 
 
 

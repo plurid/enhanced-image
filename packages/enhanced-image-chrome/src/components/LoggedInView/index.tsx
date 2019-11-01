@@ -10,7 +10,7 @@ import TotalTransformations from '../TotalTransformations';
 import ItemLoggedInAs from '../ItemLoggedInAs';
 import ItemActivate from '../ItemActivate';
 
-import { PLURID_ACCOUNT_DOMAIN } from '../../constants';
+import { PLURID_ACCOUNT_DOMAIN } from '../../data/constants';
 
 
 

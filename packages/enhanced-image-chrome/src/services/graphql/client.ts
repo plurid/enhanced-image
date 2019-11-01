@@ -4,7 +4,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import {
     API_URI,
-} from '../constants';
+} from '../../data/constants';
 
 
 

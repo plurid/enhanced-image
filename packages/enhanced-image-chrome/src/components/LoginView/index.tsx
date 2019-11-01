@@ -13,15 +13,15 @@ import CreateAccountButton from '../CreateAccountButton';
 import InputText from '../InputText';
 import Button from '../Button';
 
-import client from '../../graphql/client';
+import client from '../../services/graphql/client';
 import {
     LOGIN_BY_USERNAME,
     LOGIN_BY_EMAIL,
     INITIALIZE_DEPICT_USER,
-} from '../../graphql/mutate';
+} from '../../services/graphql/mutate';
 import {
     CURRENT_USER,
-} from '../../graphql/query';
+} from '../../services/graphql/query';
 
 
 
