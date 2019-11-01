@@ -24,12 +24,14 @@ function backgroundMain() {
         }
     });
 
-    chrome.runtime.onMessage.addListener(async (request, sender) => {
+    chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
         console.log(request.message);
         const {
             type,
             input,
         } = request.message;
+
+        const tabID = sender.tab.id;
 
         switch (type) {
             case MESSAGE_TYPES.GET_TEXT_WITH_API_KEY:
@@ -38,8 +40,21 @@ function backgroundMain() {
                         input,
                         client,
                     );
+
+                    chrome.tabs.sendMessage(tabID, response);
+                    // sendResponse({response});
+                    // chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+                    //     chrome.tabs.sendMessage(tabs[0].id, {response}, function(response) {});
+                    // });
+
+                    // chrome.tabs.getSelected(null, function(tab) {
+                    //     chrome.tabs.sendMessage(
+                    //         tab.id, { response }
+                    //     );
+                    // });
                     console.log(response);
-                    break;
+                    // break;
+                    return response;
                 }
             case MESSAGE_TYPES.GET_TEXT_WITH_USER_TOKEN:
                 {
