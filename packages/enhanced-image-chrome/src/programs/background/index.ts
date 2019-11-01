@@ -110,10 +110,12 @@ function backgroundMain() {
 
             case MESSAGE_TYPES.SAVE_TEXT_WITH_API_KEY:
                 {
+                    console.log(input);
                     const response = await logic.saveTextWithAPIKey(
                         input,
                         client,
                     );
+                    console.log(response);
                     chrome.tabs.sendMessage(
                         tabID,
                         { message: { ...response } },

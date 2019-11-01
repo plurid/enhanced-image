@@ -34,6 +34,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
         src,
         alt,
         theme,
+        token,
     } = properties;
 
     const [data, setData] = useState (null);
@@ -50,6 +51,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
             }
         });
     }, []);
+
+    console.log(token);
 
     return (
         <div>
