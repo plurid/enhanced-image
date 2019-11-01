@@ -915,10 +915,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@plurid/enhanced-image-react@^0.1.24":
-  version "0.1.24"
-  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.24.tgz#fc15310b662f4880cddbef7eabfdebde06e18426"
-  integrity sha512-XF/6Lob4Tuv1mEl6rsq8TB7QMAJK2HXSGRKVWquBdNQ3jTeXpP0Ifja6TbtnNGi45hnBK8XPqU0aaStJZqfrSQ==
+"@plurid/enhanced-image-react@^0.1.25":
+  version "0.1.25"
+  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.25.tgz#82cb75bc3e1aa32acd848ea464ee855b81172851"
+  integrity sha512-8+1KZoK6HxkYoyoFJLm1eP010+fRc3bD8+q6ZGwnA1z2JBHauU8G06G1+DWLJGKvkQQtcd7hS+p2dIJ0HQxvHw==
 
 "@plurid/plurid-functions@^0.1.1":
   version "0.1.1"
@@ -2533,9 +2533,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.3.295:
-  version "1.3.297"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.297.tgz#e28621c1b36c0c4556fdc70b4f4a7fe16a1866e3"
-  integrity sha512-Q5BHIOJcWhDIz5FmVGv991O0LM0iWtfmGt1L3av+mmpIbIzmv4IWYpHhJcFoCdmbO8up0KqtvYUrH1vlbUP2Eg==
+  version "1.3.298"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.298.tgz#6f2b09c9b4ffca6a6745d80272dad987bcf5689c"
+  integrity sha512-IcgwlR5x4qtsVr1X+GDnbDEp0bAAqRA9EHP+bvIn3g5KF59Eiqjm59p27tg8b4YmgmpjfKWgec3trDRTWiVJgg==
 
 elliptic@^6.0.0:
   version "6.5.1"
