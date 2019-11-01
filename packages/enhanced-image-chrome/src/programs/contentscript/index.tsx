@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import ReactDOM from 'react-dom';
 
-// import EnhancedImage from '@plurid/enhanced-image-react';
+import EnhancedImage from '@plurid/enhanced-image-react';
 import themes from '@plurid/plurid-themes';
 
 import {
@@ -53,24 +53,20 @@ const Image: React.FC<ImageProperties> = (properties) => {
     }, []);
 
     return (
-        <div>
-            {src}
+        <EnhancedImage
+            src={src}
+            alt={alt ? alt : ''}
+            // height={height}
+            // width={width}
+            // about={false}
+            theme={theme || 'depict'}
 
-            {/* <EnhancedImage
-                src={src}
-                alt={alt ? alt : ''}
-                // height={height}
-                // width={width}
-                // about={false}
-                theme={theme || 'depict'}
+            apiKey="depict_228d11d4cfcf128a17ee61da"
+            // userToken={userToken}
 
-                apiKey="depict_228d11d4cfcf128a17ee61da"
-                // userToken={userToken}
-
-                sendMessage={sendMessage}
-                data={data}
-            /> */}
-        </div>
+            sendMessage={sendMessage}
+            data={data}
+        />
     );
 }
 
@@ -120,7 +116,7 @@ async function contentscript() {
                 const rootId = `root-enhanced-image-${i}`;
                 const root = document.createElement('div');
                 root.id = rootId;
-                root.style.cssText = `margin: auto; height: ${height}px; width: ${width}px`;
+                root.style.cssText = `margin: auto; height: ${height}px; width: ${width}px;`;
                 document.body.appendChild(root);
 
                 const { theme } = await chromeStorage.get('theme');
