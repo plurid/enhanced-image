@@ -245,8 +245,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
             const response = {
                 status: false,
-                data: {},
-                error: REQUEST_ERRORS.BAD_REQUEST,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
             }
             return response;
         }
@@ -271,6 +271,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 type: MESSAGE_TYPES.GET_TEXT_WITH_USER_TOKEN,
                 input,
             });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            }
+            return response;
         }
 
         const response = await logic.getTextWithUserToken(
@@ -293,6 +300,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 type: MESSAGE_TYPES.GET_TEXT_WITH_IMAGE_ID,
                 input,
             });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            }
+            return response;
         }
 
         const response = await logic.getTextWithImageID(
@@ -369,6 +383,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_API_KEY,
                 input,
             });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            }
+            return response;
         }
 
         const response = await logic.extractTextWithAPIKey(
@@ -391,6 +412,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_USER_TOKEN,
                 input,
             });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            }
+            return response;
         }
 
         const response = await logic.extractTextWithUserToken(
@@ -413,6 +441,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_IMAGE_ID,
                 input,
             });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            }
+            return response;
         }
 
         const response = await logic.extractTextWithImageID(
@@ -483,9 +518,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'SAVE_TEXT_WITH_API_KEY',
+                type: MESSAGE_TYPES.SAVE_TEXT_WITH_API_KEY,
                 input,
             });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            }
+            return response;
         }
 
         const response = await logic.saveTextWithAPIKey(
@@ -507,9 +549,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'SAVE_TEXT_WITH_USER_TOKEN',
+                type: MESSAGE_TYPES.SAVE_TEXT_WITH_USER_TOKEN,
                 input,
             });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            }
+            return response;
         }
 
         const response = await logic.saveTextWithUserToken(
@@ -530,9 +579,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (sendMessage) {
             sendMessage({
-                type: 'SAVE_TEXT_WITH_IMAGE_ID',
+                type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_IMAGE_ID,
                 input,
             });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            }
+            return response;
         }
 
         const response = await logic.saveTextWithImageID(
