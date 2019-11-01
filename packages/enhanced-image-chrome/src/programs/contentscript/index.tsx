@@ -26,7 +26,7 @@ interface ImageProperties {
     src: string;
     alt: string;
     theme: keyof typeof themes;
-    token: string;
+    userToken: string;
 }
 
 const Image: React.FC<ImageProperties> = (properties) => {
@@ -34,7 +34,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
         src,
         alt,
         theme,
-        token,
+        userToken,
     } = properties;
 
     const [data, setData] = useState (null);
@@ -52,8 +52,6 @@ const Image: React.FC<ImageProperties> = (properties) => {
         });
     }, []);
 
-    console.log(token);
-
     return (
         <div>
             <EnhancedImage
@@ -64,8 +62,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
                 // about={false}
                 theme={theme || 'depict'}
 
-                apiKey="depict_228d11d4cfcf128a17ee61da"
-                // userToken={token}
+                // apiKey="depict_228d11d4cfcf128a17ee61da"
+                userToken={userToken}
 
                 sendMessage={sendMessage}
                 data={data}
@@ -131,7 +129,7 @@ async function contentscript() {
                         src={src}
                         alt={alt}
                         theme={theme}
-                        token={token}
+                        userToken={token}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
