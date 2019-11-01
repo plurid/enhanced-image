@@ -353,6 +353,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 setMessageTimed('Image Not Found. Extract or Add the Text.', 4000);
                 return;
             }
+
+            if (error === REQUEST_ERRORS.SENT_MESSAGE) {
+                setShowSpinner(false);
+                setMessageTimed('Waiting for the Text.', 4000);
+                return;
+            }
+
             setShowSpinner(false);
             setMessageTimed('Something Went Wrong. Please Try Again', 3000);
             return;
