@@ -3,8 +3,13 @@ import React, {
     useEffect,
 } from 'react';
 import ReactDOM from 'react-dom';
+
 import EnhancedImage from '@plurid/enhanced-image-react';
 import themes from '@plurid/plurid-themes';
+
+import {
+    deleteTypenames,
+} from '@plurid/plurid-functions';
 
 import {
     chromeStorage,
@@ -41,7 +46,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
             } = request.message;
 
             if (status) {
-                setData(data);
+                setData(deleteTypenames(data));
             }
         });
     }, []);
