@@ -864,7 +864,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     ]);
 
     useEffect(() => {
-        console.log('Data has been set', data);
+        if (data) {
+            console.log('Data has been set', data);
+            setImageText(data.imageText);
+            setDatabaseImageID(data.imageID);
+        }
     }, [
         data,
     ]);
