@@ -1,4 +1,5 @@
 import React, {
+    useState,
     useEffect,
 } from 'react';
 import ReactDOM from 'react-dom';
@@ -10,20 +11,8 @@ import { chromeStorage } from '../utilities';
 
 
 const sendMessage = (message: any) => {
-    console.log('message sent');
     chrome.runtime.sendMessage({message});
 }
-
-// chrome.runtime.onMessage.addListener((request) => {
-//     const {
-//         data,
-//         status,
-//     } = request.message;
-
-//     if (status) {
-//         console.log(data);
-//     }
-// });
 
 
 interface ImageProperties {
@@ -39,6 +28,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
         theme,
     } = properties;
 
+    const [data, setData] = useState (null);
+
     useEffect(() => {
         chrome.runtime.onMessage.addListener((request) => {
             const {
@@ -47,6 +38,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
             } = request.message;
 
             if (status) {
+                setData(data);
                 console.log(data);
             }
         });
