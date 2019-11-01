@@ -54,7 +54,16 @@ export interface EnhancedImageProperties {
     // updateDebounce?: number;
     // moreLimit?: number;
     // getTextOnLoad?: boolean;
+
+    /**
+     * To be used with a messaging system.
+     */
     sendMessage?: any;
+
+    /**
+     * Load image data from outside the component.
+     */
+    data?: any;
 }
 
 
