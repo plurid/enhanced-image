@@ -1,4 +1,7 @@
-import { ApolloClient } from 'apollo-boost';
+import {
+    ApolloClient,
+    NormalizedCacheObject,
+} from 'apollo-boost';
 
 import {
     REQUEST_ERRORS,
@@ -26,7 +29,7 @@ export interface InputExtractTextWithApiKey {
  */
 export const extractTextWithAPIKey = async (
     input: InputExtractTextWithApiKey,
-    graphqlClient: ApolloClient<any>,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -83,7 +86,7 @@ export interface InputExtractTextWithUserToken {
  */
 export const extractTextWithUserToken = async (
     input: InputExtractTextWithUserToken,
-    graphqlClient: ApolloClient<any>,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -139,7 +142,7 @@ export interface InputExtractTextWithImageID {
  */
 export const extractTextWithImageID = async (
     input: InputExtractTextWithImageID,
-    graphqlClient: ApolloClient<any>,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
