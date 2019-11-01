@@ -7,12 +7,28 @@ import React, {
 import ApolloClient from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 
+import themes, {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
+    uuidv4 as uuid,
+} from '@plurid/plurid-functions';
+
 import './styles.css';
 import {
     StyledEnhancedImage,
 } from './styled';
 
+import logic from '../../logic';
+
 import Context from '../../services/utilities/context';
+
+import Image from '../../components/Image';
+import Text from '../../components/Text';
+import Settings from '../../components/Settings';
+import Message from '../../components/Message';
+import Spinner from '../../components/Spinner';
 
 import {
     EnhancedImageProperties,
@@ -37,14 +53,6 @@ import {
     initialPreviousImageColors,
 } from '../../data/constants/initializers';
 
-import Image from '../../components/Image';
-import Text from '../../components/Text';
-import Settings from '../../components/Settings';
-import Message from '../../components/Message';
-import Spinner from '../../components/Spinner';
-
-import uuid from '../../services/utilities/uuid';
-
 import {
     getVersionById,
     updateVersion,
@@ -52,12 +60,6 @@ import {
 } from '../../services/utilities/imageText';
 
 import client from '../../services/graphql/client';
-
-import themes, {
-    Theme,
-} from '@plurid/plurid-themes';
-
-import logic from '../../logic';
 
 
 

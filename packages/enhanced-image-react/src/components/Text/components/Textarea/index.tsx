@@ -7,7 +7,7 @@ import {
 } from './styled';
 
 import {
-    VideoText,
+    ImageText,
 } from '../../../../data/interfaces';
 
 import Context from '../../../../services/utilities/context';
@@ -15,7 +15,7 @@ import Context from '../../../../services/utilities/context';
 
 
 interface TextareaProperties {
-    data: VideoText;
+    data: ImageText;
 }
 
 const Textarea: React.FC<TextareaProperties> = () => {
