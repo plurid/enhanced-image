@@ -42,7 +42,6 @@ const Image: React.FC<ImageProperties> = (properties) => {
 
             if (status) {
                 setData(data);
-                console.log(data);
             }
         });
     }, []);
@@ -61,6 +60,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
                 // userToken={token}
 
                 sendMessage={sendMessage}
+                data={data}
             />
         </div>
     );
