@@ -24,8 +24,7 @@ function backgroundMain() {
         }
     });
 
-    chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
-        console.log(request.message);
+    chrome.runtime.onMessage.addListener(async (request, sender) => {
         const {
             type,
             input,
@@ -40,27 +39,21 @@ function backgroundMain() {
                         input,
                         client,
                     );
-
-                    chrome.tabs.sendMessage(tabID, response);
-                    // sendResponse({response});
-                    // chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-                    //     chrome.tabs.sendMessage(tabs[0].id, {response}, function(response) {});
-                    // });
-
-                    // chrome.tabs.getSelected(null, function(tab) {
-                    //     chrome.tabs.sendMessage(
-                    //         tab.id, { response }
-                    //     );
-                    // });
-                    console.log(response);
-                    // break;
-                    return response;
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
+                    );
+                    break;
                 }
             case MESSAGE_TYPES.GET_TEXT_WITH_USER_TOKEN:
                 {
                     const response = await logic.getTextWithUserToken(
                         input,
                         client,
+                    );
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
                     );
                     break;
                 }
@@ -69,6 +62,10 @@ function backgroundMain() {
                     const response = await logic.getTextWithImageID(
                         input,
                         client,
+                    );
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
                     );
                     break;
                 }
@@ -79,6 +76,10 @@ function backgroundMain() {
                         input,
                         client,
                     );
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
+                    );
                     break;
                 }
             case MESSAGE_TYPES.EXTRACT_TEXT_WITH_USER_TOKEN:
@@ -87,6 +88,10 @@ function backgroundMain() {
                         input,
                         client,
                     );
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
+                    );
                     break;
                 }
             case MESSAGE_TYPES.EXTRACT_TEXT_WITH_IMAGE_ID:
@@ -94,6 +99,10 @@ function backgroundMain() {
                     const response = await logic.extractTextWithImageID(
                         input,
                         client,
+                    );
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
                     );
                     break;
                 }
@@ -104,6 +113,10 @@ function backgroundMain() {
                         input,
                         client,
                     );
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
+                    );
                     break;
                 }
             case MESSAGE_TYPES.SAVE_TEXT_WITH_USER_TOKEN:
@@ -111,6 +124,10 @@ function backgroundMain() {
                     const response = await logic.saveTextWithUserToken(
                         input,
                         client,
+                    );
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
                     );
                     break;
                 }
@@ -120,10 +137,20 @@ function backgroundMain() {
                         input,
                         client,
                     );
+                    chrome.tabs.sendMessage(
+                        tabID,
+                        { message: { ...response } },
+                    );
                     break;
                 }
-
             default:
+                const response = {
+                    status: false,
+                };
+                chrome.tabs.sendMessage(
+                    tabID,
+                    { message: { ...response } },
+                );
                 return;
         }
     });
