@@ -1,4 +1,6 @@
-import environment from '../environment';
+import {
+    environment,
+} from '../../services/utilities';
 
 
 
