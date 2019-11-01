@@ -32,7 +32,7 @@ export interface InputGetTextWithAPIKey {
  */
 export const getTextWithAPIKey = async (
     input: InputGetTextWithAPIKey,
-    graphqlClient: ApolloClient<NormalizedCacheObject>,
+    graphqlClient: any,
 ) => {
     try {
         const query = await graphqlClient.query({
@@ -89,7 +89,7 @@ export interface InputGetTextWithUserToken {
  */
 export const getTextWithUserToken = async (
     input: InputGetTextWithUserToken,
-    graphqlClient: ApolloClient<NormalizedCacheObject>,
+    graphqlClient: any,
 ) => {
     try {
         const query = await graphqlClient.query({
@@ -146,7 +146,7 @@ export interface InputGetTextWithImageID {
  */
 export const getTextWithImageID = async (
     input: InputGetTextWithImageID,
-    graphqlClient: ApolloClient<NormalizedCacheObject>,
+    graphqlClient: any,
 ) => {
     try {
         const query = await graphqlClient.query({
