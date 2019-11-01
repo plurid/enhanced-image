@@ -34,7 +34,7 @@ export interface InputSaveTextWithAPIKey {
  */
 export const saveTextWithAPIKey = async (
     input: InputSaveTextWithAPIKey,
-    graphqlClient: any,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -92,7 +92,7 @@ export interface InputSaveTextWithUserToken {
  */
 export const saveTextWithUserToken = async (
     input: InputSaveTextWithUserToken,
-    graphqlClient: ApolloClient<unknown>,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -151,7 +151,7 @@ export interface InputSaveTextWithImageID {
  */
 export const saveTextWithImageID = async (
     input: InputSaveTextWithImageID,
-    graphqlClient: any,
+    graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
