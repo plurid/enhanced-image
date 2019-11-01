@@ -19,6 +19,7 @@ interface ImageProperties {
     src: string;
     alt: string;
     theme: keyof typeof themes;
+    token: string;
 }
 
 const Image: React.FC<ImageProperties> = (properties) => {
@@ -53,9 +54,10 @@ const Image: React.FC<ImageProperties> = (properties) => {
                 // width={width}
                 // about={false}
                 theme={theme || 'depict'}
-                apiKey="depict_228d11d4cfcf128a17ee61da"
 
+                apiKey="depict_228d11d4cfcf128a17ee61da"
                 // userToken={token}
+
                 sendMessage={sendMessage}
             />
         </div>
@@ -85,7 +87,6 @@ async function contentscript() {
     const { extensionOn } = await chromeStorage.get('extensionOn');
 
     if (!extensionOn) {
-        console.log('extension is off');
         return;
     }
 
@@ -114,26 +115,13 @@ async function contentscript() {
 
                 const { theme } = await chromeStorage.get('theme');
                 const { token } = await chromeStorage.get('token');
-                // console.log(token);
 
                 ReactDOM.render(
-                    // <EnhancedImage
-                    //     src={src}
-                    //     alt={alt ? alt : ''}
-                    //     // height={height}
-                    //     // width={width}
-                    //     // about={false}
-                    //     theme={theme || 'depict'}
-                    //     apiKey="depict_228d11d4cfcf128a17ee61da"
-
-                    //     // userToken={token}
-                    //     // textFunctions={!!user}
-                    //     sendMessage={sendMessage}
-                    // />
                     <Image
                         src={src}
                         alt={alt}
                         theme={theme}
+                        token={token}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
