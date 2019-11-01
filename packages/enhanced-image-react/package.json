@@ -45,11 +45,12 @@
         "prepublishOnly": "yarn build"
     },
     "peerDependencies": {
-        "@plurid/plurid-themes": "*",
-        "apollo-cache-inmemory": "*",
-        "apollo-client": "*",
-        "apollo-link-http": "*",
+        "@plurid/plurid-themes": ">=0",
+        "apollo-cache-inmemory": ">=1",
+        "apollo-client": ">=2",
+        "apollo-link-http": ">=1",
         "graphql": ">=14",
+        "graphql-tag": ">=2",
         "react": ">=16",
         "react-dom": ">=16",
         "styled-components": ">=4"
@@ -71,6 +72,7 @@
         "enzyme-adapter-react-16": "^1.15.1",
         "eslint": "^6.6.0",
         "graphql": "^14.5.8",
+        "graphql-tag": "^2.10.1",
         "jest": "^24.9.0",
         "react": "^16.10.1",
         "react-dom": "^16.10.1",
