@@ -20,11 +20,17 @@
         "storage"
     ],
     "content_scripts": [{
-        "matches": ["<all_urls>"],
+        "matches": [
+            "<all_urls>"
+        ],
+        "include_globs": [
+            "**.jpg",
+            "**.png"
+        ],
         "js": [
             "contentscript.js"
         ],
-        "run_at": "document_end"
+        "run_at": "document_idle"
     }],
     "background": {
         "scripts": ["background.js"],
