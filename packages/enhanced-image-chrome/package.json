@@ -35,7 +35,7 @@
         "lint": "eslint --quiet -f codeframe src"
     },
     "dependencies": {
-        "@plurid/enhanced-image-react": "^0.1.25",
+        "@plurid/enhanced-image-react": "^0.1.26",
         "@plurid/plurid-functions": "^0.1.1",
         "@plurid/plurid-themes": "^0.1.0",
         "apollo-cache-inmemory": "^1.6.3",
@@ -55,7 +55,7 @@
         "@babel/register": "^7.6.2",
         "@types/chrome": "^0.0.91",
         "@types/jest": "^24.0.21",
-        "@types/node": "^12.12.3",
+        "@types/node": "^12.12.5",
         "@types/react": "^16.9.11",
         "@types/react-dom": "^16.9.3",
         "@types/styled-components": "^4.1.20",

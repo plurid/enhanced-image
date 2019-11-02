@@ -915,10 +915,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@plurid/enhanced-image-react@^0.1.25":
-  version "0.1.25"
-  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.25.tgz#82cb75bc3e1aa32acd848ea464ee855b81172851"
-  integrity sha512-8+1KZoK6HxkYoyoFJLm1eP010+fRc3bD8+q6ZGwnA1z2JBHauU8G06G1+DWLJGKvkQQtcd7hS+p2dIJ0HQxvHw==
+"@plurid/enhanced-image-react@^0.1.26":
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.26.tgz#03fae6c76f5c0c9aed69e4adc74e7c0c015c6b81"
+  integrity sha512-HD0nn5f9lE3oMdPWx3DwKEr6aRdR1yST81EIP9glkJ7hIeZJcRWv1vrfkEV0gmjgJpCd86mzFr3Mg1rrPBziGA==
 
 "@plurid/plurid-functions@^0.1.1":
   version "0.1.1"
@@ -1014,7 +1014,7 @@
   dependencies:
     "@types/jest-diff" "*"
 
-"@types/node@>=6", "@types/node@^12.12.3":
+"@types/node@>=6", "@types/node@^12.12.5":
   version "12.12.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.5.tgz#66103d2eddc543d44a04394abb7be52506d7f290"
   integrity sha512-KEjODidV4XYUlJBF3XdjSH5FWoMCtO0utnhtdLf1AgeuZLOrRbvmU/gaRCVg7ZaQDjVf3l84egiY0mRNe5xE4A==
