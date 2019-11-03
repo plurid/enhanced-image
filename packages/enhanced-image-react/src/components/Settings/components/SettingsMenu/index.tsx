@@ -18,6 +18,10 @@ import GetTextIcon from '../../../../assets/icons/settings-menu/get-text';
 import ExtractTextIcon from '../../../../assets/icons/settings-menu/extract-text';
 // import TransviewTextIcon from '../../../../assets/icons/settings-menu/transview-text';
 
+import BackgroundColorTransparent from '../../../../assets/icons/settings-menu/background-color-transparent';
+import BackgroundColorWhite from '../../../../assets/icons/settings-menu/background-color-white';
+import BackgroundColorBlack from '../../../../assets/icons/settings-menu/background-color-black';
+
 // import GenerateImageIcon from '../../../../assets/icons/settings-menu/generate-image';
 // import ColorizeImageIcon from '../../../../assets/icons/settings-menu/colorize-image';
 
@@ -67,6 +71,7 @@ const SettingsMenu: React.FC<any> = () => {
 
         imageType,
 
+        imageBackground,
         cycleImageBackground,
 
         imageBoxDimensions,
@@ -125,8 +130,6 @@ const SettingsMenu: React.FC<any> = () => {
         expandTopologyDrawer,
         expandVariaDrawer,
     ]);
-
-    console.log(imageType);
 
     return (
         <StyledSettingsMenu
@@ -236,7 +239,14 @@ const SettingsMenu: React.FC<any> = () => {
                                 <ButtonItem
                                     theme={theme}
                                     atClick={cycleImageBackground}
-                                    icon={FullscreenIcon}
+                                    icon={imageBackground === 0
+                                        ? BackgroundColorTransparent
+                                        : imageBackground === 1
+                                            ? BackgroundColorWhite
+                                            : imageBackground === 2
+                                                ? BackgroundColorBlack
+                                                : BackgroundColorTransparent
+                                    }
                                     text="Background Color"
                                 />
                             </li>
