@@ -45,6 +45,8 @@ import {
     DEPICT_DOMAIN,
     REQUEST_ERRORS,
     MESSAGE_TYPES,
+
+    IMAGE_TYPES,
 } from '../../data/constants';
 
 import {
@@ -103,6 +105,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const _about = about === undefined ? true : about;
 
     const _apiEndpoint = apiEndpoint ? apiEndpoint : PLURID_API_ENDPOINT;
+
+    const [imageType, setImageType] = useState('');
+
+    const [imageBackground, setImageBackground] = useState(0);
 
     const [loadedImage, setLoadedImage] = useState(false);
     const [imageDimensions, setImageDimensions] = useState<ImageDimensions>(initialImageDimensions);
@@ -684,6 +690,18 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     }
 
+    const cycleImageBackground = async () => {
+        if (imageBackground === 0) {
+            setImageBackground(1);
+        }
+        if (imageBackground === 1) {
+            setImageBackground(2);
+        }
+        if (imageBackground > 1) {
+            setImageBackground(0);
+        }
+    }
+
     const resetToDefaults = () => {
         setImageColorsInvert(!!SLIDER_VALUE_DEFAULTS.Invert);
         setImageColorsContrast(SLIDER_VALUE_DEFAULTS.Contrast);
@@ -887,6 +905,23 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         data,
     ]);
 
+    useEffect(() => {
+        if (/\.png/.test(src)) {
+            setImageType(IMAGE_TYPES.PNG);
+        }
+        if (/\.jpe?g/.test(src)) {
+            setImageType(IMAGE_TYPES.JPG);
+        }
+        if (/\.webp/.test(src)) {
+            setImageType(IMAGE_TYPES.WEBP);
+        }
+        if (/\.gif/.test(src)) {
+            setImageType(IMAGE_TYPES.GIF);
+        }
+    }, [
+        src,
+    ]);
+
     const context: IContext = {
         src,
         srcset,
@@ -906,6 +941,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         handleLoadedImage,
         loadedImage,
+
+        imageType,
+
+        imageBackground,
+        cycleImageBackground,
 
         imageDimensions,
         imageBoxDimensions,

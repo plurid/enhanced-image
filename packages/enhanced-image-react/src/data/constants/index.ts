@@ -1,5 +1,17 @@
 import environment from '../../services/utilities/environment';
 
+import {
+    IMAGE_BACKGROUNDS,
+    IMAGE_TYPES,
+} from './image';
+
+
+
+export {
+    IMAGE_BACKGROUNDS,
+    IMAGE_TYPES,
+}
+
 
 export const UPDATE_DEBOUNCE = 5000;
 

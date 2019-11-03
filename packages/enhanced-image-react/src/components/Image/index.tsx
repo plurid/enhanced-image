@@ -10,6 +10,10 @@ import {
 
 import Context from '../../services/utilities/context';
 
+import {
+    IMAGE_BACKGROUNDS,
+} from '../../data/constants';
+
 
 
 const Image: React.FC<{}> = () => {
@@ -24,6 +28,7 @@ const Image: React.FC<{}> = () => {
         imageStyle,
         handleLoadedImage,
 
+        imageBackground,
         imageColorsInvert,
         imageColorsContrast,
         imageColorsHue,
@@ -36,6 +41,7 @@ const Image: React.FC<{}> = () => {
 
     const [filter, setFilter] = useState('');
     const [transform, setTransform] = useState('');
+    const [resolvedImageBackground, setResolvedImageBackground] = useState(IMAGE_BACKGROUNDS.TRANSPARENT);
 
     useEffect(() => {
         const filter = `
@@ -62,8 +68,27 @@ const Image: React.FC<{}> = () => {
         flipHorizontal,
     ]);
 
+    useEffect(() => {
+        switch (imageBackground) {
+            case 0:
+                setResolvedImageBackground(IMAGE_BACKGROUNDS.TRANSPARENT);
+                break;
+            case 1:
+                setResolvedImageBackground(IMAGE_BACKGROUNDS.WHITE);
+                break;
+            case 2:
+                setResolvedImageBackground(IMAGE_BACKGROUNDS.BLACK);
+                break;
+            default:
+                setResolvedImageBackground(IMAGE_BACKGROUNDS.TRANSPARENT);
+        }
+    }, [
+        imageBackground,
+    ]);
+
     return (
-        <StyledImage>
+        <StyledImage
+        >
             <img
                 src={src}
                 alt={alt}
@@ -71,6 +96,7 @@ const Image: React.FC<{}> = () => {
                     ...imageStyle,
                     filter,
                     transform,
+                    background: resolvedImageBackground,
                 }}
                 onLoad={handleLoadedImage}
             />
