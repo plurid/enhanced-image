@@ -25,7 +25,13 @@
         ],
         "include_globs": [
             "**.jpg",
-            "**.png"
+            "**.jpg**",
+            "**.jpeg",
+            "**.jpeg**",
+            "**.png",
+            "**.png**",
+            "**.webp",
+            "**.webp**"
         ],
         "js": [
             "contentscript.js"
