@@ -2,6 +2,7 @@ import React, {
     useContext,
     useRef,
     useState,
+    useEffect,
     useLayoutEffect,
 } from 'react';
 
@@ -112,6 +113,8 @@ const SettingsMenu: React.FC<any> = () => {
 
     const [menuHeight, setMenuHeight] = useState<number | boolean>(false);
 
+    const [resolveImageBackground, setResolveImageBackground] = useState(BackgroundColorTransparent);
+
     useLayoutEffect(() => {
         if (settingsMenuWrapper.current) {
             const menuHeight = settingsMenuWrapper.current.getBoundingClientRect().height;
@@ -129,6 +132,24 @@ const SettingsMenu: React.FC<any> = () => {
         expandColorDrawer,
         expandTopologyDrawer,
         expandVariaDrawer,
+    ]);
+
+    useEffect(() => {
+        switch (imageBackground) {
+            case 0:
+                setResolveImageBackground(BackgroundColorTransparent);
+                break;
+            case 1:
+                setResolveImageBackground(BackgroundColorWhite);
+                break;
+            case 2:
+                setResolveImageBackground(BackgroundColorBlack);
+                break;
+            default:
+                setResolveImageBackground(BackgroundColorTransparent);
+        }
+    }, [
+        imageBackground
     ]);
 
     return (
@@ -239,14 +260,7 @@ const SettingsMenu: React.FC<any> = () => {
                                 <ButtonItem
                                     theme={theme}
                                     atClick={cycleImageBackground}
-                                    icon={imageBackground === 0
-                                        ? BackgroundColorTransparent
-                                        : imageBackground === 1
-                                            ? BackgroundColorWhite
-                                            : imageBackground === 2
-                                                ? BackgroundColorBlack
-                                                : BackgroundColorTransparent
-                                    }
+                                    icon={resolveImageBackground}
                                     text="Background Color"
                                 />
                             </li>
