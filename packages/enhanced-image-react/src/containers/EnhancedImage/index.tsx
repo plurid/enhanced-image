@@ -732,6 +732,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const toggleDefaults = () => {
         if (defaultsToggled) {
+            setImageBackground(previousImageColors.background);
             setImageColorsInvert(!!previousImageColors.invert);
             setImageColorsContrast(previousImageColors.contrast);
             setImageColorsHue(previousImageColors.hue);
@@ -741,6 +742,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             setDefaultsToggled(false);
         } else {
             const previousColorValues = {
+                background: imageBackground,
                 invert: imageColorsInvert ? 1 : 0,
                 contrast: imageColorsContrast,
                 hue: imageColorsHue,
