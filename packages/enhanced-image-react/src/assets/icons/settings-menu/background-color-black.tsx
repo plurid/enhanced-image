@@ -4,7 +4,7 @@ import React from 'react';
 
 const SVG = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-        <title>Black</title>
+        <title>Black Background</title>
 
         <g>
             <circle cx="500" cy="500" r="353"/>
