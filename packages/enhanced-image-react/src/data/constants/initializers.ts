@@ -13,6 +13,7 @@ export const initialImageBoxDimensions = {
 
 
 export const initialPreviousImageColors = {
+    background: 0,
     invert: 0,
     contrast: 100,
     hue: 0,
