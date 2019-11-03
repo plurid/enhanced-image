@@ -35,6 +35,8 @@ import Drawer from './components/Drawer';
 
 import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,
+
+    IMAGE_TYPES,
 } from '../../../../data/constants';
 
 import sliders from '../../../../data/constants/sliders';
@@ -62,6 +64,10 @@ const SettingsMenu: React.FC<any> = () => {
         setExpandTopologyDrawer,
         expandVariaDrawer,
         setExpandVariaDrawer,
+
+        imageType,
+
+        cycleImageBackground,
 
         imageBoxDimensions,
 
@@ -119,6 +125,8 @@ const SettingsMenu: React.FC<any> = () => {
         expandTopologyDrawer,
         expandVariaDrawer,
     ]);
+
+    console.log(imageType);
 
     return (
         <StyledSettingsMenu
@@ -218,6 +226,21 @@ const SettingsMenu: React.FC<any> = () => {
                                 text="Colorize Image"
                             />
                         </li> */}
+
+                        {(
+                            imageType === IMAGE_TYPES.PNG
+                            || imageType === IMAGE_TYPES.WEBP
+                            || imageType === IMAGE_TYPES.GIF
+                        ) && (
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={cycleImageBackground}
+                                    icon={FullscreenIcon}
+                                    text="Background Color"
+                                />
+                            </li>
+                        )}
 
                         <li>
                             <ButtonCheckmark

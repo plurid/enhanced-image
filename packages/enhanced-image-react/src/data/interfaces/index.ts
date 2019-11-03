@@ -87,6 +87,11 @@ export interface Context {
     handleLoadedImage: (image: React.SyntheticEvent<HTMLImageElement, Event>) => Promise<void>;
     loadedImage: boolean;
 
+    imageType: string;
+
+    imageBackground: number;
+    cycleImageBackground: any;
+
     imageDimensions: ImageDimensions,
     imageBoxDimensions: ImageBoxDimensions;
     // videoContainerDimensions: VideoContainerDimensions;
