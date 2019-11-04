@@ -48,17 +48,13 @@ const Options: React.FC<OptionsProperties> = () => {
     const {
         theme,
         setTheme,
-        options,
     } = context;
-    console.log(options);
 
     const [extensionOnOff, setExtensionOnOff] = useState(true);
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [user, setUser] = useState(undefined);
 
-    // const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(options.getImageTextAtLoad);
-    // const [transparentUI, setTransparentUI] = useState(options.transparentUI);
     const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(false);
     const [transparentUI, setTransparentUI] = useState(true);
 
