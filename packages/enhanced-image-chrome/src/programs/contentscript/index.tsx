@@ -21,7 +21,7 @@ const sendMessage = (message: any) => {
     chrome.runtime.sendMessage({message});
 }
 
-const initialTimedMessage = {
+const initialTimedNotification = {
     text: '',
     time: 0,
 };
@@ -44,13 +44,14 @@ const Image: React.FC<ImageProperties> = (properties) => {
     } = properties;
 
     const [data, setData] = useState(null);
-    const [timedMessage, setTimeMessage] = useState(initialTimedMessage);
+    const [timedNotification, setTimeNotification] = useState(initialTimedNotification);
 
     useEffect(() => {
         chrome.runtime.onMessage.addListener((request) => {
             const {
                 data,
                 status,
+                error
             } = request.message;
 
             if (status) {
@@ -58,11 +59,19 @@ const Image: React.FC<ImageProperties> = (properties) => {
             }
 
             if (!status) {
-                const timedMessage = {
-                    text: 'Foo',
-                    time: 3000,
+                if (error === 'NOT_FOUND') {
+                    const timedNotification = {
+                        text: 'Image Text Not Found.',
+                        time: 2500,
+                    };
+                    setTimeNotification(timedNotification);
+                }
+
+                const timedNotification = {
+                    text: 'Something Went Wrong. Please Try Again.',
+                    time: 3500,
                 };
-                setTimeMessage(timedMessage);
+                setTimeNotification(timedNotification);
             }
         });
     }, []);
@@ -83,6 +92,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
 
             sendMessage={sendMessage}
             data={data}
+            timedNotification={timedNotification}
         />
     );
 }
