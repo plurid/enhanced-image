@@ -348,7 +348,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const getText = async () => {
         setShowSpinner(true);
-        setMessage('Fetching Text');
+        setMessage('Fetching Text.');
 
         const {
             status,
@@ -365,12 +365,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
             if (error === REQUEST_ERRORS.SENT_MESSAGE) {
                 setShowSpinner(false);
-                setMessageTimed('Waiting for the Text.', 4000);
+                setMessage('Fetching Text.');
                 return;
             }
 
             setShowSpinner(false);
-            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            setMessageTimed('Something Went Wrong. Please Try Again.', 3000);
             return;
         }
 
@@ -378,7 +378,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             setShowSpinner(false);
 
             if (data.imageText.length !== 0) {
-                setMessageTimed('Text Rendered', 2000);
+                setMessageTimed('Rendered Text', 2000);
             } else {
                 setMessageTimed('No Image Text Found.', 2000);
             }
@@ -502,7 +502,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const extractText = async () => {
         setShowSpinner(true);
-        setMessage('Extracting Text');
+        setMessage('Extracting Text.');
 
         const {
             status,
@@ -513,18 +513,18 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (error) {
             if (error === REQUEST_ERRORS.SENT_MESSAGE) {
                 setShowSpinner(false);
-                setMessageTimed('Waiting for the Text.', 4000);
+                setMessage('Extracting Text.');
                 return;
             }
 
             setShowSpinner(false);
-            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            setMessageTimed('Something Went Wrong. Please Try Again.', 3000);
             return;
         }
 
         if (status) {
             setShowSpinner(false);
-            setMessageTimed('Text Extracted and Rendered', 2000);
+            setMessageTimed('Text Extracted and Rendered.', 2000);
             setDatabaseImageID(data.imageID);
             setImageText(data.imageText);
             return;
@@ -650,7 +650,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const saveText = async () => {
         setShowSpinner(true);
-        setMessage('Saving Text');
+        setMessage('Saving Text.');
 
         const {
             status,
@@ -666,13 +666,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             }
 
             setShowSpinner(false);
-            setMessageTimed('Something Went Wrong. Please Try Again', 3000);
+            setMessageTimed('Something Went Wrong. Please Try Again.', 3000);
             return;
         }
 
         if (status) {
             setShowSpinner(false);
-            setMessageTimed('Text Saved', 2000);
+            setMessageTimed('Text Saved.', 2000);
             setDatabaseImageID(data.imageID);
             setImageText(data.imageText);
             return;
@@ -907,9 +907,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     useEffect(() => {
         if (data) {
-            console.log('Data has been set', data);
+            // console.log('Data has been set', data);
             setImageText(data.imageText);
             setDatabaseImageID(data.imageID);
+            setMessageTimed('Rendered Text.', 3000);
         }
     }, [
         data,
