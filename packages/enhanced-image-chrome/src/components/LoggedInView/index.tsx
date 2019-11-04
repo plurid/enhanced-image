@@ -1,9 +1,5 @@
 import React from 'react';
 
-import {
-    PluridPureButton,
-} from '@plurid/plurid-ui-react';
-
 import { Theme } from '@plurid/plurid-themes';
 
 import {
@@ -37,8 +33,6 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
     const {
         depict,
     } = user.products;
-
-    console.log(theme);
 
     return (
         <StyledLoggedInView
@@ -86,11 +80,6 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
                         text="Get More"
                         atClick={() => {}}
                     />
-                    {/* <PluridPureButton
-                        theme={theme}
-                        text="Get More"
-                        atClick={() => {}}
-                    /> */}
                 </a>
             </div>
         </StyledLoggedInView>
