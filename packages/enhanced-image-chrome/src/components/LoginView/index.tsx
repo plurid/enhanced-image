@@ -4,6 +4,10 @@ import React, {
 } from 'react';
 
 import {
+    PluridPureButton,
+} from '@plurid/plurid-ui-react';
+
+import {
     StyledLoginView,
     StyledLoginInput,
 } from './styled';
@@ -11,7 +15,6 @@ import {
 import ButtonInline from '../ButtonInline';
 import CreateAccountButton from '../CreateAccountButton';
 import InputText from '../InputText';
-import Button from '../Button';
 
 import client from '../../services/graphql/client';
 import {
@@ -209,12 +212,11 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 style={{height: '40px', width: '90%', margin: '0 auto', marginBottom: '20px'}}
             >
                 {showLoginButton && (
-                    <Button
+                    <PluridPureButton
                         theme={theme}
                         text={loginWithEmail ? 'Login with Email' : 'Login'}
                         atClick={login}
                         loading={loadingButton}
-                        loadingText="logging in..."
                     />
                 )}
             </div>

@@ -31,7 +31,7 @@ export const StyledTotalTransformationsAll: any = styled.div`
     font-size: 11px;
     padding: 7px;
     margin: 7px;
-    min-width: 90px;
+    min-width: 120px;
     height: auto;
     top: 8px;
     right: -7px;

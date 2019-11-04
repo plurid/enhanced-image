@@ -1,6 +1,10 @@
 import React from 'react';
 
 import {
+    PluridPureButton,
+} from '@plurid/plurid-ui-react';
+
+import {
     StyledLoggedInView,
     StyledOptionsItemLeftRight,
 } from './styled';
@@ -67,13 +71,13 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
                 </div>
             </StyledOptionsItemLeftRight>
 
-            <div style={{width: '50%', margin: '0px auto', marginTop: '30px'}}>
+            <div style={{width: '180px', margin: '0px auto', marginTop: '30px'}}>
                 <a
                     href={PLURID_ACCOUNT_DOMAIN}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <Button
+                    <PluridPureButton
                         theme={theme}
                         text="Get More"
                         atClick={() => {}}
