@@ -19,16 +19,34 @@ export interface Slider {
 
 
 export interface EnhancedImageProperties {
+    /**
+     * Image source attribute.
+     */
     src: string;
+    /**
+     * Image source set attribute.
+     */
     srcset?: string;
+    /**
+     * Image alternate text attribute.
+     */
     alt?: string;
 
     /**
      * Inline React style object for the image.
      */
     imageStyle?: React.CSSProperties;
+    /**
+     * Theme based on `@plurid/plurid-themes`.
+     */
     theme?: keyof typeof themes;
+    /**
+     * Make the Settings Menu and Text Editor UI transparent.
+     */
     transparentUI?: boolean;
+    /**
+     * Hide the About eImage from the Settings Menu.
+     */
     about?: boolean;
 
     /**
@@ -37,23 +55,34 @@ export interface EnhancedImageProperties {
     atLoad?: any;
 
     /**
+     * GraphlQL based end point.
      * To be specified when using another API than https://api.plurid.com.
-     * GraphlQL-based.
      *
-     * Default: https://api.plurid.com.
+     * Default: https://api.plurid.com/graphql.
      */
     apiEndpoint?: string;
     /**
-     * API key obtained from https://account.plurid.com/depict/api when using
-     * the default apiEndpoint.
+     * API key obtained from https://account.plurid.com/depict
+     * when using the default apiEndpoint.
      */
     apiKey?: string;
+    /**
+     * User Token obtained from cookie (JWT).
+     */
     userToken?: string;
+    /**
+     * Refresh User Token obtained from cookie (JWT).
+     */
+    refreshUserToken?: string;
+    /**
+     * Database-specific image ID.
+     */
     imageID?: string;
 
-    // updateDebounce?: number;
-    // moreLimit?: number;
-    // getTextOnLoad?: boolean;
+    /**
+     * Load the image text as soon as the image is loaded.
+     */
+    getTextOnLoad?: boolean;
 
     /**
      * To be used with a messaging system.
@@ -64,6 +93,10 @@ export interface EnhancedImageProperties {
      * Load image data from outside the component.
      */
     data?: any;
+
+
+    // updateDebounce?: number;
+    // moreLimit?: number;
 }
 
 
