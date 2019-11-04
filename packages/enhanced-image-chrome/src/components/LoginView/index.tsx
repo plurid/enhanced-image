@@ -7,6 +7,8 @@ import {
     PluridPureButton,
 } from '@plurid/plurid-ui-react';
 
+import { Theme } from '@plurid/plurid-themes';
+
 import {
     StyledLoginView,
     StyledLoginInput,
@@ -29,7 +31,7 @@ import {
 
 
 interface LoginViewProps {
-    theme: any;
+    theme: Theme;
     cancelLoginView: () => void;
     setLoggedInUser: (user: any) => any;
     setUserToken: (token: string) => void;

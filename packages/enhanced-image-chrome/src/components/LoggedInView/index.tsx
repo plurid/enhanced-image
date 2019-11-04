@@ -4,22 +4,24 @@ import {
     PluridPureButton,
 } from '@plurid/plurid-ui-react';
 
+import { Theme } from '@plurid/plurid-themes';
+
 import {
     StyledLoggedInView,
     StyledOptionsItemLeftRight,
 } from './styled';
 
-import Button from '../Button';
 import TotalTransformations from '../TotalTransformations';
 import ItemLoggedInAs from '../ItemLoggedInAs';
 import ItemActivate from '../ItemActivate';
+import Button from '../Button';
 
 import { PLURID_ACCOUNT_DOMAIN } from '../../data/constants';
 
 
 
 interface LoggedInViewProps {
-    theme: any;
+    theme: Theme;
     user: any;
     logout: any;
 }
@@ -35,6 +37,8 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
     const {
         depict,
     } = user.products;
+
+    console.log(theme);
 
     return (
         <StyledLoggedInView
@@ -77,11 +81,16 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <PluridPureButton
+                    <Button
                         theme={theme}
                         text="Get More"
                         atClick={() => {}}
                     />
+                    {/* <PluridPureButton
+                        theme={theme}
+                        text="Get More"
+                        atClick={() => {}}
+                    /> */}
                 </a>
             </div>
         </StyledLoggedInView>

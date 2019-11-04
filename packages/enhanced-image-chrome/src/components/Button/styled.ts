@@ -22,7 +22,7 @@ export const StyledButton: any = styled.div`
         text-align: center;
         font-size: 13px;
         width: 100%;
-        height: 30px;
+        height: 40px;
         border-radius: 30px;
         margin-bottom: 10px;
         transition: box-shadow 100ms linear !important;

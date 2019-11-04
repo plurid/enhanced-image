@@ -14,6 +14,16 @@ export const StyledOptions: any = styled.div`
     margin: 0px auto;
     user-select: none;
     overflow: hidden;
+
+    /* button {
+        background: ${(props: any) => {
+            return props.theme.backgroundColorSecondary;
+        }};
+    }
+
+    a {
+        text-decoration: none;
+    } */
 `;
 
 
