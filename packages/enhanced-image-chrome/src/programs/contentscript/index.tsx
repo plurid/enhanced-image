@@ -34,7 +34,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
         src,
         alt,
         theme,
-        // userToken,
+        userToken,
     } = properties;
 
     const [data, setData] = useState (null);
@@ -61,8 +61,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
             // about={false}
             theme={theme || 'depict'}
 
-            apiKey="depict_228d11d4cfcf128a17ee61da"
-            // userToken={userToken}
+            // apiKey="depict_228d11d4cfcf128a17ee61da"
+            userToken={userToken}
 
             sendMessage={sendMessage}
             data={data}
