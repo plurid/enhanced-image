@@ -227,7 +227,7 @@ const Options: React.FC<OptionsProperties> = () => {
                                 checked={transparentUI}
                                 text="transparent UI"
                                 theme={theme}
-                                toggle={() => setTransparentUI(transparent => !transparent)}
+                                toggle={() => setTransparentUI((transparent: boolean) => !transparent)}
                             />
                         </div>
                     </StyledUIContainer>
