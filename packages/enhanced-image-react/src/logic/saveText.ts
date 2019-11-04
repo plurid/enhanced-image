@@ -7,6 +7,10 @@ import {
 } from 'apollo-cache-inmemory';
 
 import {
+    deleteTypenames,
+} from '@plurid/plurid-functions';
+
+import {
     REQUEST_ERRORS,
 } from '../data/constants';
 
@@ -46,7 +50,7 @@ export const saveTextWithAPIKey = async (
         });
 
         const mutationResponse = mutation.data.enhancedImageSaveTextWithAPIKey;
-        console.log(mutationResponse);
+        // console.log(mutationResponse);
 
         if (!mutationResponse.status) {
             const response = {
@@ -64,7 +68,7 @@ export const saveTextWithAPIKey = async (
         const response = {
             status: true,
             error: undefined,
-            data,
+            data: deleteTypenames(data),
         };
         return response;
     } catch (error) {
@@ -123,7 +127,7 @@ export const saveTextWithUserToken = async (
         const response = {
             status: true,
             error: undefined,
-            data,
+            data: deleteTypenames(data),
         };
         return response;
     } catch (error) {
@@ -183,7 +187,7 @@ export const saveTextWithImageID = async (
         const response = {
             status: true,
             error: undefined,
-            data,
+            data: deleteTypenames(data),
         };
         return response;
     } catch (error) {

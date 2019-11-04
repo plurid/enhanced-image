@@ -44,6 +44,7 @@ export const getTextWithAPIKey = async (
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
         const queryResponse = query.data.enhancedImageGetTextWithAPIKey;
@@ -101,6 +102,7 @@ export const getTextWithUserToken = async (
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
         const queryResponse = query.data.enhancedImageGetTextWithUserToken;
@@ -158,6 +160,7 @@ export const getTextWithImageID = async (
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
         const queryResponse = query.data.enhancedImageGetTextWithImageID;
