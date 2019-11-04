@@ -32,6 +32,7 @@ interface ImageProperties {
     theme: keyof typeof themes;
     userToken: string;
     refreshToken: string;
+    options: any;
 }
 
 const Image: React.FC<ImageProperties> = (properties) => {
@@ -41,6 +42,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
         theme,
         userToken,
         refreshToken,
+        options,
     } = properties;
 
     const [data, setData] = useState(null);
@@ -93,6 +95,9 @@ const Image: React.FC<ImageProperties> = (properties) => {
             sendMessage={sendMessage}
             data={data}
             timedNotification={timedNotification}
+
+            getTextOnLoad={options ? options.getImageTextAtLoad : false}
+            transparentUI={options ? options.transparentUI : true}
         />
     );
 }
@@ -149,6 +154,7 @@ async function contentscript() {
                 const { theme } = await chromeStorage.get('theme');
                 const { token } = await chromeStorage.get('token');
                 const { refreshToken } = await chromeStorage.get('refreshToken');
+                const { options } = await chromeStorage.get('options');
 
                 ReactDOM.render(
                     <Image
@@ -157,6 +163,7 @@ async function contentscript() {
                         theme={theme}
                         userToken={token}
                         refreshToken={refreshToken}
+                        options={options}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );

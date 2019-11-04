@@ -45,6 +45,7 @@ const Options: React.FC<any> = (properties) => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(false);
+    const [transparentUI, setTransparentUI] = useState(true);
     const [user, setUser] = useState(undefined);
 
     const context: any = useContext(Context);
@@ -121,6 +122,20 @@ const Options: React.FC<any> = (properties) => {
         }
     }
 
+    useEffect(() => {
+        const saveOptions = async () => {
+            const options = {
+                getImageTextAtLoad,
+                transparentUI,
+            };
+            await chromeStorage.set({options});
+        }
+        saveOptions();
+    }, [
+        getImageTextAtLoad,
+        transparentUI,
+    ]);
+
     return (
         <StyledOptions
             theme={theme}
@@ -186,12 +201,31 @@ const Options: React.FC<any> = (properties) => {
                             />
                         </StyledOptionsItemLeftRight>
 
-                        <ButtonCheckmark
-                            checked={getImageTextAtLoad}
-                            text="get image text at load"
-                            theme={theme}
-                            toggle={() => setGetImageTextAtLoad(!getImageTextAtLoad)}
-                        />
+                        <div
+                            style={{
+                                margin: '20px 0'
+                            }}
+                        >
+                            <ButtonCheckmark
+                                checked={getImageTextAtLoad}
+                                text="get image text at load"
+                                theme={theme}
+                                toggle={() => setGetImageTextAtLoad(!getImageTextAtLoad)}
+                            />
+                        </div>
+
+                        <div
+                            style={{
+                                margin: '20px 0'
+                            }}
+                        >
+                            <ButtonCheckmark
+                                checked={transparentUI}
+                                text="transparent UI"
+                                theme={theme}
+                                toggle={() => setTransparentUI(transparent => !transparent)}
+                            />
+                        </div>
                     </StyledUIContainer>
                 </StyledOptionsWrapper>
             </StyledOptionsContainer>
