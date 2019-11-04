@@ -94,6 +94,15 @@ export interface EnhancedImageProperties {
     sendMessage?: (message: ImageMessage) => void;
 
     /**
+     * Show a notification for the user.
+     *
+     * @param {Object} timedNotification - `{text, time}`.
+     * @param {string} timedNotification.text
+     * @param {number} timedNotification.time
+     */
+    timedNotification: TimedNotification;
+
+    /**
      * Load image data from outside the component.
      */
     data?: any;
@@ -223,6 +232,12 @@ export interface ImageMessage {
     type: string;
     input: any;
 }
+
+export interface TimedNotification {
+    text: string;
+    time: number;
+}
+
 
 
 export {
