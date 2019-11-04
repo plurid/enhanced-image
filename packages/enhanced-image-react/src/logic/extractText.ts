@@ -125,6 +125,7 @@ export const extractTextWithUserToken = async (
         };
         return response;
     } catch (error) {
+        console.log(error);
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
