@@ -30,6 +30,7 @@ interface LoginViewProps {
     cancelLoginView: () => void;
     setLoggedInUser: (user: any) => any;
     setUserToken: (token: string) => void;
+    setRefreshUserToken: (refreshToken: string) => void;
 }
 
 
@@ -52,6 +53,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
         cancelLoginView,
         setLoggedInUser,
         setUserToken,
+        setRefreshUserToken,
     } = props;
 
     useEffect(() => {
@@ -149,7 +151,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
             setLoadingButton(false);
 
             if (!response.status) {
-                setLoggingMessage('could not login. try again');
+                setLoggingMessage('could not login. try again.');
                 setTimeout(() => {
                     setLoggingMessage('');
                 }, 2000);
@@ -158,21 +160,16 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
 
             if (response.data.user.products !== null) {
                 if (response.data.user.products.depict !== null) {
-                    // console.log('chrome.cookies');
-                    // console.log(chrome.cookies.get());
-                    // chrome.cookies.get({'url': 'https://plurid.com', 'name': 'token'}, function(cookie) {
-                    //     console.log(cookie.value);
-                    // });
-
                     setLoggedInUser(response.data.user);
                     setUserToken(response.data.token);
+                    setRefreshUserToken(response.data.refreshToken);
                     cancelLoginView();
                 }
             } else {
                 const user = await initializeUser();
 
                 if (!user) {
-                    setLoggingMessage('could not login. try again');
+                    setLoggingMessage('could not login. try again.');
                     setTimeout(() => {
                         setLoggingMessage('');
                     }, 2000);

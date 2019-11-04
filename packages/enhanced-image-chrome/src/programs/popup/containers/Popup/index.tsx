@@ -66,12 +66,17 @@ const Popup: React.FC<any> = (properties) => {
         await chromeStorage.set({token});
     }
 
+    const setRefreshUserToken = async (refreshToken: string) => {
+        await chromeStorage.set({refreshToken});
+    }
+
     const loginView = (
         <LoginView
             theme={theme}
             cancelLoginView={() => setShowLogin(false)}
             setLoggedInUser={setLoggedInUser}
             setUserToken={setUserToken}
+            setRefreshUserToken={setRefreshUserToken}
         />
     );
 
