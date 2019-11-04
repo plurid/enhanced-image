@@ -918,13 +918,15 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     ]);
 
     useEffect(() => {
-        const {
-            text,
-            time,
-        } = timedNotification;
+        if (timedNotification) {
+            const {
+                text,
+                time,
+            } = timedNotification;
 
-        if (text) {
-            setMessageTimed(text, time);
+            if (text) {
+                setMessageTimed(text, time);
+            }
         }
     }, [
         timedNotification,

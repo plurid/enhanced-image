@@ -27,10 +27,10 @@ export const EXTRACT_TEXT_WITH_API_KEY = gql`
 
 
 export const EXTRACT_TEXT_WITH_USER_TOKEN = gql`
-    mutation EnhancedImageExtractTextWithUserKey(
-        $input: InputEnhancedImageExtractTextWithUserKey!
+    mutation EnhancedImageExtractTextWithUserToken(
+        $input: InputEnhancedImageExtractTextWithUserToken!
     ) {
-        enhancedImageExtractTextWithUserKey(input: $input) {
+        enhancedImageExtractTextWithUserToken(input: $input) {
             status
             errors {
                 path
