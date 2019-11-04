@@ -61,6 +61,7 @@ function backgroundMain() {
                         input,
                         client,
                     );
+                    console.log(response);
                     chrome.tabs.sendMessage(
                         tabID,
                         { message: { ...response } },
