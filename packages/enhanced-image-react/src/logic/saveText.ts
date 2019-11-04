@@ -45,6 +45,7 @@ export const saveTextWithAPIKey = async (
         });
 
         const mutationResponse = mutation.data.enhancedImageSaveTextWithAPIKey;
+        console.log(mutationResponse);
 
         if (!mutationResponse.status) {
             const response = {
