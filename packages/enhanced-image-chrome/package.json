@@ -38,6 +38,7 @@
         "@plurid/enhanced-image-react": "^0.1.29",
         "@plurid/plurid-functions": "^0.1.1",
         "@plurid/plurid-themes": "^0.1.0",
+        "@plurid/plurid-ui-react": "^0.1.29",
         "apollo-cache-inmemory": "^1.6.3",
         "apollo-client": "^2.6.4",
         "apollo-link-http": "^1.5.16",
