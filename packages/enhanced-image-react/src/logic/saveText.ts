@@ -42,6 +42,7 @@ export const saveTextWithAPIKey = async (
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
         const mutationResponse = mutation.data.enhancedImageSaveTextWithAPIKey;
@@ -101,6 +102,7 @@ export const saveTextWithUserToken = async (
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
         const mutationReponse = mutation.data.enhancedImageSaveTextWithUserToken;
@@ -160,6 +162,7 @@ export const saveTextWithImageID = async (
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
         const mutationResponse = mutation.data.enhancedImageSaveTextWithImageID;
