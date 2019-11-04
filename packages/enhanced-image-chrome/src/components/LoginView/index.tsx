@@ -22,7 +22,6 @@ import client from '../../services/graphql/client';
 import {
     LOGIN_BY_USERNAME,
     LOGIN_BY_EMAIL,
-    INITIALIZE_DEPICT_USER,
 } from '../../services/graphql/mutate';
 import {
     CURRENT_USER,
@@ -75,30 +74,6 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
         }
     }, [username, password]);
 
-    const initializeUser = async () => {
-        try {
-            const mutate = await client.mutate({
-                mutation: INITIALIZE_DEPICT_USER,
-            });
-
-            const data = mutate.data.initializeDepictUser;
-
-            if (data.status) {
-                const query = await client.query({
-                    query: CURRENT_USER,
-                });
-                const data = query.data.currentUser;
-                if (data.status) {
-                    return data.user;
-                }
-            }
-
-            return null;
-        } catch (error) {
-            return null;
-        }
-    }
-
     const login = async () => {
         try {
             setLoadingButton(true);
@@ -122,25 +97,9 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                     return;
                 }
 
-                if (response.data.products !== null) {
-                    if (response.data.products.depict !== null) {
-                        setLoggedInUser(response.data);
-                        cancelLoginView();
-                    }
-                } else {
-                    const user = await initializeUser();
-
-                    if (!user) {
-                        setLoggingMessage('could not login. try again');
-                        setTimeout(() => {
-                            setLoggingMessage('');
-                        }, 2000);
-                        return;
-                    }
-
-                    setLoggedInUser(user);
+                if (response.data.products.depict !== null) {
+                    setLoggedInUser(response.data);
                     cancelLoginView();
-                    return;
                 }
             }
 
@@ -163,27 +122,11 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 return;
             }
 
-            if (response.data.user.products !== null) {
-                if (response.data.user.products.depict !== null) {
-                    setLoggedInUser(response.data.user);
-                    setUserToken(response.data.token);
-                    setRefreshUserToken(response.data.refreshToken);
-                    cancelLoginView();
-                }
-            } else {
-                const user = await initializeUser();
-
-                if (!user) {
-                    setLoggingMessage('could not login. try again.');
-                    setTimeout(() => {
-                        setLoggingMessage('');
-                    }, 2000);
-                    return;
-                }
-
-                setLoggedInUser(user);
+            if (response.data.user.products.depict !== null) {
+                setLoggedInUser(response.data.user);
+                setUserToken(response.data.token);
+                setRefreshUserToken(response.data.refreshToken);
                 cancelLoginView();
-                return;
             }
         } catch (error) {
         }

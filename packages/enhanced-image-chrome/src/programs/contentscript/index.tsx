@@ -87,10 +87,10 @@ const Image: React.FC<ImageProperties> = (properties) => {
             // about={false}
             theme={theme || 'depict'}
 
-            // apiEndpoint="http://localhost:33600/graphql"
-            // apiKey="depict_228d11d4cfcf128a17ee61da"
-            userToken={userToken}
-            refreshUserToken={refreshToken}
+            apiEndpoint="http://localhost:33600/graphql"
+            apiKey="depict_228d11d4cfcf128a17ee61da"
+            // userToken={userToken}
+            // refreshUserToken={refreshToken}
 
             sendMessage={sendMessage}
             data={data}
