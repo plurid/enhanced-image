@@ -86,8 +86,12 @@ export interface EnhancedImageProperties {
 
     /**
      * To be used with a messaging system.
+     *
+     * @param {Object} message - `{type, input}`.
+     * @param {string} message.type - based on `MESSAGE_TYPES`.
+     * @param {any} message.input - based on `MESSAGE_TYPES` inputs.
      */
-    sendMessage?: any;
+    sendMessage?: (message: ImageMessage) => void;
 
     /**
      * Load image data from outside the component.
@@ -212,6 +216,12 @@ export interface ImageBoxDimensions {
     height: number;
     left: number;
     top: number;
+}
+
+
+export interface ImageMessage {
+    type: string;
+    input: any;
 }
 
 
