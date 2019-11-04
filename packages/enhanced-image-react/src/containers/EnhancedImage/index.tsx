@@ -376,7 +376,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
         if (status) {
             setShowSpinner(false);
-            setMessageTimed('Text Rendered', 2000);
+
+            if (data.imageText.length !== 0) {
+                setMessageTimed('Text Rendered', 2000);
+            } else {
+                setMessageTimed('No Image Text Found.', 2000);
+            }
+
             setDatabaseImageID(data.imageID);
             setImageText(data.imageText);
             return;
