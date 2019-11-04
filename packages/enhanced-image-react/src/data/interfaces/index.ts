@@ -100,7 +100,7 @@ export interface EnhancedImageProperties {
      * @param {string} timedNotification.text
      * @param {number} timedNotification.time
      */
-    timedNotification: TimedNotification;
+    timedNotification?: TimedNotification;
 
     /**
      * Load image data from outside the component.
