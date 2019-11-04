@@ -27,6 +27,7 @@ interface ImageProperties {
     alt: string;
     theme: keyof typeof themes;
     userToken: string;
+    refreshToken: string;
 }
 
 const Image: React.FC<ImageProperties> = (properties) => {
@@ -35,6 +36,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
         alt,
         theme,
         userToken,
+        refreshToken,
     } = properties;
 
     const [data, setData] = useState (null);
@@ -64,6 +66,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
             // apiEndpoint="http://localhost:33600/graphql"
             // apiKey="depict_228d11d4cfcf128a17ee61da"
             userToken={userToken}
+            refreshUserToken={refreshToken}
 
             sendMessage={sendMessage}
             data={data}
@@ -122,6 +125,7 @@ async function contentscript() {
 
                 const { theme } = await chromeStorage.get('theme');
                 const { token } = await chromeStorage.get('token');
+                const { refreshToken } = await chromeStorage.get('refreshToken');
 
                 ReactDOM.render(
                     <Image
@@ -129,6 +133,7 @@ async function contentscript() {
                         alt={alt}
                         theme={theme}
                         userToken={token}
+                        refreshToken={refreshToken}
                     />,
                     document.getElementById(rootId) as HTMLElement,
                 );
