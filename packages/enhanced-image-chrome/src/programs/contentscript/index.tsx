@@ -21,6 +21,10 @@ const sendMessage = (message: any) => {
     chrome.runtime.sendMessage({message});
 }
 
+const initialTimedMessage = {
+    text: '',
+    time: 0,
+};
 
 interface ImageProperties {
     src: string;
@@ -39,7 +43,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
         refreshToken,
     } = properties;
 
-    const [data, setData] = useState (null);
+    const [data, setData] = useState(null);
+    const [timedMessage, setTimeMessage] = useState(initialTimedMessage);
 
     useEffect(() => {
         chrome.runtime.onMessage.addListener((request) => {
@@ -50,6 +55,14 @@ const Image: React.FC<ImageProperties> = (properties) => {
 
             if (status) {
                 setData(deleteTypenames(data));
+            }
+
+            if (!status) {
+                const timedMessage = {
+                    text: 'Foo',
+                    time: 3000,
+                };
+                setTimeMessage(timedMessage);
             }
         });
     }, []);
