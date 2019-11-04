@@ -534,7 +534,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const input = {
             apiKey,
             imageURL: imageURLFromSrc(src),
-            imageID: imageID || '',
+            imageID: databaseImageID || '',
             imageText,
         };
         console.log(input);
@@ -566,7 +566,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const input = {
             userToken,
             imageURL: imageURLFromSrc(src),
-            imageID: imageID || '',
+            imageID: databaseImageID || '',
             imageText,
         };
 
