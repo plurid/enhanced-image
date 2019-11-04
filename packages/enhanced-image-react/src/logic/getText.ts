@@ -7,6 +7,10 @@ import {
 } from 'apollo-cache-inmemory';
 
 import {
+    deleteTypenames,
+} from '@plurid/plurid-functions';
+
+import {
     REQUEST_ERRORS,
 } from '../data/constants';
 
@@ -61,7 +65,7 @@ export const getTextWithAPIKey = async (
         const response = {
             status: true,
             error: undefined,
-            data,
+            data: deleteTypenames(data),
         };
         return response;
     } catch (error) {
@@ -118,7 +122,7 @@ export const getTextWithUserToken = async (
         const response = {
             status: true,
             error: undefined,
-            data,
+            data: deleteTypenames(data),
         };
         return response;
     } catch (error) {
@@ -175,7 +179,7 @@ export const getTextWithImageID = async (
         const response = {
             status: true,
             error: undefined,
-            data,
+            data: deleteTypenames(data),
         };
         return response;
     } catch (error) {

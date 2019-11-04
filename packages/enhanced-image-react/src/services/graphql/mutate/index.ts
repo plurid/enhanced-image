@@ -103,6 +103,7 @@ export const SAVE_TEXT_WITH_USER_TOKEN = gql`
             }
         }
     }
+    ${EnhancedImageDataFragment}
 `;
 
 
@@ -122,4 +123,5 @@ export const SAVE_TEXT_WITH_IMAGE_ID = gql`
             }
         }
     }
+    ${EnhancedImageDataFragment}
 `;

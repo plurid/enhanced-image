@@ -29,6 +29,7 @@ export const EnhancedImageDataFragment = gql`
                     letterSpacingPercentage
                     lineHeightPercentage
                     wordSpacingPercentage
+                    color
 
                     content
 

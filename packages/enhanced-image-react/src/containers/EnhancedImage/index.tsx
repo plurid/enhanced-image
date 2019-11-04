@@ -193,8 +193,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const addText = () => {
         setMessageTimed('Added New Text', 1500);
 
-        const newTextID = uuid();
-        const newTextVersionID = uuid();
+        const newTextID = 'eit_' + uuid();
+        const newTextVersionID = 'eiv_' + uuid();
 
         const newText: ImageText = {
             id: newTextID,
@@ -537,6 +537,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             imageID: imageID || '',
             imageText,
         };
+        console.log(input);
 
         if (sendMessage) {
             sendMessage({
