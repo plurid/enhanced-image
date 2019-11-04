@@ -18,16 +18,23 @@ class App extends React.Component<any, any> {
         this.state = {
             theme: themes.depict,
             setTheme: this.setTheme,
+            options: {
+                getImageTextAtLoad: false,
+                transparentUI: true,
+            },
         };
     }
 
     async componentDidMount() {
         const { theme } = await chromeStorage.get('theme');
+        const { options } = await chromeStorage.get('options');
+
         const selectedTheme = (themes as any)[theme];
 
         if (theme) {
             this.setState({
                 theme: selectedTheme,
+                options,
             });
         }
     }
