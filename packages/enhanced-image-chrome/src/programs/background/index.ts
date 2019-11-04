@@ -5,6 +5,10 @@ import {
 
 import client from '../../services/graphql/client';
 
+import {
+    chromeStorage,
+} from '../../services/utilities/chrome';
+
 
 
 function backgroundMain() {
@@ -14,8 +18,14 @@ function backgroundMain() {
         contexts: ['image']
     }
 
-    chrome.runtime.onInstalled.addListener(() => {
+    chrome.runtime.onInstalled.addListener(async () => {
         chrome.contextMenus.create(contextMenu);
+
+        const options = {
+            getImageTextAtLoad: false,
+            transparentUI: true,
+        };
+        await chromeStorage.set({options});
     });
 
     chrome.contextMenus.onClicked.addListener((clickData) => {

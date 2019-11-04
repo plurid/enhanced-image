@@ -40,20 +40,24 @@ import {
 
 
 
-const Options: React.FC<any> = (properties) => {
-    const [extensionOnOff, setExtensionOnOff] = useState(true);
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [showLogin, setShowLogin] = useState(false);
-    const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(false);
-    const [transparentUI, setTransparentUI] = useState(true);
-    const [user, setUser] = useState(undefined);
+interface OptionsProperties {
+}
 
+const Options: React.FC<OptionsProperties> = () => {
     const context: any = useContext(Context);
-
     const {
         theme,
         setTheme,
+        options,
     } = context;
+
+    const [extensionOnOff, setExtensionOnOff] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
+    const [user, setUser] = useState(undefined);
+
+    const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(options.getImageTextAtLoad);
+    const [transparentUI, setTransparentUI] = useState(options.transparentUI);
 
     const handleLoggedInUser = (user: any) => {
         setUser(user);
