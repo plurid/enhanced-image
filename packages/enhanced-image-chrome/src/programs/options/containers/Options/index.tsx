@@ -50,14 +50,17 @@ const Options: React.FC<OptionsProperties> = () => {
         setTheme,
         options,
     } = context;
+    console.log(options);
 
     const [extensionOnOff, setExtensionOnOff] = useState(true);
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [user, setUser] = useState(undefined);
 
-    const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(options.getImageTextAtLoad);
-    const [transparentUI, setTransparentUI] = useState(options.transparentUI);
+    // const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(options.getImageTextAtLoad);
+    // const [transparentUI, setTransparentUI] = useState(options.transparentUI);
+    const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(false);
+    const [transparentUI, setTransparentUI] = useState(true);
 
     const handleLoggedInUser = (user: any) => {
         setUser(user);
@@ -128,10 +131,25 @@ const Options: React.FC<OptionsProperties> = () => {
 
     useEffect(() => {
         const saveOptions = async () => {
+            const { options } = await chromeStorage.get('options');
+            const {
+                getImageTextAtLoad,
+                transparentUI,
+            } = options;
+
+            setGetImageTextAtLoad(getImageTextAtLoad);
+            setTransparentUI(transparentUI);
+        }
+        saveOptions();
+    }, []);
+
+    useEffect(() => {
+        const saveOptions = async () => {
             const options = {
                 getImageTextAtLoad,
                 transparentUI,
             };
+            console.log('saved options', options);
             await chromeStorage.set({options});
         }
         saveOptions();

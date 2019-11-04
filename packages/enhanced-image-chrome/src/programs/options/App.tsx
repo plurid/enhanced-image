@@ -28,6 +28,7 @@ class App extends React.Component<any, any> {
     async componentDidMount() {
         const { theme } = await chromeStorage.get('theme');
         const { options } = await chromeStorage.get('options');
+        console.log('options', options);
 
         const selectedTheme = (themes as any)[theme];
 
