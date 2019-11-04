@@ -35,7 +35,7 @@
         "lint": "eslint --quiet -f codeframe src"
     },
     "dependencies": {
-        "@plurid/enhanced-image-react": "^0.1.28",
+        "@plurid/enhanced-image-react": "^0.1.29",
         "@plurid/plurid-functions": "^0.1.1",
         "@plurid/plurid-themes": "^0.1.0",
         "apollo-cache-inmemory": "^1.6.3",
