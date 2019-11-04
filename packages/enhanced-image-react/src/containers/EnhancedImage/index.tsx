@@ -654,7 +654,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         if (error) {
             if (error === REQUEST_ERRORS.SENT_MESSAGE) {
                 setShowSpinner(false);
-                setMessageTimed('Waiting for the Text.', 4000);
+                setMessageTimed('Saving Text.', 4000);
                 return;
             }
 
