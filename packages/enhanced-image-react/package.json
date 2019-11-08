@@ -36,7 +36,7 @@
     "scripts": {
         "clean": "rm -rf ./dist",
         "spec": "jest",
-        "lint": "eslint ./src --ext .ts,.tsx",
+        "lint": "eslint ./source --ext .ts,.tsx",
         "start": "yarn clean && rollup -c -w --environment MODE_ENV:local",
         "build.local": "yarn clean && rollup -c --environment MODE_ENV:local",
         "build.dev": "yarn clean && rollup -c --environment MODE_ENV:development",
