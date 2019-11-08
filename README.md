@@ -1,18 +1,46 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/identity/enhanced-image-logo.png" height="250px">
+    <img
+        src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/identity/enhanced-image-logo.png"
+        height="250px"
+    >
     <br />
-    <a target="_blank" href="https://github.com/plurid/enhanced-image/blob/master/LICENSE">
-        <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: MIT">
+    <a
+        target="_blank"
+        href="https://github.com/plurid/enhanced-image/blob/master/LICENSE"
+    >
+        <img
+            src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge"
+            alt="License: MIT"
+        >
     </a>
 </p>
 
 
 
-<h1 align="center">
+<h1
+    align="center"
+>
     Enhanced Image
 </h1>
 
-HTML Image Element with Enhanced Abilities
+<p
+    align="center"
+>
+    HTML Custom Image Element with Enhanced Abilities
+</p>
+
+
+
+## Extension
+
+The Element can enhance arbitrary Internet images as a browser extension:
+
++ [Chrome Extension][chrome] • [source][enhanced-image-html]
+
+[chrome]: https://chrome.google.com/webstore/detail/enhanced-image/pdcicakelecpcnchbbnkonjpmhagcbnm
+
+[enhanced-image-html]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-chrome
+
 
 
 ## Features
@@ -33,6 +61,14 @@ Extract and select the image text
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-3.jpg" height="500px">
 </p>
+
+
+
+## Depict
+
+The Element uses plurid's [depict][depict] services for text extraction.
+
+[depict]: https://plurid.com/depict
 
 
 
