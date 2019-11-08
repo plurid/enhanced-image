@@ -1,11 +1,26 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/identity/enhanced-image-logo.png" height="250px">
+    <img
+        src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/identity/enhanced-image-logo.png"
+        height="250px"
+    >
     <br />
-    <a target="_blank" href="https://www.npmjs.com/package/@plurid/enhanced-image-react">
-        <img src="https://img.shields.io/npm/v/@plurid/enhanced-image-react.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+    <a
+        target="_blank"
+        href="https://www.npmjs.com/package/@plurid/enhanced-image-react"
+    >
+        <img
+            src="https://img.shields.io/npm/v/@plurid/enhanced-image-react.svg?logo=npm&colorB=1380C3&style=for-the-badge"
+            alt="Version"
+        >
     </a>
-    <a target="_blank" href="https://github.com/plurid/enhanced-image/blob/master/LICENSE">
-        <img src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge" alt="License: MIT">
+    <a
+        target="_blank"
+        href="https://github.com/plurid/enhanced-image/blob/master/LICENSE"
+    >
+        <img
+            src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge"
+            alt="License: MIT"
+        >
     </a>
 </p>
 
