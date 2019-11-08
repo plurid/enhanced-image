@@ -703,6 +703,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const canvas = document.createElement('canvas');
         canvas.width = width;
         canvas.height = height;
+
         const context: any = canvas.getContext('2d');
         context.filter = `
             invert(${imageColorsInvert ? 100 : 0}%)
@@ -720,7 +721,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             context.scale(1, -1);
         }
         context.drawImage(image, 0, 0, width, height);
-        const imageData = canvas.toDataURL('image/png');
+
+        const imageDataType = imageType.toLowerCase() || 'png';
+        const imageData = canvas.toDataURL(`image/${imageDataType}`);
         const blob = dataURIToBlob(imageData);
 
         setSaveImageHref(URL.createObjectURL(blob));
