@@ -67,6 +67,11 @@ export const StyledSettingsMenu: any = styled.div`
         background-color: ${props => props.theme.backgroundColorSecondary};
     }
 
+    ul li a {
+        color: ${props => props.theme.colorPrimary};
+        text-decoration: none;
+    }
+
     hr {
         border: none;
         border-top: 1px solid ${props => props.theme.colorSecondary};

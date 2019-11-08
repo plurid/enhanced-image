@@ -176,6 +176,8 @@ export interface Context {
     // deleteText: (id: string) => void;
 
     saveImage: () => void;
+    saveImageHref: string;
+    saveImageDownload: string;
 
     generateImage: () => Promise<void>;
     colorizeImage: () => Promise<void>;
