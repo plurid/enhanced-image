@@ -51,15 +51,19 @@ Change the colors of the image
     <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-1.jpg" height="500px">
 </p>
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-2.jpg" height="500px">
+</p>
+
 
 Extract and select the image text
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-4.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-3.jpg" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-3.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-4.jpg" height="500px">
 </p>
 
 
