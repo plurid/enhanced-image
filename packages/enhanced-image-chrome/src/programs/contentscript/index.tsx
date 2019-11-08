@@ -106,7 +106,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
 const isImage = (location: string) => {
     let imagePage = false;
 
-    const reFormats = /(\.png)|(\.jpe?g)|(\.gif)|(\.tif)|(\.svg)|(\.webp)/;
+    const reFormats = /((\.|=)png)|((\.|=)jpe?g)|((\.|=)gif)|((\.|=)tif)|((\.|=)svg)|((\.|=)webp)/;
     imagePage = reFormats.test(location);
     if (imagePage) {
         return true;

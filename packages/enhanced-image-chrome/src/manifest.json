@@ -22,7 +22,6 @@
         ],
         "include_globs": [
             "**.jpg",
-            "**.jpg**",
             "**=jpg**",
             "**.jpeg",
             "**.jpeg**",
