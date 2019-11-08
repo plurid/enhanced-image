@@ -12,9 +12,6 @@
         "128" : "assets/icons/icon128.png"
     },
     "permissions": [
-        "activeTab",
-        "management",
-        "<all_urls>",
         "contextMenus",
         "cookies",
         "storage"
