@@ -88,6 +88,8 @@ const SettingsMenu: React.FC<any> = () => {
         // transviewText,
 
         saveImage,
+        saveImageHref,
+        saveImageDownload,
 
         // generateImage,
         // colorizeImage,
@@ -380,14 +382,16 @@ const SettingsMenu: React.FC<any> = () => {
                         )}
 
                         <li
-                            // onMouseEnter={saveImage}
+                            onMouseEnter={() => saveImage()}
                         >
                             <a
+                                href={saveImageHref}
+                                download={saveImageDownload}
                                 // ref={saveButton}
                             >
                                 <ButtonItem
                                     theme={theme}
-                                    atClick={saveImage}
+                                    atClick={() => {}}
                                     icon={SaveIcon}
                                     text="Save Image"
                                 />

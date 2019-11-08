@@ -61,6 +61,11 @@ import {
     imageURLFromSrc,
 } from '../../services/utilities/imageText';
 
+import {
+    loadImage,
+    dataURIToBlob,
+} from '../../services/utilities/image';
+
 import client from '../../services/graphql/client';
 
 
@@ -127,6 +132,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     const [expandVariaDrawer, setExpandVariaDrawer] = useState(false);
 
     const [editableText, setEditableText] = useState(false);
+
+    const [saveImageHref, setSaveImageHref] = useState('');
+    const [saveImageDownload, setSaveImageDownload] = useState('');
 
     const [imageText, setImageText] = useState<ImageText[]>([]);
 
@@ -687,7 +695,36 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const saveImage = async () => {
+        const imageName = src;
+        const image: any = await loadImage(src);
 
+        const width = image.naturalWidth;
+        const height = image.naturalHeight;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const context: any = canvas.getContext('2d');
+        context.filter = `
+            invert(${imageColorsInvert ? 100 : 0}%)
+            contrast(${imageColorsContrast}%)
+            hue-rotate(${imageColorsHue}deg)
+            saturate(${imageColorsSaturation}%)
+            brightness(${imageColorsBrightness}%)
+        `;
+        context.drawImage(image, 0, 0, width, height);
+        const imageData = canvas.toDataURL('image/png');
+        const blob = dataURIToBlob(imageData);
+
+        download(blob, imageName);
+    }
+
+    const download = (
+        blob: Blob,
+        imageName: string,
+    ) => {
+        setSaveImageHref(URL.createObjectURL(blob));
+        setSaveImageDownload(imageName);
     }
 
     const generateImage = async () => {
@@ -1009,6 +1046,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         transviewText,
 
         saveImage,
+        saveImageHref,
+        saveImageDownload,
 
         generateImage,
         colorizeImage,
