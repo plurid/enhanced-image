@@ -18,7 +18,7 @@ const external = [
 ];
 
 export default {
-    input: 'src/index.tsx',
+    input: 'source/index.tsx',
     output: [
         {
             file: pkg.main,
