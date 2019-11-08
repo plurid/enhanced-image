@@ -552,7 +552,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             imageID: databaseImageID || '',
             imageText,
         };
-        console.log(input);
 
         if (sendMessage) {
             sendMessage({
@@ -564,7 +563,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 status: false,
                 error: REQUEST_ERRORS.SENT_MESSAGE,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -595,7 +594,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 status: false,
                 error: REQUEST_ERRORS.SENT_MESSAGE,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -625,7 +624,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 status: false,
                 error: REQUEST_ERRORS.SENT_MESSAGE,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -653,7 +652,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        }
+        };
         return response;
     }
 
