@@ -12,7 +12,7 @@ module.exports = {
     collectCoverage: true,
     coveragePathIgnorePatterns: [
         '/node_modules/',
-        '/dist/',
+        '/distribution/',
     ],
     coverageThreshold: {
         global: {
