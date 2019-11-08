@@ -6,7 +6,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
 import replace from 'rollup-plugin-replace';
 
-import pkg from './package.json';
+import package from './package.json';
 
 
 
@@ -21,14 +21,14 @@ export default {
     input: 'source/index.tsx',
     output: [
         {
-            file: pkg.main,
+            file: package.main,
             format: 'cjs',
             exports: 'named',
             sourcemap: true,
             external,
         },
         {
-            file: pkg.module,
+            file: package.module,
             format: 'es',
             exports: 'named',
             sourcemap: true,
