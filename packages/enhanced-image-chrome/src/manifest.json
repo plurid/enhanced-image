@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Enhanced Image",
     "short_name" : "eImage",
-    "description": "Extract and select the image text, adjust the image colors, modify the image appearance.",
+    "description": "Extract and select the text from images, adjust the image colors, modify the image appearance.",
     "author": "Plurid, Inc.",
     "version": "0.0.2",
     "icons" : {
