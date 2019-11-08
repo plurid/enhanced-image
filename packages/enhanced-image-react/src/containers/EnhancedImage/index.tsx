@@ -715,13 +715,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         const imageData = canvas.toDataURL('image/png');
         const blob = dataURIToBlob(imageData);
 
-        download(blob, imageName);
-    }
-
-    const download = (
-        blob: Blob,
-        imageName: string,
-    ) => {
         setSaveImageHref(URL.createObjectURL(blob));
         setSaveImageDownload(imageName);
     }
