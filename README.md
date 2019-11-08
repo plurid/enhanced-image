@@ -48,22 +48,22 @@ The Element can enhance arbitrary Internet images as a browser extension:
 Change the colors of the image
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-1.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-1-bless.jpg" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-2.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-2-bless.jpg" height="500px">
 </p>
 
 
 Extract and select the image text
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-3.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-3-bless.jpg" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/chrome/screenshots/ss-4.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-4-bless.jpg" height="500px">
 </p>
 
 
