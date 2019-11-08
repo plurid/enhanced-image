@@ -777,9 +777,25 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const shareImage = () => {
-        const enhanced = '';
-        const imageLocation = '/' + databaseImageID.slice(0, 16) + enhanced;
-        const url = DEPICT_DOMAIN + imageLocation;
+        const invertString = imageColorsInvert
+            ? 'I100'
+            : '';
+        const contrastString = imageColorsContrast !== SLIDER_VALUE_DEFAULTS.Contrast
+            ? `C${imageColorsContrast}`
+            : '';
+        const hueString = imageColorsHue !== SLIDER_VALUE_DEFAULTS.Hue
+            ? `H${imageColorsHue}`
+            : '';
+        const saturationString = imageColorsSaturation !== SLIDER_VALUE_DEFAULTS.Saturation
+            ? `S${imageColorsSaturation}`
+            : '';
+        const brightnessString = imageColorsBrightness !== SLIDER_VALUE_DEFAULTS.Brightness
+            ? `B${imageColorsBrightness}`
+            : '';
+        const enhancedString = '/' + invertString + contrastString + hueString + saturationString + brightnessString;
+
+        const imagePath = '/' + databaseImageID.slice(0, 16) + enhancedString;
+        const url = DEPICT_DOMAIN + imagePath;
         window.open(url, '_blank');
     }
 
