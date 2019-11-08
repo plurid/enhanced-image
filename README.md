@@ -45,7 +45,11 @@ The Element can enhance arbitrary Internet images as a browser extension:
 
 ## Features
 
-Change the colors of the image
+<p
+    align="center"
+>
+    change the colors of the image
+</p>
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-1-bless.png" height="500px">
@@ -56,7 +60,11 @@ Change the colors of the image
 </p>
 
 
-Extract and select the image text
+<p
+    align="center"
+>
+    extract and select the image text
+</p>
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-3-bless.png" height="500px">
