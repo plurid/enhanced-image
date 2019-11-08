@@ -761,7 +761,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     }
 
     const viewFullscreen = () => {
-
+        if (
+            imageContainer.current
+            && !document.fullscreenElement
+        ) {
+            imageContainer.current.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
     }
 
     const shareImage = () => {
