@@ -711,6 +711,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             saturate(${imageColorsSaturation}%)
             brightness(${imageColorsBrightness}%)
         `;
+        if (flipVertical) {
+            context.translate(canvas.width, 0);
+            context.scale(-1, 1);
+        }
+        if (flipHorizontal) {
+            context.translate(0, canvas.height);
+            context.scale(1, -1);
+        }
         context.drawImage(image, 0, 0, width, height);
         const imageData = canvas.toDataURL('image/png');
         const blob = dataURIToBlob(imageData);
