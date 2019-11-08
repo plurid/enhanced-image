@@ -35,11 +35,11 @@
 
 The Element can enhance arbitrary Internet images as a browser extension:
 
-+ [Chrome Extension][chrome] • [source][enhanced-image-html]
++ [Chrome Extension][chrome] • [source][enhanced-image-chrome]
 
 [chrome]: https://chrome.google.com/webstore/detail/enhanced-image/pdcicakelecpcnchbbnkonjpmhagcbnm
 
-[enhanced-image-html]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-chrome
+[enhanced-image-chrome]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-chrome
 
 
 
