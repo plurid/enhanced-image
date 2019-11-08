@@ -1,6 +1,6 @@
 <p align="center">
     <img
-        src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/identity/enhanced-image-logo.png"
+        src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/identity/enhanced-image-logo.png"
         height="250px"
     >
     <br />
@@ -48,22 +48,22 @@ The Element can enhance arbitrary Internet images as a browser extension:
 Change the colors of the image
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-1-bless.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-1-bless.png" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-2-bless.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-2-bless.png" height="500px">
 </p>
 
 
 Extract and select the image text
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-3-bless.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-3-bless.png" height="500px">
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-4-bless.jpg" height="500px">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-4-bless.png" height="500px">
 </p>
 
 
