@@ -12,10 +12,10 @@ const { NODE_ENV = DEVELOPMENT } = process.env;
 const base = {
     context: __dirname,
     entry: {
-        background: './src/programs/background/index.ts',
-        contentscript: './src/programs/contentscript/index.tsx',
-        popup: './src/programs/popup/index.tsx',
-        options: './src/programs/options/index.tsx',
+        background: './source/programs/background/index.ts',
+        contentscript: './source/programs/contentscript/index.tsx',
+        popup: './source/programs/popup/index.tsx',
+        options: './source/programs/options/index.tsx',
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"]
@@ -40,16 +40,16 @@ const base = {
     },
     plugins: [
         new CopyPlugin([
-            { from: './src/manifest.json', to: './manifest.json' },
-            { from: './src/assets', to: 'assets' }
+            { from: './source/manifest.json', to: './manifest.json' },
+            { from: './source/assets', to: 'assets' }
         ]),
         new HtmlWebpackPlugin({
-            template: './src/programs/popup/index.html',
+            template: './source/programs/popup/index.html',
             chunks: ['popup'],
             filename: 'popup.html',
         }),
         new HtmlWebpackPlugin({
-            template: './src/programs/options/index.html',
+            template: './source/programs/options/index.html',
             chunks: ['options'],
             filename: 'options.html',
         }),
