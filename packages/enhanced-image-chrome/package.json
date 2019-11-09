@@ -20,19 +20,19 @@
     },
     "homepage": "https://plurid.com/depict",
     "files": [
-        "dist/"
+        "distribution/"
     ],
     "scripts": {
-        "clean": "rm -rf dist && rm -rf build && rm -rf dist-zip",
+        "e2e-test": "jest __e2e-tests__ --runInBand --silent",
+        "unit-test": "jest __tests__/.*.spec.js --silent",
+        "test": "npm run unit-test && npm run e2e-test",
+        "test.jest": "jest",
+        "test.production": "NODE_ENV=production npm run unit-test && npm run e2e-test",
+        "lint": "eslint --quiet -f codeframe src",
+        "clean": "rm -rf distribution && rm -rf distribution-zip && rm -rf build",
         "dev": "yarn clean && NODE_ENV=development webpack --watch",
         "build": "yarn clean && NODE_ENV=production webpack",
-        "distribute": "yarn clean && NODE_ENV=production webpack && node scripts/zip.js",
-        "test": "npm run unit-test && npm run e2e-test",
-        "test.production": "NODE_ENV=production npm run unit-test && npm run e2e-test",
-        "unit-test": "jest __tests__/.*.spec.js --silent",
-        "e2e-test": "jest __e2e-tests__ --runInBand --silent",
-        "test.jest": "jest",
-        "lint": "eslint --quiet -f codeframe src"
+        "distribute": "yarn clean && NODE_ENV=production webpack && node scripts/zip.js"
     },
     "dependencies": {
         "@plurid/enhanced-image-react": "^0.1.31",
@@ -56,10 +56,10 @@
         "@babel/register": "^7.7.0",
         "@types/chrome": "^0.0.91",
         "@types/jest": "^24.0.22",
-        "@types/node": "^12.12.6",
+        "@types/node": "^12.12.7",
         "@types/react": "^16.9.11",
         "@types/react-dom": "^16.9.4",
-        "@types/styled-components": "^4.1.22",
+        "@types/styled-components": "^4.4.0",
         "copy-webpack-plugin": "^5.0.5",
         "css-loader": "^3.2.0",
         "html-webpack-plugin": "^3.2.0",
