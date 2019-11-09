@@ -79,7 +79,7 @@ const development = {
 const production = {
     ...base,
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'distribution'),
         filename: '[name].js',
     },
     mode: 'production',

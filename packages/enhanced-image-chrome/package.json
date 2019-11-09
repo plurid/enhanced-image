@@ -30,7 +30,7 @@
         "test.production": "NODE_ENV=production npm run unit-test && npm run e2e-test",
         "lint": "eslint --quiet -f codeframe src",
         "clean": "rm -rf distribution && rm -rf distribution-zip && rm -rf build",
-        "dev": "yarn clean && NODE_ENV=development webpack --watch",
+        "develop": "yarn clean && NODE_ENV=development webpack --watch",
         "build": "yarn clean && NODE_ENV=production webpack",
         "distribute": "yarn clean && NODE_ENV=production webpack && node scripts/zip.js"
     },
