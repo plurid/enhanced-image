@@ -82,13 +82,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
         <EnhancedImage
             src={src}
             alt={alt ? alt : ''}
-            // height={height}
-            // width={width}
-            // about={false}
             theme={theme || 'depict'}
 
-            // apiEndpoint="http://localhost:33600/graphql"
-            // apiKey="depict_228d11d4cfcf128a17ee61da"
             userToken={userToken}
             refreshUserToken={refreshToken}
 
@@ -172,7 +167,6 @@ async function contentscript() {
             }
         }
     } catch (error) {
-        console.log(error);
     }
 }
 
