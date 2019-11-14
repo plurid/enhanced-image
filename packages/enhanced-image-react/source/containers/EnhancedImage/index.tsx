@@ -92,6 +92,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         sendMessage,
         data,
         timedNotification,
+
+        getTextOnLoad,
     } = properties;
 
     if (!src) {
@@ -1030,6 +1032,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         }
     }, [
         src,
+    ]);
+
+    useEffect(() => {
+        if (getTextOnLoad) {
+            getText();
+        }
+    }, [
+        getTextOnLoad,
     ]);
 
     const context: IContext = {
