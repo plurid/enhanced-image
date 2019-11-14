@@ -6,7 +6,7 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "@plurid/enhanced-image-react": "^0.1.31",
+        "@plurid/enhanced-image-react": "^0.1.32",
         "@plurid/plurid-functions": "^0.1.1",
         "@plurid/plurid-themes": "^0.1.0",
         "apollo-cache-inmemory": "^1.6.3",
