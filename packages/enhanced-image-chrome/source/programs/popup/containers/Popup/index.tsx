@@ -134,7 +134,7 @@ const Popup: React.FC<any> = (properties) => {
         }
 
         fetchUser();
-    });
+    }, []);
 
     return (
         <StyledPopup
