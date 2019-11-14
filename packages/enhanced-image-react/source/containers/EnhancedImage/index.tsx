@@ -138,6 +138,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const [imageText, setImageText] = useState<ImageText[]>([]);
 
+    const [deletedTexts, setDeletedTexts] = useState<string[]>([]);
+
     const [imageColorsInvert, setImageColorsInvert] = useState(!!SLIDER_VALUE_DEFAULTS.Invert);
     const [imageColorsContrast, setImageColorsContrast] = useState(SLIDER_VALUE_DEFAULTS.Contrast);
     const [imageColorsHue, setImageColorsHue] = useState(SLIDER_VALUE_DEFAULTS.Hue);
@@ -551,6 +553,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             imageURL: imageURLFromSrc(src),
             imageID: databaseImageID || '',
             imageText,
+            deletedTexts,
         };
 
         if (sendMessage) {
@@ -582,6 +585,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             imageURL: imageURLFromSrc(src),
             imageID: databaseImageID || '',
             imageText,
+            deletedTexts,
         };
 
         if (sendMessage) {
@@ -612,6 +616,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             imageID,
             imageURL: imageURLFromSrc(src),
             imageText,
+            deletedTexts,
         };
 
         if (sendMessage) {
@@ -894,9 +899,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         }
     }
 
-    const deleteTextItem = (versionID: string) => {
+    const deleteTextItem = (textID: string) => {
         const updatedImageText = imageText.filter(text => {
-            if (text.id === versionID) {
+            if (text.id === textID) {
+                setDeletedTexts(deletedTexts => [...deletedTexts, textID]);
                 return false;
             }
 
