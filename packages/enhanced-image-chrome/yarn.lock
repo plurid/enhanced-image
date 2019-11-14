@@ -928,10 +928,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@plurid/enhanced-image-react@^0.1.32":
-  version "0.1.32"
-  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.32.tgz#0f3d224867fed4d37fccae3d1f83037b0055d16e"
-  integrity sha512-gk8WTlkKBMwetBF4fomZ7yjcmIsE/cboERMq+mI1zaZxe9rXsKRAT9uRC5wxbRUOumbL1w1xclZ6s+IDzXC38g==
+"@plurid/enhanced-image-react@^0.1.33":
+  version "0.1.33"
+  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.33.tgz#451330bd0f0a2df869363d2f76680721871a55c8"
+  integrity sha512-rn2U3SrflxpV+IhBk+XP8WIc3j5oRg3uDXiFKcBe5ABGxF4TbMZ5/iMmX855upvUROT5TiWSzujK96qIBjdPyA==
 
 "@plurid/plurid-functions@^0.1.1":
   version "0.1.1"
