@@ -35,7 +35,7 @@
         "distribute": "yarn clean && NODE_ENV=production webpack && node scripts/zip.js"
     },
     "dependencies": {
-        "@plurid/enhanced-image-react": "^0.1.33",
+        "@plurid/enhanced-image-react": "^0.1.34",
         "@plurid/plurid-functions": "^0.1.1",
         "@plurid/plurid-themes": "^0.1.0",
         "@plurid/plurid-ui-react": "^0.1.29",
