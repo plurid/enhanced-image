@@ -368,6 +368,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         } = await handleGetText();
 
         if (error) {
+            if (error === REQUEST_ERRORS.NOT_AUTHORIZED) {
+                setShowSpinner(false);
+                setMessageTimed('Access Not Allowed. Please Check Your Account.', 4000);
+                return;
+            }
+
             if (error === REQUEST_ERRORS.NOT_FOUND) {
                 setShowSpinner(false);
                 setMessageTimed('Image Not Found. Extract or Add the Text.', 4000);
@@ -522,6 +528,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         } = await handleExtractText();
 
         if (error) {
+            if (error === REQUEST_ERRORS.NOT_AUTHORIZED) {
+                setShowSpinner(false);
+                setMessageTimed('Access Not Allowed. Please Check Your Account.', 4000);
+                return;
+            }
+
             if (error === REQUEST_ERRORS.SENT_MESSAGE) {
                 setShowSpinner(false);
                 setMessage('Extracting Text.');
