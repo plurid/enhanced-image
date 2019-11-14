@@ -21,11 +21,6 @@ export const DepictProductAccessFragment = gql`
             end
             plan
         }
-        trial {
-            active
-            start
-            end
-        }
     }
 `;
 
