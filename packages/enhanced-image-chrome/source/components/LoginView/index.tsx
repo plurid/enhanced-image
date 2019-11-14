@@ -162,6 +162,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                         text={loginWithEmail ? 'Login with Email' : 'Login'}
                         atClick={login}
                         loading={loadingButton}
+                        level={1}
                     />
                 )}
             </div>
