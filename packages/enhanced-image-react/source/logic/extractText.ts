@@ -49,9 +49,10 @@ export const extractTextWithAPIKey = async (
         const mutationResponse = mutation.data.enhancedImageExtractTextWithAPIKey;
 
         if (!mutationResponse.status) {
+            const error = mutationResponse.errors[0];
             const response = {
                 status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
+                error: error.type,
                 data: undefined,
             }
             return response;
@@ -106,9 +107,10 @@ export const extractTextWithUserToken = async (
         const mutationResponse = mutation.data.enhancedImageExtractTextWithUserToken;
 
         if (!mutationResponse.status) {
+            const error = mutationResponse.errors[0];
             const response = {
                 status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
+                error: error.type,
                 data: undefined,
             }
             return response;
@@ -162,9 +164,10 @@ export const extractTextWithImageID = async (
         const mutationResponse = mutation.data.enhancedImageExtractTextWithImageID;
 
         if (!mutationResponse.status) {
+            const error = mutationResponse.errors[0];
             const response = {
                 status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
+                error: error.type,
                 data: undefined,
             }
             return response;
