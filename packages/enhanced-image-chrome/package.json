@@ -35,7 +35,7 @@
         "distribute": "yarn clean && NODE_ENV=production webpack && node scripts/zip.js"
     },
     "dependencies": {
-        "@plurid/enhanced-image-react": "^0.1.31",
+        "@plurid/enhanced-image-react": "^0.1.32",
         "@plurid/plurid-functions": "^0.1.1",
         "@plurid/plurid-themes": "^0.1.0",
         "@plurid/plurid-ui-react": "^0.1.29",
@@ -55,7 +55,7 @@
         "@babel/preset-typescript": "^7.7.2",
         "@babel/register": "^7.7.0",
         "@types/chrome": "^0.0.91",
-        "@types/jest": "^24.0.22",
+        "@types/jest": "^24.0.23",
         "@types/node": "^12.12.7",
         "@types/react": "^16.9.11",
         "@types/react-dom": "^16.9.4",
