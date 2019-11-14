@@ -31,7 +31,10 @@ import {
 
 import client from '../../../../services/graphql/client';
 import {
-    LOGOUT
+    CURRENT_USER,
+} from '../../../../services/graphql/query';
+import {
+    LOGOUT,
 } from '../../../../services/graphql/mutate';
 
 
@@ -117,6 +120,21 @@ const Popup: React.FC<any> = (properties) => {
         } catch (err) {
         }
     }
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const query = await client.query({
+                query: CURRENT_USER,
+            });
+            const response = query.data.currentUser;
+            if (response.status) {
+                console.log(response);
+                setLoggedInUser(response.data);
+            }
+        }
+
+        fetchUser();
+    });
 
     return (
         <StyledPopup
