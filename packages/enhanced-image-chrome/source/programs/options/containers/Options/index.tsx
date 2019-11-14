@@ -35,7 +35,10 @@ import {
 
 import client from '../../../../services/graphql/client';
 import {
-    LOGOUT
+    CURRENT_USER,
+} from '../../../../services/graphql/query';
+import {
+    LOGOUT,
 } from '../../../../services/graphql/mutate';
 
 
@@ -145,7 +148,7 @@ const Options: React.FC<OptionsProperties> = () => {
                 getImageTextAtLoad,
                 transparentUI,
             };
-            console.log('saved options', options);
+            // console.log('saved options', options);
             await chromeStorage.set({options});
         }
         saveOptions();
@@ -153,6 +156,20 @@ const Options: React.FC<OptionsProperties> = () => {
         getImageTextAtLoad,
         transparentUI,
     ]);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const query = await client.query({
+                query: CURRENT_USER,
+            });
+            const response = query.data.currentUser;
+            if (response.status) {
+                setLoggedInUser(response.data);
+            }
+        }
+
+        fetchUser();
+    }, []);
 
     return (
         <StyledOptions

@@ -128,7 +128,6 @@ const Popup: React.FC<any> = (properties) => {
             });
             const response = query.data.currentUser;
             if (response.status) {
-                console.log(response);
                 setLoggedInUser(response.data);
             }
         }
