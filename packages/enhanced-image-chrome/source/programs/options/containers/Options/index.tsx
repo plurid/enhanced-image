@@ -159,12 +159,15 @@ const Options: React.FC<OptionsProperties> = () => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const query = await client.query({
-                query: CURRENT_USER,
-            });
-            const response = query.data.currentUser;
-            if (response.status) {
-                setLoggedInUser(response.data);
+            try {
+                const query = await client.query({
+                    query: CURRENT_USER,
+                });
+                const response = query.data.currentUser;
+                if (response.status) {
+                    setLoggedInUser(response.data);
+                }
+            } catch (error) {
             }
         }
 
