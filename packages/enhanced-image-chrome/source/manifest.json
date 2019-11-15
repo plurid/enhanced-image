@@ -4,7 +4,7 @@
     "short_name" : "eImage",
     "description": "Extract and select the text from images, adjust the image colors, modify the image appearance.",
     "author": "Plurid, Inc.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "icons" : {
         "16" : "assets/icons/icon16.png",
         "32" : "assets/icons/icon32.png",
