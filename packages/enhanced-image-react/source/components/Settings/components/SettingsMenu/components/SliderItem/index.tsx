@@ -17,7 +17,7 @@ import {
 
 import Context from '../../../../../../services/utilities/context';
 
-import { Theme } from '@plurid/utilities.themes';
+import { Theme } from '@plurid/plurid-themes';
 
 
 
