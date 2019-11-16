@@ -5,7 +5,7 @@ import {
     StyledButtonItemIcon,
 } from './styled';
 
-import { Theme } from '@plurid/utilities.themes';
+import { Theme } from '@plurid/plurid-themes';
 
 
 
