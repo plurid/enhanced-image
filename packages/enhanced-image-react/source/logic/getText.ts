@@ -7,7 +7,7 @@ import {
 } from 'apollo-cache-inmemory';
 
 import {
-    deleteTypenames,
+    graphql,
 } from '@plurid/plurid-functions';
 
 import {
@@ -66,7 +66,7 @@ export const getTextWithAPIKey = async (
         const response = {
             status: true,
             error: undefined,
-            data: deleteTypenames(data),
+            data: graphql.deleteTypenames(data),
         };
         return response;
     } catch (error) {
@@ -124,7 +124,7 @@ export const getTextWithUserToken = async (
         const response = {
             status: true,
             error: undefined,
-            data: deleteTypenames(data),
+            data: graphql.deleteTypenames(data),
         };
         return response;
     } catch (error) {
@@ -182,7 +182,7 @@ export const getTextWithImageID = async (
         const response = {
             status: true,
             error: undefined,
-            data: deleteTypenames(data),
+            data: graphql.deleteTypenames(data),
         };
         return response;
     } catch (error) {
