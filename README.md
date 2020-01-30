@@ -78,7 +78,7 @@ The Element can enhance arbitrary Internet images as a browser extension:
 
 ## Depict
 
-The Element uses plurid's [depict][depict] services for text extraction.
+The Element uses plurid's [depict][depict] services for text extraction. A custom API endpoint can be used, provided it uses GraphQL and respects the schema.
 
 [depict]: https://plurid.com/depict
 
