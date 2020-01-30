@@ -48,6 +48,10 @@ export interface EnhancedImageProperties {
      * Hide the About eImage from the Settings Menu.
      */
     about?: boolean;
+    /**
+     * Renders the Settings Menu as if the user is the owner/generator of the image.
+     */
+    generator?: boolean;
 
     /**
      * Function to be run after the image is loaded.
@@ -107,7 +111,6 @@ export interface EnhancedImageProperties {
      */
     data?: any;
 
-
     // updateDebounce?: number;
     // moreLimit?: number;
 }
@@ -122,6 +125,7 @@ export interface Context {
     theme: Theme;
     transparentUI: boolean;
     about: boolean;
+    generator: boolean;
 
     apiEndpoint: string;
     apiKey: string | undefined;

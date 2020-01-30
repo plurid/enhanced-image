@@ -80,6 +80,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         theme,
         transparentUI,
         about,
+        generator,
 
         atLoad,
 
@@ -111,6 +112,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         : themes.plurid;
     const _transparentUI = transparentUI === undefined ? true : transparentUI;
     const _about = about === undefined ? true : about;
+    const _generator = generator === undefined ? false : generator;
 
     const _apiEndpoint = apiEndpoint ? apiEndpoint : PLURID_API_ENDPOINT;
 
@@ -1051,6 +1053,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         theme: _theme,
         transparentUI: _transparentUI,
         about: _about,
+        generator: _generator,
 
         apiEndpoint: _apiEndpoint,
         apiKey,
