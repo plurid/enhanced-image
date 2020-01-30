@@ -58,6 +58,7 @@ const SettingsMenu: React.FC<any> = () => {
         theme,
         transparentUI,
         about,
+        generator,
 
         databaseImageID,
 
@@ -170,34 +171,38 @@ const SettingsMenu: React.FC<any> = () => {
                     toggleExpand={() => setExpandTextDrawer(expand => !expand)}
                 >
                     <ul>
-                        <li>
-                            <ButtonCheckmark
-                                theme={theme}
-                                toggle={() => setEditableText(show => !show)}
-                                text="Edit Text"
-                                checked={editableText}
-                            />
-                        </li>
+                        {generator && (
+                            <>
+                                <li>
+                                    <ButtonCheckmark
+                                        theme={theme}
+                                        toggle={() => setEditableText(show => !show)}
+                                        text="Edit Text"
+                                        checked={editableText}
+                                    />
+                                </li>
 
-                        <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={addText}
-                                icon={AddTextIcon}
-                                text="Add Text"
-                            />
-                        </li>
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={addText}
+                                        icon={AddTextIcon}
+                                        text="Add Text"
+                                    />
+                                </li>
 
-                        <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={saveText}
-                                icon={SaveTextIcon}
-                                text="Save Text"
-                            />
-                        </li>
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={saveText}
+                                        icon={SaveTextIcon}
+                                        text="Save Text"
+                                    />
+                                </li>
 
-                        <hr />
+                                <hr />
+                            </>
+                        )}
 
                         <li>
                             <ButtonItem
