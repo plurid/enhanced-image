@@ -20,7 +20,7 @@ class App extends Component {
                         alt="food"
                         apiEndpoint="http://localhost:33600/graphql"
                         transparentUI={true}
-                        apiKey="depict_a02d0c48b519"
+                        apiKey="depict_abe2898ab897453786af90b5dc2c7ac0"
                         getTextOnLoad={false}
                     />
                 </div>
