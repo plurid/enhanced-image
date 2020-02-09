@@ -866,7 +866,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }
 
 
-    const updateVersionContent = (versionID: string, value: string) => {
+    const updateVersionContent = (
+        versionID: string,
+        value: string,
+    ) => {
         const updatedImageText = imageText.map(text => {
             if (text.id === versionID) {
                 const currentVersion = getVersionById(text);
@@ -886,7 +889,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setImageText([...updatedImageText]);
     }
 
-    const toggleVersionViewable = (versionID: string) => {
+    const toggleVersionViewable = (
+        versionID: string,
+    ) => {
         const updatedImageText = imageText.map(text => {
             if (text.id === versionID) {
                 const currentVersion = getVersionById(text);
@@ -904,7 +909,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setImageText(updatedImageText);
     }
 
-    const duplicateTextItem = (versionID: string) => {
+    const duplicateTextItem = (
+        versionID: string,
+    ) => {
         const imgText = imageText.find(imgText => imgText.id === versionID);
 
         if (imgText) {
@@ -930,7 +937,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         }
     }
 
-    const deleteTextItem = (textID: string) => {
+    const deleteTextItem = (
+        textID: string,
+    ) => {
         const updatedImageText = imageText.filter(text => {
             if (text.id === textID) {
                 setDeletedTexts(deletedTexts => [...deletedTexts, textID]);
@@ -943,7 +952,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setImageText(updatedImageText);
     }
 
-    const updateTextCoordinates = (versionID: string, coordinates: any) => {
+    const updateTextCoordinates = (
+        versionID: string,
+        coordinates: any,
+    ) => {
         const updatedImageText = imageText.map(text => {
             if (text.id === versionID) {
                 const currentVersion = getVersionById(text);
