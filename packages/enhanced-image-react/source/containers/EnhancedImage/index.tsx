@@ -1037,8 +1037,14 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     ]);
 
     useEffect(() => {
-        if (getTextOnLoad) {
+        let cancelled = false;
+
+        if (getTextOnLoad && !cancelled) {
             getText();
+        }
+
+        return () => {
+            cancelled = true;
         }
     }, [
         getTextOnLoad,
