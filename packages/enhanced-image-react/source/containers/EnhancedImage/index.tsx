@@ -70,7 +70,10 @@ import client from '../../services/graphql/client';
 
 
 
-const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
+const EnhancedImage: React.FC<EnhancedImageProperties> = (
+    properties,
+) => {
+    /** properties */
     const {
         src,
         srcset,
@@ -116,6 +119,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const _apiEndpoint = apiEndpoint ? apiEndpoint : PLURID_API_ENDPOINT;
 
+
+    /** references */
+    const componentIsMounted = useRef(true);
+
+    const graphqlClient= useRef<ApolloClient<NormalizedCacheObject>>(client(_apiEndpoint));
+
+    const imageContainer = useRef<HTMLDivElement>(null);
+
+
+    /** state */
     const [imageType, setImageType] = useState('');
 
     const [imageBackground, setImageBackground] = useState(0);
@@ -159,10 +172,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
 
     const [databaseImageID, setDatabaseImageID] = useState('');
 
-    const graphqlClient= useRef<ApolloClient<NormalizedCacheObject>>(client(_apiEndpoint));
 
-    const imageContainer = useRef<HTMLDivElement>(null);
-
+    /** handlers */
     const handleLoadedImage = async (
         loadedImage: React.SyntheticEvent<HTMLImageElement, Event>
     ) => {
@@ -271,7 +282,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 status: false,
                 error: REQUEST_ERRORS.SENT_MESSAGE,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -300,7 +311,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 status: false,
                 error: REQUEST_ERRORS.SENT_MESSAGE,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -329,7 +340,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
                 status: false,
                 error: REQUEST_ERRORS.SENT_MESSAGE,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -357,7 +368,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             status: false,
             data: {},
             error: REQUEST_ERRORS.BAD_REQUEST,
-        }
+        };
         return response;
     }
 
@@ -370,6 +381,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
             data,
             error,
         } = await handleGetText();
+
+        if (!componentIsMounted.current) {
+            return;
+        }
 
         if (error) {
             if (error === REQUEST_ERRORS.NOT_AUTHORIZED) {
@@ -973,6 +988,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         setImageText([...updatedImageText]);
     }
 
+
+    /** effects */
     useEffect(() => {
         if (defaultsToggled) {
             if (
@@ -1037,19 +1054,22 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
     ]);
 
     useEffect(() => {
-        let cancelled = false;
-
-        if (getTextOnLoad && !cancelled) {
+        if (getTextOnLoad) {
             getText();
-        }
-
-        return () => {
-            cancelled = true;
         }
     }, [
         getTextOnLoad,
     ]);
 
+    /** Handle Component Mounted */
+    useEffect(() => {
+        return () => {
+            componentIsMounted.current = false
+        }
+    }, []);
+
+
+    /** context */
     const context: IContext = {
         src,
         srcset,
@@ -1149,6 +1169,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (properties) => {
         updateTextItemField,
     };
 
+
+    /** render */
     return (
         <Context.Provider
             value={context}
