@@ -122,6 +122,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     /** references */
     const componentIsMounted = useRef(true);
+    const messageTimer = useRef<number | null> (null);
 
     const graphqlClient= useRef<ApolloClient<NormalizedCacheObject>>(client(_apiEndpoint));
 
@@ -211,8 +212,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         time: number
     ) => {
         setMessage(message);
-        setTimeout(() => {
-            setMessage('');
+        messageTimer.current = setTimeout(() => {
+            if (componentIsMounted.current) {
+                setMessage('');
+            }
         }, time);
     }
 
@@ -263,7 +266,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
 
-    // GET TEXT
+    /** GET TEXT */
     const getTextWithApiKey = async (
         apiKey: string,
     ) => {
@@ -427,7 +430,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
 
-    // EXTRACT TEXT
+    /** EXTRACT TEXT */
     const extractTextWithApiKey = async (
         apiKey: string,
     ) => {
@@ -575,7 +578,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
 
-    // SAVE TEXT
+    /** SAVE TEXT */
     const saveTextWithApiKey = async (
         apiKey: string,
     ) => {
@@ -1077,6 +1080,15 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     useEffect(() => {
         return () => {
             componentIsMounted.current = false
+        }
+    }, []);
+
+    /** Handle Timeouts */
+    useEffect(() => {
+        return () => {
+            if (messageTimer.current) {
+                clearTimeout(messageTimer.current);
+            }
         }
     }, []);
 
