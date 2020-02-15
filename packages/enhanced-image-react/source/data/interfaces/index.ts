@@ -61,7 +61,7 @@ export interface EnhancedImageProperties {
     /**
      * Function to be run after colors are changed.
      */
-    atColorsChange: (data: any) => any;
+    atColorsChange?: (data: any) => any;
 
     /**
      * GraphlQL based end point.
