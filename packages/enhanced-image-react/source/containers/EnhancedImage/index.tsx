@@ -100,6 +100,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         timedNotification,
 
         getTextOnLoad,
+
+        initialColors,
     } = properties;
 
     if (!src) {
@@ -160,11 +162,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const [deletedTexts, setDeletedTexts] = useState<string[]>([]);
 
-    const [imageColorsInvert, setImageColorsInvert] = useState(!!SLIDER_VALUE_DEFAULTS.Invert);
-    const [imageColorsContrast, setImageColorsContrast] = useState(SLIDER_VALUE_DEFAULTS.Contrast);
-    const [imageColorsHue, setImageColorsHue] = useState(SLIDER_VALUE_DEFAULTS.Hue);
-    const [imageColorsSaturation, setImageColorsSaturation] = useState(SLIDER_VALUE_DEFAULTS.Saturation);
-    const [imageColorsBrightness, setImageColorsBrightness] = useState(SLIDER_VALUE_DEFAULTS.Brightness);
+    const [imageColorsInvert, setImageColorsInvert] = useState(!!initialColors?.invert || !!SLIDER_VALUE_DEFAULTS.Invert);
+    const [imageColorsContrast, setImageColorsContrast] = useState(initialColors?.contrast || SLIDER_VALUE_DEFAULTS.Contrast);
+    const [imageColorsHue, setImageColorsHue] = useState(initialColors?.hue || SLIDER_VALUE_DEFAULTS.Hue);
+    const [imageColorsSaturation, setImageColorsSaturation] = useState(initialColors?.saturation || SLIDER_VALUE_DEFAULTS.Saturation);
+    const [imageColorsBrightness, setImageColorsBrightness] = useState(initialColors?.brightness || SLIDER_VALUE_DEFAULTS.Brightness);
 
     const [defaultsToggled, setDefaultsToggled] = useState(false);
 
