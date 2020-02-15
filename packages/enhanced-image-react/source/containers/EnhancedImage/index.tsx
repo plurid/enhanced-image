@@ -36,6 +36,7 @@ import {
     ImageDimensions,
     ImageBoxDimensions,
     ImageText,
+    ImageColorsData,
 } from '../../data/interfaces';
 
 import {
@@ -1096,8 +1097,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     /** Handle Colors Change */
     useEffect(() => {
         if (atColorsChange) {
-            const data = {
-                invert: imageColorsInvert,
+            const data: ImageColorsData = {
+                invert: imageColorsInvert ? 1 : 0,
                 contrast: imageColorsContrast,
                 hue: imageColorsHue,
                 saturation: imageColorsSaturation,

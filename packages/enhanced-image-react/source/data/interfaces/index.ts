@@ -250,6 +250,14 @@ export interface TimedNotification {
 }
 
 
+export interface ImageColorsData {
+    invert: number;
+    contrast: number;
+    hue: number;
+    saturation: number;
+    brightness: number;
+}
+
 
 export {
     ImageText,
