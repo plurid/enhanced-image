@@ -59,6 +59,11 @@ export interface EnhancedImageProperties {
     atLoad?: any;
 
     /**
+     * Function to be run after colors are changed.
+     */
+    atColorsChange: (data: any) => any;
+
+    /**
      * GraphlQL based end point.
      * To be specified when using another API than https://api.plurid.com.
      *
