@@ -118,6 +118,8 @@ export interface EnhancedImageProperties {
 
     // updateDebounce?: number;
     // moreLimit?: number;
+
+    initialColors?: ImageColorsData;
 }
 
 
