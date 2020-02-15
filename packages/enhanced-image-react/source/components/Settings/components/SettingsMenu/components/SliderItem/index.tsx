@@ -70,7 +70,7 @@ const SliderItem: React.FC<SliderItemProperties> = (properties) => {
                     value={value}
                     onMouseEnter={() => setHovered(true)}
                     onMouseLeave={() => setHovered(false)}
-                    onChange={(event: any) => handleInput(event.target.value)}
+                    onChange={(event: any) => handleInput(parseInt(event.target.value))}
                     // onMouseDown={toggleMenuOpaque}
                     // onMouseUp={toggleMenuOpaque}
                     onDoubleClick={handleDoubleClick}
