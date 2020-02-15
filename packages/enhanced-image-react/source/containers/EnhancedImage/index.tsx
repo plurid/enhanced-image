@@ -86,6 +86,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         generator,
 
         atLoad,
+        atColorsChange,
 
         apiEndpoint,
 
@@ -1091,6 +1092,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             }
         }
     }, []);
+
+    /** Handle Colors Change */
+    useEffect(() => {
+        if (typeof atColorsChange === 'function') {
+            const data = {
+                invert: imageColorsInvert,
+                contrast: imageColorsContrast,
+                hue: imageColorsHue,
+                saturation: imageColorsSaturation,
+                brightness: imageColorsBrightness,
+            };
+            atColorsChange(data);
+        }
+    }, [
+        imageColorsInvert,
+        imageColorsContrast,
+        imageColorsHue,
+        imageColorsSaturation,
+        imageColorsBrightness,
+    ]);
 
 
     /** context */
