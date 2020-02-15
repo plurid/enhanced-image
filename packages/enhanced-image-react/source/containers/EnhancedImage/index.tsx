@@ -1095,7 +1095,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     /** Handle Colors Change */
     useEffect(() => {
-        if (typeof atColorsChange === 'function') {
+        if (atColorsChange) {
             const data = {
                 invert: imageColorsInvert,
                 contrast: imageColorsContrast,
