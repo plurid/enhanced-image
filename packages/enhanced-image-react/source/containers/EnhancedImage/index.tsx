@@ -12,7 +12,7 @@ import themes, {
 } from '@plurid/plurid-themes';
 
 import {
-    uuidv4 as uuid,
+    uuid,
 } from '@plurid/plurid-functions';
 
 import './styles.css';
@@ -226,8 +226,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const addText = () => {
         setMessageTimed('Added New Text', 1500);
 
-        const newTextID = 'eit_' + uuid();
-        const newTextVersionID = 'eiv_' + uuid();
+        const newTextID = 'eit_' + uuid.generate();
+        const newTextVersionID = 'eiv_' + uuid.generate();
 
         const newText: ImageText = {
             id: newTextID,
@@ -925,13 +925,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             const currentVersion = getVersionById(imgText);
             if (currentVersion) {
                 const version = { ...currentVersion };
-                const currentVersionId = uuid();
+                const currentVersionId = uuid.generate();
                 version.id = currentVersionId;
                 version.yCoordPercentage = currentVersion.yCoordPercentage < 85
                     ? currentVersion.yCoordPercentage + 10
                     : currentVersion.yCoordPercentage - 10;
 
-                const id = uuid();
+                const id = uuid.generate();
                 const updatedImgText: ImageText = {
                     id,
                     currentVersionId,
