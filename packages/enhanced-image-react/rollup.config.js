@@ -25,14 +25,14 @@ export default {
             format: 'cjs',
             exports: 'named',
             sourcemap: true,
-            external,
+            // external,
         },
         {
             file: pkg.module,
             format: 'es',
             exports: 'named',
             sourcemap: true,
-            external,
+            // external,
         }
     ],
     plugins: [
