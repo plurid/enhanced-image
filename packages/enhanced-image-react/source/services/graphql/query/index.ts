@@ -26,11 +26,11 @@ export const GET_TEXT_WITH_API_KEY = gql`
 `;
 
 
-export const GET_TEXT_WITH_USER_TOKEN = gql`
-    query EnhancedImageGetTextWithUserToken(
-        $input: InputEnhancedImageGetTextWithUserToken!
+export const GET_TEXT_WITH_OWNER_TOKEN = gql`
+    query EnhancedImageGetTextWithOwnerToken(
+        $input: InputEnhancedImageGetTextWithOwnerToken!
     ) {
-        enhancedImageGetTextWithUserToken(input: $input) {
+        enhancedImageGetTextWithOwnerToken(input: $input) {
             status
             errors {
                 path

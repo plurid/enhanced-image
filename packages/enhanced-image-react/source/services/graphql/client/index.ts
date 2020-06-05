@@ -1,19 +1,21 @@
 import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
+import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 
 
-const client = (uri: string) => {
+const client = (
+    uri: string,
+) => {
     const cache = new InMemoryCache();
-    const link = new HttpLink({
+    const link = createHttpLink({
         uri,
         credentials: 'include',
     });
 
     const client = new ApolloClient({
-        cache,
         link,
+        cache,
     });
 
     return client;
