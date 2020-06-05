@@ -19,8 +19,8 @@ export const LOGIN_BY_IDENTONYM = gql`
                     }
                 }
                 tokens {
-                    accessToken
-                    refreshToken
+                    access
+                    refresh
                 }
             }
             errors {
@@ -47,8 +47,8 @@ export const LOGIN_BY_EMAIL = gql`
                     }
                 }
                 tokens {
-                    accessToken
-                    refreshToken
+                    access
+                    refresh
                 }
             }
             errors {
@@ -58,6 +58,7 @@ export const LOGIN_BY_EMAIL = gql`
             }
         }
     }
+    ${DepictProductFragment}
 `;
 
 

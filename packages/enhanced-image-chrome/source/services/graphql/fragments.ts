@@ -26,7 +26,7 @@ export const DepictProductAccessFragment = gql`
 
 
 export const DepictProductFragment = gql`
-    fragment DepictProductFragment on Products {
+    fragment DepictProductFragment on OwnerProducts {
         depict {
             access {
                 ...DepictProductAccessFragment
