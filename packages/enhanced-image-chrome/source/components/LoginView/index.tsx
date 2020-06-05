@@ -77,13 +77,18 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
     const login = async () => {
         try {
             setLoadingButton(true);
+
             if (loginWithEmail) {
+                const input = {
+                    email: identonym,
+                    password,
+                };
+
                 const mutate = await client.mutate({
                     mutation: LOGIN_BY_EMAIL,
                     variables: {
-                        email: identonym,
-                        password,
-                    }
+                        input,
+                    },
                 });
 
                 const response = mutate.data.loginByEmail;
@@ -97,21 +102,38 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                     return;
                 }
 
-                if (response.data.products.depict !== null) {
-                    setLoggedInOwner(response.data);
+                const {
+                    data,
+                } = response;
+
+                const {
+                    owner,
+                    tokens,
+                } = data;
+
+                if (owner.products.depict !== null) {
+                    setLoggedInOwner(owner);
+                    setOwnerToken(tokens.access);
+                    setRefreshOwnerToken(tokens.refresh);
                     cancelLoginView();
+                    return;
                 }
             }
+
+            const input = {
+                identonym,
+                password,
+            };
 
             const mutate = await client.mutate({
                 mutation: LOGIN_BY_IDENTONYM,
                 variables: {
-                    identonym,
-                    password,
+                    input,
                 },
             });
 
             const response = mutate.data.loginByIdentonym;
+            console.log('response', response);
             setLoadingButton(false);
 
             if (!response.status) {
@@ -122,13 +144,29 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 return;
             }
 
-            if (response.data.owner.products.depict !== null) {
-                setLoggedInOwner(response.data.owner);
-                setOwnerToken(response.data.token);
-                setRefreshOwnerToken(response.data.refreshToken);
+            const {
+                data,
+            } = response;
+
+            const {
+                owner,
+                tokens,
+            } = data;
+
+            if (owner.products.depict !== null) {
+                setLoggedInOwner(owner);
+                setOwnerToken(tokens.access);
+                setRefreshOwnerToken(tokens.refresh);
                 cancelLoginView();
             }
         } catch (error) {
+            console.log(error);
+            setLoadingButton(false);
+            setLoggingMessage('could not login. try again.');
+            setTimeout(() => {
+                setLoggingMessage('');
+            }, 2000);
+            return;
         }
     }
 
