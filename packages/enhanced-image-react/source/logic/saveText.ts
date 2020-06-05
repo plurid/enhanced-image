@@ -16,7 +16,7 @@ import {
 
 import {
     SAVE_TEXT_WITH_API_KEY,
-    SAVE_TEXT_WITH_USER_TOKEN,
+    SAVE_TEXT_WITH_OWNER_TOKEN,
     SAVE_TEXT_WITH_IMAGE_ID,
 } from '../services/graphql/mutate';
 
@@ -102,7 +102,7 @@ export const saveTextWithUserToken = async (
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
-            mutation: SAVE_TEXT_WITH_USER_TOKEN,
+            mutation: SAVE_TEXT_WITH_OWNER_TOKEN,
             variables: {
                 input,
             },
