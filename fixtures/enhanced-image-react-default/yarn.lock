@@ -2065,10 +2065,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@plurid/enhanced-image-react@^0.1.44":
-  version "0.1.44"
-  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.44.tgz#b0acbd9ed57c4b0ce72ebfe7ac0f71f2f272221b"
-  integrity sha512-JjpGDypy7zA3qc+lZ22wHD0mE28Q2sTyoUmCVeOhEXs9my4hpoWL22bJdNQI/o292EfhK3nqTcZeYh65bCMb4Q==
+"@plurid/enhanced-image-react@^0.1.46":
+  version "0.1.46"
+  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.46.tgz#14f50bdb3e0bdb90f9e094b04c25a156955332be"
+  integrity sha512-iVHjZSO6iMzPXfQJd36l1yF9hjBVQGAvQb81EOE76WT/ukzKWS6O+lhgQKzKrIbap2OtGG7v8m3royY1Tu/TmQ==
 
 "@plurid/plurid-functions@^0.1.13":
   version "0.1.13"
