@@ -1,0 +1,21 @@
+---
+packages:
+  - ./packages/*
+
+package:
+  manager: yarn
+  publisher: npm
+  ignore:
+    - '@plurid/enhanced-image-vue'
+
+yarnWorkspace: false
+
+commit:
+  engine: git
+  combine: true
+  root: ''
+  fullFolder: false
+  divider: ' > '
+  message: 'setup: package'
+
+runFrom: ../
