@@ -5,7 +5,9 @@ import {
     StyledButtonCheckmarkCheckbox,
 } from './styled';
 
-import { Theme } from '@plurid/plurid-themes';
+import {
+    Theme,
+} from '@plurid/plurid-themes';
 
 
 
@@ -16,7 +18,9 @@ interface ButtonCheckmarkProperties {
     toggle: () => void;
 }
 
-const ButtonCheckmark: React.FC<ButtonCheckmarkProperties> = (properties) => {
+const ButtonCheckmark: React.FC<ButtonCheckmarkProperties> = (
+    properties,
+) => {
     const {
         theme,
         text,

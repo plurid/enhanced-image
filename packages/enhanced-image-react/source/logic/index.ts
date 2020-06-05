@@ -1,18 +1,18 @@
 import {
     getTextWithAPIKey,
-    getTextWithUserToken,
+    getTextWithOwnerToken,
     getTextWithImageID,
 } from './getText';
 
 import {
     extractTextWithAPIKey,
     extractTextWithImageID,
-    extractTextWithUserToken,
+    extractTextWithOwnerToken,
 } from './extractText';
 
 import {
     saveTextWithAPIKey,
-    saveTextWithUserToken,
+    saveTextWithOwnerToken,
     saveTextWithImageID,
 } from './saveText';
 
@@ -20,15 +20,15 @@ import {
 
 const logic = {
     getTextWithAPIKey,
-    getTextWithUserToken,
+    getTextWithOwnerToken,
     getTextWithImageID,
 
     extractTextWithAPIKey,
     extractTextWithImageID,
-    extractTextWithUserToken,
+    extractTextWithOwnerToken,
 
     saveTextWithAPIKey,
-    saveTextWithUserToken,
+    saveTextWithOwnerToken,
     saveTextWithImageID,
 }
 

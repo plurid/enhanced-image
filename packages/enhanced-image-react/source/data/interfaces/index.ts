@@ -1,6 +1,11 @@
-import { Dispatch, SetStateAction } from 'react';
+import {
+    Dispatch,
+    SetStateAction,
+} from 'react';
 
-import themes, { Theme } from '@plurid/plurid-themes';
+import themes, {
+    Theme,
+} from '@plurid/plurid-themes';
 
 import {
     ImageText,
@@ -76,13 +81,13 @@ export interface EnhancedImageProperties {
      */
     apiKey?: string;
     /**
-     * User Token obtained from cookie (JWT).
+     * Owner Token obtained from cookie (JWT).
      */
-    userToken?: string;
+    ownerToken?: string;
     /**
-     * Refresh User Token obtained from cookie (JWT).
+     * Refresh Owner Token obtained from cookie (JWT).
      */
-    refreshUserToken?: string;
+    refreshOwnerToken?: string;
     /**
      * Database-specific image ID.
      */
@@ -136,7 +141,7 @@ export interface Context {
 
     apiEndpoint: string;
     apiKey: string | undefined;
-    userToken: string | undefined;
+    ownerToken: string | undefined;
     imageID: string | undefined;
 
     databaseImageID: string;

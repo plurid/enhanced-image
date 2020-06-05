@@ -80,20 +80,20 @@ export const extractTextWithAPIKey = async (
 
 
 
-export interface InputExtractTextWithUserToken {
+export interface InputExtractTextWithOwnerToken {
     imageURL: string;
-    userToken: string;
+    ownerToken: string;
 }
 
 /**
  * Mutate `graphqlClient` with the `input` variable
- * based on the `userToken`.
+ * based on the `ownerToken`.
  *
  * @param input
  * @param graphqlClient
  */
-export const extractTextWithUserToken = async (
-    input: InputExtractTextWithUserToken,
+export const extractTextWithOwnerToken = async (
+    input: InputExtractTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
@@ -104,7 +104,7 @@ export const extractTextWithUserToken = async (
             },
         });
 
-        const mutationResponse = mutation.data.enhancedImageExtractTextWithUserToken;
+        const mutationResponse = mutation.data.enhancedImageExtractTextWithOwnerToken;
 
         if (!mutationResponse.status) {
             const error = mutationResponse.errors[0];
@@ -144,7 +144,7 @@ export interface InputExtractTextWithImageID {
 
 /**
  * Mutate `graphqlClient` with the `input` variable
- * based on the `userToken`.
+ * based on the `ownerToken`.
  *
  * @param input
  * @param graphqlClient

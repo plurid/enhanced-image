@@ -92,7 +92,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         apiEndpoint,
 
         apiKey,
-        userToken,
+        ownerToken,
         imageID,
 
         sendMessage,
@@ -300,12 +300,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         return response;
     }
 
-    const getTextWithUserToken = async (
-        userToken: string,
+    const getTextWithOwnerToken = async (
+        ownerToken: string,
     ) => {
         const input = {
             imageURL: imageURLFromSrc(src),
-            userToken,
+            ownerToken,
         };
 
         if (sendMessage) {
@@ -322,7 +322,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.getTextWithUserToken(
+        const response = await logic.getTextWithOwnerToken(
             input,
             graphqlClient.current,
         );
@@ -363,8 +363,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return await getTextWithApiKey(apiKey);
         }
 
-        if (userToken) {
-            return await getTextWithUserToken(userToken);
+        if (ownerToken) {
+            return await getTextWithOwnerToken(ownerToken);
         }
 
         if (imageID) {
@@ -464,12 +464,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         return response;
     }
 
-    const extractTextWithUserToken = async (
-        userToken: string,
+    const extractTextWithOwnerToken = async (
+        ownerToken: string,
     ) => {
         const input = {
             imageURL: imageURLFromSrc(src),
-            userToken,
+            ownerToken,
         };
 
         if (sendMessage) {
@@ -486,7 +486,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.extractTextWithUserToken(
+        const response = await logic.extractTextWithOwnerToken(
             input,
             graphqlClient.current,
         );
@@ -527,8 +527,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return await extractTextWithApiKey(apiKey);
         }
 
-        if (userToken) {
-            return await extractTextWithUserToken(userToken);
+        if (ownerToken) {
+            return await extractTextWithOwnerToken(ownerToken);
         }
 
         if (imageID) {
@@ -615,11 +615,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         return response;
     }
 
-    const saveTextWithUserToken = async (
-        userToken: string,
+    const saveTextWithOwnerToken = async (
+        ownerToken: string,
     ) => {
         const input = {
-            userToken,
+            ownerToken,
             imageURL: imageURLFromSrc(src),
             imageID: databaseImageID || '',
             imageText,
@@ -640,7 +640,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.saveTextWithUserToken(
+        const response = await logic.saveTextWithOwnerToken(
             input,
             graphqlClient.current,
         );
@@ -683,8 +683,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return await saveTextWithApiKey(apiKey);
         }
 
-        if (userToken) {
-            return await saveTextWithUserToken(userToken);
+        if (ownerToken) {
+            return await saveTextWithOwnerToken(ownerToken);
         }
 
         if (imageID) {
@@ -1131,7 +1131,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         apiEndpoint: _apiEndpoint,
         apiKey,
-        userToken,
+        ownerToken,
         imageID,
 
         databaseImageID,
