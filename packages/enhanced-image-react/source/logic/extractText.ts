@@ -16,7 +16,7 @@ import {
 
 import {
     EXTRACT_TEXT_WITH_API_KEY,
-    EXTRACT_TEXT_WITH_USER_TOKEN,
+    EXTRACT_TEXT_WITH_OWNER_TOKEN,
     EXTRACT_TEXT_WITH_IMAGE_ID,
 } from '../services/graphql/mutate';
 
@@ -98,7 +98,7 @@ export const extractTextWithUserToken = async (
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
-            mutation: EXTRACT_TEXT_WITH_USER_TOKEN,
+            mutation: EXTRACT_TEXT_WITH_OWNER_TOKEN,
             variables: {
                 input,
             },

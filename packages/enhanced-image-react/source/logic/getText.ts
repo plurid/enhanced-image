@@ -16,7 +16,7 @@ import {
 
 import {
     GET_TEXT_WITH_API_KEY,
-    GET_TEXT_WITH_USER_TOKEN,
+    GET_TEXT_WITH_OWNER_TOKEN,
     GET_TEXT_WITH_IMAGE_ID,
 } from '../services/graphql/query';
 
@@ -98,7 +98,7 @@ export const getTextWithUserToken = async (
 ) => {
     try {
         const query = await graphqlClient.query({
-            query: GET_TEXT_WITH_USER_TOKEN,
+            query: GET_TEXT_WITH_OWNER_TOKEN,
             variables: {
                 input,
             },
