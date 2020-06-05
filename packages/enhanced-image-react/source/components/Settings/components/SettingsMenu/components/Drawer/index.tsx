@@ -5,7 +5,9 @@ import {
     StyledDrawerTitle,
 } from './styled';
 
-import { Theme } from '@plurid/plurid-themes';
+import {
+    Theme,
+} from '@plurid/plurid-themes';
 
 
 
@@ -16,7 +18,9 @@ interface DrawerProperties {
     toggleExpand: () => void;
 }
 
-const Drawer: React.FC<DrawerProperties> = (properties) => {
+const Drawer: React.FC<DrawerProperties> = (
+    properties,
+) => {
     const {
         title,
         theme,

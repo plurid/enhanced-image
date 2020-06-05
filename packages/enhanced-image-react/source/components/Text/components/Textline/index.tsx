@@ -142,7 +142,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             }
 
             // Do not let editor to go to over the top.
-            let editorYCoord = offsetTop < 34
+            const editorYCoord = offsetTop < 34
                 ?  offsetHeight
                 : -34;
 

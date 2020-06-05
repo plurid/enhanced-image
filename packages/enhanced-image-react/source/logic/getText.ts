@@ -80,20 +80,20 @@ export const getTextWithAPIKey = async (
 }
 
 
-export interface InputGetTextWithUserToken {
+export interface InputGetTextWithOwnerToken {
     imageURL: string;
-    userToken: string;
+    ownerToken: string;
 }
 
 /**
  * Query `graphqlClient` with the `input` variable
- * based on the `userToken`.
+ * based on the `ownerToken`.
  *
  * @param input
  * @param graphqlClient
  */
-export const getTextWithUserToken = async (
-    input: InputGetTextWithUserToken,
+export const getTextWithOwnerToken = async (
+    input: InputGetTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
@@ -105,7 +105,7 @@ export const getTextWithUserToken = async (
             fetchPolicy: 'no-cache',
         });
 
-        const queryResponse = query.data.enhancedImageGetTextWithUserToken;
+        const queryResponse = query.data.enhancedImageGetTextWithOwnerToken;
 
         if (!queryResponse.status) {
             const error = queryResponse.errors[0];

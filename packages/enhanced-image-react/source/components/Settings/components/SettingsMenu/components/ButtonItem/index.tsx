@@ -5,7 +5,9 @@ import {
     StyledButtonItemIcon,
 } from './styled';
 
-import { Theme } from '@plurid/plurid-themes';
+import {
+    Theme,
+} from '@plurid/plurid-themes';
 
 
 
@@ -16,7 +18,9 @@ interface ButtonItemProperties {
     atClick: (event: any) => void;
 }
 
-const ButtonItem: React.FC<ButtonItemProperties> = (properties) => {
+const ButtonItem: React.FC<ButtonItemProperties> = (
+    properties,
+) => {
     const {
         theme,
         icon,

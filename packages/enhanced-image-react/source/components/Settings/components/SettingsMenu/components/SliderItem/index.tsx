@@ -31,7 +31,9 @@ interface SliderItemProperties {
     handleInput: (value: number) => void;
 }
 
-const SliderItem: React.FC<SliderItemProperties> = (properties) => {
+const SliderItem: React.FC<SliderItemProperties> = (
+    properties,
+) => {
     const {
         theme,
         type,

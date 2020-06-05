@@ -82,22 +82,22 @@ export const saveTextWithAPIKey = async (
 }
 
 
-export interface InputSaveTextWithUserToken {
+export interface InputSaveTextWithOwnerToken {
     imageURL: string;
     imageID: string;
-    userToken: string;
+    ownerToken: string;
     imageText: any;
 }
 
 /**
  * Mutate `graphqlClient` with the `input` variable
- * based on the `userToken`.
+ * based on the `ownerToken`.
  *
  * @param input
  * @param graphqlClient
  */
-export const saveTextWithUserToken = async (
-    input: InputSaveTextWithUserToken,
+export const saveTextWithOwnerToken = async (
+    input: InputSaveTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
 ) => {
     try {
@@ -109,7 +109,7 @@ export const saveTextWithUserToken = async (
             fetchPolicy: 'no-cache',
         });
 
-        const mutationReponse = mutation.data.enhancedImageSaveTextWithUserToken;
+        const mutationReponse = mutation.data.enhancedImageSaveTextWithOwnerToken;
 
         if (!mutationReponse.status) {
             const response = {
@@ -151,7 +151,7 @@ export interface InputSaveTextWithImageID {
 
 /**
  * Mutate `graphqlClient` with the `input` variable
- * based on the `userToken`.
+ * based on the `ownerToken`.
  *
  * @param input
  * @param graphqlClient
