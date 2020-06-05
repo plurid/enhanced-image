@@ -12,16 +12,18 @@ import ButtonInline from '../ButtonInline';
 
 interface ItemLoggedInAsProps {
     theme: any;
-    username: string;
+    identonym: string;
     logout: any;
 }
 
-const ItemLoggedInAs: React.FC<ItemLoggedInAsProps> = (props) => {
+const ItemLoggedInAs: React.FC<ItemLoggedInAsProps> = (
+    props,
+) => {
     const [mouseOver, setMouseOver] = useState(false);
 
     const {
         theme,
-        username,
+        identonym,
         logout,
     } = props;
 
@@ -39,7 +41,7 @@ const ItemLoggedInAs: React.FC<ItemLoggedInAsProps> = (props) => {
             {!mouseOver
             ? (
                 <div>
-                    {username}
+                    {identonym}
                 </div>
             ) : (
                 <ButtonInline

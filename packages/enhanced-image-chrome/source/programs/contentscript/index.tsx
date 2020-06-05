@@ -8,7 +8,7 @@ import EnhancedImage from '@plurid/enhanced-image-react';
 import themes from '@plurid/plurid-themes';
 
 import {
-    deleteTypenames,
+    graphql,
 } from '@plurid/plurid-functions';
 
 import {
@@ -30,8 +30,8 @@ interface ImageProperties {
     src: string;
     alt: string;
     theme: keyof typeof themes;
-    userToken: string;
-    refreshToken: string;
+    ownerToken: string;
+    refreshOwnerToken: string;
     options: any;
 }
 
@@ -40,8 +40,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
         src,
         alt,
         theme,
-        userToken,
-        refreshToken,
+        ownerToken,
+        refreshOwnerToken,
         options,
     } = properties;
 
@@ -57,7 +57,7 @@ const Image: React.FC<ImageProperties> = (properties) => {
             } = request.message;
 
             if (status) {
-                setData(deleteTypenames(data));
+                setData(graphql.deleteTypenames(data));
             }
 
             if (!status) {
@@ -84,8 +84,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
             alt={alt ? alt : ''}
             theme={theme || 'depict'}
 
-            userToken={userToken}
-            refreshUserToken={refreshToken}
+            ownerToken={ownerToken}
+            refreshOwnerToken={refreshOwnerToken}
 
             sendMessage={sendMessage}
             data={data}
@@ -149,7 +149,7 @@ async function contentscript() {
 
                     const { theme } = await chromeStorage.get('theme');
                     const { token } = await chromeStorage.get('token');
-                    const { refreshToken } = await chromeStorage.get('refreshToken');
+                    const { refreshOwnerToken } = await chromeStorage.get('refreshOwnerToken');
                     const { options } = await chromeStorage.get('options');
 
                     ReactDOM.render(
@@ -157,8 +157,8 @@ async function contentscript() {
                             src={src}
                             alt={alt}
                             theme={theme}
-                            userToken={token}
-                            refreshToken={refreshToken}
+                            ownerToken={token}
+                            refreshOwnerToken={refreshOwnerToken}
                             options={options}
                         />,
                         document.getElementById(rootId) as HTMLElement,

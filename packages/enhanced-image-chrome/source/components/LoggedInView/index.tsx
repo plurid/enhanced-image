@@ -45,7 +45,7 @@ const LoggedInView: React.FC<LoggedInViewProps> = (
         >
             <ItemLoggedInAs
                 theme={theme}
-                ownername={owner.ownername}
+                identonym={owner.identonym}
                 logout={logout}
             />
 
