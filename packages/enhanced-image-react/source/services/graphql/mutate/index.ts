@@ -26,11 +26,11 @@ export const EXTRACT_TEXT_WITH_API_KEY = gql`
 `;
 
 
-export const EXTRACT_TEXT_WITH_USER_TOKEN = gql`
-    mutation EnhancedImageExtractTextWithUserToken(
-        $input: InputEnhancedImageExtractTextWithUserToken!
+export const EXTRACT_TEXT_WITH_OWNER_TOKEN = gql`
+    mutation EnhancedImageExtractTextWithOwnerToken(
+        $input: InputEnhancedImageExtractTextWithOwnerToken!
     ) {
-        enhancedImageExtractTextWithUserToken(input: $input) {
+        enhancedImageExtractTextWithOwnerToken(input: $input) {
             status
             errors {
                 path
@@ -87,11 +87,11 @@ export const SAVE_TEXT_WITH_API_KEY = gql`
 `;
 
 
-export const SAVE_TEXT_WITH_USER_TOKEN = gql`
-    mutation EnhancedImageSaveTextWithUserToken(
-        $input: InputEnhancedImageSaveTextWithUserToken!
+export const SAVE_TEXT_WITH_OWNER_TOKEN = gql`
+    mutation EnhancedImageSaveTextWithOwnerToken(
+        $input: InputEnhancedImageSaveTextWithOwnerToken!
     ) {
-        enhancedImageSaveTextWithUserToken(input: $input) {
+        enhancedImageSaveTextWithOwnerToken(input: $input) {
             status
             errors {
                 path
