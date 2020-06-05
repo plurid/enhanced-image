@@ -43,8 +43,8 @@ export const DepictImageDataFragment = gql`
         imageShortSHA
         imageFilename
         publicImage
-        user {
-            username
+        owner {
+            identonym
         }
     }
 `;

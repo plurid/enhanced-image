@@ -14,10 +14,9 @@ interface TotalTransformationsProperties {
     imageTransformations: any;
 }
 
-
-const TotalTransformations: React.FC<TotalTransformationsProperties> = (properties) => {
-    const [mouseOver, setMouseOver] = useState(false);
-
+const TotalTransformations: React.FC<TotalTransformationsProperties> = (
+    properties,
+) => {
     const {
         theme,
         imageTransformations,
@@ -45,6 +44,10 @@ const TotalTransformations: React.FC<TotalTransformationsProperties> = (properti
             value: subscription,
         },
     ];
+
+
+    const [mouseOver, setMouseOver] = useState(false);
+
 
     return (
         <StyledTotalTransformations

@@ -7,12 +7,12 @@ import {
 
 
 
-export const CURRENT_USER = gql`
-    query CurrentUser {
-        currentUser {
+export const CURRENT_OWNER = gql`
+    query CurrentOwner {
+        currentOwner {
             status
             data {
-                username
+                identonym
                 products {
                     ...DepictProductFragment
                 }

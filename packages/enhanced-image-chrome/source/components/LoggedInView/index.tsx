@@ -22,21 +22,22 @@ import { PLURID_ACCOUNT_DOMAIN } from '../../data/constants';
 
 interface LoggedInViewProps {
     theme: Theme;
-    user: any;
+    owner: any;
     logout: any;
 }
 
-
-const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
+const LoggedInView: React.FC<LoggedInViewProps> = (
+    props,
+) => {
     const {
         theme,
-        user,
+        owner,
         logout,
     } = props;
 
     const {
         depict,
-    } = user.products;
+    } = owner.products;
 
     return (
         <StyledLoggedInView
@@ -44,7 +45,7 @@ const LoggedInView: React.FC<LoggedInViewProps> = (props) => {
         >
             <ItemLoggedInAs
                 theme={theme}
-                username={user.username}
+                ownername={owner.ownername}
                 logout={logout}
             />
 

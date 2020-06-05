@@ -7,7 +7,7 @@ import React, {
 import themes from '@plurid/plurid-themes';
 
 import {
-    deleteTypenames,
+    graphql,
 } from '@plurid/plurid-functions';
 
 import Context from '../../context';
@@ -35,7 +35,7 @@ import {
 
 import client from '../../../../services/graphql/client';
 import {
-    CURRENT_USER,
+    CURRENT_OWNER,
 } from '../../../../services/graphql/query';
 import {
     LOGOUT,
@@ -56,27 +56,27 @@ const Options: React.FC<OptionsProperties> = () => {
     const [extensionOnOff, setExtensionOnOff] = useState(true);
     const [loggedIn, setLoggedIn] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
-    const [user, setUser] = useState(undefined);
+    const [owner, setOwner] = useState(undefined);
 
     const [getImageTextAtLoad, setGetImageTextAtLoad] = useState(false);
     const [transparentUI, setTransparentUI] = useState(true);
 
-    const handleLoggedInUser = (user: any) => {
-        setUser(user);
+    const handleLoggedInOwner = (owner: any) => {
+        setOwner(owner);
         setLoggedIn(true);
     }
 
-    const setLoggedInUser = async (_user: any) => {
-        const user = deleteTypenames(_user);
-        handleLoggedInUser(user);
-        await chromeStorage.set({user});
+    const setLoggedInOwner = async (_owner: any) => {
+        const owner = graphql.deleteTypenames(_owner);
+        handleLoggedInOwner(owner);
+        await chromeStorage.set({owner});
     }
 
-    const setUserToken = async (token: string) => {
+    const setOwnerToken = async (token: string) => {
         await chromeStorage.set({token});
     }
 
-    const setRefreshUserToken = async (refreshToken: string) => {
+    const setRefreshOwnerToken = async (refreshToken: string) => {
         await chromeStorage.set({refreshToken});
     }
 
@@ -84,9 +84,9 @@ const Options: React.FC<OptionsProperties> = () => {
         <LoginView
             theme={theme}
             cancelLoginView={() => setShowLogin(false)}
-            setLoggedInUser={setLoggedInUser}
-            setUserToken={setUserToken}
-            setRefreshUserToken={setRefreshUserToken}
+            setLoggedInOwner={setLoggedInOwner}
+            setOwnerToken={setOwnerToken}
+            setRefreshOwnerToken={setRefreshOwnerToken}
         />
     );
 
@@ -96,15 +96,15 @@ const Options: React.FC<OptionsProperties> = () => {
             setExtensionOnOff(!!extensionOn);
         }
 
-        const getCurrentUser = async () => {
-            const { user } = await chromeStorage.get('user');
-            if (user) {
-                handleLoggedInUser(user);
+        const getCurrentOwner = async () => {
+            const { owner } = await chromeStorage.get('owner');
+            if (owner) {
+                handleLoggedInOwner(owner);
             }
         }
 
         getExtensionState();
-        getCurrentUser();
+        getCurrentOwner();
     }, []);
 
     useEffect(() => {
@@ -116,10 +116,10 @@ const Options: React.FC<OptionsProperties> = () => {
 
     const logout = async () => {
         setLoggedIn(false);
-        setUser(undefined);
+        setOwner(undefined);
 
         try {
-            await chromeStorage.remove('user');
+            await chromeStorage.remove('owner');
 
             await client.mutate({
                 mutation: LOGOUT
@@ -158,20 +158,21 @@ const Options: React.FC<OptionsProperties> = () => {
     ]);
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const fetchOwner = async () => {
             try {
                 const query = await client.query({
-                    query: CURRENT_USER,
+                    query: CURRENT_OWNER,
                 });
-                const response = query.data.currentUser;
+                const response = query.data.currentOwner;
                 if (response.status) {
-                    setLoggedInUser(response.data);
+                    setLoggedInOwner(response.data);
                 }
             } catch (error) {
+                return;
             }
         }
 
-        fetchUser();
+        fetchOwner();
     }, []);
 
     return (
@@ -206,7 +207,7 @@ const Options: React.FC<OptionsProperties> = () => {
                                     {loggedIn &&(
                                         <LoggedInView
                                             theme={theme}
-                                            user={user}
+                                            owner={owner}
                                             logout={logout}
                                         />
                                     )}

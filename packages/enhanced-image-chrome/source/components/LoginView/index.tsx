@@ -20,11 +20,11 @@ import InputText from '../InputText';
 
 import client from '../../services/graphql/client';
 import {
-    LOGIN_BY_USERNAME,
+    LOGIN_BY_IDENTONYM,
     LOGIN_BY_EMAIL,
 } from '../../services/graphql/mutate';
 import {
-    CURRENT_USER,
+    CURRENT_OWNER,
 } from '../../services/graphql/query';
 
 
@@ -32,9 +32,9 @@ import {
 interface LoginViewProps {
     theme: Theme;
     cancelLoginView: () => void;
-    setLoggedInUser: (user: any) => any;
-    setUserToken: (token: string) => void;
-    setRefreshUserToken: (refreshToken: string) => void;
+    setLoggedInOwner: (owner: any) => any;
+    setOwnerToken: (token: string) => void;
+    setRefreshOwnerToken: (refreshToken: string) => void;
 }
 
 
@@ -45,7 +45,7 @@ const isEmail = (value: string) => {
 
 
 const LoginView: React.FC<LoginViewProps> = (props) => {
-    const [username, setUsername] = useState('');
+    const [ownername, setOwnername] = useState('');
     const [password, setPassword] = useState('');
     const [showLoginButton, setShowLoginButton] = useState(false);
     const [loginWithEmail, setLoginWithEmail] = useState(false);
@@ -55,24 +55,24 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
     const {
         theme,
         cancelLoginView,
-        setLoggedInUser,
-        setUserToken,
-        setRefreshUserToken,
+        setLoggedInOwner,
+        setOwnerToken,
+        setRefreshOwnerToken,
     } = props;
 
     useEffect(() => {
-        if (username.length !== 0 && password.length !==0) {
+        if (ownername.length !== 0 && password.length !==0) {
             setShowLoginButton(true);
         } else {
             setShowLoginButton(false);
         }
 
-        if (isEmail(username)) {
+        if (isEmail(ownername)) {
             setLoginWithEmail(true);
         } else {
             setLoginWithEmail(false);
         }
-    }, [username, password]);
+    }, [ownername, password]);
 
     const login = async () => {
         try {
@@ -81,7 +81,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 const mutate = await client.mutate({
                     mutation: LOGIN_BY_EMAIL,
                     variables: {
-                        email: username,
+                        email: ownername,
                         password,
                     }
                 });
@@ -98,20 +98,20 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 }
 
                 if (response.data.products.depict !== null) {
-                    setLoggedInUser(response.data);
+                    setLoggedInOwner(response.data);
                     cancelLoginView();
                 }
             }
 
             const mutate = await client.mutate({
-                mutation: LOGIN_BY_USERNAME,
+                mutation: LOGIN_BY_IDENTONYM,
                 variables: {
-                    username,
+                    ownername,
                     password,
                 },
             });
 
-            const response = mutate.data.loginByUsername;
+            const response = mutate.data.loginByOwnername;
             setLoadingButton(false);
 
             if (!response.status) {
@@ -122,10 +122,10 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 return;
             }
 
-            if (response.data.user.products.depict !== null) {
-                setLoggedInUser(response.data.user);
-                setUserToken(response.data.token);
-                setRefreshUserToken(response.data.refreshToken);
+            if (response.data.owner.products.depict !== null) {
+                setLoggedInOwner(response.data.owner);
+                setOwnerToken(response.data.token);
+                setRefreshOwnerToken(response.data.refreshToken);
                 cancelLoginView();
             }
         } catch (error) {
@@ -137,9 +137,9 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
             <StyledLoginInput>
                 <InputText
                     theme={theme}
-                    value={username}
-                    placeholder="username or email"
-                    atChange={(event: any) => setUsername(event.target.value)}
+                    value={ownername}
+                    placeholder="ownername or email"
+                    atChange={(event: any) => setOwnername(event.target.value)}
                 />
             </StyledLoginInput>
 

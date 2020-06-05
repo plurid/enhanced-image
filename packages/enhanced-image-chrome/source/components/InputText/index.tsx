@@ -14,7 +14,6 @@ interface InputTextProps {
     password?: boolean;
 }
 
-
 const InputText: React.FC<InputTextProps> = (props) => {
     const {
         theme,

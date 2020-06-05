@@ -14,7 +14,6 @@ interface ItemExtensionOnOffProps {
     setExtensionOnOff: any;
 }
 
-
 const ItemExtensionOnOff: React.FC<ItemExtensionOnOffProps> = (props) => {
     const {
         theme,

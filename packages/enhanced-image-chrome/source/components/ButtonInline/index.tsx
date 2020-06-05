@@ -13,7 +13,9 @@ interface ButtonInlineProps {
 }
 
 
-const ButtonInline: React.FC<ButtonInlineProps> = (props) => {
+const ButtonInline: React.FC<ButtonInlineProps> = (
+    props,
+) => {
     const {
         atClick,
         theme,

@@ -17,7 +17,6 @@ interface DropdownProps {
     theme: any;
 }
 
-
 const Dropdown: React.FC<DropdownProps> = (props) => {
     const [showList, setShowList] = useState(false);
 
