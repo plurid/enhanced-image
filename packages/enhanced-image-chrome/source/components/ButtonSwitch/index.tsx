@@ -17,8 +17,9 @@ interface ButtonSwitchProps {
     theme: any;
 }
 
-
-const ButtonSwitch: React.FC<ButtonSwitchProps> = (props) => {
+const ButtonSwitch: React.FC<ButtonSwitchProps> = (
+    props,
+) => {
 
     const {
         checked,

@@ -18,7 +18,6 @@ interface ItemLoggedInAsProps {
     type: string;
 }
 
-
 const ItemLoggedInAs: React.FC<ItemLoggedInAsProps> = (props) => {
     const [mouseOver, setMouseOver] = useState(false);
 

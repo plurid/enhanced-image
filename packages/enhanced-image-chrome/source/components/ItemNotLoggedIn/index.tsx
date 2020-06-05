@@ -14,7 +14,6 @@ interface ItemNotLoggedInProps {
     setShowLogin: any;
 }
 
-
 const ItemNotLoggedIn: React.FC<ItemNotLoggedInProps> = (props) => {
     const {
         theme,

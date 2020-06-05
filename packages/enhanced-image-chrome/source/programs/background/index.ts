@@ -55,9 +55,9 @@ function backgroundMain() {
                     );
                     break;
                 }
-            case MESSAGE_TYPES.GET_TEXT_WITH_USER_TOKEN:
+            case MESSAGE_TYPES.GET_TEXT_WITH_OWNER_TOKEN:
                 {
-                    const response = await logic.getTextWithUserToken(
+                    const response = await logic.getTextWithOwnerToken(
                         input,
                         client,
                     );
@@ -92,9 +92,9 @@ function backgroundMain() {
                     );
                     break;
                 }
-            case MESSAGE_TYPES.EXTRACT_TEXT_WITH_USER_TOKEN:
+            case MESSAGE_TYPES.EXTRACT_TEXT_WITH_OWNER_TOKEN:
                 {
-                    const response = await logic.extractTextWithUserToken(
+                    const response = await logic.extractTextWithOwnerToken(
                         input,
                         client,
                     );
@@ -130,9 +130,9 @@ function backgroundMain() {
                     );
                     break;
                 }
-            case MESSAGE_TYPES.SAVE_TEXT_WITH_USER_TOKEN:
+            case MESSAGE_TYPES.SAVE_TEXT_WITH_OWNER_TOKEN:
                 {
-                    const response = await logic.saveTextWithUserToken(
+                    const response = await logic.saveTextWithOwnerToken(
                         input,
                         client,
                     );

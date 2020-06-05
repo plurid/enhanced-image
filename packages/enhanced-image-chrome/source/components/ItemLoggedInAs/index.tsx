@@ -16,7 +16,6 @@ interface ItemLoggedInAsProps {
     logout: any;
 }
 
-
 const ItemLoggedInAs: React.FC<ItemLoggedInAsProps> = (props) => {
     const [mouseOver, setMouseOver] = useState(false);
 

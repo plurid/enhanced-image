@@ -6,23 +6,22 @@ import {
 
 
 
-export const LOGIN_BY_USERNAME = gql`
-    mutation LoginByUsername($username: String!, $password: String!) {
-        loginByUsername(
-            username: $username,
-            password: $password
-        ) {
+export const LOGIN_BY_IDENTONYM = gql`
+    mutation LoginByIdentonym($input: InputLoginByIdentonym!) {
+        loginByIdentonym(input: $input) {
             status
             data {
-                user {
+                owner {
                     id
-                    username
+                    identonym
                     products {
                         ...DepictProductFragment
                     }
                 }
-                token
-                refreshToken
+                tokens {
+                    accessToken
+                    refreshToken
+                }
             }
             errors {
                 path
@@ -36,22 +35,21 @@ export const LOGIN_BY_USERNAME = gql`
 
 
 export const LOGIN_BY_EMAIL = gql`
-    mutation LoginByEmail($email: String!, $password: String!) {
-        loginByEmail(
-            email: $email,
-            password: $password
-        ) {
+    mutation LoginByEmail($input: InputLoginByEmail!) {
+        loginByEmail(input: $input) {
             status
             data {
-                user {
+                owner {
                     id
-                    username
+                    identonym
                     products {
                         ...DepictProductFragment
                     }
                 }
-                token
-                refreshToken
+                tokens {
+                    accessToken
+                    refreshToken
+                }
             }
             errors {
                 path

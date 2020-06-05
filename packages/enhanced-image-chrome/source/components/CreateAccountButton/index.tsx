@@ -16,7 +16,9 @@ interface CreateAccountButtonProps {
 
 const PLURID_ACCOUNT_DOMAIN = 'https://account.plurid.com';
 
-const CreateAccountButton: React.FC<CreateAccountButtonProps> = (props) => {
+const CreateAccountButton: React.FC<CreateAccountButtonProps> = (
+    props,
+) => {
     const {
         theme,
     } = props;

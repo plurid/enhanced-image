@@ -16,8 +16,9 @@ interface ButtonProps {
     loadingText?: string;
 }
 
-
-const Button: React.FC<ButtonProps> = (props) => {
+const Button: React.FC<ButtonProps> = (
+    props,
+) => {
     const {
         theme,
         text,
