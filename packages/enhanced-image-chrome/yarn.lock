@@ -1451,10 +1451,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@plurid/enhanced-image-react@^0.1.46":
-  version "0.1.46"
-  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.46.tgz#14f50bdb3e0bdb90f9e094b04c25a156955332be"
-  integrity sha512-iVHjZSO6iMzPXfQJd36l1yF9hjBVQGAvQb81EOE76WT/ukzKWS6O+lhgQKzKrIbap2OtGG7v8m3royY1Tu/TmQ==
+"@plurid/enhanced-image-react@^0.1.47":
+  version "0.1.47"
+  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.47.tgz#478f87d28fe92956344440bc2b8144475b211cdf"
+  integrity sha512-D3Bhr7HOXwq9QgL7qQ/aNoyNCgTMZiEJymcEq0OXYZvPXX5kzlJGZG8xG2BCIEtNr4AsjRifV1NkIUtfZL5BYw==
 
 "@plurid/plurid-functions@^0.1.13":
   version "0.1.13"
