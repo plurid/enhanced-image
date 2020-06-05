@@ -39,10 +39,12 @@ const base = {
         ],
     },
     plugins: [
-        new CopyPlugin([
-            { from: './source/manifest.json', to: './manifest.json' },
-            { from: './source/assets', to: 'assets' }
-        ]),
+        new CopyPlugin({
+            patterns: [
+                { from: './source/manifest.json', to: './manifest.json' },
+                { from: './source/assets', to: 'assets' }
+            ],
+        }),
         new HtmlWebpackPlugin({
             template: './source/programs/popup/index.html',
             chunks: ['popup'],
