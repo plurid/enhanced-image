@@ -310,7 +310,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         if (sendMessage) {
             sendMessage({
-                type: MESSAGE_TYPES.GET_TEXT_WITH_USER_TOKEN,
+                type: MESSAGE_TYPES.GET_TEXT_WITH_OWNER_TOKEN,
                 input,
             });
 
@@ -474,7 +474,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         if (sendMessage) {
             sendMessage({
-                type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_USER_TOKEN,
+                type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_OWNER_TOKEN,
                 input,
             });
 
@@ -628,7 +628,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         if (sendMessage) {
             sendMessage({
-                type: MESSAGE_TYPES.SAVE_TEXT_WITH_USER_TOKEN,
+                type: MESSAGE_TYPES.SAVE_TEXT_WITH_OWNER_TOKEN,
                 input,
             });
 
