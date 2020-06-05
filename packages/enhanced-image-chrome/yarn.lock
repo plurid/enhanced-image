@@ -1451,15 +1451,20 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@plurid/enhanced-image-react@^0.1.44":
-  version "0.1.44"
-  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.44.tgz#b0acbd9ed57c4b0ce72ebfe7ac0f71f2f272221b"
-  integrity sha512-JjpGDypy7zA3qc+lZ22wHD0mE28Q2sTyoUmCVeOhEXs9my4hpoWL22bJdNQI/o292EfhK3nqTcZeYh65bCMb4Q==
+"@plurid/enhanced-image-react@^0.1.45":
+  version "0.1.45"
+  resolved "https://registry.yarnpkg.com/@plurid/enhanced-image-react/-/enhanced-image-react-0.1.45.tgz#b034dcb940885c0f7a60f34903c880472bc60df0"
+  integrity sha512-msJPDEDX036u3rtKoaalI54dk5t9jZc0FHmnwqyHKSKCDdznZOp7KRSkf6JsM0uGsjN1PnSkOwIv8IQyxZBgTw==
 
 "@plurid/plurid-functions@^0.1.13":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@plurid/plurid-functions/-/plurid-functions-0.1.13.tgz#903558a4595b6d84d6296bb52f52c64cb36d8deb"
   integrity sha512-lg8tJEdN8rR//iDYIJ7xCfrLXIT/Od+OgInRn6DCv/Z7z8Ea3cBlOlpAGN/tWi3dtabDFC6Iueb5ARYP6Mc8Aw==
+
+"@plurid/plurid-icons-react@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-icons-react/-/plurid-icons-react-0.1.19.tgz#12174706770ae81e2c4b25464803f71ef67423cb"
+  integrity sha512-h6/1lfdiuCl6pGIySQAjE1rKAU8Njo1wKAhZpKOHT8eS2X739/sn9f2d1rJaDu73SepD4RQBqbbti4Z2ctOSeA==
 
 "@plurid/plurid-themes@^0.1.26":
   version "0.1.26"
