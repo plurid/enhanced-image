@@ -7,10 +7,10 @@ import { storiesOf } from '@storybook/react';
 
 import {
     withKnobs,
-    // boolean,
+    boolean,
     // number,
     // select,
-    // text,
+    text,
 } from '@storybook/addon-knobs';
 
 import EnhancedImage from '../';
@@ -42,6 +42,11 @@ storiesOf(
 .add('basic', () => {
     // const theme = select(themeLabel, themeOptions, defaultThemeValue);
 
+    const generator = boolean('Generator', false);
+    const development = boolean('Development', false);
+
+    const ownerToken = text('Owner Token', '');
+
     return (
         <div
             style={{
@@ -52,6 +57,11 @@ storiesOf(
                 src="/assets/food-text.jpg"
                 // {...actions}
                 // theme={themes[theme]}
+
+                generator={generator}
+                development={development}
+
+                ownerToken={ownerToken}
             />
         </div>
     );
