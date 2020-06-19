@@ -316,9 +316,9 @@ const SettingsMenu: React.FC<any> = () => {
                                             type={type}
                                             min={min}
                                             max={max}
-                                            value={context[sliderValue]}
+                                            value={(context as any)[sliderValue]}
                                             valueSign={valueSign}
-                                            handleInput={(value: number) => context[handleInput](value)}
+                                            handleInput={(value: number) => (context as any)[handleInput](value)}
                                         />
                                     </li>
                                 )

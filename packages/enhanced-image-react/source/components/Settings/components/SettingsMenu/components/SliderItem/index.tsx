@@ -47,13 +47,13 @@ const SliderItem: React.FC<SliderItemProperties> = (
     const [hovered, setHovered] = useState(false);
 
     const handleDoubleClick = () => {
-        handleInput(SLIDER_VALUE_DEFAULTS[type]);
+        handleInput((SLIDER_VALUE_DEFAULTS as any)[type]);
     }
 
     return (
         <StyledSliderItem>
             <StyledSliderType>
-                {SLIDER_NAMES[type]}
+                {(SLIDER_NAMES as any)[type]}
 
                 <StyledSliderValue>
                     {value}{valueSign || SLIDER_INPUT_DEFAULTS.valueSign}
