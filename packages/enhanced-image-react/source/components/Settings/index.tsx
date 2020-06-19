@@ -16,6 +16,7 @@ import SettingsMenu from './components/SettingsMenu';
 
 
 const Settings: React.FC<any> = () => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
@@ -28,6 +29,8 @@ const Settings: React.FC<any> = () => {
         setShowSettingsMenu,
     } = context;
 
+
+    /** render */
     return (
         <StyledSettings
             theme={theme}

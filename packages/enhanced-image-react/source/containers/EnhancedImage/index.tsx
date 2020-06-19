@@ -1273,7 +1273,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     <Text />
                 )}
 
-                {loadedImage && showSettingsButton && (
+                {loadedImage
+                && showSettingsButton
+                && !silent
+                && (
                     <Settings />
                 )}
 
