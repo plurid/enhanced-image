@@ -104,6 +104,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         initialColors,
 
         development,
+        silent,
     } = properties;
 
     if (!src) {
@@ -126,6 +127,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const _apiEndpoint = apiEndpoint ? apiEndpoint : PLURID_API_ENDPOINT;
 
     const _development = development ?? false;
+    const _silent = silent ?? false;
 
 
     /** references */
@@ -1154,6 +1156,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         about: _about,
         generator: _generator,
         development: _development,
+        silent: _silent,
 
         apiEndpoint: _apiEndpoint,
         apiKey,

@@ -138,7 +138,7 @@ export interface EnhancedImageProperties {
      *
      * Default: `false`.
      */
-    slient?: boolean;
+    silent?: boolean;
 }
 
 
@@ -153,6 +153,7 @@ export interface Context {
     about: boolean;
     generator: boolean;
     development: boolean;
+    silent: boolean;
 
     apiEndpoint: string;
     apiKey: string | undefined;
