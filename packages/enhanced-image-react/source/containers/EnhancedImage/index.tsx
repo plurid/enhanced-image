@@ -738,7 +738,23 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const downloadText = () => {
         const stringifiedText = JSON.stringify(imageText, null, 4);
-        console.log('stringifiedText', stringifiedText);
+
+        const imageName = imageID || databaseImageID || 'enhanced-image-text';
+        const filename = imageName + '.json';
+
+        const element = document.createElement('a');
+        element.setAttribute(
+            'href',
+            'data:text/plain;charset=utf-8,' + encodeURIComponent(stringifiedText),
+        );
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
     }
 
     const transviewText = async () => {
