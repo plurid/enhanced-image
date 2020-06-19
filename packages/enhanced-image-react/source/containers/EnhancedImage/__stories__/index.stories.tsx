@@ -44,6 +44,7 @@ storiesOf(
 
     const generator = boolean('Generator', false);
     const development = boolean('Development', false);
+    const silent = boolean('Silent', false);
 
     const ownerToken = text('Owner Token', '');
 
@@ -60,6 +61,7 @@ storiesOf(
 
                 generator={generator}
                 development={development}
+                silent={silent}
 
                 ownerToken={ownerToken}
             />
