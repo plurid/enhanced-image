@@ -737,7 +737,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
     const downloadText = () => {
-        const stringifiedText = JSON.stringify(imageText);
+        const stringifiedText = JSON.stringify(imageText, null, 4);
         console.log('stringifiedText', stringifiedText);
     }
 
