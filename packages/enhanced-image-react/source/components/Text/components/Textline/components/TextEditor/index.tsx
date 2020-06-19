@@ -144,13 +144,13 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
 
     const toggleTextFormat = (type: string, checkValue: string | boolean) => {
         if (typeof checkValue === 'boolean') {
-            if (currentVersion[type]) {
+            if ((currentVersion as any)[type as any]) {
                 updateTextItemField(textItem.id, type, false);
             } else {
                 updateTextItemField(textItem.id, type, true);
             }
         } else {
-            if (currentVersion[type] === checkValue) {
+            if ((currentVersion as any)[type as any] === checkValue) {
                 updateTextItemField(textItem.id, type, 'normal');
             } else {
                 updateTextItemField(textItem.id, type, checkValue);

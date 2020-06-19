@@ -15,7 +15,7 @@ import {
 
 import EnhancedImage from '../';
 
-import foodText from '../../../../test/assets/food-text.jpg';
+import foodText from '../../../test/assets/food-text.jpg';
 
 
 

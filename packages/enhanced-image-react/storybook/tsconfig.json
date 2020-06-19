@@ -19,7 +19,7 @@
         "types": ["react", "jest"]
     },
     "include": [
-        "src/**/*"
+        "source/**/*"
     ],
     "exclude": [
         "node_modules",
@@ -29,7 +29,7 @@
         "acceptance-tests",
         "webpack",
         "jest",
-        "src/setupTests.ts",
+        "source/setupTests.ts",
         "**/*/*.test.ts",
         "examples"
     ]
