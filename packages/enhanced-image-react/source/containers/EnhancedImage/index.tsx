@@ -739,7 +739,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const downloadText = () => {
         const stringifiedText = JSON.stringify(imageText, null, 4);
 
-        const imageName = imageID || databaseImageID || 'enhanced-image-text';
+        const imageName = imageID || databaseImageID || 'eit-' + src;
         const filename = imageName + '.json';
 
         const element = document.createElement('a');

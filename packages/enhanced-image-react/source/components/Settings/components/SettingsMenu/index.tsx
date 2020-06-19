@@ -229,7 +229,7 @@ const SettingsMenu: React.FC<any> = () => {
                                 <ButtonItem
                                     theme={theme}
                                     atClick={downloadText}
-                                    icon={ExtractTextIcon}
+                                    icon={SaveIcon}
                                     text="Download Text"
                                 />
                             </li>
