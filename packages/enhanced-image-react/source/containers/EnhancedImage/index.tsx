@@ -1280,13 +1280,17 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     <Settings />
                 )}
 
-                {message && (
+                {message
+                && !silent
+                && (
                     <Message
                         text={message}
                     />
                 )}
 
-                {showSpinner && (
+                {showSpinner
+                && !silent
+                && (
                     <Spinner />
                 )}
             </StyledEnhancedImage>
