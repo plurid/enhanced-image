@@ -19,7 +19,8 @@
         "types": ["react", "jest"]
     },
     "include": [
-        "source/**/*"
+        "source/**/*",
+        "source/typings.d.ts"
     ],
     "exclude": [
         "node_modules",

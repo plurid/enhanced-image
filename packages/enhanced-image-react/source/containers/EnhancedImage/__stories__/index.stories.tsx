@@ -15,7 +15,7 @@ import {
 
 import EnhancedImage from '../';
 
-import foodText from '../../../test/assets/food-text.jpg';
+// import foodText from '../../../test/assets/food-text.jpg';
 
 
 
@@ -48,12 +48,11 @@ storiesOf(
                 padding: '4rem',
             }}
         >
-            div
-            {/* <EnhancedImage
-                src={foodText}
+            <EnhancedImage
+                src="/assets/food-text.jpg"
                 // {...actions}
                 // theme={themes[theme]}
-            /> */}
+            />
         </div>
     );
 });
