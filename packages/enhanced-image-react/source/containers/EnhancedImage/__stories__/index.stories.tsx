@@ -48,11 +48,12 @@ storiesOf(
                 padding: '4rem',
             }}
         >
-            <EnhancedImage
+            div
+            {/* <EnhancedImage
                 src={foodText}
                 // {...actions}
                 // theme={themes[theme]}
-            />
+            /> */}
         </div>
     );
 });
