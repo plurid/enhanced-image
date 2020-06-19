@@ -128,8 +128,17 @@ export interface EnhancedImageProperties {
 
     /**
      * Show development tools.
+     *
+     * Default: `false`.
      */
     development?: boolean;
+
+    /**
+     * Hide the Enhanced Image button and silence all the messages.
+     *
+     * Default: `false`.
+     */
+    slient?: boolean;
 }
 
 
