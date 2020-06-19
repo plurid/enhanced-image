@@ -102,6 +102,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         getTextOnLoad,
 
         initialColors,
+
+        development,
     } = properties;
 
     if (!src) {
@@ -122,6 +124,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const _generator = generator === undefined ? false : generator;
 
     const _apiEndpoint = apiEndpoint ? apiEndpoint : PLURID_API_ENDPOINT;
+
+    const _development = development ?? false;
 
 
     /** references */
@@ -732,6 +736,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
 
+    const downloadText = () => {
+        const stringifiedText = JSON.stringify(imageText);
+        console.log('stringifiedText', stringifiedText);
+    }
+
     const transviewText = async () => {
 
     }
@@ -1128,6 +1137,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         transparentUI: _transparentUI,
         about: _about,
         generator: _generator,
+        development: _development,
 
         apiEndpoint: _apiEndpoint,
         apiKey,
@@ -1176,6 +1186,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         getText,
         extractText,
+        downloadText,
         transviewText,
 
         saveImage,

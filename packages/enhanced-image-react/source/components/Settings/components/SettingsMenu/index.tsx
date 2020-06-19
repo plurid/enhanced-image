@@ -59,6 +59,7 @@ const SettingsMenu: React.FC<any> = () => {
         transparentUI,
         about,
         generator,
+        development,
 
         databaseImageID,
 
@@ -86,6 +87,7 @@ const SettingsMenu: React.FC<any> = () => {
 
         getText,
         extractText,
+        downloadText,
         // transviewText,
 
         saveImage,
@@ -221,6 +223,17 @@ const SettingsMenu: React.FC<any> = () => {
                                 text="Extract Text"
                             />
                         </li>
+
+                        {development && (
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={downloadText}
+                                    icon={ExtractTextIcon}
+                                    text="Download Text"
+                                />
+                            </li>
+                        )}
 
                         {/* <li>
                             <ButtonItem
