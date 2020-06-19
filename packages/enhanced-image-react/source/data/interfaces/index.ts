@@ -125,6 +125,11 @@ export interface EnhancedImageProperties {
     // moreLimit?: number;
 
     initialColors?: ImageColorsData;
+
+    /**
+     * Show development tools.
+     */
+    development?: boolean;
 }
 
 
@@ -138,6 +143,7 @@ export interface Context {
     transparentUI: boolean;
     about: boolean;
     generator: boolean;
+    development: boolean;
 
     apiEndpoint: string;
     apiKey: string | undefined;
@@ -187,6 +193,7 @@ export interface Context {
 
     getText: () => Promise<void>;
     extractText: () => Promise<void>;
+    downloadText: () => void;
     transviewText: () => Promise<void>;
     // updateText: (id: string) => void;
     // deleteText: (id: string) => void;
