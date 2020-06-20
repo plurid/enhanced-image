@@ -7,6 +7,7 @@ import React, {
 
 import {
     PluridIconPalette,
+    PluridIconSpace,
 } from '@plurid/plurid-icons-react';
 
 import {
@@ -24,6 +25,7 @@ import ButtonToggle from './components/ButtonToggle';
 import ButtonsColors from './components/ButtonsColors';
 import ButtonClick from './components/ButtonClick';
 import SimpleInput from './components/SimpleInput';
+import Slider from './components/Slider';
 import Drawer from './components/Drawer';
 
 import { selectableFonts } from '../../../../../../data/constants/fonts';
@@ -160,6 +162,26 @@ const TextEditor: React.FC<TextEditorProperties> = (
             case 'color':
                 updateTextItemField(textItem.id, 'color', value);
                 break;
+            case 'perspective':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'perspective', value - 1);
+                }
+                break;
+            case 'xRotation':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'xRotation', value - 1);
+                }
+                break;
+            case 'yRotation':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'yRotation', value - 1);
+                }
+                break;
+            case 'zRotation':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'zRotation', value - 1);
+                }
+                break;
         }
     }
 
@@ -278,6 +300,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
                     <ButtonInput
                         theme={theme}
+                        transparentUI={transparentUI}
                         toggle={() => toggleTextFormat('link', true)}
                         toggled={currentVersion.link}
                         icon={LinkIcon}
@@ -334,6 +357,73 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         theme={theme}
                         transparentUI={transparentUI}
                         Icon={PluridIconPalette}
+                    />
+
+                    <Slider
+                        value={currentVersion.perspective + 1}
+                        valueType="perspective"
+                        changeValue={updateField}
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        Icon={PluridIconSpace}
+                        renderOutside={renderOutside}
+                        min={1}
+                        step={10}
+                        max={2001}
+                    />
+
+                    <Slider
+                        value={currentVersion.xRotation + 1}
+                        valueType="xRotation"
+                        changeValue={updateField}
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        Icon={() => {
+                            return (
+                                <div>
+                                    X
+                                </div>
+                            );
+                        }}
+                        renderOutside={renderOutside}
+                        min={1}
+                        max={361}
+                    />
+
+                    <Slider
+                        value={currentVersion.yRotation + 1}
+                        valueType="yRotation"
+                        changeValue={updateField}
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        Icon={() => {
+                            return (
+                                <div>
+                                    Y
+                                </div>
+                            );
+                        }}
+                        renderOutside={renderOutside}
+                        min={1}
+                        max={361}
+                    />
+
+                    <Slider
+                        value={currentVersion.zRotation + 1}
+                        valueType="zRotation"
+                        changeValue={updateField}
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        Icon={() => {
+                            return (
+                                <div>
+                                    Z
+                                </div>
+                            );
+                        }}
+                        renderOutside={renderOutside}
+                        min={1}
+                        max={361}
                     />
                 </Drawer>
 
