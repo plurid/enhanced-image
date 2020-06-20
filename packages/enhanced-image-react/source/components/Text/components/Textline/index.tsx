@@ -143,11 +143,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 : -17;
 
             // Do not let editor to go to the left.
-            console.log('offsetLeft', offsetLeft);
-
             if (offsetLeft < 17) {
-                console.log('offsetLeft', offsetLeft);
-                console.log('editorXCoord', editorXCoord);
                 editorXCoord = offsetLeft * -1;
             }
 
@@ -342,6 +338,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     }, [
         editorWidth,
         dragging,
+        mouseOver,
     ]);
 
     /**
@@ -429,27 +426,26 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             )}
 
             {showEditor
-                && currentVersion
-                && !dragging
-                && (
-                    <TextEditor
-                        textItem={data}
-                        currentVersion={currentVersion}
+            && currentVersion
+            && !dragging
+            && (
+                <TextEditor
+                    textItem={data}
+                    currentVersion={currentVersion}
 
-                        editable={editable}
-                        setEditable={setEditable}
-                        draggable={draggable}
-                        setDraggable={setDraggable}
-                        setViewable={setVersionViewable}
+                    editable={editable}
+                    setEditable={setEditable}
+                    draggable={draggable}
+                    setDraggable={setDraggable}
+                    setViewable={setVersionViewable}
 
-                        positions={editorPositions}
-                        expandFormat={editorExpandFormat}
-                        setExpandFormat={setEditorExpandFormat}
-                        setWidth={setEditorWidth}
-                        fullWidth={editorFullWidth}
-                    />
-                )
-            }
+                    positions={editorPositions}
+                    expandFormat={editorExpandFormat}
+                    setExpandFormat={setEditorExpandFormat}
+                    setWidth={setEditorWidth}
+                    fullWidth={editorFullWidth}
+                />
+            )}
         </StyledTextItem>
     );
 }
