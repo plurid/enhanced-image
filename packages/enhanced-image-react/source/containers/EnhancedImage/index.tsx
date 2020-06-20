@@ -162,6 +162,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const [expandVariaDrawer, setExpandVariaDrawer] = useState(false);
 
     const [editableText, setEditableText] = useState(false);
+    const [revealedText, setRevealedText] = useState(false);
 
     const [saveImageHref, setSaveImageHref] = useState('');
     const [saveImageDownload, setSaveImageDownload] = useState('');
@@ -1210,6 +1211,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         editableText,
         setEditableText,
+
+        revealedText,
+        setRevealedText,
 
         imageText,
 

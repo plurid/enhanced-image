@@ -197,6 +197,9 @@ export interface Context {
     editableText: boolean;
     setEditableText: Dispatch<SetStateAction<boolean>>;
 
+    revealedText: boolean;
+    setRevealedText: Dispatch<SetStateAction<boolean>>;
+
     imageText: ImageText[];
 
     addText: () => void;
