@@ -69,7 +69,7 @@ storiesOf(
                     imageText: body,
                     imageID: 'one',
                 };
-                // setPreloadedData(preloadedData);
+                setPreloadedData(preloadedData);
             } catch (error) {
                 return;
             }
@@ -82,6 +82,7 @@ storiesOf(
         <div
             style={{
                 padding: '4rem',
+                width: '500px',
             }}
         >
             <EnhancedImage
@@ -95,7 +96,7 @@ storiesOf(
 
                 ownerToken={ownerToken}
 
-                // preloadedData={preloadedData}
+                preloadedData={preloadedData}
             />
         </div>
     );
