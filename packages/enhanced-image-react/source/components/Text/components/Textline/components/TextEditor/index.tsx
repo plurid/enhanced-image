@@ -115,7 +115,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
             case 'fontSize':
                 if (typeof value === 'number') {
                     const fontSizePercentage = percentageFromValue(value, imageBoxDimensions.height);
-                    updateTextItemField(textItem.id, 'fontSizePercentage', fontSizePercentage);
+                    updateTextItemField(textItem.id, 'fontSizePercent', fontSizePercentage);
                 }
                 break;
             case 'fontFamily':
@@ -124,13 +124,13 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
             case 'letterSpacing':
                 if (typeof value === 'number') {
                     const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
-                    updateTextItemField(textItem.id, 'letterSpacingPercentage', letterSpacingPercentage);
+                    updateTextItemField(textItem.id, 'letterSpacingPercent', letterSpacingPercentage);
                 }
                 break;
             case 'wordSpacing':
                 if (typeof value === 'number') {
                     const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
-                    updateTextItemField(textItem.id, 'wordSpacingPercentage', wordSpacingPercentage);
+                    updateTextItemField(textItem.id, 'wordSpacingPercent', wordSpacingPercentage);
                 }
                 break;
             case 'linkTo':
