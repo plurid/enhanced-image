@@ -3,6 +3,10 @@ import React, {
 } from 'react';
 
 import {
+    PluridDropdown,
+} from '@plurid/plurid-ui-react';
+
+import {
     StyledTransview,
     StyledTransviewLanguage,
     StyledTransviewAction,
@@ -31,11 +35,41 @@ const Transview: React.FC<any> = (
     return (
         <StyledTransview>
             <StyledTransviewLanguage>
-                from
+                <div>
+                    From
+                </div>
+
+                <PluridDropdown
+                    selected="English"
+                    selectables={[
+                        'English',
+                        'French',
+                        'German',
+                        'Romanian',
+                    ]}
+                    atSelect={() => {}}
+                    heightItems={3}
+                    width={120}
+                />
             </StyledTransviewLanguage>
 
             <StyledTransviewLanguage>
-                to
+                <div>
+                    To
+                </div>
+
+                <PluridDropdown
+                    selected="English"
+                    selectables={[
+                        'English',
+                        'French',
+                        'German',
+                        'Romanian',
+                    ]}
+                    atSelect={() => {}}
+                    heightItems={3}
+                    width={120}
+                />
             </StyledTransviewLanguage>
 
             <StyledTransviewAction

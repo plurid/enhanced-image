@@ -13,6 +13,14 @@ export const StyledTransview = styled.div`
 
 
 export const StyledTransviewLanguage = styled.div`
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+
+    li {
+        font-size: 0.8rem;
+        width: 120px;
+    }
 `;
 
 
