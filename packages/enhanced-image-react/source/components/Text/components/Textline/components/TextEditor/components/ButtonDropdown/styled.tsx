@@ -36,10 +36,7 @@ export const StyledButtonDropdownSelected: any = styled.div`
 
 
 export const StyledButtonDropdownList: any = styled.div`
-    /* position: absolute;
-    top: 27px;
-    left: 0;
-    right: 0; */
+    width: 122px;
     display: grid;
     align-content: flex-start;
     max-height: 100px;
@@ -67,15 +64,16 @@ export const StyledButtonDropdownListItem: any = styled.li`
         const {
             index,
             cursor,
-            filtered,
-            selected,
             theme,
+            transparentUI,
         } = props;
-
-        // console.log(index, cursor);
 
         if (index === cursor) {
             return theme.backgroundColorPrimary;
+        }
+
+        if (transparentUI) {
+            return theme.backgroundColorSecondaryAlpha;
         }
 
         return theme.backgroundColorSecondary;

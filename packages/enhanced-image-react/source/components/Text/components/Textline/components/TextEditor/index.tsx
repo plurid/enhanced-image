@@ -115,6 +115,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     /** state */
     const [outside, setOutside] = useState(<></>);
+    const [outsideLeft, setOutsideLeft] = useState(100);
 
 
     /** handlers */
@@ -174,8 +175,13 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     const renderOutside = (
         outside: JSX.Element,
+        left: number,
     ) => {
         setOutside(outside);
+
+        const outsideLeft = positions.x + left;
+
+        setOutsideLeft(outsideLeft);
     }
 
 
@@ -340,7 +346,11 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
             </StyledTextEditor>
 
-            <StyledOutside>
+            <StyledOutside
+                style={{
+                    left: outsideLeft + 'px',
+                }}
+            >
                 {outside}
             </StyledOutside>
         </>
