@@ -93,6 +93,7 @@ export const StyledTextContentLink: any = styled.a`
 
 export const StyledEditableDiv: any = styled.div`
     outline: none;
+    white-space: pre-wrap;
 
     user-select: ${(props: any) => {
         if (props.toggledEditable) {
