@@ -64,6 +64,27 @@ storiesOf(
         },
         'ALL',
     );
+    const textDrawer = select(
+        'Text Drawer',
+        {
+            'ALL': 'ALL',
+            'REVEAL_TEXT': 'REVEAL_TEXT',
+            'GET_TEXT': 'GET_TEXT',
+            'EXTRACT_TEXT': 'EXTRACT_TEXT',
+            'TRANSVIEW_TEXT': 'TRANSVIEW_TEXT',
+        },
+        'ALL',
+    );
+    const variaDrawer = select(
+        'Varia Drawer',
+        {
+            'ALL': 'ALL',
+            'VIEW_FULLSCREEN': 'VIEW_FULLSCREEN',
+            'SHARE_IMAGE': 'SHARE_IMAGE',
+            'DOWNLOAD_IMAGE': 'DOWNLOAD_IMAGE',
+        },
+        'ALL',
+    );
 
     const ownerToken = text('Owner Token', '');
 
@@ -111,6 +132,8 @@ storiesOf(
                 preloadedData={preloadedData}
 
                 settingsDrawers={[settingsDrawers]}
+                textDrawer={[textDrawer]}
+                variaDrawer={[variaDrawer]}
             />
         </div>
     );
