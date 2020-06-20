@@ -198,7 +198,7 @@ const SettingsMenu: React.FC<any> = () => {
                                         theme={theme}
                                         atClick={saveText}
                                         icon={SaveTextIcon}
-                                        text="Save Text"
+                                        text="Upload Text"
                                     />
                                 </li>
 

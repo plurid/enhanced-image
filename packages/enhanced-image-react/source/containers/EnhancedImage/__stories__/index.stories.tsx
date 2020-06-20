@@ -42,8 +42,8 @@ storiesOf(
 .add('basic', () => {
     // const theme = select(themeLabel, themeOptions, defaultThemeValue);
 
-    const generator = boolean('Generator', false);
-    const development = boolean('Development', false);
+    const generator = boolean('Generator', true);
+    const development = boolean('Development', true);
     const silent = boolean('Silent', false);
 
     const ownerToken = text('Owner Token', '');
