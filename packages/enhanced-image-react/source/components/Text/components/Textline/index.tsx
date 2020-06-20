@@ -46,6 +46,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const {
         editableText,
+        revealedText,
         imageBoxDimensions,
         toggleVersionViewable,
         updateVersionContent,
@@ -388,6 +389,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                     dragMode={draggable}
                     draggingMode={dragging}
                     editableText={editableText}
+                    revealedText={revealedText}
                     viewable={currentVersion && currentVersion.viewable}
                     color={currentVersion && currentVersion.color}
                     style={{

@@ -84,6 +84,9 @@ const SettingsMenu: React.FC<any> = () => {
         editableText,
         setEditableText,
 
+        revealedText,
+        setRevealedText,
+
         addText,
         saveText,
 
@@ -130,12 +133,6 @@ const SettingsMenu: React.FC<any> = () => {
         resolveImageBackground,
         setResolveImageBackground,
     ] = useState(BackgroundColorTransparent);
-
-
-    /** handlers */
-    const revealText = () => {
-        setEditableText(show => !show);
-    }
 
 
     /** effects */
@@ -232,9 +229,9 @@ const SettingsMenu: React.FC<any> = () => {
                             <li>
                                 <ButtonCheckmark
                                     theme={theme}
-                                    toggle={revealText}
+                                    toggle={() => setRevealedText(show => !show)}
                                     text="Reveal Text"
-                                    checked={editableText}
+                                    checked={revealedText}
                                 />
                             </li>
 

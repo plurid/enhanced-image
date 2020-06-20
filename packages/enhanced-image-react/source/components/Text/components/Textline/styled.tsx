@@ -26,6 +26,10 @@ export const StyledTextItem: any = styled.div`
 
 export const StyledTextContent: any = styled.div`
     color: ${(props: any) => {
+        if (props.revealedText) {
+            return props.color;
+        }
+
         if (props.viewable || props.editableText) {
             return props.color;
         }
@@ -33,6 +37,10 @@ export const StyledTextContent: any = styled.div`
     }};
 
     background: ${(props: any) => {
+        if (props.revealedText) {
+            return 'hsla(220, 2%, 10%, 0.3)';
+        }
+
         if (props.editableText) {
             return 'hsla(220, 2%, 10%, 0.3)';
         }
