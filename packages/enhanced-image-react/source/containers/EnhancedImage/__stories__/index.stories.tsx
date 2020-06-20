@@ -55,7 +55,7 @@ storiesOf(
             }}
         >
             <EnhancedImage
-                src="/assets/food-text.jpg"
+                src="/assets/perspective.png"
                 // {...actions}
                 // theme={themes[theme]}
 
