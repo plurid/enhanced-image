@@ -131,6 +131,14 @@ export interface EnhancedImageProperties {
      * Default: `false`.
      */
     silent?: boolean;
+
+
+    /**
+     * Specify which drawers to be available in the settings menu.
+     *
+     * Default: `['ALL']`.
+     */
+    settingsDrawers?: SettingsDrawer[];
 }
 
 
@@ -146,6 +154,7 @@ export interface Context {
     generator: boolean;
     development: boolean;
     silent: boolean;
+    settingsDrawers: SettingsDrawer[];
 
     apiEndpoint: string;
     apiKey: string | undefined;
@@ -248,6 +257,9 @@ export interface Slider {
     max?: number;
     valueSign?: string;
 }
+
+
+export type SettingsDrawer = 'ALL' | 'TEXT' | 'COLOR' | 'TOPOLOGY' | 'VARIA';
 
 
 export interface ImageDimensions {

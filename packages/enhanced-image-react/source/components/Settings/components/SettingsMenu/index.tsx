@@ -60,6 +60,7 @@ const SettingsMenu: React.FC<any> = () => {
         about,
         generator,
         development,
+        settingsDrawers,
 
         databaseImageID,
 
@@ -166,272 +167,288 @@ const SettingsMenu: React.FC<any> = () => {
             <div
                 ref={settingsMenuWrapper}
             >
-                <Drawer
-                    title="Text"
-                    theme={theme}
-                    expand={expandTextDrawer}
-                    toggleExpand={() => setExpandTextDrawer(expand => !expand)}
-                >
-                    <ul>
-                        {generator && (
-                            <>
-                                <li>
-                                    <ButtonCheckmark
-                                        theme={theme}
-                                        toggle={() => setEditableText(show => !show)}
-                                        text="Edit Text"
-                                        checked={editableText}
-                                    />
-                                </li>
-
-                                <li>
-                                    <ButtonItem
-                                        theme={theme}
-                                        atClick={addText}
-                                        icon={AddTextIcon}
-                                        text="Add Text"
-                                    />
-                                </li>
-
-                                <li>
-                                    <ButtonItem
-                                        theme={theme}
-                                        atClick={saveText}
-                                        icon={SaveTextIcon}
-                                        text="Upload Text"
-                                    />
-                                </li>
-
-                                <hr />
-                            </>
-                        )}
-
-                        <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={async () => await getText()}
-                                icon={GetTextIcon}
-                                text="Get Text"
-                            />
-                        </li>
-
-                        <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={extractText}
-                                icon={ExtractTextIcon}
-                                text="Extract Text"
-                            />
-                        </li>
-
-                        {development && (
-                            <li>
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={downloadText}
-                                    icon={SaveIcon}
-                                    text="Download Text"
-                                />
-                            </li>
-                        )}
-
-                        {/* <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={transviewText}
-                                icon={TransviewTextIcon}
-                                text="Transview Text"
-                            />
-                        </li> */}
-                    </ul>
-                </Drawer>
-
-                <Drawer
-                    title="Color"
-                    theme={theme}
-                    expand={expandColorDrawer}
-                    toggleExpand={() => setExpandColorDrawer(expand => !expand)}
-                >
-                    <ul>
-                        {/* <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={generateImage}
-                                icon={GenerateImageIcon}
-                                text="Generate Image"
-                            />
-                        </li> */}
-
-                        {/* <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={colorizeImage}
-                                icon={ColorizeImageIcon}
-                                text="Colorize Image"
-                            />
-                        </li> */}
-
-                        {(
-                            imageType === IMAGE_TYPES.PNG
-                            || imageType === IMAGE_TYPES.WEBP
-                            || imageType === IMAGE_TYPES.GIF
-                        ) && (
-                            <li>
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={cycleImageBackground}
-                                    icon={resolveImageBackground}
-                                    text="Background Color"
-                                />
-                            </li>
-                        )}
-
-                        <li>
-                            <ButtonCheckmark
-                                theme={theme}
-                                toggle={() => setImageColorsInvert(invert => !invert)}
-                                text="Invert Colors"
-                                checked={imageColorsInvert}
-                            />
-                        </li>
-
-                        {
-                            sliders.map(slider => {
-                                const {
-                                    type,
-                                    min,
-                                    max,
-                                    valueSign
-                                } = slider;
-
-                                const sliderValue = `imageColors${slider.type}`;
-                                const handleInput = `setImageColors${slider.type}`;
-
-                                return (
-                                    <li
-                                        key={type}
-                                    >
-                                        <SliderItem
+                {(settingsDrawers.includes('ALL') || settingsDrawers.includes('TEXT'))
+                && (
+                    <Drawer
+                        title="Text"
+                        theme={theme}
+                        expand={expandTextDrawer}
+                        toggleExpand={() => setExpandTextDrawer(expand => !expand)}
+                    >
+                        <ul>
+                            {generator && (
+                                <>
+                                    <li>
+                                        <ButtonCheckmark
                                             theme={theme}
-                                            type={type}
-                                            min={min}
-                                            max={max}
-                                            value={(context as any)[sliderValue]}
-                                            valueSign={valueSign}
-                                            handleInput={(value: number) => (context as any)[handleInput](value)}
+                                            toggle={() => setEditableText(show => !show)}
+                                            text="Edit Text"
+                                            checked={editableText}
                                         />
                                     </li>
-                                )
-                            })
-                        }
 
-                        <li>
-                            <ButtonCheckmark
-                                theme={theme}
-                                toggle={() => toggleDefaults()}
-                                text="Toggle Defaults"
-                                checked={defaultsToggled}
-                            />
-                        </li>
+                                    <li>
+                                        <ButtonItem
+                                            theme={theme}
+                                            atClick={addText}
+                                            icon={AddTextIcon}
+                                            text="Add Text"
+                                        />
+                                    </li>
 
-                        <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={resetToDefaults}
-                                icon={ResetIcon}
-                                text="Reset to Defaults"
-                            />
-                        </li>
-                    </ul>
-                </Drawer>
+                                    <li>
+                                        <ButtonItem
+                                            theme={theme}
+                                            atClick={saveText}
+                                            icon={SaveTextIcon}
+                                            text="Upload Text"
+                                        />
+                                    </li>
 
-                <Drawer
-                    title="Topology"
-                    theme={theme}
-                    expand={expandTopologyDrawer}
-                    toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
-                >
-                    <ul>
-                        <li>
-                            <ButtonCheckmark
-                                theme={theme}
-                                toggle={() => setFlipVertical(flip => !flip)}
-                                text="Flip Vertical"
-                                checked={flipVertical}
-                            />
-                        </li>
+                                    <hr />
+                                </>
+                            )}
 
-                        <li>
-                            <ButtonCheckmark
-                                theme={theme}
-                                toggle={() => setFlipHorizontal(flip => !flip)}
-                                text="Flip Horizontal"
-                                checked={flipHorizontal}
-                            />
-                        </li>
-                    </ul>
-                </Drawer>
-
-                <Drawer
-                    title="Varia"
-                    theme={theme}
-                    expand={expandVariaDrawer}
-                    toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
-                >
-                    <ul>
-                        <li>
-                            <ButtonItem
-                                theme={theme}
-                                atClick={viewFullscreen}
-                                icon={FullscreenIcon}
-                                text="View Fullscreen"
-                            />
-                        </li>
-
-                        {databaseImageID && (
                             <li>
                                 <ButtonItem
                                     theme={theme}
-                                    atClick={shareImage}
-                                    icon={ShareIcon}
-                                    text="Share Image"
+                                    atClick={async () => await getText()}
+                                    icon={GetTextIcon}
+                                    text="Get Text"
                                 />
                             </li>
-                        )}
 
-                        <li
-                            onMouseEnter={() => saveImage()}
-                        >
-                            <a
-                                href={saveImageHref}
-                                download={saveImageDownload}
-                                // ref={saveButton}
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={extractText}
+                                    icon={ExtractTextIcon}
+                                    text="Extract Text"
+                                />
+                            </li>
+
+                            {development && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={downloadText}
+                                        icon={SaveIcon}
+                                        text="Download Text"
+                                    />
+                                </li>
+                            )}
+
+                            {/* <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={transviewText}
+                                    icon={TransviewTextIcon}
+                                    text="Transview Text"
+                                />
+                            </li> */}
+                        </ul>
+                    </Drawer>
+                )}
+
+
+                {(settingsDrawers.includes('ALL') || settingsDrawers.includes('COLOR'))
+                && (
+                    <Drawer
+                        title="Color"
+                        theme={theme}
+                        expand={expandColorDrawer}
+                        toggleExpand={() => setExpandColorDrawer(expand => !expand)}
+                    >
+                        <ul>
+                            {/* <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={generateImage}
+                                    icon={GenerateImageIcon}
+                                    text="Generate Image"
+                                />
+                            </li> */}
+
+                            {/* <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={colorizeImage}
+                                    icon={ColorizeImageIcon}
+                                    text="Colorize Image"
+                                />
+                            </li> */}
+
+                            {(
+                                imageType === IMAGE_TYPES.PNG
+                                || imageType === IMAGE_TYPES.WEBP
+                                || imageType === IMAGE_TYPES.GIF
+                            ) && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={cycleImageBackground}
+                                        icon={resolveImageBackground}
+                                        text="Background Color"
+                                    />
+                                </li>
+                            )}
+
+                            <li>
+                                <ButtonCheckmark
+                                    theme={theme}
+                                    toggle={() => setImageColorsInvert(invert => !invert)}
+                                    text="Invert Colors"
+                                    checked={imageColorsInvert}
+                                />
+                            </li>
+
+                            {
+                                sliders.map(slider => {
+                                    const {
+                                        type,
+                                        min,
+                                        max,
+                                        valueSign
+                                    } = slider;
+
+                                    const sliderValue = `imageColors${slider.type}`;
+                                    const handleInput = `setImageColors${slider.type}`;
+
+                                    return (
+                                        <li
+                                            key={type}
+                                        >
+                                            <SliderItem
+                                                theme={theme}
+                                                type={type}
+                                                min={min}
+                                                max={max}
+                                                value={(context as any)[sliderValue]}
+                                                valueSign={valueSign}
+                                                handleInput={(value: number) => (context as any)[handleInput](value)}
+                                            />
+                                        </li>
+                                    )
+                                })
+                            }
+
+                            <li>
+                                <ButtonCheckmark
+                                    theme={theme}
+                                    toggle={() => toggleDefaults()}
+                                    text="Toggle Defaults"
+                                    checked={defaultsToggled}
+                                />
+                            </li>
+
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={resetToDefaults}
+                                    icon={ResetIcon}
+                                    text="Reset to Defaults"
+                                />
+                            </li>
+                        </ul>
+                    </Drawer>
+                )}
+
+
+                {(settingsDrawers.includes('ALL') || settingsDrawers.includes('TOPOLOGY'))
+                && (
+                    <Drawer
+                        title="Topology"
+                        theme={theme}
+                        expand={expandTopologyDrawer}
+                        toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
+                    >
+                        <ul>
+                            <li>
+                                <ButtonCheckmark
+                                    theme={theme}
+                                    toggle={() => setFlipVertical(flip => !flip)}
+                                    text="Flip Vertical"
+                                    checked={flipVertical}
+                                />
+                            </li>
+
+                            <li>
+                                <ButtonCheckmark
+                                    theme={theme}
+                                    toggle={() => setFlipHorizontal(flip => !flip)}
+                                    text="Flip Horizontal"
+                                    checked={flipHorizontal}
+                                />
+                            </li>
+                        </ul>
+                    </Drawer>
+
+                )}
+
+
+                {(settingsDrawers.includes('ALL') || settingsDrawers.includes('VARIA'))
+                && (
+                    <Drawer
+                        title="Varia"
+                        theme={theme}
+                        expand={expandVariaDrawer}
+                        toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
+                    >
+                        <ul>
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={viewFullscreen}
+                                    icon={FullscreenIcon}
+                                    text="View Fullscreen"
+                                />
+                            </li>
+
+                            {databaseImageID && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={shareImage}
+                                        icon={ShareIcon}
+                                        text="Share Image"
+                                    />
+                                </li>
+                            )}
+
+                            <li
+                                onMouseEnter={() => saveImage()}
                             >
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={() => {}}
-                                    icon={SaveIcon}
-                                    text="Save Image"
-                                />
-                            </a>
-                        </li>
-
-                        {about && (
-                            <hr />
-                        )}
-
-                        {about && (
-                            <li>
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={viewAbout}
-                                    icon={AboutIcon}
-                                    text="About eImage"
-                                />
+                                <a
+                                    href={saveImageHref}
+                                    download={saveImageDownload}
+                                    // ref={saveButton}
+                                >
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={() => {}}
+                                        icon={SaveIcon}
+                                        text="Save Image"
+                                    />
+                                </a>
                             </li>
-                        )}
-                    </ul>
-                </Drawer>
+
+                            {about && (
+                                <hr />
+                            )}
+
+                            {about && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={viewAbout}
+                                        icon={AboutIcon}
+                                        text="About eImage"
+                                    />
+                                </li>
+                            )}
+                        </ul>
+                    </Drawer>
+                )}
             </div>
         </StyledSettingsMenu>
     );

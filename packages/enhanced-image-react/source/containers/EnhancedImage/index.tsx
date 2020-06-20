@@ -105,6 +105,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         development,
         silent,
+        settingsDrawers,
     } = properties;
 
     if (!src) {
@@ -128,6 +129,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const _development = development ?? false;
     const _silent = silent ?? false;
+    const _settingsDrawers = settingsDrawers ?? ['ALL'];
 
 
     /** references */
@@ -1157,6 +1159,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         generator: _generator,
         development: _development,
         silent: _silent,
+        settingsDrawers: _settingsDrawers,
 
         apiEndpoint: _apiEndpoint,
         apiKey,

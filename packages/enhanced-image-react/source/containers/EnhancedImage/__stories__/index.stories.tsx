@@ -97,6 +97,8 @@ storiesOf(
                 ownerToken={ownerToken}
 
                 preloadedData={preloadedData}
+
+                // settingsDrawers={['TEXT', 'TOPOLOGY', 'VARIA', 'COLOR']}
             />
         </div>
     );
