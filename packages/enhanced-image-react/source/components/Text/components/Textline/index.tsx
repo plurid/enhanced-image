@@ -196,7 +196,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             setPerspective(currentVersion.perspective + 'px');
             setRotationX(currentVersion.xRotation + 'deg');
             setRotationY(currentVersion.yRotation + 'deg');
-            setRotationY(currentVersion.zRotation + 'deg');
+            setRotationZ(currentVersion.zRotation + 'deg');
 
             setFontWeight(currentVersion.fontWeight);
             setFontStyle(currentVersion.fontStyle);

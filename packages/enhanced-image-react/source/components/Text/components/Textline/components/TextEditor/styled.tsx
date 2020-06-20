@@ -80,3 +80,8 @@ export const StyledOutside = styled.div`
     position: absolute;
     top: 0;
 `;
+
+
+export const StyledTransformSliders = styled.div`
+    display: flex;
+`;
