@@ -46,7 +46,7 @@ import {
 
 
 
-interface TextEditorProperties {
+export interface TextEditorProperties {
     textItem: ImageText;
     currentVersion: ImageTextVersionTextline;
 
@@ -63,9 +63,13 @@ interface TextEditorProperties {
     expandFormat: boolean;
     setExpandFormat: React.Dispatch<React.SetStateAction<boolean>>;
     setWidth: React.Dispatch<React.SetStateAction<number>>;
+    fullWidth: boolean;
 }
 
-const TextEditor: React.FC<TextEditorProperties> = (properties) => {
+const TextEditor: React.FC<TextEditorProperties> = (
+    properties,
+) => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
@@ -83,6 +87,8 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         updateTextItemField,
     } = context;
 
+
+    /** properties */
     const {
         textItem,
         currentVersion,
@@ -97,20 +103,19 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         expandFormat,
         setExpandFormat,
         setWidth,
+        fullWidth,
     } = properties;
 
+
+    /** references */
     const editor = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (editor.current) {
-            setWidth(editor.current.offsetWidth);
-        }
-    }, [
-        editor,
-        expandFormat,
-    ]);
 
-    const updateField = (type: string, value: number | string | boolean) => {
+    /** handlers */
+    const updateField = (
+        type: string,
+        value: number | string | boolean,
+    ) => {
         switch (type) {
             case 'fontSize':
                 if (typeof value === 'number') {
@@ -142,7 +147,10 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         }
     }
 
-    const toggleTextFormat = (type: string, checkValue: string | boolean) => {
+    const toggleTextFormat = (
+        type: string,
+        checkValue: string | boolean,
+    ) => {
         if (typeof checkValue === 'boolean') {
             if ((currentVersion as any)[type as any]) {
                 updateTextItemField(textItem.id, type, false);
@@ -158,11 +166,27 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
         }
     }
 
+
+    /** effects */
+    /** Editor width */
+    useEffect(() => {
+        if (editor.current) {
+            setWidth(editor.current.offsetWidth);
+        }
+    }, [
+        editor,
+        expandFormat,
+    ]);
+
+
+    /** render */
     return (
         <StyledTextEditor
             theme={theme}
             ref={editor}
             transparentUI={transparentUI}
+            imageBoxDimensions={imageBoxDimensions}
+            fullWidth={fullWidth}
             style={{
                 left: positions.x + 'px',
                 top: positions.y + 'px',
