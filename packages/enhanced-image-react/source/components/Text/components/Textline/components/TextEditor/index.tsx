@@ -14,6 +14,7 @@ import {
     StyledTextEditor,
     StyledOutside,
     StyledVerticalDivider,
+    StyledTransformSliders,
 } from './styled';
 
 import Context from '../../../../../../services/utilities/context';
@@ -359,72 +360,74 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         Icon={PluridIconPalette}
                     />
 
-                    <Slider
-                        value={currentVersion.perspective + 1}
-                        valueType="perspective"
-                        changeValue={updateField}
-                        theme={theme}
-                        transparentUI={transparentUI}
-                        Icon={PluridIconSpace}
-                        renderOutside={renderOutside}
-                        min={1}
-                        step={10}
-                        max={2001}
-                    />
+                    <StyledTransformSliders>
+                        <Slider
+                            value={currentVersion.perspective + 1}
+                            valueType="perspective"
+                            changeValue={updateField}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconSpace}
+                            renderOutside={renderOutside}
+                            min={1}
+                            step={10}
+                            max={2001}
+                        />
 
-                    <Slider
-                        value={currentVersion.xRotation + 1}
-                        valueType="xRotation"
-                        changeValue={updateField}
-                        theme={theme}
-                        transparentUI={transparentUI}
-                        Icon={() => {
-                            return (
-                                <div>
-                                    X
-                                </div>
-                            );
-                        }}
-                        renderOutside={renderOutside}
-                        min={1}
-                        max={361}
-                    />
+                        <Slider
+                            value={currentVersion.xRotation + 1}
+                            valueType="xRotation"
+                            changeValue={updateField}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={() => {
+                                return (
+                                    <div>
+                                        X
+                                    </div>
+                                );
+                            }}
+                            renderOutside={renderOutside}
+                            min={1}
+                            max={361}
+                        />
 
-                    <Slider
-                        value={currentVersion.yRotation + 1}
-                        valueType="yRotation"
-                        changeValue={updateField}
-                        theme={theme}
-                        transparentUI={transparentUI}
-                        Icon={() => {
-                            return (
-                                <div>
-                                    Y
-                                </div>
-                            );
-                        }}
-                        renderOutside={renderOutside}
-                        min={1}
-                        max={361}
-                    />
+                        <Slider
+                            value={currentVersion.yRotation + 1}
+                            valueType="yRotation"
+                            changeValue={updateField}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={() => {
+                                return (
+                                    <div>
+                                        Y
+                                    </div>
+                                );
+                            }}
+                            renderOutside={renderOutside}
+                            min={1}
+                            max={361}
+                        />
 
-                    <Slider
-                        value={currentVersion.zRotation + 1}
-                        valueType="zRotation"
-                        changeValue={updateField}
-                        theme={theme}
-                        transparentUI={transparentUI}
-                        Icon={() => {
-                            return (
-                                <div>
-                                    Z
-                                </div>
-                            );
-                        }}
-                        renderOutside={renderOutside}
-                        min={1}
-                        max={361}
-                    />
+                        <Slider
+                            value={currentVersion.zRotation + 1}
+                            valueType="zRotation"
+                            changeValue={updateField}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={() => {
+                                return (
+                                    <div>
+                                        Z
+                                    </div>
+                                );
+                            }}
+                            renderOutside={renderOutside}
+                            min={1}
+                            max={361}
+                        />
+                    </StyledTransformSliders>
                 </Drawer>
 
                 <StyledVerticalDivider
@@ -456,6 +459,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
             </StyledTextEditor>
 
             <StyledOutside
+                onMouseLeave={() => {
+                    renderOutside(<></>);
+                }}
                 style={{
                     left: outsideLeft + 'px',
                 }}

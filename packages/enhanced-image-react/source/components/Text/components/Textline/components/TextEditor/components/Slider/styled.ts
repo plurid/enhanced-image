@@ -14,7 +14,8 @@ export interface IStyledSliderContainer {
 export const StyledSliderContainer = styled.div<IStyledSliderContainer>`
     display: flex;
     align-items: center;
-    padding: 0 6px;
+    padding: 0 5px;
+    margin: 0 5px;
 `;
 
 

@@ -78,8 +78,6 @@ const Slider: React.FC<SliderProperties> = (
     /** effects */
     useEffect(() => {
         if (!show) {
-            const outside = (<></>);
-            renderOutside(outside);
             return;
         }
 
@@ -122,11 +120,8 @@ const Slider: React.FC<SliderProperties> = (
             theme={theme}
             transparentUI={transparentUI}
             ref={container}
-            onMouseEnter={() => setShow(show => !show)}
-            onMouseLeave={() => {
-                timeout.current = setTimeout(() => {
-                    setShow(show => !show)
-                }, 500);
+            onMouseEnter={() => {
+                setShow(show => !show)
             }}
         >
             <StyledIcon>
