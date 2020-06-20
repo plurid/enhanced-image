@@ -389,6 +389,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }
 
     const getText = async () => {
+        if (preloadedData) {
+            setMessageTimed('Preloaded Text Rendered.', 4000);
+            return;
+        }
+
         setShowSpinner(true);
         setMessage('Fetching Text.');
 
@@ -553,6 +558,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }
 
     const extractText = async () => {
+        if (preloadedData) {
+            setMessageTimed('Preloaded Text Rendered.', 4000);
+            return;
+        }
+
         setShowSpinner(true);
         setMessage('Extracting Text.');
 
