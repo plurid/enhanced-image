@@ -12,7 +12,7 @@ import {
     withKnobs,
     boolean,
     // number,
-    // select,
+    select,
     text,
 } from '@storybook/addon-knobs';
 
@@ -52,6 +52,18 @@ storiesOf(
     const generator = boolean('Generator', true);
     const development = boolean('Development', true);
     const silent = boolean('Silent', false);
+
+    const settingsDrawers = select(
+        'Settings Drawers',
+        {
+            'ALL': 'ALL',
+            'TEXT': 'TEXT',
+            'TOPOLOGY': 'TOPOLOGY',
+            'VARIA': 'VARIA',
+            'COLOR': 'COLOR',
+        },
+        'ALL',
+    );
 
     const ownerToken = text('Owner Token', '');
 
@@ -98,7 +110,7 @@ storiesOf(
 
                 preloadedData={preloadedData}
 
-                // settingsDrawers={['TEXT', 'TOPOLOGY', 'VARIA', 'COLOR']}
+                settingsDrawers={[settingsDrawers]}
             />
         </div>
     );
