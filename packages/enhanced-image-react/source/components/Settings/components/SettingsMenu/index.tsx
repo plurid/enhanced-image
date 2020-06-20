@@ -38,6 +38,8 @@ import ButtonItem from './components/ButtonItem';
 import SliderItem from './components/SliderItem';
 import Drawer from './components/Drawer';
 
+import Transview from './features/Transview';
+
 import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,
 
@@ -135,6 +137,10 @@ const SettingsMenu: React.FC<any> = () => {
         resolveImageBackground,
         setResolveImageBackground,
     ] = useState(BackgroundColorTransparent);
+    const [
+        showTransview,
+        setShowTransview,
+    ] = useState(false);
 
 
     /** effects */
@@ -269,10 +275,16 @@ const SettingsMenu: React.FC<any> = () => {
                                 <li>
                                     <ButtonItem
                                         theme={theme}
-                                        atClick={transviewText}
+                                        atClick={() => setShowTransview(show => !show)}
                                         icon={TransviewTextIcon}
                                         text="Transview Text"
                                     />
+                                </li>
+                            )}
+
+                            {showTransview && (
+                                <li>
+                                    <Transview />
                                 </li>
                             )}
 
