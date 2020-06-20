@@ -81,9 +81,11 @@ const Text: React.FC<any> = () => {
                                 currentVersion={currentVersion}
                             />
                         );
+                    default:
+                        return (
+                            <></>
+                        );
                 }
-
-                return;
             })}
         </StyledText>
     );
