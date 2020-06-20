@@ -380,13 +380,11 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
-                            Icon={() => {
-                                return (
-                                    <div>
-                                        X
-                                    </div>
-                                );
-                            }}
+                            Icon={() => (
+                                <div>
+                                    X
+                                </div>
+                            )}
                             renderOutside={renderOutside}
                             min={1}
                             max={361}
@@ -398,13 +396,11 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
-                            Icon={() => {
-                                return (
-                                    <div>
-                                        Y
-                                    </div>
-                                );
-                            }}
+                            Icon={() => (
+                                <div>
+                                    Y
+                                </div>
+                            )}
                             renderOutside={renderOutside}
                             min={1}
                             max={361}
@@ -416,13 +412,11 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
-                            Icon={() => {
-                                return (
-                                    <div>
-                                        Z
-                                    </div>
-                                );
-                            }}
+                            Icon={() => (
+                                <div>
+                                    Z
+                                </div>
+                            )}
                             renderOutside={renderOutside}
                             min={1}
                             max={361}
@@ -454,8 +448,6 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     atClick={() => deleteTextItem(textItem.id)}
                     icon={DeleteIcon}
                 />
-
-
             </StyledTextEditor>
 
             <StyledOutside
