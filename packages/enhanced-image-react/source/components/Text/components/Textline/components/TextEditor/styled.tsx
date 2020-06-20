@@ -74,3 +74,8 @@ export const StyledVerticalDivider = styled.div`
     height: 100%;
     user-select: none;
 `;
+
+
+export const StyledOutside = styled.div`
+    position: absolute;
+`;

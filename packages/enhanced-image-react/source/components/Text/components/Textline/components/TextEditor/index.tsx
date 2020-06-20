@@ -1,11 +1,13 @@
 import React, {
     useContext,
     useRef,
+    useState,
     useEffect,
 } from 'react';
 
 import {
     StyledTextEditor,
+    StyledOutside,
     StyledVerticalDivider,
 } from './styled';
 
@@ -111,6 +113,10 @@ const TextEditor: React.FC<TextEditorProperties> = (
     const editor = useRef<HTMLDivElement>(null);
 
 
+    /** state */
+    const [outside, setOutside] = useState(<></>);
+
+
     /** handlers */
     const updateField = (
         type: string,
@@ -166,6 +172,12 @@ const TextEditor: React.FC<TextEditorProperties> = (
         }
     }
 
+    const renderOutside = (
+        outside: JSX.Element,
+    ) => {
+        setOutside(outside);
+    }
+
 
     /** effects */
     /** Editor width */
@@ -181,152 +193,157 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     /** render */
     return (
-        <StyledTextEditor
-            theme={theme}
-            ref={editor}
-            transparentUI={transparentUI}
-            imageBoxDimensions={imageBoxDimensions}
-            fullWidth={fullWidth}
-            style={{
-                left: positions.x + 'px',
-                top: positions.y + 'px',
-            }}
-        >
-            <ButtonToggle
+        <>
+            <StyledTextEditor
                 theme={theme}
-                toggle={() => {
-                    if (draggable) { setDraggable(false) }
-                    setEditable(editable => !editable)
+                ref={editor}
+                transparentUI={transparentUI}
+                imageBoxDimensions={imageBoxDimensions}
+                fullWidth={fullWidth}
+                style={{
+                    left: positions.x + 'px',
+                    top: positions.y + 'px',
                 }}
-                toggled={editable}
-                icon={SelectTextIcon}
-            />
-
-            <ButtonToggle
-                theme={theme}
-                toggle={() => {
-                    if (editable) { setEditable(false) }
-                    setDraggable(draggable => !draggable)
-                }}
-                toggled={draggable}
-                icon={GrabIcon}
-            />
-
-            <StyledVerticalDivider
-                theme={theme}
             >
-                &nbsp;
-            </StyledVerticalDivider>
-
-            <Drawer
-                theme={theme}
-                title="Format"
-                expand={expandFormat}
-                toggleExpand={() => setExpandFormat(expand => !expand)}
-            >
-                <ButtonIncrements
+                <ButtonToggle
                     theme={theme}
-                    transparentUI={transparentUI}
-                    type="fontSize"
-                    changeValue={updateField}
-                    value={Math.round(valueFromPercentage(currentVersion.fontSizePercent, imageBoxDimensions.height))}
-                    icon={FontSizeIcon}
-                />
-
-                <ButtonDropdown
-                    theme={theme}
-                    transparentUI={transparentUI}
-                    type="fontFamily"
-                    alterStyle="fontFamily"
-                    selected={currentVersion.fontFamily}
-                    selectables={selectableFonts}
-                    changeSelected={updateField}
-                    toggleEditor={() => {}}
-                    textDraggable={false}
-                    toggleTextDraggable={() => {}}
-                    toggleTextSelected={() => {}}
-                    // toggleEditor={toggleEditor}
-                    // textDraggable={textDraggable}
-                    // toggleTextDraggable={toggleTextDraggable}
-                    // toggleTextSelected={toggleSelected}
-                />
-
-                <ButtonInput
-                    theme={theme}
-                    toggle={() => toggleTextFormat('link', true)}
-                    toggled={currentVersion.link}
-                    icon={LinkIcon}
-                    value={currentVersion.linkTo}
-                    valueType="linkTo"
-                    changeValue={updateField}
+                    toggle={() => {
+                        if (draggable) { setDraggable(false) }
+                        setEditable(editable => !editable)
+                    }}
+                    toggled={editable}
+                    icon={SelectTextIcon}
                 />
 
                 <ButtonToggle
                     theme={theme}
-                    toggle={() => toggleTextFormat('fontWeight', 'bold')}
-                    toggled={currentVersion.fontWeight === 'bold'}
-                    icon={BoldIcon}
+                    toggle={() => {
+                        if (editable) { setEditable(false) }
+                        setDraggable(draggable => !draggable)
+                    }}
+                    toggled={draggable}
+                    icon={GrabIcon}
                 />
+
+                <StyledVerticalDivider
+                    theme={theme}
+                >
+                    &nbsp;
+                </StyledVerticalDivider>
+
+                <Drawer
+                    theme={theme}
+                    title="Format"
+                    expand={expandFormat}
+                    toggleExpand={() => setExpandFormat(expand => !expand)}
+                >
+                    <ButtonIncrements
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        type="fontSize"
+                        changeValue={updateField}
+                        value={Math.round(valueFromPercentage(currentVersion.fontSizePercent, imageBoxDimensions.height))}
+                        icon={FontSizeIcon}
+                    />
+
+                    <ButtonDropdown
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        type="fontFamily"
+                        alterStyle="fontFamily"
+                        selected={currentVersion.fontFamily}
+                        selectables={selectableFonts}
+                        changeSelected={updateField}
+                        toggleEditor={() => {}}
+                        textDraggable={false}
+                        toggleTextDraggable={() => {}}
+                        toggleTextSelected={() => {}}
+                        renderOutside={renderOutside}
+                    />
+
+                    <ButtonInput
+                        theme={theme}
+                        toggle={() => toggleTextFormat('link', true)}
+                        toggled={currentVersion.link}
+                        icon={LinkIcon}
+                        value={currentVersion.linkTo}
+                        valueType="linkTo"
+                        changeValue={updateField}
+                    />
+
+                    <ButtonToggle
+                        theme={theme}
+                        toggle={() => toggleTextFormat('fontWeight', 'bold')}
+                        toggled={currentVersion.fontWeight === 'bold'}
+                        icon={BoldIcon}
+                    />
+
+                    <ButtonToggle
+                        theme={theme}
+                        toggle={() => toggleTextFormat('fontStyle', 'italic')}
+                        toggled={currentVersion.fontStyle === 'italic'}
+                        icon={ItalicIcon}
+                    />
+
+                    <ButtonIncrements
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        type="letterSpacing"
+                        changeValue={updateField}
+                        value={valueFromPercentage(currentVersion.letterSpacingPercent, imageBoxDimensions.width)}
+                        icon={LetterSpacingIcon}
+                        step={0.1}
+                    />
+
+                    <ButtonIncrements
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        type="wordSpacing"
+                        changeValue={updateField}
+                        value={valueFromPercentage(currentVersion.wordSpacingPercent, imageBoxDimensions.width)}
+                        icon={WordSpacingIcon}
+                        step={0.1}
+                    />
+
+                    <ButtonsColors
+                        theme={theme}
+                        selectedColor={currentVersion.color}
+                        changeValue={updateField}
+                    />
+                </Drawer>
+
+                <StyledVerticalDivider
+                    theme={theme}
+                >
+                    &nbsp;
+                </StyledVerticalDivider>
 
                 <ButtonToggle
                     theme={theme}
-                    toggle={() => toggleTextFormat('fontStyle', 'italic')}
-                    toggled={currentVersion.fontStyle === 'italic'}
-                    icon={ItalicIcon}
+                    toggle={() => setViewable()}
+                    toggled={currentVersion.viewable}
+                    icon={currentVersion.viewable ? ViewableIcon : NotViewableIcon}
                 />
 
-                <ButtonIncrements
+                <ButtonClick
                     theme={theme}
-                    transparentUI={transparentUI}
-                    type="letterSpacing"
-                    changeValue={updateField}
-                    value={valueFromPercentage(currentVersion.letterSpacingPercent, imageBoxDimensions.width)}
-                    icon={LetterSpacingIcon}
-                    step={0.1}
+                    atClick={() => duplicateTextItem(textItem.id)}
+                    icon={DuplicateIcon}
                 />
 
-                <ButtonIncrements
+                <ButtonClick
                     theme={theme}
-                    transparentUI={transparentUI}
-                    type="wordSpacing"
-                    changeValue={updateField}
-                    value={valueFromPercentage(currentVersion.wordSpacingPercent, imageBoxDimensions.width)}
-                    icon={WordSpacingIcon}
-                    step={0.1}
+                    atClick={() => deleteTextItem(textItem.id)}
+                    icon={DeleteIcon}
                 />
 
-                <ButtonsColors
-                    theme={theme}
-                    selectedColor={currentVersion.color}
-                    changeValue={updateField}
-                />
-            </Drawer>
 
-            <StyledVerticalDivider
-                theme={theme}
-            >
-                &nbsp;
-            </StyledVerticalDivider>
+            </StyledTextEditor>
 
-            <ButtonToggle
-                theme={theme}
-                toggle={() => setViewable()}
-                toggled={currentVersion.viewable}
-                icon={currentVersion.viewable ? ViewableIcon : NotViewableIcon}
-            />
-
-            <ButtonClick
-                theme={theme}
-                atClick={() => duplicateTextItem(textItem.id)}
-                icon={DuplicateIcon}
-            />
-
-            <ButtonClick
-                theme={theme}
-                atClick={() => deleteTextItem(textItem.id)}
-                icon={DeleteIcon}
-            />
-        </StyledTextEditor>
+            <StyledOutside>
+                {outside}
+            </StyledOutside>
+        </>
     );
 };
 

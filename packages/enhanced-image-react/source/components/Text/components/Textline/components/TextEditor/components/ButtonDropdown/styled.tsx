@@ -36,10 +36,10 @@ export const StyledButtonDropdownSelected: any = styled.div`
 
 
 export const StyledButtonDropdownList: any = styled.div`
-    position: absolute;
+    /* position: absolute;
     top: 27px;
     left: 0;
-    right: 0;
+    right: 0; */
     display: grid;
     align-content: flex-start;
     max-height: 100px;
