@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {
+    useState,
+    useEffect,
+} from 'react';
 
 // import themes from '@plurid/plurid-themes';
 
@@ -12,6 +15,10 @@ import {
     // select,
     text,
 } from '@storybook/addon-knobs';
+
+import {
+    PreloadedData,
+} from '../../../data/interfaces';
 
 import EnhancedImage from '../';
 
@@ -48,6 +55,29 @@ storiesOf(
 
     const ownerToken = text('Owner Token', '');
 
+
+    /** state */
+    const [preloadedData, setPreloadedData] = useState<PreloadedData | undefined>(undefined);
+
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const response = await fetch('/assets/eit-_assets_perspective.png.json');
+                const body = await response.json();
+                const preloadedData: PreloadedData = {
+                    imageText: body,
+                    imageID: 'one',
+                };
+                // setPreloadedData(preloadedData);
+            } catch (error) {
+                return;
+            }
+        }
+
+        loadData();
+    }, []);
+
     return (
         <div
             style={{
@@ -64,6 +94,8 @@ storiesOf(
                 silent={silent}
 
                 ownerToken={ownerToken}
+
+                // preloadedData={preloadedData}
             />
         </div>
     );
