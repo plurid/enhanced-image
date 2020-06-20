@@ -93,6 +93,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     });
     const [editorExpandFormat, setEditorExpandFormat] = useState(false);
     const [editorWidth, setEditorWidth] = useState(0);
+    const [editorFullWidth, setEditorFullWidth] = useState(false);
 
     const [loaded, setLoaded] = useState(false);
 
@@ -132,13 +133,21 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 offsetHeight,
             } = textItem.current;
 
-            // Do not let editor to go to the right.
-            let editorXCoord = offsetLeft + editorWidth > imageBoxDimensions.width
-                ? -1 * (offsetLeft + editorWidth - imageBoxDimensions.width)
+            // Do not let editor to go to the right
+            // or keep it within the image
+            // if the editor has the width greater than the image
+            let editorXCoord = (offsetLeft + editorWidth) > imageBoxDimensions.width
+                ? editorWidth < imageBoxDimensions.width
+                    ? -1 * (offsetLeft + editorWidth - imageBoxDimensions.width)
+                    : (-offsetLeft + 10)
                 : -17;
 
             // Do not let editor to go to the left.
+            console.log('offsetLeft', offsetLeft);
+
             if (offsetLeft < 17) {
+                console.log('offsetLeft', offsetLeft);
+                console.log('editorXCoord', editorXCoord);
                 editorXCoord = offsetLeft * -1;
             }
 
@@ -146,9 +155,15 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 editorXCoord = - offsetLeft;
             }
 
+            if (editorWidth > imageBoxDimensions.width) {
+                setEditorFullWidth(true);
+            } else {
+                setEditorFullWidth(false);
+            }
+
             // Do not let editor to go to over the top.
             const editorYCoord = offsetTop < 34
-                ?  offsetHeight
+                ? offsetHeight
                 : -34;
 
             const editorPositions = {
@@ -173,6 +188,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     }
 
 
+    /** effects */
     /**
      * Compute format.
      */
@@ -344,6 +360,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         setLoaded(true);
     }, []);
 
+
+    /** render */
     if (!loaded) {
         return (<></>);
     }
@@ -428,6 +446,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                         expandFormat={editorExpandFormat}
                         setExpandFormat={setEditorExpandFormat}
                         setWidth={setEditorWidth}
+                        fullWidth={editorFullWidth}
                     />
                 )
             }

@@ -11,6 +11,25 @@ export const StyledTextEditor: any = styled.div`
         return props.theme.backgroundColorPrimary;
     }};
     color: ${props => props.theme.colorPrimary};
+    width: ${({
+        imageBoxDimensions,
+        fullWidth,
+    }: any) => {
+        if (fullWidth) {
+            return (imageBoxDimensions.width - 20) + 'px';
+        }
+
+        return 'auto';
+    }};
+    overflow: ${({
+        fullWidth,
+    }: any) => {
+        if (fullWidth) {
+            return 'scroll';
+        }
+
+        return 'auto';
+    }};
 
     position: absolute;
     top: -34px;
@@ -20,7 +39,6 @@ export const StyledTextEditor: any = styled.div`
     flex-direction: row;
     border-radius: 17px;
     height: 34px;
-    margin-bottom: 300px;
     letter-spacing: 0;
     word-spacing: 0;
     font-weight: normal;
@@ -31,6 +49,14 @@ export const StyledTextEditor: any = styled.div`
     box-shadow: 0px 2px 4px 0px hsla(220, 2%, 10%, 0.9);
     font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+        background: transparent;
+    }
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
 
     > *:first-child {
         margin-left: 17px;
