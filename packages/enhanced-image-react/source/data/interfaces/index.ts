@@ -134,11 +134,27 @@ export interface EnhancedImageProperties {
 
 
     /**
-     * Specify which drawers to be available in the settings menu.
+     * Specify which drawers to be available in the Settings Menu.
      *
      * Default: `['ALL']`.
      */
     settingsDrawers?: SettingsDrawer[];
+
+    /**
+     * Specify which actions to be available in the Text Drawer of the Settings Menu.
+     * `('ALL' | 'REVEAL_TEXT' | 'GET_TEXT' | 'EXTRACT_TEXT')[]`
+     *
+     * Default: `['ALL']`.
+     */
+    textDrawer?: TextDrawer[];
+
+    /**
+     * Specify which actions to be available in the Varia Drawer of the Settings Menu.
+     * `('ALL' | 'REVEAL_TEXT' | 'GET_TEXT' | 'EXTRACT_TEXT')[]`
+     *
+     * Default: `['ALL']`.
+     */
+    variaDrawer?: VariaDrawer[];
 }
 
 
@@ -155,6 +171,8 @@ export interface Context {
     development: boolean;
     silent: boolean;
     settingsDrawers: SettingsDrawer[];
+    textDrawer: TextDrawer[];
+    variaDrawer: VariaDrawer[];
 
     apiEndpoint: string;
     apiKey: string | undefined;
@@ -262,7 +280,25 @@ export interface Slider {
 }
 
 
-export type SettingsDrawer = 'ALL' | 'TEXT' | 'COLOR' | 'TOPOLOGY' | 'VARIA';
+export type SettingsDrawer =
+    | 'ALL'
+    | 'TEXT'
+    | 'COLOR'
+    | 'TOPOLOGY'
+    | 'VARIA';
+
+export type TextDrawer =
+    | 'ALL'
+    | 'REVEAL_TEXT'
+    | 'GET_TEXT'
+    | 'EXTRACT_TEXT'
+    | 'TRANSVIEW_TEXT';
+
+export type VariaDrawer =
+    | 'ALL'
+    | 'VIEW_FULLSCREEN'
+    | 'SHARE_IMAGE'
+    | 'DOWNLOAD_IMAGE';
 
 
 export interface ImageDimensions {
