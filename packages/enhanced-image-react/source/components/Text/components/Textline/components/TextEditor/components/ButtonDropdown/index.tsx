@@ -11,6 +11,7 @@ import {
 
 class ButtonDropdown extends Component<any, any> {
     dropdown: any;
+    button: any;
 
     constructor(props: any) {
         super(props);
@@ -22,6 +23,7 @@ class ButtonDropdown extends Component<any, any> {
             toggledDropdown: false,
         };
 
+        this.button = React.createRef();
         this.dropdown = React.createRef();
     }
 
@@ -38,6 +40,7 @@ class ButtonDropdown extends Component<any, any> {
         return (
             <StyledButtonDropdown
                 theme={theme}
+                ref={this.button}
             >
                 <StyledButtonDropdownSelected
                     theme={theme}
@@ -113,6 +116,7 @@ class ButtonDropdown extends Component<any, any> {
                                 cursor={cursor}
                                 selected={selected}
                                 filtered={filtered}
+                                transparentUI={transparentUI}
                             >
                                 {select}
                             </StyledButtonDropdownListItem>
@@ -122,7 +126,11 @@ class ButtonDropdown extends Component<any, any> {
             </StyledButtonDropdownList>
         );
 
-        renderOutside(dropdownRender);
+        const left = this.button.current
+            ? this.button.current.offsetLeft
+            : 0;
+
+        renderOutside(dropdownRender, left);
 
         this.scrollToCurent();
     }

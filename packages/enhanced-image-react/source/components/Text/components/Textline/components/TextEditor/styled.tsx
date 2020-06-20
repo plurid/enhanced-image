@@ -78,4 +78,5 @@ export const StyledVerticalDivider = styled.div`
 
 export const StyledOutside = styled.div`
     position: absolute;
+    top: 0;
 `;
