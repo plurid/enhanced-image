@@ -1,5 +1,6 @@
 import React, {
     useContext,
+    useState,
 } from 'react';
 
 import {
@@ -13,6 +14,11 @@ import {
 } from './styled';
 
 import Context from '../../../../../../services/utilities/context';
+
+import {
+    transviewAvailableLanguages,
+    transviewTargetLanguages,
+} from '../../../../../../data/constants/transview';
 
 
 
@@ -30,6 +36,10 @@ const Transview: React.FC<any> = (
     } = context;
 
 
+    /** state */
+    const [transviewFrom, setTransviewFrom] = useState('Select');
+    const [transviewTo, setTransviewTo] = useState('Select');
+
 
     /** render */
     return (
@@ -40,14 +50,14 @@ const Transview: React.FC<any> = (
                 </div>
 
                 <PluridDropdown
-                    selected="English"
-                    selectables={[
-                        'English',
-                        'French',
-                        'German',
-                        'Romanian',
-                    ]}
-                    atSelect={() => {}}
+                    selected={transviewFrom}
+                    selectables={transviewAvailableLanguages}
+                    atSelect={(selection) => {
+                        if (typeof selection === 'string') {
+                            setTransviewFrom(selection);
+                        }
+                    }}
+                    selectAtHover={false}
                     heightItems={3}
                     width={120}
                 />
@@ -59,14 +69,14 @@ const Transview: React.FC<any> = (
                 </div>
 
                 <PluridDropdown
-                    selected="English"
-                    selectables={[
-                        'English',
-                        'French',
-                        'German',
-                        'Romanian',
-                    ]}
-                    atSelect={() => {}}
+                    selected={transviewTo}
+                    selectables={transviewTargetLanguages}
+                    atSelect={(selection) => {
+                        if (typeof selection === 'string') {
+                            setTransviewTo(selection);
+                        }
+                    }}
+                    selectAtHover={false}
                     heightItems={3}
                     width={120}
                 />
