@@ -425,10 +425,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 </StyledTextContent>
             )}
 
-            {showEditor
+            {/* {showEditor
             && currentVersion
             && !dragging
-            && (
+            && ( */}
                 <TextEditor
                     textItem={data}
                     currentVersion={currentVersion}
@@ -445,7 +445,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                     setWidth={setEditorWidth}
                     fullWidth={editorFullWidth}
                 />
-            )}
+            {/* )} */}
         </StyledTextItem>
     );
 }

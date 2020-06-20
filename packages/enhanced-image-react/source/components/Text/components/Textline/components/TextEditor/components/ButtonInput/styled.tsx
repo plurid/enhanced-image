@@ -17,13 +17,10 @@ export const StyledButtonInput = styled.div`
 
 
 export const StyledButtonInputContainer = styled.div`
-    position: absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
     background: ${props => props.theme.backgroundColorSecondary};
-    top: 34px;
-    left: 0;
 
     input {
         width: 110px;
@@ -39,9 +36,10 @@ export const StyledButtonInputContainer = styled.div`
 
 
 export const StyledButtonInputGotoLink = styled.div`
+    display: grid;
     height: 14px;
     width: 14px;
-    padding-right: 20px;
+    padding: 0 6px;
     cursor: pointer;
     user-select: none;
 
