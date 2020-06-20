@@ -15,14 +15,6 @@ import {
 
 
 
-export interface Slider {
-    type: string;
-    min?: number;
-    max?: number;
-    valueSign?: string;
-}
-
-
 export interface EnhancedImageProperties {
     /**
      * Image source attribute.
@@ -119,7 +111,7 @@ export interface EnhancedImageProperties {
     /**
      * Load image data from outside the component.
      */
-    data?: any;
+    preloadedData?: PreloadedData;
 
     // updateDebounce?: number;
     // moreLimit?: number;
@@ -249,6 +241,15 @@ export interface Context {
 }
 
 
+
+export interface Slider {
+    type: string;
+    min?: number;
+    max?: number;
+    valueSign?: string;
+}
+
+
 export interface ImageDimensions {
     width: number;
     height: number;
@@ -281,6 +282,13 @@ export interface ImageColorsData {
     saturation: number;
     brightness: number;
 }
+
+
+export interface PreloadedData {
+    imageText: ImageText[];
+    imageID: string;
+}
+
 
 
 export {

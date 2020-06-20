@@ -96,7 +96,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         imageID,
 
         sendMessage,
-        data,
+        preloadedData,
         timedNotification,
 
         getTextOnLoad,
@@ -1058,14 +1058,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     ]);
 
     useEffect(() => {
-        if (data) {
-            // console.log('Data has been set', data);
-            setImageText(data.imageText);
-            setDatabaseImageID(data.imageID);
+        if (preloadedData) {
+            setImageText(preloadedData.imageText);
+            setDatabaseImageID(preloadedData.imageID);
             setMessageTimed('Rendered Text.', 3000);
         }
     }, [
-        data,
+        preloadedData,
     ]);
 
     useEffect(() => {
