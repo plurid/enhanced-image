@@ -51,6 +51,10 @@ import {
     percentageFromValue,
 } from '../../../../../../services/utilities/percentage';
 
+import {
+    resolveColor
+} from '../../../../../../services/utilities/color';
+
 
 
 export interface TextEditorProperties {
@@ -324,7 +328,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     />
 
                     <SimpleInput
-                        value={currentVersion.color}
+                        value={resolveColor(currentVersion.color)}
                         valueType="color"
                         changeValue={updateField}
                         theme={theme}
