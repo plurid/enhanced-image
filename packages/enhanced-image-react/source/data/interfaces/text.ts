@@ -2,12 +2,13 @@ export interface ImageTextVersion {
     id: string;
     type: 'TEXTAREA' | 'TEXTLINE';
 
-    xCoordPercentage: number;
-    yCoordPercentage: number;
+    xPercent: number;
+    yPercent: number;
 
     perspective: string;
-    rotation: string;
-    skew: string;
+    xRotation: number;
+    yRotation: number;
+    zRotation: number;
 
     viewable: boolean;
 }
@@ -28,10 +29,10 @@ export interface ImageTextVersionTextline extends ImageTextVersion {
     fontWeight: string;
     fontStyle: string;
     fontFamily: string;
-    fontSizePercentage: number;
-    letterSpacingPercentage: number;
-    wordSpacingPercentage: number;
-    lineHeightPercentage: number;
+    fontSizePercent: number;
+    letterSpacingPercent: number;
+    wordSpacingPercent: number;
+    lineHeightPercent: number;
 
     content: string;
 
