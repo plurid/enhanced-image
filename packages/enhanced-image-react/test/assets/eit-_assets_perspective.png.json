@@ -1,0 +1,30 @@
+[
+    {
+        "id": "eit_26fa4a34898b464a21510a0101a46ce5",
+        "currentVersionId": "eiv_7d355f4ec74a41611caad48d1d34b93d",
+        "versions": [
+            {
+                "id": "eiv_7d355f4ec74a41611caad48d1d34b93d",
+                "type": "TEXTLINE",
+                "xPercent": 21.561338289962826,
+                "yPercent": 8.598065898430715,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 0,
+                "viewable": false,
+                "color": "white",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 4.5,
+                "letterSpacingPercent": 0,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "New \n\n\n\n\n\n\nText",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    }
+]
