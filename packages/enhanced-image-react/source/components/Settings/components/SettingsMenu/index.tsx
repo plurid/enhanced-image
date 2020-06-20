@@ -446,13 +446,12 @@ const SettingsMenu: React.FC<any> = () => {
                                 <a
                                     href={saveImageHref}
                                     download={saveImageDownload}
-                                    // ref={saveButton}
                                 >
                                     <ButtonItem
                                         theme={theme}
                                         atClick={() => {}}
                                         icon={SaveIcon}
-                                        text="Save Image"
+                                        text="Download Image"
                                     />
                                 </a>
                             </li>
