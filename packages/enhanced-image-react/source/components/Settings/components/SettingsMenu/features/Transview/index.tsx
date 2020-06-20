@@ -57,8 +57,9 @@ const Transview: React.FC<any> = (
                             setTransviewFrom(selection);
                         }
                     }}
+                    filterable={true}
                     selectAtHover={false}
-                    heightItems={3}
+                    heightItems={4}
                     width={120}
                 />
             </StyledTransviewLanguage>
@@ -76,8 +77,9 @@ const Transview: React.FC<any> = (
                             setTransviewTo(selection);
                         }
                     }}
+                    filterable={true}
                     selectAtHover={false}
-                    heightItems={3}
+                    heightItems={4}
                     width={120}
                 />
             </StyledTransviewLanguage>

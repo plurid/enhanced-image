@@ -7,5 +7,5 @@ export const transviewAvailableLanguages = [
 ];
 
 export const transviewTargetLanguages = transviewAvailableLanguages.filter(
-    language => language === 'Auto-Detect',
+    language => language !== 'Auto-Detect',
 );
