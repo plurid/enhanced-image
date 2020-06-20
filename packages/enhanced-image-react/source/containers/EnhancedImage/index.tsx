@@ -258,7 +258,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     fontWeight: 'normal',
                     fontStyle: 'normal',
                     fontFamily: 'Arial',
-                    fontSizePercent: 7,
+                    fontSizePercent: 4.5,
                     letterSpacingPercent: 0,
                     wordSpacingPercent: 0,
                     lineHeightPercent: 0,
