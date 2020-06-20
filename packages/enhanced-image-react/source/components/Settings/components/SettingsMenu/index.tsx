@@ -17,7 +17,7 @@ import SaveTextIcon from '../../../../assets/icons/settings-menu/save-text';
 
 import GetTextIcon from '../../../../assets/icons/settings-menu/get-text';
 import ExtractTextIcon from '../../../../assets/icons/settings-menu/extract-text';
-// import TransviewTextIcon from '../../../../assets/icons/settings-menu/transview-text';
+import TransviewTextIcon from '../../../../assets/icons/settings-menu/transview-text';
 
 import BackgroundColorTransparent from '../../../../assets/icons/settings-menu/background-color-transparent';
 import BackgroundColorWhite from '../../../../assets/icons/settings-menu/background-color-white';
@@ -62,6 +62,8 @@ const SettingsMenu: React.FC<any> = () => {
         generator,
         development,
         settingsDrawers,
+        textDrawer,
+        variaDrawer,
 
         databaseImageID,
 
@@ -93,7 +95,7 @@ const SettingsMenu: React.FC<any> = () => {
         getText,
         extractText,
         downloadText,
-        // transviewText,
+        transviewText,
 
         saveImage,
         saveImageHref,
@@ -226,32 +228,53 @@ const SettingsMenu: React.FC<any> = () => {
                                 </>
                             )}
 
-                            <li>
-                                <ButtonCheckmark
-                                    theme={theme}
-                                    toggle={() => setRevealedText(show => !show)}
-                                    text="Reveal Text"
-                                    checked={revealedText}
-                                />
-                            </li>
+                            {(textDrawer.includes('ALL') || textDrawer.includes('REVEAL_TEXT'))
+                            && (
+                                <li>
+                                    <ButtonCheckmark
+                                        theme={theme}
+                                        toggle={() => setRevealedText(show => !show)}
+                                        text="Reveal Text"
+                                        checked={revealedText}
+                                    />
+                                </li>
+                            )}
 
-                            <li>
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={async () => await getText()}
-                                    icon={GetTextIcon}
-                                    text="Get Text"
-                                />
-                            </li>
+                            {(textDrawer.includes('ALL') || textDrawer.includes('GET_TEXT'))
+                            && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={async () => await getText()}
+                                        icon={GetTextIcon}
+                                        text="Get Text"
+                                    />
+                                </li>
+                            )}
 
-                            <li>
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={extractText}
-                                    icon={ExtractTextIcon}
-                                    text="Extract Text"
-                                />
-                            </li>
+                            {(textDrawer.includes('ALL') || textDrawer.includes('EXTRACT_TEXT'))
+                            && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={extractText}
+                                        icon={ExtractTextIcon}
+                                        text="Extract Text"
+                                    />
+                                </li>
+                            )}
+
+                            {(textDrawer.includes('ALL') || textDrawer.includes('TRANSVIEW_TEXT'))
+                            && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={transviewText}
+                                        icon={TransviewTextIcon}
+                                        text="Transview Text"
+                                    />
+                                </li>
+                            )}
 
                             {development && (
                                 <li>
@@ -263,15 +286,6 @@ const SettingsMenu: React.FC<any> = () => {
                                     />
                                 </li>
                             )}
-
-                            {/* <li>
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={transviewText}
-                                    icon={TransviewTextIcon}
-                                    text="Transview Text"
-                                />
-                            </li> */}
                         </ul>
                     </Drawer>
                 )}
@@ -420,16 +434,21 @@ const SettingsMenu: React.FC<any> = () => {
                         toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
                     >
                         <ul>
-                            <li>
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={viewFullscreen}
-                                    icon={FullscreenIcon}
-                                    text="View Fullscreen"
-                                />
-                            </li>
+                            {(variaDrawer.includes('ALL') || variaDrawer.includes('VIEW_FULLSCREEN'))
+                            && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={viewFullscreen}
+                                        icon={FullscreenIcon}
+                                        text="View Fullscreen"
+                                    />
+                                </li>
+                            )}
 
-                            {databaseImageID && (
+                            {databaseImageID
+                            && (variaDrawer.includes('ALL') || variaDrawer.includes('SHARE_IMAGE'))
+                            && (
                                 <li>
                                     <ButtonItem
                                         theme={theme}
@@ -440,21 +459,24 @@ const SettingsMenu: React.FC<any> = () => {
                                 </li>
                             )}
 
-                            <li
-                                onMouseEnter={() => saveImage()}
-                            >
-                                <a
-                                    href={saveImageHref}
-                                    download={saveImageDownload}
+                            {(variaDrawer.includes('ALL') || variaDrawer.includes('DOWNLOAD_IMAGE'))
+                            && (
+                                <li
+                                    onMouseEnter={() => saveImage()}
                                 >
-                                    <ButtonItem
-                                        theme={theme}
-                                        atClick={() => {}}
-                                        icon={SaveIcon}
-                                        text="Download Image"
-                                    />
-                                </a>
-                            </li>
+                                    <a
+                                        href={saveImageHref}
+                                        download={saveImageDownload}
+                                    >
+                                        <ButtonItem
+                                            theme={theme}
+                                            atClick={() => {}}
+                                            icon={SaveIcon}
+                                            text="Download Image"
+                                        />
+                                    </a>
+                                </li>
+                            )}
 
                             {about && (
                                 <hr />

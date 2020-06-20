@@ -106,6 +106,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         development,
         silent,
         settingsDrawers,
+        textDrawer,
+        variaDrawer,
     } = properties;
 
     if (!src) {
@@ -130,6 +132,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const _development = development ?? false;
     const _silent = silent ?? false;
     const _settingsDrawers = settingsDrawers ?? ['ALL'];
+    const _textDrawer = textDrawer ?? ['ALL'];
+    const _variaDrawer = variaDrawer ?? ['ALL'];
 
 
     /** references */
@@ -1171,6 +1175,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         development: _development,
         silent: _silent,
         settingsDrawers: _settingsDrawers,
+        textDrawer: _textDrawer,
+        variaDrawer: _variaDrawer,
 
         apiEndpoint: _apiEndpoint,
         apiKey,
