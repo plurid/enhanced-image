@@ -6,6 +6,10 @@ import React, {
 } from 'react';
 
 import {
+    PluridIconPalette,
+} from '@plurid/plurid-icons-react';
+
+import {
     StyledTextEditor,
     StyledOutside,
     StyledVerticalDivider,
@@ -19,6 +23,7 @@ import ButtonInput from './components/ButtonInput';
 import ButtonToggle from './components/ButtonToggle';
 import ButtonsColors from './components/ButtonsColors';
 import ButtonClick from './components/ButtonClick';
+import SimpleInput from './components/SimpleInput';
 import Drawer from './components/Drawer';
 
 import { selectableFonts } from '../../../../../../data/constants/fonts';
@@ -316,6 +321,15 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         theme={theme}
                         selectedColor={currentVersion.color}
                         changeValue={updateField}
+                    />
+
+                    <SimpleInput
+                        value={currentVersion.color}
+                        valueType="color"
+                        changeValue={updateField}
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        Icon={PluridIconPalette}
                     />
                 </Drawer>
 
