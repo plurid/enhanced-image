@@ -5,7 +5,7 @@ export interface ImageTextVersion {
     xPercent: number;
     yPercent: number;
 
-    perspective: string;
+    perspective: number;
     xRotation: number;
     yRotation: number;
     zRotation: number;

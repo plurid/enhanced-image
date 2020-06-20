@@ -246,7 +246,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     xPercent: 5,
                     yPercent: 9,
 
-                    perspective: '',
+                    perspective: 0,
                     xRotation: 0,
                     yRotation: 0,
                     zRotation: 0,

@@ -181,6 +181,11 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             setTextXCoord(currentVersion.xPercent * imageBoxDimensions.width / 100 + 'px');
             setTextYCoord(currentVersion.yPercent * imageBoxDimensions.height / 100 + 'px');
 
+            setPerspective(currentVersion.perspective + 'px');
+            setRotationX(currentVersion.xRotation + 'deg');
+            setRotationY(currentVersion.yRotation + 'deg');
+            setRotationY(currentVersion.zRotation + 'deg');
+
             setFontWeight(currentVersion.fontWeight);
             setFontStyle(currentVersion.fontStyle);
             setFontFamily(currentVersion.fontFamily);
