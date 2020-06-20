@@ -16,7 +16,7 @@ export const StyledButtonIncrement: any = styled.div`
             return props.theme.backgroundColorSecondary;
         }};
         color: ${props => props.theme.colorPrimary};
-        height: 20px;
+        height: 18px;
         width: 30px;
         border: none;
         text-align: center;
@@ -64,15 +64,12 @@ export const StyledButtonIncrements: any = styled.div`
         return props.theme.backgroundColorSecondary;
     }};
 
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     font-size: 6px;
     justify-items: center;
-    justify-content: center;
-    align-items: space-between;
-    grid-row-gap: 2px;
-    height: 20px;
+    justify-content: space-between;
+    height: 24px;
     user-select: none;
 `;
 

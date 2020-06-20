@@ -20,6 +20,7 @@ export const StyledButtonDropdownSelected: any = styled.div`
         color: ${props => props.theme.colorPrimary};
 
         width: 110px;
+        height: 18px;
         border: none;
         text-align: left;
         outline: none;
