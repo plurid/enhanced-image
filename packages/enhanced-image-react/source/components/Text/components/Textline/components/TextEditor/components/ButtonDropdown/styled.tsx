@@ -44,6 +44,12 @@ export const StyledButtonDropdownList: any = styled.div`
     overflow-x: hidden;
     scroll-snap-type: y mandatory;
 
+    box-shadow: ${
+        ({
+            theme,
+        }: any) => theme.boxShadowUmbra
+    };
+
     ul {
         margin: 0;
         padding: 0;

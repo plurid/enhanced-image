@@ -16,16 +16,40 @@ export const StyledButtonInput = styled.div`
 `;
 
 
-export const StyledButtonInputContainer = styled.div`
+export const StyledButtonInputContainer: any = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background: ${props => props.theme.backgroundColorSecondary};
+
+    background: ${
+        ({
+            theme,
+            transparentUI,
+        }: any) => {
+            if (transparentUI) {
+                return theme.backgroundColorSecondaryAlpha;
+            }
+            return theme.backgroundColorSecondary;
+        }
+    };
+    box-shadow: ${
+        ({
+            theme,
+        }: any) => theme.boxShadowUmbra
+    };
+
+    :hover {
+        background: ${
+            ({
+                theme,
+            }: any) => theme.backgroundColorSecondary
+        };
+    }
 
     input {
         width: 110px;
         border: none;
-        background: ${props => props.theme.backgroundColorSecondary};
+        background: transparent;
         color: ${props => props.theme.colorPrimary};
         text-align: left;
         outline: none;

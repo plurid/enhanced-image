@@ -5,56 +5,62 @@ import React, {
 } from 'react';
 
 import {
-    StyledButtonInput,
-    StyledButtonInputContainer,
-    StyledButtonInputGotoLink,
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
+    StyledSliderContainer,
+    StyledIcon,
+    StyledSlider,
 } from './styled';
 
-import ButtonToggle from '../ButtonToggle';
-
-import GoToLinkIcon from '../../../../../../../../assets/icons/text-editor/gotolink';
-
-import { Theme } from '@plurid/plurid-themes';
 
 
-
-interface ButtonInputProperties {
-    theme: Theme;
-    transparentUI: boolean;
-    icon: JSX.Element;
-    value: string;
-    toggle: () => void;
-    toggled: boolean;
+export interface SliderProperties {
+    /** required */
+    value: number;
     valueType: string;
     changeValue: (
         type: string,
         value: string | number | boolean,
     ) => void;
+    theme: Theme;
+    transparentUI: boolean;
+    Icon: React.FC<any>;
     renderOutside: (
         outside: JSX.Element,
         left?: number,
     ) => void;
+
+    /** optional */
+    min?: number;
+    max?: number;
+    step?: number;
 }
 
-const ButtonInput: React.FC<ButtonInputProperties> = (
+const Slider: React.FC<SliderProperties> = (
     properties,
 ) => {
     /** properties */
     const {
-        icon,
+        /** required */
         value,
-        theme,
-        transparentUI,
-        toggle,
-        toggled,
         valueType,
         changeValue,
+        theme,
+        transparentUI,
+        Icon,
         renderOutside,
+
+        /** optional */
+        min,
+        max,
+        step,
     } = properties;
 
 
     /** references */
-    const input = useRef<HTMLDivElement>(null);
+    const container = useRef<HTMLDivElement>(null);
     const timeout = useRef<number>();
 
 
@@ -64,7 +70,8 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
 
     /** handlers */
     const handleInput = (event: any) => {
-        changeValue(valueType, event.target.value);
+        const value = parseInt(event.target.value) || 1;
+        changeValue(valueType, value);
     }
 
 
@@ -77,7 +84,7 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
         }
 
         const outside = (
-            <StyledButtonInputContainer
+            <StyledSlider
                 theme={theme}
                 transparentUI={transparentUI}
                 onMouseEnter={() => {
@@ -88,27 +95,18 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
                 onMouseLeave={() => setShow(show => !show)}
             >
                 <input
-                    type="text"
+                    type="range"
+                    min={min}
+                    max={max}
+                    step={step || 1}
                     value={value}
                     onChange={handleInput}
                 />
-
-                <a
-                    href={value}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                >
-                    <StyledButtonInputGotoLink
-                        theme={theme}
-                    >
-                        {GoToLinkIcon}
-                    </StyledButtonInputGotoLink>
-                </a>
-            </StyledButtonInputContainer>
+            </StyledSlider>
         );
 
-        const left = input.current
-            ? input.current.offsetLeft
+        const left = container.current
+            ? container.current.offsetLeft
             : 0
 
         renderOutside(outside, left);
@@ -120,9 +118,10 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
 
     /** render */
     return (
-        <StyledButtonInput
+        <StyledSliderContainer
             theme={theme}
-            ref={input}
+            transparentUI={transparentUI}
+            ref={container}
             onMouseEnter={() => setShow(show => !show)}
             onMouseLeave={() => {
                 timeout.current = setTimeout(() => {
@@ -130,15 +129,12 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
                 }, 500);
             }}
         >
-            <ButtonToggle
-                theme={theme}
-                toggle={toggle}
-                toggled={toggled}
-                icon={icon}
-            />
-        </StyledButtonInput>
+            <StyledIcon>
+                <Icon />
+            </StyledIcon>
+        </StyledSliderContainer>
     );
 }
 
 
-export default ButtonInput;
+export default Slider;
