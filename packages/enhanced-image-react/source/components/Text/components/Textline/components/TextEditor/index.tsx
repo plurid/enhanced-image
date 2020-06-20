@@ -175,7 +175,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     const renderOutside = (
         outside: JSX.Element,
-        left: number,
+        left: number = 0,
     ) => {
         setOutside(outside);
 
@@ -275,6 +275,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         value={currentVersion.linkTo}
                         valueType="linkTo"
                         changeValue={updateField}
+                        renderOutside={renderOutside}
                     />
 
                     <ButtonToggle

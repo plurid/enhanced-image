@@ -1,5 +1,7 @@
 import React, {
+    useRef,
     useState,
+    useEffect,
 } from 'react';
 
 import {
@@ -23,10 +25,20 @@ interface ButtonInputProperties {
     toggle: () => void;
     toggled: boolean;
     valueType: string;
-    changeValue: (type: string, value: string | number | boolean) => void;
+    changeValue: (
+        type: string,
+        value: string | number | boolean,
+    ) => void;
+    renderOutside: (
+        outside: JSX.Element,
+        left?: number,
+    ) => void;
 }
 
-const ButtonInput: React.FC<ButtonInputProperties> = (properties) => {
+const ButtonInput: React.FC<ButtonInputProperties> = (
+    properties,
+) => {
+    /** properties */
     const {
         icon,
         value,
@@ -35,19 +47,85 @@ const ButtonInput: React.FC<ButtonInputProperties> = (properties) => {
         toggled,
         valueType,
         changeValue,
+        renderOutside,
     } = properties;
 
+
+    /** references */
+    const input = useRef<HTMLDivElement>(null);
+    const timeout = useRef<number>();
+
+
+    /** state */
     const [show, setShow] = useState(false);
 
+
+    /** handlers */
     const handleInput = (event: any) => {
         changeValue(valueType, event.target.value);
     }
 
+
+    /** effects */
+    useEffect(() => {
+        if (!show) {
+            const outside = (<></>);
+            renderOutside(outside);
+            return;
+        }
+
+        const outside = (
+            <StyledButtonInputContainer
+                theme={theme}
+                onMouseEnter={() => {
+                    if (timeout.current) {
+                        clearTimeout(timeout.current);
+                    }
+                }}
+                onMouseLeave={() => setShow(show => !show)}
+            >
+                <input
+                    type="text"
+                    value={value}
+                    onChange={handleInput}
+                />
+
+                <a
+                    href={value}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
+                    <StyledButtonInputGotoLink
+                        theme={theme}
+                    >
+                        {GoToLinkIcon}
+                    </StyledButtonInputGotoLink>
+                </a>
+            </StyledButtonInputContainer>
+        );
+
+        const left = input.current
+            ? input.current.offsetLeft
+            : 0
+
+        renderOutside(outside, left);
+    }, [
+        value,
+        show,
+    ]);
+
+
+    /** render */
     return (
         <StyledButtonInput
             theme={theme}
+            ref={input}
             onMouseEnter={() => setShow(show => !show)}
-            onMouseLeave={() => setShow(show => !show)}
+            onMouseLeave={() => {
+                timeout.current = setTimeout(() => {
+                    setShow(show => !show)
+                }, 500);
+            }}
         >
             <ButtonToggle
                 theme={theme}
@@ -55,30 +133,6 @@ const ButtonInput: React.FC<ButtonInputProperties> = (properties) => {
                 toggled={toggled}
                 icon={icon}
             />
-
-            {show && (
-                <StyledButtonInputContainer
-                    theme={theme}
-                >
-                    <input
-                        type="text"
-                        value={value}
-                        onChange={handleInput}
-                    />
-
-                    <a
-                        href={value}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                    >
-                        <StyledButtonInputGotoLink
-                            theme={theme}
-                        >
-                            {GoToLinkIcon}
-                        </StyledButtonInputGotoLink>
-                    </a>
-                </StyledButtonInputContainer>
-            )}
         </StyledButtonInput>
     );
 }
