@@ -49,6 +49,7 @@ import sliders from '../../../../data/constants/sliders';
 
 
 const SettingsMenu: React.FC<any> = () => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
@@ -115,12 +116,29 @@ const SettingsMenu: React.FC<any> = () => {
         viewAbout,
     } = context;
 
+
+    /** references */
     const settingsMenuWrapper = useRef<HTMLDivElement>(null);
 
-    const [menuHeight, setMenuHeight] = useState<number | boolean>(false);
 
-    const [resolveImageBackground, setResolveImageBackground] = useState(BackgroundColorTransparent);
+    /** state */
+    const [
+        menuHeight,
+        setMenuHeight,
+    ] = useState<number | boolean>(false);
+    const [
+        resolveImageBackground,
+        setResolveImageBackground,
+    ] = useState(BackgroundColorTransparent);
 
+
+    /** handlers */
+    const revealText = () => {
+        setEditableText(show => !show);
+    }
+
+
+    /** effects */
     useLayoutEffect(() => {
         if (settingsMenuWrapper.current) {
             const menuHeight = settingsMenuWrapper.current.getBoundingClientRect().height;
@@ -158,6 +176,8 @@ const SettingsMenu: React.FC<any> = () => {
         imageBackground
     ]);
 
+
+    /** render */
     return (
         <StyledSettingsMenu
             theme={theme}
@@ -208,6 +228,15 @@ const SettingsMenu: React.FC<any> = () => {
                                     <hr />
                                 </>
                             )}
+
+                            <li>
+                                <ButtonCheckmark
+                                    theme={theme}
+                                    toggle={revealText}
+                                    text="Reveal Text"
+                                    checked={editableText}
+                                />
+                            </li>
 
                             <li>
                                 <ButtonItem
@@ -382,7 +411,6 @@ const SettingsMenu: React.FC<any> = () => {
                             </li>
                         </ul>
                     </Drawer>
-
                 )}
 
 
