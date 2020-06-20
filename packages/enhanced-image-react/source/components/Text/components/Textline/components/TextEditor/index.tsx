@@ -205,7 +205,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     transparentUI={transparentUI}
                     type="fontSize"
                     changeValue={updateField}
-                    value={Math.round(valueFromPercentage(currentVersion.fontSizePercentage, imageBoxDimensions.height))}
+                    value={Math.round(valueFromPercentage(currentVersion.fontSizePercent, imageBoxDimensions.height))}
                     icon={FontSizeIcon}
                 />
 
@@ -256,7 +256,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     transparentUI={transparentUI}
                     type="letterSpacing"
                     changeValue={updateField}
-                    value={valueFromPercentage(currentVersion.letterSpacingPercentage, imageBoxDimensions.width)}
+                    value={valueFromPercentage(currentVersion.letterSpacingPercent, imageBoxDimensions.width)}
                     icon={LetterSpacingIcon}
                     step={0.1}
                 />
@@ -266,7 +266,7 @@ const TextEditor: React.FC<TextEditorProperties> = (properties) => {
                     transparentUI={transparentUI}
                     type="wordSpacing"
                     changeValue={updateField}
-                    value={valueFromPercentage(currentVersion.wordSpacingPercentage, imageBoxDimensions.width)}
+                    value={valueFromPercentage(currentVersion.wordSpacingPercent, imageBoxDimensions.width)}
                     icon={WordSpacingIcon}
                     step={0.1}
                 />

@@ -243,12 +243,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     id: newTextVersionID,
                     type: 'TEXTLINE',
 
-                    xCoordPercentage: 5,
-                    yCoordPercentage: 9,
+                    xPercent: 5,
+                    yPercent: 9,
 
                     perspective: '',
-                    rotation: '',
-                    skew: '',
+                    xRotation: 0,
+                    yRotation: 0,
+                    zRotation: 0,
 
                     viewable: false,
 
@@ -257,10 +258,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     fontWeight: 'normal',
                     fontStyle: 'normal',
                     fontFamily: 'Arial',
-                    fontSizePercentage: 7,
-                    letterSpacingPercentage: 0,
-                    wordSpacingPercentage: 0,
-                    lineHeightPercentage: 0,
+                    fontSizePercent: 7,
+                    letterSpacingPercent: 0,
+                    wordSpacingPercent: 0,
+                    lineHeightPercent: 0,
 
                     content: 'New Text',
 
@@ -954,9 +955,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                 const version = { ...currentVersion };
                 const currentVersionId = uuid.generate();
                 version.id = currentVersionId;
-                version.yCoordPercentage = currentVersion.yCoordPercentage < 85
-                    ? currentVersion.yCoordPercentage + 10
-                    : currentVersion.yCoordPercentage - 10;
+                version.yPercent = currentVersion.yPercent < 85
+                    ? currentVersion.yPercent + 10
+                    : currentVersion.yPercent - 10;
 
                 const id = uuid.generate();
                 const updatedImgText: ImageText = {
@@ -995,8 +996,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                 const currentVersion = getVersionById(text);
                 if (currentVersion) {
                     const updatedVersion = { ...currentVersion };
-                    updatedVersion.xCoordPercentage = coordinates.x;
-                    updatedVersion.yCoordPercentage = coordinates.y;
+                    updatedVersion.xPercent = coordinates.x;
+                    updatedVersion.yPercent = coordinates.y;
                     const updatedText = updateVersion(text, updatedVersion);
                     return { ...updatedText };
                 }

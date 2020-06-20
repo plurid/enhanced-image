@@ -59,6 +59,11 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [textXCoord, setTextXCoord] = useState('0px');
     const [textColor, setTextColor] = useState('transparent');
 
+    const [perspective, setPerspective] = useState('0px');
+    const [rotationX, setRotationX] = useState('0deg');
+    const [rotationY, setRotationY] = useState('0deg');
+    const [rotationZ, setRotationZ] = useState('0deg');
+
     const [fontWeight, setFontWeight] = useState('normal');
     const [fontStyle, setFontStyle] = useState('normal');
     const [fontSize, setFontSize] = useState('12px');
@@ -173,20 +178,20 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
      */
     useEffect(() => {
         if (currentVersion) {
-            setTextXCoord(currentVersion.xCoordPercentage * imageBoxDimensions.width / 100 + 'px');
-            setTextYCoord(currentVersion.yCoordPercentage * imageBoxDimensions.height / 100 + 'px');
+            setTextXCoord(currentVersion.xPercent * imageBoxDimensions.width / 100 + 'px');
+            setTextYCoord(currentVersion.yPercent * imageBoxDimensions.height / 100 + 'px');
 
             setFontWeight(currentVersion.fontWeight);
             setFontStyle(currentVersion.fontStyle);
             setFontFamily(currentVersion.fontFamily);
-            setFontSize(currentVersion.fontSizePercentage * imageBoxDimensions.height / 100 + 'px');
-            setLetterSpacing(currentVersion.letterSpacingPercentage * imageBoxDimensions.width / 100 + 'px');
-            setWordSpacing(currentVersion.wordSpacingPercentage * imageBoxDimensions.width / 100 + 'px');
+            setFontSize(currentVersion.fontSizePercent * imageBoxDimensions.height / 100 + 'px');
+            setLetterSpacing(currentVersion.letterSpacingPercent * imageBoxDimensions.width / 100 + 'px');
+            setWordSpacing(currentVersion.wordSpacingPercent * imageBoxDimensions.width / 100 + 'px');
 
-            if (currentVersion.lineHeightPercentage === 0) {
+            if (currentVersion.lineHeightPercent === 0) {
                 setLineHeight('auto');
             } else {
-                setLineHeight(currentVersion.lineHeightPercentage * imageBoxDimensions.height / 100 + 'px');
+                setLineHeight(currentVersion.lineHeightPercent * imageBoxDimensions.height / 100 + 'px');
             }
         }
     }, [
@@ -353,6 +358,7 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 letterSpacing,
                 wordSpacing,
                 lineHeight,
+                perspective,
             }}
             ref={textItem}
         >
@@ -364,6 +370,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                     editableText={editableText}
                     viewable={currentVersion && currentVersion.viewable}
                     color={currentVersion && currentVersion.color}
+                    style={{
+                        transform: `rotateX(${rotationX}) rotateY(${rotationY}) rotateZ(${rotationZ})`,
+                    }}
                 >
                     {currentVersion && currentVersion.link && !editableText
                         ? (
