@@ -27,10 +27,7 @@ class ButtonDropdown extends Component<any, any> {
 
     public render() {
         const {
-            cursor,
-            filtered,
             selected,
-            toggledDropdown,
         } = this.state;
 
         const {
@@ -54,35 +51,6 @@ class ButtonDropdown extends Component<any, any> {
                         onKeyDown={this.handleKeyDown}
                     />
                 </StyledButtonDropdownSelected>
-
-                {toggledDropdown && (
-                    <StyledButtonDropdownList
-                        theme={theme}
-                        transparentUI={transparentUI}
-                        ref={this.dropdown}
-                    >
-                        <ul>
-                            {filtered.map((select: any, index: any) => {
-                                return (
-                                    <StyledButtonDropdownListItem
-                                        key={index}
-                                        onClick={this.clickSelect.bind(this, select)}
-                                        onMouseEnter={this.select.bind(this, select)}
-
-                                        theme={theme}
-                                        index={index}
-                                        fontFamily={select}
-                                        cursor={cursor}
-                                        selected={selected}
-                                        filtered={filtered}
-                                    >
-                                        {select}
-                                    </StyledButtonDropdownListItem>
-                                );
-                            })}
-                        </ul>
-                    </StyledButtonDropdownList>
-                )}
             </StyledButtonDropdown>
         );
     }
@@ -100,15 +68,72 @@ class ButtonDropdown extends Component<any, any> {
         this.setState((prevState: any) => ({
             toggledDropdown: !prevState.toggledDropdown,
         }),
-            this.scrollToCurent
+            this.renderDropdown,
         );
+    }
+
+    private renderDropdown = () => {
+        const {
+            theme,
+            transparentUI,
+
+            renderOutside,
+        } = this.props;
+
+        const {
+            cursor,
+            filtered,
+            selected,
+            toggledDropdown,
+        } = this.state;
+
+        if (!toggledDropdown) {
+            const dropdownRender = (<></>);
+            renderOutside(dropdownRender);
+            return;
+        }
+
+        const dropdownRender = (
+            <StyledButtonDropdownList
+                theme={theme}
+                transparentUI={transparentUI}
+                ref={this.dropdown}
+            >
+                <ul>
+                    {filtered && filtered.map((select: any, index: any) => {
+                        return (
+                            <StyledButtonDropdownListItem
+                                key={index}
+                                onClick={this.clickSelect.bind(this, select)}
+                                onMouseEnter={this.select.bind(this, select)}
+
+                                theme={theme}
+                                index={index}
+                                fontFamily={select}
+                                cursor={cursor}
+                                selected={selected}
+                                filtered={filtered}
+                            >
+                                {select}
+                            </StyledButtonDropdownListItem>
+                        );
+                    })}
+                </ul>
+            </StyledButtonDropdownList>
+        );
+
+        renderOutside(dropdownRender);
+
+        this.scrollToCurent();
     }
 
     private scrollToCurent = () => {
         const { cursor, toggledDropdown } = this.state;
 
         if (toggledDropdown) {
-            this.dropdown.current.scrollTo(0, (cursor - 4) * 20);
+            if (this.dropdown.current) {
+                this.dropdown.current.scrollTo(0, (cursor - 4) * 20);
+            }
         }
     }
 
