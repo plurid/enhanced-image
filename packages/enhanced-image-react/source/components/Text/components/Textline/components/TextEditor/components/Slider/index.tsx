@@ -78,6 +78,10 @@ const Slider: React.FC<SliderProperties> = (
     /** effects */
     useEffect(() => {
         if (!show) {
+            const outside = (
+                <></>
+            );
+            renderOutside(outside);
             return;
         }
 
@@ -85,12 +89,6 @@ const Slider: React.FC<SliderProperties> = (
             <StyledSlider
                 theme={theme}
                 transparentUI={transparentUI}
-                onMouseEnter={() => {
-                    if (timeout.current) {
-                        clearTimeout(timeout.current);
-                    }
-                }}
-                onMouseLeave={() => setShow(show => !show)}
             >
                 <input
                     type="range"
@@ -119,8 +117,9 @@ const Slider: React.FC<SliderProperties> = (
         <StyledSliderContainer
             theme={theme}
             transparentUI={transparentUI}
+            show={show}
             ref={container}
-            onMouseEnter={() => {
+            onClick={() => {
                 setShow(show => !show)
             }}
         >

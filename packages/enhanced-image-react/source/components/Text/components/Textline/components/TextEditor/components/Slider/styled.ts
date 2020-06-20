@@ -9,19 +9,31 @@ import {
 export interface IStyledSliderContainer {
     theme: Theme;
     transparentUI: boolean;
+    show: boolean;
 }
 
 export const StyledSliderContainer = styled.div<IStyledSliderContainer>`
     display: flex;
     align-items: center;
-    padding: 0 5px;
-    margin: 0 5px;
+
+    background: ${
+        ({
+            theme,
+            show
+        }: any) => {
+            if (show) {
+                return theme.backgroundColorSecondary;
+            }
+            return 'initial';
+        }
+    };
 `;
 
 
 export const StyledIcon = styled.div`
-    pointer-events: none;
     user-select: none;
+    cursor: pointer;
+    padding: 0 10px;
 `;
 
 

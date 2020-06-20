@@ -459,9 +459,6 @@ const TextEditor: React.FC<TextEditorProperties> = (
             </StyledTextEditor>
 
             <StyledOutside
-                onMouseLeave={() => {
-                    renderOutside(<></>);
-                }}
                 style={{
                     left: outsideLeft + 'px',
                 }}
