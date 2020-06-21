@@ -230,7 +230,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
 
     /** effects */
-    /** Editor width */
+    /** Editor width. */
     useEffect(() => {
         if (editor.current) {
             setWidth(editor.current.offsetWidth);
@@ -240,7 +240,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
         expandFormat,
     ]);
 
-    /** Outside top based */
+    /** Outside top based. */
     useEffect(() => {
         if (positions.y > -34) {
             setOutsideTopBased(false);
@@ -249,6 +249,16 @@ const TextEditor: React.FC<TextEditorProperties> = (
         }
     }, [
         positions.y,
+    ]);
+
+    /** Expand format. */
+    useEffect(() => {
+        if (!expandFormat) {
+            setTransformSlider('');
+            renderOutside(<></>);
+        }
+    }, [
+        expandFormat,
     ]);
 
 
