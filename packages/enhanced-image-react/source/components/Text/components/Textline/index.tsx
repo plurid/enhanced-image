@@ -60,7 +60,7 @@ const Textline: React.FC<TextlineProperties> = (
 
 
     /** references */
-    const timeoutMouseOver = useRef(0);
+    const timeoutMouseOver = useRef<any>(0);
     const textItem = useRef<HTMLDivElement>();
 
 
