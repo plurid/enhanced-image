@@ -263,6 +263,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     xRotation: 0,
                     yRotation: 0,
                     zRotation: 0,
+                    xSkew: 0,
+                    ySkew: 0,
 
                     viewable: false,
 
