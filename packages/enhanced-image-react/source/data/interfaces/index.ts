@@ -222,6 +222,11 @@ export interface Context {
     setShowTransviewSettings: Dispatch<SetStateAction<boolean>>;
     transviewActive: boolean;
     setTransviewActive: Dispatch<SetStateAction<boolean>>;
+    transviewSourceLanguage: string;
+    setTransviewSourceLanguage: Dispatch<SetStateAction<string>>;
+    transviewTargetLanguage: string;
+    setTransviewTargetLanguage: Dispatch<SetStateAction<string>>;
+
 
     imageText: ImageText[];
 

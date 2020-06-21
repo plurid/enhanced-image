@@ -143,6 +143,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const graphqlClient= useRef<ApolloClient<NormalizedCacheObject>>(client(_apiEndpoint));
 
     const imageContainer = useRef<HTMLDivElement>(null);
+    const transviews = useRef<Map<string, ImageText[]>>(new Map());
 
 
     /** state */
@@ -167,8 +168,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const [editableText, setEditableText] = useState(false);
     const [revealedText, setRevealedText] = useState(false);
+
     const [showTransviewSettings, setShowTransviewSettings] = useState(false);
     const [transviewActive, setTransviewActive] = useState(false);
+    const [transviewSourceLanguage, setTransviewSourceLanguage] = useState('Auto-Detect');
+    const [transviewTargetLanguage, setTransviewTargetLanguage] = useState('Select');
 
     const [saveImageHref, setSaveImageHref] = useState('');
     const [saveImageDownload, setSaveImageDownload] = useState('');
@@ -1162,6 +1166,56 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         imageColorsBrightness,
     ]);
 
+    /** Handle transview. */
+    useEffect(() => {
+        if (transviewActive) {
+            const existingTransview = transviews.current.get(transviewTargetLanguage);
+
+            if (!existingTransview) {
+                setShowSpinner(true);
+                setMessageTimed(
+                    'Fetching Transviewed Text.',
+                    4000
+                );
+
+                // TODO
+                // get transview from server given the imageID and the
+                return;
+            }
+
+            // TODO
+            // transview already exists locally
+
+            // set the source in transviews
+            transviews.current.set('Source', imageText);
+
+            // render the transview
+            setImageText(existingTransview);
+
+            setMessageTimed(
+                'Transviewed Text Rendered.',
+                4000
+            );
+            return;
+        }
+
+        const sourceText = transviews.current.get('Source');
+
+        if (!sourceText) {
+            return;
+        }
+
+        setMessageTimed(
+            'Source Text Rendered.',
+            4000
+        );
+        setImageText(sourceText);
+    }, [
+        transviewActive,
+        transviewSourceLanguage,
+        transviewTargetLanguage,
+    ]);
+
 
     /** context */
     const context: IContext = {
@@ -1227,6 +1281,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setShowTransviewSettings,
         transviewActive,
         setTransviewActive,
+        transviewSourceLanguage,
+        setTransviewSourceLanguage,
+        transviewTargetLanguage,
+        setTransviewTargetLanguage,
 
         imageText,
 
