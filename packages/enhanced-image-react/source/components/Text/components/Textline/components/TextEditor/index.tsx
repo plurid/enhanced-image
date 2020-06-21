@@ -128,6 +128,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
     /** state */
     const [outside, setOutside] = useState(<></>);
     const [outsideLeft, setOutsideLeft] = useState(100);
+    const [transformSlider, setTransformSlider] = useState('');
 
 
     /** handlers */
@@ -388,6 +389,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             renderOutside={renderOutside}
                             min={1}
                             max={361}
+                            show={transformSlider}
+                            setShow={setTransformSlider}
                         />
 
                         <Slider
@@ -404,6 +407,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             renderOutside={renderOutside}
                             min={1}
                             max={361}
+                            show={transformSlider}
+                            setShow={setTransformSlider}
                         />
 
                         <Slider
@@ -420,6 +425,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             renderOutside={renderOutside}
                             min={1}
                             max={361}
+                            show={transformSlider}
+                            setShow={setTransformSlider}
                         />
                     </StyledTransformSliders>
                 </Drawer>
