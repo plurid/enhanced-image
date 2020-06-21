@@ -26,13 +26,7 @@ export const StyledTransviewLanguage = styled.div`
 
 export const StyledTransviewAction = styled.div`
     margin: 0 -10px;
-    padding: 0 10px;
     height: 100%;
-    cursor: pointer;
-    user-select: none;
-
-    display: flex;
-    align-items: center;
 
     :hover {
         background-color: ${props => props.theme.backgroundColorTertiary};

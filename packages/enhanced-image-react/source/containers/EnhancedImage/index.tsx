@@ -167,6 +167,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const [editableText, setEditableText] = useState(false);
     const [revealedText, setRevealedText] = useState(false);
+    const [showTransviewSettings, setShowTransviewSettings] = useState(false);
+    const [transviewActive, setTransviewActive] = useState(false);
 
     const [saveImageHref, setSaveImageHref] = useState('');
     const [saveImageDownload, setSaveImageDownload] = useState('');
@@ -1220,6 +1222,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         revealedText,
         setRevealedText,
+
+        showTransviewSettings,
+        setShowTransviewSettings,
+        transviewActive,
+        setTransviewActive,
 
         imageText,
 

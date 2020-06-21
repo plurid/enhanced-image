@@ -218,6 +218,11 @@ export interface Context {
     revealedText: boolean;
     setRevealedText: Dispatch<SetStateAction<boolean>>;
 
+    showTransviewSettings: boolean;
+    setShowTransviewSettings: Dispatch<SetStateAction<boolean>>;
+    transviewActive: boolean;
+    setTransviewActive: Dispatch<SetStateAction<boolean>>;
+
     imageText: ImageText[];
 
     addText: () => void;

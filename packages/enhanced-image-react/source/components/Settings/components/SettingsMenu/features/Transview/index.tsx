@@ -13,6 +13,8 @@ import {
     StyledTransviewAction,
 } from './styled';
 
+import ButtonCheckmark from '../../components/ButtonCheckmark';
+
 import Context from '../../../../../../services/utilities/context';
 
 import {
@@ -32,6 +34,8 @@ const Transview: React.FC<any> = (
     }
 
     const {
+        transviewActive,
+        setTransviewActive,
         theme,
     } = context;
 
@@ -59,6 +63,7 @@ const Transview: React.FC<any> = (
                     }}
                     filterable={true}
                     selectAtHover={false}
+                    hideAtSelect={false}
                     heightItems={4}
                     width={120}
                 />
@@ -79,6 +84,7 @@ const Transview: React.FC<any> = (
                     }}
                     filterable={true}
                     selectAtHover={false}
+                    hideAtSelect={false}
                     heightItems={4}
                     width={120}
                 />
@@ -87,7 +93,14 @@ const Transview: React.FC<any> = (
             <StyledTransviewAction
                 theme={theme}
             >
-                Transview
+                <ButtonCheckmark
+                    theme={theme}
+                    toggle={() => {
+                        setTransviewActive(active => !active);
+                    }}
+                    text="Transview"
+                    checked={transviewActive}
+                />
             </StyledTransviewAction>
         </StyledTransview>
     );
