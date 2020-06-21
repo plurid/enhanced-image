@@ -24,6 +24,7 @@ import {
 
 
 const Text: React.FC<any> = () => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
@@ -36,10 +37,12 @@ const Text: React.FC<any> = () => {
         flipVertical,
     } = context;
 
-    // console.log('imageText from Text', imageText);
 
+    /** state */
     const [transform, setTransform] = useState('');
 
+
+    /** effects */
     useEffect(() => {
         const transform = `${flipVertical ? 'scaleX(-1)': ''} ${flipHorizontal ? 'scaleY(-1' : ''}`;
         setTransform(transform);
@@ -48,6 +51,8 @@ const Text: React.FC<any> = () => {
         flipHorizontal,
     ]);
 
+
+    /** render */
     return (
         <StyledText
             style={{

@@ -115,7 +115,7 @@ storiesOf(
         <div
             style={{
                 padding: '4rem',
-                width: '500px',
+                // width: '500px',
             }}
         >
             <EnhancedImage
