@@ -478,5 +478,35 @@
                 "linkTo": ""
             }
         ]
+    },
+    {
+        "id": "42918bc6af0e430508cfd9c2757ef845",
+        "currentVersionId": "d9b88eba88ee4cc0344e48f006ea076f",
+        "versions": [
+            {
+                "id": "d9b88eba88ee4cc0344e48f006ea076f",
+                "type": "TEXTLINE",
+                "xPercent": 27.006172839506174,
+                "yPercent": 61.16923076923077,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "xSkew": 29,
+                "ySkew": 0,
+                "viewable": false,
+                "color": "black",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 4.246153846153846,
+                "letterSpacingPercent": -0.055248618784530384,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "⬟",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
     }
 ]
