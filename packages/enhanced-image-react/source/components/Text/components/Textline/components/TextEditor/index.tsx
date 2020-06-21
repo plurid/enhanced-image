@@ -223,7 +223,12 @@ const TextEditor: React.FC<TextEditorProperties> = (
     ) => {
         setOutside(outside);
 
-        const outsideLeft = positions.x + left;
+        const itemLeft = positions.x + left;
+        const editorScrollLeft = editor.current
+            ? editor.current.scrollLeft
+            : 0;
+
+        const outsideLeft = itemLeft - editorScrollLeft;
 
         setOutsideLeft(outsideLeft);
     }
