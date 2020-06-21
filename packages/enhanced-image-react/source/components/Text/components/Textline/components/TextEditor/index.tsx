@@ -373,6 +373,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             min={1}
                             step={10}
                             max={2001}
+                            show={transformSlider}
+                            setShow={setTransformSlider}
                         />
 
                         <Slider
