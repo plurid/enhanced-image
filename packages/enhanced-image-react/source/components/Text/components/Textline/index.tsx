@@ -58,8 +58,6 @@ const Textline: React.FC<TextlineProperties> = (
         currentVersion,
     } = properties;
 
-    const textValue = currentVersion.content;
-
 
     /** references */
     const timeoutMouseOver = useRef(0);
@@ -83,6 +81,8 @@ const Textline: React.FC<TextlineProperties> = (
     const [letterSpacing, setLetterSpacing] = useState('0px');
     const [wordSpacing, setWordSpacing] = useState('0px');
     const [lineHeight, setLineHeight] = useState('auto');
+
+    const [textValue, _] = useState(currentVersion.content);
 
     const [showEditor, setShowEditor] = useState(false);
 
@@ -541,24 +541,16 @@ const Textline: React.FC<TextlineProperties> = (
                         transform: `rotateX(${rotationX}) rotateY(${rotationY}) rotateZ(${rotationZ})`,
                     }}
                 >
-                    {currentVersion && currentVersion.link && !editableText
-                        ? (
-                            <StyledTextContentLink
-                                href={currentVersion.linkTo}
-                                target="_blank"
-                                viewable={currentVersion.viewable}
-                                color={currentVersion.color}
-                            >
-                                <StyledEditableDiv
-                                    toggledEditable={editableText}
-                                    contentEditable={editable}
-                                    suppressContentEditableWarning={true}
-                                    onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
-                                >
-                                    {textValue}
-                                </StyledEditableDiv>
-                            </StyledTextContentLink>
-                        ) : (
+                    {currentVersion
+                    && currentVersion.link
+                    && !editableText
+                    ? (
+                        <StyledTextContentLink
+                            href={currentVersion.linkTo}
+                            target="_blank"
+                            viewable={currentVersion.viewable}
+                            color={currentVersion.color}
+                        >
                             <StyledEditableDiv
                                 toggledEditable={editableText}
                                 contentEditable={editable}
@@ -567,15 +559,24 @@ const Textline: React.FC<TextlineProperties> = (
                             >
                                 {textValue}
                             </StyledEditableDiv>
-                        )
-                    }
+                        </StyledTextContentLink>
+                    ) : (
+                        <StyledEditableDiv
+                            toggledEditable={editableText}
+                            contentEditable={editable}
+                            suppressContentEditableWarning={true}
+                            onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
+                        >
+                            {textValue}
+                        </StyledEditableDiv>
+                    )}
                 </StyledTextContent>
             )}
 
-            {/* {showEditor
+            {showEditor
             && currentVersion
             && !dragging
-            && ( */}
+            && (
                 <TextEditor
                     textItem={data}
                     currentVersion={currentVersion}
@@ -592,7 +593,7 @@ const Textline: React.FC<TextlineProperties> = (
                     setWidth={setEditorWidth}
                     fullWidth={editorFullWidth}
                 />
-            {/* )} */}
+            )}
         </StyledTextItem>
     );
 }

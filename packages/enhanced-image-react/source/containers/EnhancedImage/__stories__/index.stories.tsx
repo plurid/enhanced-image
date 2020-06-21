@@ -129,7 +129,7 @@ storiesOf(
 
                 ownerToken={ownerToken}
 
-                // preloadedData={preloadedData}
+                preloadedData={preloadedData}
 
                 settingsDrawers={[settingsDrawers]}
                 textDrawer={[textDrawer]}
