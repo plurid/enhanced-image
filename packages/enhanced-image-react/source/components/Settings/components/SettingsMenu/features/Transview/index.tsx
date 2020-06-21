@@ -36,13 +36,12 @@ const Transview: React.FC<any> = (
     const {
         transviewActive,
         setTransviewActive,
+        transviewSourceLanguage,
+        setTransviewSourceLanguage,
+        transviewTargetLanguage,
+        setTransviewTargetLanguage,
         theme,
     } = context;
-
-
-    /** state */
-    const [transviewFrom, setTransviewFrom] = useState('Select');
-    const [transviewTo, setTransviewTo] = useState('Select');
 
 
     /** render */
@@ -54,11 +53,11 @@ const Transview: React.FC<any> = (
                 </div>
 
                 <PluridDropdown
-                    selected={transviewFrom}
+                    selected={transviewSourceLanguage}
                     selectables={transviewAvailableLanguages}
                     atSelect={(selection) => {
                         if (typeof selection === 'string') {
-                            setTransviewFrom(selection);
+                            setTransviewSourceLanguage(selection);
                         }
                     }}
                     filterable={true}
@@ -75,11 +74,11 @@ const Transview: React.FC<any> = (
                 </div>
 
                 <PluridDropdown
-                    selected={transviewTo}
+                    selected={transviewTargetLanguage}
                     selectables={transviewTargetLanguages}
                     atSelect={(selection) => {
                         if (typeof selection === 'string') {
-                            setTransviewTo(selection);
+                            setTransviewTargetLanguage(selection);
                         }
                     }}
                     filterable={true}
