@@ -55,7 +55,7 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
 
     /** references */
     const input = useRef<HTMLDivElement>(null);
-    const timeout = useRef<number>();
+    const timeout = useRef<any>();
 
 
     /** state */

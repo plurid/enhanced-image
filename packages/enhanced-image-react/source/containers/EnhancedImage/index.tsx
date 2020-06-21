@@ -138,7 +138,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     /** references */
     const componentIsMounted = useRef(true);
-    const messageTimer = useRef<number | null> (null);
+    const messageTimer = useRef<any>(null);
 
     const graphqlClient= useRef<ApolloClient<NormalizedCacheObject>>(client(_apiEndpoint));
 
