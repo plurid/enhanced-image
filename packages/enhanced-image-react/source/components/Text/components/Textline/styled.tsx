@@ -103,6 +103,17 @@ export const StyledEditableDiv: any = styled.div`
     outline: none;
     white-space: pre;
 
+    ::selection {
+        color: ${(props: any) => {
+            if (props.toggledEditable) {
+                return 'initial';
+            }
+
+            return 'transparent';
+        }};
+        background: hsla(220, 2%, 10%, 0.3);
+    }
+
     user-select: ${(props: any) => {
         if (props.toggledEditable) {
             return 'none';

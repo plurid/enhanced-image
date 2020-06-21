@@ -1,27 +1,27 @@
 [
     {
-        "id": "eit_26fa4a34898b464a21510a0101a46ce5",
-        "currentVersionId": "eiv_7d355f4ec74a41611caad48d1d34b93d",
+        "id": "eit_b37505a85d26492b01bfba71fd61cc07",
+        "currentVersionId": "eiv_673550959e56428a08ca12cc665d50dc",
         "versions": [
             {
-                "id": "eiv_7d355f4ec74a41611caad48d1d34b93d",
+                "id": "eiv_673550959e56428a08ca12cc665d50dc",
                 "type": "TEXTLINE",
-                "xPercent": 21.561338289962826,
-                "yPercent": 8.598065898430715,
+                "xPercent": 29.92633517495396,
+                "yPercent": 6.168816266580989,
                 "perspective": 0,
                 "xRotation": 0,
                 "yRotation": 0,
-                "zRotation": 0,
+                "zRotation": 30,
                 "viewable": false,
-                "color": "white",
+                "color": "red",
                 "fontWeight": "normal",
                 "fontStyle": "normal",
                 "fontFamily": "Arial",
-                "fontSizePercent": 4.5,
-                "letterSpacingPercent": 0,
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.10128913443830573,
                 "wordSpacingPercent": 0,
                 "lineHeightPercent": 0,
-                "content": "New \n\n\n\n\n\n\nText",
+                "content": "Products",
                 "link": false,
                 "linkTo": ""
             }
