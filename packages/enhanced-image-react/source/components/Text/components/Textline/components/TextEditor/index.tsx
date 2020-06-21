@@ -127,6 +127,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     /** state */
     const [outside, setOutside] = useState(<></>);
+    const [outsideTopBased, setOutsideTopBased] = useState(false);
     const [outsideLeft, setOutsideLeft] = useState(100);
     const [transformSlider, setTransformSlider] = useState('');
 
@@ -237,6 +238,17 @@ const TextEditor: React.FC<TextEditorProperties> = (
     }, [
         editor,
         expandFormat,
+    ]);
+
+    /** Outside top based */
+    useEffect(() => {
+        if (positions.y > -34) {
+            setOutsideTopBased(false);
+        } else {
+            setOutsideTopBased(true);
+        }
+    }, [
+        positions.y,
     ]);
 
 
@@ -506,8 +518,12 @@ const TextEditor: React.FC<TextEditorProperties> = (
             </StyledTextEditor>
 
             <StyledOutside
+                topBased={outsideTopBased}
                 style={{
                     left: outsideLeft + 'px',
+                    top: outsideTopBased
+                        ? '0'
+                        : (positions.y + 34) + 'px',
                 }}
             >
                 {outside}

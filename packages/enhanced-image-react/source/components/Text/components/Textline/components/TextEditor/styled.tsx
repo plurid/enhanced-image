@@ -76,9 +76,34 @@ export const StyledVerticalDivider = styled.div`
 `;
 
 
-export const StyledOutside = styled.div`
+export interface IStyledOutside {
+    topBased: boolean;
+}
+
+export const StyledOutside = styled.div<IStyledOutside>`
     position: absolute;
-    top: 0;
+    /* top: ${
+        ({
+            topBased,
+        }: IStyledOutside) => {
+            if (topBased) {
+                return '0';
+            }
+
+            return 'auto';
+        }
+    }; */
+    /* bottom: ${
+        ({
+            topBased,
+        }: IStyledOutside) => {
+            if (!topBased) {
+                return '-34px';
+            }
+
+            return 'auto';
+        }
+    }; */
 `;
 
 
