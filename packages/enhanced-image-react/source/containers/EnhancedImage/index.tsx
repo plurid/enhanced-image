@@ -1352,8 +1352,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     : null
                 }
                 style={{
-                    width: imageBoxDimensions.width !== 0 ? imageBoxDimensions.width + 'px' : '',
-                    height:  imageBoxDimensions.height !== 0 ? imageBoxDimensions.height + 'px' : '',
+                    width: imageBoxDimensions.width !== 0 ? imageBoxDimensions.width + 'px' : 'auto',
+                    height: imageBoxDimensions.height !== 0 ? imageBoxDimensions.height + 'px' : 'auto',
                 }}
                 ref={imageContainer}
             >
