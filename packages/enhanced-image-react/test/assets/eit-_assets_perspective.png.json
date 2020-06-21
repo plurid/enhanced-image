@@ -26,5 +26,425 @@
                 "linkTo": ""
             }
         ]
+    },
+    {
+        "id": "82a30a0a730b4b120bfc0673614a6051",
+        "currentVersionId": "44447dd4ad2d404e0a139177c3f826a3",
+        "versions": [
+            {
+                "id": "44447dd4ad2d404e0a139177c3f826a3",
+                "type": "TEXTLINE",
+                "xPercent": 28.360957642725598,
+                "yPercent": 13.218891999816405,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "Personal needs loan",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "33a6247d78da443e0dcc2f555bf7821b",
+        "currentVersionId": "e6a12e91788b4c4e2c6eff110d7804c3",
+        "versions": [
+            {
+                "id": "e6a12e91788b4c4e2c6eff110d7804c3",
+                "type": "TEXTLINE",
+                "xPercent": 29.373848987108655,
+                "yPercent": 13.51264515536788,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "Credit card",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "25f1adebf48540df357994b19f55c86b",
+        "currentVersionId": "c5f6dc0de81d437303e38e2f40cde383",
+        "versions": [
+            {
+                "id": "c5f6dc0de81d437303e38e2f40cde383",
+                "type": "TEXTLINE",
+                "xPercent": 29.005524861878452,
+                "yPercent": 17.992380777527885,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "Mortgage loan",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "5641d7e4486b4d5d2acc16f9d79afbbc",
+        "currentVersionId": "86a666503d744e7d3c158c7a7d4a50a0",
+        "versions": [
+            {
+                "id": "86a666503d744e7d3c158c7a7d4a50a0",
+                "type": "TEXTLINE",
+                "xPercent": 29.281767955801104,
+                "yPercent": 25.62996282186625,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.06445672191528545,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "Guarantor name",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "2fc7d95d89044b030ce85d82fae7d3b3",
+        "currentVersionId": "488c441e185b4f21142e24d1eb92f272",
+        "versions": [
+            {
+                "id": "488c441e185b4f21142e24d1eb92f272",
+                "type": "TEXTLINE",
+                "xPercent": 28.45303867403315,
+                "yPercent": 29.962821866250515,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "Marlene Johanson",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "cbb44e066d8b431632a34f7acc140fd4",
+        "currentVersionId": "4a20315181c744500171e4f64dc45455",
+        "versions": [
+            {
+                "id": "4a20315181c744500171e4f64dc45455",
+                "type": "TEXTLINE",
+                "xPercent": 29.742173112338858,
+                "yPercent": 34.36911919952265,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.09208103130755065,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "Collaterals",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "ab585111d86a4aea263c350d2f7fcf84",
+        "currentVersionId": "e2e80cb58677463e17386f9e0df0c385",
+        "versions": [
+            {
+                "id": "e2e80cb58677463e17386f9e0df0c385",
+                "type": "TEXTLINE",
+                "xPercent": 28.176795580110497,
+                "yPercent": 41.93326295497315,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "Mortgage on apartment",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "d59c9ad482bb481b3c607e831af41c31",
+        "currentVersionId": "fe9bf2e985b541812ce304c69ce071f2",
+        "versions": [
+            {
+                "id": "fe9bf2e985b541812ce304c69ce071f2",
+                "type": "TEXTLINE",
+                "xPercent": 28.82136279926335,
+                "yPercent": 47.0005048882361,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.11049723756906078,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "Enforcement files",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "bd782f5b334f46bc070ac3158fe0c112",
+        "currentVersionId": "b4b591ff68174aee3694395dbb5a7c6c",
+        "versions": [
+            {
+                "id": "b4b591ff68174aee3694395dbb5a7c6c",
+                "type": "TEXTLINE",
+                "xPercent": 27.624309392265193,
+                "yPercent": 54.344333777022996,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": -0.055248618784530384,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "File no. 156321 / 15 Nov 2019",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "5aa1bfef2b524ac23551f3b17e0f99e3",
+        "currentVersionId": "596e0fe646ae47a71c375225cf03ca22",
+        "versions": [
+            {
+                "id": "596e0fe646ae47a71c375225cf03ca22",
+                "type": "TEXTLINE",
+                "xPercent": 27.44014732965009,
+                "yPercent": 57.35530362142562,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": -0.055248618784530384,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "File no. 167892 / 12 Dec 2019",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "5b422a44eeb64f6c1f7aa128d6da7cb5",
+        "currentVersionId": "98bdbe9b204d40262a61624a8503af86",
+        "versions": [
+            {
+                "id": "98bdbe9b204d40262a61624a8503af86",
+                "type": "TEXTLINE",
+                "xPercent": 58.103130755064456,
+                "yPercent": 22.545554688575756,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "€ 5.700",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "1e405bc81690469218f1ef7a96a8e651",
+        "currentVersionId": "4658cf4aeebf4347078ee55f67d3a793",
+        "versions": [
+            {
+                "id": "4658cf4aeebf4347078ee55f67d3a793",
+                "type": "TEXTLINE",
+                "xPercent": 58.195211786372006,
+                "yPercent": 25.850277688529857,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "€ 2.975",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "8590fbb83ce040113625e80533410087",
+        "currentVersionId": "fa0ec805712d40933545397d968fefad",
+        "versions": [
+            {
+                "id": "fa0ec805712d40933545397d968fefad",
+                "type": "TEXTLINE",
+                "xPercent": 56.81399631675875,
+                "yPercent": 29.081562399596088,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 30,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "€ 55.800",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "dde5afbffb2c429d2c8e7fc52fa750ca",
+        "currentVersionId": "710412815faf4db90032edce3b2042aa",
+        "versions": [
+            {
+                "id": "710412815faf4db90032edce3b2042aa",
+                "type": "TEXTLINE",
+                "xPercent": 75.32228360957643,
+                "yPercent": 60.439711754716114,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 330,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.03683241252302026,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "64,475 Euro",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
+    },
+    {
+        "id": "c517b6d05cb643cf25d5d7930902c2a1",
+        "currentVersionId": "2c438b552a184dc622d884447470bb6f",
+        "versions": [
+            {
+                "id": "2c438b552a184dc622d884447470bb6f",
+                "type": "TEXTLINE",
+                "xPercent": 2.578268876611418,
+                "yPercent": 26.511222288520678,
+                "perspective": 0,
+                "xRotation": 0,
+                "yRotation": 0,
+                "zRotation": 332,
+                "viewable": false,
+                "color": "red",
+                "fontWeight": "normal",
+                "fontStyle": "normal",
+                "fontFamily": "Arial",
+                "fontSizePercent": 2.643778399963281,
+                "letterSpacingPercent": 0.01841620626151013,
+                "wordSpacingPercent": 0,
+                "lineHeightPercent": 0,
+                "content": "James Smith",
+                "link": false,
+                "linkTo": ""
+            }
+        ]
     }
 ]
