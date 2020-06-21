@@ -184,6 +184,16 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     updateTextItemField(textItem.id, 'zRotation', value - 1);
                 }
                 break;
+            case 'xSkew':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'xSkew', value - 1);
+                }
+                break;
+            case 'ySkew':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'ySkew', value - 1);
+                }
+                break;
         }
     }
 
