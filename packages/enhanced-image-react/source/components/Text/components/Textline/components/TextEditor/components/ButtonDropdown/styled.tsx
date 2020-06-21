@@ -64,6 +64,8 @@ export const StyledButtonDropdownListItem: any = styled.li`
     font-size: 11px;
     scroll-snap-align: start;
     height: 20px;
+    display: flex;
+    align-items: center;
 
     font-family: ${(props: any) => props.fontFamily};
     background: ${(props: any) => {
