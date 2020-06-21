@@ -9,6 +9,8 @@ export interface ImageTextVersion {
     xRotation: number;
     yRotation: number;
     zRotation: number;
+    xSkew: number;
+    ySkew: number;
 
     viewable: boolean;
 }

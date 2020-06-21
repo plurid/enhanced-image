@@ -73,6 +73,8 @@ const Textline: React.FC<TextlineProperties> = (
     const [rotationX, setRotationX] = useState('0deg');
     const [rotationY, setRotationY] = useState('0deg');
     const [rotationZ, setRotationZ] = useState('0deg');
+    const [skewX, setSkewX] = useState('0deg');
+    const [skewY, setSkewY] = useState('0deg');
 
     const [fontWeight, setFontWeight] = useState('normal');
     const [fontStyle, setFontStyle] = useState('normal');
@@ -182,10 +184,6 @@ const Textline: React.FC<TextlineProperties> = (
             const editorYCoord = offsetTop < 34
                 ? offsetHeight
                 : -34;
-
-            console.log('editorWidth', editorWidth);
-            console.log('editorXCoord', editorXCoord);
-            console.log('editorYCoord', editorYCoord);
 
             const editorPositions = {
                 x: editorXCoord,
@@ -338,6 +336,8 @@ const Textline: React.FC<TextlineProperties> = (
             setRotationX(currentVersion.xRotation + 'deg');
             setRotationY(currentVersion.yRotation + 'deg');
             setRotationZ(currentVersion.zRotation + 'deg');
+            setSkewX(currentVersion.xSkew + 'deg');
+            setSkewY(currentVersion.ySkew + 'deg');
 
             setFontWeight(currentVersion.fontWeight);
             setFontStyle(currentVersion.fontStyle);
@@ -538,7 +538,7 @@ const Textline: React.FC<TextlineProperties> = (
                     viewable={currentVersion && currentVersion.viewable}
                     color={currentVersion && currentVersion.color}
                     style={{
-                        transform: `rotateX(${rotationX}) rotateY(${rotationY}) rotateZ(${rotationZ})`,
+                        transform: `rotateX(${rotationX}) rotateY(${rotationY}) rotateZ(${rotationZ}) skew(${skewX}, ${skewY})`,
                     }}
                 >
                     {currentVersion

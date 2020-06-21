@@ -385,7 +385,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             transparentUI={transparentUI}
                             Icon={() => (
                                 <div>
-                                    X
+                                    Rx
                                 </div>
                             )}
                             renderOutside={renderOutside}
@@ -403,7 +403,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             transparentUI={transparentUI}
                             Icon={() => (
                                 <div>
-                                    Y
+                                    Ry
                                 </div>
                             )}
                             renderOutside={renderOutside}
@@ -421,7 +421,43 @@ const TextEditor: React.FC<TextEditorProperties> = (
                             transparentUI={transparentUI}
                             Icon={() => (
                                 <div>
-                                    Z
+                                    Rz
+                                </div>
+                            )}
+                            renderOutside={renderOutside}
+                            min={1}
+                            max={361}
+                            show={transformSlider}
+                            setShow={setTransformSlider}
+                        />
+
+                        <Slider
+                            value={currentVersion.xSkew + 1}
+                            valueType="xSkew"
+                            changeValue={updateField}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={() => (
+                                <div>
+                                    Sx
+                                </div>
+                            )}
+                            renderOutside={renderOutside}
+                            min={1}
+                            max={361}
+                            show={transformSlider}
+                            setShow={setTransformSlider}
+                        />
+
+                        <Slider
+                            value={currentVersion.ySkew + 1}
+                            valueType="ySkew"
+                            changeValue={updateField}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={() => (
+                                <div>
+                                    Sy
                                 </div>
                             )}
                             renderOutside={renderOutside}
