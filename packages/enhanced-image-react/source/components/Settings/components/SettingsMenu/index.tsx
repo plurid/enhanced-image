@@ -91,6 +91,9 @@ const SettingsMenu: React.FC<any> = () => {
         revealedText,
         setRevealedText,
 
+        showTransviewSettings,
+        setShowTransviewSettings,
+
         addText,
         saveText,
 
@@ -137,11 +140,6 @@ const SettingsMenu: React.FC<any> = () => {
         resolveImageBackground,
         setResolveImageBackground,
     ] = useState(BackgroundColorTransparent);
-    const [
-        showTransview,
-        setShowTransview,
-    ] = useState(false);
-
 
     /** effects */
     useLayoutEffect(() => {
@@ -275,14 +273,14 @@ const SettingsMenu: React.FC<any> = () => {
                                 <li>
                                     <ButtonItem
                                         theme={theme}
-                                        atClick={() => setShowTransview(show => !show)}
+                                        atClick={() => setShowTransviewSettings(show => !show)}
                                         icon={TransviewTextIcon}
                                         text="Transview Text"
                                     />
                                 </li>
                             )}
 
-                            {showTransview && (
+                            {showTransviewSettings && (
                                 <li>
                                     <Transview />
                                 </li>
