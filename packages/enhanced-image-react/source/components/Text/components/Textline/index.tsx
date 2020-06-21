@@ -152,7 +152,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 editorXCoord = - offsetLeft;
             }
 
-            if (editorWidth > imageBoxDimensions.width) {
+            if (
+                (editorWidth > imageBoxDimensions.width)
+                || (editorWidth + 30 > imageBoxDimensions.width)
+            ) {
                 setEditorFullWidth(true);
             } else {
                 setEditorFullWidth(false);
@@ -162,6 +165,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
             const editorYCoord = offsetTop < 34
                 ? offsetHeight
                 : -34;
+
+            console.log('editorWidth', editorWidth);
+            console.log('editorXCoord', editorXCoord);
+            console.log('editorYCoord', editorYCoord);
 
             const editorPositions = {
                 x: editorXCoord,
