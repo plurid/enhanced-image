@@ -28,21 +28,19 @@ import {
 
 
 
-interface TextlineProperties {
+export interface TextlineProperties {
     data: ImageText;
     currentVersion: ImageTextVersionTextline;
 }
 
-const Textline: React.FC<TextlineProperties> = (properties) => {
+const Textline: React.FC<TextlineProperties> = (
+    properties,
+) => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
     }
-
-    const {
-        data,
-        currentVersion,
-    } = properties;
 
     const {
         editableText,
@@ -53,11 +51,24 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         updateTextCoordinates,
     } = context;
 
+
+    /** properties */
+    const {
+        data,
+        currentVersion,
+    } = properties;
+
+    const textValue = currentVersion.content;
+
+
+    /** references */
     const timeoutMouseOver = useRef(0);
     const textItem = useRef<HTMLDivElement>();
 
-    const [textYCoord, setTextYCoord] = useState('0px');
+
+    /** state */
     const [textXCoord, setTextXCoord] = useState('0px');
+    const [textYCoord, setTextYCoord] = useState('0px');
     const [textColor, setTextColor] = useState('transparent');
 
     const [perspective, setPerspective] = useState('0px');
@@ -81,8 +92,6 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
     const [draggable, setDraggable] = useState(false);
     const [dragging, setDragging] = useState(false);
 
-    const [textValue, setTextValue] = useState(currentVersion.content);
-
     const [positions, setPositions] = useState({
         x: 0,
         y: 0,
@@ -98,6 +107,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const [loaded, setLoaded] = useState(false);
 
+
+    /** handlers */
     const handleMouseEnter = () => {
         clearTimeout(timeoutMouseOver.current);
         setMouseOver(true);
@@ -111,7 +122,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }, 700);
     }
 
-    const handleMouseDown = (event: MouseEvent) => {
+    const handleMouseDown = (
+        event: MouseEvent,
+    ) => {
         if (draggable) {
             setDragging(true);
 
@@ -161,6 +174,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 setEditorFullWidth(false);
             }
 
+            if (!editorExpandFormat) {
+                setEditorFullWidth(false);
+            }
+
             // Do not let editor to go to over the top.
             const editorYCoord = offsetTop < 34
                 ? offsetHeight
@@ -178,7 +195,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         }
     }
 
-    const handleChange = (event: React.SyntheticEvent<HTMLDivElement>) => {
+    const handleChange = (
+        event: React.SyntheticEvent<HTMLDivElement>,
+    ) => {
         const value = event.currentTarget.innerText;
         if (value !== '') {
             updateVersionContent(data.id, value);
@@ -189,6 +208,120 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
 
     const setVersionViewable = () => {
         toggleVersionViewable(data.id);
+    }
+
+    const handleShortcuts = (
+        event: KeyboardEvent,
+    ) => {
+        const {
+            editableText,
+            setEditableText,
+
+            duplicateTextItem,
+            deleteTextItem,
+        } = context;
+
+        const {
+            key,
+            altKey,
+        } = event;
+
+        if (key === '†' && altKey) {
+            setEditableText(show => !show);
+        }
+
+        if (editableText) {
+            return;
+        }
+
+        switch(key) {
+            case 't':
+                setEditableText(show => !show);
+                break;
+            case 'g':
+                setDraggable(drag => !drag);
+                break;
+            case 'v':
+                setVersionViewable();
+                break;
+            case 'd':
+                duplicateTextItem(data.id);
+                break;
+            case 'x':
+                deleteTextItem(data.id);
+                break;
+        }
+    }
+
+    const handleArrows = (
+        event: KeyboardEvent,
+    ) => {
+        if (!draggable) {
+            return;
+        }
+
+        event.preventDefault();
+
+        if (event.shiftKey) {
+            moveWithArrows(event, 10);
+        } else {
+            moveWithArrows(event);
+        }
+    }
+
+    const moveWithArrows = (
+        event: KeyboardEvent,
+        step: number = 1,
+    ) => {
+        const {
+            key,
+        } = event;
+
+        switch(key) {
+            case 'ArrowLeft': {
+                const xPosition = positions.x - step;
+                const newPositions = {
+                    x: xPosition,
+                    y: positions.y,
+                };
+                setPositions(newPositions);
+                break;
+            }
+            case 'ArrowRight': {
+                const xPosition = positions.x + step;
+                const newPositions = {
+                    x: xPosition,
+                    y: positions.y,
+                };
+                setPositions(newPositions);
+                break;
+            }
+            case 'ArrowUp': {
+                const yPosition = positions.y - step;
+                const newPositions = {
+                    x: positions.x,
+                    y: yPosition,
+                };
+                setPositions(newPositions);
+                break;
+            }
+            case 'ArrowDown': {
+                const yPosition = positions.y + step;
+                const newPositions = {
+                    x: positions.x,
+                    y: yPosition,
+                };
+                setPositions(newPositions);
+                break;
+            }
+        }
+    }
+
+    const handleKeyDown = (
+        event: KeyboardEvent,
+    ) => {
+        handleShortcuts(event);
+        handleArrows(event);
     }
 
 
@@ -361,6 +494,9 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         editableText
     ]);
 
+    /**
+     * Handle loaded.
+     */
     useEffect(() => {
         setLoaded(true);
     }, []);
@@ -375,6 +511,8 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
         <StyledTextItem
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
             style={{
                 left: textXCoord,
                 top: textYCoord,
@@ -434,10 +572,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                 </StyledTextContent>
             )}
 
-            {showEditor
+            {/* {showEditor
             && currentVersion
             && !dragging
-            && (
+            && ( */}
                 <TextEditor
                     textItem={data}
                     currentVersion={currentVersion}
@@ -454,138 +592,10 @@ const Textline: React.FC<TextlineProperties> = (properties) => {
                     setWidth={setEditorWidth}
                     fullWidth={editorFullWidth}
                 />
-            )}
+            {/* )} */}
         </StyledTextItem>
     );
 }
 
 
 export default Textline;
-
-
-//     private handleKey = (event: any) => {
-//         this.handleShortcuts(event);
-//         this.handleArrows(event);
-//     }
-
-//     private handleShortcuts = (event: any) => {
-//         const {
-//             textEditable,
-//         } = this.state;
-
-//         const {
-//             text,
-//         } = this.props;
-
-//         const {
-//             duplicateTextVideo,
-//             deleteTextVideo,
-//         } = this.context;
-
-//         const { key, altKey } = event;
-
-//         if (key === '†' && altKey) {
-//             this.toggleTextEditable();
-//         }
-
-//         if (textEditable) {
-//             return;
-//         }
-
-//         switch(key) {
-//             case 't':
-//                 this.toggleTextEditable();
-//                 break;
-//             case 'g':
-//                 this.toggleTextDraggable();
-//                 break;
-//             case 'v':
-//                 this.toggleTextViewable();
-//                 break;
-//             case 'd':
-//                 duplicateTextVideo(text.id);
-//                 break;
-//             case 'x':
-//                 deleteTextVideo(text.id);
-//                 break;
-//         }
-//     }
-
-//     private handleArrows = (event: any) => {
-//         const {
-//             textDraggable,
-//         } = this.state;
-
-//         if (!textDraggable) {
-//             return;
-//         }
-
-//         event.preventDefault();
-//         this.moveWithArrows(event);
-//         if (event.shiftKey) {
-//             this.moveWithArrows(event, 10);
-//         }
-//     }
-
-//     private moveWithArrows(event: any, step: number = 1) {
-//         const { key } = event;
-
-//         const { xCoord, yCoord } = this.state;
-
-//         this.editorPosition();
-
-//         switch(key) {
-//             case 'ArrowLeft':
-//                 this.setState({
-//                     xCoord: xCoord - step
-//                 },
-//                     this.saveCoords
-//                 );
-//                 break;
-//             case 'ArrowRight':
-//                 this.setState({
-//                     xCoord: xCoord + step
-//                 },
-//                     this.saveCoords
-//                 );
-//                 break;
-//             case 'ArrowUp':
-//                 this.setState({
-//                     yCoord: yCoord - step
-//                 },
-//                     this.saveCoords
-//                 );
-//                 break;
-//             case 'ArrowDown':
-//                 this.setState({
-//                     yCoord: yCoord + step
-//                 },
-//                     this.saveCoords
-//                 );
-//                 break;
-//         }
-//     }
-
-//     private saveCoords = () => {
-//         const {
-//             updateTextVideoBatch,
-//         } = this.context;
-
-//         const {
-//             text
-//         } = this.props;
-
-//         const { xCoordPercentage, yCoordPercentage } = this.coordsToPercentage();
-
-//         const elements = [
-//             {
-//                 type: 'xCoordPercentage',
-//                 value: xCoordPercentage,
-//             },
-//             {
-//                 type: 'yCoordPercentage',
-//                 value: yCoordPercentage,
-//             }
-//         ]
-//         updateTextVideoBatch(text.id, elements);
-//     }

@@ -31,6 +31,8 @@ export const StyledSliderContainer = styled.div<IStyledSliderContainer>`
 
 
 export const StyledIcon = styled.div`
+    display: flex;
+    align-items: center;
     user-select: none;
     cursor: pointer;
     padding: 0 10px;

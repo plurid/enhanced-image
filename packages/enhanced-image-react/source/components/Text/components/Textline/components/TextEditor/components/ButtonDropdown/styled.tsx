@@ -86,6 +86,15 @@ export const StyledButtonDropdownListItem: any = styled.li`
 
         return theme.backgroundColorSecondary;
     }};
+    color: ${
+        ({
+            theme,
+        }: any) => theme.colorPrimary
+    };
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-weight: normal;
+    font-style: normal;
 
     :hover {
         background: ${props => props.theme.backgroundColorPrimary};
