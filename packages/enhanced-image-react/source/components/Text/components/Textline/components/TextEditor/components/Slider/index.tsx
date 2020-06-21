@@ -31,6 +31,8 @@ export interface SliderProperties {
         outside: JSX.Element,
         left?: number,
     ) => void;
+    show: string;
+    setShow: any;
 
     /** optional */
     min?: number;
@@ -51,6 +53,8 @@ const Slider: React.FC<SliderProperties> = (
         transparentUI,
         Icon,
         renderOutside,
+        show,
+        setShow,
 
         /** optional */
         min,
@@ -61,15 +65,12 @@ const Slider: React.FC<SliderProperties> = (
 
     /** references */
     const container = useRef<HTMLDivElement>(null);
-    const timeout = useRef<number>();
-
-
-    /** state */
-    const [show, setShow] = useState(false);
 
 
     /** handlers */
-    const handleInput = (event: any) => {
+    const handleInput = (
+        event: any,
+    ) => {
         const value = parseInt(event.target.value) || 1;
         changeValue(valueType, value);
     }
@@ -77,11 +78,15 @@ const Slider: React.FC<SliderProperties> = (
 
     /** effects */
     useEffect(() => {
-        if (!show) {
+        if (show === '') {
             const outside = (
                 <></>
             );
             renderOutside(outside);
+            return;
+        }
+
+        if (show !== valueType) {
             return;
         }
 
@@ -117,10 +122,14 @@ const Slider: React.FC<SliderProperties> = (
         <StyledSliderContainer
             theme={theme}
             transparentUI={transparentUI}
-            show={show}
+            show={show === valueType}
             ref={container}
             onClick={() => {
-                setShow(show => !show)
+                if (show === valueType) {
+                    setShow('');
+                } else {
+                    setShow(valueType);
+                }
             }}
         >
             <StyledIcon>
