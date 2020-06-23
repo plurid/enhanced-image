@@ -6,6 +6,10 @@ import React, {
 } from 'react';
 
 import {
+    objects,
+ } from '@plurid/plurid-functions';
+
+import {
     PluridIconPalette,
     PluridIconSpace,
 } from '@plurid/plurid-icons-react';
@@ -202,14 +206,16 @@ const TextEditor: React.FC<TextEditorProperties> = (
         type: string,
         checkValue: string | boolean,
     ) => {
+        const data = objects.getNested(currentVersion, type);
+
         if (typeof checkValue === 'boolean') {
-            if ((currentVersion as any)[type as any]) {
+            if (data) {
                 updateTextItemField(textItem.id, type, false);
             } else {
                 updateTextItemField(textItem.id, type, true);
             }
         } else {
-            if ((currentVersion as any)[type as any] === checkValue) {
+            if (data === checkValue) {
                 updateTextItemField(textItem.id, type, 'normal');
             } else {
                 updateTextItemField(textItem.id, type, checkValue);
