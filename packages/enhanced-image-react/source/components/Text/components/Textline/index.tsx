@@ -228,7 +228,7 @@ const Textline: React.FC<TextlineProperties> = (
             setEditableText(show => !show);
         }
 
-        if (editableText) {
+        if (editable) {
             return;
         }
 
