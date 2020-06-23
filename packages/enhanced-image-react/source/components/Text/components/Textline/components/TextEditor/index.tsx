@@ -340,7 +340,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     <ButtonInput
                         theme={theme}
                         transparentUI={transparentUI}
-                        toggle={() => toggleTextFormat('link', true)}
+                        toggle={() => toggleTextFormat('link.active', true)}
                         toggled={currentVersion.link.active}
                         icon={LinkIcon}
                         value={currentVersion.link.to}
