@@ -509,13 +509,14 @@ const Textline: React.FC<TextlineProperties> = (
 
     return (
         <StyledTextItem
+            tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            tabIndex={0}
             onKeyDown={handleKeyDown}
+            ref={textItem}
             style={{
-                left: textXCoord,
                 top: textYCoord,
+                left: textXCoord,
                 color: textColor,
                 fontFamily,
                 fontSize,
@@ -526,7 +527,6 @@ const Textline: React.FC<TextlineProperties> = (
                 lineHeight,
                 perspective,
             }}
-            ref={textItem}
         >
             {currentVersion && (
                 <StyledTextContent
