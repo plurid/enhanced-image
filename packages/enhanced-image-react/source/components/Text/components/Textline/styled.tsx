@@ -91,9 +91,10 @@ export const StyledTextContent: any = styled.div`
 
 export const StyledTextContentLink: any = styled.a`
     color: ${(props: any) => {
-        if (props.viewable) {
+        if (props.viewable || props.revealed) {
             return props.color;
         }
+
         return 'transparent';
     }} !important;
 `;
