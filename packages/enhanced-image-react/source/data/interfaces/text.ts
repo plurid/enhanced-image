@@ -2,15 +2,19 @@ export interface ImageTextVersion {
     id: string;
     type: 'TEXTAREA' | 'TEXTLINE';
 
-    xPercent: number;
-    yPercent: number;
+    position: {
+        x: number; // x position percent
+        y: number; // y position percent
+    };
 
-    perspective: number;
-    xRotation: number;
-    yRotation: number;
-    zRotation: number;
-    xSkew: number;
-    ySkew: number;
+    transform: {
+        perspective: number;
+        rx: number; // x rotation
+        ry: number; // y rotation
+        rz: number; // z rotation
+        sx: number; // x skew
+        sy: number; // y skew
+    };
 
     viewable: boolean;
 }
@@ -28,18 +32,22 @@ export interface ImageTextVersionTextline extends ImageTextVersion {
 
     color: string;
 
-    fontWeight: string;
-    fontStyle: string;
-    fontFamily: string;
-    fontSizePercent: number;
-    letterSpacingPercent: number;
-    wordSpacingPercent: number;
-    lineHeightPercent: number;
+    font: {
+        weight: string;             // font weight (bold)
+        style: string;              // font style (italic)
+        family: string;             // font family
+        size: number;               // font size percent
+        letterSpacing: number;      // letter spacing percent
+        wordSpacing: number;        // word spacing percent
+        lineHeight: number;         // line height percent
+    };
 
     content: string;
 
-    link: boolean;
-    linkTo: string;
+    link: {
+        active: boolean;
+        to: string;
+    };
 }
 
 
