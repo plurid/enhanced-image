@@ -13,6 +13,7 @@ import themes, {
 
 import {
     uuid,
+    objects,
 } from '@plurid/plurid-functions';
 
 import './styles.css';
@@ -256,32 +257,61 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     id: newTextVersionID,
                     type: 'TEXTLINE',
 
-                    xPercent: 5,
-                    yPercent: 9,
+                    position: {
+                        x: 5,
+                        y: 9,
+                    },
 
-                    perspective: 0,
-                    xRotation: 0,
-                    yRotation: 0,
-                    zRotation: 0,
-                    xSkew: 0,
-                    ySkew: 0,
+                    transform: {
+                        perspective: 0,
+                        rx: 0,
+                        ry: 0,
+                        rz: 0,
+                        sx: 0,
+                        sy: 0,
+                    },
+
+                    // xPercent: 5,
+                    // yPercent: 9,
+
+                    // perspective: 0,
+                    // xRotation: 0,
+                    // yRotation: 0,
+                    // zRotation: 0,
+                    // xSkew: 0,
+                    // ySkew: 0,
 
                     viewable: false,
 
                     color: 'white',
 
-                    fontWeight: 'normal',
-                    fontStyle: 'normal',
-                    fontFamily: 'Arial',
-                    fontSizePercent: 4.5,
-                    letterSpacingPercent: 0,
-                    wordSpacingPercent: 0,
-                    lineHeightPercent: 0,
+                    font: {
+                        weight: 'normal',
+                        style: 'normal',
+                        family: 'Arial',
+                        size: 4.5,
+                        letterSpacing: 0,
+                        wordSpacing: 0,
+                        lineHeight: 0,
+                    },
+
+                    // fontWeight: 'normal',
+                    // fontStyle: 'normal',
+                    // fontFamily: 'Arial',
+                    // fontSizePercent: 4.5,
+                    // letterSpacingPercent: 0,
+                    // wordSpacingPercent: 0,
+                    // lineHeightPercent: 0,
 
                     content: 'New Text',
 
-                    link: false,
-                    linkTo: '',
+                    link: {
+                        active: false,
+                        to: '',
+                    },
+
+                    // link: false,
+                    // linkTo: '',
                 },
             ],
         };
@@ -980,9 +1010,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                 const version = { ...currentVersion };
                 const currentVersionId = uuid.generate();
                 version.id = currentVersionId;
-                version.yPercent = currentVersion.yPercent < 85
-                    ? currentVersion.yPercent + 10
-                    : currentVersion.yPercent - 10;
+                version.position.y = currentVersion.position.y < 85
+                    ? currentVersion.position.y + 10
+                    : currentVersion.position.y - 10;
 
                 const id = uuid.generate();
                 const updatedImgText: ImageText = {
@@ -1021,8 +1051,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                 const currentVersion = getVersionById(text);
                 if (currentVersion) {
                     const updatedVersion = { ...currentVersion };
-                    updatedVersion.xPercent = coordinates.x;
-                    updatedVersion.yPercent = coordinates.y;
+                    updatedVersion.position.x = coordinates.x;
+                    updatedVersion.position.y = coordinates.y;
                     const updatedText = updateVersion(text, updatedVersion);
                     return { ...updatedText };
                 }
@@ -1044,20 +1074,39 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         const updatedImageText = imageText.map(text => {
             if (text.id === versionID) {
                 const currentVersion = getVersionById(text);
+
                 if (currentVersion) {
-                    const updatedVersion = { ...currentVersion };
-                    (updatedVersion as any)[type] = value;
+                    const updatedVersion = objects.updateNested(
+                        currentVersion,
+                        type,
+                        value,
+                    );
+
+                    if (!updatedVersion) {
+                        return {
+                            ...text,
+                        };
+                    }
+
                     const updatedText = updateVersion(text, updatedVersion);
-                    return { ...updatedText };
+                    return {
+                        ...updatedText,
+                    };
                 }
 
-                return { ...text };
+                return {
+                    ...text,
+                };
             }
 
-            return { ...text };
+            return {
+                ...text,
+            };
         });
 
-        setImageText([...updatedImageText]);
+        setImageText([
+            ...updatedImageText,
+        ]);
     }
 
 

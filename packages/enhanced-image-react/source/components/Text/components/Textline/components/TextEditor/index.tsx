@@ -138,61 +138,61 @@ const TextEditor: React.FC<TextEditorProperties> = (
         value: number | string | boolean,
     ) => {
         switch (type) {
-            case 'fontSize':
+            case 'font.size':
                 if (typeof value === 'number') {
                     const fontSizePercentage = percentageFromValue(value, imageBoxDimensions.height);
-                    updateTextItemField(textItem.id, 'fontSizePercent', fontSizePercentage);
+                    updateTextItemField(textItem.id, 'font.size', fontSizePercentage);
                 }
                 break;
-            case 'fontFamily':
-                updateTextItemField(textItem.id, 'fontFamily', value);
+            case 'font.family':
+                updateTextItemField(textItem.id, 'font.family', value);
                 break;
-            case 'letterSpacing':
+            case 'font.letterSpacing':
                 if (typeof value === 'number') {
                     const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
-                    updateTextItemField(textItem.id, 'letterSpacingPercent', letterSpacingPercentage);
+                    updateTextItemField(textItem.id, 'font.letterSpacing', letterSpacingPercentage);
                 }
                 break;
-            case 'wordSpacing':
+            case 'font.wordSpacing':
                 if (typeof value === 'number') {
                     const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
-                    updateTextItemField(textItem.id, 'wordSpacingPercent', wordSpacingPercentage);
+                    updateTextItemField(textItem.id, 'font.wordSpacing', wordSpacingPercentage);
                 }
                 break;
-            case 'linkTo':
-                updateTextItemField(textItem.id, 'linkTo', value);
+            case 'link.to':
+                updateTextItemField(textItem.id, 'link.to', value);
                 break;
             case 'color':
                 updateTextItemField(textItem.id, 'color', value);
                 break;
-            case 'perspective':
+            case 'transform.perspective':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'perspective', value - 1);
+                    updateTextItemField(textItem.id, 'transform.perspective', value - 1);
                 }
                 break;
-            case 'xRotation':
+            case 'transform.rx':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'xRotation', value - 1);
+                    updateTextItemField(textItem.id, 'transform.rx', value - 1);
                 }
                 break;
-            case 'yRotation':
+            case 'transform.ry':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'yRotation', value - 1);
+                    updateTextItemField(textItem.id, 'transform.ry', value - 1);
                 }
                 break;
-            case 'zRotation':
+            case 'transform.rz':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'zRotation', value - 1);
+                    updateTextItemField(textItem.id, 'transform.rz', value - 1);
                 }
                 break;
-            case 'xSkew':
+            case 'transform.sx':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'xSkew', value - 1);
+                    updateTextItemField(textItem.id, 'transform.sx', value - 1);
                 }
                 break;
-            case 'ySkew':
+            case 'transform.sy':
                 if (typeof value === 'number') {
-                    updateTextItemField(textItem.id, 'ySkew', value - 1);
+                    updateTextItemField(textItem.id, 'transform.sy', value - 1);
                 }
                 break;
         }
@@ -316,18 +316,18 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     <ButtonIncrements
                         theme={theme}
                         transparentUI={transparentUI}
-                        type="fontSize"
+                        type="font.size"
                         changeValue={updateField}
-                        value={Math.round(valueFromPercentage(currentVersion.fontSizePercent, imageBoxDimensions.height))}
+                        value={Math.round(valueFromPercentage(currentVersion.font.size, imageBoxDimensions.height))}
                         icon={FontSizeIcon}
                     />
 
                     <ButtonDropdown
                         theme={theme}
                         transparentUI={transparentUI}
-                        type="fontFamily"
-                        alterStyle="fontFamily"
-                        selected={currentVersion.fontFamily}
+                        type="font.family"
+                        alterStyle="font.family"
+                        selected={currentVersion.font.family}
                         selectables={selectableFonts}
                         changeSelected={updateField}
                         toggleEditor={() => {}}
@@ -341,34 +341,34 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         theme={theme}
                         transparentUI={transparentUI}
                         toggle={() => toggleTextFormat('link', true)}
-                        toggled={currentVersion.link}
+                        toggled={currentVersion.link.active}
                         icon={LinkIcon}
-                        value={currentVersion.linkTo}
-                        valueType="linkTo"
+                        value={currentVersion.link.to}
+                        valueType="link.to"
                         changeValue={updateField}
                         renderOutside={renderOutside}
                     />
 
                     <ButtonToggle
                         theme={theme}
-                        toggle={() => toggleTextFormat('fontWeight', 'bold')}
-                        toggled={currentVersion.fontWeight === 'bold'}
+                        toggle={() => toggleTextFormat('font.weight', 'bold')}
+                        toggled={currentVersion.font.weight === 'bold'}
                         icon={BoldIcon}
                     />
 
                     <ButtonToggle
                         theme={theme}
-                        toggle={() => toggleTextFormat('fontStyle', 'italic')}
-                        toggled={currentVersion.fontStyle === 'italic'}
+                        toggle={() => toggleTextFormat('font.style', 'italic')}
+                        toggled={currentVersion.font.style === 'italic'}
                         icon={ItalicIcon}
                     />
 
                     <ButtonIncrements
                         theme={theme}
                         transparentUI={transparentUI}
-                        type="letterSpacing"
+                        type="font.letterSpacing"
                         changeValue={updateField}
-                        value={valueFromPercentage(currentVersion.letterSpacingPercent, imageBoxDimensions.width)}
+                        value={valueFromPercentage(currentVersion.font.letterSpacing, imageBoxDimensions.width)}
                         icon={LetterSpacingIcon}
                         step={0.1}
                     />
@@ -376,9 +376,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     <ButtonIncrements
                         theme={theme}
                         transparentUI={transparentUI}
-                        type="wordSpacing"
+                        type="font.wordSpacing"
                         changeValue={updateField}
-                        value={valueFromPercentage(currentVersion.wordSpacingPercent, imageBoxDimensions.width)}
+                        value={valueFromPercentage(currentVersion.font.wordSpacing, imageBoxDimensions.width)}
                         icon={WordSpacingIcon}
                         step={0.1}
                     />
@@ -400,8 +400,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
                     <StyledTransformSliders>
                         <Slider
-                            value={currentVersion.perspective + 1}
-                            valueType="perspective"
+                            value={currentVersion.transform.perspective + 1}
+                            valueType="transform.perspective"
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
@@ -415,8 +415,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         />
 
                         <Slider
-                            value={currentVersion.xRotation + 1}
-                            valueType="xRotation"
+                            value={currentVersion.transform.rx + 1}
+                            valueType="transform.rx"
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
@@ -433,8 +433,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         />
 
                         <Slider
-                            value={currentVersion.yRotation + 1}
-                            valueType="yRotation"
+                            value={currentVersion.transform.ry + 1}
+                            valueType="transform.ry"
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
@@ -451,8 +451,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         />
 
                         <Slider
-                            value={currentVersion.zRotation + 1}
-                            valueType="zRotation"
+                            value={currentVersion.transform.rz + 1}
+                            valueType="transform.rz"
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
@@ -469,8 +469,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         />
 
                         <Slider
-                            value={currentVersion.xSkew + 1}
-                            valueType="xSkew"
+                            value={currentVersion.transform.sx + 1}
+                            valueType="transform.sx"
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
@@ -487,8 +487,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         />
 
                         <Slider
-                            value={currentVersion.ySkew + 1}
-                            valueType="ySkew"
+                            value={currentVersion.transform.sy + 1}
+                            valueType="transform.sy"
                             changeValue={updateField}
                             theme={theme}
                             transparentUI={transparentUI}
