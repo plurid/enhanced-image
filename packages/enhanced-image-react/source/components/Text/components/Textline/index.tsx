@@ -546,6 +546,7 @@ const Textline: React.FC<TextlineProperties> = (
                             href={currentVersion.link.to}
                             target="_blank"
                             viewable={currentVersion.viewable}
+                            revealed={revealedText}
                             color={currentVersion.color}
                         >
                             <StyledEditableDiv
