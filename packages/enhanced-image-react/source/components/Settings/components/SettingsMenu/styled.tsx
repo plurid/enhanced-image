@@ -19,6 +19,12 @@ export const StyledSettingsMenu: any = styled.div`
     user-select: none;
     box-sizing: border-box;
 
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    ::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
+
     background-color: ${(props: any) => {
         if (props.transparentUI) {
             return props.theme.backgroundColorPrimaryAlpha;
