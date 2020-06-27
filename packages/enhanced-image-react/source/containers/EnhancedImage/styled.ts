@@ -8,7 +8,13 @@ export const StyledEnhancedImage = styled.div`
     font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI',
         Roboto, Helvetica, Arial, sans-serif;
     position: relative;
-    overflow: auto;
+    overflow: hidden;
+
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    ::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
 
     img {
         display: block;
