@@ -181,7 +181,9 @@ export interface Context {
 
     databaseImageID: string;
 
-    handleLoadedImage: (image: React.SyntheticEvent<HTMLImageElement, Event>) => Promise<void>;
+    handleLoadedImage: (
+        image: EventTarget & HTMLImageElement,
+    ) => Promise<void>;
     loadedImage: boolean;
 
     imageType: string;

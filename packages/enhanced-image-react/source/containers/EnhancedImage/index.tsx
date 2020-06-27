@@ -200,10 +200,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     /** handlers */
     const handleLoadedImage = async (
-        loadedImage: React.SyntheticEvent<HTMLImageElement, Event>
+        image: EventTarget & HTMLImageElement,
     ) => {
-        const image = loadedImage.currentTarget;
-
         if (atLoad) {
             await atLoad(image);
         }

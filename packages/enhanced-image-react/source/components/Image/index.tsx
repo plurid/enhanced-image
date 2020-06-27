@@ -1,5 +1,6 @@
 import React, {
     useContext,
+    useRef,
     useState,
     useEffect,
 } from 'react';
@@ -17,6 +18,7 @@ import {
 
 
 const Image: React.FC<{}> = () => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
@@ -39,10 +41,18 @@ const Image: React.FC<{}> = () => {
         flipHorizontal,
     } = context;
 
+
+    /** references */
+    const image = useRef<HTMLImageElement>(null);
+
+
+    /** state */
     const [filter, setFilter] = useState('');
     const [transform, setTransform] = useState('');
     const [resolvedImageBackground, setResolvedImageBackground] = useState(IMAGE_BACKGROUNDS.TRANSPARENT);
 
+
+    /** effects */
     useEffect(() => {
         const filter = `
             invert(${imageColorsInvert ? 1 : 0})
@@ -86,6 +96,15 @@ const Image: React.FC<{}> = () => {
         imageBackground,
     ]);
 
+    /** Handle already loaded image. */
+    useEffect(() => {
+        if (image.current?.complete) {
+            handleLoadedImage(image.current);
+        }
+    }, []);
+
+
+    /** render */
     return (
         <StyledImage
         >
@@ -98,7 +117,13 @@ const Image: React.FC<{}> = () => {
                     transform,
                     background: resolvedImageBackground,
                 }}
-                onLoad={handleLoadedImage}
+                ref={image}
+                onLoad={(
+                    event: React.SyntheticEvent<HTMLImageElement, Event>,
+                ) => {
+                    const image = event.currentTarget;
+                    handleLoadedImage(image);
+                }}
             />
         </StyledImage>
     );
