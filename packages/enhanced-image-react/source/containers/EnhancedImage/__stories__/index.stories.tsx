@@ -119,8 +119,8 @@ storiesOf(
             }}
         >
             <EnhancedImage
-                src="/assets/food-text.jpg"
-                // src="/assets/perspective.png"
+                // src="/assets/food-text.jpg"
+                src="/assets/perspective.png"
                 // {...actions}
                 // theme={themes[theme]}
 
@@ -128,9 +128,10 @@ storiesOf(
                 development={development}
                 silent={silent}
 
+
                 ownerToken={ownerToken}
 
-                // preloadedData={preloadedData}
+                preloadedData={preloadedData}
 
                 settingsDrawers={[settingsDrawers]}
                 textDrawer={[textDrawer]}
