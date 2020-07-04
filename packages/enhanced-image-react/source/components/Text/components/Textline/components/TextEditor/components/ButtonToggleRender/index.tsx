@@ -16,6 +16,8 @@ import ButtonToggle from '../ButtonToggle';
 import {
     StyledButtonToggleRender,
     StyledButtonContainer,
+    StyledLanguageSelect,
+    StyledLanguage,
 } from './styled';
 /** [END] imports */
 
@@ -81,7 +83,7 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
                 theme={theme}
                 transparentUI={transparentUI}
             >
-                <div>
+                <StyledLanguageSelect>
                     <div>
                         select
                     </div>
@@ -89,9 +91,9 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
                     <div>
                         +
                     </div>
-                </div>
+                </StyledLanguageSelect>
 
-                <div>
+                <StyledLanguage>
                     <div>
                         english
                     </div>
@@ -103,9 +105,9 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
                     <div>
                         x
                     </div>
-                </div>
+                </StyledLanguage>
 
-                <div>
+                <StyledLanguage>
                     <div>
                         french
                     </div>
@@ -117,7 +119,7 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
                     <div>
                         x
                     </div>
-                </div>
+                </StyledLanguage>
             </StyledButtonContainer>
         );
 
