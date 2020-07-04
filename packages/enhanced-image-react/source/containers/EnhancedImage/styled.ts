@@ -9,6 +9,8 @@ export const StyledEnhancedImage = styled.div`
         Roboto, Helvetica, Arial, sans-serif;
     position: relative;
     overflow: hidden;
+    height: auto;
+    width: auto;
 
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
