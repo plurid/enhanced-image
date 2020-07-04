@@ -68,7 +68,7 @@
         "@plurid/detoolbar-react": "^0.0.0",
         "@plurid/plurid-functions": "^0.1.15",
         "@plurid/plurid-functions-react": "^0.0.1",
-        "@plurid/plurid-icons-react": "^0.1.22",
+        "@plurid/plurid-icons-react": "^0.1.23",
         "@plurid/plurid-themes": "^0.1.26",
         "@plurid/plurid-ui-react": "^0.1.82",
         "@rollup/plugin-commonjs": "^13.0.0",
