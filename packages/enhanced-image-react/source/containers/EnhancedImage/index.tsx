@@ -1018,8 +1018,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         if (imgText) {
             const currentVersion = getVersionById(imgText);
-            if (currentVersion) {
-                const version = { ...currentVersion };
+            if (currentVersion && currentVersion.type === 'TEXTLINE') {
+                const version = {
+                    ...currentVersion,
+                    position: {
+                        ...currentVersion.position,
+                    },
+                    transform: {
+                        ...currentVersion.transform,
+                    },
+                    font: {
+                        ...currentVersion.font,
+                    },
+                    link: {
+                        ...currentVersion.link,
+                    },
+                    action: {
+                        ...currentVersion.action,
+                    },
+                };
+
                 const currentVersionId = uuid.generate();
                 version.id = currentVersionId;
                 version.position.y = currentVersion.position.y < 85
@@ -1033,7 +1051,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     versions: [version],
                 };
 
-                const updatedImageText = [...imageText, updatedImgText];
+                const updatedImageText = [
+                    ...imageText,
+                    updatedImgText,
+                ];
                 setImageText(updatedImageText);
             }
         }
