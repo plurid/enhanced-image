@@ -360,6 +360,11 @@ export interface PreloadedData {
     imageID: string;
 }
 
+export interface ActionDetail {
+    type: string;
+    text: ImageText;
+}
+
 
 
 export {
