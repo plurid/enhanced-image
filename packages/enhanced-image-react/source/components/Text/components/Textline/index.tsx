@@ -143,55 +143,64 @@ const Textline: React.FC<TextlineProperties> = (
     }
 
     const handleEditorPosition = () => {
-        if (textItem.current) {
-            const {
-                offsetLeft,
-                offsetTop,
-                offsetHeight,
-            } = textItem.current;
-
-            // Do not let editor to go to the right
-            // or keep it within the image
-            // if the editor has the width greater than the image
-            let editorXCoord = (offsetLeft + editorWidth) > imageBoxDimensions.width
-                ? editorWidth < imageBoxDimensions.width
-                    ? -1 * (offsetLeft + editorWidth - imageBoxDimensions.width)
-                    : (-offsetLeft + 10)
-                : -17;
-
-            // Do not let editor to go to the left.
-            if (offsetLeft < 17) {
-                editorXCoord = offsetLeft * -1;
-            }
-
-            if (editorWidth === 0) {
-                editorXCoord = - offsetLeft;
-            }
-
-            if (
-                (editorWidth > imageBoxDimensions.width)
-                || (editorWidth + 30 > imageBoxDimensions.width)
-            ) {
-                setEditorFullWidth(true);
-            } else {
-                setEditorFullWidth(false);
-            }
-
-            if (editorDrawers.length === 0) {
-                setEditorFullWidth(false);
-            }
-
-            // Do not let editor to go to over the top.
-            const editorYCoord = offsetTop < 34
-                ? offsetHeight
-                : -34;
-
-            const editorPositions = {
-                x: editorXCoord,
-                y: editorYCoord,
-            }
-            setEditorPositions(editorPositions);
+        if (!textItem.current) {
+            return;
         }
+
+        const {
+            offsetLeft,
+            offsetTop,
+            offsetHeight,
+        } = textItem.current;
+
+        let editorX = 0;
+        let editorY = 0;
+
+        // Do not let editor to go to the right
+        // or keep it within the image
+        // if the editor has the width greater than the image
+        if ((offsetLeft + editorWidth) > imageBoxDimensions.width) {
+            if (editorWidth < imageBoxDimensions.width) {
+                editorX = -1 * (offsetLeft + editorWidth - imageBoxDimensions.width);
+            } else {
+                editorX = (-offsetLeft + 17);
+            }
+        } else {
+            editorX = -17;
+        }
+
+        // Do not let editor to go to the left.
+        if (offsetLeft < 17) {
+            editorX = offsetLeft * -1;
+        }
+
+        if (editorWidth === 0) {
+            editorX = - offsetLeft;
+        }
+
+        if (
+            (editorWidth > imageBoxDimensions.width)
+            || (editorWidth + 17 > imageBoxDimensions.width)
+        ) {
+            setEditorFullWidth(true);
+        } else {
+            setEditorFullWidth(false);
+        }
+
+        if (editorDrawers.length === 0) {
+            setEditorFullWidth(false);
+        }
+
+        // Do not let editor to go to over the top.
+        editorY = offsetTop < 34
+            ? offsetHeight
+            : -34;
+
+        const editorPositions = {
+            x: editorX,
+            y: editorY,
+        }
+        setEditorPositions(editorPositions);
     }
 
     const handleChange = (
@@ -265,6 +274,54 @@ const Textline: React.FC<TextlineProperties> = (
         }
     }
 
+    const incrementLocation = (
+        x: number,
+        y: number,
+        pageX?: number,
+        pageY?: number,
+    ) => {
+        if (!textItem.current) {
+            return;
+        }
+
+        const {
+            offsetLeft,
+            offsetTop,
+        } = textItem.current;
+
+        const updatedPositions = {
+            x: pageX || positions.x,
+            y: pageY || positions.y,
+        };
+        setPositions(updatedPositions);
+
+        const textXCoordinate = offsetLeft + x;
+        const textYCoordinate = offsetTop + y;
+        const textXCoord = textXCoordinate + 'px';
+        const textYCoord = textYCoordinate + 'px';
+        setTextXCoord(textXCoord);
+        setTextYCoord(textYCoord);
+
+        const xCoordPercentage = percentageFromValue(
+            textXCoordinate,
+            imageBoxDimensions.width,
+        );
+        const yCoordPercentage = percentageFromValue(
+            textYCoordinate,
+            imageBoxDimensions.height,
+        );
+
+        const coordinatesPercentage = {
+            x: xCoordPercentage,
+            y: yCoordPercentage,
+        };
+
+        updateTextCoordinates(
+            data.id,
+            coordinatesPercentage,
+        );
+    }
+
     const moveWithArrows = (
         event: KeyboardEvent,
         step: number = 1,
@@ -275,39 +332,19 @@ const Textline: React.FC<TextlineProperties> = (
 
         switch(key) {
             case 'ArrowLeft': {
-                const xPosition = positions.x - step;
-                const newPositions = {
-                    x: xPosition,
-                    y: positions.y,
-                };
-                setPositions(newPositions);
+                incrementLocation(-step, 0);
                 break;
             }
             case 'ArrowRight': {
-                const xPosition = positions.x + step;
-                const newPositions = {
-                    x: xPosition,
-                    y: positions.y,
-                };
-                setPositions(newPositions);
+                incrementLocation(step, 0);
                 break;
             }
             case 'ArrowUp': {
-                const yPosition = positions.y - step;
-                const newPositions = {
-                    x: positions.x,
-                    y: yPosition,
-                };
-                setPositions(newPositions);
+                incrementLocation(0, -step);
                 break;
             }
             case 'ArrowDown': {
-                const yPosition = positions.y + step;
-                const newPositions = {
-                    x: positions.x,
-                    y: yPosition,
-                };
-                setPositions(newPositions);
+                incrementLocation(0, step);
                 break;
             }
         }
@@ -442,42 +479,18 @@ const Textline: React.FC<TextlineProperties> = (
 
             event.preventDefault();
 
-            if (textItem.current) {
-                const { offsetLeft, offsetTop } = textItem.current;
+            const pageX = event.pageX;
+            const pageY = event.pageY;
 
-                const pageX = event.pageX;
-                const pageY = event.pageY;
+            const differenceX = pageX - positions.x;
+            const differenceY = pageY - positions.y;
 
-                const differenceX = pageX - positions.x;
-                const differenceY = pageY - positions.y;
-
-                const updatedPositions = {
-                    x: pageX,
-                    y: pageY,
-                };
-                setPositions(updatedPositions);
-
-                const textXCoordinate = offsetLeft + differenceX;
-                const textYCoordinate = offsetTop + differenceY;
-                const textXCoord = textXCoordinate + 'px';
-                const textYCoord = textYCoordinate + 'px';
-                setTextXCoord(textXCoord);
-                setTextYCoord(textYCoord);
-
-                const xCoordPercentage = percentageFromValue(
-                    textXCoordinate,
-                    imageBoxDimensions.width
-                );
-                const yCoordPercentage = percentageFromValue(
-                    textYCoordinate,
-                    imageBoxDimensions.height
-                );
-                const coordinatesPercentage = {
-                    x: xCoordPercentage,
-                    y: yCoordPercentage,
-                };
-                updateTextCoordinates(data.id, coordinatesPercentage);
-            }
+            incrementLocation(
+                differenceX,
+                differenceY,
+                pageX,
+                pageY,
+            );
         }
 
         window.addEventListener('mousemove', handleMouseMove);
