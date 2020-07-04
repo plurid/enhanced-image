@@ -28,6 +28,7 @@ import ButtonDropdown from './components/ButtonDropdown';
 import ButtonIncrements from './components/ButtonIncrements';
 import ButtonInput from './components/ButtonInput';
 import ButtonToggle from './components/ButtonToggle';
+import ButtonToggleRender from './components/ButtonToggleRender';
 import ButtonsColors from './components/ButtonsColors';
 import ButtonClick from './components/ButtonClick';
 import SimpleInput from './components/SimpleInput';
@@ -42,6 +43,7 @@ import ViewableIcon from '../../../../../../assets/icons/text-editor/viewable';
 import NotViewableIcon from '../../../../../../assets/icons/text-editor/not-viewable';
 import FontSizeIcon from '../../../../../../assets/icons/text-editor/font-size';
 import LinkIcon from '../../../../../../assets/icons/text-editor/link';
+import TransviewIcon from '../../../../../../assets/icons/settings-menu/transview-text';
 import BoldIcon from '../../../../../../assets/icons/text-editor/bold';
 import ItalicIcon from '../../../../../../assets/icons/text-editor/italic';
 import LetterSpacingIcon from '../../../../../../assets/icons/text-editor/letter-spacing';
@@ -137,6 +139,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
     const [outsideTopBased, setOutsideTopBased] = useState(false);
     const [outsideLeft, setOutsideLeft] = useState(100);
     const [transformSlider, setTransformSlider] = useState('');
+    const [showTransview, setShowTransview] = useState(false);
 
 
     /** handlers */
@@ -373,6 +376,15 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         value={currentVersion.action.type}
                         valueType="action.type"
                         changeValue={updateField}
+                        renderOutside={renderOutside}
+                    />
+
+                    <ButtonToggleRender
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        toggle={() => setShowTransview(show => !show)}
+                        toggled={showTransview}
+                        icon={TransviewIcon}
                         renderOutside={renderOutside}
                     />
 

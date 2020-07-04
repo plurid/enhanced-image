@@ -1,19 +1,25 @@
 import React from 'react';
 
-import { StyledButtonToggle } from './styled';
+import {
+    Theme,
+} from '@plurid/plurid-themes';
 
-import { Theme } from '@plurid/plurid-themes';
+import {
+    StyledButtonToggle,
+} from './styled';
 
 
 
-interface ButtonToggleProperties {
+export interface ButtonToggleProperties {
     theme: Theme;
     toggled: boolean;
     toggle: () => void;
     icon: JSX.Element;
 }
 
-const ButtonToggle: React.FC<ButtonToggleProperties> = (properties) => {
+const ButtonToggle: React.FC<ButtonToggleProperties> = (
+    properties,
+) => {
     const {
         theme,
         toggled,
