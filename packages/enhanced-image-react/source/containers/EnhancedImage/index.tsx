@@ -49,6 +49,8 @@ import {
     MESSAGE_TYPES,
 
     IMAGE_TYPES,
+
+    ENHANCED_IMAGE_ACTION,
 } from '../../data/constants';
 
 import {
@@ -269,16 +271,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                         sy: 0,
                     },
 
-                    // xPercent: 5,
-                    // yPercent: 9,
-
-                    // perspective: 0,
-                    // xRotation: 0,
-                    // yRotation: 0,
-                    // zRotation: 0,
-                    // xSkew: 0,
-                    // ySkew: 0,
-
                     viewable: false,
 
                     color: 'white',
@@ -293,14 +285,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                         lineHeight: 0,
                     },
 
-                    // fontWeight: 'normal',
-                    // fontStyle: 'normal',
-                    // fontFamily: 'Arial',
-                    // fontSizePercent: 4.5,
-                    // letterSpacingPercent: 0,
-                    // wordSpacingPercent: 0,
-                    // lineHeightPercent: 0,
-
                     content: 'New Text',
 
                     link: {
@@ -308,8 +292,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                         to: '',
                     },
 
-                    // link: false,
-                    // linkTo: '',
+                    action: {
+                        active: false,
+                        type: '',
+                    },
                 },
             ],
         };
@@ -791,7 +777,26 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }
 
 
+    /** ACTION */
+    const emitAction = (
+        actionType: string,
+        textID: string,
+    ) => {
+        const event = new CustomEvent(
+            ENHANCED_IMAGE_ACTION,
+            {
+                detail: {
+                    actionType,
+                    textID,
+                },
+            },
+        );
 
+        window.dispatchEvent(event);
+    }
+
+
+    /** TEXT */
     const downloadText = () => {
         const stringifiedText = JSON.stringify(imageText, null, 4);
 
@@ -1336,6 +1341,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setTransviewTargetLanguage,
 
         imageText,
+
+        emitAction,
 
         addText,
         saveText,

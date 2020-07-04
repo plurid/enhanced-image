@@ -40,6 +40,10 @@ export const EnhancedImageDataFragment = gql`
                         active
                         to
                     }
+                    action {
+                        active
+                        type
+                    }
                 }
             }
         }

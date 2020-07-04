@@ -196,7 +196,10 @@ export interface Context {
     // videoContainerDimensions: VideoContainerDimensions;
 
     setMessage: Dispatch<SetStateAction<string>>;
-    setMessageTimed: (message: string, time: number) => void;
+    setMessageTimed: (
+        message: string,
+        time: number,
+    ) => void;
     setShowSpinner: Dispatch<SetStateAction<boolean>>;
 
     showSettingsButton: boolean;
@@ -231,6 +234,11 @@ export interface Context {
 
 
     imageText: ImageText[];
+
+    emitAction: (
+        actionType: string,
+        textID: string,
+    ) => void;
 
     addText: () => void;
     saveText: () => Promise<void>;

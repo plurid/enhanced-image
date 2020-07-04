@@ -7,6 +7,8 @@ import {
 
 
 
+export * from './action';
+
 export {
     IMAGE_BACKGROUNDS,
     IMAGE_TYPES,

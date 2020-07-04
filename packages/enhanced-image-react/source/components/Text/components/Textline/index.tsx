@@ -49,6 +49,7 @@ const Textline: React.FC<TextlineProperties> = (
         toggleVersionViewable,
         updateVersionContent,
         updateTextCoordinates,
+        emitAction,
     } = context;
 
 
@@ -319,6 +320,15 @@ const Textline: React.FC<TextlineProperties> = (
         handleArrows(event);
     }
 
+    const handleAction = () => {
+        if (currentVersion && currentVersion.action.active) {
+            emitAction(
+                currentVersion.action.type,
+                data.id,
+            );
+        }
+    }
+
 
     /** effects */
     /**
@@ -533,6 +543,8 @@ const Textline: React.FC<TextlineProperties> = (
                     editableText={editableText}
                     revealedText={revealedText}
                     viewable={currentVersion && currentVersion.viewable}
+                    actionable={currentVersion && currentVersion.action.active}
+                    onClick={() => handleAction()}
                     color={currentVersion && currentVersion.color}
                     style={{
                         transform: `rotateX(${rotationX}) rotateY(${rotationY}) rotateZ(${rotationZ}) skew(${skewX}, ${skewY})`,
