@@ -12,29 +12,34 @@ export const EnhancedImageDataFragment = gql`
                 ... on DepictImageTextVersionTextline {
                     id
                     type
-
-                    xCoordPercentage
-                    yCoordPercentage
-
-                    perspective
-                    rotation
-                    skew
-
+                    position {
+                        x
+                        y
+                    }
+                    transform {
+                        perspective
+                        rx
+                        ry
+                        rz
+                        sx
+                        sy
+                    }
                     viewable
-
-                    fontWeight
-                    fontStyle
-                    fontFamily
-                    fontSizePercentage
-                    letterSpacingPercentage
-                    lineHeightPercentage
-                    wordSpacingPercentage
                     color
-
+                    font {
+                        weight
+                        style
+                        family
+                        size
+                        letterSpacing
+                        wordSpacing
+                        lineHeight
+                    }
                     content
-
-                    link
-                    linkTo
+                    link {
+                        active
+                        to
+                    }
                 }
             }
         }
