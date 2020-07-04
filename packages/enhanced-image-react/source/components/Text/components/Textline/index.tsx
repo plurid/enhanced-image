@@ -104,6 +104,7 @@ const Textline: React.FC<TextlineProperties> = (
         x: -17,
         y: -34,
     });
+    const [editorDrawers, setEditorDrawers] = useState<string[]>([]);
     const [editorExpandFormat, setEditorExpandFormat] = useState(false);
     const [editorWidth, setEditorWidth] = useState(0);
     const [editorFullWidth, setEditorFullWidth] = useState(false);
@@ -326,6 +327,21 @@ const Textline: React.FC<TextlineProperties> = (
                 currentVersion.action.type,
                 data.id,
             );
+        }
+    }
+
+    const toggleDrawer = (
+        drawer: string,
+    ) => {
+        if (editorDrawers.includes(drawer)) {
+            const drawers = editorDrawers.filter(eDrawer => eDrawer !== drawer);
+            setEditorDrawers(drawers);
+        } else {
+            const drawers = [
+                ...editorDrawers,
+                drawer,
+            ];
+            setEditorDrawers(drawers);
         }
     }
 
@@ -603,7 +619,8 @@ const Textline: React.FC<TextlineProperties> = (
 
                     positions={editorPositions}
                     expandFormat={editorExpandFormat}
-                    setExpandFormat={setEditorExpandFormat}
+                    drawers={editorDrawers}
+                    toggleDrawer={toggleDrawer}
                     setWidth={setEditorWidth}
                     fullWidth={editorFullWidth}
                 />
