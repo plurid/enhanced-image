@@ -550,7 +550,8 @@ const Textline: React.FC<TextlineProperties> = (
                             color={currentVersion.color}
                         >
                             <StyledEditableDiv
-                                toggledEditable={editableText}
+                                editableText={editableText}
+                                revealedText={revealedText}
                                 contentEditable={editable}
                                 suppressContentEditableWarning={true}
                                 onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
@@ -560,7 +561,8 @@ const Textline: React.FC<TextlineProperties> = (
                         </StyledTextContentLink>
                     ) : (
                         <StyledEditableDiv
-                            toggledEditable={editableText}
+                            editableText={editableText}
+                            revealedText={revealedText}
                             contentEditable={editable}
                             suppressContentEditableWarning={true}
                             onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
