@@ -564,6 +564,7 @@ const Textline: React.FC<TextlineProperties> = (
                             <StyledEditableDiv
                                 editableText={editableText}
                                 revealedText={revealedText}
+                                viewable={currentVersion.viewable}
                                 contentEditable={editable}
                                 suppressContentEditableWarning={true}
                                 onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
@@ -575,6 +576,7 @@ const Textline: React.FC<TextlineProperties> = (
                         <StyledEditableDiv
                             editableText={editableText}
                             revealedText={revealedText}
+                            viewable={currentVersion.viewable}
                             contentEditable={editable}
                             suppressContentEditableWarning={true}
                             onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
