@@ -1,6 +1,6 @@
 {
     "name": "@plurid/enhanced-image-react",
-    "version": "0.1.52",
+    "version": "0.1.53",
     "description": "Enhanced Image HTML Element, React implementation",
     "keywords": [
         "enhanced",
@@ -64,11 +64,11 @@
         "styled-components": ">=4"
     },
     "devDependencies": {
-        "@babel/core": "^7.10.3",
+        "@babel/core": "^7.10.4",
         "@plurid/detoolbar-react": "^0.0.0",
         "@plurid/plurid-functions": "^0.1.15",
         "@plurid/plurid-functions-react": "^0.0.1",
-        "@plurid/plurid-icons-react": "^0.1.20",
+        "@plurid/plurid-icons-react": "^0.1.22",
         "@plurid/plurid-themes": "^0.1.26",
         "@plurid/plurid-ui-react": "^0.1.82",
         "@rollup/plugin-commonjs": "^13.0.0",
@@ -87,8 +87,8 @@
         "@types/react": "^16.9.41",
         "@types/react-dom": "^16.9.8",
         "@types/styled-components": "^5.1.0",
-        "@typescript-eslint/eslint-plugin": "^3.4.0",
-        "@typescript-eslint/parser": "^3.4.0",
+        "@typescript-eslint/eslint-plugin": "^3.5.0",
+        "@typescript-eslint/parser": "^3.5.0",
         "apollo-cache-inmemory": "^1.6.6",
         "apollo-client": "^2.6.10",
         "apollo-link-http": "^1.5.17",
@@ -97,8 +97,8 @@
         "cross-fetch": "^3.0.5",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.2",
-        "eslint": "^7.3.1",
-        "graphql": "^15.1.0",
+        "eslint": "^7.4.0",
+        "graphql": "^15.2.0",
         "graphql-tag": "^2.10.3",
         "jest": "^26.1.0",
         "react": "^16.13.1",
@@ -106,12 +106,12 @@
         "react-dom": "^16.13.1",
         "react-test-renderer": "^16.13.1",
         "regenerator-runtime": "^0.13.5",
-        "rollup": "^2.18.1",
-        "rollup-plugin-peer-deps-external": "^2.2.2",
+        "rollup": "^2.18.2",
+        "rollup-plugin-peer-deps-external": "^2.2.3",
         "rollup-plugin-postcss": "^3.1.2",
         "rollup-plugin-typescript2": "^0.27.1",
         "styled-components": "^5.1.1",
         "ts-jest": "^26.1.1",
-        "typescript": "^3.9.5"
+        "typescript": "^3.9.6"
     }
 }
