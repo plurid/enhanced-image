@@ -20,6 +20,10 @@ import {
     PreloadedData,
 } from '../../../data/interfaces';
 
+import {
+    ENHANCED_IMAGE_ACTION,
+} from '../../../data/constants';
+
 import EnhancedImage from '../';
 
 // import foodText from '../../../test/assets/food-text.jpg';
@@ -93,6 +97,8 @@ storiesOf(
     const [preloadedData, setPreloadedData] = useState<PreloadedData | undefined>(undefined);
 
 
+    /** effects */
+    /** Load data. */
     useEffect(() => {
         const loadData = async () => {
             try {
@@ -111,6 +117,23 @@ storiesOf(
         loadData();
     }, []);
 
+    /** Handle action. */
+    useEffect(() => {
+        const handleAction = (
+            event?: any,
+        ) => {
+            console.log(event.detail);
+        }
+
+        window.addEventListener(ENHANCED_IMAGE_ACTION, handleAction);
+
+        return () => {
+            window.removeEventListener(ENHANCED_IMAGE_ACTION, handleAction);
+        };
+    }, []);
+
+
+    /** render */
     return (
         <div
             style={{

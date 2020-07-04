@@ -31,6 +31,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "Products"
@@ -68,6 +72,10 @@
                 "link": {
                     "active": false,
                     "to": ""
+                },
+                "action": {
+                    "active": false,
+                    "type": ""
                 },
                 "viewable": false,
                 "color": "black",
@@ -107,6 +115,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "Credit card"
@@ -144,6 +156,10 @@
                 "link": {
                     "active": false,
                     "to": ""
+                },
+                "action": {
+                    "active": false,
+                    "type": ""
                 },
                 "viewable": false,
                 "color": "black",
@@ -183,6 +199,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "Guarantor name"
@@ -220,6 +240,10 @@
                 "link": {
                     "active": false,
                     "to": ""
+                },
+                "action": {
+                    "active": false,
+                    "type": ""
                 },
                 "viewable": false,
                 "color": "black",
@@ -259,6 +283,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "Collaterals"
@@ -296,6 +324,10 @@
                 "link": {
                     "active": false,
                     "to": ""
+                },
+                "action": {
+                    "active": false,
+                    "type": ""
                 },
                 "viewable": false,
                 "color": "black",
@@ -335,6 +367,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "Enforcement files"
@@ -372,6 +408,10 @@
                 "link": {
                     "active": false,
                     "to": ""
+                },
+                "action": {
+                    "active": false,
+                    "type": ""
                 },
                 "viewable": false,
                 "color": "black",
@@ -411,6 +451,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "File no. 167892 / 12 Dec 2019"
@@ -448,6 +492,10 @@
                 "link": {
                     "active": false,
                     "to": ""
+                },
+                "action": {
+                    "active": false,
+                    "type": ""
                 },
                 "viewable": false,
                 "color": "black",
@@ -487,6 +535,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "€ 2.975"
@@ -524,6 +576,10 @@
                 "link": {
                     "active": false,
                     "to": ""
+                },
+                "action": {
+                    "active": false,
+                    "type": ""
                 },
                 "viewable": false,
                 "color": "black",
@@ -563,6 +619,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "64,475 Euro"
@@ -601,6 +661,10 @@
                     "active": false,
                     "to": ""
                 },
+                "action": {
+                    "active": false,
+                    "type": ""
+                },
                 "viewable": false,
                 "color": "black",
                 "content": "James Smith"
@@ -638,6 +702,10 @@
                 "link": {
                     "active": false,
                     "to": ""
+                },
+                "action": {
+                    "active": false,
+                    "type": ""
                 },
                 "viewable": false,
                 "color": "black",

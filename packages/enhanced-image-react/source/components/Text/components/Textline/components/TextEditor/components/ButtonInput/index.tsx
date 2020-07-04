@@ -34,6 +34,8 @@ interface ButtonInputProperties {
         outside: JSX.Element,
         left?: number,
     ) => void;
+
+    goToLink?: boolean;
 }
 
 const ButtonInput: React.FC<ButtonInputProperties> = (
@@ -50,6 +52,8 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
         valueType,
         changeValue,
         renderOutside,
+
+        goToLink,
     } = properties;
 
 
@@ -93,17 +97,19 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
                     onChange={handleInput}
                 />
 
-                <a
-                    href={value}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                >
-                    <StyledButtonInputGotoLink
-                        theme={theme}
+                {goToLink && (
+                    <a
+                        href={value}
+                        target="_blank"
+                        rel="noreferrer noopener"
                     >
-                        {GoToLinkIcon}
-                    </StyledButtonInputGotoLink>
-                </a>
+                        <StyledButtonInputGotoLink
+                            theme={theme}
+                        >
+                            {GoToLinkIcon}
+                        </StyledButtonInputGotoLink>
+                    </a>
+                )}
             </StyledButtonInputContainer>
         );
 

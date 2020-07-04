@@ -12,6 +12,7 @@ import {
 import {
     PluridIconPalette,
     PluridIconSpace,
+    PluridIconPlay,
 } from '@plurid/plurid-icons-react';
 
 import {
@@ -165,6 +166,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 break;
             case 'link.to':
                 updateTextItemField(textItem.id, 'link.to', value);
+                break;
+            case 'action.type':
+                updateTextItemField(textItem.id, 'action.type', value);
                 break;
             case 'color':
                 updateTextItemField(textItem.id, 'color', value);
@@ -351,6 +355,21 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         icon={LinkIcon}
                         value={currentVersion.link.to}
                         valueType="link.to"
+                        changeValue={updateField}
+                        renderOutside={renderOutside}
+                        goToLink={true}
+                    />
+
+                    <ButtonInput
+                        theme={theme}
+                        transparentUI={transparentUI}
+                        toggle={() => toggleTextFormat('action.active', true)}
+                        toggled={currentVersion.action.active}
+                        icon={(
+                            <PluridIconPlay />
+                        )}
+                        value={currentVersion.action.type}
+                        valueType="action.type"
                         changeValue={updateField}
                         renderOutside={renderOutside}
                     />

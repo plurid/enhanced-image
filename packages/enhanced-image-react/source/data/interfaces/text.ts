@@ -48,6 +48,11 @@ export interface ImageTextVersionTextline extends ImageTextVersion {
         active: boolean;
         to: string;
     };
+
+    action: {
+        active: boolean;
+        type: string;
+    };
 }
 
 
