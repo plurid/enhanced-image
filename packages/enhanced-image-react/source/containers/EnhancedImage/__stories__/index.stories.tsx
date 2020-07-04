@@ -138,12 +138,12 @@ storiesOf(
         <div
             style={{
                 padding: '4rem',
-                width: '500px',
+                // width: '500px',
             }}
         >
             <EnhancedImage
-                // src="/assets/food-text.jpg"
-                src="/assets/perspective.png"
+                src="/assets/food-text.jpg"
+                // src="/assets/perspective.png"
                 // {...actions}
                 // theme={themes[theme]}
 
@@ -154,7 +154,7 @@ storiesOf(
 
                 ownerToken={ownerToken}
 
-                preloadedData={preloadedData}
+                // preloadedData={preloadedData}
 
                 settingsDrawers={[settingsDrawers]}
                 textDrawer={[textDrawer]}
