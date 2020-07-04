@@ -38,6 +38,7 @@ import {
     ImageBoxDimensions,
     ImageText,
     ImageColorsData,
+    ActionDetail,
 } from '../../data/interfaces';
 
 import {
@@ -779,16 +780,24 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     /** ACTION */
     const emitAction = (
-        actionType: string,
+        type: string,
         textID: string,
     ) => {
+        const text = imageText.find(item => item.id === textID);
+
+        if (!text) {
+            return;
+        }
+
+        const detail: ActionDetail = {
+            type,
+            text,
+        };
+
         const event = new CustomEvent(
             ENHANCED_IMAGE_ACTION,
             {
-                detail: {
-                    actionType,
-                    textID,
-                },
+                detail,
             },
         );
 

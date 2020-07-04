@@ -7,6 +7,8 @@ import {
 import {
     EnhancedImageProperties,
     ImageColorsData,
+    PreloadedData,
+    ActionDetail,
 } from './data/interfaces';
 
 import logic from './logic';
@@ -20,6 +22,8 @@ export {
     /** interfaces */
     EnhancedImageProperties,
     ImageColorsData,
+    PreloadedData,
+    ActionDetail,
 
     /** logic */
     logic,
