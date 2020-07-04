@@ -79,7 +79,6 @@ export interface TextEditorProperties {
         x: number;
         y: number;
     };
-    expandFormat: boolean;
     drawers: string[];
     toggleDrawer: (
         drawer: string,
@@ -122,7 +121,6 @@ const TextEditor: React.FC<TextEditorProperties> = (
         setViewable,
 
         positions,
-        expandFormat,
         drawers,
         toggleDrawer,
         setWidth,
@@ -256,7 +254,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
         }
     }, [
         editor,
-        expandFormat,
+        drawers.length,
     ]);
 
     /** Outside top based. */
@@ -270,15 +268,15 @@ const TextEditor: React.FC<TextEditorProperties> = (
         positions.y,
     ]);
 
-    /** Expand format. */
-    useEffect(() => {
-        if (!expandFormat) {
-            setTransformSlider('');
-            renderOutside(<></>);
-        }
-    }, [
-        expandFormat,
-    ]);
+    // /** Expand format. */
+    // useEffect(() => {
+    //     if (drawers.length === 0) {
+    //         setTransformSlider('');
+    //         renderOutside(<></>);
+    //     }
+    // }, [
+    //     drawers.length,
+    // ]);
 
 
     /** render */
@@ -427,6 +425,12 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         Icon={PluridIconPalette}
                     />
                 </Drawer>
+
+                <StyledVerticalDivider
+                    theme={theme}
+                >
+                    &nbsp;
+                </StyledVerticalDivider>
 
                 <Drawer
                     theme={theme}
