@@ -105,7 +105,6 @@ const Textline: React.FC<TextlineProperties> = (
         y: -34,
     });
     const [editorDrawers, setEditorDrawers] = useState<string[]>([]);
-    const [editorExpandFormat, setEditorExpandFormat] = useState(false);
     const [editorWidth, setEditorWidth] = useState(0);
     const [editorFullWidth, setEditorFullWidth] = useState(false);
 
@@ -178,7 +177,7 @@ const Textline: React.FC<TextlineProperties> = (
                 setEditorFullWidth(false);
             }
 
-            if (!editorExpandFormat) {
+            if (editorDrawers.length === 0) {
                 setEditorFullWidth(false);
             }
 
@@ -618,7 +617,6 @@ const Textline: React.FC<TextlineProperties> = (
                     setViewable={setVersionViewable}
 
                     positions={editorPositions}
-                    expandFormat={editorExpandFormat}
                     drawers={editorDrawers}
                     toggleDrawer={toggleDrawer}
                     setWidth={setEditorWidth}
