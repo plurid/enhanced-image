@@ -66,8 +66,8 @@ const Textline: React.FC<TextlineProperties> = (
 
 
     /** state */
-    const [textXCoord, setTextXCoord] = useState('0px');
-    const [textYCoord, setTextYCoord] = useState('0px');
+    const [textXCoord, setTextXCoord] = useState(currentVersion.position.x * imageBoxDimensions.width / 100 + 'px');
+    const [textYCoord, setTextYCoord] = useState(currentVersion.position.y * imageBoxDimensions.height / 100 + 'px');
     const [textColor, setTextColor] = useState('transparent');
 
     const [perspective, setPerspective] = useState('0px');
@@ -199,7 +199,7 @@ const Textline: React.FC<TextlineProperties> = (
         const editorPositions = {
             x: editorX,
             y: editorY,
-        }
+        };
         setEditorPositions(editorPositions);
     }
 
