@@ -106,7 +106,11 @@ export const StyledEditableDiv: any = styled.div`
 
     ::selection {
         color: ${(props: any) => {
-            if (props.toggledEditable) {
+            if (props.revealedText) {
+                return 'initial';
+            }
+
+            if (props.editableText) {
                 return 'initial';
             }
 
@@ -116,7 +120,7 @@ export const StyledEditableDiv: any = styled.div`
     }
 
     user-select: ${(props: any) => {
-        if (props.toggledEditable) {
+        if (props.editableText) {
             return 'none';
         }
 
