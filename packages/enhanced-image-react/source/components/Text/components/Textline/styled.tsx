@@ -25,28 +25,33 @@ export const StyledTextItem: any = styled.div`
 
 
 export const StyledTextContent: any = styled.div`
-    color: ${(props: any) => {
-        if (props.revealedText) {
-            return props.color;
-        }
+    color: ${
+        ({
+            revealedText,
+            viewable,
+            editableText,
+            color,
+        }: any) => {
+            if (revealedText || viewable || editableText) {
+                return color;
+            }
 
-        if (props.viewable || props.editableText) {
-            return props.color;
+            return 'transparent';
         }
-        return 'transparent';
-    }};
+    };
 
-    background: ${(props: any) => {
-        if (props.revealedText) {
-            return 'hsla(220, 2%, 10%, 0.3)';
+    background: ${
+        ({
+            revealedText,
+            editableText,
+        }: any) => {
+            if (revealedText || editableText) {
+                return 'hsla(220, 2%, 10%, 0.3)';
+            }
+
+            return 'transparent';
         }
-
-        if (props.editableText) {
-            return 'hsla(220, 2%, 10%, 0.3)';
-        }
-
-        return 'transparent';
-    }};
+    };
 
     user-select: ${(props: any) => {
         if (props.draggingMode) {
@@ -56,25 +61,37 @@ export const StyledTextContent: any = styled.div`
         return 'text';
     }};
 
-    cursor: ${(props: any) => {
-        if (props.draggingMode) {
-            return 'grabbing';
-        }
+    cursor: ${
+        ({
+            draggingMode,
+            dragMode,
+            editMode,
+            toggledEditable,
+            actionable,
+        }: any) => {
+            if (actionable && !toggledEditable) {
+                return 'pointer';
+            }
 
-        if (props.dragMode) {
-            return 'grab';
-        }
+            if (draggingMode) {
+                return 'grabbing';
+            }
 
-        if (props.editMode) {
-            return 'text';
-        }
+            if (dragMode) {
+                return 'grab';
+            }
 
-        if (props.toggledEditable) {
-            return 'default';
-        }
+            if (editMode) {
+                return 'text';
+            }
 
-        return 'initial';
-    }};
+            if (toggledEditable) {
+                return 'default';
+            }
+
+            return 'initial';
+        }
+    };
 
     border: 1px solid ${(props: any) => {
         if (props.toggledEditable && props.selected) {
@@ -104,26 +121,32 @@ export const StyledEditableDiv: any = styled.div`
     outline: none;
     white-space: pre;
 
-    ::selection {
-        color: ${(props: any) => {
-            if (props.revealedText) {
-                return 'initial';
+    user-select: ${
+        ({
+            editableText,
+        }: any) => {
+            if (editableText) {
+                return 'none';
             }
 
-            if (props.editableText) {
-                return 'initial';
-            }
-
-            return 'transparent';
-        }};
-        background: hsla(220, 2%, 10%, 0.3);
-    }
-
-    user-select: ${(props: any) => {
-        if (props.editableText) {
-            return 'none';
+            return 'auto';
         }
+    };
 
-        return 'auto';
-    }};
+    ::selection {
+        background: hsla(220, 2%, 10%, 0.3);
+        color: ${
+            ({
+                viewable,
+                revealedText,
+                editableText,
+            }: any) => {
+                if (viewable || revealedText || editableText) {
+                    return 'initial';
+                }
+
+                return 'transparent';
+            }
+        };
+    }
 `;
