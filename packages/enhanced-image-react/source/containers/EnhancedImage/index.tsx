@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useState,
     useRef,
@@ -5,7 +7,9 @@ import React, {
 } from 'react';
 
 import ApolloClient from 'apollo-client';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
+import {
+    NormalizedCacheObject,
+} from 'apollo-cache-inmemory';
 
 import themes, {
     Theme,
@@ -16,11 +20,12 @@ import {
     objects,
 } from '@plurid/plurid-functions';
 
-import './styles.css';
 import {
-    StyledEnhancedImage,
-} from './styled';
+    useDebouncedCallback,
+} from '@plurid/plurid-functions-react';
 
+
+/** external */
 import logic from '../../logic';
 
 import Context from '../../services/utilities/context';
@@ -74,7 +79,17 @@ import {
 import client from '../../services/graphql/client';
 
 
+/** internal */
+import './styles.css';
 
+import {
+    StyledEnhancedImage,
+} from './styled';
+/** [END] imports */
+
+
+
+/** [START] component */
 const EnhancedImage: React.FC<EnhancedImageProperties> = (
     properties,
 ) => {
@@ -202,6 +217,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
     /** handlers */
+    /** GENERAL */
     const handleLoadedImage = async (
         image: EventTarget & HTMLImageElement,
     ) => {
@@ -304,6 +320,32 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         const updatedTexts = [...imageText, newText];
         setImageText(updatedTexts);
     }
+
+    const handleResize = useDebouncedCallback(() => {
+        if (!imageContainer.current) {
+            return;
+        }
+
+        const dimensions = imageContainer.current.getBoundingClientRect();
+        const {
+            width,
+            height,
+        } = dimensions;
+
+        const imageDimensions: ImageDimensions = {
+            width,
+            height,
+        };
+        setImageDimensions(imageDimensions);
+
+        const imageBoxDimensions: ImageBoxDimensions = {
+            width,
+            height,
+            top: 0,
+            left: 0,
+        };
+        setImageBoxDimensions(imageBoxDimensions);
+    }, 150);
 
 
 
@@ -1144,6 +1186,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
     /** effects */
+    /** Defaults Colors */
     useEffect(() => {
         if (defaultsToggled) {
             if (
@@ -1164,72 +1207,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         imageColorsBrightness,
     ]);
 
-    useEffect(() => {
-        if (preloadedData) {
-            setImageText(preloadedData.imageText);
-            setDatabaseImageID(preloadedData.imageID);
-            setMessageTimed('Rendered Text.', 3000);
-        }
-    }, [
-        preloadedData,
-    ]);
-
-    useEffect(() => {
-        if (timedNotification) {
-            const {
-                text,
-                time,
-            } = timedNotification;
-
-            if (text) {
-                setMessageTimed(text, time);
-            }
-        }
-    }, [
-        timedNotification,
-    ]);
-
-    useEffect(() => {
-        if (/\.png/.test(src)) {
-            setImageType(IMAGE_TYPES.PNG);
-        }
-        if (/\.jpe?g/.test(src)) {
-            setImageType(IMAGE_TYPES.JPG);
-        }
-        if (/\.webp/.test(src)) {
-            setImageType(IMAGE_TYPES.WEBP);
-        }
-        if (/\.gif/.test(src)) {
-            setImageType(IMAGE_TYPES.GIF);
-        }
-    }, [
-        src,
-    ]);
-
-    useEffect(() => {
-        if (getTextOnLoad) {
-            getText();
-        }
-    }, [
-        getTextOnLoad,
-    ]);
-
-    /** Handle Component Mounted */
-    useEffect(() => {
-        return () => {
-            componentIsMounted.current = false
-        }
-    }, []);
-
-    /** Handle Timeouts */
-    useEffect(() => {
-        return () => {
-            if (messageTimer.current) {
-                clearTimeout(messageTimer.current);
-            }
-        }
-    }, []);
-
     /** Handle Colors Change */
     useEffect(() => {
         if (atColorsChange) {
@@ -1248,6 +1225,69 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         imageColorsHue,
         imageColorsSaturation,
         imageColorsBrightness,
+    ]);
+
+    /** Preloaded Data. */
+    useEffect(() => {
+        if (preloadedData) {
+            setImageText(preloadedData.imageText);
+            setDatabaseImageID(preloadedData.imageID);
+            setMessageTimed('Rendered Text.', 3000);
+        }
+    }, [
+        preloadedData,
+    ]);
+
+    /** Message Timed. */
+    useEffect(() => {
+        if (timedNotification) {
+            const {
+                text,
+                time,
+            } = timedNotification;
+
+            if (text) {
+                setMessageTimed(text, time);
+            }
+        }
+    }, [
+        timedNotification,
+    ]);
+
+    /** Handle Timeouts */
+    useEffect(() => {
+        return () => {
+            if (messageTimer.current) {
+                clearTimeout(messageTimer.current);
+            }
+        }
+    }, []);
+
+    /** Image Type. */
+    useEffect(() => {
+        if (/\.png/.test(src)) {
+            setImageType(IMAGE_TYPES.PNG);
+        }
+        if (/\.jpe?g/.test(src)) {
+            setImageType(IMAGE_TYPES.JPG);
+        }
+        if (/\.webp/.test(src)) {
+            setImageType(IMAGE_TYPES.WEBP);
+        }
+        if (/\.gif/.test(src)) {
+            setImageType(IMAGE_TYPES.GIF);
+        }
+    }, [
+        src,
+    ]);
+
+    /** Get Text on Load. */
+    useEffect(() => {
+        if (getTextOnLoad) {
+            getText();
+        }
+    }, [
+        getTextOnLoad,
     ]);
 
     /** Handle transview. */
@@ -1299,6 +1339,23 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         transviewSourceLanguage,
         transviewTargetLanguage,
     ]);
+
+    /** Handle Component Mounted */
+    useEffect(() => {
+        return () => {
+            componentIsMounted.current = false
+        }
+    }, []);
+
+    /** Handle Window Resize */
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
+
 
 
     /** context */
@@ -1435,10 +1492,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     ? setShowSettingsButton(true)
                     : null
                 }
-                style={{
-                    width: imageBoxDimensions.width !== 0 ? imageBoxDimensions.width + 'px' : 'auto',
-                    height: imageBoxDimensions.height !== 0 ? imageBoxDimensions.height + 'px' : 'auto',
-                }}
                 ref={imageContainer}
             >
                 <Image />
@@ -1474,3 +1527,4 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
 export default EnhancedImage;
+/** [END] component */
