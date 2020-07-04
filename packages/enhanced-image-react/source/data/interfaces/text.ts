@@ -27,6 +27,13 @@ export interface ImageTextVersionTextarea extends ImageTextVersion {
 }
 
 
+export interface TextlineTransview {
+    backgrounded?: boolean;
+    language: string;
+    content: string;
+}
+
+
 export interface ImageTextVersionTextline extends ImageTextVersion {
     type: 'TEXTLINE';
 
@@ -43,6 +50,7 @@ export interface ImageTextVersionTextline extends ImageTextVersion {
     };
 
     content: string;
+    transviews?: TextlineTransview[];
 
     link: {
         active: boolean;
