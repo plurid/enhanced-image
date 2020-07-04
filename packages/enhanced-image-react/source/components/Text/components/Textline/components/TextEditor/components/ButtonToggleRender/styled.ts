@@ -19,11 +19,15 @@ export interface IStyledButtonContainer {
     transparentUI: boolean;
 }
 
+
 export const StyledButtonContainer = styled.div<IStyledButtonContainer>`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    text-align: left;
+    justify-content: left;
+    justify-items: left;
     width: 110px;
 
     background: ${
@@ -50,4 +54,16 @@ export const StyledButtonContainer = styled.div<IStyledButtonContainer>`
             }: IStyledButtonContainer) => theme.backgroundColorSecondary
         };
     }
+`;
+
+
+export const StyledLanguageSelect = styled.div`
+    display: flex;
+    margin: 10px 0;
+`;
+
+
+export const StyledLanguage = styled.div`
+    display: flex;
+    margin: 10px 0;
 `;
