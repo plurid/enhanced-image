@@ -80,7 +80,10 @@ export interface TextEditorProperties {
         y: number;
     };
     expandFormat: boolean;
-    setExpandFormat: React.Dispatch<React.SetStateAction<boolean>>;
+    drawers: string[];
+    toggleDrawer: (
+        drawer: string,
+    ) => void;
     setWidth: React.Dispatch<React.SetStateAction<number>>;
     fullWidth: boolean;
 }
@@ -120,7 +123,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
         positions,
         expandFormat,
-        setExpandFormat,
+        drawers,
+        toggleDrawer,
         setWidth,
         fullWidth,
     } = properties;
@@ -319,9 +323,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
                 <Drawer
                     theme={theme}
-                    title="Format"
-                    expand={expandFormat}
-                    toggleExpand={() => setExpandFormat(expand => !expand)}
+                    title="Font"
+                    expand={drawers.includes('FONT')}
+                    toggleExpand={() => toggleDrawer('FONT')}
                 >
                     <ButtonIncrements
                         theme={theme}
@@ -422,7 +426,14 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         transparentUI={transparentUI}
                         Icon={PluridIconPalette}
                     />
+                </Drawer>
 
+                <Drawer
+                    theme={theme}
+                    title="Transform"
+                    expand={drawers.includes('TRANSFORM')}
+                    toggleExpand={() => toggleDrawer('TRANSFORM')}
+                >
                     <StyledTransformSliders>
                         <Slider
                             value={currentVersion.transform.perspective + 1}
