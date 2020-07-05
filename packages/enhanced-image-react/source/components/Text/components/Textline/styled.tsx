@@ -42,9 +42,14 @@ export const StyledTextContent: any = styled.div`
 
     background: ${
         ({
+            backgrounded,
             revealedText,
             editableText,
         }: any) => {
+            if (backgrounded) {
+                return backgrounded;
+            }
+
             if (revealedText || editableText) {
                 return 'hsla(220, 2%, 10%, 0.3)';
             }
