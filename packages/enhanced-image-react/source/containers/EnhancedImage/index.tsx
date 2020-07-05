@@ -857,8 +857,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             const transviewLanguage: TextlineTransviewData = {
                 backgrounded: false,
                 language,
-                // content: currentVersion.content,
-                content: 'aaaaaa',
+                content: currentVersion.content,
             };
 
             currentVersion.transview.data.push(transviewLanguage);
@@ -1265,13 +1264,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             if (currentVersion && currentVersion.type === 'TEXTLINE') {
                 const version = getImmutableTextline(currentVersion);
 
-                const currentVersionId = uuid.generate();
+                const currentVersionId = 'eiv_' + uuid.generate();
                 version.id = currentVersionId;
                 version.position.y = currentVersion.position.y < 85
                     ? currentVersion.position.y + 10
                     : currentVersion.position.y - 10;
 
-                const id = uuid.generate();
+                const id = 'eit_' + uuid.generate();
                 const updatedImgText: ImageText = {
                     id,
                     currentVersionId,

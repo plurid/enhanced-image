@@ -89,6 +89,8 @@ export interface TextEditorProperties {
     ) => void;
     setWidth: React.Dispatch<React.SetStateAction<number>>;
     fullWidth: boolean;
+
+    saveTextValue: () => void;
 }
 
 const TextEditor: React.FC<TextEditorProperties> = (
@@ -129,6 +131,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
         toggleDrawer,
         setWidth,
         fullWidth,
+
+        saveTextValue,
     } = properties;
 
 
@@ -329,7 +333,12 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     theme={theme}
                     toggle={() => {
                         if (draggable) { setDraggable(false) }
-                        setEditable(editable => !editable)
+
+                        if (editable) {
+                            saveTextValue();
+                        }
+
+                        setEditable(editable => !editable);
                     }}
                     toggled={editable}
                     icon={SelectTextIcon}

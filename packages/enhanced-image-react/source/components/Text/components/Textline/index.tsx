@@ -6,6 +6,12 @@ import React, {
 } from 'react';
 
 import {
+    Editor,
+    EditorState,
+    ContentState,
+} from 'draft-js';
+
+import {
     ImageText,
     ImageTextVersionTextline,
 } from '../../../../data/interfaces';
@@ -61,7 +67,7 @@ const Textline: React.FC<TextlineProperties> = (
 
 
     /** references */
-    const textValue = useRef(currentVersion.content);
+    // const textValue = useRef(currentVersion.content);
     const timeoutMouseOver = useRef<any>(0);
     const textItem = useRef<HTMLDivElement>();
 
@@ -86,7 +92,11 @@ const Textline: React.FC<TextlineProperties> = (
     const [wordSpacing, setWordSpacing] = useState('0px');
     const [lineHeight, setLineHeight] = useState('auto');
 
-    // const [textValue, setTextValue] = useState(currentVersion.content);
+    const [textState, setTextState] = React.useState(
+        () => EditorState.createWithContent(
+            ContentState.createFromText(currentVersion.content)
+        )
+    );
 
     const [showEditor, setShowEditor] = useState(false);
 
@@ -205,14 +215,14 @@ const Textline: React.FC<TextlineProperties> = (
     }
 
     const handleChange = (
-        event: React.SyntheticEvent<HTMLDivElement>,
+        textState: EditorState,
     ) => {
-        const value = event.currentTarget.innerText;
-        if (value !== '') {
-            updateVersionContent(data.id, value);
-        } else {
-            updateVersionContent(data.id, 'New Text');
-        }
+        setTextState(textState);
+    }
+
+    const saveTextValue = () => {
+        const value = textState.getCurrentContent().getPlainText();
+        updateVersionContent(data.id, value);
     }
 
     const setVersionViewable = () => {
@@ -537,7 +547,11 @@ const Textline: React.FC<TextlineProperties> = (
         } = currentVersion.transview;
 
         if (active === 'SOURCE') {
-            textValue.current = currentVersion.content;
+            const textState = EditorState.createWithContent(
+                ContentState.createFromText(currentVersion.content)
+            );
+            setTextState(textState);
+            // textValue.current = currentVersion.content;
             return;
         }
 
@@ -546,11 +560,19 @@ const Textline: React.FC<TextlineProperties> = (
         );
 
         if (!transview) {
-            textValue.current = currentVersion.content;
+            const textState = EditorState.createWithContent(
+                ContentState.createFromText(currentVersion.content)
+            );
+            setTextState(textState);
+            // textValue.current = currentVersion.content;
             return;
         }
 
-        textValue.current = transview.content;
+        const textState = EditorState.createWithContent(
+            ContentState.createFromText(transview.content)
+        );
+        setTextState(textState);
+        // textValue.current = transview.content;
     }, [
         currentVersion.transview.data,
         currentVersion.transview.active,
@@ -562,6 +584,11 @@ const Textline: React.FC<TextlineProperties> = (
     useEffect(() => {
         setLoaded(true);
     }, []);
+
+
+    console.log(
+        'textState', textState,
+    );
 
 
     /** render */
@@ -620,34 +647,34 @@ const Textline: React.FC<TextlineProperties> = (
                                 editableText={editableText}
                                 revealedText={revealedText}
                                 viewable={currentVersion.viewable}
-                                contentEditable={editable}
-                                suppressContentEditableWarning={true}
-                                onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
-                                dangerouslySetInnerHTML={{
-                                    __html: textValue.current,
-                                }}
-                            />
+                            >
+                                <Editor
+                                    editorState={textState}
+                                    onChange={handleChange}
+                                    readOnly={!editable}
+                                />
+                            </StyledEditableDiv>
                         </StyledTextContentLink>
                     ) : (
                         <StyledEditableDiv
                             editableText={editableText}
                             revealedText={revealedText}
                             viewable={currentVersion.viewable}
-                            contentEditable={editable}
-                            suppressContentEditableWarning={true}
-                            onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
-                            dangerouslySetInnerHTML={{
-                                __html: textValue.current,
-                            }}
-                        />
+                        >
+                            <Editor
+                                editorState={textState}
+                                onChange={handleChange}
+                                readOnly={!editable}
+                            />
+                        </StyledEditableDiv>
                     )}
                 </StyledTextContent>
             )}
 
-            {/* {showEditor
+            {showEditor
             && currentVersion
             && !dragging
-            && ( */}
+            && (
                 <TextEditor
                     textItem={data}
                     currentVersion={currentVersion}
@@ -663,8 +690,10 @@ const Textline: React.FC<TextlineProperties> = (
                     toggleDrawer={toggleDrawer}
                     setWidth={setEditorWidth}
                     fullWidth={editorFullWidth}
+
+                    saveTextValue={saveTextValue}
                 />
-            {/* )} */}
+            )}
         </StyledTextItem>
     );
 }
