@@ -34,6 +34,7 @@ import {
     StyledTransviewContainer,
     StyledLanguageSelect,
     StyledLanguage,
+    StyledLanguageActivate,
     StyledLanguageButtons,
 } from './styled';
 /** [END] imports */
@@ -76,6 +77,10 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
         setSelectedLanguage,
     ] = useState('Select');
     const [
+        activeTransview,
+        setActiveTransview,
+    ] = useState('');
+    const [
         addedLanguages,
         setAddedLanguages,
     ] = useState<string[]>([]);
@@ -88,6 +93,7 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
         ];
         languages.push(selectedLanguage);
         setAddedLanguages(languages);
+        setSelectedLanguage('Select');
     }
 
     const removeLanguage = (
@@ -134,10 +140,21 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
                 return (
                     <StyledLanguage
                         key={uuid.generate()}
+                        theme={theme}
+                        active={activeTransview === language}
                     >
-                        <div>
+                        <StyledLanguageActivate
+                            onClick={() => {
+                                if (activeTransview === language) {
+                                    setActiveTransview('');
+                                    return;
+                                }
+
+                                setActiveTransview(language);
+                            }}
+                        >
                             {language}
-                        </div>
+                        </StyledLanguageActivate>
 
                         <StyledLanguageButtons>
                             <PluridIconFrame

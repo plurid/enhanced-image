@@ -20,6 +20,7 @@ export const StyledTransviewContainer = styled.div<IStyledTransviewContainer>`
     width: 140px;
     cursor: default;
     font-size: 0.7rem;
+    user-select: none;
 
     background: ${
         ({
@@ -37,14 +38,6 @@ export const StyledTransviewContainer = styled.div<IStyledTransviewContainer>`
             theme,
         }: IStyledTransviewContainer) => theme.boxShadowUmbra
     };
-
-    :hover {
-        background: ${
-            ({
-                theme,
-            }: IStyledTransviewContainer) => theme.backgroundColorSecondary
-        };
-    }
 `;
 
 
@@ -58,13 +51,41 @@ export const StyledLanguageSelect = styled.div`
 `;
 
 
-export const StyledLanguage = styled.div`
+export interface IStyledLanguage {
+    theme: Theme;
+    active: boolean;
+}
+
+export const StyledLanguage = styled.div<IStyledLanguage>`
     box-sizing: border-box;
     display: flex;
     width: 100%;
     padding: 10px 7px;
+    min-height: 36px;
     align-items: center;
     justify-content: space-between;
+
+    background: ${
+        ({
+            theme,
+            active,
+        }: IStyledLanguage) => {
+            if (active) {
+                return theme.backgroundColorSecondary;
+            }
+
+            return 'initial';
+        }
+    };
+`;
+
+
+export const StyledLanguageActivate = styled.div`
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: -24px 0;
+    height: 36px;
 `;
 
 
