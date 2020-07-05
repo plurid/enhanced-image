@@ -92,6 +92,7 @@ const Textline: React.FC<TextlineProperties> = (
     const [wordSpacing, setWordSpacing] = useState('0px');
     const [lineHeight, setLineHeight] = useState('auto');
 
+    const [backgrounded, setBackgrounded] = useState('black');
     const [content, setContent] = useState(currentVersion.content);
     const [textState, setTextState] = useState(
         () => EditorState.createWithContent(
@@ -553,6 +554,7 @@ const Textline: React.FC<TextlineProperties> = (
             );
             setTextState(textState);
             setContent(currentVersion.content);
+            setBackgrounded('');
             return;
         }
 
@@ -566,7 +568,19 @@ const Textline: React.FC<TextlineProperties> = (
             );
             setTextState(textState);
             setContent(currentVersion.content);
+            setBackgrounded('');
             return;
+        }
+
+        if (transview.backgrounded) {
+            if (currentVersion.color === 'black'
+                || currentVersion.color === '#000'
+                || currentVersion.color === '#000000'
+            ) {
+                setBackgrounded('white');
+            } else {
+                setBackgrounded('black');
+            }
         }
 
         const textState = EditorState.createWithContent(
@@ -620,6 +634,7 @@ const Textline: React.FC<TextlineProperties> = (
                     draggingMode={dragging}
                     editableText={editableText}
                     revealedText={revealedText}
+                    backgrounded={backgrounded}
                     viewable={currentVersion && currentVersion.viewable}
                     actionable={currentVersion && currentVersion.action.active}
                     onClick={() => handleAction()}

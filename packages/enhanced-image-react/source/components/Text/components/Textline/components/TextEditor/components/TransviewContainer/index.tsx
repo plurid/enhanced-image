@@ -200,7 +200,13 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
                             />
 
                             <PluridIconDelete
-                                atClick={() => removeTransviewLanguage(textID, language)}
+                                atClick={() => {
+                                    if (transview.active === language) {
+                                        setActiveTransview(textID, 'SOURCE');
+                                    }
+
+                                    removeTransviewLanguage(textID, language);
+                                }}
                             />
                         </StyledLanguageButtons>
                     </StyledLanguage>
