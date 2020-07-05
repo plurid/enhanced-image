@@ -3,6 +3,7 @@
 import React, {
     useContext,
     useState,
+    useEffect,
 } from 'react';
 
 import {
@@ -104,6 +105,10 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
         selectedLanguage,
         setSelectedLanguage,
     ] = useState(TRANSVIEW_DEFAULT_SELECT);
+    const [
+        selectableLanguages,
+        setSelectableLanguages,
+    ] = useState(transviewTargetLanguages);
 
 
     /** handle */
@@ -117,6 +122,23 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
     }
 
 
+    /** effects */
+    useEffect(() => {
+        const transviewLanguages = transview.data.map(
+            data => data.language
+        );
+
+        const languages = transviewTargetLanguages.filter(
+            language => !transviewLanguages.includes(language)
+        );
+
+        setSelectableLanguages(languages);
+    }, [
+        transview.data,
+        transview.data.length,
+    ]);
+
+
     /** render */
     return (
         <StyledTransviewContainer
@@ -126,7 +148,7 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
             <StyledLanguageSelect>
                 <PluridDropdown
                     selected={selectedLanguage}
-                    selectables={transviewTargetLanguages}
+                    selectables={selectableLanguages}
                     atSelect={(selection) => {
                         if (typeof selection === 'string') {
                             setSelectedLanguage(selection);
