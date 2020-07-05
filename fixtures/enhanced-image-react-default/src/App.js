@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+    Component,
+} from 'react';
 
 import foodImage from './assets/food-vegetables-text.jpg';
 // import populationDensityEurope from './assets/population-density-europe.png';
