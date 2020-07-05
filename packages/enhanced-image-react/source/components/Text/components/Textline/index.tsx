@@ -237,6 +237,22 @@ const Textline: React.FC<TextlineProperties> = (
         toggleVersionViewable(data.id);
     }
 
+    const switchEditorPosition = () => {
+        if (!textItem.current) {
+            return;
+        }
+
+        const {
+            offsetHeight,
+        } = textItem.current;
+
+        const newEditorPositions = {
+            x: editorPositions.x,
+            y: editorPositions.y === -34 ? offsetHeight : -34,
+        };
+        setEditorPositions(newEditorPositions);
+    }
+
     const handleShortcuts = (
         event: React.KeyboardEvent,
     ) => {
@@ -276,6 +292,9 @@ const Textline: React.FC<TextlineProperties> = (
                 break;
             case 'x':
                 deleteTextItem(data.id);
+                break;
+            case 'e':
+                switchEditorPosition();
                 break;
         }
     }
