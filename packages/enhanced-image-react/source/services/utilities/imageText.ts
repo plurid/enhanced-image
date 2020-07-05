@@ -8,7 +8,58 @@ import {
 
 
 
-export const getVersionById = (imageText: ImageText) => {
+export const getImmutableTextline = (
+    item: ImageTextVersionTextline,
+) => {
+    const textline: ImageTextVersionTextline = {
+        ...item,
+        position: {
+            ...item.position,
+        },
+        transform: {
+            ...item.transform,
+        },
+        font: {
+            ...item.font,
+        },
+        link: {
+            ...item.link,
+        },
+        action: {
+            ...item.action,
+        },
+        transview: {
+            ...item.transview,
+            data: [
+                ...item.transview.data,
+            ],
+        },
+    };
+
+    return textline;
+}
+
+
+export const getImmutableTextarea = (
+    item: ImageTextVersionTextarea,
+) => {
+    const textarea: ImageTextVersionTextarea = {
+        ...item,
+        position: {
+            ...item.position,
+        },
+        transform: {
+            ...item.transform,
+        },
+    };
+
+    return textarea;
+}
+
+
+export const getVersionById = (
+    imageText: ImageText,
+) => {
     const {
         currentVersionId,
         versions,
@@ -16,13 +67,21 @@ export const getVersionById = (imageText: ImageText) => {
 
     const item = versions.find(version => version.id === currentVersionId);
 
-    return item;
+    if (!item) {
+        return;
+    }
+
+    if (item.type === 'TEXTLINE') {
+        return getImmutableTextline(item);
+    }
+
+    return getImmutableTextarea(item);
 }
 
 
 export const updateVersion = (
     imageText: ImageText,
-    version: ImageTextVersionTextline | ImageTextVersionTextarea
+    version: ImageTextVersionTextline | ImageTextVersionTextarea,
 ): ImageText => {
     const {
         id,
@@ -32,19 +91,25 @@ export const updateVersion = (
         versionData: ImageTextVersionTextline | ImageTextVersionTextarea
     ) => {
         if (versionData.id === id) {
-            const updatedVersion: ImageTextVersionTextline | ImageTextVersionTextarea = { ...version };
+            const updatedVersion: ImageTextVersionTextline | ImageTextVersionTextarea = {
+                ...version,
+            };
             return updatedVersion;
         }
         return versionData;
     });
 
-    imageText.versions = [...updatedVersions];
+    imageText.versions = [
+        ...updatedVersions,
+    ];
 
     return imageText;
 }
 
 
-export const imageURLFromSrc = (src: string) => {
+export const imageURLFromSrc = (
+    src: string,
+) => {
     if (src[0] === '/') {
         return location.origin + src;
     }

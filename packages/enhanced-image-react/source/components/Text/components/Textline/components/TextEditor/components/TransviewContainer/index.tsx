@@ -1,6 +1,7 @@
 /** [START] imports */
 /** libraries */
 import React, {
+    useContext,
     useState,
 } from 'react';
 
@@ -28,6 +29,12 @@ import {
     transviewTargetLanguages,
 } from '../../../../../../../../data/constants/transview';
 
+import {
+    TextlineTransview,
+} from '../../../../../../../../data/interfaces/text';
+
+import Context from '../../../../../../../../services/utilities/context';
+
 
 /** internal */
 import {
@@ -49,6 +56,8 @@ export interface TransviewContainerProperties {
     /** - values */
     theme: Theme;
     transparentUI: boolean;
+    textID: string;
+    transview: TextlineTransview;
     /** - methods */
 
     /** optional */
@@ -59,12 +68,29 @@ export interface TransviewContainerProperties {
 const TransviewContainer: React.FC<TransviewContainerProperties> = (
     properties,
 ) => {
+    /** context */
+    const context = useContext(Context);
+
+    if (!context) {
+        return (<></>);
+    }
+
+    const {
+        addTransviewLanguage,
+        removeTransviewLanguage,
+        setActiveTransview,
+        toggleBackgroundedTransview,
+    } = context;
+
+
     /** properties */
     const {
         /** required */
         /** - values */
         theme,
         transparentUI,
+        textID,
+        transview,
         /** - methods */
 
         /** optional */
@@ -78,14 +104,6 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
         selectedLanguage,
         setSelectedLanguage,
     ] = useState(TRANSVIEW_DEFAULT_SELECT);
-    const [
-        activeTransview,
-        setActiveTransview,
-    ] = useState('');
-    const [
-        addedLanguages,
-        setAddedLanguages,
-    ] = useState<string[]>([]);
 
 
     /** handle */
@@ -94,24 +112,8 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
             return;
         }
 
-        const languages = [
-            ...addedLanguages
-        ];
-        languages.push(selectedLanguage);
-        setAddedLanguages(languages);
+        addTransviewLanguage(textID, selectedLanguage);
         setSelectedLanguage(TRANSVIEW_DEFAULT_SELECT);
-    }
-
-    const removeLanguage = (
-        language: string,
-    ) => {
-        const languages = addedLanguages.filter(addedLanguage => addedLanguage !== language);
-        setAddedLanguages(languages);
-    }
-
-    const setBackgrounded = (
-        language: string,
-    ) => {
     }
 
 
@@ -144,21 +146,26 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
                 )}
             </StyledLanguageSelect>
 
-            {addedLanguages.map(language => {
+            {transview.data.map(data => {
+                const {
+                    backgrounded,
+                    language,
+                } = data;
+
                 return (
                     <StyledLanguage
                         key={uuid.generate()}
                         theme={theme}
-                        active={activeTransview === language}
+                        active={transview.active === language}
                     >
                         <StyledLanguageActivate
                             onClick={() => {
-                                if (activeTransview === language) {
-                                    setActiveTransview('');
+                                if (transview.active === language) {
+                                    setActiveTransview(textID, 'SOURCE');
                                     return;
                                 }
 
-                                setActiveTransview(language);
+                                setActiveTransview(textID, language);
                             }}
                         >
                             {language}
@@ -166,11 +173,12 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
 
                         <StyledLanguageButtons>
                             <PluridIconFrame
-                                atClick={() => setBackgrounded(language)}
+                                atClick={() => toggleBackgroundedTransview(textID, language)}
+                                opacity={backgrounded ? 1 : 0.3}
                             />
 
                             <PluridIconDelete
-                                atClick={() => removeLanguage(language)}
+                                atClick={() => removeTransviewLanguage(textID, language)}
                             />
                         </StyledLanguageButtons>
                     </StyledLanguage>

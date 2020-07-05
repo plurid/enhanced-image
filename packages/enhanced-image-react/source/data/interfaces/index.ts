@@ -235,6 +235,23 @@ export interface Context {
 
     imageText: ImageText[];
 
+    addTransviewLanguage: (
+        textID: string,
+        language: string,
+    ) => void;
+    removeTransviewLanguage: (
+        textID: string,
+        language: string,
+    ) => void;
+    setActiveTransview: (
+        textID: string,
+        language: string,
+    ) => void;
+    toggleBackgroundedTransview: (
+        textID: string,
+        language: string,
+    ) => void;
+
     emitAction: (
         actionType: string,
         textID: string,
