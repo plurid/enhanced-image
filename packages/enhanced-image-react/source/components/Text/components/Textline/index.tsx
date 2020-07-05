@@ -61,6 +61,7 @@ const Textline: React.FC<TextlineProperties> = (
 
 
     /** references */
+    const textValue = useRef(currentVersion.content);
     const timeoutMouseOver = useRef<any>(0);
     const textItem = useRef<HTMLDivElement>();
 
@@ -85,7 +86,7 @@ const Textline: React.FC<TextlineProperties> = (
     const [wordSpacing, setWordSpacing] = useState('0px');
     const [lineHeight, setLineHeight] = useState('auto');
 
-    const [textValue, setTextValue] = useState(currentVersion.content);
+    // const [textValue, setTextValue] = useState(currentVersion.content);
 
     const [showEditor, setShowEditor] = useState(false);
 
@@ -536,7 +537,7 @@ const Textline: React.FC<TextlineProperties> = (
         } = currentVersion.transview;
 
         if (active === 'SOURCE') {
-            setTextValue(currentVersion.content);
+            textValue.current = currentVersion.content;
             return;
         }
 
@@ -545,12 +546,13 @@ const Textline: React.FC<TextlineProperties> = (
         );
 
         if (!transview) {
-            setTextValue(currentVersion.content);
+            textValue.current = currentVersion.content;
             return;
         }
 
-        setTextValue(transview.content);
+        textValue.current = transview.content;
     }, [
+        currentVersion.transview.data,
         currentVersion.transview.active,
     ]);
 
@@ -621,9 +623,10 @@ const Textline: React.FC<TextlineProperties> = (
                                 contentEditable={editable}
                                 suppressContentEditableWarning={true}
                                 onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
-                            >
-                                {textValue}
-                            </StyledEditableDiv>
+                                dangerouslySetInnerHTML={{
+                                    __html: textValue.current,
+                                }}
+                            />
                         </StyledTextContentLink>
                     ) : (
                         <StyledEditableDiv
@@ -633,9 +636,10 @@ const Textline: React.FC<TextlineProperties> = (
                             contentEditable={editable}
                             suppressContentEditableWarning={true}
                             onInput={(event: React.SyntheticEvent<HTMLDivElement>) => handleChange(event)}
-                        >
-                            {textValue}
-                        </StyledEditableDiv>
+                            dangerouslySetInnerHTML={{
+                                __html: textValue.current,
+                            }}
+                        />
                     )}
                 </StyledTextContent>
             )}
