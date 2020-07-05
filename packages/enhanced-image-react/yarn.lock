@@ -1469,10 +1469,10 @@
   resolved "https://registry.yarnpkg.com/@plurid/plurid-themes/-/plurid-themes-0.1.26.tgz#696ec2b8a57d6d95027ac2dc2a954dda142bdb82"
   integrity sha512-UOfta3WoTEC5p0ri11+7PM/hha5zGkxXQjYl8yhMho/uSRATyCal4Hpj49jSx4EjQoxfn65CPpRA8Z2SMRmRLQ==
 
-"@plurid/plurid-ui-react@^0.1.82":
-  version "0.1.82"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.82.tgz#4927c7aecee0c9eb119a88f44c213ebf7d1dcd9e"
-  integrity sha512-so18PXGMraVvqoH69VPixT+Qwp/cvlvi61qWRZJSYtC0XcMpI/KhrQOzzJeOj63DRH49d8AEJxdnqs+nkQIbLw==
+"@plurid/plurid-ui-react@^0.1.83":
+  version "0.1.83"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.83.tgz#e995414e1d5a03ccafc2f2f1f0ec47b1347aa849"
+  integrity sha512-eHAJqYty7Joh/sNYwJxG8ou93ccRXECss1ocLB2FxjXeIXZcDpOSkK5HCXNA0UteSTP+J4IpkqHG+hui0jDITw==
 
 "@reach/router@^1.2.1":
   version "1.3.4"
@@ -10538,10 +10538,10 @@ rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^2.18.2:
-  version "2.18.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.18.2.tgz#886ac6e4549e493df106c3e2580c89aeb997be25"
-  integrity sha512-+mzyZhL9ZyLB3eHBISxRNTep9Z2qCuwXzAYkUbFyz7yNKaKH03MFKeiGOS1nv2uvPgDb4ASKv+FiS5mC4h5IFQ==
+rollup@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.19.0.tgz#6484868882281552b0dc33aa5bc5b36a9c920452"
+  integrity sha512-nny5Vs4jwY3vbQAXgOyU4ZDZqLvMKm/umnsVry/demVL6ve8ke1XhdpYE0eiWencASmx/qFPw6pP8P7MLJl9XA==
   optionalDependencies:
     fsevents "~2.1.2"
 
