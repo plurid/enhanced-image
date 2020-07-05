@@ -41,6 +41,8 @@ import {
 
 
 
+const TRANSVIEW_DEFAULT_SELECT = 'Select';
+
 /** [START] component */
 export interface TransviewContainerProperties {
     /** required */
@@ -75,7 +77,7 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
     const [
         selectedLanguage,
         setSelectedLanguage,
-    ] = useState('Select');
+    ] = useState(TRANSVIEW_DEFAULT_SELECT);
     const [
         activeTransview,
         setActiveTransview,
@@ -88,12 +90,16 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
 
     /** handle */
     const addLanguage = () => {
+        if (selectedLanguage === TRANSVIEW_DEFAULT_SELECT) {
+            return;
+        }
+
         const languages = [
             ...addedLanguages
         ];
         languages.push(selectedLanguage);
         setAddedLanguages(languages);
-        setSelectedLanguage('Select');
+        setSelectedLanguage(TRANSVIEW_DEFAULT_SELECT);
     }
 
     const removeLanguage = (
@@ -131,9 +137,11 @@ const TransviewContainer: React.FC<TransviewContainerProperties> = (
                     left={true}
                 />
 
-                <PluridIconAdd
-                    atClick={() => addLanguage()}
-                />
+                {selectedLanguage !== TRANSVIEW_DEFAULT_SELECT && (
+                    <PluridIconAdd
+                        atClick={() => addLanguage()}
+                    />
+                )}
             </StyledLanguageSelect>
 
             {addedLanguages.map(language => {
