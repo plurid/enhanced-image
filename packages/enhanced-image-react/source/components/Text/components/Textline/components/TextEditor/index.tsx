@@ -142,6 +142,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
     /** state */
     const [outside, setOutside] = useState(<></>);
+    const [outsideKind, setOutsideKind] = useState('');
     const [outsideTopBased, setOutsideTopBased] = useState(false);
     const [outsideLeft, setOutsideLeft] = useState(100);
     const [transformSlider, setTransformSlider] = useState('');
@@ -304,15 +305,29 @@ const TextEditor: React.FC<TextEditorProperties> = (
         currentVersion.transview.data.length,
     ]);
 
-    // /** Expand format. */
-    // useEffect(() => {
-    //     if (drawers.length === 0) {
-    //         setTransformSlider('');
-    //         renderOutside(<></>);
-    //     }
-    // }, [
-    //     drawers.length,
-    // ]);
+    /** Show Transview */
+    useEffect(() => {
+        if (outsideKind !== 'transview') {
+            setShowTransview(false);
+        }
+    }, [
+        outsideKind,
+    ]);
+
+    /** Drawers. */
+    useEffect(() => {
+        if (!drawers.includes('FONT')) {
+            setOutsideKind('');
+            renderOutside(<></>);
+        }
+
+        if (!drawers.includes('TRANSFORM')) {
+            setTransformSlider('');
+            renderOutside(<></>);
+        }
+    }, [
+        drawers.length,
+    ]);
 
 
     /** render */
@@ -394,6 +409,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         toggleTextDraggable={() => {}}
                         toggleTextSelected={() => {}}
                         renderOutside={renderOutside}
+                        outsideKind={outsideKind}
+                        setOutsideKind={setOutsideKind}
                     />
 
                     <ButtonInput
@@ -406,6 +423,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         valueType="link.to"
                         changeValue={updateField}
                         renderOutside={renderOutside}
+                        outsideKind={outsideKind}
+                        setOutsideKind={setOutsideKind}
                         goToLink={true}
                     />
 
@@ -421,14 +440,19 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         valueType="action.type"
                         changeValue={updateField}
                         renderOutside={renderOutside}
+                        outsideKind={outsideKind}
+                        setOutsideKind={setOutsideKind}
                     />
 
                     <ButtonToggleRender
                         theme={theme}
+                        type={'transview'}
                         toggle={() => setShowTransview(show => !show)}
                         toggled={showTransview}
                         icon={TransviewIcon}
                         renderOutside={renderOutside}
+                        outsideKind={outsideKind}
+                        setOutsideKind={setOutsideKind}
                         Outside={transviewContainer}
                     />
 
