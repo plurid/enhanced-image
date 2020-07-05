@@ -50,7 +50,13 @@ export interface ImageTextVersionTextline extends ImageTextVersion {
     };
 
     content: string;
-    transviews?: TextlineTransview[];
+    transview: {
+        /**
+         * The targeted transview language or `SOURCE` for the default text.
+         */
+        active: string;
+        data: TextlineTransview[]
+    };
 
     link: {
         active: boolean;

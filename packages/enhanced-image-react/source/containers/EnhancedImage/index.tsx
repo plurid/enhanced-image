@@ -42,6 +42,7 @@ import {
     ImageDimensions,
     ImageBoxDimensions,
     ImageText,
+    ImageTextVersionTextline,
     ImageColorsData,
     ActionDetail,
 } from '../../data/interfaces';
@@ -303,6 +304,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     },
 
                     content: 'New Text',
+                    transview: {
+                        active: 'SOURCE',
+                        data: [],
+                    },
 
                     link: {
                         active: false,
@@ -1061,7 +1066,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         if (imgText) {
             const currentVersion = getVersionById(imgText);
             if (currentVersion && currentVersion.type === 'TEXTLINE') {
-                const version = {
+                const version: ImageTextVersionTextline = {
                     ...currentVersion,
                     position: {
                         ...currentVersion.position,
@@ -1077,6 +1082,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     },
                     action: {
                         ...currentVersion.action,
+                    },
+                    transview: {
+                        ...currentVersion.transview,
+                        data: [
+                            ...currentVersion.transview.data,
+                        ],
                     },
                 };
 
