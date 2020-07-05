@@ -857,7 +857,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             const transviewLanguage: TextlineTransviewData = {
                 backgrounded: false,
                 language,
-                content: currentVersion.content,
+                // content: currentVersion.content,
+                content: 'aaaaaa',
             };
 
             currentVersion.transview.data.push(transviewLanguage);
@@ -1180,14 +1181,52 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         const updatedImageText = imageText.map(text => {
             if (text.id === textID) {
                 const currentVersion = getVersionById(text);
-                if (currentVersion) {
-                    const updatedVersion = { ...currentVersion };
-                    updatedVersion.content = value;
-                    const updatedText = updateVersion(text, updatedVersion);
-                    return { ...updatedText };
+
+                if (!currentVersion) {
+                    return { ...text };
                 }
 
-                return { ...text };
+                if (currentVersion.type !== 'TEXTLINE') {
+                    /**
+                     * TODO
+                     * handle 'TEXTAREA'
+                     */
+                    return { ...text };
+                }
+
+                const {
+                    active,
+                    data,
+                } = currentVersion.transview;
+
+                /** Handle source */
+                if (active === 'SOURCE') {
+                    currentVersion.content = value;
+                    const updatedText = updateVersion(text, currentVersion);
+                    return {
+                        ...updatedText,
+                    };
+                }
+
+                /** Handle transview */
+                const transviewData = data.map(data => {
+                    if (data.language !== active) {
+                        return data;
+                    }
+
+                    return {
+                        ...data,
+                        content: value,
+                    };
+                });
+
+                currentVersion.transview.data = [
+                    ...transviewData,
+                ];
+                const updatedText = updateVersion(text, currentVersion);
+                return {
+                    ...updatedText,
+                };
             }
 
             return { ...text };

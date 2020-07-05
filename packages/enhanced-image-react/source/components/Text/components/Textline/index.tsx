@@ -85,7 +85,7 @@ const Textline: React.FC<TextlineProperties> = (
     const [wordSpacing, setWordSpacing] = useState('0px');
     const [lineHeight, setLineHeight] = useState('auto');
 
-    const [textValue, _] = useState(currentVersion.content);
+    const [textValue, setTextValue] = useState(currentVersion.content);
 
     const [showEditor, setShowEditor] = useState(false);
 
@@ -527,6 +527,31 @@ const Textline: React.FC<TextlineProperties> = (
         }
     }, [
         editableText
+    ]);
+
+    /** Transview Active. */
+    useEffect(() => {
+        const {
+            active,
+        } = currentVersion.transview;
+
+        if (active === 'SOURCE') {
+            setTextValue(currentVersion.content);
+            return;
+        }
+
+        const transview = currentVersion.transview.data.find(
+            data => data.language === active
+        );
+
+        if (!transview) {
+            setTextValue(currentVersion.content);
+            return;
+        }
+
+        setTextValue(transview.content);
+    }, [
+        currentVersion.transview.active,
     ]);
 
     /**
