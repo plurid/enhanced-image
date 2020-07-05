@@ -26,14 +26,17 @@ export interface ButtonToggleRenderProperties {
     /** required */
     /** - values */
     theme: Theme;
+    type: string;
     toggled: boolean;
     icon: JSX.Element;
+    outsideKind: string;
     /** - methods */
     toggle: () => void;
     renderOutside: (
         outside: JSX.Element,
         left?: number,
     ) => void;
+    setOutsideKind: React.Dispatch<React.SetStateAction<string>>;
     Outside: JSX.Element,
 
     /** optional */
@@ -49,11 +52,14 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
         /** required */
         /** - values */
         theme,
+        type,
         toggled,
         icon,
+        outsideKind,
         /** - methods */
         toggle,
         renderOutside,
+        setOutsideKind,
         Outside,
 
         /** optional */
@@ -69,6 +75,10 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
     /** effects */
     useEffect(() => {
         if (!toggled) {
+            if (outsideKind !== type) {
+                return;
+            }
+
             renderOutside((
                 <></>
             ));
@@ -80,6 +90,8 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
                 {Outside}
             </>
         );
+
+        setOutsideKind(type);
 
         const left = button.current
             ? button.current.offsetLeft

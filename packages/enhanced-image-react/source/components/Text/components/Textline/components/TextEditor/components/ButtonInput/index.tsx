@@ -34,6 +34,8 @@ interface ButtonInputProperties {
         outside: JSX.Element,
         left?: number,
     ) => void;
+    outsideKind: string;
+    setOutsideKind: React.Dispatch<React.SetStateAction<string>>;
 
     goToLink?: boolean;
 }
@@ -52,6 +54,8 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
         valueType,
         changeValue,
         renderOutside,
+        outsideKind,
+        setOutsideKind,
 
         goToLink,
     } = properties;
@@ -77,10 +81,16 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
     /** effects */
     useEffect(() => {
         if (!show) {
+            if (outsideKind !== valueType) {
+                return;
+            }
+
             const outside = (<></>);
             renderOutside(outside);
             return;
         }
+
+        setOutsideKind(valueType);
 
         const outside = (
             <StyledButtonInputContainer

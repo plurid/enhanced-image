@@ -81,10 +81,13 @@ class ButtonDropdown extends Component<any, any> {
 
     private renderDropdown = () => {
         const {
+            type,
             theme,
             transparentUI,
 
             renderOutside,
+            outsideKind,
+            setOutsideKind,
         } = this.props;
 
         const {
@@ -95,10 +98,16 @@ class ButtonDropdown extends Component<any, any> {
         } = this.state;
 
         if (!toggledDropdown) {
+            if (outsideKind !== type) {
+                return;
+            }
+
             const dropdownRender = (<></>);
             renderOutside(dropdownRender);
             return;
         }
+
+        setOutsideKind(type);
 
         const dropdownRender = (
             <StyledButtonDropdownList
