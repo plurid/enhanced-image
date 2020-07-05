@@ -35,6 +35,8 @@ import SimpleInput from './components/SimpleInput';
 import Slider from './components/Slider';
 import Drawer from './components/Drawer';
 
+import TransviewContainer from './components/TransviewContainer';
+
 import { selectableFonts } from '../../../../../../data/constants/fonts';
 
 import SelectTextIcon from '../../../../../../assets/icons/text-editor/select-text';
@@ -381,11 +383,16 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
                     <ButtonToggleRender
                         theme={theme}
-                        transparentUI={transparentUI}
                         toggle={() => setShowTransview(show => !show)}
                         toggled={showTransview}
                         icon={TransviewIcon}
                         renderOutside={renderOutside}
+                        Outside={(
+                            <TransviewContainer
+                                theme={theme}
+                                transparentUI={transparentUI}
+                            />
+                        )}
                     />
 
                     <ButtonToggle
@@ -585,6 +592,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
             </StyledTextEditor>
 
             <StyledOutside
+                theme={theme}
                 topBased={outsideTopBased}
                 style={{
                     left: outsideLeft + 'px',

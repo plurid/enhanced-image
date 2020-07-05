@@ -15,9 +15,6 @@ import ButtonToggle from '../ButtonToggle';
 /** internal */
 import {
     StyledButtonToggleRender,
-    StyledButtonContainer,
-    StyledLanguageSelect,
-    StyledLanguage,
 } from './styled';
 /** [END] imports */
 
@@ -30,7 +27,6 @@ export interface ButtonToggleRenderProperties {
     /** - values */
     theme: Theme;
     toggled: boolean;
-    transparentUI: boolean;
     icon: JSX.Element;
     /** - methods */
     toggle: () => void;
@@ -38,6 +34,7 @@ export interface ButtonToggleRenderProperties {
         outside: JSX.Element,
         left?: number,
     ) => void;
+    Outside: JSX.Element,
 
     /** optional */
     /** - values */
@@ -53,11 +50,11 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
         /** - values */
         theme,
         toggled,
-        transparentUI,
         icon,
         /** - methods */
         toggle,
         renderOutside,
+        Outside,
 
         /** optional */
         /** - values */
@@ -79,48 +76,9 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
         }
 
         const outside = (
-            <StyledButtonContainer
-                theme={theme}
-                transparentUI={transparentUI}
-            >
-                <StyledLanguageSelect>
-                    <div>
-                        select
-                    </div>
-
-                    <div>
-                        +
-                    </div>
-                </StyledLanguageSelect>
-
-                <StyledLanguage>
-                    <div>
-                        english
-                    </div>
-
-                    <div>
-                        bg
-                    </div>
-
-                    <div>
-                        x
-                    </div>
-                </StyledLanguage>
-
-                <StyledLanguage>
-                    <div>
-                        french
-                    </div>
-
-                    <div>
-                        bg
-                    </div>
-
-                    <div>
-                        x
-                    </div>
-                </StyledLanguage>
-            </StyledButtonContainer>
+            <>
+                {Outside}
+            </>
         );
 
         const left = button.current

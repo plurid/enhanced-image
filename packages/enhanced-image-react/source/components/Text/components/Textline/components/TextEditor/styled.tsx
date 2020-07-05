@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+import {
+    Theme,
+} from '@plurid/plurid-themes';
+
 
 
 export const StyledTextEditor: any = styled.div`
@@ -47,8 +51,7 @@ export const StyledTextEditor: any = styled.div`
     z-index: 9999;
     user-select: none;
     box-shadow: 0px 2px 4px 0px hsla(220, 2%, 10%, 0.9);
-    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
 
     ::-webkit-scrollbar {
         width: 0px;
@@ -77,33 +80,18 @@ export const StyledVerticalDivider = styled.div`
 
 
 export interface IStyledOutside {
+    theme: Theme;
     topBased: boolean;
 }
 
 export const StyledOutside = styled.div<IStyledOutside>`
     position: absolute;
-    /* top: ${
-        ({
-            topBased,
-        }: IStyledOutside) => {
-            if (topBased) {
-                return '0';
-            }
-
-            return 'auto';
-        }
-    }; */
-    /* bottom: ${
-        ({
-            topBased,
-        }: IStyledOutside) => {
-            if (!topBased) {
-                return '-34px';
-            }
-
-            return 'auto';
-        }
-    }; */
+    color: ${props => props.theme.colorPrimary};
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
 `;
 
 
