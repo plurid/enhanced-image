@@ -24,6 +24,9 @@ class App extends Component {
                         transparentUI={true}
                         apiKey="depict_abe2898ab897453786af90b5dc2c7ac0"
                         getTextOnLoad={false}
+
+                        development={true}
+                        generator={true}
                     />
                 </div>
             </div>
