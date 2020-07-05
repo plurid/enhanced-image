@@ -1,11 +1,13 @@
 import React from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledButtonsColors,
     StyledButtonColors,
 } from './styled';
-
-import { Theme } from '@plurid/plurid-themes';
 
 
 
@@ -13,19 +15,27 @@ const colors = [
     'black', 'red', 'white',
 ];
 
-interface ButtonsColorsProperties {
+export interface ButtonsColorsProperties {
     theme: Theme,
     selectedColor: string,
-    changeValue: (type: string, value: string) => void;
+    changeValue: (
+        type: string,
+        value: string,
+    ) => void;
 }
 
-const ButtonsColors: React.FC<ButtonsColorsProperties> = (properties) => {
+const ButtonsColors: React.FC<ButtonsColorsProperties> = (
+    properties,
+) => {
+    /** properties */
     const {
         theme,
         selectedColor,
         changeValue,
     } = properties;
 
+
+    /** render */
     return (
         <StyledButtonsColors
             theme={theme}

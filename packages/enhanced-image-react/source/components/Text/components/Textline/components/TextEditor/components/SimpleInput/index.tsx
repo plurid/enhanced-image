@@ -76,6 +76,9 @@ const SimpleInput: React.FC<SimpleInputProperties> = (
             <input
                 value={value}
                 onChange={handleInput}
+                onKeyDown={(event) => {
+                    event.stopPropagation();
+                }}
             />
         </StyledSimpleInput>
     );

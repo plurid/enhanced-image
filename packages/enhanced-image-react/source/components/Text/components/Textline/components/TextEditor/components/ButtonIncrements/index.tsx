@@ -41,7 +41,9 @@ const ButtonIncrements: React.FC<ButtonIncrementsProperties> = (properties) => {
 
     const stepValue = step || STEP;
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
         const value = event.target.value;
         changeValue(type, parseFloat(value));
     }
@@ -84,6 +86,9 @@ const ButtonIncrements: React.FC<ButtonIncrementsProperties> = (properties) => {
                 value={parseFloat(value.toFixed(1))}
                 step={stepValue}
                 onChange={handleChange}
+                onKeyDown={(event) => {
+                    event.stopPropagation();
+                }}
             />
 
             <StyledButtonIncrementsUnit>
