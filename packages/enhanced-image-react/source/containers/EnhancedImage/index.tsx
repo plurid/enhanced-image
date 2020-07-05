@@ -48,6 +48,11 @@ import {
 } from '../../data/interfaces';
 
 import {
+    TextlineTransview,
+    TextlineTransviewData,
+} from '../../data/interfaces/text';
+
+import {
     PLURID_API_ENDPOINT,
     SLIDER_VALUE_DEFAULTS,
     ABOUT_URL,
@@ -67,6 +72,7 @@ import {
 } from '../../data/constants/initializers';
 
 import {
+    getImmutableTextline,
     getVersionById,
     updateVersion,
     imageURLFromSrc,
@@ -825,6 +831,158 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }
 
 
+    /** TRANSVIEW TEXT */
+    const addTransviewLanguage = (
+        textID: string,
+        language: string,
+    ) => {
+        const updatedImageText = imageText.map(text => {
+            if (text.id !== textID) {
+                return text;
+            }
+
+            const currentVersion = getVersionById(text);
+            if (!currentVersion) {
+                return text;
+            }
+
+            if (currentVersion.type !== 'TEXTLINE') {
+                /**
+                 * TODO
+                 * implement for 'TEXTAREA
+                 */
+                return text;
+            }
+
+            const transviewLanguage: TextlineTransviewData = {
+                backgrounded: false,
+                language,
+                content: currentVersion.content,
+            };
+
+            currentVersion.transview.data.push(transviewLanguage);
+
+            const updatedText = updateVersion(text, currentVersion);
+            return updatedText;
+        });
+
+        setImageText(updatedImageText);
+    }
+
+    const removeTransviewLanguage = (
+        textID: string,
+        language: string,
+    ) => {
+        const updatedImageText = imageText.map(text => {
+            if (text.id !== textID) {
+                return text;
+            }
+
+            const currentVersion = getVersionById(text);
+            if (!currentVersion) {
+                return text;
+            }
+
+            if (currentVersion.type !== 'TEXTLINE') {
+                /**
+                 * TODO
+                 * implement for 'TEXTAREA
+                 */
+                return text;
+            }
+
+            const transviews = currentVersion.transview.data.filter(data => data.language !== language);
+
+            currentVersion.transview.data = [
+                ...transviews,
+            ];
+
+            const updatedText = updateVersion(text, currentVersion);
+            return updatedText;
+        });
+
+        setImageText(updatedImageText);
+    }
+
+    const setActiveTransview = (
+        textID: string,
+        language: string,
+    ) => {
+        const updatedImageText = imageText.map(text => {
+            if (text.id !== textID) {
+                return text;
+            }
+
+            const currentVersion = getVersionById(text);
+            if (!currentVersion) {
+                return text;
+            }
+
+            if (currentVersion.type !== 'TEXTLINE') {
+                /**
+                 * TODO
+                 * implement for 'TEXTAREA
+                 */
+                return text;
+            }
+
+            currentVersion.transview.active = language;
+
+            const updatedText = updateVersion(text, currentVersion);
+            return updatedText;
+        });
+
+        setImageText(updatedImageText);
+    }
+
+    const toggleBackgroundedTransview = (
+        textID: string,
+        language: string,
+    ) => {
+        const updatedImageText = imageText.map(text => {
+            if (text.id !== textID) {
+                return text;
+            }
+
+            const currentVersion = getVersionById(text);
+            if (!currentVersion) {
+                return text;
+            }
+
+            if (currentVersion.type !== 'TEXTLINE') {
+                /**
+                 * TODO
+                 * implement for 'TEXTAREA
+                 */
+                return text;
+            }
+
+            const transviews = currentVersion.transview.data.map(data => {
+                if (data.language !== language) {
+                    return data;
+                }
+
+                const newTransview: TextlineTransviewData = {
+                    ...data,
+                    backgrounded: !data.backgrounded,
+                };
+
+                return newTransview;
+            });
+
+            currentVersion.transview.data = [
+                ...transviews,
+            ];
+
+            const updatedText = updateVersion(text, currentVersion);
+            return updatedText;
+        });
+
+        setImageText(updatedImageText);
+    }
+
+
+
     /** ACTION */
     const emitAction = (
         type: string,
@@ -1016,11 +1174,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
     const updateVersionContent = (
-        versionID: string,
+        textID: string,
         value: string,
     ) => {
         const updatedImageText = imageText.map(text => {
-            if (text.id === versionID) {
+            if (text.id === textID) {
                 const currentVersion = getVersionById(text);
                 if (currentVersion) {
                     const updatedVersion = { ...currentVersion };
@@ -1039,10 +1197,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }
 
     const toggleVersionViewable = (
-        versionID: string,
+        textID: string,
     ) => {
         const updatedImageText = imageText.map(text => {
-            if (text.id === versionID) {
+            if (text.id === textID) {
                 const currentVersion = getVersionById(text);
                 if (currentVersion) {
                     const updatedVersion = { ...currentVersion };
@@ -1066,30 +1224,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         if (imgText) {
             const currentVersion = getVersionById(imgText);
             if (currentVersion && currentVersion.type === 'TEXTLINE') {
-                const version: ImageTextVersionTextline = {
-                    ...currentVersion,
-                    position: {
-                        ...currentVersion.position,
-                    },
-                    transform: {
-                        ...currentVersion.transform,
-                    },
-                    font: {
-                        ...currentVersion.font,
-                    },
-                    link: {
-                        ...currentVersion.link,
-                    },
-                    action: {
-                        ...currentVersion.action,
-                    },
-                    transview: {
-                        ...currentVersion.transview,
-                        data: [
-                            ...currentVersion.transview.data,
-                        ],
-                    },
-                };
+                const version = getImmutableTextline(currentVersion);
 
                 const currentVersionId = uuid.generate();
                 version.id = currentVersionId;
@@ -1439,6 +1574,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setTransviewTargetLanguage,
 
         imageText,
+
+        addTransviewLanguage,
+        removeTransviewLanguage,
+        setActiveTransview,
+        toggleBackgroundedTransview,
 
         emitAction,
 

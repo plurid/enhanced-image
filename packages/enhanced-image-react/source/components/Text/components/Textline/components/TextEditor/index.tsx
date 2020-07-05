@@ -142,6 +142,14 @@ const TextEditor: React.FC<TextEditorProperties> = (
     const [outsideLeft, setOutsideLeft] = useState(100);
     const [transformSlider, setTransformSlider] = useState('');
     const [showTransview, setShowTransview] = useState(false);
+    const [transviewContainer, setTransviewContainer] = useState((
+        <TransviewContainer
+            theme={theme}
+            transparentUI={transparentUI}
+            textID={textItem.id}
+            transview={currentVersion.transview}
+        />
+    ));
 
 
     /** handlers */
@@ -273,6 +281,25 @@ const TextEditor: React.FC<TextEditorProperties> = (
         positions.y,
     ]);
 
+    /** Transview Container */
+    useEffect(() => {
+        const transviewContainer = (
+            <TransviewContainer
+                theme={theme}
+                transparentUI={transparentUI}
+                textID={textItem.id}
+                transview={currentVersion.transview}
+            />
+        );
+
+        setTransviewContainer(transviewContainer);
+    }, [
+        currentVersion.transview,
+        currentVersion.transview.active,
+        currentVersion.transview.data,
+        currentVersion.transview.data.length,
+    ]);
+
     // /** Expand format. */
     // useEffect(() => {
     //     if (drawers.length === 0) {
@@ -387,12 +414,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         toggled={showTransview}
                         icon={TransviewIcon}
                         renderOutside={renderOutside}
-                        Outside={(
-                            <TransviewContainer
-                                theme={theme}
-                                transparentUI={transparentUI}
-                            />
-                        )}
+                        Outside={transviewContainer}
                     />
 
                     <ButtonToggle

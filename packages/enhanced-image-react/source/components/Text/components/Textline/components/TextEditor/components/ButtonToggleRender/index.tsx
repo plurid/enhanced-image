@@ -91,6 +91,7 @@ const ButtonToggleRender: React.FC<ButtonToggleRenderProperties> = (
         );
     }, [
         toggled,
+        Outside,
     ]);
 
 
