@@ -251,6 +251,7 @@ const Textline: React.FC<TextlineProperties> = (
         } = event;
 
         if (key === '†' && altKey) {
+            saveTextValue();
             setEditable(show => !show);
         }
 
@@ -261,8 +262,10 @@ const Textline: React.FC<TextlineProperties> = (
         switch(key) {
             case 't':
                 setEditable(show => !show);
+                setDraggable(false);
                 break;
             case 'g':
+                setEditable(false);
                 setDraggable(drag => !drag);
                 break;
             case 'v':
