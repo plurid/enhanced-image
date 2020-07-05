@@ -45,6 +45,7 @@ export const StyledLanguageSelect = styled.div`
     box-sizing: border-box;
     display: flex;
     width: 100%;
+    min-height: 36px;
     padding: 10px 7px;
     align-items: center;
     justify-content: space-between;
@@ -60,8 +61,8 @@ export const StyledLanguage = styled.div<IStyledLanguage>`
     box-sizing: border-box;
     display: flex;
     width: 100%;
-    padding: 10px 7px;
     min-height: 36px;
+    padding: 10px 7px;
     align-items: center;
     justify-content: space-between;
 
@@ -92,6 +93,6 @@ export const StyledLanguageActivate = styled.div`
 export const StyledLanguageButtons = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 0.3rem;
+    grid-gap: 0.5rem;
     align-items: center;
 `;
