@@ -332,7 +332,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 <ButtonToggle
                     theme={theme}
                     toggle={() => {
-                        if (draggable) { setDraggable(false) }
+                        if (draggable) {
+                            setDraggable(false);
+                        }
 
                         if (editable) {
                             saveTextValue();
@@ -347,7 +349,11 @@ const TextEditor: React.FC<TextEditorProperties> = (
                 <ButtonToggle
                     theme={theme}
                     toggle={() => {
-                        if (editable) { setEditable(false) }
+                        if (editable) {
+                            saveTextValue();
+                            setEditable(false);
+                        }
+
                         setDraggable(draggable => !draggable)
                     }}
                     toggled={draggable}

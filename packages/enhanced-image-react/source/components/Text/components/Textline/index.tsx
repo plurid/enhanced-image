@@ -92,7 +92,8 @@ const Textline: React.FC<TextlineProperties> = (
     const [wordSpacing, setWordSpacing] = useState('0px');
     const [lineHeight, setLineHeight] = useState('auto');
 
-    const [textState, setTextState] = React.useState(
+    const [content, setContent] = useState(currentVersion.content);
+    const [textState, setTextState] = useState(
         () => EditorState.createWithContent(
             ContentState.createFromText(currentVersion.content)
         )
@@ -551,7 +552,7 @@ const Textline: React.FC<TextlineProperties> = (
                 ContentState.createFromText(currentVersion.content)
             );
             setTextState(textState);
-            // textValue.current = currentVersion.content;
+            setContent(currentVersion.content);
             return;
         }
 
@@ -564,7 +565,7 @@ const Textline: React.FC<TextlineProperties> = (
                 ContentState.createFromText(currentVersion.content)
             );
             setTextState(textState);
-            // textValue.current = currentVersion.content;
+            setContent(currentVersion.content);
             return;
         }
 
@@ -572,7 +573,7 @@ const Textline: React.FC<TextlineProperties> = (
             ContentState.createFromText(transview.content)
         );
         setTextState(textState);
-        // textValue.current = transview.content;
+        setContent(transview.content);
     }, [
         currentVersion.transview.data,
         currentVersion.transview.active,
@@ -584,11 +585,6 @@ const Textline: React.FC<TextlineProperties> = (
     useEffect(() => {
         setLoaded(true);
     }, []);
-
-
-    console.log(
-        'textState', textState,
-    );
 
 
     /** render */
@@ -648,11 +644,16 @@ const Textline: React.FC<TextlineProperties> = (
                                 revealedText={revealedText}
                                 viewable={currentVersion.viewable}
                             >
-                                <Editor
-                                    editorState={textState}
-                                    onChange={handleChange}
-                                    readOnly={!editable}
-                                />
+                                {editable ? (
+                                    <Editor
+                                        editorState={textState}
+                                        onChange={handleChange}
+                                    />
+                                ): (
+                                    <>
+                                        {content}
+                                    </>
+                                )}
                             </StyledEditableDiv>
                         </StyledTextContentLink>
                     ) : (
@@ -661,11 +662,16 @@ const Textline: React.FC<TextlineProperties> = (
                             revealedText={revealedText}
                             viewable={currentVersion.viewable}
                         >
-                            <Editor
-                                editorState={textState}
-                                onChange={handleChange}
-                                readOnly={!editable}
-                            />
+                            {editable ? (
+                                <Editor
+                                    editorState={textState}
+                                    onChange={handleChange}
+                                />
+                            ): (
+                                <>
+                                    {content}
+                                </>
+                            )}
                         </StyledEditableDiv>
                     )}
                 </StyledTextContent>
