@@ -25,7 +25,6 @@ export const EnhancedImageDataFragment = gql`
                         sy
                     }
                     viewable
-                    color
                     font {
                         weight
                         style
@@ -35,7 +34,16 @@ export const EnhancedImageDataFragment = gql`
                         wordSpacing
                         lineHeight
                     }
+                    color
                     content
+                    transview {
+                        active
+                        data {
+                            backgrounded
+                            language
+                            content
+                        }
+                    }
                     link {
                         active
                         to
