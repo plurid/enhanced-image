@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+    Component,
+} from 'react';
 
 import {
     StyledButtonDropdown,
@@ -13,7 +15,9 @@ class ButtonDropdown extends Component<any, any> {
     dropdown: any;
     button: any;
 
-    constructor(props: any) {
+    constructor(
+        props: any,
+    ) {
         super(props);
 
         this.state = {
@@ -49,8 +53,8 @@ class ButtonDropdown extends Component<any, any> {
                     <input
                         type="text"
                         value={selected}
-                        onChange={this.handleChange}
                         onClick={this.toggleDropdown}
+                        onChange={this.handleChange}
                         onKeyDown={this.handleKeyDown}
                     />
                 </StyledButtonDropdownSelected>
@@ -145,7 +149,9 @@ class ButtonDropdown extends Component<any, any> {
         }
     }
 
-    private select = (selected: string) => {
+    private select = (
+        selected: string,
+    ) => {
         const {
             filtered,
         } = this.state;
@@ -171,7 +177,9 @@ class ButtonDropdown extends Component<any, any> {
         );
     }
 
-    private clickSelect = (selected: string) => {
+    private clickSelect = (
+        selected: string,
+    ) => {
         const {
             toggleEditor,
             toggleTextSelected,
@@ -183,13 +191,9 @@ class ButtonDropdown extends Component<any, any> {
         this.select(selected);
     }
 
-    private handleChange = (e: any) => {
-        const value = e.target.value;
-        this.select(value);
-        this.filter(value);
-    }
-
-    private filter = (value: string) => {
+    private filter = (
+        value: string,
+    ) => {
         const {
             selectables,
         } = this.props;
@@ -214,7 +218,19 @@ class ButtonDropdown extends Component<any, any> {
         }
     }
 
-    private handleKeyDown = (event: any) => {
+    private handleChange = (
+        e: any,
+    ) => {
+        const value = e.target.value;
+        this.select(value);
+        this.filter(value);
+    }
+
+    private handleKeyDown = (
+        event: any,
+    ) => {
+        event.stopPropagation();
+
         const {
             cursor,
             filtered,
@@ -225,7 +241,9 @@ class ButtonDropdown extends Component<any, any> {
             return;
         }
 
-        const { key } = event;
+        const {
+            key,
+        } = event;
 
         if (cursor < 1 && key === 'ArrowUp') {
             this.dropdown.current.scrollTo(0, (cursor - 4) * 20);

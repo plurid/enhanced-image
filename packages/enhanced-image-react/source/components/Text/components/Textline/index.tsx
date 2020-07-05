@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useContext,
     useState,
@@ -11,6 +13,8 @@ import {
     ContentState,
 } from 'draft-js';
 
+
+/** external */
 import {
     ImageText,
     ImageTextVersionTextline,
@@ -18,9 +22,12 @@ import {
 
 import Context from '../../../../services/utilities/context';
 
-import TextEditor from './components/TextEditor';
-// import ButtonMore from '../../../UI/ButtonMore';
+import {
+    percentageFromValue,
+} from '../../../../services/utilities/percentage';
 
+
+/** internal */
 import {
     StyledTextItem,
     StyledTextContent,
@@ -28,9 +35,8 @@ import {
     StyledEditableDiv,
 } from './styled';
 
-import {
-    percentageFromValue,
-} from '../../../../services/utilities/percentage';
+import TextEditor from './components/TextEditor';
+/** [END] imports */
 
 
 
@@ -232,7 +238,7 @@ const Textline: React.FC<TextlineProperties> = (
     }
 
     const handleShortcuts = (
-        event: KeyboardEvent,
+        event: React.KeyboardEvent,
     ) => {
         const {
             duplicateTextItem,
@@ -272,7 +278,7 @@ const Textline: React.FC<TextlineProperties> = (
     }
 
     const handleArrows = (
-        event: KeyboardEvent,
+        event: React.KeyboardEvent,
     ) => {
         if (!draggable) {
             return;
@@ -336,7 +342,7 @@ const Textline: React.FC<TextlineProperties> = (
     }
 
     const moveWithArrows = (
-        event: KeyboardEvent,
+        event: React.KeyboardEvent,
         step: number = 1,
     ) => {
         const {
@@ -364,8 +370,12 @@ const Textline: React.FC<TextlineProperties> = (
     }
 
     const handleKeyDown = (
-        event: KeyboardEvent,
+        event: React.KeyboardEvent,
     ) => {
+        if (event.isDefaultPrevented()) {
+            return;
+        }
+
         handleShortcuts(event);
         handleArrows(event);
     }
@@ -611,7 +621,7 @@ const Textline: React.FC<TextlineProperties> = (
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            onKeyDown={handleKeyDown}
+            onKeyDown={(event: React.KeyboardEvent) => handleKeyDown(event)}
             ref={textItem}
             style={{
                 top: textYCoord,

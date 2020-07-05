@@ -67,7 +67,9 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
 
 
     /** handlers */
-    const handleInput = (event: any) => {
+    const handleInput = (
+        event: any,
+    ) => {
         changeValue(valueType, event.target.value);
     }
 
@@ -95,6 +97,9 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
                     type="text"
                     value={value}
                     onChange={handleInput}
+                    onKeyDown={(event) => {
+                        event.stopPropagation();
+                    }}
                 />
 
                 {goToLink && (
