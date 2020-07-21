@@ -63,13 +63,13 @@ const LoggedInView: React.FC<LoggedInViewProps> = (
 
             <StyledOptionsItemLeftRight>
                 <div>
-                    transformations
+                    enhances
                 </div>
 
                 <div style={{textAlign: 'right'}}>
                     <TotalTransformations
                         theme={theme}
-                        imageTransformations={depict.access.imageTransformations}
+                        imageEnhances={depict.access.imageEnhances}
                     />
                 </div>
             </StyledOptionsItemLeftRight>

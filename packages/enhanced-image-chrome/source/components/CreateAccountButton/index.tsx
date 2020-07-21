@@ -37,7 +37,7 @@ const CreateAccountButton: React.FC<CreateAccountButtonProps> = (
                     styles={{display: 'flex', alignItems: 'center'}}
                 >
                     <div>
-                        create account
+                        generate account
                     </div>
 
                     <div
