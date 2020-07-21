@@ -11,7 +11,7 @@ import {
 
 interface TotalTransformationsProperties {
     theme: any;
-    imageTransformations: any;
+    imageEnhances: any;
 }
 
 const TotalTransformations: React.FC<TotalTransformationsProperties> = (
@@ -19,14 +19,14 @@ const TotalTransformations: React.FC<TotalTransformationsProperties> = (
 ) => {
     const {
         theme,
-        imageTransformations,
+        imageEnhances,
     } = properties;
 
     const {
         free,
         paid,
         subscription,
-    } = imageTransformations;
+    } = imageEnhances;
 
     const total = free + paid + subscription;
 

@@ -33,7 +33,7 @@ export const StyledTotalTransformationsAll: any = styled.div`
     margin: 7px;
     min-width: 120px;
     height: auto;
-    top: 8px;
+    top: 12px;
     right: -7px;
     z-index: 9991;
 

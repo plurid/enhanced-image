@@ -185,7 +185,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                 <InputText
                     theme={theme}
                     value={password}
-                    placeholder="password"
+                    placeholder="key"
                     password={true}
                     atChange={(event: any) => setPassword(event.target.value)}
                 />

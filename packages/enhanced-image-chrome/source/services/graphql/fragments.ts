@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 export const DepictProductAccessFragment = gql`
     fragment DepictProductAccessFragment on DepictProductAccess {
         role
-        imageTransformations {
+        imageEnhances {
             free
             paid
             subscription
