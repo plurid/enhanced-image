@@ -489,7 +489,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         }
 
         if (error) {
-            if (logErrors) {
+            if (logErrors && error !== REQUEST_ERRORS.SENT_MESSAGE) {
                 console.log(error);
             }
 
@@ -658,7 +658,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         } = await handleExtractText();
 
         if (error) {
-            if (logErrors) {
+            if (logErrors && error !== REQUEST_ERRORS.SENT_MESSAGE) {
                 console.log(error);
             }
 
@@ -818,7 +818,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         } = await handleSaveText();
 
         if (error) {
-            if (logErrors) {
+            if (logErrors && error !== REQUEST_ERRORS.SENT_MESSAGE) {
                 console.log(error);
             }
 
