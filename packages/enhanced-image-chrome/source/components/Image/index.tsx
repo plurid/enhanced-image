@@ -14,6 +14,7 @@ import {
 import {
     API_URI,
     initialTimedNotification,
+    logErrors,
 } from '../../data/constants';
 
 import {
@@ -110,6 +111,8 @@ const Image: React.FC<ImageProperties> = (
             development={true}
 
             apiEndpoint={API_URI}
+
+            logErrors={logErrors}
         />
     );
 }

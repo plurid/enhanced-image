@@ -5,6 +5,7 @@ import {
 
 import {
     contextMenu,
+    logErrors,
 } from '../../data/constants';
 
 import client from '../../services/graphql/client';
@@ -52,7 +53,9 @@ const onMessage = async (
                 const response = await logic.getTextWithAPIKey(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
@@ -64,7 +67,9 @@ const onMessage = async (
                 const response = await logic.getTextWithOwnerToken(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
@@ -76,7 +81,9 @@ const onMessage = async (
                 const response = await logic.getTextWithImageID(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
@@ -89,7 +96,9 @@ const onMessage = async (
                 const response = await logic.extractTextWithAPIKey(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
@@ -101,7 +110,9 @@ const onMessage = async (
                 const response = await logic.extractTextWithOwnerToken(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
@@ -113,7 +124,9 @@ const onMessage = async (
                 const response = await logic.extractTextWithImageID(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
@@ -126,7 +139,9 @@ const onMessage = async (
                 const response = await logic.saveTextWithAPIKey(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
@@ -138,7 +153,9 @@ const onMessage = async (
                 const response = await logic.saveTextWithOwnerToken(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
@@ -150,7 +167,9 @@ const onMessage = async (
                 const response = await logic.saveTextWithImageID(
                     input,
                     client,
+                    logErrors,
                 );
+
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
