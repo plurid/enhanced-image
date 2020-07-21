@@ -30,10 +30,12 @@ export interface InputExtractTextWithApiKey {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const extractTextWithAPIKey = async (
     input: InputExtractTextWithApiKey,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -66,6 +68,10 @@ export const extractTextWithAPIKey = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
@@ -88,10 +94,12 @@ export interface InputExtractTextWithOwnerToken {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const extractTextWithOwnerToken = async (
     input: InputExtractTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -124,6 +132,10 @@ export const extractTextWithOwnerToken = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
@@ -132,6 +144,7 @@ export const extractTextWithOwnerToken = async (
         return response;
     }
 }
+
 
 
 export interface InputExtractTextWithImageID {
@@ -145,10 +158,12 @@ export interface InputExtractTextWithImageID {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const extractTextWithImageID = async (
     input: InputExtractTextWithImageID,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -181,6 +196,10 @@ export const extractTextWithImageID = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,

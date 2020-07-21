@@ -32,10 +32,12 @@ export interface InputSaveTextWithAPIKey {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const saveTextWithAPIKey = async (
     input: InputSaveTextWithAPIKey,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -69,6 +71,10 @@ export const saveTextWithAPIKey = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
@@ -77,6 +83,7 @@ export const saveTextWithAPIKey = async (
         return response;
     }
 }
+
 
 
 export interface InputSaveTextWithOwnerToken {
@@ -92,10 +99,12 @@ export interface InputSaveTextWithOwnerToken {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const saveTextWithOwnerToken = async (
     input: InputSaveTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -113,7 +122,7 @@ export const saveTextWithOwnerToken = async (
                 status: false,
                 error: REQUEST_ERRORS.BAD_REQUEST,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -128,15 +137,18 @@ export const saveTextWithOwnerToken = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        }
+        };
         return response;
     }
 }
-
 
 
 
@@ -152,10 +164,12 @@ export interface InputSaveTextWithImageID {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const saveTextWithImageID = async (
     input: InputSaveTextWithImageID,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
@@ -173,7 +187,7 @@ export const saveTextWithImageID = async (
                 status: false,
                 error: REQUEST_ERRORS.BAD_REQUEST,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -188,11 +202,15 @@ export const saveTextWithImageID = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        }
+        };
         return response;
     }
 }

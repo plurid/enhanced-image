@@ -30,10 +30,12 @@ export interface InputGetTextWithAPIKey {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const getTextWithAPIKey = async (
     input: InputGetTextWithAPIKey,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const query = await graphqlClient.query({
@@ -67,6 +69,10 @@ export const getTextWithAPIKey = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
@@ -75,6 +81,7 @@ export const getTextWithAPIKey = async (
         return response;
     }
 }
+
 
 
 export interface InputGetTextWithOwnerToken {
@@ -88,10 +95,12 @@ export interface InputGetTextWithOwnerToken {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const getTextWithOwnerToken = async (
     input: InputGetTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const query = await graphqlClient.query({
@@ -125,6 +134,10 @@ export const getTextWithOwnerToken = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
@@ -133,6 +146,7 @@ export const getTextWithOwnerToken = async (
         return response;
     }
 }
+
 
 
 export interface InputGetTextWithImageID {
@@ -146,10 +160,12 @@ export interface InputGetTextWithImageID {
  *
  * @param input
  * @param graphqlClient
+ * @param logErrors
  */
 export const getTextWithImageID = async (
     input: InputGetTextWithImageID,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
+    logErrors?: boolean,
 ) => {
     try {
         const query = await graphqlClient.query({
@@ -183,6 +199,10 @@ export const getTextWithImageID = async (
         };
         return response;
     } catch (error) {
+        if (logErrors) {
+            console.log(error);
+        }
+
         const response = {
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
