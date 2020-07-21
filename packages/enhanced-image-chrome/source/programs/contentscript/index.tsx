@@ -2,9 +2,11 @@ import React, {
     useState,
     useEffect,
 } from 'react';
+
 import ReactDOM from 'react-dom';
 
 import EnhancedImage from '@plurid/enhanced-image-react';
+
 import themes from '@plurid/plurid-themes';
 
 import {
@@ -17,7 +19,9 @@ import {
 
 
 
-const sendMessage = (message: any) => {
+const sendMessage = (
+    message: any,
+) => {
     chrome.runtime.sendMessage({message});
 }
 
@@ -26,7 +30,7 @@ const initialTimedNotification = {
     time: 0,
 };
 
-interface ImageProperties {
+export interface ImageProperties {
     src: string;
     alt: string;
     theme: keyof typeof themes;
@@ -35,7 +39,9 @@ interface ImageProperties {
     options: any;
 }
 
-const Image: React.FC<ImageProperties> = (properties) => {
+const Image: React.FC<ImageProperties> = (
+    properties,
+) => {
     const {
         src,
         alt,
@@ -88,7 +94,8 @@ const Image: React.FC<ImageProperties> = (properties) => {
             refreshOwnerToken={refreshOwnerToken}
 
             sendMessage={sendMessage}
-            data={data}
+
+            preloadedData={data}
             timedNotification={timedNotification}
 
             getTextOnLoad={options ? options.getImageTextAtLoad : false}
@@ -98,7 +105,9 @@ const Image: React.FC<ImageProperties> = (properties) => {
 }
 
 
-const isImage = (location: string) => {
+const isImage = (
+    location: string,
+) => {
     let imagePage = false;
 
     const reFormats = /((\.|=)png)|((\.|=)jpe?g)|((\.|=)gif)|((\.|=)tif)|((\.|=)svg)|((\.|=)webp)/;
@@ -113,6 +122,7 @@ const isImage = (location: string) => {
         return true;
     }
 }
+
 
 async function contentscript() {
     try {
