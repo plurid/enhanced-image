@@ -50,6 +50,11 @@ export const getTextWithAPIKey = async (
 
         if (!queryResponse.status) {
             const error = queryResponse.errors[0];
+
+            if (logErrors) {
+                console.log(error);
+            }
+
             const response = {
                 status: false,
                 error: error.type,
@@ -115,6 +120,11 @@ export const getTextWithOwnerToken = async (
 
         if (!queryResponse.status) {
             const error = queryResponse.errors[0];
+
+            if (logErrors) {
+                console.log(error);
+            }
+
             const response = {
                 status: false,
                 error: error.type,
@@ -180,6 +190,11 @@ export const getTextWithImageID = async (
 
         if (!queryResponse.status) {
             const error = queryResponse.errors[0];
+
+            if (logErrors) {
+                console.log(error);
+            }
+
             const response = {
                 status: false,
                 error: error.type,

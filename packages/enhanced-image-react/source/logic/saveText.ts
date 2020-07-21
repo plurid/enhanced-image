@@ -52,6 +52,10 @@ export const saveTextWithAPIKey = async (
         // console.log(mutationResponse);
 
         if (!mutationResponse.status) {
+            if (logErrors) {
+                console.log(mutationResponse.errors);
+            }
+
             const response = {
                 status: false,
                 error: REQUEST_ERRORS.BAD_REQUEST,
@@ -118,6 +122,10 @@ export const saveTextWithOwnerToken = async (
         const mutationReponse = mutation.data.enhancedImageSaveTextWithOwnerToken;
 
         if (!mutationReponse.status) {
+            if (logErrors) {
+                console.log(mutationReponse.errors);
+            }
+
             const response = {
                 status: false,
                 error: REQUEST_ERRORS.BAD_REQUEST,
@@ -183,6 +191,10 @@ export const saveTextWithImageID = async (
         const mutationResponse = mutation.data.enhancedImageSaveTextWithImageID;
 
         if (!mutationResponse.status) {
+            if (logErrors) {
+                console.log(mutationResponse.errors);
+            }
+
             const response = {
                 status: false,
                 error: REQUEST_ERRORS.BAD_REQUEST,
