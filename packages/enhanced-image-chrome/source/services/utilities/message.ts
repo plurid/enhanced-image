@@ -1,5 +1,5 @@
-export const sendMessage = (
-    message: any,
+export const sendMessage = <T>(
+    message: T,
 ) => {
     chrome.runtime.sendMessage({
         message,

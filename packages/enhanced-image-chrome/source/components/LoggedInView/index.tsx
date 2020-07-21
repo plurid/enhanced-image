@@ -12,11 +12,13 @@ import {
     StyledGetMore,
 } from './styled';
 
-import TotalTransformations from '../TotalTransformations';
+import TotalEnhances from '../TotalEnhances';
 import ItemLoggedInAs from '../ItemLoggedInAs';
 import ItemActivate from '../ItemActivate';
 
-import { PLURID_ACCOUNT_DOMAIN } from '../../data/constants';
+import {
+    PLURID_ACCOUNT_DOMAIN,
+} from '../../data/constants';
 
 
 
@@ -67,7 +69,7 @@ const LoggedInView: React.FC<LoggedInViewProps> = (
                 </div>
 
                 <div style={{textAlign: 'right'}}>
-                    <TotalTransformations
+                    <TotalEnhances
                         theme={theme}
                         imageEnhances={depict.access.imageEnhances}
                     />

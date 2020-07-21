@@ -7,7 +7,9 @@ import {
     PluridPureButton,
 } from '@plurid/plurid-ui-react';
 
-import { Theme } from '@plurid/plurid-themes';
+import {
+    Theme,
+} from '@plurid/plurid-themes';
 
 import {
     StyledLoginView,
@@ -17,6 +19,10 @@ import {
 import ButtonInline from '../ButtonInline';
 import CreateAccountButton from '../CreateAccountButton';
 import InputText from '../InputText';
+
+import {
+    isEmail,
+} from '../../services/utilities';
 
 import client from '../../services/graphql/client';
 import {
@@ -29,7 +35,7 @@ import {
 
 
 
-interface LoginViewProps {
+export interface LoginViewProps {
     theme: Theme;
     cancelLoginView: () => void;
     setLoggedInOwner: (owner: any) => any;
@@ -37,14 +43,20 @@ interface LoginViewProps {
     setRefreshOwnerToken: (refreshToken: string) => void;
 }
 
+const LoginView: React.FC<LoginViewProps> = (
+    properties,
+) => {
+    /** properties */
+    const {
+        theme,
+        cancelLoginView,
+        setLoggedInOwner,
+        setOwnerToken,
+        setRefreshOwnerToken,
+    } = properties;
 
-const isEmail = (value: string) => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(value).toLowerCase());
-}
 
-
-const LoginView: React.FC<LoginViewProps> = (props) => {
+    /** state */
     const [identonym, setIdentonym] = useState('');
     const [password, setPassword] = useState('');
     const [showLoginButton, setShowLoginButton] = useState(false);
@@ -52,28 +64,8 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
     const [loggingMessage, setLoggingMessage] = useState('');
     const [loadingButton, setLoadingButton] = useState(false);
 
-    const {
-        theme,
-        cancelLoginView,
-        setLoggedInOwner,
-        setOwnerToken,
-        setRefreshOwnerToken,
-    } = props;
 
-    useEffect(() => {
-        if (identonym.length !== 0 && password.length !==0) {
-            setShowLoginButton(true);
-        } else {
-            setShowLoginButton(false);
-        }
-
-        if (isEmail(identonym)) {
-            setLoginWithEmail(true);
-        } else {
-            setLoginWithEmail(false);
-        }
-    }, [identonym, password]);
-
+    /** handlers */
     const login = async () => {
         try {
             setLoadingButton(true);
@@ -133,7 +125,6 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
             });
 
             const response = mutate.data.loginByIdentonym;
-            console.log('response', response);
             setLoadingButton(false);
 
             if (!response.status) {
@@ -170,6 +161,27 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
         }
     }
 
+
+    /** effects */
+    useEffect(() => {
+        if (identonym.length !== 0 && password.length !==0) {
+            setShowLoginButton(true);
+        } else {
+            setShowLoginButton(false);
+        }
+
+        if (isEmail(identonym)) {
+            setLoginWithEmail(true);
+        } else {
+            setLoginWithEmail(false);
+        }
+    }, [
+        identonym,
+        password,
+    ]);
+
+
+    /** render */
     return (
         <StyledLoginView>
             <StyledLoginInput>

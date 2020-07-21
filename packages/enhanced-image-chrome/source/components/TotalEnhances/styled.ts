@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-export const StyledTotalTransformations: any = styled.div`
+export const StyledTotalEnhances: any = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,7 +15,7 @@ export const StyledTotalTransformations: any = styled.div`
 `;
 
 
-export const StyledTotalTransformationsAll: any = styled.div`
+export const StyledTotalEnhancesAll: any = styled.div`
     background: ${(props: any) => {
         return props.theme.backgroundColorSecondary;
     }};

@@ -3,20 +3,21 @@ import React, {
 } from 'react';
 
 import {
-    StyledTotalTransformations,
-    StyledTotalTransformationsAll,
+    StyledTotalEnhances,
+    StyledTotalEnhancesAll,
 } from './styled';
 
 
 
-interface TotalTransformationsProperties {
+export interface TotalEnhancesProperties {
     theme: any;
     imageEnhances: any;
 }
 
-const TotalTransformations: React.FC<TotalTransformationsProperties> = (
+const TotalEnhances: React.FC<TotalEnhancesProperties> = (
     properties,
 ) => {
+    /** properties */
     const {
         theme,
         imageEnhances,
@@ -46,11 +47,16 @@ const TotalTransformations: React.FC<TotalTransformationsProperties> = (
     ];
 
 
-    const [mouseOver, setMouseOver] = useState(false);
+    /** state */
+    const [
+        mouseOver,
+        setMouseOver,
+    ] = useState(false);
 
 
+    /** render */
     return (
-        <StyledTotalTransformations
+        <StyledTotalEnhances
             onMouseEnter={() => setMouseOver(true)}
             onMouseLeave={() => setMouseOver(false)}
             onMouseMove={() => {!mouseOver ? setMouseOver(true) : null}}
@@ -60,7 +66,7 @@ const TotalTransformations: React.FC<TotalTransformationsProperties> = (
             </div>
 
             {mouseOver && (
-                <StyledTotalTransformationsAll
+                <StyledTotalEnhancesAll
                     theme={theme}
                 >
                     <ul>
@@ -77,11 +83,11 @@ const TotalTransformations: React.FC<TotalTransformationsProperties> = (
                             </li>
                         ))}
                     </ul>
-                </StyledTotalTransformationsAll>
+                </StyledTotalEnhancesAll>
             )}
-        </StyledTotalTransformations>
+        </StyledTotalEnhances>
     );
 }
 
 
-export default TotalTransformations;
+export default TotalEnhances;
