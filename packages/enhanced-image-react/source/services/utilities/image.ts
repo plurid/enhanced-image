@@ -1,4 +1,6 @@
-export const loadImage = (url: string) => {
+export const loadImage = (
+    url: string,
+) => {
     return new Promise(
         (response) => {
             const image = new Image();
@@ -14,7 +16,9 @@ export const loadImage = (url: string) => {
  * Edited from
  * https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#Polyfill
  */
-export const dataURIToBlob = (dataURI: string) => {
+export const dataURIToBlob = (
+    dataURI: string,
+) => {
     const binStr = atob(dataURI.split(',')[1]);
     const len = binStr.length;
     const arr = new Uint8Array(len);

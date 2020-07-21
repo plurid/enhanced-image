@@ -1,10 +1,7 @@
 import {
     ApolloClient,
-} from 'apollo-client';
-
-import {
-    NormalizedCacheObject
-} from 'apollo-cache-inmemory';
+    NormalizedCacheObject,
+} from '@apollo/client';
 
 import {
     graphql,

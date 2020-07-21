@@ -30,7 +30,7 @@ const logic = {
     saveTextWithAPIKey,
     saveTextWithOwnerToken,
     saveTextWithImageID,
-}
+};
 
 
 export default logic;
