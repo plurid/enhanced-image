@@ -8,6 +8,7 @@ export const StyledSpinner = styled.div`
     bottom: 25px;
 `;
 
+
 export const StyledLoader = styled.div`
     border-radius: 50%;
     width: 25px;

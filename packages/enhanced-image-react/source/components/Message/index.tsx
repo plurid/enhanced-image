@@ -6,15 +6,20 @@ import {
 
 
 
-interface MessageProperties {
+export interface MessageProperties {
     text: string;
 }
 
-const Message: React.FC<MessageProperties> = (properties) => {
+const Message: React.FC<MessageProperties> = (
+    properties,
+) => {
+    /** properties */
     const {
         text,
     } = properties;
 
+
+    /** render */
     return (
         <StyledMessage>
             {text}
