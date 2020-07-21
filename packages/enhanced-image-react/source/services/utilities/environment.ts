@@ -1,7 +1,7 @@
 const environment = {
-    local: process.env.MODE_ENV === 'local',
-    development: process.env.MODE_ENV === 'development',
-    production: process.env.MODE_ENV === 'production',
+    local: process.env.ENV_MODE === 'local',
+    development: process.env.ENV_MODE === 'development',
+    production: process.env.ENV_MODE === 'production',
 };
 
 
