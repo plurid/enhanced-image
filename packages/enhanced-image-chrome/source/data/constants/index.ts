@@ -25,3 +25,6 @@ export const contextMenu = {
         'image',
     ],
 };
+
+
+export const logErrors = !environment.production;
