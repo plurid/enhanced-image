@@ -71,7 +71,7 @@ export const getTextWithAPIKey = async (
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        }
+        };
         return response;
     }
 }

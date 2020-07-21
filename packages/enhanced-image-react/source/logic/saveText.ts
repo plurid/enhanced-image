@@ -54,7 +54,7 @@ export const saveTextWithAPIKey = async (
                 status: false,
                 error: REQUEST_ERRORS.BAD_REQUEST,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -73,7 +73,7 @@ export const saveTextWithAPIKey = async (
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        }
+        };
         return response;
     }
 }

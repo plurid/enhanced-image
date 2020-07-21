@@ -104,6 +104,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         srcset,
         alt,
 
+        logErrors,
+
         imageStyle,
         theme,
         transparentUI,
@@ -487,6 +489,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         }
 
         if (error) {
+            if (logErrors) {
+                console.log(error);
+            }
+
             if (error === REQUEST_ERRORS.NOT_AUTHORIZED) {
                 setShowSpinner(false);
                 setMessageTimed('Access Not Allowed. Please Check Your Account.', 4000);
@@ -652,6 +658,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         } = await handleExtractText();
 
         if (error) {
+            if (logErrors) {
+                console.log(error);
+            }
+
             if (error === REQUEST_ERRORS.NOT_AUTHORIZED) {
                 setShowSpinner(false);
                 setMessageTimed('Access Not Allowed. Please Check Your Account.', 4000);
@@ -808,6 +818,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         } = await handleSaveText();
 
         if (error) {
+            if (logErrors) {
+                console.log(error);
+            }
+
             if (error === REQUEST_ERRORS.SENT_MESSAGE) {
                 setShowSpinner(false);
                 setMessageTimed('Saving Text.', 4000);
@@ -827,6 +841,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return;
         }
     }
+
 
 
     /** TRANSVIEW TEXT */
