@@ -10,3 +10,18 @@ export const API_URI = environment.production
 
 
 export const PLURID_ACCOUNT_DOMAIN = 'https://account.plurid.com/depict';
+
+
+export const initialTimedNotification = {
+    text: '',
+    time: 0,
+};
+
+
+export const contextMenu = {
+    id: 'enhanced-image',
+    title: 'Enhanced Image',
+    contexts: [
+        'image',
+    ],
+};
