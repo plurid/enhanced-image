@@ -1079,7 +1079,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     }
 
-    const cycleImageBackground = async () => {
+    const cycleImageBackground = () => {
         if (imageBackground === 0) {
             setImageBackground(1);
         }
