@@ -64,7 +64,7 @@ export const StyledStateContainer = styled.div`
 `;
 
 export const StyledUIContainer = styled.div`
-    margin-top: 20px;
+    margin-top: 50px;
     margin-bottom: 20px;
 
     h1 {

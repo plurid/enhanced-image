@@ -1,4 +1,6 @@
-// https://github.com/akiomik/chrome-storage-promise/blob/master/src/chrome-storage-promise.js
+/**
+ * https://github.com/akiomik/chrome-storage-promise/blob/master/src/chrome-storage-promise.js
+ */
 export const chromeStorage = {
     get: (keys: any): Promise<any> => {
         let promise = new Promise((resolve, reject) => {

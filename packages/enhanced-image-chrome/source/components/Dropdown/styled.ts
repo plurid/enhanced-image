@@ -27,7 +27,7 @@ export const StyledDropdownList: any = styled.div`
     right: 0px;
     border-radius: 10px;
     border-bottom-right-radius: 0;
-    width: 60px;
+    width: 80px;
     max-height: 100px;
     overflow-y: auto;
     z-index: 9990;

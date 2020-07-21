@@ -5,6 +5,7 @@ import {
 import environment from './environment';
 
 
+export * from './general';
 export * from './image';
 export * from './message';
 
