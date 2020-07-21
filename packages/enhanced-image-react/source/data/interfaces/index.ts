@@ -55,6 +55,8 @@ export interface EnhancedImageProperties {
      */
     atLoad?: any;
 
+    logErrors?: boolean;
+
     /**
      * Function to be run after colors are changed.
      */

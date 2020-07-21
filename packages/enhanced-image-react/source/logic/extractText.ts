@@ -51,7 +51,7 @@ export const extractTextWithAPIKey = async (
                 status: false,
                 error: error.type,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -70,7 +70,7 @@ export const extractTextWithAPIKey = async (
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        }
+        };
         return response;
     }
 }
