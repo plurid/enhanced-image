@@ -49,6 +49,11 @@ export const extractTextWithAPIKey = async (
 
         if (!mutationResponse.status) {
             const error = mutationResponse.errors[0];
+
+            if (logErrors) {
+                console.log(error);
+            }
+
             const response = {
                 status: false,
                 error: error.type,
@@ -113,6 +118,11 @@ export const extractTextWithOwnerToken = async (
 
         if (!mutationResponse.status) {
             const error = mutationResponse.errors[0];
+
+            if (logErrors) {
+                console.log(error);
+            }
+
             const response = {
                 status: false,
                 error: error.type,
@@ -177,6 +187,11 @@ export const extractTextWithImageID = async (
 
         if (!mutationResponse.status) {
             const error = mutationResponse.errors[0];
+
+            if (logErrors) {
+                console.log(error);
+            }
+
             const response = {
                 status: false,
                 error: error.type,
