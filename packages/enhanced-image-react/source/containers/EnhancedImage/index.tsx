@@ -6,10 +6,10 @@ import React, {
     useEffect,
 } from 'react';
 
-import ApolloClient from 'apollo-client';
 import {
+    ApolloClient,
     NormalizedCacheObject,
-} from 'apollo-cache-inmemory';
+} from '@apollo/client';
 
 import themes, {
     Theme,
@@ -87,8 +87,6 @@ import client from '../../services/graphql/client';
 
 
 /** internal */
-import './styles.css';
-
 import {
     StyledEnhancedImage,
 } from './styled';

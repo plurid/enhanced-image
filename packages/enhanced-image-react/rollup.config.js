@@ -10,13 +10,6 @@ import pkg from './package.json';
 
 
 
-const external = [
-    'graphql',
-    'react',
-    'react-dom',
-    'styled-components',
-];
-
 export default {
     input: 'source/index.tsx',
     output: [
@@ -25,19 +18,17 @@ export default {
             format: 'cjs',
             exports: 'named',
             sourcemap: true,
-            // external,
         },
         {
             file: pkg.module,
             format: 'es',
             exports: 'named',
             sourcemap: true,
-            // external,
-        }
+        },
     ],
     plugins: [
         replace({
-            'process.env.MODE_ENV': JSON.stringify(process.env.MODE_ENV),
+            'process.env.ENV_MODE': JSON.stringify(process.env.ENV_MODE),
         }),
         depsExternal(),
         postcss({

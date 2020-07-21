@@ -8,6 +8,7 @@ import {
 
 
 const Spinner: React.FC<any> = () => {
+    /** render */
     return (
         <StyledSpinner>
             <StyledLoader />

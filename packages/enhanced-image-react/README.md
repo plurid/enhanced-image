@@ -32,3 +32,56 @@
 
 
 React implementation of [Enhanced Image](https://github.com/plurid/enhanced-image).
+
+
+
+## Extension
+
+The Element can enhance arbitrary Internet images as a browser extension:
+
++ [Chrome Extension][chrome] • [source][enhanced-image-chrome]
+
+[chrome]: https://chrome.google.com/webstore/detail/enhanced-image/pdcicakelecpcnchbbnkonjpmhagcbnm
+
+[enhanced-image-chrome]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-chrome
+
+
+
+## Features
+
+<p
+    align="center"
+>
+    change the colors of the image
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-1-bless.png" height="500px">
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-2-bless.png" height="500px">
+</p>
+
+
+<p
+    align="center"
+>
+    extract and select the image text
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-3-bless.png" height="500px">
+</p>
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-4-bless.png" height="500px">
+</p>
+
+
+
+## Depict
+
+The Element uses plurid's [depict][depict] services for text extraction. A custom API endpoint can be used, provided it uses GraphQL and respects the schema.
+
+[depict]: https://plurid.com/depict

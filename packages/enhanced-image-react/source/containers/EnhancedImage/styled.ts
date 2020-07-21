@@ -5,8 +5,8 @@ import styled from 'styled-components';
 export const StyledEnhancedImage = styled.div`
     box-sizing: border-box;
     color: ${props => props.theme.colorPrimary};
-    font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-        Roboto, Helvetica, Arial, sans-serif;
+    font-family: Ubuntu, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Oxygen, Cantarell, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     position: relative;
     overflow: hidden;
     height: auto;
