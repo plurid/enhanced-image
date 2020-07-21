@@ -6,7 +6,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 
 const DEVELOPMENT = 'development';
-const { NODE_ENV = DEVELOPMENT } = process.env;
+const {
+    NODE_ENV = DEVELOPMENT,
+} = process.env;
 
 
 const base = {
