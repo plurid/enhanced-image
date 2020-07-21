@@ -106,6 +106,9 @@ const Image: React.FC<ImageProperties> = (
             getTextOnLoad={options ? options.getImageTextAtLoad : false}
             transparentUI={options ? options.transparentUI : true}
 
+            generator={true}
+            development={true}
+
             apiEndpoint={API_URI}
         />
     );
