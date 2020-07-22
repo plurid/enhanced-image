@@ -30,6 +30,9 @@
 </p>
 
 
+Extract, select, translate the text from images in your browser, adjust the image colors, modify the image appearance.
+
+
 
 ## Extension
 

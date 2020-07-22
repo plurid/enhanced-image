@@ -31,6 +31,8 @@
 </h1>
 
 
+Extract, select, translate the text from images in your browser, adjust the image colors, modify the image appearance.
+
 React implementation of [Enhanced Image](https://github.com/plurid/enhanced-image).
 
 
