@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "depict · Enhanced Image",
+    "name": "depict · enhanced image",
     "short_name" : "depict",
     "description": "Extract and select the text from images, adjust the image colors, modify the image appearance.",
     "author": "Plurid, Inc.",
