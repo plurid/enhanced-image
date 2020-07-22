@@ -767,7 +767,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         if (sendMessage) {
             sendMessage({
-                type: MESSAGE_TYPES.EXTRACT_TEXT_WITH_IMAGE_ID,
+                type: MESSAGE_TYPES.SAVE_TEXT_WITH_IMAGE_ID,
                 input,
             });
 
@@ -845,6 +845,158 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
 
     /** TRANSVIEW TEXT */
+    const transviewTextWithApiKey = async (
+        apiKey: string,
+    ) => {
+        const input = {
+            apiKey,
+            imageURL: imageURLFromSrc(src),
+            imageID: databaseImageID || '',
+            source: transviewSourceLanguage,
+            target: transviewTargetLanguage,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: MESSAGE_TYPES.TRANSVIEW_TEXT_WITH_API_KEY,
+                input,
+            });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            };
+            return response;
+        }
+
+        const response = await logic.text.transview.withAPIKey(
+            input,
+            graphqlClient.current,
+        );
+        return response;
+    }
+
+    const transviewTextWithOwnerToken = async (
+        ownerToken: string,
+    ) => {
+        const input = {
+            ownerToken,
+            imageURL: imageURLFromSrc(src),
+            imageID: databaseImageID || '',
+            source: transviewSourceLanguage,
+            target: transviewTargetLanguage,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: MESSAGE_TYPES.TRANSVIEW_TEXT_WITH_OWNER_TOKEN,
+                input,
+            });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            };
+            return response;
+        }
+
+        const response = await logic.text.transview.withOwnerToken(
+            input,
+            graphqlClient.current,
+        );
+        return response;
+    }
+
+    const transviewTextWithImageID = async (
+        imageID: string,
+    ) => {
+        const input = {
+            imageID,
+            imageURL: imageURLFromSrc(src),
+            source: transviewSourceLanguage,
+            target: transviewTargetLanguage,
+        };
+
+        if (sendMessage) {
+            sendMessage({
+                type: MESSAGE_TYPES.TRANSVIEW_TEXT_WITH_IMAGE_ID,
+                input,
+            });
+
+            const response = {
+                status: false,
+                error: REQUEST_ERRORS.SENT_MESSAGE,
+                data: undefined,
+            };
+            return response;
+        }
+
+        const response = await logic.text.transview.withImageID(
+            input,
+            graphqlClient.current,
+        );
+        return response;
+    }
+
+    const handleTransviewText = async () => {
+        if (apiKey) {
+            return await transviewTextWithApiKey(apiKey);
+        }
+
+        if (ownerToken) {
+            return await transviewTextWithOwnerToken(ownerToken);
+        }
+
+        if (imageID) {
+            return await transviewTextWithImageID(imageID);
+        }
+
+        const response = {
+            status: false,
+            error: REQUEST_ERRORS.BAD_REQUEST,
+            data: undefined,
+        };
+        return response;
+    }
+
+    const transviewText = async () => {
+        setShowSpinner(true);
+        setMessage('Transviewing Text.');
+
+        const {
+            status,
+            error,
+            data,
+        } = await handleTransviewText();
+
+        if (error) {
+            if (logErrors && error !== REQUEST_ERRORS.SENT_MESSAGE) {
+                console.log(error);
+            }
+
+            if (error === REQUEST_ERRORS.SENT_MESSAGE) {
+                setShowSpinner(false);
+                setMessageTimed('Transviewing Text.', 4000);
+                return;
+            }
+
+            setShowSpinner(false);
+            setMessageTimed('Something Went Wrong. Please Try Again.', 3000);
+            return;
+        }
+
+        if (status) {
+            setShowSpinner(false);
+            setMessageTimed('Text Transviewed.', 2000);
+            setDatabaseImageID(data.imageID);
+            setImageText(data.imageText);
+            return;
+        }
+    }
+
+
     const addTransviewLanguage = (
         textID: string,
         language: string,
@@ -1043,10 +1195,6 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         element.click();
 
         document.body.removeChild(element);
-    }
-
-    const transviewText = async () => {
-
     }
 
     const saveImage = async () => {
