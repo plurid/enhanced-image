@@ -100,9 +100,13 @@ const SettingsMenu: React.FC<any> = () => {
 
         editableText,
         setEditableText,
-
         revealedText,
         setRevealedText,
+
+        editableEntities,
+        setEditableEntities,
+        revealedEntities,
+        setRevealedEntities,
 
         showTransviewSettings,
         setShowTransviewSettings,
@@ -547,9 +551,9 @@ const SettingsMenu: React.FC<any> = () => {
                                     <li>
                                         <ButtonCheckmark
                                             theme={theme}
-                                            toggle={() => setEditableText(show => !show)}
+                                            toggle={() => setEditableEntities(show => !show)}
                                             text="Edit Entities"
-                                            checked={editableText}
+                                            checked={editableEntities}
                                         />
                                     </li>
 
@@ -565,7 +569,7 @@ const SettingsMenu: React.FC<any> = () => {
                                     <li>
                                         <ButtonItem
                                             theme={theme}
-                                            atClick={saveText}
+                                            atClick={() => {}}
                                             icon={SaveTextIcon}
                                             text="Upload Entities"
                                         />
@@ -578,16 +582,16 @@ const SettingsMenu: React.FC<any> = () => {
                             <li>
                                 <ButtonCheckmark
                                     theme={theme}
-                                    toggle={() => setRevealedText(show => !show)}
+                                    toggle={() => setRevealedEntities(show => !show)}
                                     text="Reveal Entities"
-                                    checked={revealedText}
+                                    checked={revealedEntities}
                                 />
                             </li>
 
                             <li>
                                 <ButtonItem
                                     theme={theme}
-                                    atClick={async () => await getText()}
+                                    atClick={() => {}}
                                     icon={GetTextIcon}
                                     text="Get Entities"
                                 />
@@ -596,7 +600,7 @@ const SettingsMenu: React.FC<any> = () => {
                             <li>
                                 <ButtonItem
                                     theme={theme}
-                                    atClick={extractText}
+                                    atClick={() => {}}
                                     icon={ExtractTextIcon}
                                     text="Extract Entities"
                                 />

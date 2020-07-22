@@ -202,6 +202,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const [editableText, setEditableText] = useState(false);
     const [revealedText, setRevealedText] = useState(false);
 
+    const [editableEntities, setEditableEntities] = useState(false);
+    const [revealedEntities, setRevealedEntities] = useState(false);
+
     const [showTransviewSettings, setShowTransviewSettings] = useState(false);
     const [transviewActive, setTransviewActive] = useState(false);
     const [transviewSourceLanguage, setTransviewSourceLanguage] = useState('Auto-Detect');
@@ -1891,9 +1894,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         editableText,
         setEditableText,
-
         revealedText,
         setRevealedText,
+
+        editableEntities,
+        setEditableEntities,
+        revealedEntities,
+        setRevealedEntities,
 
         showTransviewSettings,
         setShowTransviewSettings,
