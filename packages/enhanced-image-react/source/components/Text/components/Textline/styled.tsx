@@ -21,7 +21,7 @@ export const StyledTextItem: any = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    pointer-events: all;
+    pointer-events: initial;
 `;
 
 

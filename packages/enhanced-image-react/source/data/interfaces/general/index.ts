@@ -235,9 +235,13 @@ export interface Context {
 
     editableText: boolean;
     setEditableText: Dispatch<SetStateAction<boolean>>;
-
     revealedText: boolean;
     setRevealedText: Dispatch<SetStateAction<boolean>>;
+
+    editableEntities: boolean;
+    setEditableEntities: Dispatch<SetStateAction<boolean>>;
+    revealedEntities: boolean;
+    setRevealedEntities: Dispatch<SetStateAction<boolean>>;
 
     showTransviewSettings: boolean;
     setShowTransviewSettings: Dispatch<SetStateAction<boolean>>;
