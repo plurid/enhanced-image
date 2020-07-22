@@ -3,6 +3,10 @@ import React, {
 } from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledDropdown,
     StyledDropdownSelected,
     StyledDropdownList,
@@ -10,23 +14,33 @@ import {
 
 
 
-interface DropdownProps {
+export interface DropdownProps {
     selected: string;
     items: any;
     onSelect: any;
-    theme: any;
+    theme: Theme;
 }
 
-const Dropdown: React.FC<DropdownProps> = (props) => {
-    const [showList, setShowList] = useState(false);
-
+const Dropdown: React.FC<DropdownProps> = (
+    properties,
+) => {
+    /** properties */
     const {
         selected,
         items,
         onSelect,
         theme,
-    } = props;
+    } = properties;
 
+
+    /** state */
+    const [
+        showList,
+        setShowList,
+    ] = useState(false);
+
+
+    /** render */
     return (
         <StyledDropdown>
             <StyledDropdownSelected

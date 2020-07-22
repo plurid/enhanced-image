@@ -1,28 +1,37 @@
 import React from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledInputText,
 } from './styled';
 
 
 
-interface InputTextProps {
-    theme: any;
+export interface InputTextProps {
+    theme: Theme;
     value: string;
     atChange: any;
     placeholder?: string;
     password?: boolean;
 }
 
-const InputText: React.FC<InputTextProps> = (props) => {
+const InputText: React.FC<InputTextProps> = (
+    properties,
+) => {
+    /** properties */
     const {
         theme,
         value,
         atChange,
         password,
         placeholder,
-    } = props;
+    } = properties;
 
+
+    /** render */
     return (
         <StyledInputText
             theme={theme}

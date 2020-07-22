@@ -1,26 +1,35 @@
 import React from 'react';
 
 import {
-    StyledItemExtensionOnOff,
-} from './styled';
+    Theme,
+} from '@plurid/plurid-themes';
 
 import ButtonSwitch from '../ButtonSwitch';
 
+import {
+    StyledItemExtensionOnOff,
+} from './styled';
 
 
-interface ItemExtensionOnOffProps {
-    theme: any;
+
+export interface ItemExtensionOnOffProperties {
+    theme: Theme;
     extensionOnOff: any;
     setExtensionOnOff: any;
 }
 
-const ItemExtensionOnOff: React.FC<ItemExtensionOnOffProps> = (props) => {
+const ItemExtensionOnOff: React.FC<ItemExtensionOnOffProperties> = (
+    properties,
+) => {
+    /** properties */
     const {
         theme,
         extensionOnOff,
         setExtensionOnOff,
-    } = props;
+    } = properties;
 
+
+    /** render */
     return (
         <StyledItemExtensionOnOff
             theme={theme}

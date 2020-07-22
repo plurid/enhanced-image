@@ -78,6 +78,15 @@ const Image: React.FC<ImageProperties> = (
                     return;
                 }
 
+                if (!ownerToken) {
+                    const timedNotification = {
+                        text: 'Not logged in. Please log in or generate an account.',
+                        time: 3500,
+                    };
+                    setTimeNotification(timedNotification);
+                    return;
+                }
+
                 const timedNotification = {
                     text: 'Something Went Wrong. Please Try Again.',
                     time: 3500,
@@ -94,7 +103,9 @@ const Image: React.FC<ImageProperties> = (
         return () => {
             chrome.runtime.onMessage.removeListener(handleRequest);
         }
-    }, []);
+    }, [
+        ownerToken,
+    ]);
 
 
     /** render */
@@ -116,7 +127,7 @@ const Image: React.FC<ImageProperties> = (
             transparentUI={options ? options.transparentUI : true}
 
             generator={true}
-            development={true}
+            // development={true}
 
             apiEndpoint={API_URI}
 

@@ -151,7 +151,6 @@ const LoginView: React.FC<LoginViewProps> = (
                 cancelLoginView();
             }
         } catch (error) {
-            console.log(error);
             setLoadingButton(false);
             setLoggingMessage('could not login. try again.');
             setTimeout(() => {

@@ -3,30 +3,42 @@ import React, {
 } from 'react';
 
 import {
-    StyledItemLoggedInAs,
-} from './styled';
+    Theme,
+} from '@plurid/plurid-themes';
 
 import ButtonInline from '../ButtonInline';
 
+import {
+    StyledItemLoggedInAs,
+} from './styled';
 
 
-interface ItemLoggedInAsProps {
-    theme: any;
+
+export interface ItemLoggedInAsProperties {
+    theme: Theme;
     identonym: string;
     logout: any;
 }
 
-const ItemLoggedInAs: React.FC<ItemLoggedInAsProps> = (
-    props,
+const ItemLoggedInAs: React.FC<ItemLoggedInAsProperties> = (
+    properties,
 ) => {
-    const [mouseOver, setMouseOver] = useState(false);
-
+    /** properties */
     const {
         theme,
         identonym,
         logout,
-    } = props;
+    } = properties;
 
+
+    /** state */
+    const [
+        mouseOver,
+        setMouseOver,
+    ] = useState(false);
+
+
+    /** render */
     return (
         <StyledItemLoggedInAs
             theme={theme}

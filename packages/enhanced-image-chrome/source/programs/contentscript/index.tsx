@@ -50,14 +50,15 @@ async function contentscript() {
                     const { token } = await chromeStorage.get('token');
                     const { refreshOwnerToken } = await chromeStorage.get('refreshOwnerToken');
                     const { options } = await chromeStorage.get('options');
+                    const { owner } = await chromeStorage.get('owner');
 
                     ReactDOM.render(
                         <Image
                             src={src}
                             alt={alt}
                             theme={theme}
-                            ownerToken={token}
-                            refreshOwnerToken={refreshOwnerToken}
+                            ownerToken={owner ? token : undefined}
+                            refreshOwnerToken={owner ? refreshOwnerToken : undefined}
                             options={options}
                         />,
                         document.getElementById(rootId) as HTMLElement,

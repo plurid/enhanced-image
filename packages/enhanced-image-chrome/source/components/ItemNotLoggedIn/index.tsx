@@ -1,25 +1,34 @@
 import React from 'react';
 
 import {
-    StyledItemNotLoggedIn,
-} from './styled';
+    Theme,
+} from '@plurid/plurid-themes';
 
 import ButtonInline from '../ButtonInline';
 import CreateAccountButton from '../CreateAccountButton';
 
+import {
+    StyledItemNotLoggedIn,
+} from './styled';
 
 
-interface ItemNotLoggedInProps {
-    theme: any;
+
+export interface ItemNotLoggedInProperties {
+    theme: Theme;
     setShowLogin: any;
 }
 
-const ItemNotLoggedIn: React.FC<ItemNotLoggedInProps> = (props) => {
+const ItemNotLoggedIn: React.FC<ItemNotLoggedInProperties> = (
+    properties,
+) => {
+    /** properties */
     const {
         theme,
         setShowLogin,
-    } = props;
+    } = properties;
 
+
+    /** render */
     return (
         <StyledItemNotLoggedIn
             theme={theme}
