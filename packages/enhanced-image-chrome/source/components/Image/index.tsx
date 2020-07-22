@@ -13,6 +13,8 @@ import {
 
 import {
     API_URI,
+    MESSAGE_TYPE_GET_PLURID_ACCESS_TOKEN,
+
     initialTimedNotification,
     logErrors,
 } from '../../data/constants';
@@ -27,8 +29,6 @@ export interface ImageProperties {
     src: string;
     alt: string;
     theme: keyof typeof themes;
-    ownerToken: string;
-    refreshOwnerToken: string;
     options: any;
 }
 
@@ -40,8 +40,6 @@ const Image: React.FC<ImageProperties> = (
         src,
         alt,
         theme,
-        ownerToken,
-        refreshOwnerToken,
         options,
     } = properties;
 
@@ -56,6 +54,15 @@ const Image: React.FC<ImageProperties> = (
         setTimeNotification,
     ] = useState(initialTimedNotification);
 
+    const [
+        accessToken,
+        setAccessToken,
+    ] = useState('');
+    const [
+        refreshAccessToken,
+        setRefeshAccessToken,
+    ] = useState('');
+
 
     /** effects */
     useEffect(() => {
@@ -65,7 +72,7 @@ const Image: React.FC<ImageProperties> = (
             const {
                 data,
                 status,
-                error
+                error,
             } = request.message;
 
             if (!status) {
@@ -78,7 +85,7 @@ const Image: React.FC<ImageProperties> = (
                     return;
                 }
 
-                if (!ownerToken) {
+                if (!accessToken) {
                     const timedNotification = {
                         text: 'Not logged in. Please log in or generate an account.',
                         time: 3500,
@@ -104,8 +111,40 @@ const Image: React.FC<ImageProperties> = (
             chrome.runtime.onMessage.removeListener(handleRequest);
         }
     }, [
-        ownerToken,
+        accessToken,
     ]);
+
+    /** Get access token */
+    useEffect(() => {
+        const message = {
+            type: MESSAGE_TYPE_GET_PLURID_ACCESS_TOKEN,
+        };
+        sendMessage(message);
+    }, []);
+
+    useEffect(() => {
+        const handleRequest = (
+            request: any,
+        ) => {
+            if (!request.message) {
+                return;
+            }
+
+            const {
+                accessToken,
+                refreshAccessToken,
+            } = request.message;
+
+            setAccessToken(accessToken);
+            setRefeshAccessToken(refreshAccessToken);
+        }
+
+        chrome.runtime.onMessage.addListener(handleRequest);
+
+        return () => {
+            chrome.runtime.onMessage.removeListener(handleRequest);
+        }
+    }, []);
 
 
     /** render */
@@ -115,8 +154,8 @@ const Image: React.FC<ImageProperties> = (
             alt={alt ? alt : ''}
             theme={theme || 'depict'}
 
-            ownerToken={ownerToken}
-            refreshOwnerToken={refreshOwnerToken}
+            ownerToken={accessToken}
+            refreshOwnerToken={refreshAccessToken}
 
             sendMessage={sendMessage}
 
