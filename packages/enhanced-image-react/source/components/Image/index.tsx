@@ -41,6 +41,7 @@ const Image: React.FC<{}> = () => {
         imageColorsSaturation,
         imageColorsBrightness,
 
+        imageTopologyOverflow,
         flipVertical,
         flipHorizontal,
         imageTopologyRotate,
@@ -118,6 +119,7 @@ const Image: React.FC<{}> = () => {
     /** render */
     return (
         <StyledImage
+            topologyOverflow={imageTopologyOverflow}
         >
             <img
                 src={src}

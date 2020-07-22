@@ -219,6 +219,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const [previousImageColors, setPreviousImageColors] = useState(initialPreviousImageColors);
 
+    const [imageTopologyOverflow, setImageTopologyOverflow] = useState(false);
     const [flipVertical, setFlipVertical] = useState(false);
     const [flipHorizontal, setFlipHorizontal] = useState(false);
     const [imageTopologyRotate, setImageTopologyRotate] = useState(0);
@@ -1272,6 +1273,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }
 
     const resetDefaultsTopology = () => {
+        setImageTopologyOverflow(false);
         setFlipVertical(false);
         setFlipHorizontal(false);
         setImageTopologyRotate(0);
@@ -1823,6 +1825,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         toggleDefaults,
         resetDefaultsColor,
 
+        imageTopologyOverflow,
+        setImageTopologyOverflow,
         flipVertical,
         setFlipVertical,
         flipHorizontal,
@@ -1853,6 +1857,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         >
             <StyledEnhancedImage
                 theme={context.theme}
+                topologyOverflow={imageTopologyOverflow}
                 onMouseEnter={() => setShowSettingsButton(true)}
                 onMouseLeave={() => setShowSettingsButton(false)}
                 onMouseMove={() => !showSettingsButton
