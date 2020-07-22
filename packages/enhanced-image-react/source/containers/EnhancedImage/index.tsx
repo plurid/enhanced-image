@@ -133,6 +133,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         silent,
         settingsDrawers,
         textDrawer,
+        topologyDrawer,
         variaDrawer,
     } = properties;
 
@@ -159,6 +160,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const _silent = silent ?? false;
     const _settingsDrawers = settingsDrawers ?? ['ALL'];
     const _textDrawer = textDrawer ?? ['ALL'];
+    const _topologyDrawer = topologyDrawer ?? ['ALL'];
     const _variaDrawer = variaDrawer ?? ['ALL'];
 
 
@@ -1727,6 +1729,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         silent: _silent,
         settingsDrawers: _settingsDrawers,
         textDrawer: _textDrawer,
+        topologyDrawer: _topologyDrawer,
         variaDrawer: _variaDrawer,
 
         apiEndpoint: _apiEndpoint,

@@ -142,11 +142,19 @@ export interface EnhancedImageProperties {
 
     /**
      * Specify which actions to be available in the Text Drawer of the Settings Menu.
-     * `('ALL' | 'REVEAL_TEXT' | 'GET_TEXT' | 'EXTRACT_TEXT')[]`
+     * `('ALL' | 'REVEAL_TEXT' | 'GET_TEXT' | 'EXTRACT_TEXT' | 'TRANSVIEW_TEXT')[]`
      *
      * Default: `['ALL']`.
      */
     textDrawer?: TextDrawer[];
+
+    /**
+     * Specify which actions to be available in the Topology Drawer of the Settings Menu.
+     * `('ALL' | 'FLIP_VERTICAL' | 'FLIP_HORIZONTAL' | 'ROTATE' | 'SCALE' | 'RESET')[]`
+     *
+     * Default: `['ALL']`.
+     */
+    topologyDrawer?: TopologyDrawer[];
 
     /**
      * Specify which actions to be available in the Varia Drawer of the Settings Menu.
@@ -172,6 +180,7 @@ export interface Context {
     silent: boolean;
     settingsDrawers: SettingsDrawer[];
     textDrawer: TextDrawer[];
+    topologyDrawer: TopologyDrawer[];
     variaDrawer: VariaDrawer[];
 
     apiEndpoint: string;
@@ -337,6 +346,14 @@ export type TextDrawer =
     | 'GET_TEXT'
     | 'EXTRACT_TEXT'
     | 'TRANSVIEW_TEXT';
+
+export type TopologyDrawer =
+    | 'ALL'
+    | 'FLIP_VERTICAL'
+    | 'FLIP_HORIZONTAL'
+    | 'ROTATE'
+    | 'SCALE'
+    | 'RESET';
 
 export type VariaDrawer =
     | 'ALL'

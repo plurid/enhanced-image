@@ -65,6 +65,7 @@ const SettingsMenu: React.FC<any> = () => {
         development,
         settingsDrawers,
         textDrawer,
+        topologyDrawer,
         variaDrawer,
 
         databaseImageID,
@@ -419,56 +420,72 @@ const SettingsMenu: React.FC<any> = () => {
                         toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
                     >
                         <ul>
-                            <li>
-                                <ButtonCheckmark
-                                    theme={theme}
-                                    toggle={() => setFlipVertical(flip => !flip)}
-                                    text="Flip Vertical"
-                                    checked={flipVertical}
-                                />
-                            </li>
+                            {(topologyDrawer.includes('ALL') || topologyDrawer.includes('FLIP_VERTICAL'))
+                            && (
+                                <li>
+                                    <ButtonCheckmark
+                                        theme={theme}
+                                        toggle={() => setFlipVertical(flip => !flip)}
+                                        text="Flip Vertical"
+                                        checked={flipVertical}
+                                    />
+                                </li>
+                            )}
 
-                            <li>
-                                <ButtonCheckmark
-                                    theme={theme}
-                                    toggle={() => setFlipHorizontal(flip => !flip)}
-                                    text="Flip Horizontal"
-                                    checked={flipHorizontal}
-                                />
-                            </li>
 
-                            <li>
-                                <SliderItem
-                                    theme={theme}
-                                    type={'TransformRotate'}
-                                    min={-180}
-                                    max={180}
-                                    value={imageTopologyRotate}
-                                    valueSign={'°'}
-                                    handleInput={(value: number) => setImageTopologyRotate(value)}
-                                />
-                            </li>
+                            {(topologyDrawer.includes('ALL') || topologyDrawer.includes('FLIP_HORIZONTAL'))
+                            && (
+                                <li>
+                                    <ButtonCheckmark
+                                        theme={theme}
+                                        toggle={() => setFlipHorizontal(flip => !flip)}
+                                        text="Flip Horizontal"
+                                        checked={flipHorizontal}
+                                    />
+                                </li>
+                            )}
 
-                            <li>
-                                <SliderItem
-                                    theme={theme}
-                                    type={'TransformScale'}
-                                    min={-100}
-                                    max={100}
-                                    value={imageTopologyScale}
-                                    valueSign={''}
-                                    handleInput={(value: number) => setImageTopologyScale(value)}
-                                />
-                            </li>
+                            {(topologyDrawer.includes('ALL') || topologyDrawer.includes('ROTATE'))
+                            && (
+                                <li>
+                                    <SliderItem
+                                        theme={theme}
+                                        type={'TransformRotate'}
+                                        min={-180}
+                                        max={180}
+                                        value={imageTopologyRotate}
+                                        valueSign={'°'}
+                                        handleInput={(value: number) => setImageTopologyRotate(value)}
+                                    />
+                                </li>
+                            )}
 
-                            <li>
-                                <ButtonItem
-                                    theme={theme}
-                                    atClick={resetDefaultsTopology}
-                                    icon={ResetIcon}
-                                    text="Reset to Defaults"
-                                />
-                            </li>
+                            {(topologyDrawer.includes('ALL') || topologyDrawer.includes('SCALE'))
+                            && (
+                                <li>
+                                    <SliderItem
+                                        theme={theme}
+                                        type={'TransformScale'}
+                                        min={-100}
+                                        max={100}
+                                        value={imageTopologyScale}
+                                        valueSign={''}
+                                        handleInput={(value: number) => setImageTopologyScale(value)}
+                                    />
+                                </li>
+                            )}
+
+                            {(topologyDrawer.includes('ALL') || topologyDrawer.includes('RESET'))
+                            && (
+                                <li>
+                                    <ButtonItem
+                                        theme={theme}
+                                        atClick={resetDefaultsTopology}
+                                        icon={ResetIcon}
+                                        text="Reset to Defaults"
+                                    />
+                                </li>
+                            )}
                         </ul>
                     </Drawer>
                 )}
