@@ -1,0 +1,60 @@
+{
+    "manifest_version": 2,
+    "name": "depict · enhanced image",
+    "short_name" : "depict",
+    "description": "Extract, select, translate the text from images in your browser, adjust the image colors, modify the image appearance.",
+    "author": "Plurid, Inc.",
+    "version": "0.2.0",
+    "icons" : {
+        "16" : "assets/icons/icon16.png",
+        "32" : "assets/icons/icon32.png",
+        "48" : "assets/icons/icon48.png",
+        "128" : "assets/icons/icon128.png"
+    },
+    "permissions": [
+        "contextMenus",
+        "cookies",
+        "http://localhost:33700/",
+        "storage"
+    ],
+    "content_scripts": [{
+        "matches": [
+            "<all_urls>"
+        ],
+        "include_globs": [
+            "**.jpg",
+            "**=jpg**",
+            "**.jpeg",
+            "**.jpeg**",
+            "**=jpeg**",
+            "**.png",
+            "**.png**",
+            "**=png**",
+            "**.gif",
+            "**.gif**",
+            "**=gif**",
+            "**.webp",
+            "**.webp**",
+            "**=webp**"
+        ],
+        "js": [
+            "contentscript.js"
+        ],
+        "run_at": "document_idle"
+    }],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    },
+    "browser_action" : {
+        "default_title" : "depict",
+        "default_icon" : "assets/icons/icon.png",
+        "default_popup" : "popup.html"
+    },
+    "incognito": "spanning",
+    "content_security_policy": "script-src 'self'; object-src 'self'"
+}

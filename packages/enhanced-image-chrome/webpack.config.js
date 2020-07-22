@@ -43,8 +43,7 @@ const base = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: './source/manifest.json', to: './manifest.json' },
-                { from: './source/assets', to: 'assets' }
+                { from: './source/assets', to: 'assets' },
             ],
         }),
         new HtmlWebpackPlugin({
@@ -75,6 +74,11 @@ const development = {
     },
     plugins: [
         ...base.plugins,
+        new CopyPlugin({
+            patterns: [
+                { from: './source/manifest.development.json', to: './manifest.json' },
+            ],
+        }),
         new webpack.HotModuleReplacementPlugin(),
     ],
 };
@@ -90,6 +94,11 @@ const production = {
     devtool: '#source-map',
     plugins: [
         ...base.plugins,
+        new CopyPlugin({
+            patterns: [
+                { from: './source/manifest.json', to: './manifest.json' },
+            ],
+        }),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false,
