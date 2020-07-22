@@ -1,23 +1,27 @@
 import React from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledDrawer,
     StyledDrawerTitle,
     StyledDrawerContents,
 } from './styled';
 
-import { Theme } from '@plurid/plurid-themes';
 
 
-
-interface DrawerProperties {
+export interface DrawerProperties {
     title: string;
     theme: Theme;
     expand: boolean;
     toggleExpand: () => void;
 }
 
-const Drawer: React.FC<DrawerProperties> = (properties) => {
+const Drawer: React.FC<DrawerProperties> = (
+    properties,
+) => {
     const {
         title,
         theme,

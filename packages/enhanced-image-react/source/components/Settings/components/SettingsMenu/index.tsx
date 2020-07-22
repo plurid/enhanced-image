@@ -44,9 +44,9 @@ import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,
 
     IMAGE_TYPES,
-} from '../../../../data/constants';
 
-import sliders from '../../../../data/constants/sliders';
+    sliders,
+} from '../../../../data/constants';
 
 
 

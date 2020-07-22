@@ -1,18 +1,24 @@
 import React from 'react';
 
-import { StyledButtonClick } from './styled';
+import {
+    Theme,
+} from '@plurid/plurid-themes';
 
-import { Theme } from '@plurid/plurid-themes';
+import {
+    StyledButtonClick,
+} from './styled';
 
 
 
-interface ButtonClickProperties {
+export interface ButtonClickProperties {
     icon: JSX.Element;
     theme: Theme;
     atClick: () => void;
 }
 
-const ButtonClick: React.FC<ButtonClickProperties> = (properties) => {
+const ButtonClick: React.FC<ButtonClickProperties> = (
+    properties,
+) => {
     const {
         icon,
         theme,

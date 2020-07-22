@@ -1,6 +1,10 @@
 import React from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledButtonIncrement,
     StyledButtonIncrementIcon,
     StyledButtonIncrements,
@@ -8,15 +12,14 @@ import {
     StyledButtonIncrementsUnit,
 } from './styled';
 
-import { Theme } from '@plurid/plurid-themes';
-
 
 
 const STEP = 1;
 const UP_ARROW = (<span>&#x25b2;</span>);
 const DOWN_ARROW = (<span>&#x25bc;</span>);
 
-interface ButtonIncrementsProperties {
+
+export interface ButtonIncrementsProperties {
     theme: Theme;
     transparentUI: boolean;
     icon: JSX.Element;
@@ -27,7 +30,9 @@ interface ButtonIncrementsProperties {
     unit?: string;
 }
 
-const ButtonIncrements: React.FC<ButtonIncrementsProperties> = (properties) => {
+const ButtonIncrements: React.FC<ButtonIncrementsProperties> = (
+    properties,
+) => {
     const {
         theme,
         transparentUI,
