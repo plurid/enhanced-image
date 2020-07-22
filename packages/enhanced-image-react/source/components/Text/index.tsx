@@ -35,6 +35,8 @@ const Text: React.FC<any> = () => {
         flipVertical,
         imageTopologyRotate,
         imageTopologyScale,
+        imageCoordinateX,
+        imageCoordinateY,
     } = context;
 
 
@@ -44,6 +46,8 @@ const Text: React.FC<any> = () => {
         flipHorizontal,
         imageTopologyRotate,
         imageTopologyScale,
+        imageCoordinateX,
+        imageCoordinateY,
     );
 
 

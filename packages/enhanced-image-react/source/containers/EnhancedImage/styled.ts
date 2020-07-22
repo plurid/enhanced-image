@@ -9,12 +9,14 @@ import {
 export interface IStyledEnhancedImage {
     theme: Theme;
     topologyOverflow: boolean;
+    topologyDrag: boolean;
+    topologyDragging: boolean;
 }
 
 export const StyledEnhancedImage = styled.div<IStyledEnhancedImage>`
     box-sizing: border-box;
     font-family: Ubuntu, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-        Roboto, Oxygen, Cantarell, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        Roboto, 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     position: relative;
     height: auto;
     width: auto;
@@ -28,6 +30,22 @@ export const StyledEnhancedImage = styled.div<IStyledEnhancedImage>`
         ({
             topologyOverflow,
         }: IStyledEnhancedImage) => topologyOverflow ? 'initial' : 'hidden'
+    };
+    cursor: ${
+        ({
+            topologyDrag,
+            topologyDragging,
+        }: IStyledEnhancedImage) => {
+            if (topologyDragging) {
+                return 'grabbing';
+            }
+
+            if (topologyDrag) {
+                return 'grab';
+            }
+
+            return 'initial';
+        }
     };
 
     -ms-overflow-style: none;  /* Internet Explorer 10+ */

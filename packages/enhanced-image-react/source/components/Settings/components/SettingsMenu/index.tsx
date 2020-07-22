@@ -76,6 +76,8 @@ const SettingsMenu: React.FC<any> = () => {
         setExpandColorDrawer,
         expandTopologyDrawer,
         setExpandTopologyDrawer,
+        expandEntitiesDrawer,
+        setExpandEntitiesDrawer,
         expandVariaDrawer,
         setExpandVariaDrawer,
 
@@ -123,6 +125,8 @@ const SettingsMenu: React.FC<any> = () => {
         setFlipVertical,
         flipHorizontal,
         setFlipHorizontal,
+        imageTopologyDrag,
+        setImageTopologyDrag,
         imageTopologyRotate,
         setImageTopologyRotate,
         imageTopologyScale,
@@ -458,6 +462,18 @@ const SettingsMenu: React.FC<any> = () => {
                                 </li>
                             )}
 
+                            {(topologyDrawer.includes('ALL') || topologyDrawer.includes('DRAG'))
+                            && (
+                                <li>
+                                    <ButtonCheckmark
+                                        theme={theme}
+                                        toggle={() => setImageTopologyDrag(drag => !drag)}
+                                        text="Drag Image"
+                                        checked={imageTopologyDrag}
+                                    />
+                                </li>
+                            )}
+
                             {(topologyDrawer.includes('ALL') || topologyDrawer.includes('ROTATE'))
                             && (
                                 <li>
@@ -499,6 +515,79 @@ const SettingsMenu: React.FC<any> = () => {
                                     />
                                 </li>
                             )}
+                        </ul>
+                    </Drawer>
+                )}
+
+
+                {(settingsDrawers.includes('ALL') || settingsDrawers.includes('ENTITIES'))
+                && (
+                    <Drawer
+                        title="Entities"
+                        theme={theme}
+                        expand={expandEntitiesDrawer}
+                        toggleExpand={() => setExpandEntitiesDrawer(expand => !expand)}
+                    >
+                        <ul>
+                            {generator && (
+                                <>
+                                    <li>
+                                        <ButtonCheckmark
+                                            theme={theme}
+                                            toggle={() => setEditableText(show => !show)}
+                                            text="Edit Entities"
+                                            checked={editableText}
+                                        />
+                                    </li>
+
+                                    <li>
+                                        <ButtonItem
+                                            theme={theme}
+                                            atClick={addText}
+                                            icon={AddTextIcon}
+                                            text="Add Entity"
+                                        />
+                                    </li>
+
+                                    <li>
+                                        <ButtonItem
+                                            theme={theme}
+                                            atClick={saveText}
+                                            icon={SaveTextIcon}
+                                            text="Upload Entities"
+                                        />
+                                    </li>
+
+                                    <hr />
+                                </>
+                            )}
+
+                            <li>
+                                <ButtonCheckmark
+                                    theme={theme}
+                                    toggle={() => setRevealedText(show => !show)}
+                                    text="Reveal Entities"
+                                    checked={revealedText}
+                                />
+                            </li>
+
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={async () => await getText()}
+                                    icon={GetTextIcon}
+                                    text="Get Entities"
+                                />
+                            </li>
+
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={extractText}
+                                    icon={ExtractTextIcon}
+                                    text="Extract Entities"
+                                />
+                            </li>
                         </ul>
                     </Drawer>
                 )}

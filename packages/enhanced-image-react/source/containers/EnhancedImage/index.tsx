@@ -192,6 +192,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const [expandTextDrawer, setExpandTextDrawer] = useState(false);
     const [expandColorDrawer, setExpandColorDrawer] = useState(false);
     const [expandTopologyDrawer, setExpandTopologyDrawer] = useState(false);
+    const [expandEntitiesDrawer, setExpandEntitiesDrawer] = useState(false);
     const [expandVariaDrawer, setExpandVariaDrawer] = useState(false);
 
     const [editableText, setEditableText] = useState(false);
@@ -222,6 +223,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const [imageTopologyOverflow, setImageTopologyOverflow] = useState(false);
     const [flipVertical, setFlipVertical] = useState(false);
     const [flipHorizontal, setFlipHorizontal] = useState(false);
+    const [imageTopologyDrag, setImageTopologyDrag] = useState(false);
+    const [imageTopologyDragging, setImageTopologyDragging] = useState(false);
+    const [imageTopologyX, setImageTopologyX] = useState(0);
+    const [imageTopologyY, setImageTopologyY] = useState(0);
+    const [imageCoordinateX, setImageCoordinateX] = useState(0);
+    const [imageCoordinateY, setImageCoordinateY] = useState(0);
     const [imageTopologyRotate, setImageTopologyRotate] = useState(0);
     const [imageTopologyScale, setImageTopologyScale] = useState(0);
 
@@ -362,6 +369,28 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         };
         setImageBoxDimensions(imageBoxDimensions);
     }, 150);
+
+    const handleMouseDown = (
+        event: any,
+    ) => {
+        if (imageTopologyDrag) {
+            setImageTopologyDragging(true);
+
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+
+            setImageTopologyX(pageX);
+            setImageTopologyY(pageY);
+        }
+    }
+
+    const updateTopologyLocation = (
+        x: number,
+        y: number,
+    ) => {
+        setImageCoordinateX(imageCoordinateX + x);
+        setImageCoordinateY(imageCoordinateY + y);
+    }
 
 
 
@@ -1715,6 +1744,62 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }, []);
 
 
+    /**
+     * Handle dragging (mouseup).
+     */
+    useEffect(() => {
+        const handleMouseUp = () => {
+            if (imageTopologyDrag) {
+                setImageTopologyDragging(false);
+            }
+        }
+
+        window.addEventListener('mouseup', handleMouseUp);
+
+        return () => {
+            window.removeEventListener('mouseup', handleMouseUp);
+        }
+    }, [
+        imageTopologyDrag,
+        imageTopologyDragging,
+    ]);
+
+    /**
+     * Handle dragging (movemove).
+     */
+    useEffect(() => {
+        const handleMouseMove = (event: any) => {
+            if (!imageTopologyDragging) {
+                return;
+            }
+
+            event.preventDefault();
+
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+
+            const differenceX = pageX - imageTopologyX;
+            const differenceY = pageY - imageTopologyY;
+
+            updateTopologyLocation(
+                differenceX,
+                differenceY,
+            );
+        }
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        }
+    }, [
+        imageTopologyDragging,
+        imageTopologyDrag,
+        imageTopologyX,
+        imageTopologyY,
+    ]);
+
+
 
     /** context */
     const context: IContext = {
@@ -1768,6 +1853,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setExpandColorDrawer,
         expandTopologyDrawer,
         setExpandTopologyDrawer,
+        expandEntitiesDrawer,
+        setExpandEntitiesDrawer,
         expandVariaDrawer,
         setExpandVariaDrawer,
 
@@ -1831,11 +1918,16 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setFlipVertical,
         flipHorizontal,
         setFlipHorizontal,
+        imageTopologyDrag,
+        setImageTopologyDrag,
         imageTopologyRotate,
         setImageTopologyRotate,
         imageTopologyScale,
         setImageTopologyScale,
         resetDefaultsTopology,
+
+        imageCoordinateX,
+        imageCoordinateY,
 
         viewFullscreen,
         shareImage,
@@ -1858,6 +1950,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             <StyledEnhancedImage
                 theme={context.theme}
                 topologyOverflow={imageTopologyOverflow}
+                topologyDrag={imageTopologyDrag}
+                topologyDragging={imageTopologyDragging}
+                onMouseDown={(event) => handleMouseDown(event)}
                 onMouseEnter={() => setShowSettingsButton(true)}
                 onMouseLeave={() => setShowSettingsButton(false)}
                 onMouseMove={() => !showSettingsButton
