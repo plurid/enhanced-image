@@ -9,56 +9,55 @@ import {
 
 import {
     REQUEST_ERRORS,
-} from '../data/constants';
+} from '../../../data/constants';
 
 import {
-    SAVE_TEXT_WITH_API_KEY,
-    SAVE_TEXT_WITH_OWNER_TOKEN,
-    SAVE_TEXT_WITH_IMAGE_ID,
-} from '../services/graphql/mutate';
+    GET_TEXT_WITH_API_KEY,
+    GET_TEXT_WITH_OWNER_TOKEN,
+    GET_TEXT_WITH_IMAGE_ID,
+} from '../../../services/graphql/query';
 
 
 
-export interface InputSaveTextWithAPIKey {
+export interface InputGetTextWithAPIKey {
     imageURL: string;
-    imageID: string;
     apiKey: string;
-    imageText: any;
 }
 
 /**
- * Mutate `graphqlClient` with the `input` variable
+ * Query `graphqlClient` with the `input` variable
  * based on the `apiKey`.
  *
  * @param input
  * @param graphqlClient
  * @param logErrors
  */
-export const saveTextWithAPIKey = async (
-    input: InputSaveTextWithAPIKey,
+export const withAPIKey = async (
+    input: InputGetTextWithAPIKey,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
-        const mutation = await graphqlClient.mutate({
-            mutation: SAVE_TEXT_WITH_API_KEY,
+        const query = await graphqlClient.query({
+            query: GET_TEXT_WITH_API_KEY,
             variables: {
                 input,
             },
             fetchPolicy: 'no-cache',
         });
 
-        const mutationResponse = mutation.data.enhancedImageSaveTextWithAPIKey;
-        // console.log(mutationResponse);
+        const queryResponse = query.data.enhancedImageGetTextWithAPIKey;
 
-        if (!mutationResponse.status) {
+        if (!queryResponse.status) {
+            const error = queryResponse.errors[0];
+
             if (logErrors) {
-                console.log(mutationResponse.errors);
+                console.log(error);
             }
 
             const response = {
                 status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
+                error: error.type,
                 data: undefined,
             };
             return response;
@@ -66,7 +65,7 @@ export const saveTextWithAPIKey = async (
 
         const {
             data,
-        } = mutationResponse;
+        } = queryResponse;
 
         const response = {
             status: true,
@@ -90,45 +89,45 @@ export const saveTextWithAPIKey = async (
 
 
 
-export interface InputSaveTextWithOwnerToken {
+export interface InputGetTextWithOwnerToken {
     imageURL: string;
-    imageID: string;
     ownerToken: string;
-    imageText: any;
 }
 
 /**
- * Mutate `graphqlClient` with the `input` variable
+ * Query `graphqlClient` with the `input` variable
  * based on the `ownerToken`.
  *
  * @param input
  * @param graphqlClient
  * @param logErrors
  */
-export const saveTextWithOwnerToken = async (
-    input: InputSaveTextWithOwnerToken,
+export const withOwnerToken = async (
+    input: InputGetTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
-        const mutation = await graphqlClient.mutate({
-            mutation: SAVE_TEXT_WITH_OWNER_TOKEN,
+        const query = await graphqlClient.query({
+            query: GET_TEXT_WITH_OWNER_TOKEN,
             variables: {
                 input,
             },
             fetchPolicy: 'no-cache',
         });
 
-        const mutationReponse = mutation.data.enhancedImageSaveTextWithOwnerToken;
+        const queryResponse = query.data.enhancedImageGetTextWithOwnerToken;
 
-        if (!mutationReponse.status) {
+        if (!queryResponse.status) {
+            const error = queryResponse.errors[0];
+
             if (logErrors) {
-                console.log(mutationReponse.errors);
+                console.log(error);
             }
 
             const response = {
                 status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
+                error: error.type,
                 data: undefined,
             };
             return response;
@@ -136,7 +135,7 @@ export const saveTextWithOwnerToken = async (
 
         const {
             data,
-        } = mutationReponse;
+        } = queryResponse;
 
         const response = {
             status: true,
@@ -153,51 +152,52 @@ export const saveTextWithOwnerToken = async (
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        };
+        }
         return response;
     }
 }
 
 
 
-export interface InputSaveTextWithImageID {
+export interface InputGetTextWithImageID {
     imageURL: string;
     imageID: string;
-    imageText: any;
 }
 
 /**
- * Mutate `graphqlClient` with the `input` variable
- * based on the `ownerToken`.
+ * Query `graphqlClient` with the `input` variable
+ * based on the `imageID`.
  *
  * @param input
  * @param graphqlClient
  * @param logErrors
  */
-export const saveTextWithImageID = async (
-    input: InputSaveTextWithImageID,
+export const withImageID = async (
+    input: InputGetTextWithImageID,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
-        const mutation = await graphqlClient.mutate({
-            mutation: SAVE_TEXT_WITH_IMAGE_ID,
+        const query = await graphqlClient.query({
+            query: GET_TEXT_WITH_IMAGE_ID,
             variables: {
                 input,
             },
             fetchPolicy: 'no-cache',
         });
 
-        const mutationResponse = mutation.data.enhancedImageSaveTextWithImageID;
+        const queryResponse = query.data.enhancedImageGetTextWithImageID;
 
-        if (!mutationResponse.status) {
+        if (!queryResponse.status) {
+            const error = queryResponse.errors[0];
+
             if (logErrors) {
-                console.log(mutationResponse.errors);
+                console.log(error);
             }
 
             const response = {
                 status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
+                error: error.type,
                 data: undefined,
             };
             return response;
@@ -205,7 +205,7 @@ export const saveTextWithImageID = async (
 
         const {
             data,
-        } = mutationResponse;
+        } = queryResponse;
 
         const response = {
             status: true,
@@ -222,7 +222,7 @@ export const saveTextWithImageID = async (
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        };
+        }
         return response;
     }
 }

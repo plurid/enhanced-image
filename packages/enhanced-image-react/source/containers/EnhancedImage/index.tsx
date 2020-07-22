@@ -383,7 +383,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.getTextWithAPIKey(
+        const response = await logic.text.get.withAPIKey(
             input,
             graphqlClient.current,
         );
@@ -412,7 +412,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.getTextWithOwnerToken(
+        const response = await logic.text.get.withOwnerToken(
             input,
             graphqlClient.current,
         );
@@ -441,7 +441,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.getTextWithImageID(
+        const response = await logic.text.get.withImageID(
             input,
             graphqlClient.current,
         );
@@ -556,7 +556,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.extractTextWithAPIKey(
+        const response = await logic.text.extract.withAPIKey(
             input,
             graphqlClient.current,
         );
@@ -585,7 +585,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.extractTextWithOwnerToken(
+        const response = await logic.text.extract.withOwnerToken(
             input,
             graphqlClient.current,
         );
@@ -614,7 +614,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.extractTextWithImageID(
+        const response = await logic.text.extract.withImageID(
             input,
             graphqlClient.current,
         );
@@ -716,7 +716,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.saveTextWithAPIKey(
+        const response = await logic.text.save.withAPIKey(
             input,
             graphqlClient.current,
         );
@@ -748,7 +748,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.saveTextWithOwnerToken(
+        const response = await logic.text.save.withOwnerToken(
             input,
             graphqlClient.current,
         );
@@ -779,7 +779,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return response;
         }
 
-        const response = await logic.saveTextWithImageID(
+        const response = await logic.text.save.withImageID(
             input,
             graphqlClient.current,
         );
