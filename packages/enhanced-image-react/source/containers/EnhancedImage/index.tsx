@@ -40,7 +40,8 @@ import {
     ImageDimensions,
     ImageBoxDimensions,
     ImageText,
-    ImageTextVersionTextline,
+    ImageEntity,
+    ImageEntityRectangular,
     ImageColorsData,
     ActionDetail,
 } from '../../data/interfaces';
@@ -61,6 +62,8 @@ import {
     IMAGE_TYPES,
 
     ENHANCED_IMAGE_ACTION,
+
+    emptyImageEntityRectangular,
 } from '../../data/constants';
 
 import {
@@ -207,6 +210,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const [saveImageDownload, setSaveImageDownload] = useState('');
 
     const [imageText, setImageText] = useState<ImageText[]>([]);
+    const [imageEntities, setImageEntities] = useState<ImageEntity[]>([]);
 
     const [deletedTexts, setDeletedTexts] = useState<string[]>([]);
 
@@ -1577,6 +1581,27 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     }
 
 
+
+    /** ENTITIES */
+    const addEntity = () => {
+        setMessageTimed('Added New Entity', 1500);
+
+        const newEntityID = 'eie_' + uuid.generate();
+
+        const newEntity: ImageEntityRectangular = {
+            ...emptyImageEntityRectangular,
+            id: newEntityID,
+        };
+
+        const updatedEntities = [
+            ...imageEntities,
+            newEntity,
+        ];
+
+        setImageEntities(updatedEntities);
+    }
+
+
     /** effects */
     /** Defaults Colors */
     useEffect(() => {
@@ -1944,6 +1969,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         deleteTextItem,
         updateTextCoordinates,
         updateTextItemField,
+
+
+        /** entities */
+        addEntity,
     };
 
 

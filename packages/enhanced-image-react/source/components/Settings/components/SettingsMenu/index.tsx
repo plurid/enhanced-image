@@ -146,6 +146,9 @@ const SettingsMenu: React.FC<any> = () => {
         viewFullscreen,
         shareImage,
         viewAbout,
+
+        /** entities */
+        addEntity,
     } = context;
 
 
@@ -553,7 +556,7 @@ const SettingsMenu: React.FC<any> = () => {
                                     <li>
                                         <ButtonItem
                                             theme={theme}
-                                            atClick={addText}
+                                            atClick={addEntity}
                                             icon={AddTextIcon}
                                             text="Add Entity"
                                         />

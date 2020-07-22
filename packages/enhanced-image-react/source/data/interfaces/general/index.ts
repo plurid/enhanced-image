@@ -331,6 +331,10 @@ export interface Context {
     updateTextCoordinates: (versionID: string, coordinates: any) => void;
 
     updateTextItemField: (versionID: string, type: string, value: number | string | boolean) => void;
+
+
+    /** entities */
+    addEntity: () => void;
 }
 
 
