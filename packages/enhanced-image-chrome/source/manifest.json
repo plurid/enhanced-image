@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "depict · enhanced image",
     "short_name" : "depict",
-    "description": "Extract, select, translate the text from images in your browser, adjust the image colors, modify the image appearance.",
+    "description": "Extract, select, translate text from images in your browser, adjust image colors, modify image appearance.",
     "author": "Plurid, Inc.",
     "version": "0.2.0",
     "icons" : {
