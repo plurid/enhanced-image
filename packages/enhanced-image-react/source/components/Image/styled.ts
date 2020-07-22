@@ -2,8 +2,17 @@ import styled from 'styled-components';
 
 
 
-export const StyledImage: any = styled.div`
+export interface IStyledImage {
+    topologyOverflow: boolean;
+}
+
+export const StyledImage = styled.div<IStyledImage>`
     position: relative;
-    overflow: auto;
     height: 100%;
+
+    overflow: ${
+        ({
+            topologyOverflow,
+        }: IStyledImage) => topologyOverflow ? 'initial' : 'auto'
+    };
 `;

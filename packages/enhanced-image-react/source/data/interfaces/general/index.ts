@@ -298,7 +298,8 @@ export interface Context {
     toggleDefaults: () => void;
     resetDefaultsColor: () => void;
 
-
+    imageTopologyOverflow: boolean;
+    setImageTopologyOverflow: Dispatch<SetStateAction<boolean>>;
     flipVertical: boolean;
     setFlipVertical: Dispatch<SetStateAction<boolean>>;
     flipHorizontal: boolean;
@@ -349,6 +350,7 @@ export type TextDrawer =
 
 export type TopologyDrawer =
     | 'ALL'
+    | 'OVERFLOW'
     | 'FLIP_VERTICAL'
     | 'FLIP_HORIZONTAL'
     | 'ROTATE'

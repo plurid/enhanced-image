@@ -117,6 +117,8 @@ const SettingsMenu: React.FC<any> = () => {
         toggleDefaults,
         resetDefaultsColor,
 
+        imageTopologyOverflow,
+        setImageTopologyOverflow,
         flipVertical,
         setFlipVertical,
         flipHorizontal,
@@ -420,6 +422,18 @@ const SettingsMenu: React.FC<any> = () => {
                         toggleExpand={() => setExpandTopologyDrawer(expand => !expand)}
                     >
                         <ul>
+                            {(topologyDrawer.includes('ALL') || topologyDrawer.includes('OVERFLOW'))
+                            && (
+                                <li>
+                                    <ButtonCheckmark
+                                        theme={theme}
+                                        toggle={() => setImageTopologyOverflow(show => !show)}
+                                        text="Overflow"
+                                        checked={imageTopologyOverflow}
+                                    />
+                                </li>
+                            )}
+
                             {(topologyDrawer.includes('ALL') || topologyDrawer.includes('FLIP_VERTICAL'))
                             && (
                                 <li>
@@ -431,7 +445,6 @@ const SettingsMenu: React.FC<any> = () => {
                                     />
                                 </li>
                             )}
-
 
                             {(topologyDrawer.includes('ALL') || topologyDrawer.includes('FLIP_HORIZONTAL'))
                             && (
