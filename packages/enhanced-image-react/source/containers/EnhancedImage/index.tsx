@@ -1305,8 +1305,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setImageTopologyOverflow(false);
         setFlipVertical(false);
         setFlipHorizontal(false);
+        setImageTopologyDrag(false);
         setImageTopologyRotate(0);
         setImageTopologyScale(0);
+        setImageTopologyX(0);
+        setImageTopologyY(0);
+        setImageCoordinateX(0);
+        setImageCoordinateY(0);
     }
 
     const viewFullscreen = () => {
