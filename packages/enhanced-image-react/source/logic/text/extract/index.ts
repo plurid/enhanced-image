@@ -9,47 +9,46 @@ import {
 
 import {
     REQUEST_ERRORS,
-} from '../data/constants';
+} from '../../../data/constants';
 
 import {
-    GET_TEXT_WITH_API_KEY,
-    GET_TEXT_WITH_OWNER_TOKEN,
-    GET_TEXT_WITH_IMAGE_ID,
-} from '../services/graphql/query';
+    EXTRACT_TEXT_WITH_API_KEY,
+    EXTRACT_TEXT_WITH_OWNER_TOKEN,
+    EXTRACT_TEXT_WITH_IMAGE_ID,
+} from '../../../services/graphql/mutate';
 
 
 
-export interface InputGetTextWithAPIKey {
+export interface InputExtractTextWithApiKey {
     imageURL: string;
     apiKey: string;
 }
 
 /**
- * Query `graphqlClient` with the `input` variable
+ * Mutate `graphqlClient` with the `input` variable
  * based on the `apiKey`.
  *
  * @param input
  * @param graphqlClient
  * @param logErrors
  */
-export const getTextWithAPIKey = async (
-    input: InputGetTextWithAPIKey,
+export const withAPIKey = async (
+    input: InputExtractTextWithApiKey,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
-        const query = await graphqlClient.query({
-            query: GET_TEXT_WITH_API_KEY,
+        const mutation = await graphqlClient.mutate({
+            mutation: EXTRACT_TEXT_WITH_API_KEY,
             variables: {
                 input,
             },
-            fetchPolicy: 'no-cache',
         });
 
-        const queryResponse = query.data.enhancedImageGetTextWithAPIKey;
+        const mutationResponse = mutation.data.enhancedImageExtractTextWithAPIKey;
 
-        if (!queryResponse.status) {
-            const error = queryResponse.errors[0];
+        if (!mutationResponse.status) {
+            const error = mutationResponse.errors[0];
 
             if (logErrors) {
                 console.log(error);
@@ -65,7 +64,7 @@ export const getTextWithAPIKey = async (
 
         const {
             data,
-        } = queryResponse;
+        } = mutationResponse;
 
         const response = {
             status: true,
@@ -89,37 +88,36 @@ export const getTextWithAPIKey = async (
 
 
 
-export interface InputGetTextWithOwnerToken {
+export interface InputExtractTextWithOwnerToken {
     imageURL: string;
     ownerToken: string;
 }
 
 /**
- * Query `graphqlClient` with the `input` variable
+ * Mutate `graphqlClient` with the `input` variable
  * based on the `ownerToken`.
  *
  * @param input
  * @param graphqlClient
  * @param logErrors
  */
-export const getTextWithOwnerToken = async (
-    input: InputGetTextWithOwnerToken,
+export const withOwnerToken = async (
+    input: InputExtractTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
-        const query = await graphqlClient.query({
-            query: GET_TEXT_WITH_OWNER_TOKEN,
+        const mutation = await graphqlClient.mutate({
+            mutation: EXTRACT_TEXT_WITH_OWNER_TOKEN,
             variables: {
                 input,
             },
-            fetchPolicy: 'no-cache',
         });
 
-        const queryResponse = query.data.enhancedImageGetTextWithOwnerToken;
+        const mutationResponse = mutation.data.enhancedImageExtractTextWithOwnerToken;
 
-        if (!queryResponse.status) {
-            const error = queryResponse.errors[0];
+        if (!mutationResponse.status) {
+            const error = mutationResponse.errors[0];
 
             if (logErrors) {
                 console.log(error);
@@ -129,13 +127,13 @@ export const getTextWithOwnerToken = async (
                 status: false,
                 error: error.type,
                 data: undefined,
-            };
+            }
             return response;
         }
 
         const {
             data,
-        } = queryResponse;
+        } = mutationResponse;
 
         const response = {
             status: true,
@@ -159,37 +157,36 @@ export const getTextWithOwnerToken = async (
 
 
 
-export interface InputGetTextWithImageID {
+export interface InputExtractTextWithImageID {
     imageURL: string;
     imageID: string;
 }
 
 /**
- * Query `graphqlClient` with the `input` variable
- * based on the `imageID`.
+ * Mutate `graphqlClient` with the `input` variable
+ * based on the `ownerToken`.
  *
  * @param input
  * @param graphqlClient
  * @param logErrors
  */
-export const getTextWithImageID = async (
-    input: InputGetTextWithImageID,
+export const withImageID = async (
+    input: InputExtractTextWithImageID,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
-        const query = await graphqlClient.query({
-            query: GET_TEXT_WITH_IMAGE_ID,
+        const mutation = await graphqlClient.mutate({
+            mutation: EXTRACT_TEXT_WITH_IMAGE_ID,
             variables: {
                 input,
             },
-            fetchPolicy: 'no-cache',
         });
 
-        const queryResponse = query.data.enhancedImageGetTextWithImageID;
+        const mutationResponse = mutation.data.enhancedImageExtractTextWithImageID;
 
-        if (!queryResponse.status) {
-            const error = queryResponse.errors[0];
+        if (!mutationResponse.status) {
+            const error = mutationResponse.errors[0];
 
             if (logErrors) {
                 console.log(error);
@@ -199,13 +196,13 @@ export const getTextWithImageID = async (
                 status: false,
                 error: error.type,
                 data: undefined,
-            };
+            }
             return response;
         }
 
         const {
             data,
-        } = queryResponse;
+        } = mutationResponse;
 
         const response = {
             status: true,

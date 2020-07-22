@@ -9,19 +9,22 @@ import {
 
 import {
     REQUEST_ERRORS,
-} from '../data/constants';
+} from '../../../data/constants';
 
 import {
-    EXTRACT_TEXT_WITH_API_KEY,
-    EXTRACT_TEXT_WITH_OWNER_TOKEN,
-    EXTRACT_TEXT_WITH_IMAGE_ID,
-} from '../services/graphql/mutate';
+    TRANSVIEW_TEXT_WITH_API_KEY,
+    TRANSVIEW_TEXT_WITH_OWNER_TOKEN,
+    TRANSVIEW_TEXT_WITH_IMAGE_ID,
+} from '../../../services/graphql/mutate';
 
 
 
-export interface InputExtractTextWithApiKey {
+export interface InputTransviewTextWithAPIKey {
     imageURL: string;
+    imageID: string;
     apiKey: string;
+    source: string;
+    target: string;
 }
 
 /**
@@ -32,31 +35,31 @@ export interface InputExtractTextWithApiKey {
  * @param graphqlClient
  * @param logErrors
  */
-export const extractTextWithAPIKey = async (
-    input: InputExtractTextWithApiKey,
+export const withAPIKey = async (
+    input: InputTransviewTextWithAPIKey,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
-            mutation: EXTRACT_TEXT_WITH_API_KEY,
+            mutation: TRANSVIEW_TEXT_WITH_API_KEY,
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
-        const mutationResponse = mutation.data.enhancedImageExtractTextWithAPIKey;
+        const mutationResponse = mutation.data.enhancedImageTransviewTextWithAPIKey;
+        // console.log(mutationResponse);
 
         if (!mutationResponse.status) {
-            const error = mutationResponse.errors[0];
-
             if (logErrors) {
-                console.log(error);
+                console.log(mutationResponse.errors);
             }
 
             const response = {
                 status: false,
-                error: error.type,
+                error: REQUEST_ERRORS.BAD_REQUEST,
                 data: undefined,
             };
             return response;
@@ -88,9 +91,12 @@ export const extractTextWithAPIKey = async (
 
 
 
-export interface InputExtractTextWithOwnerToken {
+export interface InputTransviewTextWithOwnerToken {
     imageURL: string;
+    imageID: string;
     ownerToken: string;
+    source: string;
+    target: string;
 }
 
 /**
@@ -101,39 +107,38 @@ export interface InputExtractTextWithOwnerToken {
  * @param graphqlClient
  * @param logErrors
  */
-export const extractTextWithOwnerToken = async (
-    input: InputExtractTextWithOwnerToken,
+export const withOwnerToken = async (
+    input: InputTransviewTextWithOwnerToken,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
-            mutation: EXTRACT_TEXT_WITH_OWNER_TOKEN,
+            mutation: TRANSVIEW_TEXT_WITH_OWNER_TOKEN,
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
-        const mutationResponse = mutation.data.enhancedImageExtractTextWithOwnerToken;
+        const mutationReponse = mutation.data.enhancedImageTransviewTextWithOwnerToken;
 
-        if (!mutationResponse.status) {
-            const error = mutationResponse.errors[0];
-
+        if (!mutationReponse.status) {
             if (logErrors) {
-                console.log(error);
+                console.log(mutationReponse.errors);
             }
 
             const response = {
                 status: false,
-                error: error.type,
+                error: REQUEST_ERRORS.BAD_REQUEST,
                 data: undefined,
-            }
+            };
             return response;
         }
 
         const {
             data,
-        } = mutationResponse;
+        } = mutationReponse;
 
         const response = {
             status: true,
@@ -150,16 +155,18 @@ export const extractTextWithOwnerToken = async (
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        }
+        };
         return response;
     }
 }
 
 
 
-export interface InputExtractTextWithImageID {
+export interface InputTransviewTextWithImageID {
     imageURL: string;
     imageID: string;
+    source: string;
+    target: string;
 }
 
 /**
@@ -170,33 +177,32 @@ export interface InputExtractTextWithImageID {
  * @param graphqlClient
  * @param logErrors
  */
-export const extractTextWithImageID = async (
-    input: InputExtractTextWithImageID,
+export const withImageID = async (
+    input: InputTransviewTextWithImageID,
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
     try {
         const mutation = await graphqlClient.mutate({
-            mutation: EXTRACT_TEXT_WITH_IMAGE_ID,
+            mutation: TRANSVIEW_TEXT_WITH_IMAGE_ID,
             variables: {
                 input,
             },
+            fetchPolicy: 'no-cache',
         });
 
-        const mutationResponse = mutation.data.enhancedImageExtractTextWithImageID;
+        const mutationResponse = mutation.data.enhancedImageTransviewTextWithImageID;
 
         if (!mutationResponse.status) {
-            const error = mutationResponse.errors[0];
-
             if (logErrors) {
-                console.log(error);
+                console.log(mutationResponse.errors);
             }
 
             const response = {
                 status: false,
-                error: error.type,
+                error: REQUEST_ERRORS.BAD_REQUEST,
                 data: undefined,
-            }
+            };
             return response;
         }
 
@@ -219,7 +225,7 @@ export const extractTextWithImageID = async (
             status: false,
             error: REQUEST_ERRORS.BAD_REQUEST,
             data: undefined,
-        }
+        };
         return response;
     }
 }

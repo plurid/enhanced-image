@@ -1,36 +1,7 @@
-import {
-    getTextWithAPIKey,
-    getTextWithOwnerToken,
-    getTextWithImageID,
-} from './getText';
-
-import {
-    extractTextWithAPIKey,
-    extractTextWithImageID,
-    extractTextWithOwnerToken,
-} from './extractText';
-
-import {
-    saveTextWithAPIKey,
-    saveTextWithOwnerToken,
-    saveTextWithImageID,
-} from './saveText';
+import text from './text';
 
 
 
-const logic = {
-    getTextWithAPIKey,
-    getTextWithOwnerToken,
-    getTextWithImageID,
-
-    extractTextWithAPIKey,
-    extractTextWithImageID,
-    extractTextWithOwnerToken,
-
-    saveTextWithAPIKey,
-    saveTextWithOwnerToken,
-    saveTextWithImageID,
+export default {
+    text,
 };
-
-
-export default logic;
