@@ -37,8 +37,9 @@ const Rectangular: React.FC<RectangularProperties> = (
         return (<></>);
     }
 
-    // const {
-    // } = context;
+    const {
+        imageBoxDimensions,
+    } = context;
 
 
     /** properties */
@@ -46,12 +47,31 @@ const Rectangular: React.FC<RectangularProperties> = (
         data,
     } = properties;
 
+    const {
+        color,
+        height,
+        width,
+        position,
+    } = data.data;
+
+    const absoluteWidth = width * imageBoxDimensions.width / 100 + 'px';
+    const absoluteHeight = height * imageBoxDimensions.height / 100 + 'px';
+
+    const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
+    const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
+
 
     /** render */
     return (
-        <StyledRectangular>
-            Rectangular
-        </StyledRectangular>
+        <StyledRectangular
+            style={{
+                top: absoluteY,
+                left: absoluteX,
+                width: absoluteWidth,
+                height: absoluteHeight,
+                backgroundColor: color,
+            }}
+        />
     );
 }
 

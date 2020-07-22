@@ -37,8 +37,9 @@ const Radial: React.FC<RadialProperties> = (
         return (<></>);
     }
 
-    // const {
-    // } = context;
+    const {
+        imageBoxDimensions,
+    } = context;
 
 
     /** properties */
@@ -46,12 +47,33 @@ const Radial: React.FC<RadialProperties> = (
         data,
     } = properties;
 
+    const {
+        color,
+        radius,
+        position,
+    } = data.data;
+
+    const absoluteRadius = radius * imageBoxDimensions.width / 100;
+
+    const absoluteWidth = absoluteRadius + 'px';
+    const absoluteHeight = absoluteRadius + 'px';
+
+    const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
+    const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
+
 
     /** render */
     return (
-        <StyledRadial>
-            Radial
-        </StyledRadial>
+        <StyledRadial
+            style={{
+                top: absoluteY,
+                left: absoluteX,
+                width: absoluteWidth,
+                height: absoluteHeight,
+                borderRadius: absoluteRadius / 2 + 'px',
+                backgroundColor: color,
+            }}
+        />
     );
 }
 

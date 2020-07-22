@@ -65,6 +65,7 @@ import {
     ENHANCED_IMAGE_ACTION,
 
     emptyImageEntityRectangular,
+    emptyImageEntityRadial,
 } from '../../data/constants';
 
 import {
@@ -1592,8 +1593,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         const newEntityID = 'eie_' + uuid.generate();
 
-        const newEntity: ImageEntityRectangular = {
-            ...emptyImageEntityRectangular,
+        const newEntity: any = {
+            // ...emptyImageEntityRectangular,
+            ...emptyImageEntityRadial,
             id: newEntityID,
         };
 

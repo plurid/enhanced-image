@@ -37,8 +37,9 @@ const Painted: React.FC<PaintedProperties> = (
         return (<></>);
     }
 
-    // const {
-    // } = context;
+    const {
+        imageBoxDimensions,
+    } = context;
 
 
     /** properties */
@@ -46,11 +47,25 @@ const Painted: React.FC<PaintedProperties> = (
         data,
     } = properties;
 
+    const {
+        position,
+    } = data.data;
+
+    const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
+    const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
+
 
     /** render */
     return (
-        <StyledPainted>
-            Painted
+        <StyledPainted
+            style={{
+                top: absoluteY,
+                left: absoluteX,
+            }}
+        >
+            <canvas
+
+            />
         </StyledPainted>
     );
 }
