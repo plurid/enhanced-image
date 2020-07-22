@@ -30,6 +30,7 @@ import logic from '../../logic';
 
 import Image from '../../components/Image';
 import Text from '../../components/Text';
+import Entities from '../../components/Entities';
 import Settings from '../../components/Settings';
 import Message from '../../components/Message';
 import Spinner from '../../components/Spinner';
@@ -1904,6 +1905,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setTransviewTargetLanguage,
 
         imageText,
+        imageEntities,
 
         addTransviewLanguage,
         removeTransviewLanguage,
@@ -1999,6 +2001,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
                 {loadedImage && (
                     <Text />
+                )}
+
+                {loadedImage && (
+                    <Entities />
                 )}
 
                 {loadedImage

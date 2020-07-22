@@ -12,24 +12,23 @@ import {
 
 import {
     Context,
-
-    getVersionById,
 } from '../../services/utilities';
 
 
 /** internal */
-import Textarea from './components/Textarea';
-import Textline from './components/Textline';
+import RectangularEntity from './components/Rectangular';
+import RadialEntity from './components/Radial';
+import PaintedEntity from './components/Painted';
 
 import {
-    StyledText,
+    StyledEntities,
 } from './styled';
 /** [END] imports */
 
 
 
 /** [START] component */
-const Text: React.FC<any> = () => {
+const Entities: React.FC<any> = () => {
     /** context */
     const context = useContext(Context);
     if (!context) {
@@ -37,8 +36,9 @@ const Text: React.FC<any> = () => {
     }
 
     const {
+        imageEntities,
+
         imageBoxDimensions,
-        imageText,
         flipHorizontal,
         flipVertical,
         imageTopologyRotate,
@@ -61,7 +61,7 @@ const Text: React.FC<any> = () => {
 
     /** render */
     return (
-        <StyledText
+        <StyledEntities
             style={{
                 width: imageBoxDimensions.width + 'px',
                 height: imageBoxDimensions.height + 'px',
@@ -70,37 +70,37 @@ const Text: React.FC<any> = () => {
                 transform,
             }}
         >
-            {imageText.map(textItem => {
-                const currentVersion = getVersionById(textItem);
-
-                if (!currentVersion) {
-                    return;
-                }
-
-                switch (currentVersion.type) {
-                    case 'TEXTAREA':
+            {imageEntities.map(entity => {
+                switch (entity.type) {
+                    case 'RECTANGULAR':
                         return (
-                            <Textarea
-                                key={textItem.id}
-                                data={textItem}
+                            <RectangularEntity
+                                key={entity.id}
+                                data={entity}
                             />
                         );
-                    case 'TEXTLINE':
+                    case 'RADIAL':
                         return (
-                            <Textline
-                                key={textItem.id}
-                                data={textItem}
-                                currentVersion={currentVersion}
+                            <RadialEntity
+                                key={entity.id}
+                                data={entity}
+                            />
+                        );
+                    case 'PAINTED':
+                        return (
+                            <PaintedEntity
+                                key={entity.id}
+                                data={entity}
                             />
                         );
                     default:
                         return;
                 }
             })}
-        </StyledText>
+        </StyledEntities>
     );
 }
 
 
-export default Text;
+export default Entities;
 /** [END] component */
