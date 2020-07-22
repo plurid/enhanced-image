@@ -2,6 +2,6 @@ import styled from 'styled-components';
 
 
 
-export const StyledTextarea = styled.div`
+export const StyledRectangular = styled.div`
     pointer-events: all;
 `;

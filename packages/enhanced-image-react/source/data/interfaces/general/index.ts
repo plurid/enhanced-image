@@ -11,6 +11,10 @@ import {
     ImageText,
 } from '../text';
 
+import {
+    ImageEntity,
+} from '../entities';
+
 
 
 export interface EnhancedImageProperties {
@@ -246,6 +250,8 @@ export interface Context {
 
 
     imageText: ImageText[];
+    imageEntities: ImageEntity[];
+
 
     addTransviewLanguage: (
         textID: string,
