@@ -30,7 +30,7 @@
 </p>
 
 
-Extract, select, translate the text from images in your browser, adjust the image colors, modify the image appearance.
+Extract, select, translate text from images in your browser, adjust image colors, modify image appearance.
 
 
 
