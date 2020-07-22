@@ -50,7 +50,7 @@ const onMessage = async (
     switch (type) {
         case MESSAGE_TYPES.GET_TEXT_WITH_API_KEY:
             {
-                const response = await logic.getTextWithAPIKey(
+                const response = await logic.text.get.withAPIKey(
                     input,
                     client,
                     logErrors,
@@ -64,7 +64,7 @@ const onMessage = async (
             }
         case MESSAGE_TYPES.GET_TEXT_WITH_OWNER_TOKEN:
             {
-                const response = await logic.getTextWithOwnerToken(
+                const response = await logic.text.get.withOwnerToken(
                     input,
                     client,
                     logErrors,
@@ -78,7 +78,7 @@ const onMessage = async (
             }
         case MESSAGE_TYPES.GET_TEXT_WITH_IMAGE_ID:
             {
-                const response = await logic.getTextWithImageID(
+                const response = await logic.text.get.withImageID(
                     input,
                     client,
                     logErrors,
@@ -93,7 +93,7 @@ const onMessage = async (
 
         case MESSAGE_TYPES.EXTRACT_TEXT_WITH_API_KEY:
             {
-                const response = await logic.extractTextWithAPIKey(
+                const response = await logic.text.extract.withAPIKey(
                     input,
                     client,
                     logErrors,
@@ -107,7 +107,7 @@ const onMessage = async (
             }
         case MESSAGE_TYPES.EXTRACT_TEXT_WITH_OWNER_TOKEN:
             {
-                const response = await logic.extractTextWithOwnerToken(
+                const response = await logic.text.extract.withOwnerToken(
                     input,
                     client,
                     logErrors,
@@ -121,7 +121,7 @@ const onMessage = async (
             }
         case MESSAGE_TYPES.EXTRACT_TEXT_WITH_IMAGE_ID:
             {
-                const response = await logic.extractTextWithImageID(
+                const response = await logic.text.extract.withImageID(
                     input,
                     client,
                     logErrors,
@@ -136,7 +136,7 @@ const onMessage = async (
 
         case MESSAGE_TYPES.SAVE_TEXT_WITH_API_KEY:
             {
-                const response = await logic.saveTextWithAPIKey(
+                const response = await logic.text.save.withAPIKey(
                     input,
                     client,
                     logErrors,
@@ -150,7 +150,7 @@ const onMessage = async (
             }
         case MESSAGE_TYPES.SAVE_TEXT_WITH_OWNER_TOKEN:
             {
-                const response = await logic.saveTextWithOwnerToken(
+                const response = await logic.text.save.withOwnerToken(
                     input,
                     client,
                     logErrors,
@@ -164,7 +164,50 @@ const onMessage = async (
             }
         case MESSAGE_TYPES.SAVE_TEXT_WITH_IMAGE_ID:
             {
-                const response = await logic.saveTextWithImageID(
+                const response = await logic.text.save.withImageID(
+                    input,
+                    client,
+                    logErrors,
+                );
+
+                chrome.tabs.sendMessage(
+                    tabID,
+                    { message: { ...response } },
+                );
+                break;
+            }
+
+        case MESSAGE_TYPES.TRANSVIEW_TEXT_WITH_API_KEY:
+            {
+                const response = await logic.text.transview.withAPIKey(
+                    input,
+                    client,
+                    logErrors,
+                );
+
+                chrome.tabs.sendMessage(
+                    tabID,
+                    { message: { ...response } },
+                );
+                break;
+            }
+        case MESSAGE_TYPES.TRANSVIEW_TEXT_WITH_OWNER_TOKEN:
+            {
+                const response = await logic.text.transview.withOwnerToken(
+                    input,
+                    client,
+                    logErrors,
+                );
+
+                chrome.tabs.sendMessage(
+                    tabID,
+                    { message: { ...response } },
+                );
+                break;
+            }
+        case MESSAGE_TYPES.TRANSVIEW_TEXT_WITH_IMAGE_ID:
+            {
+                const response = await logic.text.transview.withImageID(
                     input,
                     client,
                     logErrors,
