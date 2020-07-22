@@ -6,10 +6,6 @@ import React, {
 } from 'react';
 
 import {
-    StyledImage,
-} from './styled';
-
-import {
     IMAGE_BACKGROUNDS,
 } from '../../data/constants';
 
@@ -17,7 +13,13 @@ import {
     useTransform,
 } from '../../services/hooks';
 
-import Context from '../../services/utilities/context';
+import {
+    Context
+} from '../../services/utilities';
+
+import {
+    StyledImage,
+} from './styled';
 
 
 

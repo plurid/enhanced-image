@@ -7,10 +7,10 @@ import {
 } from '../../services/hooks';
 
 import {
-    getVersionById,
-} from '../../services/utilities/imageText';
+    Context,
 
-import Context from '../../services/utilities/context';
+    getVersionById,
+} from '../../services/utilities';
 
 import {
     StyledText,

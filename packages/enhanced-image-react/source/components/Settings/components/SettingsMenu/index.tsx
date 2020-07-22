@@ -10,8 +10,6 @@ import {
     StyledSettingsMenu,
 } from './styled';
 
-import Context from '../../../../services/utilities/context';
-
 import AddTextIcon from '../../../../assets/icons/settings-menu/add-text';
 import SaveTextIcon from '../../../../assets/icons/settings-menu/save-text';
 
@@ -33,13 +31,6 @@ import SaveIcon from '../../../../assets/icons/settings-menu/save';
 
 import AboutIcon from '../../../../assets/icons/settings-menu/about';
 
-import ButtonCheckmark from './components/ButtonCheckmark';
-import ButtonItem from './components/ButtonItem';
-import SliderItem from './components/SliderItem';
-import Drawer from './components/Drawer';
-
-import Transview from './features/Transview';
-
 import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,
 
@@ -47,6 +38,17 @@ import {
 
     sliders,
 } from '../../../../data/constants';
+
+import {
+    Context
+} from '../../../../services/utilities';
+
+import ButtonCheckmark from './components/ButtonCheckmark';
+import ButtonItem from './components/ButtonItem';
+import SliderItem from './components/SliderItem';
+import Drawer from './components/Drawer';
+
+import Transview from './features/Transview';
 
 
 

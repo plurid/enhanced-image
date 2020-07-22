@@ -1,5 +1,6 @@
 export * from './action';
 export * from './api';
+export * from './entities';
 export * from './fonts';
 export * from './general';
 export * from './image';

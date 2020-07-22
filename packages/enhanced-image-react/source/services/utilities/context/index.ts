@@ -6,7 +6,4 @@ import {
 
 
 
-const Context = React.createContext<IContext | null>(null);
-
-
-export default Context;
+export const Context = React.createContext<IContext | null>(null);
