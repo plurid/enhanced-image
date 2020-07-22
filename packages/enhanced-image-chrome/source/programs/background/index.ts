@@ -6,12 +6,19 @@ import {
 import {
     contextMenu,
     logErrors,
+
+    PLURID_COM_DOMAIN,
+    COOKIE_TOKEN_ACCESS,
+    COOKIE_TOKEN_REFRESH,
+
+    MESSAGE_TYPE_GET_PLURID_ACCESS_TOKEN,
 } from '../../data/constants';
 
 import client from '../../services/graphql/client';
 
 import {
     chromeStorage,
+    chromeCookies,
 } from '../../services/utilities/chrome';
 
 
@@ -216,6 +223,29 @@ const onMessage = async (
                 chrome.tabs.sendMessage(
                     tabID,
                     { message: { ...response } },
+                );
+                break;
+            }
+
+        case MESSAGE_TYPE_GET_PLURID_ACCESS_TOKEN:
+            {
+                const accessToken = await chromeCookies.get(
+                    PLURID_COM_DOMAIN,
+                    COOKIE_TOKEN_ACCESS,
+                );
+                const refreshAccessToken = await chromeCookies.get(
+                    PLURID_COM_DOMAIN,
+                    COOKIE_TOKEN_REFRESH,
+                );
+
+                chrome.tabs.sendMessage(
+                    tabID,
+                    {
+                        message: {
+                            accessToken,
+                            refreshAccessToken,
+                        },
+                    },
                 );
                 break;
             }

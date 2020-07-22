@@ -14,7 +14,7 @@
     "permissions": [
         "contextMenus",
         "cookies",
-        "*://*.plurid.com",
+        "*://*.plurid.com/",
         "storage"
     ],
     "content_scripts": [{

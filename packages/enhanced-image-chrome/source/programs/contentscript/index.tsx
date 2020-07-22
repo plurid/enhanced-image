@@ -47,18 +47,13 @@ async function contentscript() {
                     document.body.appendChild(root);
 
                     const { theme } = await chromeStorage.get('theme');
-                    const { token } = await chromeStorage.get('token');
-                    const { refreshOwnerToken } = await chromeStorage.get('refreshOwnerToken');
                     const { options } = await chromeStorage.get('options');
-                    const { owner } = await chromeStorage.get('owner');
 
                     ReactDOM.render(
                         <Image
                             src={src}
                             alt={alt}
                             theme={theme}
-                            ownerToken={owner ? token : undefined}
-                            refreshOwnerToken={owner ? refreshOwnerToken : undefined}
                             options={options}
                         />,
                         document.getElementById(rootId) as HTMLElement,
@@ -67,6 +62,7 @@ async function contentscript() {
             }
         }
     } catch (error) {
+        return;
     }
 }
 

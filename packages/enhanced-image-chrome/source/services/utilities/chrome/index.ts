@@ -68,3 +68,29 @@ export const chromeStorage = {
         return promise;
     }
 }
+
+
+export const chromeCookies = {
+    get: (
+        url: string,
+        name: string,
+    ): Promise<any> => {
+        try {
+            return new Promise((resolve, reject) => {
+                chrome.cookies.get({
+                    url,
+                    name,
+                },
+                (cookie) => {
+                    if (cookie) {
+                        resolve(cookie.value);
+                    } else {
+                        reject(0);
+                    }
+                });
+            });
+        } catch (error) {
+            return undefined;
+        }
+    },
+}
