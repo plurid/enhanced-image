@@ -1,26 +1,29 @@
 import React from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledButtonItem,
     StyledButtonItemIcon,
 } from './styled';
 
-import {
-    Theme,
-} from '@plurid/plurid-themes';
 
 
-
-interface ButtonItemProperties {
+export interface ButtonItemProperties {
     theme: Theme;
     icon: JSX.Element;
     text: string;
-    atClick: (event: any) => void;
+    atClick: (
+        event: any,
+    ) => void;
 }
 
 const ButtonItem: React.FC<ButtonItemProperties> = (
     properties,
 ) => {
+    /** properties */
     const {
         theme,
         icon,
@@ -28,6 +31,8 @@ const ButtonItem: React.FC<ButtonItemProperties> = (
         atClick,
     } = properties;
 
+
+    /** render */
     return (
         <StyledButtonItem
             onClick={atClick}

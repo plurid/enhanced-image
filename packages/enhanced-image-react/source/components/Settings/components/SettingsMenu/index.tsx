@@ -114,12 +114,17 @@ const SettingsMenu: React.FC<any> = () => {
 
         defaultsToggled,
         toggleDefaults,
-        resetToDefaults,
+        resetDefaultsColor,
 
         flipVertical,
         setFlipVertical,
         flipHorizontal,
         setFlipHorizontal,
+        imageTopologyRotate,
+        setImageTopologyRotate,
+        imageTopologyScale,
+        setImageTopologyScale,
+        resetDefaultsTopology,
 
         viewFullscreen,
         shareImage,
@@ -140,6 +145,7 @@ const SettingsMenu: React.FC<any> = () => {
         resolveImageBackground,
         setResolveImageBackground,
     ] = useState(BackgroundColorTransparent);
+
 
     /** effects */
     useLayoutEffect(() => {
@@ -394,7 +400,7 @@ const SettingsMenu: React.FC<any> = () => {
                             <li>
                                 <ButtonItem
                                     theme={theme}
-                                    atClick={resetToDefaults}
+                                    atClick={resetDefaultsColor}
                                     icon={ResetIcon}
                                     text="Reset to Defaults"
                                 />
@@ -428,6 +434,39 @@ const SettingsMenu: React.FC<any> = () => {
                                     toggle={() => setFlipHorizontal(flip => !flip)}
                                     text="Flip Horizontal"
                                     checked={flipHorizontal}
+                                />
+                            </li>
+
+                            <li>
+                                <SliderItem
+                                    theme={theme}
+                                    type={'TransformRotate'}
+                                    min={-180}
+                                    max={180}
+                                    value={imageTopologyRotate}
+                                    valueSign={'°'}
+                                    handleInput={(value: number) => setImageTopologyRotate(value)}
+                                />
+                            </li>
+
+                            <li>
+                                <SliderItem
+                                    theme={theme}
+                                    type={'TransformScale'}
+                                    min={-100}
+                                    max={100}
+                                    value={imageTopologyScale}
+                                    valueSign={''}
+                                    handleInput={(value: number) => setImageTopologyScale(value)}
+                                />
+                            </li>
+
+                            <li>
+                                <ButtonItem
+                                    theme={theme}
+                                    atClick={resetDefaultsTopology}
+                                    icon={ResetIcon}
+                                    text="Reset to Defaults"
                                 />
                             </li>
                         </ul>
