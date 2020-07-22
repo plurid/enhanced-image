@@ -3,14 +3,6 @@ import {
     NormalizedCacheObject,
 } from '@apollo/client';
 
-// import {
-//     graphql,
-// } from '@plurid/plurid-functions';
-
-// import {
-//     REQUEST_ERRORS,
-// } from '../../../data/constants';
-
 import baseRequest from '../../base';
 
 import {
@@ -50,54 +42,6 @@ export const withAPIKey = async (
     );
 
     return request;
-
-    // try {
-    //     const mutation = await graphqlClient.mutate({
-    //         mutation: EXTRACT_TEXT_WITH_API_KEY,
-    //         variables: {
-    //             input,
-    //         },
-    //     });
-
-    //     const mutationResponse = mutation.data.enhancedImageExtractTextWithAPIKey;
-
-    //     if (!mutationResponse.status) {
-    //         const error = mutationResponse.errors[0];
-
-    //         if (logErrors) {
-    //             console.log(error);
-    //         }
-
-    //         const response = {
-    //             status: false,
-    //             error: error.type,
-    //             data: undefined,
-    //         };
-    //         return response;
-    //     }
-
-    //     const {
-    //         data,
-    //     } = mutationResponse;
-
-    //     const response = {
-    //         status: true,
-    //         error: undefined,
-    //         data: graphql.deleteTypenames(data),
-    //     };
-    //     return response;
-    // } catch (error) {
-    //     if (logErrors) {
-    //         console.log(error);
-    //     }
-
-    //     const response = {
-    //         status: false,
-    //         error: REQUEST_ERRORS.BAD_REQUEST,
-    //         data: undefined,
-    //     };
-    //     return response;
-    // }
 }
 
 
@@ -130,54 +74,6 @@ export const withOwnerToken = async (
     );
 
     return request;
-
-    // try {
-    //     const mutation = await graphqlClient.mutate({
-    //         mutation: EXTRACT_TEXT_WITH_OWNER_TOKEN,
-    //         variables: {
-    //             input,
-    //         },
-    //     });
-
-    //     const mutationResponse = mutation.data.enhancedImageExtractTextWithOwnerToken;
-
-    //     if (!mutationResponse.status) {
-    //         const error = mutationResponse.errors[0];
-
-    //         if (logErrors) {
-    //             console.log(error);
-    //         }
-
-    //         const response = {
-    //             status: false,
-    //             error: error.type,
-    //             data: undefined,
-    //         }
-    //         return response;
-    //     }
-
-    //     const {
-    //         data,
-    //     } = mutationResponse;
-
-    //     const response = {
-    //         status: true,
-    //         error: undefined,
-    //         data: graphql.deleteTypenames(data),
-    //     };
-    //     return response;
-    // } catch (error) {
-    //     if (logErrors) {
-    //         console.log(error);
-    //     }
-
-    //     const response = {
-    //         status: false,
-    //         error: REQUEST_ERRORS.BAD_REQUEST,
-    //         data: undefined,
-    //     }
-    //     return response;
-    // }
 }
 
 
@@ -210,52 +106,4 @@ export const withImageID = async (
     );
 
     return request;
-
-    // try {
-    //     const mutation = await graphqlClient.mutate({
-    //         mutation: EXTRACT_TEXT_WITH_IMAGE_ID,
-    //         variables: {
-    //             input,
-    //         },
-    //     });
-
-    //     const mutationResponse = mutation.data.enhancedImageExtractTextWithImageID;
-
-    //     if (!mutationResponse.status) {
-    //         const error = mutationResponse.errors[0];
-
-    //         if (logErrors) {
-    //             console.log(error);
-    //         }
-
-    //         const response = {
-    //             status: false,
-    //             error: error.type,
-    //             data: undefined,
-    //         }
-    //         return response;
-    //     }
-
-    //     const {
-    //         data,
-    //     } = mutationResponse;
-
-    //     const response = {
-    //         status: true,
-    //         error: undefined,
-    //         data: graphql.deleteTypenames(data),
-    //     };
-    //     return response;
-    // } catch (error) {
-    //     if (logErrors) {
-    //         console.log(error);
-    //     }
-
-    //     const response = {
-    //         status: false,
-    //         error: REQUEST_ERRORS.BAD_REQUEST,
-    //         data: undefined,
-    //     }
-    //     return response;
-    // }
 }
