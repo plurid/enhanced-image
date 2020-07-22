@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
-    "name": "Enhanced Image",
-    "short_name" : "eImage",
+    "name": "depict · Enhanced Image",
+    "short_name" : "depict",
     "description": "Extract and select the text from images, adjust the image colors, modify the image appearance.",
     "author": "Plurid, Inc.",
-    "version": "0.0.3",
+    "version": "0.2.0",
     "icons" : {
         "16" : "assets/icons/icon16.png",
         "32" : "assets/icons/icon32.png",
@@ -53,7 +53,7 @@
         "chrome_style": true
     },
     "browser_action" : {
-        "default_title" : "Enhanced Image",
+        "default_title" : "depict",
         "default_icon" : "assets/icons/icon.png",
         "default_popup" : "popup.html"
     },
