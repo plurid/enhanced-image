@@ -428,7 +428,7 @@ const SettingsMenu: React.FC<any> = () => {
                                     <ButtonCheckmark
                                         theme={theme}
                                         toggle={() => setImageTopologyOverflow(show => !show)}
-                                        text="Overflow"
+                                        text="Show Overflow"
                                         checked={imageTopologyOverflow}
                                     />
                                 </li>
