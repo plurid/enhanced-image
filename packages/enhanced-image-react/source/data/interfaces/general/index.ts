@@ -135,6 +135,7 @@ export interface EnhancedImageProperties {
 
     /**
      * Specify which drawers to be available in the Settings Menu.
+     * `('ALL' | 'TEXT' | 'COLOR' | 'TOPOLOGY' | 'ENTITIES' | 'VARIA')[]`
      *
      * Default: `['ALL']`.
      */
@@ -150,7 +151,7 @@ export interface EnhancedImageProperties {
 
     /**
      * Specify which actions to be available in the Topology Drawer of the Settings Menu.
-     * `('ALL' | 'FLIP_VERTICAL' | 'FLIP_HORIZONTAL' | 'ROTATE' | 'SCALE' | 'RESET')[]`
+     * `('ALL' | 'FLIP_VERTICAL' | 'FLIP_HORIZONTAL' | 'DRAG' | 'ROTATE' | 'SCALE' | 'RESET')[]`
      *
      * Default: `['ALL']`.
      */
@@ -223,6 +224,8 @@ export interface Context {
     setExpandColorDrawer: Dispatch<SetStateAction<boolean>>;
     expandTopologyDrawer: boolean;
     setExpandTopologyDrawer: Dispatch<SetStateAction<boolean>>;
+    expandEntitiesDrawer: boolean;
+    setExpandEntitiesDrawer: Dispatch<SetStateAction<boolean>>;
     expandVariaDrawer: boolean;
     setExpandVariaDrawer: Dispatch<SetStateAction<boolean>>;
 
@@ -304,11 +307,17 @@ export interface Context {
     setFlipVertical: Dispatch<SetStateAction<boolean>>;
     flipHorizontal: boolean;
     setFlipHorizontal: Dispatch<SetStateAction<boolean>>;
+    imageTopologyDrag: boolean;
+    setImageTopologyDrag: Dispatch<SetStateAction<boolean>>;
     imageTopologyRotate: number;
     setImageTopologyRotate: Dispatch<SetStateAction<number>>;
     imageTopologyScale: number;
     setImageTopologyScale: Dispatch<SetStateAction<number>>;
     resetDefaultsTopology: () => void;
+
+
+    imageCoordinateX: number;
+    imageCoordinateY: number;
 
 
     viewFullscreen: () => void;
@@ -339,6 +348,7 @@ export type SettingsDrawer =
     | 'TEXT'
     | 'COLOR'
     | 'TOPOLOGY'
+    | 'ENTITIES'
     | 'VARIA';
 
 export type TextDrawer =
@@ -353,6 +363,7 @@ export type TopologyDrawer =
     | 'OVERFLOW'
     | 'FLIP_VERTICAL'
     | 'FLIP_HORIZONTAL'
+    | 'DRAG'
     | 'ROTATE'
     | 'SCALE'
     | 'RESET';

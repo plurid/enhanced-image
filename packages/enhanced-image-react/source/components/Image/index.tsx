@@ -46,6 +46,9 @@ const Image: React.FC<{}> = () => {
         flipHorizontal,
         imageTopologyRotate,
         imageTopologyScale,
+
+        imageCoordinateX,
+        imageCoordinateY,
     } = context;
 
 
@@ -59,6 +62,8 @@ const Image: React.FC<{}> = () => {
         flipHorizontal,
         imageTopologyRotate,
         imageTopologyScale,
+        imageCoordinateX,
+        imageCoordinateY,
     );
     const [
         filter,
