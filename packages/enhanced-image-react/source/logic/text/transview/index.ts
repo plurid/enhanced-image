@@ -3,13 +3,15 @@ import {
     NormalizedCacheObject,
 } from '@apollo/client';
 
-import {
-    graphql,
-} from '@plurid/plurid-functions';
+// import {
+//     graphql,
+// } from '@plurid/plurid-functions';
 
-import {
-    REQUEST_ERRORS,
-} from '../../../data/constants';
+// import {
+//     REQUEST_ERRORS,
+// } from '../../../data/constants';
+
+import baseRequest from '../../base';
 
 import {
     TRANSVIEW_TEXT_WITH_API_KEY,
@@ -40,53 +42,64 @@ export const withAPIKey = async (
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
-    try {
-        const mutation = await graphqlClient.mutate({
-            mutation: TRANSVIEW_TEXT_WITH_API_KEY,
-            variables: {
-                input,
-            },
-            fetchPolicy: 'no-cache',
-        });
+    const request = await baseRequest(
+        input,
+        TRANSVIEW_TEXT_WITH_API_KEY,
+        'enhancedImageTransviewTextWithAPIKey',
+        'mutate',
+        graphqlClient,
+        logErrors,
+    );
 
-        const mutationResponse = mutation.data.enhancedImageTransviewTextWithAPIKey;
-        // console.log(mutationResponse);
+    return request;
 
-        if (!mutationResponse.status) {
-            if (logErrors) {
-                console.log(mutationResponse.errors);
-            }
+    // try {
+    //     const mutation = await graphqlClient.mutate({
+    //         mutation: TRANSVIEW_TEXT_WITH_API_KEY,
+    //         variables: {
+    //             input,
+    //         },
+    //         fetchPolicy: 'no-cache',
+    //     });
 
-            const response = {
-                status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
-                data: undefined,
-            };
-            return response;
-        }
+    //     const mutationResponse = mutation.data.enhancedImageTransviewTextWithAPIKey;
+    //     // console.log(mutationResponse);
 
-        const {
-            data,
-        } = mutationResponse;
+    //     if (!mutationResponse.status) {
+    //         if (logErrors) {
+    //             console.log(mutationResponse.errors);
+    //         }
 
-        const response = {
-            status: true,
-            error: undefined,
-            data: graphql.deleteTypenames(data),
-        };
-        return response;
-    } catch (error) {
-        if (logErrors) {
-            console.log(error);
-        }
+    //         const response = {
+    //             status: false,
+    //             error: REQUEST_ERRORS.BAD_REQUEST,
+    //             data: undefined,
+    //         };
+    //         return response;
+    //     }
 
-        const response = {
-            status: false,
-            error: REQUEST_ERRORS.BAD_REQUEST,
-            data: undefined,
-        };
-        return response;
-    }
+    //     const {
+    //         data,
+    //     } = mutationResponse;
+
+    //     const response = {
+    //         status: true,
+    //         error: undefined,
+    //         data: graphql.deleteTypenames(data),
+    //     };
+    //     return response;
+    // } catch (error) {
+    //     if (logErrors) {
+    //         console.log(error);
+    //     }
+
+    //     const response = {
+    //         status: false,
+    //         error: REQUEST_ERRORS.BAD_REQUEST,
+    //         data: undefined,
+    //     };
+    //     return response;
+    // }
 }
 
 
@@ -112,52 +125,63 @@ export const withOwnerToken = async (
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
-    try {
-        const mutation = await graphqlClient.mutate({
-            mutation: TRANSVIEW_TEXT_WITH_OWNER_TOKEN,
-            variables: {
-                input,
-            },
-            fetchPolicy: 'no-cache',
-        });
+    const request = await baseRequest(
+        input,
+        TRANSVIEW_TEXT_WITH_OWNER_TOKEN,
+        'enhancedImageTransviewTextWithOwnerToken',
+        'mutate',
+        graphqlClient,
+        logErrors,
+    );
 
-        const mutationReponse = mutation.data.enhancedImageTransviewTextWithOwnerToken;
+    return request;
 
-        if (!mutationReponse.status) {
-            if (logErrors) {
-                console.log(mutationReponse.errors);
-            }
+    // try {
+    //     const mutation = await graphqlClient.mutate({
+    //         mutation: TRANSVIEW_TEXT_WITH_OWNER_TOKEN,
+    //         variables: {
+    //             input,
+    //         },
+    //         fetchPolicy: 'no-cache',
+    //     });
 
-            const response = {
-                status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
-                data: undefined,
-            };
-            return response;
-        }
+    //     const mutationReponse = mutation.data.enhancedImageTransviewTextWithOwnerToken;
 
-        const {
-            data,
-        } = mutationReponse;
+    //     if (!mutationReponse.status) {
+    //         if (logErrors) {
+    //             console.log(mutationReponse.errors);
+    //         }
 
-        const response = {
-            status: true,
-            error: undefined,
-            data: graphql.deleteTypenames(data),
-        };
-        return response;
-    } catch (error) {
-        if (logErrors) {
-            console.log(error);
-        }
+    //         const response = {
+    //             status: false,
+    //             error: REQUEST_ERRORS.BAD_REQUEST,
+    //             data: undefined,
+    //         };
+    //         return response;
+    //     }
 
-        const response = {
-            status: false,
-            error: REQUEST_ERRORS.BAD_REQUEST,
-            data: undefined,
-        };
-        return response;
-    }
+    //     const {
+    //         data,
+    //     } = mutationReponse;
+
+    //     const response = {
+    //         status: true,
+    //         error: undefined,
+    //         data: graphql.deleteTypenames(data),
+    //     };
+    //     return response;
+    // } catch (error) {
+    //     if (logErrors) {
+    //         console.log(error);
+    //     }
+
+    //     const response = {
+    //         status: false,
+    //         error: REQUEST_ERRORS.BAD_REQUEST,
+    //         data: undefined,
+    //     };
+    //     return response;
+    // }
 }
 
 
@@ -182,50 +206,61 @@ export const withImageID = async (
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
-    try {
-        const mutation = await graphqlClient.mutate({
-            mutation: TRANSVIEW_TEXT_WITH_IMAGE_ID,
-            variables: {
-                input,
-            },
-            fetchPolicy: 'no-cache',
-        });
+    const request = await baseRequest(
+        input,
+        TRANSVIEW_TEXT_WITH_IMAGE_ID,
+        'enhancedImageTransviewTextWithImageID',
+        'mutate',
+        graphqlClient,
+        logErrors,
+    );
 
-        const mutationResponse = mutation.data.enhancedImageTransviewTextWithImageID;
+    return request;
 
-        if (!mutationResponse.status) {
-            if (logErrors) {
-                console.log(mutationResponse.errors);
-            }
+    // try {
+    //     const mutation = await graphqlClient.mutate({
+    //         mutation: TRANSVIEW_TEXT_WITH_IMAGE_ID,
+    //         variables: {
+    //             input,
+    //         },
+    //         fetchPolicy: 'no-cache',
+    //     });
 
-            const response = {
-                status: false,
-                error: REQUEST_ERRORS.BAD_REQUEST,
-                data: undefined,
-            };
-            return response;
-        }
+    //     const mutationResponse = mutation.data.enhancedImageTransviewTextWithImageID;
 
-        const {
-            data,
-        } = mutationResponse;
+    //     if (!mutationResponse.status) {
+    //         if (logErrors) {
+    //             console.log(mutationResponse.errors);
+    //         }
 
-        const response = {
-            status: true,
-            error: undefined,
-            data: graphql.deleteTypenames(data),
-        };
-        return response;
-    } catch (error) {
-        if (logErrors) {
-            console.log(error);
-        }
+    //         const response = {
+    //             status: false,
+    //             error: REQUEST_ERRORS.BAD_REQUEST,
+    //             data: undefined,
+    //         };
+    //         return response;
+    //     }
 
-        const response = {
-            status: false,
-            error: REQUEST_ERRORS.BAD_REQUEST,
-            data: undefined,
-        };
-        return response;
-    }
+    //     const {
+    //         data,
+    //     } = mutationResponse;
+
+    //     const response = {
+    //         status: true,
+    //         error: undefined,
+    //         data: graphql.deleteTypenames(data),
+    //     };
+    //     return response;
+    // } catch (error) {
+    //     if (logErrors) {
+    //         console.log(error);
+    //     }
+
+    //     const response = {
+    //         status: false,
+    //         error: REQUEST_ERRORS.BAD_REQUEST,
+    //         data: undefined,
+    //     };
+    //     return response;
+    // }
 }
