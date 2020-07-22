@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useRef,
     useState,
@@ -13,9 +15,11 @@ import {
     StyledIcon,
     StyledSlider,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface SliderProperties {
     /** required */
     value: number;
@@ -141,3 +145,4 @@ const Slider: React.FC<SliderProperties> = (
 
 
 export default Slider;
+/** [END] component */

@@ -1,16 +1,22 @@
+/** [START] imports */
+/** libraries */
 import React, {
     Component,
 } from 'react';
 
+
+/** internal */
 import {
     StyledButtonDropdown,
     StyledButtonDropdownSelected,
     StyledButtonDropdownList,
     StyledButtonDropdownListItem,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 class ButtonDropdown extends Component<any, any> {
     dropdown: any;
     button: any;
@@ -305,3 +311,4 @@ class ButtonDropdown extends Component<any, any> {
 
 
 export default ButtonDropdown;
+/** [END] component */

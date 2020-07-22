@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React from 'react';
 
 import {
@@ -8,9 +10,11 @@ import {
     StyledSimpleInput,
     StyledInfo,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface SimpleInputProperties {
     /** required */
     value: string;
@@ -21,7 +25,6 @@ export interface SimpleInputProperties {
     ) => void;
     theme: Theme;
     transparentUI: boolean;
-
 
     /** optional */
     text?: string;
@@ -86,3 +89,4 @@ const SimpleInput: React.FC<SimpleInputProperties> = (
 
 
 export default SimpleInput;
+/** [END] component */

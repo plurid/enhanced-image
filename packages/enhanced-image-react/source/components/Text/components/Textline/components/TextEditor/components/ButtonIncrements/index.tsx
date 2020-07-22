@@ -1,9 +1,13 @@
+/** [START] imports */
+/** libraries */
 import React from 'react';
 
 import {
     Theme,
 } from '@plurid/plurid-themes';
 
+
+/** internal */
 import {
     StyledButtonIncrement,
     StyledButtonIncrementIcon,
@@ -11,9 +15,11 @@ import {
     StyledButtonIncrementButton,
     StyledButtonIncrementsUnit,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 const STEP = 1;
 const UP_ARROW = (<span>&#x25b2;</span>);
 const DOWN_ARROW = (<span>&#x25bc;</span>);
@@ -105,3 +111,4 @@ const ButtonIncrements: React.FC<ButtonIncrementsProperties> = (
 
 
 export default ButtonIncrements;
+/** [END] component */

@@ -1,16 +1,22 @@
+/** [START] imports */
+/** libraries */
 import React from 'react';
 
 import {
     Theme,
 } from '@plurid/plurid-themes';
 
+
+/** internal */
 import {
     StyledButtonsColors,
     StyledButtonColors,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 const colors = [
     'black', 'red', 'white',
 ];
@@ -57,3 +63,4 @@ const ButtonsColors: React.FC<ButtonsColorsProperties> = (
 
 
 export default ButtonsColors;
+/** [END] component */

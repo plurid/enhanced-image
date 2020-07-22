@@ -1,16 +1,22 @@
+/** [START] imports */
+/** libraries */
 import React from 'react';
 
 import {
     Theme,
 } from '@plurid/plurid-themes';
 
+
+/** internal */
 import {
     StyledButtonCheckmark,
     StyledButtonCheckmarkCheckbox,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface ButtonCheckmarkProperties {
     theme: Theme;
     text: string;
@@ -49,3 +55,4 @@ const ButtonCheckmark: React.FC<ButtonCheckmarkProperties> = (
 
 
 export default ButtonCheckmark;
+/** [END] component */

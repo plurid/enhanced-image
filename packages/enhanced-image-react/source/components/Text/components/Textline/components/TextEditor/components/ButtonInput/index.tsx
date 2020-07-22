@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useRef,
     useState,
@@ -17,9 +19,11 @@ import {
 import ButtonToggle from '../ButtonToggle';
 
 import GoToLinkIcon from '../../../../../../../../assets/icons/text-editor/gotolink';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface ButtonInputProperties {
     theme: Theme;
     transparentUI: boolean;
@@ -165,3 +169,4 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
 
 
 export default ButtonInput;
+/** [END] component */

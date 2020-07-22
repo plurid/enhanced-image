@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useContext,
     useRef,
@@ -6,10 +8,8 @@ import React, {
     useLayoutEffect,
 } from 'react';
 
-import {
-    StyledSettingsMenu,
-} from './styled';
 
+/** external */
 import AddTextIcon from '../../../../assets/icons/settings-menu/add-text';
 import SaveTextIcon from '../../../../assets/icons/settings-menu/save-text';
 
@@ -43,6 +43,8 @@ import {
     Context
 } from '../../../../services/utilities';
 
+
+/** internal */
 import ButtonCheckmark from './components/ButtonCheckmark';
 import ButtonItem from './components/ButtonItem';
 import SliderItem from './components/SliderItem';
@@ -50,8 +52,14 @@ import Drawer from './components/Drawer';
 
 import Transview from './features/Transview';
 
+import {
+    StyledSettingsMenu,
+} from './styled';
+/** [END] imports */
 
 
+
+/** [START] component */
 const SettingsMenu: React.FC<any> = () => {
     /** context */
     const context = useContext(Context);
