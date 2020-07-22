@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 import {
-    EnhancedImageDataFragment,
+    EnhancedImageResponseFragment,
 } from '../fragments';
 
 
@@ -11,18 +11,10 @@ export const GET_TEXT_WITH_API_KEY = gql`
         $input: InputEnhancedImageGetTextWithAPIKey!
     ) {
         enhancedImageGetTextWithAPIKey(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -31,18 +23,10 @@ export const GET_TEXT_WITH_OWNER_TOKEN = gql`
         $input: InputEnhancedImageGetTextWithOwnerToken!
     ) {
         enhancedImageGetTextWithOwnerToken(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -51,16 +35,8 @@ export const GET_TEXT_WITH_IMAGE_ID = gql`
         $input: InputEnhancedImageGetTextWithImageID!
     ) {
         enhancedImageGetTextWithImageID(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;

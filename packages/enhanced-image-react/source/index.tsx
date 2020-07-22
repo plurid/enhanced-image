@@ -39,7 +39,7 @@ export {
 
     /** logic */
     logic,
-}
+};
 
 
 export default EnhancedImage;

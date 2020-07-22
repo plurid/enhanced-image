@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 import {
-    EnhancedImageDataFragment,
+    EnhancedImageResponseFragment,
 } from '../fragments';
 
 
@@ -11,18 +11,10 @@ export const EXTRACT_TEXT_WITH_API_KEY = gql`
         $input: InputEnhancedImageExtractTextWithAPIKey!
     ) {
         enhancedImageExtractTextWithAPIKey(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -31,18 +23,10 @@ export const EXTRACT_TEXT_WITH_OWNER_TOKEN = gql`
         $input: InputEnhancedImageExtractTextWithOwnerToken!
     ) {
         enhancedImageExtractTextWithOwnerToken(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -51,18 +35,10 @@ export const EXTRACT_TEXT_WITH_IMAGE_ID = gql`
         $input: InputEnhancedImageExtractTextWithImageID!
     ) {
         enhancedImageExtractTextWithImageID(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -72,18 +48,10 @@ export const SAVE_TEXT_WITH_API_KEY = gql`
         $input: InputEnhancedImageSaveTextWithAPIKey!
     ) {
         enhancedImageSaveTextWithAPIKey(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -92,18 +60,10 @@ export const SAVE_TEXT_WITH_OWNER_TOKEN = gql`
         $input: InputEnhancedImageSaveTextWithOwnerToken!
     ) {
         enhancedImageSaveTextWithOwnerToken(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -112,18 +72,10 @@ export const SAVE_TEXT_WITH_IMAGE_ID = gql`
         $input: InputEnhancedImageSaveTextWithImageID!
     ) {
         enhancedImageSaveTextWithImageID(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -133,18 +85,10 @@ export const TRANSVIEW_TEXT_WITH_API_KEY = gql`
         $input: InputEnhancedImageTransviewTextWithAPIKey!
     ) {
         enhancedImageTransviewTextWithAPIKey(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -153,18 +97,10 @@ export const TRANSVIEW_TEXT_WITH_OWNER_TOKEN = gql`
         $input: InputEnhancedImageTransviewTextWithOwnerToken!
     ) {
         enhancedImageTransviewTextWithOwnerToken(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;
 
 
@@ -173,16 +109,8 @@ export const TRANSVIEW_TEXT_WITH_IMAGE_ID = gql`
         $input: InputEnhancedImageTransviewTextWithImageID!
     ) {
         enhancedImageTransviewTextWithImageID(input: $input) {
-            status
-            errors {
-                path
-                message
-                type
-            }
-            data {
-                ...EnhancedImage_EnhancedImageDataFragment
-            }
+            ...EnhancedImage_EnhancedImageResponseFragment
         }
     }
-    ${EnhancedImageDataFragment}
+    ${EnhancedImageResponseFragment}
 `;

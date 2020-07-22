@@ -57,3 +57,20 @@ export const EnhancedImageDataFragment = gql`
         }
     }
 `;
+
+
+
+export const EnhancedImageResponseFragment = gql`
+    fragment EnhancedImage_EnhancedImageResponseFragment on EnhancedImageResponse {
+        status
+        errors {
+            path
+            message
+            type
+        }
+        data {
+            ...EnhancedImage_EnhancedImageDataFragment
+        }
+    }
+    ${EnhancedImageDataFragment}
+`;
