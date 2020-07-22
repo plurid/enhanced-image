@@ -10,7 +10,9 @@ import {
     ImageText,
 } from '../../../../data/interfaces';
 
-import Context from '../../../../services/utilities/context';
+import {
+    Context,
+} from '../../../../services/utilities';
 
 
 

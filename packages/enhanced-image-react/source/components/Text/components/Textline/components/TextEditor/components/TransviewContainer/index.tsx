@@ -34,7 +34,9 @@ import {
     TextlineTransview,
 } from '../../../../../../../../data/interfaces/text';
 
-import Context from '../../../../../../../../services/utilities/context';
+import {
+    Context
+} from '../../../../../../../../services/utilities';
 
 
 /** internal */

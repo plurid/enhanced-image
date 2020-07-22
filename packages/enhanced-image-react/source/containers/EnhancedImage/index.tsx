@@ -28,8 +28,6 @@ import {
 /** external */
 import logic from '../../logic';
 
-import Context from '../../services/utilities/context';
-
 import Image from '../../components/Image';
 import Text from '../../components/Text';
 import Settings from '../../components/Settings';
@@ -72,16 +70,18 @@ import {
 } from '../../data/constants/initializers';
 
 import {
+    Context,
+
+    /** imageText */
     getImmutableTextline,
     getVersionById,
     updateVersion,
     imageURLFromSrc,
-} from '../../services/utilities/imageText';
 
-import {
+    /** image */
     loadImage,
     dataURIToBlob,
-} from '../../services/utilities/image';
+} from '../../services/utilities';
 
 import client from '../../services/graphql/client';
 

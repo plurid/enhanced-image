@@ -15,30 +15,6 @@ import {
     PluridIconPlay,
 } from '@plurid/plurid-icons-react';
 
-import {
-    StyledTextEditor,
-    StyledOutside,
-    StyledVerticalDivider,
-    StyledTransformSliders,
-} from './styled';
-
-import Context from '../../../../../../services/utilities/context';
-
-import ButtonDropdown from './components/ButtonDropdown';
-import ButtonIncrements from './components/ButtonIncrements';
-import ButtonInput from './components/ButtonInput';
-import ButtonToggle from './components/ButtonToggle';
-import ButtonToggleRender from './components/ButtonToggleRender';
-import ButtonsColors from './components/ButtonsColors';
-import ButtonClick from './components/ButtonClick';
-import SimpleInput from './components/SimpleInput';
-import Slider from './components/Slider';
-import Drawer from './components/Drawer';
-
-import TransviewContainer from './components/TransviewContainer';
-
-import { selectableFonts } from '../../../../../../data/constants/fonts';
-
 import SelectTextIcon from '../../../../../../assets/icons/text-editor/select-text';
 import GrabIcon from '../../../../../../assets/icons/text-editor/grab';
 import ViewableIcon from '../../../../../../assets/icons/text-editor/viewable';
@@ -53,19 +29,43 @@ import WordSpacingIcon from '../../../../../../assets/icons/text-editor/word-spa
 import DuplicateIcon from '../../../../../../assets/icons/text-editor/duplicate';
 import DeleteIcon from '../../../../../../assets/icons/text-editor/delete';
 
+import { selectableFonts } from '../../../../../../data/constants/fonts';
+
 import {
     ImageText,
     ImageTextVersionTextline,
 } from '../../../../../../data/interfaces';
 
 import {
+    Context,
+
+    /** percentage */
     valueFromPercentage,
     percentageFromValue,
-} from '../../../../../../services/utilities/percentage';
+
+    /** color */
+    resolveColor
+} from '../../../../../../services/utilities';
+
+import ButtonDropdown from './components/ButtonDropdown';
+import ButtonIncrements from './components/ButtonIncrements';
+import ButtonInput from './components/ButtonInput';
+import ButtonToggle from './components/ButtonToggle';
+import ButtonToggleRender from './components/ButtonToggleRender';
+import ButtonsColors from './components/ButtonsColors';
+import ButtonClick from './components/ButtonClick';
+import SimpleInput from './components/SimpleInput';
+import Slider from './components/Slider';
+import Drawer from './components/Drawer';
+
+import TransviewContainer from './components/TransviewContainer';
 
 import {
-    resolveColor
-} from '../../../../../../services/utilities/color';
+    StyledTextEditor,
+    StyledOutside,
+    StyledVerticalDivider,
+    StyledTransformSliders,
+} from './styled';
 
 
 
