@@ -5,6 +5,10 @@ import React, {
 } from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledButtonInput,
     StyledButtonInputContainer,
     StyledButtonInputGotoLink,
@@ -14,11 +18,9 @@ import ButtonToggle from '../ButtonToggle';
 
 import GoToLinkIcon from '../../../../../../../../assets/icons/text-editor/gotolink';
 
-import { Theme } from '@plurid/plurid-themes';
 
 
-
-interface ButtonInputProperties {
+export interface ButtonInputProperties {
     theme: Theme;
     transparentUI: boolean;
     icon: JSX.Element;
