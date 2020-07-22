@@ -59,16 +59,14 @@ const Image: React.FC<ImageProperties> = (
 
     /** effects */
     useEffect(() => {
-        chrome.runtime.onMessage.addListener((request) => {
+        const handleRequest = (
+            request: any,
+        ) => {
             const {
                 data,
                 status,
                 error
             } = request.message;
-
-            if (status) {
-                setData(graphql.deleteTypenames(data));
-            }
 
             if (!status) {
                 if (error === 'NOT_FOUND') {
@@ -77,6 +75,7 @@ const Image: React.FC<ImageProperties> = (
                         time: 2500,
                     };
                     setTimeNotification(timedNotification);
+                    return;
                 }
 
                 const timedNotification = {
@@ -84,8 +83,17 @@ const Image: React.FC<ImageProperties> = (
                     time: 3500,
                 };
                 setTimeNotification(timedNotification);
+                return;
             }
-        });
+
+            setData(graphql.deleteTypenames(data));
+        }
+
+        chrome.runtime.onMessage.addListener(handleRequest);
+
+        return () => {
+            chrome.runtime.onMessage.removeListener(handleRequest);
+        }
     }, []);
 
 
