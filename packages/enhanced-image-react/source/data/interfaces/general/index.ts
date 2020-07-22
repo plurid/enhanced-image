@@ -287,12 +287,19 @@ export interface Context {
 
     defaultsToggled: boolean;
     toggleDefaults: () => void;
-    resetToDefaults: () => void;
+    resetDefaultsColor: () => void;
+
 
     flipVertical: boolean;
     setFlipVertical: Dispatch<SetStateAction<boolean>>;
     flipHorizontal: boolean;
     setFlipHorizontal: Dispatch<SetStateAction<boolean>>;
+    imageTopologyRotate: number;
+    setImageTopologyRotate: Dispatch<SetStateAction<number>>;
+    imageTopologyScale: number;
+    setImageTopologyScale: Dispatch<SetStateAction<number>>;
+    resetDefaultsTopology: () => void;
+
 
     viewFullscreen: () => void;
     shareImage: () => void;

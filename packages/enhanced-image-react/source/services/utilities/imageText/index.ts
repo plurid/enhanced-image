@@ -2,7 +2,7 @@ import {
     ImageText,
     ImageTextVersionTextline,
     ImageTextVersionTextarea,
-} from '../../data/interfaces';
+} from '../../../data/interfaces';
 
 
 

@@ -1,42 +1,44 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
+
+
+const StyledSVG = styled.svg`
+    .enh-img-settings-button-cls-1 {
+        opacity: 0.5;
+    }
+
+    .enh-img-settings-button-cls-2 {
+        fill: #2c2c2d;
+    }
+
+    .enh-img-settings-button-cls-3 {
+        fill: #fff;
+    }
+
+    .enh-img-settings-button-cls-4 {
+        fill: #252626;
+    }
+
+    .enh-img-settings-button-cls-5 {
+        fill: #4c494a;
+    }
+
+    .enh-img-settings-button-cls-6 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 12px;
+    }
+`;
 
 
 const SVG = (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 930">
-        <defs>
-            <style>
-                {`
-                    .enh-img-settings-button-cls-1 {
-                        opacity: 0.5;
-                    }
-
-                    .enh-img-settings-button-cls-2 {
-                        fill: #2c2c2d;
-                    }
-
-                    .enh-img-settings-button-cls-3 {
-                        fill: #fff;
-                    }
-
-                    .enh-img-settings-button-cls-4 {
-                        fill: #252626;
-                    }
-
-                    .enh-img-settings-button-cls-5 {
-                        fill: #4c494a;
-                    }
-
-                    .enh-img-settings-button-cls-6 {
-                        fill: none;
-                        stroke: #fff;
-                        stroke-miterlimit: 10;
-                        stroke-width: 12px;
-                    }
-                `}
-            </style>
-        </defs>
-
+    <StyledSVG
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 930 930"
+    >
         <title>Enhanced Image</title>
 
         <g>
@@ -62,7 +64,7 @@ const SVG = (
                 <path className="enh-img-settings-button-cls-3" d="M425,654.64l36.28,28.1c13.88,10.75,36.54,11,44.1-6.49l39.29-92.16h37.65L610.94,758.9H308.76l72.44-98.18A30.89,30.89,0,0,1,425,654.64Z"/>
             </g>
         </g>
-    </svg>
+    </StyledSVG>
 );
 
 

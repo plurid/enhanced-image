@@ -1,17 +1,17 @@
 import React from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledDrawer,
     StyledDrawerTitle,
 } from './styled';
 
-import {
-    Theme,
-} from '@plurid/plurid-themes';
 
 
-
-interface DrawerProperties {
+export interface DrawerProperties {
     title: string;
     theme: Theme;
     expand: boolean;
@@ -21,6 +21,7 @@ interface DrawerProperties {
 const Drawer: React.FC<DrawerProperties> = (
     properties,
 ) => {
+    /** properties */
     const {
         title,
         theme,
@@ -29,6 +30,8 @@ const Drawer: React.FC<DrawerProperties> = (
         children,
     } = properties;
 
+
+    /** render */
     return (
         <StyledDrawer>
             <StyledDrawerTitle

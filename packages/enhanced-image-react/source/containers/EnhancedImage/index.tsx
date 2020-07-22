@@ -219,6 +219,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const [flipVertical, setFlipVertical] = useState(false);
     const [flipHorizontal, setFlipHorizontal] = useState(false);
+    const [imageTopologyRotate, setImageTopologyRotate] = useState(0);
+    const [imageTopologyScale, setImageTopologyScale] = useState(0);
 
     const [databaseImageID, setDatabaseImageID] = useState('');
 
@@ -1254,7 +1256,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         }
     }
 
-    const resetToDefaults = () => {
+    const resetDefaultsColor = () => {
         setImageColorsInvert(!!SLIDER_VALUE_DEFAULTS.Invert);
         setImageColorsContrast(SLIDER_VALUE_DEFAULTS.Contrast);
         setImageColorsHue(SLIDER_VALUE_DEFAULTS.Hue);
@@ -1265,6 +1267,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         if (defaultsToggled) {
             setDefaultsToggled(false);
         }
+    }
+
+    const resetDefaultsTopology = () => {
+        setFlipVertical(false);
+        setFlipHorizontal(false);
+        setImageTopologyRotate(0);
+        setImageTopologyScale(0);
     }
 
     const viewFullscreen = () => {
@@ -1328,7 +1337,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             };
 
             setPreviousImageColors(previousColorValues);
-            resetToDefaults();
+            resetDefaultsColor();
             setDefaultsToggled(true);
         }
     }
@@ -1809,12 +1818,17 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         defaultsToggled,
         toggleDefaults,
-        resetToDefaults,
+        resetDefaultsColor,
 
         flipVertical,
         setFlipVertical,
         flipHorizontal,
         setFlipHorizontal,
+        imageTopologyRotate,
+        setImageTopologyRotate,
+        imageTopologyScale,
+        setImageTopologyScale,
+        resetDefaultsTopology,
 
         viewFullscreen,
         shareImage,

@@ -31,6 +31,8 @@ export const SLIDER_NAMES = {
     Hue: 'Hue Rotation',
     Saturation: 'Saturation',
     Brightness: 'Lightness',
+    TransformRotate: 'Rotate',
+    TransformScale: 'Scale',
 };
 
 
@@ -40,6 +42,8 @@ export const SLIDER_VALUE_DEFAULTS = {
     Hue: 0,
     Saturation: 100,
     Brightness: 100,
+    TransformRotate: 0,
+    TransformScale: 0,
 };
 
 

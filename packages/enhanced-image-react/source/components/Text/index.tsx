@@ -1,25 +1,23 @@
 import React, {
     useContext,
-    useState,
-    useEffect
 } from 'react';
+
+import {
+    useTransform,
+} from '../../services/hooks';
+
+import {
+    getVersionById,
+} from '../../services/utilities/imageText';
+
+import Context from '../../services/utilities/context';
 
 import {
     StyledText,
 } from './styled';
 
-import {
-    ImageText,
-} from '../../data/interfaces';
-
-import Context from '../../services/utilities/context';
-
 import Textarea from './components/Textarea';
 import Textline from './components/Textline';
-
-import {
-    getVersionById,
-} from '../../services/utilities/imageText';
 
 
 
@@ -35,21 +33,18 @@ const Text: React.FC<any> = () => {
         imageText,
         flipHorizontal,
         flipVertical,
+        imageTopologyRotate,
+        imageTopologyScale,
     } = context;
 
 
     /** state */
-    const [transform, setTransform] = useState('');
-
-
-    /** effects */
-    useEffect(() => {
-        const transform = `${flipVertical ? 'scaleX(-1)': ''} ${flipHorizontal ? 'scaleY(-1' : ''}`;
-        setTransform(transform);
-    }, [
+    const transform = useTransform(
         flipVertical,
         flipHorizontal,
-    ]);
+        imageTopologyRotate,
+        imageTopologyScale,
+    );
 
 
     /** render */

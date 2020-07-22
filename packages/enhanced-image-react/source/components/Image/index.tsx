@@ -9,11 +9,15 @@ import {
     StyledImage,
 } from './styled';
 
-import Context from '../../services/utilities/context';
-
 import {
     IMAGE_BACKGROUNDS,
 } from '../../data/constants';
+
+import {
+    useTransform,
+} from '../../services/hooks';
+
+import Context from '../../services/utilities/context';
 
 
 
@@ -39,6 +43,8 @@ const Image: React.FC<{}> = () => {
 
         flipVertical,
         flipHorizontal,
+        imageTopologyRotate,
+        imageTopologyScale,
     } = context;
 
 
@@ -47,12 +53,24 @@ const Image: React.FC<{}> = () => {
 
 
     /** state */
-    const [filter, setFilter] = useState('');
-    const [transform, setTransform] = useState('');
-    const [resolvedImageBackground, setResolvedImageBackground] = useState(IMAGE_BACKGROUNDS.TRANSPARENT);
+    const transform = useTransform(
+        flipVertical,
+        flipHorizontal,
+        imageTopologyRotate,
+        imageTopologyScale,
+    );
+    const [
+        filter,
+        setFilter,
+    ] = useState('');
+    const [
+        resolvedImageBackground,
+        setResolvedImageBackground,
+    ] = useState(IMAGE_BACKGROUNDS.TRANSPARENT);
 
 
     /** effects */
+    /** Handle colors. */
     useEffect(() => {
         const filter = `
             invert(${imageColorsInvert ? 1 : 0})
@@ -70,14 +88,7 @@ const Image: React.FC<{}> = () => {
         imageColorsBrightness,
     ]);
 
-    useEffect(() => {
-        const transform = `${flipVertical ? 'scaleX(-1)': ''} ${flipHorizontal ? 'scaleY(-1' : ''}`;
-        setTransform(transform);
-    }, [
-        flipVertical,
-        flipHorizontal,
-    ]);
-
+    /** Handle background. */
     useEffect(() => {
         switch (imageBackground) {
             case 0:
