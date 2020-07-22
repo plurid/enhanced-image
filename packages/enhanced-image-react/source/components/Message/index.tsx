@@ -1,11 +1,17 @@
+/** [START] imports */
+/** libraries */
 import React from 'react';
 
+
+/** internal */
 import {
     StyledMessage,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface MessageProperties {
     text: string;
 }
@@ -29,3 +35,4 @@ const Message: React.FC<MessageProperties> = (
 
 
 export default Message;
+/** [END] component */

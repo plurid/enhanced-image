@@ -1,11 +1,11 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useContext,
 } from 'react';
 
-import {
-    StyledTextarea,
-} from './styled';
 
+/** external */
 import {
     ImageText,
 } from '../../../../data/interfaces';
@@ -15,12 +15,21 @@ import {
 } from '../../../../services/utilities';
 
 
+/** internal */
+import {
+    StyledTextarea,
+} from './styled';
+/** [START] imports */
 
-interface TextareaProperties {
+
+
+/** [START] component */
+export interface TextareaProperties {
     data: ImageText;
 }
 
 const Textarea: React.FC<TextareaProperties> = () => {
+    /** context */
     const context = useContext(Context);
     if (!context) {
         return (<></>);
@@ -30,6 +39,7 @@ const Textarea: React.FC<TextareaProperties> = () => {
      * FUTURE: render the text in a multi-line div, with per-character styling
      */
 
+    /** render */
     return (
         <StyledTextarea>
         </StyledTextarea>
@@ -38,3 +48,4 @@ const Textarea: React.FC<TextareaProperties> = () => {
 
 
 export default Textarea;
+/** [END] component */

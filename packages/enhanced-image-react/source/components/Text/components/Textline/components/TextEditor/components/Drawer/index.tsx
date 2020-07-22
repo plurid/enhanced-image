@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React from 'react';
 
 import {
@@ -9,9 +11,11 @@ import {
     StyledDrawerTitle,
     StyledDrawerContents,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface DrawerProperties {
     title: string;
     theme: Theme;
@@ -52,3 +56,4 @@ const Drawer: React.FC<DrawerProperties> = (
 
 
 export default Drawer;
+/** [END] component */

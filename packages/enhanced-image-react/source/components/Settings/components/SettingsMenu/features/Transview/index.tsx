@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useContext,
 } from 'react';
@@ -6,15 +8,13 @@ import {
     PluridDropdown,
 } from '@plurid/plurid-ui-react';
 
-import {
-    StyledTransview,
-    StyledTransviewLanguage,
-    StyledTransviewAction,
-} from './styled';
 
+/** external */
 import ButtonCheckmark from '../../components/ButtonCheckmark';
 
-import Context from '../../../../../../services/utilities/context';
+import {
+    Context
+} from '../../../../../../services/utilities';
 
 import {
     transviewAvailableLanguages,
@@ -22,7 +22,17 @@ import {
 } from '../../../../../../data/constants/transview';
 
 
+/** internal */
+import {
+    StyledTransview,
+    StyledTransviewLanguage,
+    StyledTransviewAction,
+} from './styled';
+/** [END] imports */
 
+
+
+/** [START] component */
 const Transview: React.FC<any> = (
     properties,
 ) => {
@@ -106,3 +116,4 @@ const Transview: React.FC<any> = (
 
 
 export default Transview;
+/** [END] component */

@@ -1,16 +1,22 @@
+/** [START] imports */
+/** libraries */
 import React from 'react';
 
 import {
     Theme,
 } from '@plurid/plurid-themes';
 
+
+/** internal */
 import {
     StyledButtonItem,
     StyledButtonItemIcon,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface ButtonItemProperties {
     theme: Theme;
     icon: JSX.Element;
@@ -52,3 +58,4 @@ const ButtonItem: React.FC<ButtonItemProperties> = (
 
 
 export default ButtonItem;
+/** [END] component */

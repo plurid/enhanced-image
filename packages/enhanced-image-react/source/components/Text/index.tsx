@@ -1,7 +1,11 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useContext,
 } from 'react';
 
+
+/** external */
 import {
     useTransform,
 } from '../../services/hooks';
@@ -12,15 +16,19 @@ import {
     getVersionById,
 } from '../../services/utilities';
 
-import {
-    StyledText,
-} from './styled';
 
+/** internal */
 import Textarea from './components/Textarea';
 import Textline from './components/Textline';
 
+import {
+    StyledText,
+} from './styled';
+/** [END] imports */
 
 
+
+/** [START] component */
 const Text: React.FC<any> = () => {
     /** context */
     const context = useContext(Context);
@@ -97,3 +105,4 @@ const Text: React.FC<any> = () => {
 
 
 export default Text;
+/** [END] component */

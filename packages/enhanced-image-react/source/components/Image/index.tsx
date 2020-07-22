@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useContext,
     useRef,
@@ -5,6 +7,8 @@ import React, {
     useEffect,
 } from 'react';
 
+
+/** external */
 import {
     IMAGE_BACKGROUNDS,
 } from '../../data/constants';
@@ -17,12 +21,16 @@ import {
     Context
 } from '../../services/utilities';
 
+
+/** internal */
 import {
     StyledImage,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 const Image: React.FC<{}> = () => {
     /** context */
     const context = useContext(Context);
@@ -151,3 +159,4 @@ const Image: React.FC<{}> = () => {
 
 
 export default Image;
+/** [END] component */

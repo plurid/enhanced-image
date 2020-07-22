@@ -22,7 +22,6 @@ import {
 
 
 
-
 /** [START] component */
 export interface ButtonToggleRenderProperties {
     /** required */

@@ -1,15 +1,21 @@
+/** [START] imports */
+/** libraries */
 import React from 'react';
 
 import {
     Theme,
 } from '@plurid/plurid-themes';
 
+
+/** internal */
 import {
     StyledButtonToggle,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface ButtonToggleProperties {
     theme: Theme;
     toggled: boolean;
@@ -40,3 +46,4 @@ const ButtonToggle: React.FC<ButtonToggleProperties> = (
 
 
 export default ButtonToggle;
+/** [END] component */

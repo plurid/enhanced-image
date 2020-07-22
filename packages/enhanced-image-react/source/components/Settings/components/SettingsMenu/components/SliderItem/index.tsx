@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useState,
 } from 'react';
@@ -6,13 +8,8 @@ import {
     Theme,
 } from '@plurid/plurid-themes';
 
-import {
-    StyledSliderItem,
-    StyledSliderType,
-    StyledSliderValue,
-    StyledSliderInputContainer,
-} from './styled';
 
+/** external */
 import {
     SLIDER_NAMES,
     SLIDER_INPUT_DEFAULTS,
@@ -20,7 +17,18 @@ import {
 } from '../../../../../../data/constants';
 
 
+/** internal */
+import {
+    StyledSliderItem,
+    StyledSliderType,
+    StyledSliderValue,
+    StyledSliderInputContainer,
+} from './styled';
+/** [END] imports */
 
+
+
+/** [START] component */
 export interface SliderItemProperties {
     theme: Theme;
     type: string;
@@ -95,3 +103,4 @@ const SliderItem: React.FC<SliderItemProperties> = (
 
 
 export default SliderItem;
+/** [END] component */

@@ -1,22 +1,30 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useContext,
 } from 'react';
 
-import {
-    StyledSettings,
-    StyledSettingsButton,
-} from './styled';
 
+/** external */
 import SettingsIcon from '../../assets/icons/settings';
 
 import {
     Context
 } from '../../services/utilities';
 
+
+/** internal */
 import SettingsMenu from './components/SettingsMenu';
 
+import {
+    StyledSettings,
+    StyledSettingsButton,
+} from './styled';
+/** [END] imports */
 
 
+
+/** [START] component */
 const Settings: React.FC<any> = () => {
     /** context */
     const context = useContext(Context);
@@ -53,3 +61,4 @@ const Settings: React.FC<any> = () => {
 
 
 export default Settings;
+/** [END] component */

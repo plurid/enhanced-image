@@ -1,3 +1,5 @@
+/** [START] imports */
+/** libraries */
 import React, {
     useContext,
     useRef,
@@ -15,6 +17,8 @@ import {
     PluridIconPlay,
 } from '@plurid/plurid-icons-react';
 
+
+/** external */
 import SelectTextIcon from '../../../../../../assets/icons/text-editor/select-text';
 import GrabIcon from '../../../../../../assets/icons/text-editor/grab';
 import ViewableIcon from '../../../../../../assets/icons/text-editor/viewable';
@@ -29,7 +33,9 @@ import WordSpacingIcon from '../../../../../../assets/icons/text-editor/word-spa
 import DuplicateIcon from '../../../../../../assets/icons/text-editor/duplicate';
 import DeleteIcon from '../../../../../../assets/icons/text-editor/delete';
 
-import { selectableFonts } from '../../../../../../data/constants/fonts';
+import {
+    selectableFonts,
+ } from '../../../../../../data/constants/fonts';
 
 import {
     ImageText,
@@ -47,6 +53,8 @@ import {
     resolveColor
 } from '../../../../../../services/utilities';
 
+
+/** internal */
 import ButtonDropdown from './components/ButtonDropdown';
 import ButtonIncrements from './components/ButtonIncrements';
 import ButtonInput from './components/ButtonInput';
@@ -57,7 +65,6 @@ import ButtonClick from './components/ButtonClick';
 import SimpleInput from './components/SimpleInput';
 import Slider from './components/Slider';
 import Drawer from './components/Drawer';
-
 import TransviewContainer from './components/TransviewContainer';
 
 import {
@@ -66,9 +73,11 @@ import {
     StyledVerticalDivider,
     StyledTransformSliders,
 } from './styled';
+/** [END] imports */
 
 
 
+/** [START] component */
 export interface TextEditorProperties {
     textItem: ImageText;
     currentVersion: ImageTextVersionTextline;
@@ -670,3 +679,4 @@ const TextEditor: React.FC<TextEditorProperties> = (
 
 
 export default TextEditor;
+/** [END] component */

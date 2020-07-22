@@ -42,6 +42,7 @@ import TextEditor from './components/TextEditor';
 
 
 
+/** [START] component */
 export interface TextlineProperties {
     data: ImageText;
     currentVersion: ImageTextVersionTextline;
@@ -755,3 +756,4 @@ const Textline: React.FC<TextlineProperties> = (
 
 
 export default Textline;
+/** [END] component */
