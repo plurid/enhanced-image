@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "depict · enhanced image",
     "short_name" : "depict",
-    "description": "Extract and select the text from images, adjust the image colors, modify the image appearance.",
+    "description": "Extract, select, translate the text from images in your browser, adjust the image colors, modify the image appearance.",
     "author": "Plurid, Inc.",
     "version": "0.2.0",
     "icons" : {
@@ -45,9 +45,6 @@
         "scripts": ["background.js"],
         "persistent": false
     },
-    "web_accessible_resources": [
-        "enhanced-image-html/dist/**.js"
-    ],
     "options_ui": {
         "page": "options.html",
         "chrome_style": true
@@ -58,5 +55,5 @@
         "default_popup" : "popup.html"
     },
     "incognito": "spanning",
-    "content_security_policy": "script-src 'self' 'sha256-5As4+3YpY62+l38PsxCEkjB1R4YtyktBtRScTJ3fyLU='; object-src 'self'"
+    "content_security_policy": "script-src 'self'; object-src 'self'"
 }
