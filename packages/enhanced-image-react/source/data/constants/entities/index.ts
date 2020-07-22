@@ -14,7 +14,7 @@ export const emptyImageEntityRectangular: ImageEntityRectangular = {
     id: uuid.generate(),
     type: 'RECTANGULAR',
     data: {
-        color: 'black',
+        color: 'darkslateblue',
         height: 7,
         width: 7,
         position: {
@@ -35,7 +35,7 @@ export const emptyImageEntityRadial: ImageEntityRadial = {
     id: uuid.generate(),
     type: 'RADIAL',
     data: {
-        color: 'black',
+        color: 'darkslateblue',
         radius: 7,
         position: {
             x: 14,
