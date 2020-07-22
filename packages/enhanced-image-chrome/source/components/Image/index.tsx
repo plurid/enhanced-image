@@ -70,25 +70,21 @@ const Image: React.FC<ImageProperties> = (
             request: any,
         ) => {
             const {
+                accessToken,
                 data,
                 status,
                 error,
             } = request.message;
+
+            if (accessToken) {
+                return;
+            }
 
             if (!status) {
                 if (error === 'NOT_FOUND') {
                     const timedNotification = {
                         text: 'Image Text Not Found.',
                         time: 2500,
-                    };
-                    setTimeNotification(timedNotification);
-                    return;
-                }
-
-                if (!accessToken) {
-                    const timedNotification = {
-                        text: 'Not logged in. Please log in or generate an account.',
-                        time: 3500,
                     };
                     setTimeNotification(timedNotification);
                     return;
@@ -110,9 +106,7 @@ const Image: React.FC<ImageProperties> = (
         return () => {
             chrome.runtime.onMessage.removeListener(handleRequest);
         }
-    }, [
-        accessToken,
-    ]);
+    }, []);
 
     /** Get access token */
     useEffect(() => {
@@ -135,8 +129,8 @@ const Image: React.FC<ImageProperties> = (
                 refreshAccessToken,
             } = request.message;
 
-            setAccessToken(accessToken);
-            setRefeshAccessToken(refreshAccessToken);
+            setAccessToken(accessToken || '');
+            setRefeshAccessToken(refreshAccessToken || '');
         }
 
         chrome.runtime.onMessage.addListener(handleRequest);

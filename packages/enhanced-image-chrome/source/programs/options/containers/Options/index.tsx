@@ -148,7 +148,7 @@ const Options: React.FC<OptionsProperties> = () => {
                 getImageTextAtLoad,
                 transparentUI,
             };
-            // console.log('saved options', options);
+
             await chromeStorage.set({options});
         }
         saveOptions();
@@ -160,12 +160,6 @@ const Options: React.FC<OptionsProperties> = () => {
     useEffect(() => {
         const fetchOwner = async () => {
             try {
-                const { token } = await chromeStorage.get('token');
-
-                if (!token) {
-                    return;
-                }
-
                 const query = await client.query({
                     query: CURRENT_OWNER,
                 });
