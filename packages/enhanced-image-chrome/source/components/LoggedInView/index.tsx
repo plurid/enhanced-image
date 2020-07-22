@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Theme } from '@plurid/plurid-themes';
+import {
+    Theme,
+} from '@plurid/plurid-themes';
 
 import {
     PluridPureButton,
@@ -22,25 +24,28 @@ import {
 
 
 
-interface LoggedInViewProps {
+export interface LoggedInViewProps {
     theme: Theme;
     owner: any;
     logout: any;
 }
 
 const LoggedInView: React.FC<LoggedInViewProps> = (
-    props,
+    properties,
 ) => {
+    /** properties */
     const {
         theme,
         owner,
         logout,
-    } = props;
+    } = properties;
 
     const {
         depict,
     } = owner.products;
 
+
+    /** render */
     return (
         <StyledLoggedInView
             theme={theme}

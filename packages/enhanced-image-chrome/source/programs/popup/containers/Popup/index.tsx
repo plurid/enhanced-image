@@ -124,10 +124,19 @@ const Popup: React.FC<any> = (properties) => {
     useEffect(() => {
         const fetchOwner = async () => {
             try {
+                const { token } = await chromeStorage.get('token');
+
+                if (!token) {
+                    return;
+                }
+
                 const query = await client.query({
                     query: CURRENT_OWNER,
                 });
+                console.log('query', query);
+
                 const response = query.data.currentOwner;
+
                 if (response.status) {
                     setLoggedInOwner(response.data);
                 }

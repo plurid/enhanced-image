@@ -3,6 +3,10 @@ import React, {
 } from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledTotalEnhances,
     StyledTotalEnhancesAll,
 } from './styled';
@@ -10,7 +14,7 @@ import {
 
 
 export interface TotalEnhancesProperties {
-    theme: any;
+    theme: Theme;
     imageEnhances: any;
 }
 

@@ -43,7 +43,7 @@ import {
 
 
 
-interface OptionsProperties {
+export interface OptionsProperties {
 }
 
 const Options: React.FC<OptionsProperties> = () => {
@@ -160,10 +160,17 @@ const Options: React.FC<OptionsProperties> = () => {
     useEffect(() => {
         const fetchOwner = async () => {
             try {
+                const { token } = await chromeStorage.get('token');
+
+                if (!token) {
+                    return;
+                }
+
                 const query = await client.query({
                     query: CURRENT_OWNER,
                 });
                 const response = query.data.currentOwner;
+
                 if (response.status) {
                     setLoggedInOwner(response.data);
                 }

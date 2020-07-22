@@ -1,7 +1,8 @@
-import React, {
-    // useState,
-    // useEffect,
-} from 'react';
+import React from 'react';
+
+import {
+    Theme,
+} from '@plurid/plurid-themes';
 
 import {
     StyledButtonSwitch,
@@ -10,24 +11,26 @@ import {
 
 
 
-interface ButtonSwitchProps {
+export interface ButtonSwitchProperties {
     checked: boolean;
     toggle: any;
     text?: string;
-    theme: any;
+    theme: Theme;
 }
 
-const ButtonSwitch: React.FC<ButtonSwitchProps> = (
-    props,
+const ButtonSwitch: React.FC<ButtonSwitchProperties> = (
+    properties,
 ) => {
-
+    /** properties */
     const {
         checked,
         toggle,
         text,
         theme,
-    } = props;
+    } = properties;
 
+
+    /** render */
     return (
         <StyledButtonSwitch>
             {text && (

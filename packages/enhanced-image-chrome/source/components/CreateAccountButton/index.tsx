@@ -1,28 +1,36 @@
 import React from 'react';
 
 import {
-    StyledCreateAccountButton,
-} from './styled';
+    Theme,
+} from '@plurid/plurid-themes';
 
 import ButtonInline from '../ButtonInline';
 
 import ExternalLinkIcon from '../../assets/buttons/external-link-icon';
 
+import {
+    StyledCreateAccountButton,
+} from './styled';
 
 
-interface CreateAccountButtonProps {
-    theme: any;
-}
 
 const PLURID_ACCOUNT_DOMAIN = 'https://account.plurid.com';
 
+
+export interface CreateAccountButtonProps {
+    theme: Theme;
+}
+
 const CreateAccountButton: React.FC<CreateAccountButtonProps> = (
-    props,
+    properties,
 ) => {
+    /** properties */
     const {
         theme,
-    } = props;
+    } = properties;
 
+
+    /** render */
     return (
         <StyledCreateAccountButton>
             <a

@@ -1,34 +1,47 @@
 import React from 'react';
 
 import {
+    Theme,
+} from '@plurid/plurid-themes';
+
+import {
     StyledButtonInline,
 } from './styled';
 
 
 
-interface ButtonInlineProps {
-    theme: any;
+export interface ButtonInlineProps {
+    theme: Theme;
     atClick?: any;
     styles?: any;
 }
 
-
 const ButtonInline: React.FC<ButtonInlineProps> = (
-    props,
+    properties,
 ) => {
+    /** properties */
     const {
         atClick,
         theme,
         styles,
-    } = props;
+        children,
+    } = properties;
 
+
+    /** render */
     return (
         <StyledButtonInline
             theme={theme}
-            onClick={atClick ? atClick : undefined}
-            style={styles ? {...styles} : {}}
+            onClick={atClick
+                ? atClick
+                : undefined
+            }
+            style={styles
+                ? {...styles}
+                : {}
+            }
         >
-            {props.children}
+            {children}
         </StyledButtonInline>
     );
 }
