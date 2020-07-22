@@ -3,13 +3,15 @@ import {
     NormalizedCacheObject,
 } from '@apollo/client';
 
-import {
-    graphql,
-} from '@plurid/plurid-functions';
+// import {
+//     graphql,
+// } from '@plurid/plurid-functions';
 
-import {
-    REQUEST_ERRORS,
-} from '../../../data/constants';
+// import {
+//     REQUEST_ERRORS,
+// } from '../../../data/constants';
+
+import baseRequest from '../../base';
 
 import {
     GET_TEXT_WITH_API_KEY,
@@ -37,54 +39,65 @@ export const withAPIKey = async (
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
-    try {
-        const query = await graphqlClient.query({
-            query: GET_TEXT_WITH_API_KEY,
-            variables: {
-                input,
-            },
-            fetchPolicy: 'no-cache',
-        });
+    const request = await baseRequest(
+        input,
+        GET_TEXT_WITH_API_KEY,
+        'enhancedImageGetTextWithAPIKey',
+        'query',
+        graphqlClient,
+        logErrors,
+    );
 
-        const queryResponse = query.data.enhancedImageGetTextWithAPIKey;
+    return request;
 
-        if (!queryResponse.status) {
-            const error = queryResponse.errors[0];
+    // try {
+    //     const query = await graphqlClient.query({
+    //         query: GET_TEXT_WITH_API_KEY,
+    //         variables: {
+    //             input,
+    //         },
+    //         fetchPolicy: 'no-cache',
+    //     });
 
-            if (logErrors) {
-                console.log(error);
-            }
+    //     const queryResponse = query.data.enhancedImageGetTextWithAPIKey;
 
-            const response = {
-                status: false,
-                error: error.type,
-                data: undefined,
-            };
-            return response;
-        }
+    //     if (!queryResponse.status) {
+    //         const error = queryResponse.errors[0];
 
-        const {
-            data,
-        } = queryResponse;
+    //         if (logErrors) {
+    //             console.log(error);
+    //         }
 
-        const response = {
-            status: true,
-            error: undefined,
-            data: graphql.deleteTypenames(data),
-        };
-        return response;
-    } catch (error) {
-        if (logErrors) {
-            console.log(error);
-        }
+    //         const response = {
+    //             status: false,
+    //             error: error.type,
+    //             data: undefined,
+    //         };
+    //         return response;
+    //     }
 
-        const response = {
-            status: false,
-            error: REQUEST_ERRORS.BAD_REQUEST,
-            data: undefined,
-        };
-        return response;
-    }
+    //     const {
+    //         data,
+    //     } = queryResponse;
+
+    //     const response = {
+    //         status: true,
+    //         error: undefined,
+    //         data: graphql.deleteTypenames(data),
+    //     };
+    //     return response;
+    // } catch (error) {
+    //     if (logErrors) {
+    //         console.log(error);
+    //     }
+
+    //     const response = {
+    //         status: false,
+    //         error: REQUEST_ERRORS.BAD_REQUEST,
+    //         data: undefined,
+    //     };
+    //     return response;
+    // }
 }
 
 
@@ -107,54 +120,65 @@ export const withOwnerToken = async (
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
-    try {
-        const query = await graphqlClient.query({
-            query: GET_TEXT_WITH_OWNER_TOKEN,
-            variables: {
-                input,
-            },
-            fetchPolicy: 'no-cache',
-        });
+    const request = await baseRequest(
+        input,
+        GET_TEXT_WITH_OWNER_TOKEN,
+        'enhancedImageGetTextWithOwnerToken',
+        'query',
+        graphqlClient,
+        logErrors,
+    );
 
-        const queryResponse = query.data.enhancedImageGetTextWithOwnerToken;
+    return request;
 
-        if (!queryResponse.status) {
-            const error = queryResponse.errors[0];
+    // try {
+    //     const query = await graphqlClient.query({
+    //         query: GET_TEXT_WITH_OWNER_TOKEN,
+    //         variables: {
+    //             input,
+    //         },
+    //         fetchPolicy: 'no-cache',
+    //     });
 
-            if (logErrors) {
-                console.log(error);
-            }
+    //     const queryResponse = query.data.enhancedImageGetTextWithOwnerToken;
 
-            const response = {
-                status: false,
-                error: error.type,
-                data: undefined,
-            };
-            return response;
-        }
+    //     if (!queryResponse.status) {
+    //         const error = queryResponse.errors[0];
 
-        const {
-            data,
-        } = queryResponse;
+    //         if (logErrors) {
+    //             console.log(error);
+    //         }
 
-        const response = {
-            status: true,
-            error: undefined,
-            data: graphql.deleteTypenames(data),
-        };
-        return response;
-    } catch (error) {
-        if (logErrors) {
-            console.log(error);
-        }
+    //         const response = {
+    //             status: false,
+    //             error: error.type,
+    //             data: undefined,
+    //         };
+    //         return response;
+    //     }
 
-        const response = {
-            status: false,
-            error: REQUEST_ERRORS.BAD_REQUEST,
-            data: undefined,
-        }
-        return response;
-    }
+    //     const {
+    //         data,
+    //     } = queryResponse;
+
+    //     const response = {
+    //         status: true,
+    //         error: undefined,
+    //         data: graphql.deleteTypenames(data),
+    //     };
+    //     return response;
+    // } catch (error) {
+    //     if (logErrors) {
+    //         console.log(error);
+    //     }
+
+    //     const response = {
+    //         status: false,
+    //         error: REQUEST_ERRORS.BAD_REQUEST,
+    //         data: undefined,
+    //     }
+    //     return response;
+    // }
 }
 
 
@@ -177,52 +201,63 @@ export const withImageID = async (
     graphqlClient: ApolloClient<NormalizedCacheObject>,
     logErrors?: boolean,
 ) => {
-    try {
-        const query = await graphqlClient.query({
-            query: GET_TEXT_WITH_IMAGE_ID,
-            variables: {
-                input,
-            },
-            fetchPolicy: 'no-cache',
-        });
+    const request = await baseRequest(
+        input,
+        GET_TEXT_WITH_IMAGE_ID,
+        'enhancedImageGetTextWithImageID',
+        'query',
+        graphqlClient,
+        logErrors,
+    );
 
-        const queryResponse = query.data.enhancedImageGetTextWithImageID;
+    return request;
 
-        if (!queryResponse.status) {
-            const error = queryResponse.errors[0];
+    // try {
+    //     const query = await graphqlClient.query({
+    //         query: GET_TEXT_WITH_IMAGE_ID,
+    //         variables: {
+    //             input,
+    //         },
+    //         fetchPolicy: 'no-cache',
+    //     });
 
-            if (logErrors) {
-                console.log(error);
-            }
+    //     const queryResponse = query.data.enhancedImageGetTextWithImageID;
 
-            const response = {
-                status: false,
-                error: error.type,
-                data: undefined,
-            };
-            return response;
-        }
+    //     if (!queryResponse.status) {
+    //         const error = queryResponse.errors[0];
 
-        const {
-            data,
-        } = queryResponse;
+    //         if (logErrors) {
+    //             console.log(error);
+    //         }
 
-        const response = {
-            status: true,
-            error: undefined,
-            data: graphql.deleteTypenames(data),
-        };
-        return response;
-    } catch (error) {
-        if (logErrors) {
-            console.log(error);
-        }
+    //         const response = {
+    //             status: false,
+    //             error: error.type,
+    //             data: undefined,
+    //         };
+    //         return response;
+    //     }
 
-        const response = {
-            status: false,
-            error: REQUEST_ERRORS.BAD_REQUEST,
-            data: undefined,
-        }
-        return response;
-    }
+    //     const {
+    //         data,
+    //     } = queryResponse;
+
+    //     const response = {
+    //         status: true,
+    //         error: undefined,
+    //         data: graphql.deleteTypenames(data),
+    //     };
+    //     return response;
+    // } catch (error) {
+    //     if (logErrors) {
+    //         console.log(error);
+    //     }
+
+    //     const response = {
+    //         status: false,
+    //         error: REQUEST_ERRORS.BAD_REQUEST,
+    //         data: undefined,
+    //     }
+    //     return response;
+    // }
 }
