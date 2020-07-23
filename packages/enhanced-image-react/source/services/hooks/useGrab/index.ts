@@ -5,18 +5,31 @@ import {
     useEffect,
 } from 'react';
 
+
 /** external */
+import {
+    ImageBoxDimensions,
+} from '#data/interfaces';
+
+
 /** internal */
+import {
+    percentageFromValue,
+} from '#services/utilities';
 /** [END] imports */
 
 
 
 /** [START] hook */
 const useGrab = (
-    absoluteX: string,
-    absoluteY: string,
-    element: any,
+    position: any,
+    imageBoxDimensions: ImageBoxDimensions,
+    element: HTMLDivElement | null,
 ) => {
+    const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
+    const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
+
+
     /** state */
     const [xCoordinate, setXCoordinate] = useState(absoluteX);
     const [yCoordinate, setYCoordinate] = useState(absoluteY);
@@ -25,6 +38,10 @@ const useGrab = (
     const [positions, setPositions] = useState({
         x: 0,
         y: 0,
+    });
+    const [coordinatesPercentage, setCoordinatesPercentage] = useState({
+        x: position.x,
+        y: position.y,
     });
 
 
@@ -77,6 +94,21 @@ const useGrab = (
         const textYCoord = textYCoordinate + 'px';
         setXCoordinate(textXCoord);
         setYCoordinate(textYCoord);
+
+        const xCoordPercentage = percentageFromValue(
+            textXCoordinate,
+            imageBoxDimensions.width,
+        );
+        const yCoordPercentage = percentageFromValue(
+            textYCoordinate,
+            imageBoxDimensions.height,
+        );
+
+        const coordinatesPercentage = {
+            x: xCoordPercentage,
+            y: yCoordPercentage,
+        };
+        setCoordinatesPercentage(coordinatesPercentage);
     }
 
 
@@ -145,6 +177,7 @@ const useGrab = (
         setDraggable,
         dragging,
         handleMouseDown,
+        coordinatesPercentage,
     };
 }
 

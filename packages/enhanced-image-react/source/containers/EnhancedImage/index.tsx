@@ -1666,6 +1666,39 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setImageEntities(updatedEntities);
     }
 
+    const updateEntityField = (
+        id: string,
+        fields: string[][],
+    ) => {
+        const updatedImageEntities = imageEntities.map(entity => {
+            if (entity.id === id) {
+                let newEntity: any = {
+                    ...entity,
+                };
+
+                for (const [type, value] of fields) {
+                    newEntity = objects.updateNested(
+                        newEntity,
+                        type,
+                        value,
+                    );
+                }
+
+                return {
+                    ...entity,
+                };
+            }
+
+            return {
+                ...entity,
+            };
+        });
+
+        setImageEntities([
+            ...updatedImageEntities,
+        ]);
+    }
+
 
     /** effects */
     /** Defaults Colors */
@@ -2044,6 +2077,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         /** entities */
         addEntity,
         convertEntity,
+        updateEntityField,
     };
 
 

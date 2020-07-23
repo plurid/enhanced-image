@@ -102,9 +102,6 @@ const Painted: React.FC<PaintedProperties> = (
         viewable,
     } = data;
 
-    const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
-    const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
-
 
     /** references */
     const timeoutMouseOver = useRef<any>(0);
@@ -121,8 +118,8 @@ const Painted: React.FC<PaintedProperties> = (
         dragging,
         handleMouseDown,
     } = useGrab(
-        absoluteX,
-        absoluteY,
+        position,
+        imageBoxDimensions,
         entityElement.current,
     );
 

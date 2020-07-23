@@ -108,9 +108,6 @@ const Radial: React.FC<RadialProperties> = (
     const absoluteWidth = absoluteRadius + 'px';
     const absoluteHeight = absoluteRadius + 'px';
 
-    const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
-    const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
-
 
     /** references */
     const timeoutMouseOver = useRef<any>(0);
@@ -126,8 +123,8 @@ const Radial: React.FC<RadialProperties> = (
         dragging,
         handleMouseDown,
     } = useGrab(
-        absoluteX,
-        absoluteY,
+        position,
+        imageBoxDimensions,
         entityElement.current,
     );
 

@@ -211,7 +211,6 @@ export interface Context {
 
     imageDimensions: ImageDimensions,
     imageBoxDimensions: ImageBoxDimensions;
-    // videoContainerDimensions: VideoContainerDimensions;
 
     setMessage: Dispatch<SetStateAction<string>>;
     setMessageTimed: (
@@ -353,6 +352,7 @@ export interface Context {
         id: string,
         to: ImageEntityType,
     ) => void;
+    updateEntityField: updateEntityField,
 }
 
 
@@ -442,3 +442,9 @@ export interface ActionDetail {
     type: string;
     text: ImageText;
 }
+
+
+export type updateEntityField = (
+    id: string,
+    fields: string[][],
+) => void;
