@@ -30,7 +30,7 @@ import {
 
 /** [START] component */
 export interface RadialProperties {
-    data: ImageEntityRadial;
+    entity: ImageEntityRadial;
 }
 
 const Radial: React.FC<RadialProperties> = (
@@ -44,19 +44,21 @@ const Radial: React.FC<RadialProperties> = (
 
     const {
         imageBoxDimensions,
+
+        editableEntities,
     } = context;
 
 
     /** properties */
     const {
-        data,
+        entity,
     } = properties;
 
     const {
         color,
         radius,
         position,
-    } = data.data;
+    } = entity.data;
 
     const absoluteRadius = radius * imageBoxDimensions.width / 100;
 
@@ -107,6 +109,17 @@ const Radial: React.FC<RadialProperties> = (
     }, [
         // editableText,
         mouseOver,
+    ]);
+
+
+    /** effects */
+    /** Handle editable entities */
+    useEffect(() => {
+        if (!editableEntities) {
+            setShowEditor(false);
+        }
+    }, [
+        editableEntities,
     ]);
 
 
