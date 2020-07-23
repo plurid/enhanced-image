@@ -36,6 +36,7 @@ export interface ImageEntityRectangularData extends ImageEntityDataBase {
     width: number;
     height: number;
     color: string;
+    border: string;
 }
 
 
@@ -50,6 +51,7 @@ export interface ImageEntityRadial extends ImageEntityBase {
 export interface ImageEntityRadialData extends ImageEntityDataBase {
     radius: number;
     color: string;
+    border: string;
 }
 
 
