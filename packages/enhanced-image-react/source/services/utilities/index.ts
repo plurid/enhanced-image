@@ -1,5 +1,6 @@
 export * from './color';
 export * from './context';
+export * from './download';
 export * from './environment';
 export * from './image';
 export * from './imageText';
