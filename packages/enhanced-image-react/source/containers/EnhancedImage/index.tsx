@@ -1622,6 +1622,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             return;
         }
 
+        const previousEntityData = entity.data;
         const toEntityData = baseEntitiesData[to];
 
         /** HACK: as ImageEntity */
@@ -1630,6 +1631,23 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             type: to,
             data: {
                 ...toEntityData,
+                position: {
+                    ...previousEntityData.position,
+                },
+                viewable: previousEntityData.viewable,
+                action: {
+                    ...previousEntityData.action,
+                },
+                border: {
+                    ...previousEntityData.border,
+                },
+                highlight: previousEntityData.highlight,
+                customStyle: previousEntityData.customStyle,
+                opacity: previousEntityData.opacity,
+                annotation: previousEntityData.annotation,
+                labels: [
+                    ...previousEntityData.labels,
+                ],
             },
         };
 
