@@ -68,6 +68,9 @@ const SettingsMenu: React.FC<any> = () => {
     }
 
     const {
+        showTooltips,
+        setShowTooltips,
+
         theme,
         transparentUI,
         about,
@@ -630,6 +633,18 @@ const SettingsMenu: React.FC<any> = () => {
                         toggleExpand={() => setExpandVariaDrawer(expand => !expand)}
                     >
                         <ul>
+                            {(variaDrawer.includes('ALL') || variaDrawer.includes('SHOW_TOOLTIPS'))
+                            && (
+                                <li>
+                                    <ButtonCheckmark
+                                        theme={theme}
+                                        toggle={() => setShowTooltips(show => !show)}
+                                        text="Show Tooltips"
+                                        checked={showTooltips}
+                                    />
+                                </li>
+                            )}
+
                             {(variaDrawer.includes('ALL') || variaDrawer.includes('VIEW_FULLSCREEN'))
                             && (
                                 <li>
