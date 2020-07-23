@@ -79,8 +79,9 @@ const Rectangular: React.FC<RectangularProperties> = (
         transparentUI,
 
         imageBoxDimensions,
-        editableEntities,
 
+        editableEntities,
+        revealedEntities,
         convertEntity,
         updateEntityField,
     } = context;
@@ -208,6 +209,16 @@ const Rectangular: React.FC<RectangularProperties> = (
 
 
     /** render */
+    if (
+        !editableEntities
+        && !revealedEntities
+        && !viewable
+    ) {
+        return (
+            <></>
+        );
+    }
+
     return (
         <StyledRectangular
             tabIndex={0}
