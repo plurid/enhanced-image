@@ -34,6 +34,10 @@ import {
 } from '#data/interfaces';
 
 import {
+    useGrab,
+} from '#services/hooks';
+
+import {
     Context,
 
     /** percentage */
@@ -110,9 +114,23 @@ const Radial: React.FC<RadialProperties> = (
 
     /** references */
     const timeoutMouseOver = useRef<any>(0);
+    const entityElement = useRef<HTMLDivElement>(null);
 
 
     /** state */
+    const {
+        xCoordinate,
+        yCoordinate,
+        draggable,
+        setDraggable,
+        dragging,
+        handleMouseDown,
+    } = useGrab(
+        absoluteX,
+        absoluteY,
+        entityElement.current,
+    );
+
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
 
@@ -139,6 +157,11 @@ const Radial: React.FC<RadialProperties> = (
      * Handle showEditor
      */
     useEffect(() => {
+        if (dragging) {
+            setShowEditor(false);
+            return;
+        }
+
         if (
             mouseOver
             // && editableText
@@ -150,6 +173,7 @@ const Radial: React.FC<RadialProperties> = (
     }, [
         // editableText,
         mouseOver,
+        dragging,
     ]);
 
 
@@ -170,14 +194,18 @@ const Radial: React.FC<RadialProperties> = (
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
+            onMouseDown={(event) => handleMouseDown(event)}
+            dragMode={draggable}
+            draggingMode={dragging}
             style={{
-                top: absoluteY,
-                left: absoluteX,
+                top: yCoordinate,
+                left: xCoordinate,
                 width: absoluteWidth,
                 height: absoluteHeight,
                 borderRadius: absoluteRadius / 2 + 'px',
                 backgroundColor: color,
             }}
+            ref={entityElement}
         >
             {showEditor && (
                 <Editor
@@ -192,10 +220,8 @@ const Radial: React.FC<RadialProperties> = (
                 >
                     <ButtonToggle
                         theme={theme}
-                        toggle={() => {
-
-                        }}
-                        toggled={false}
+                        toggle={() => setDraggable(drag => !drag)}
+                        toggled={draggable}
                         icon={GrabIcon}
                     />
 
