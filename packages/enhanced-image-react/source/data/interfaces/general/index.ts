@@ -446,5 +446,5 @@ export interface ActionDetail {
 
 export type updateEntityField = (
     id: string,
-    fields: string[][],
+    fields: any[],
 ) => void;

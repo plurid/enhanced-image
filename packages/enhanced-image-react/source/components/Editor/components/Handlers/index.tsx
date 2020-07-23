@@ -28,6 +28,9 @@ export interface TypeSelectorProperties {
     theme: Theme;
     viewable: boolean;
     /** - methods */
+    toggleViewable: () => void;
+    duplicate: () => void;
+    obliterate: () => void;
 
     /** optional */
     /** - values */
@@ -44,6 +47,9 @@ const TypeSelector: React.FC<TypeSelectorProperties> = (
         theme,
         viewable,
         /** - methods */
+        toggleViewable,
+        duplicate,
+        obliterate,
 
         /** optional */
         /** - values */
@@ -56,20 +62,20 @@ const TypeSelector: React.FC<TypeSelectorProperties> = (
         <>
             <ButtonToggle
                 theme={theme}
-                toggle={() => {}}
+                toggle={() => toggleViewable()}
                 toggled={viewable}
                 icon={viewable ? ViewableIcon : NotViewableIcon}
             />
 
             <ButtonClick
                 theme={theme}
-                atClick={() => {}}
+                atClick={() => duplicate()}
                 icon={DuplicateIcon}
             />
 
             <ButtonClick
                 theme={theme}
-                atClick={() => {}}
+                atClick={() => obliterate()}
                 icon={DeleteIcon}
             />
         </>

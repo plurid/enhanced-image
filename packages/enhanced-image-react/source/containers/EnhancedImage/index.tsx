@@ -1668,7 +1668,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const updateEntityField = (
         id: string,
-        fields: string[][],
+        fields: any[],
     ) => {
         const updatedImageEntities = imageEntities.map(entity => {
             if (entity.id === id) {
@@ -1698,7 +1698,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                     },
                 };
 
-                for (const [type, value] of fields) {
+                for (const {type, value} of fields) {
                     newEntity = objects.updateNested(
                         newEntity,
                         type,
