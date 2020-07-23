@@ -1,6 +1,27 @@
 {
     "compilerOptions": {
-        "baseUrl": "./",
+        "baseUrl": ".",
+        "paths": {
+            "#assets/*": [
+                "../source/assets/*"
+            ],
+            "#components/*": [
+                "../source/components/*"
+            ],
+            "#containers/*": [
+                "../source/containers/*"
+            ],
+            "#data/*": [
+                "../source/data/*"
+            ],
+            "#logic/*": [
+                "../source/logic/*"
+            ],
+            "#services/*": [
+                "../source/services/*"
+            ]
+        },
+
         "allowSyntheticDefaultImports": true,
         "module": "es2015",
         "target": "es5",
@@ -10,7 +31,7 @@
         "jsx": "react",
         "moduleResolution": "node",
         "rootDir": "../",
-        "outDir": "dist",
+        "outDir": "distribution",
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "noImplicitAny": true,

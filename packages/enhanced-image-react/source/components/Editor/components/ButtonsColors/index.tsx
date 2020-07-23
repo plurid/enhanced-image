@@ -16,11 +16,14 @@ import {
 
 
 
-/** [START] component */
+/** [START] component data */
 const colors = [
     'black', 'red', 'white',
 ];
+/** [END] component data */
 
+
+/** [START] component */
 export interface ButtonsColorsProperties {
     theme: Theme,
     selectedColor: string,

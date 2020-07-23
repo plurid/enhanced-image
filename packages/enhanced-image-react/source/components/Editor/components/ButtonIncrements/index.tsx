@@ -19,12 +19,14 @@ import {
 
 
 
-/** [START] component */
+/** [START] component data */
 const STEP = 1;
 const UP_ARROW = (<span>&#x25b2;</span>);
 const DOWN_ARROW = (<span>&#x25bc;</span>);
+/** [END] component data */
 
 
+/** [START] component */
 export interface ButtonIncrementsProperties {
     theme: Theme;
     transparentUI: boolean;

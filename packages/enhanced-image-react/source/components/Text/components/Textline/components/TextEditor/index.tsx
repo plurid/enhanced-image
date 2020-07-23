@@ -19,28 +19,28 @@ import {
 
 
 /** external */
-import SelectTextIcon from '../../../../../../assets/icons/text-editor/select-text';
-import GrabIcon from '../../../../../../assets/icons/text-editor/grab';
-import ViewableIcon from '../../../../../../assets/icons/text-editor/viewable';
-import NotViewableIcon from '../../../../../../assets/icons/text-editor/not-viewable';
-import FontSizeIcon from '../../../../../../assets/icons/text-editor/font-size';
-import LinkIcon from '../../../../../../assets/icons/text-editor/link';
-import TransviewIcon from '../../../../../../assets/icons/settings-menu/transview-text';
-import BoldIcon from '../../../../../../assets/icons/text-editor/bold';
-import ItalicIcon from '../../../../../../assets/icons/text-editor/italic';
-import LetterSpacingIcon from '../../../../../../assets/icons/text-editor/letter-spacing';
-import WordSpacingIcon from '../../../../../../assets/icons/text-editor/word-spacing';
-import DuplicateIcon from '../../../../../../assets/icons/text-editor/duplicate';
-import DeleteIcon from '../../../../../../assets/icons/text-editor/delete';
+import SelectTextIcon from '#assets/icons/text-editor/select-text';
+import GrabIcon from '#assets/icons/text-editor/grab';
+import ViewableIcon from '#assets/icons/text-editor/viewable';
+import NotViewableIcon from '#assets/icons/text-editor/not-viewable';
+import FontSizeIcon from '#assets/icons/text-editor/font-size';
+import LinkIcon from '#assets/icons/text-editor/link';
+import TransviewIcon from '#assets/icons/settings-menu/transview-text';
+import BoldIcon from '#assets/icons/text-editor/bold';
+import ItalicIcon from '#assets/icons/text-editor/italic';
+import LetterSpacingIcon from '#assets/icons/text-editor/letter-spacing';
+import WordSpacingIcon from '#assets/icons/text-editor/word-spacing';
+import DuplicateIcon from '#assets/icons/text-editor/duplicate';
+import DeleteIcon from '#assets/icons/text-editor/delete';
 
 import {
     selectableFonts,
- } from '../../../../../../data/constants/fonts';
+ } from '#data/constants/fonts';
 
 import {
     ImageText,
     ImageTextVersionTextline,
-} from '../../../../../../data/interfaces';
+} from '#data/interfaces';
 
 import {
     Context,
@@ -51,20 +51,20 @@ import {
 
     /** color */
     resolveColor
-} from '../../../../../../services/utilities';
+} from '#services/utilities';
 
 
 /** internal */
-import ButtonDropdown from './components/ButtonDropdown';
-import ButtonIncrements from './components/ButtonIncrements';
-import ButtonInput from './components/ButtonInput';
-import ButtonToggle from './components/ButtonToggle';
-import ButtonToggleRender from './components/ButtonToggleRender';
-import ButtonsColors from './components/ButtonsColors';
-import ButtonClick from './components/ButtonClick';
-import SimpleInput from './components/SimpleInput';
-import Slider from './components/Slider';
-import Drawer from './components/Drawer';
+import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
+import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
+import ButtonInput from '#components/Editor/components/ButtonInput';
+import ButtonToggle from '#components/Editor/components/ButtonToggle';
+import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
+import ButtonsColors from '#components/Editor/components/ButtonsColors';
+import ButtonClick from '#components/Editor/components/ButtonClick';
+import SimpleInput from '#components/Editor/components/SimpleInput';
+import Slider from '#components/Editor/components/Slider';
+import Drawer from '#components/Editor/components/Drawer';
 import TransviewContainer from './components/TransviewContainer';
 
 import {
