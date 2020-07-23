@@ -9,6 +9,11 @@ export interface ImageEntityPosition {
     y: number;
 }
 
+export interface ImageEntityLabel {
+    confidence: number;
+    name: string;
+}
+
 
 
 export interface ImageEntityBase {
@@ -21,6 +26,9 @@ export interface ImageEntityDataBase {
     viewable: boolean;
     action: ImageEntityAction;
     customStyle: string;
+    opacity: number;
+    annotation: string;
+    labels: ImageEntityLabel[];
 }
 
 

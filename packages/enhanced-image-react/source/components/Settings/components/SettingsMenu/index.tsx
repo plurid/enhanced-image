@@ -258,6 +258,17 @@ const SettingsMenu: React.FC<any> = () => {
                                         />
                                     </li>
 
+                                    {development && (
+                                        <li>
+                                            <ButtonItem
+                                                theme={theme}
+                                                atClick={downloadText}
+                                                icon={SaveIcon}
+                                                text="Download Text"
+                                            />
+                                        </li>
+                                    )}
+
                                     <hr />
                                 </>
                             )}
@@ -313,17 +324,6 @@ const SettingsMenu: React.FC<any> = () => {
                             {showTransviewSettings && (
                                 <li>
                                     <Transview />
-                                </li>
-                            )}
-
-                            {development && (
-                                <li>
-                                    <ButtonItem
-                                        theme={theme}
-                                        atClick={downloadText}
-                                        icon={SaveIcon}
-                                        text="Download Text"
-                                    />
                                 </li>
                             )}
                         </ul>
@@ -574,6 +574,17 @@ const SettingsMenu: React.FC<any> = () => {
                                             text="Upload Entities"
                                         />
                                     </li>
+
+                                    {development && (
+                                        <li>
+                                            <ButtonItem
+                                                theme={theme}
+                                                atClick={() => {}}
+                                                icon={SaveIcon}
+                                                text="Download Entities"
+                                            />
+                                        </li>
+                                    )}
 
                                     <hr />
                                 </>

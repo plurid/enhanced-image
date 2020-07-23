@@ -7,17 +7,45 @@ import React, {
     useEffect,
 } from 'react';
 
+import {
+    PluridIconPalette,
+    PluridIconPlay,
+    PluridIconSquare,
+} from '@plurid/plurid-icons-react';
+
 
 /** external */
+import GrabIcon from '#assets/icons/text-editor/grab';
+
+import Editor from '#components/Editor';
+
+import Handlers from '#components/Editor/components/Handlers';
+import VerticalDivider from '#components/Editor/components/VerticalDivider';
+import ButtonToggle from '#components/Editor/components/ButtonToggle';
+import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
+import ButtonInput from '#components/Editor/components/ButtonInput';
+import SimpleInput from '#components/Editor/components/SimpleInput';
+import Drawer from '#components/Editor/components/Drawer';
+
+import TypeSelector from '#components/Entities/components/Common/TypeSelector';
+
 import {
     ImageEntityRadial,
-} from '../../../../data/interfaces';
+} from '#data/interfaces';
 
 import {
     Context,
-} from '../../../../services/utilities';
 
-import Editor from '../../../Editor';
+    /** percentage */
+    valueFromPercentage,
+    percentageFromValue,
+
+    /** color */
+    resolveColor,
+
+    /** ui */
+    toggleDrawer,
+} from '#services/utilities';
 
 
 /** internal */
@@ -43,9 +71,13 @@ const Radial: React.FC<RadialProperties> = (
     }
 
     const {
-        imageBoxDimensions,
+        theme,
+        transparentUI,
 
+        imageBoxDimensions,
         editableEntities,
+
+        convertEntity,
     } = context;
 
 
@@ -55,10 +87,17 @@ const Radial: React.FC<RadialProperties> = (
     } = properties;
 
     const {
-        color,
+        id,
+        type,
+        data,
+    } = entity;
+
+    const {
         radius,
+        color,
         position,
-    } = entity.data;
+        viewable,
+    } = data;
 
     const absoluteRadius = radius * imageBoxDimensions.width / 100;
 
@@ -76,6 +115,8 @@ const Radial: React.FC<RadialProperties> = (
     /** state */
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
+
+    const [editorDrawers, setEditorDrawers] = useState<string[]>([]);
 
 
     /** handlers */
@@ -149,9 +190,113 @@ const Radial: React.FC<RadialProperties> = (
                     setWidth={() => {}}
                     fullWidth={false}
                 >
-                    <div>
-                        button
-                    </div>
+                    <ButtonToggle
+                        theme={theme}
+                        toggle={() => {
+
+                        }}
+                        toggled={false}
+                        icon={GrabIcon}
+                    />
+
+                    <TypeSelector
+                        theme={theme}
+                        id={id}
+                        type={type}
+                        convertEntity={convertEntity}
+                    />
+
+                    <VerticalDivider
+                        theme={theme}
+                    />
+
+                    <Drawer
+                        theme={theme}
+                        title="Data"
+                        expand={editorDrawers.includes('DATA')}
+                        toggleExpand={() => toggleDrawer('DATA', editorDrawers, setEditorDrawers)}
+                    >
+                        <ButtonIncrements
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            type="data.radius"
+                            changeValue={() => {}}
+                            value={Math.round(valueFromPercentage(entity.data.radius, imageBoxDimensions.width))}
+                            icon={(
+                                <div>W</div>
+                            )}
+                        />
+
+                        <SimpleInput
+                            value={resolveColor(entity.data.color)}
+                            valueType="color"
+                            changeValue={() => {}}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconPalette}
+                        />
+
+                        <SimpleInput
+                            value={resolveColor(entity.data.border)}
+                            valueType="border"
+                            changeValue={() => {}}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconSquare}
+                        />
+
+                        <ButtonInput
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            // toggle={() => toggleTextFormat('action.active', true)}
+                            toggle={() => {}}
+                            toggled={entity.data.action.active}
+                            icon={(
+                                <PluridIconPlay />
+                            )}
+                            value={entity.data.action.type}
+                            valueType="action.type"
+                            // changeValue={updateField}
+                            // renderOutside={renderOutside}
+                            // outsideKind={outsideKind}
+                            // setOutsideKind={setOutsideKind}
+                            changeValue={() => {}}
+                            renderOutside={() => {}}
+                            outsideKind={''}
+                            setOutsideKind={() => {}}
+                        />
+
+                        <ButtonInput
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            toggle={() => {}}
+                            toggled={entity.data.action.active}
+                            icon={(
+                                <div>
+                                    CSS
+                                </div>
+                            )}
+                            value={entity.data.action.type}
+                            valueType="action.type"
+                            // changeValue={updateField}
+                            // renderOutside={renderOutside}
+                            // outsideKind={outsideKind}
+                            // setOutsideKind={setOutsideKind}
+                            changeValue={() => {}}
+                            renderOutside={() => {}}
+                            outsideKind={''}
+                            setOutsideKind={() => {}}
+                        />
+                    </Drawer>
+
+                    <VerticalDivider
+                        theme={theme}
+                    />
+
+                    <Handlers
+                        theme={theme}
+                        viewable={viewable}
+                    />
                 </Editor>
             )}
         </StyledRadial>

@@ -13,6 +13,7 @@ import {
 
 import {
     ImageEntity,
+    ImageEntityType,
 } from '../entities';
 
 
@@ -135,6 +136,9 @@ export interface EnhancedImageProperties {
      * Default: `false`.
      */
     silent?: boolean;
+
+
+    entitiesShowLabelsOnHover?: boolean;
 
 
     /**
@@ -345,6 +349,10 @@ export interface Context {
 
     /** entities */
     addEntity: () => void;
+    convertEntity: (
+        id: string,
+        to: ImageEntityType,
+    ) => void;
 }
 
 

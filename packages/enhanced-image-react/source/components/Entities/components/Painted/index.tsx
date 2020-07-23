@@ -9,15 +9,37 @@ import React, {
 
 
 /** external */
+import GrabIcon from '#assets/icons/text-editor/grab';
+
+import Editor from '#components/Editor';
+
+import Handlers from '#components/Editor/components/Handlers';
+import VerticalDivider from '#components/Editor/components/VerticalDivider';
+import ButtonToggle from '#components/Editor/components/ButtonToggle';
+import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
+import ButtonInput from '#components/Editor/components/ButtonInput';
+import SimpleInput from '#components/Editor/components/SimpleInput';
+import Drawer from '#components/Editor/components/Drawer';
+
+import TypeSelector from '#components/Entities/components/Common/TypeSelector';
+
 import {
     ImageEntityPainted,
-} from '../../../../data/interfaces';
+} from '#data/interfaces';
 
 import {
     Context,
-} from '../../../../services/utilities';
 
-import Editor from '../../../Editor';
+    /** percentage */
+    valueFromPercentage,
+    percentageFromValue,
+
+    /** color */
+    resolveColor,
+
+    /** ui */
+    toggleDrawer,
+} from '#services/utilities';
 
 
 /** internal */
@@ -43,9 +65,13 @@ const Painted: React.FC<PaintedProperties> = (
     }
 
     const {
+        theme,
+        transparentUI,
+
         imageBoxDimensions,
 
         editableEntities,
+        convertEntity,
     } = context;
 
 
@@ -55,8 +81,16 @@ const Painted: React.FC<PaintedProperties> = (
     } = properties;
 
     const {
+        id,
+        type,
+        data,
+    } = entity;
+
+    const {
+        dataURL,
         position,
-    } = entity.data;
+        viewable,
+    } = data;
 
     const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
     const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
@@ -64,6 +98,7 @@ const Painted: React.FC<PaintedProperties> = (
 
     /** references */
     const timeoutMouseOver = useRef<any>(0);
+    const canvasElement = useRef<HTMLCanvasElement>(null);
 
 
     /** state */
@@ -96,6 +131,56 @@ const Painted: React.FC<PaintedProperties> = (
         editableEntities,
     ]);
 
+    useEffect(() => {
+        if (!canvasElement.current) {
+            return;
+        }
+
+        const context = canvasElement.current.getContext('2d');
+        if (!context) {
+            return;
+        }
+
+        const image = new Image;
+        image.onload = () => {
+            if (!canvasElement.current) {
+                return;
+            }
+
+            // Clear Old Image and Reset Bounds
+            context.clearRect(0, 0, canvasElement.current.width, canvasElement.current.height);
+            canvasElement.current.height = image.height;
+            canvasElement.current.width = image.width;
+
+            // Redraw Image
+            context.drawImage(
+                image,
+                0,
+                0,
+                image.width,
+                image.height,
+            );
+        };
+        image.src = dataURL;
+    }, []);
+
+    /**
+     * Handle showEditor
+     */
+    useEffect(() => {
+        if (
+            mouseOver
+            // && editableText
+        ) {
+            setShowEditor(true);
+        } else {
+            setShowEditor(false);
+        }
+    }, [
+        // editableText,
+        mouseOver,
+    ]);
+
 
     /** render */
     return (
@@ -109,22 +194,56 @@ const Painted: React.FC<PaintedProperties> = (
             }}
         >
             <canvas
+                ref={canvasElement}
             />
 
             {showEditor && (
                 <Editor
                     positions={{
-                        x: 0,
-                        y: 0,
+                        x: -17,
+                        y: -34,
                     }}
                     drawers={[]}
                     toggleDrawer={() => {}}
                     setWidth={() => {}}
                     fullWidth={false}
                 >
-                    <div>
-                        button
-                    </div>
+                    <ButtonToggle
+                        theme={theme}
+                        toggle={() => {
+
+                        }}
+                        toggled={false}
+                        icon={GrabIcon}
+                    />
+
+                    <TypeSelector
+                        theme={theme}
+                        id={id}
+                        type={type}
+                        convertEntity={convertEntity}
+                    />
+
+                    <VerticalDivider
+                        theme={theme}
+                    />
+
+                    <VerticalDivider
+                        theme={theme}
+                    />
+
+                    <Handlers
+                        theme={theme}
+                        viewable={viewable}
+                    />
+
+                    {/* <div>
+                        color
+
+                        brush size
+
+                        eraser
+                    </div> */}
                 </Editor>
             )}
         </StyledPainted>
