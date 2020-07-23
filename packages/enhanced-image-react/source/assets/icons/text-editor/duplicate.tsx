@@ -4,7 +4,7 @@ import React from 'react';
 
 const SVG = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000.29 1000">
-        <title>Duplicate Text</title>
+        <title>Duplicate</title>
 
         <g>
             <path d="M910.41,289.89V910.11H456.47V289.89H910.41M1000.29,200H366.59v800h633.7V200Z" />
