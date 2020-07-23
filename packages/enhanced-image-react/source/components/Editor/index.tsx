@@ -61,6 +61,8 @@ const TextEditor: React.FC<TextEditorProperties> = (
         toggleDrawer,
         setWidth,
         fullWidth,
+
+        children,
     } = properties;
 
 
@@ -130,6 +132,7 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     top: positions.y + 'px',
                 }}
             >
+                {children}
             </StyledTextEditor>
 
             <StyledOutside
