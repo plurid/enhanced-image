@@ -71,22 +71,19 @@ export const StyledTextEditor: any = styled.div`
 `;
 
 
-export const StyledVerticalDivider = styled.div`
-    background-color: ${props => props.theme.colorSecondary};
-    width: 1px;
-    height: 100%;
-    user-select: none;
-`;
-
-
 export interface IStyledOutside {
     theme: Theme;
     topBased: boolean;
 }
 
 export const StyledOutside = styled.div<IStyledOutside>`
+    color: ${
+        ({
+            theme
+        }: IStyledOutside) => theme.colorPrimary
+    };
+
     position: absolute;
-    color: ${props => props.theme.colorPrimary};
     letter-spacing: 0;
     word-spacing: 0;
     font-weight: normal;
