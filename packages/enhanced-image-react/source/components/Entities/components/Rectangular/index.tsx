@@ -82,6 +82,7 @@ const Rectangular: React.FC<RectangularProperties> = (
         editableEntities,
 
         convertEntity,
+        updateEntityField,
     } = context;
 
 
@@ -107,9 +108,6 @@ const Rectangular: React.FC<RectangularProperties> = (
     const absoluteWidth = width * imageBoxDimensions.width / 100 + 'px';
     const absoluteHeight = height * imageBoxDimensions.height / 100 + 'px';
 
-    const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
-    const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
-
 
     /** references */
     const timeoutMouseOver = useRef<any>(0);
@@ -123,10 +121,11 @@ const Rectangular: React.FC<RectangularProperties> = (
         draggable,
         setDraggable,
         dragging,
+        coordinatesPercentage,
         handleMouseDown,
     } = useGrab(
-        absoluteX,
-        absoluteY,
+        position,
+        imageBoxDimensions,
         entityElement.current,
     );
 
@@ -184,6 +183,21 @@ const Rectangular: React.FC<RectangularProperties> = (
         }
     }, [
         editableEntities,
+    ]);
+
+
+    useEffect(() => {
+        const fields = [
+            ['position.x', coordinatesPercentage.x],
+            ['position.y', coordinatesPercentage.x],
+        ];
+
+        updateEntityField(
+            id,
+            fields,
+        );
+    }, [
+        coordinatesPercentage,
     ]);
 
 
