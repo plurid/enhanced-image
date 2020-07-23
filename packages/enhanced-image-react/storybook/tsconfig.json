@@ -1,24 +1,24 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
+        "baseUrl": "../",
         "paths": {
             "#assets/*": [
-                "../source/assets/*"
+                "./source/assets/*"
             ],
             "#components/*": [
-                "../source/components/*"
+                "./source/components/*"
             ],
             "#containers/*": [
-                "../source/containers/*"
+                "./source/containers/*"
             ],
             "#data/*": [
-                "../source/data/*"
+                "./source/data/*"
             ],
             "#logic/*": [
-                "../source/logic/*"
+                "./source/logic/*"
             ],
             "#services/*": [
-                "../source/services/*"
+                "./source/services/*"
             ]
         },
 
