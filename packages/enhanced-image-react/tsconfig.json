@@ -7,6 +7,28 @@
         "moduleResolution": "node",
         "outDir": "distribution",
 
+        "baseUrl": ".",
+        "paths": {
+            "#assets/*": [
+                "./source/assets/*"
+            ],
+            "#components/*": [
+                "./source/components/*"
+            ],
+            "#containers/*": [
+                "./source/containers/*"
+            ],
+            "#data/*": [
+                "./source/data/*"
+            ],
+            "#logic/*": [
+                "./source/logic/*"
+            ],
+            "#services/*": [
+                "./source/services/*"
+            ]
+        },
+
         "declaration": true,
         "sourceMap": true,
         "allowJs": false,
