@@ -79,9 +79,10 @@ const Radial: React.FC<RadialProperties> = (
         transparentUI,
 
         imageBoxDimensions,
-        editableEntities,
 
+        editableEntities,
         convertEntity,
+        updateEntityField,
     } = context;
 
 
@@ -121,6 +122,7 @@ const Radial: React.FC<RadialProperties> = (
         draggable,
         setDraggable,
         dragging,
+        coordinatesPercentage,
         handleMouseDown,
     } = useGrab(
         position,
@@ -182,6 +184,21 @@ const Radial: React.FC<RadialProperties> = (
         }
     }, [
         editableEntities,
+    ]);
+
+    /** Update coordinates */
+    useEffect(() => {
+        const fields = [
+            ['data.position.x', coordinatesPercentage.x],
+            ['data.position.y', coordinatesPercentage.x],
+        ];
+
+        updateEntityField(
+            id,
+            fields,
+        );
+    }, [
+        coordinatesPercentage,
     ]);
 
 

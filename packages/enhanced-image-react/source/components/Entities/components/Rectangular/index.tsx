@@ -185,11 +185,11 @@ const Rectangular: React.FC<RectangularProperties> = (
         editableEntities,
     ]);
 
-
+    /** Update coordinates */
     useEffect(() => {
         const fields = [
-            ['position.x', coordinatesPercentage.x],
-            ['position.y', coordinatesPercentage.x],
+            ['data.position.x', coordinatesPercentage.x],
+            ['data.position.y', coordinatesPercentage.x],
         ];
 
         updateEntityField(
