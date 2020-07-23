@@ -11,6 +11,7 @@ import {
 
 
 
+/** [START] hook */
 const useGrab = (
     absoluteX: string,
     absoluteY: string,
@@ -149,3 +150,4 @@ const useGrab = (
 
 
 export default useGrab;
+/** [END] hook */
