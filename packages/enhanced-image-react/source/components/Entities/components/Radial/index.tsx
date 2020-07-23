@@ -189,8 +189,14 @@ const Radial: React.FC<RadialProperties> = (
     /** Update coordinates */
     useEffect(() => {
         const fields = [
-            ['data.position.x', coordinatesPercentage.x],
-            ['data.position.y', coordinatesPercentage.x],
+            {
+                type: 'data.position.x',
+                value: coordinatesPercentage.x,
+            },
+            {
+                type: 'data.position.y',
+                value: coordinatesPercentage.y,
+            },
         ];
 
         updateEntityField(
@@ -345,6 +351,19 @@ const Radial: React.FC<RadialProperties> = (
                     <Handlers
                         theme={theme}
                         viewable={viewable}
+                        toggleViewable={() => {
+                            updateEntityField(
+                                id,
+                                [
+                                    {
+                                        type: 'data.viewable',
+                                        value: !viewable
+                                    },
+                                ],
+                            );
+                        }}
+                        duplicate={() => {}}
+                        obliterate={() => {}}
                     />
                 </Editor>
             )}

@@ -188,8 +188,14 @@ const Rectangular: React.FC<RectangularProperties> = (
     /** Update coordinates */
     useEffect(() => {
         const fields = [
-            ['data.position.x', coordinatesPercentage.x],
-            ['data.position.y', coordinatesPercentage.x],
+            {
+                type: 'data.position.x',
+                value: coordinatesPercentage.x,
+            },
+            {
+                type: 'data.position.y',
+                value: coordinatesPercentage.y,
+            },
         ];
 
         updateEntityField(
@@ -354,6 +360,19 @@ const Rectangular: React.FC<RectangularProperties> = (
                     <Handlers
                         theme={theme}
                         viewable={viewable}
+                        toggleViewable={() => {
+                            updateEntityField(
+                                id,
+                                [
+                                    {
+                                        type: 'data.viewable',
+                                        value: !viewable
+                                    },
+                                ],
+                            );
+                        }}
+                        duplicate={() => {}}
+                        obliterate={() => {}}
                     />
                 </Editor>
             )}
