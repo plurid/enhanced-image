@@ -7,6 +7,12 @@ import React, {
     useEffect,
 } from 'react';
 
+import {
+    PluridIconPalette,
+    PluridIconPlay,
+    PluridIconSquare,
+} from '@plurid/plurid-icons-react';
+
 
 /** external */
 import GrabIcon from '#assets/icons/text-editor/grab';
@@ -104,6 +110,8 @@ const Painted: React.FC<PaintedProperties> = (
     /** state */
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
+
+    const [editorDrawers, setEditorDrawers] = useState<string[]>([]);
 
 
     /** handlers */
@@ -228,6 +236,92 @@ const Painted: React.FC<PaintedProperties> = (
                         theme={theme}
                     />
 
+                    <Drawer
+                        theme={theme}
+                        title="Data"
+                        expand={editorDrawers.includes('DATA')}
+                        toggleExpand={() => toggleDrawer('DATA', editorDrawers, setEditorDrawers)}
+                    >
+                        {/* <div>
+                            brush size
+
+                            brush
+
+                            eraser
+                        </div> */}
+
+
+                        {/* <SimpleInput
+                            value={resolveColor(entity.data.color)}
+                            valueType="color"
+                            changeValue={() => {}}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconPalette}
+                        /> */}
+
+                        {/* <SimpleInput
+                            value={resolveColor(entity.data.border.color)}
+                            valueType="border.color"
+                            changeValue={() => {}}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconSquare}
+                        /> */}
+
+                        {/* <SimpleInput
+                            value={resolveColor(entity.data.border.width)}
+                            valueType="border.width"
+                            changeValue={() => {}}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconSquare}
+                        /> */}
+
+                        <ButtonInput
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            // toggle={() => toggleTextFormat('action.active', true)}
+                            toggle={() => {}}
+                            toggled={entity.data.action.active}
+                            icon={(
+                                <PluridIconPlay />
+                            )}
+                            value={entity.data.action.type}
+                            valueType="action.type"
+                            // changeValue={updateField}
+                            // renderOutside={renderOutside}
+                            // outsideKind={outsideKind}
+                            // setOutsideKind={setOutsideKind}
+                            changeValue={() => {}}
+                            renderOutside={() => {}}
+                            outsideKind={''}
+                            setOutsideKind={() => {}}
+                        />
+
+                        <ButtonInput
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            toggle={() => {}}
+                            toggled={entity.data.action.active}
+                            icon={(
+                                <div>
+                                    CSS
+                                </div>
+                            )}
+                            value={entity.data.action.type}
+                            valueType="action.type"
+                            // changeValue={updateField}
+                            // renderOutside={renderOutside}
+                            // outsideKind={outsideKind}
+                            // setOutsideKind={setOutsideKind}
+                            changeValue={() => {}}
+                            renderOutside={() => {}}
+                            outsideKind={''}
+                            setOutsideKind={() => {}}
+                        />
+                    </Drawer>
+
                     <VerticalDivider
                         theme={theme}
                     />
@@ -236,14 +330,6 @@ const Painted: React.FC<PaintedProperties> = (
                         theme={theme}
                         viewable={viewable}
                     />
-
-                    {/* <div>
-                        color
-
-                        brush size
-
-                        eraser
-                    </div> */}
                 </Editor>
             )}
         </StyledPainted>
