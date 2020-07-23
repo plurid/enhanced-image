@@ -111,9 +111,19 @@ const Rectangular: React.FC<RectangularProperties> = (
 
     /** references */
     const timeoutMouseOver = useRef<any>(0);
+    const entityElement = useRef<HTMLDivElement>(null);
 
 
     /** state */
+    const [xCoordinate, setXCoordinate] = useState(absoluteX);
+    const [yCoordinate, setYCoordinate] = useState(absoluteY);
+    const [draggable, setDraggable] = useState(false);
+    const [dragging, setDragging] = useState(false);
+    const [positions, setPositions] = useState({
+        x: 0,
+        y: 0,
+    });
+
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
 
@@ -134,12 +144,68 @@ const Rectangular: React.FC<RectangularProperties> = (
         }, 700);
     }
 
+    const handleMouseDown = (
+        event: any,
+    ) => {
+        if (event.target !== entityElement.current) {
+            return;
+        }
+
+        if (draggable) {
+            setDragging(true);
+
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+
+            const positions = {
+                x: pageX,
+                y: pageY,
+            };
+            setPositions(positions);
+        }
+    }
+
+    const incrementLocation = (
+        x: number,
+        y: number,
+        pageX?: number,
+        pageY?: number,
+    ) => {
+        if (!entityElement.current) {
+            return;
+        }
+
+        const {
+            offsetLeft,
+            offsetTop,
+        } = entityElement.current;
+
+        const updatedPositions = {
+            x: pageX || positions.x,
+            y: pageY || positions.y,
+        };
+        setPositions(updatedPositions);
+
+        const textXCoordinate = offsetLeft + x;
+        const textYCoordinate = offsetTop + y;
+        const textXCoord = textXCoordinate + 'px';
+        const textYCoord = textYCoordinate + 'px';
+        setXCoordinate(textXCoord);
+        setYCoordinate(textYCoord);
+    }
+
+
 
     /** effects */
     /**
      * Handle showEditor
      */
     useEffect(() => {
+        if (dragging) {
+            setShowEditor(false);
+            return;
+        }
+
         if (
             mouseOver
             // && editableText
@@ -151,6 +217,7 @@ const Rectangular: React.FC<RectangularProperties> = (
     }, [
         // editableText,
         mouseOver,
+        dragging,
     ]);
 
 
@@ -165,19 +232,80 @@ const Rectangular: React.FC<RectangularProperties> = (
     ]);
 
 
+    /**
+     * Handle dragging (mouseup).
+     */
+    useEffect(() => {
+        const handleMouseUp = () => {
+            if (draggable) {
+                setDragging(false);
+            }
+        }
+
+        window.addEventListener('mouseup', handleMouseUp);
+
+        return () => {
+            window.removeEventListener('mouseup', handleMouseUp);
+        }
+    }, [
+        dragging,
+        draggable,
+    ]);
+
+    /**
+     * Handle dragging (movemove).
+     */
+    useEffect(() => {
+        const handleMouseMove = (event: any) => {
+            if (!dragging) {
+                return;
+            }
+
+            event.preventDefault();
+
+            const pageX = event.pageX;
+            const pageY = event.pageY;
+
+            const differenceX = pageX - positions.x;
+            const differenceY = pageY - positions.y;
+
+            incrementLocation(
+                differenceX,
+                differenceY,
+                pageX,
+                pageY,
+            );
+        }
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        }
+    }, [
+        dragging,
+        draggable,
+        positions,
+    ]);
+
+
     /** render */
     return (
         <StyledRectangular
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
+            onMouseDown={(event) => handleMouseDown(event)}
+            dragMode={draggable}
+            draggingMode={dragging}
             style={{
-                top: absoluteY,
-                left: absoluteX,
+                top: yCoordinate,
+                left: xCoordinate,
                 width: absoluteWidth,
                 height: absoluteHeight,
                 backgroundColor: color,
             }}
+            ref={entityElement}
         >
             {showEditor && (
                 <Editor
@@ -193,9 +321,9 @@ const Rectangular: React.FC<RectangularProperties> = (
                     <ButtonToggle
                         theme={theme}
                         toggle={() => {
-
+                            setDraggable(drag => !drag);
                         }}
-                        toggled={false}
+                        toggled={draggable}
                         icon={GrabIcon}
                     />
 
