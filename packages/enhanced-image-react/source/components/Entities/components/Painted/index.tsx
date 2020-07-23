@@ -394,12 +394,10 @@ const Painted: React.FC<PaintedProperties> = (
                         toggleViewable={() => {
                             updateEntityField(
                                 id,
-                                [
-                                    {
-                                        type: 'data.viewable',
-                                        value: !viewable
-                                    },
-                                ],
+                                [{
+                                    type: 'data.viewable',
+                                    value: !viewable,
+                                }],
                             );
                         }}
                         duplicate={() => duplicateEntity(id)}
