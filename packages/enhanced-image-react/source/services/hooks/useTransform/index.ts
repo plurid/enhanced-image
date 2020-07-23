@@ -1,14 +1,22 @@
+/** [START] imports */
+/** libraries */
 import {
     useState,
     useEffect,
 } from 'react';
 
+
+/** external */
 import {
     computeScaleValue,
 } from '../../utilities';
 
+/** internal */
+/** [END] imports */
 
 
+
+/** [START] hook */
 const useTransform = (
     flipVertical: boolean,
     flipHorizontal: boolean,
@@ -50,3 +58,4 @@ const useTransform = (
 
 
 export default useTransform;
+/** [END] hook */
