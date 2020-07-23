@@ -84,6 +84,8 @@ const Radial: React.FC<RadialProperties> = (
         revealedEntities,
         convertEntity,
         updateEntityField,
+        duplicateEntity,
+        obliterateEntity,
     } = context;
 
 
@@ -376,8 +378,8 @@ const Radial: React.FC<RadialProperties> = (
                                 ],
                             );
                         }}
-                        duplicate={() => {}}
-                        obliterate={() => {}}
+                        duplicate={() => duplicateEntity(id)}
+                        obliterate={() => obliterateEntity(id)}
                     />
                 </Editor>
             )}

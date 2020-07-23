@@ -84,6 +84,8 @@ const Painted: React.FC<PaintedProperties> = (
         revealedEntities,
         convertEntity,
         updateEntityField,
+        duplicateEntity,
+        obliterateEntity,
     } = context;
 
 
@@ -400,8 +402,8 @@ const Painted: React.FC<PaintedProperties> = (
                                 ],
                             );
                         }}
-                        duplicate={() => {}}
-                        obliterate={() => {}}
+                        duplicate={() => duplicateEntity(id)}
+                        obliterate={() => obliterateEntity(id)}
                     />
                 </Editor>
             )}

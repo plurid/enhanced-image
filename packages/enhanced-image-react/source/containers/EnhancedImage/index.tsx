@@ -1723,6 +1723,71 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         ]);
     }
 
+    const duplicateEntity = (
+        id: string,
+    ) => {
+        const entity = imageEntities.find(entity => entity.id === id);
+
+        if (!entity) {
+            return;
+        }
+
+        const previousEntityData = entity.data;
+
+        const increasedY = previousEntityData.position.y + 15;
+        const newY = increasedY > 100
+            ? previousEntityData.position.y - 15
+            : increasedY;
+
+        /** HACK: as ImageEntity */
+        const newEntity: any = {
+            ...entity,
+            id: uuid.generate(),
+            data: {
+                ...previousEntityData,
+                position: {
+                    ...previousEntityData.position,
+                    y: newY,
+                },
+                viewable: previousEntityData.viewable,
+                action: {
+                    ...previousEntityData.action,
+                },
+                border: {
+                    ...previousEntityData.border,
+                },
+                highlight: previousEntityData.highlight,
+                customStyle: previousEntityData.customStyle,
+                opacity: previousEntityData.opacity,
+                annotation: previousEntityData.annotation,
+                labels: [
+                    ...previousEntityData.labels,
+                ],
+            },
+        };
+
+        const updatedImageEntities = [
+            ...imageEntities,
+            {
+                ...newEntity,
+            },
+        ];
+
+        setImageEntities([
+            ...updatedImageEntities,
+        ]);
+    }
+
+    const obliterateEntity = (
+        id: string,
+    ) => {
+        const updatedImageEntities = imageEntities.filter(entity => entity.id !== id);
+
+        setImageEntities([
+            ...updatedImageEntities,
+        ]);
+    }
+
 
     /** effects */
     /** Defaults Colors */
@@ -2103,6 +2168,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         addEntity,
         convertEntity,
         updateEntityField,
+        duplicateEntity,
+        obliterateEntity,
     };
 
 
