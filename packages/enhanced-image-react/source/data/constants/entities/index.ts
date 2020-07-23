@@ -15,6 +15,7 @@ export const emptyImageEntityRectangular: ImageEntityRectangular = {
     type: 'RECTANGULAR',
     data: {
         color: 'darkslateblue',
+        border: '',
         height: 7,
         width: 7,
         position: {
@@ -37,6 +38,7 @@ export const emptyImageEntityRadial: ImageEntityRadial = {
     data: {
         color: 'darkslateblue',
         radius: 7,
+        border: '',
         position: {
             x: 14,
             y: 14,
