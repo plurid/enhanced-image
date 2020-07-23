@@ -45,6 +45,7 @@ import {
     ImageEntityRectangular,
     ImageColorsData,
     ActionDetail,
+    ImageEntityType,
 } from '../../data/interfaces';
 
 import {
@@ -65,6 +66,7 @@ import {
     ENHANCED_IMAGE_ACTION,
 
     emptyImageEntityRectangular,
+    baseEntitiesData,
 } from '../../data/constants';
 
 import {
@@ -1605,6 +1607,47 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         setImageEntities(updatedEntities);
     }
 
+    const convertEntity = (
+        id: string,
+        to: ImageEntityType,
+    ) => {
+        /**
+         * TODO:
+         * consider the position, color, and more before and after conversion
+         */
+
+        const entity = imageEntities.find(entity => entity.id === id);
+
+        if (!entity) {
+            return;
+        }
+
+        const toEntityData = baseEntitiesData[to];
+
+        /** HACK: as ImageEntity */
+        const updatedEntity: any = {
+            ...entity,
+            type: to,
+            data: {
+                ...toEntityData,
+            },
+        };
+
+        const updatedEntities: ImageEntity[] = imageEntities.map(entity => {
+            if (entity.id !== id) {
+                return {
+                    ...entity,
+                };
+            }
+
+            return {
+                ...updatedEntity,
+            };
+        });
+
+        setImageEntities(updatedEntities);
+    }
+
 
     /** effects */
     /** Defaults Colors */
@@ -1982,6 +2025,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         /** entities */
         addEntity,
+        convertEntity,
     };
 
 

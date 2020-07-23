@@ -30,8 +30,13 @@ export interface TypeSelectorProperties {
     /** required */
     /** - values */
     theme: Theme;
+    id: string;
     type: ImageEntityType;
     /** - methods */
+    convertEntity: (
+        id: string,
+        to: ImageEntityType,
+    ) => void;
 
     /** optional */
     /** - values */
@@ -46,8 +51,10 @@ const TypeSelector: React.FC<TypeSelectorProperties> = (
         /** required */
         /** - values */
         theme,
+        id,
         type,
         /** - methods */
+        convertEntity,
 
         /** optional */
         /** - values */
@@ -61,6 +68,9 @@ const TypeSelector: React.FC<TypeSelectorProperties> = (
             <ButtonToggle
                 theme={theme}
                 toggle={() => {
+                    if (type !== 'RECTANGULAR') {
+                        convertEntity(id, 'RECTANGULAR')
+                    }
                 }}
                 toggled={type === 'RECTANGULAR'}
                 icon={(
@@ -73,6 +83,9 @@ const TypeSelector: React.FC<TypeSelectorProperties> = (
             <ButtonToggle
                 theme={theme}
                 toggle={() => {
+                    if (type !== 'RADIAL') {
+                        convertEntity(id, 'RADIAL')
+                    }
                 }}
                 toggled={type === 'RADIAL'}
                 icon={(
@@ -85,6 +98,9 @@ const TypeSelector: React.FC<TypeSelectorProperties> = (
             <ButtonToggle
                 theme={theme}
                 toggle={() => {
+                    if (type !== 'PAINTED') {
+                        convertEntity(id, 'PAINTED')
+                    }
                 }}
                 toggled={type === 'PAINTED'}
                 icon={(

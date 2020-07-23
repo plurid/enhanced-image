@@ -10,19 +10,12 @@ import React, {
 import {
     PluridIconPalette,
     PluridIconPlay,
-    PluridIconRectangle,
-    PluridIconCircle,
-    PluridIconPaintBrush,
     PluridIconSquare,
 } from '@plurid/plurid-icons-react';
 
 
 /** external */
 import GrabIcon from '#assets/icons/text-editor/grab';
-import ViewableIcon from '#assets/icons/text-editor/viewable';
-import NotViewableIcon from '#assets/icons/text-editor/not-viewable';
-import DuplicateIcon from '#assets/icons/text-editor/duplicate';
-import DeleteIcon from '#assets/icons/text-editor/delete';
 
 import Editor from '#components/Editor';
 
@@ -30,7 +23,6 @@ import Handlers from '#components/Editor/components/Handlers';
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
 import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonClick from '#components/Editor/components/ButtonClick';
 import ButtonInput from '#components/Editor/components/ButtonInput';
 import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
@@ -49,7 +41,10 @@ import {
     percentageFromValue,
 
     /** color */
-    resolveColor
+    resolveColor,
+
+    /** ui */
+    toggleDrawer,
 } from '#services/utilities';
 
 
@@ -61,23 +56,6 @@ import {
 
 
 
-
-const toggleDrawer = (
-    drawer: string,
-    editorDrawers: string[],
-    setEditorDrawers: any,
-) => {
-    if (editorDrawers.includes(drawer)) {
-        const drawers = editorDrawers.filter(eDrawer => eDrawer !== drawer);
-        setEditorDrawers(drawers);
-    } else {
-        const drawers = [
-            ...editorDrawers,
-            drawer,
-        ];
-        setEditorDrawers(drawers);
-    }
-}
 
 
 /** [START] component */
@@ -100,6 +78,8 @@ const Rectangular: React.FC<RectangularProperties> = (
 
         imageBoxDimensions,
         editableEntities,
+
+        convertEntity,
     } = context;
 
 
@@ -109,14 +89,15 @@ const Rectangular: React.FC<RectangularProperties> = (
     } = properties;
 
     const {
+        id,
         type,
         data,
     } = entity;
 
     const {
-        color,
-        height,
         width,
+        height,
+        color,
         position,
         viewable,
     } = data;
@@ -220,7 +201,9 @@ const Rectangular: React.FC<RectangularProperties> = (
 
                     <TypeSelector
                         theme={theme}
+                        id={id}
                         type={type}
+                        convertEntity={convertEntity}
                     />
 
                     <VerticalDivider

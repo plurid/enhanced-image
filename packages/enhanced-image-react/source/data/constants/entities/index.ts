@@ -28,6 +28,9 @@ export const emptyImageEntityRectangular: ImageEntityRectangular = {
             type: '',
         },
         customStyle: '',
+        opacity: 1,
+        annotation: '',
+        labels: [],
     },
 };
 
@@ -49,6 +52,9 @@ export const emptyImageEntityRadial: ImageEntityRadial = {
             type: '',
         },
         customStyle: '',
+        opacity: 1,
+        annotation: '',
+        labels: [],
     },
 };
 
@@ -57,7 +63,7 @@ export const emptyImageEntityPainted: ImageEntityPainted = {
     id: uuid.generate(),
     type: 'PAINTED',
     data: {
-        dataURL: '',
+        dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAFWElEQVR4Xu3TQQ2AQBDFUEYYdwyhAkPcVxjYaDZvFHTa/LnO5zs2uHfds8EbXogZGAOJFYGTMmAgqRxgagYMpFYET8qAgaRygKkZMJBaETwpAwaSygGmZsBAakXwpAwYSCoHmJoBA6kVwZMyYCCpHGBqBgykVgRPyoCBpHKAqRkwkFoRPCkDBpLKAaZmwEBqRfCkDBhIKgeYmgEDqRXBkzJgIKkcYGoGDKRWBE/KgIGkcoCpGTCQWhE8KQMGksoBpmbAQGpF8KQMGEgqB5iaAQOpFcGTMmAgqRxgagYMpFYET8qAgaRygKkZMJBaETwpAwaSygGmZsBAakXwpAwYSCoHmJoBA6kVwZMyYCCpHGBqBgykVgRPyoCBpHKAqRkwkFoRPCkDBpLKAaZmwEBqRfCkDBhIKgeYmgEDqRXBkzJgIKkcYGoGDKRWBE/KgIGkcoCpGTCQWhE8KQMGksoBpmbAQGpF8KQMGEgqB5iaAQOpFcGTMmAgqRxgagYMpFYET8qAgaRygKkZMJBaETwpAwaSygGmZsBAakXwpAwYSCoHmJoBA6kVwZMyYCCpHGBqBgykVgRPyoCBpHKAqRkwkFoRPCkDBpLKAaZmwEBqRfCkDBhIKgeYmgEDqRXBkzJgIKkcYGoGDKRWBE/KgIGkcoCpGTCQWhE8KQOTogHDQMyAgcSCwGkZMJBWDzQxAwYSCwKnZcBAWj3QxAwYSCwInJYBA2n1QBMzYCCxIHBaBgyk1QNNzICBxILAaRkwkFYPNDEDBhILAqdlwEBaPdDEDBhILAiclgEDafVAEzNgILEgcFoGDKTVA03MgIHEgsBpGTCQVg80MQMGEgsCp2XAQFo90MQMGEgsCJyWAQNp9UATM2AgsSBwWgYMpNUDTcyAgcSCwGkZMJBWDzQxAwYSCwKnZcBAWj3QxAwYSCwInJYBA2n1QBMzYCCxIHBaBgyk1QNNzICBxILAaRkwkFYPNDEDBhILAqdlwEBaPdDEDBhILAiclgEDafVAEzNgILEgcFoGDKTVA03MgIHEgsBpGTCQVg80MQMGEgsCp2XAQFo90MQMGEgsCJyWAQNp9UATM2AgsSBwWgYMpNUDTcyAgcSCwGkZMJBWDzQxAwYSCwKnZcBAWj3QxAwYSCwInJYBA2n1QBMzYCCxIHBaBgyk1QNNzICBxILAaRkwkFYPNDEDBhILAqdlwEBaPdDEDBhILAiclgEDafVAEzNgILEgcFoGDKTVA03MgIHEgsBpGTCQVg80MQMGEgsCp2XAQFo90MQMGEgsCJyWAQNp9UATM2AgsSBwWgYMpNUDTcyAgcSCwGkZMJBWDzQxAwYSCwKnZcBAWj3QxAwYSCwInJYBA2n1QBMzYCCxIHBaBgyk1QNNzICBxILAaRkwkFYPNDEDBhILAqdlwEBaPdDEDBhILAiclgEDafVAEzNgILEgcFoGDKTVA03MgIHEgsBpGTCQVg80MQMGEgsCp2XAQFo90MQMGEgsCJyWAQNp9UATM2AgsSBwWgYMpNUDTcyAgcSCwGkZMJBWDzQxAwYSCwKnZcBAWj3QxAwYSCwInJYBA2n1QBMzYCCxIHBaBgyk1QNNzICBxILAaRkwkFYPNDEDBhILAqdlwEBaPdDEDBhILAiclgEDafVAEzNgILEgcFoGDKTVA03MgIHEgsBpGTCQVg80MQMGEgsCp2XAQFo90MQMGEgsCJyWAQNp9UATM2AgsSBwWgYMpNUDTcyAgcSCwGkZMJBWDzQxAwYSCwKnZcBAWj3QxAwYSCwInJYBA2n1QBMzYCCxIHBaBgyk1QNNzICBxILAaRn4AfLfGNjXpvhUAAAAAElFTkSuQmCC',
         position: {
             x: 14,
             y: 14,
@@ -68,5 +74,21 @@ export const emptyImageEntityPainted: ImageEntityPainted = {
             type: '',
         },
         customStyle: '',
+        opacity: 1,
+        annotation: '',
+        labels: [],
+    },
+};
+
+
+export const baseEntitiesData = {
+    RECTANGULAR: {
+        ...emptyImageEntityRectangular.data,
+    },
+    RADIAL: {
+        ...emptyImageEntityRadial.data,
+    },
+    PAINTED: {
+        ...emptyImageEntityPainted.data,
     },
 };

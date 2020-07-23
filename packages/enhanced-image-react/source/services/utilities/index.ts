@@ -5,4 +5,5 @@ export * from './image';
 export * from './imageText';
 export * from './percentage';
 export * from './transform';
+export * from './ui';
 export * from './uuid';

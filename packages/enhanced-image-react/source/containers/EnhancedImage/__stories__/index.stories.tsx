@@ -144,8 +144,8 @@ storiesOf(
             <EnhancedImage
                 // src="/assets/food-text.jpg"
                 // src="/assets/perspective.png"
-                // src="/assets/screenshot.png"
-                src="/assets/transview-initial.jpg"
+                src="/assets/screenshot.png"
+                // src="/assets/transview-initial.jpg"
                 // {...actions}
                 // theme={themes[theme]}
 
