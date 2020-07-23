@@ -38,6 +38,9 @@ const Entities: React.FC<any> = () => {
     const {
         imageEntities,
 
+        editableEntities,
+        revealedEntities,
+
         imageBoxDimensions,
         flipHorizontal,
         flipVertical,
@@ -70,27 +73,30 @@ const Entities: React.FC<any> = () => {
                 transform,
             }}
         >
-            {imageEntities.map(entity => {
+            {(
+                editableEntities
+                || revealedEntities
+            ) && imageEntities.map(entity => {
                 switch (entity.type) {
                     case 'RECTANGULAR':
                         return (
                             <RectangularEntity
                                 key={entity.id}
-                                data={entity}
+                                entity={entity}
                             />
                         );
                     case 'RADIAL':
                         return (
                             <RadialEntity
                                 key={entity.id}
-                                data={entity}
+                                entity={entity}
                             />
                         );
                     case 'PAINTED':
                         return (
                             <PaintedEntity
                                 key={entity.id}
-                                data={entity}
+                                entity={entity}
                             />
                         );
                     default:

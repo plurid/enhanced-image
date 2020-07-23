@@ -4,6 +4,7 @@ import React, {
     useContext,
     useRef,
     useState,
+    useEffect,
 } from 'react';
 
 
@@ -29,7 +30,7 @@ import {
 
 /** [START] component */
 export interface PaintedProperties {
-    data: ImageEntityPainted;
+    entity: ImageEntityPainted;
 }
 
 const Painted: React.FC<PaintedProperties> = (
@@ -43,17 +44,19 @@ const Painted: React.FC<PaintedProperties> = (
 
     const {
         imageBoxDimensions,
+
+        editableEntities,
     } = context;
 
 
     /** properties */
     const {
-        data,
+        entity,
     } = properties;
 
     const {
         position,
-    } = data.data;
+    } = entity.data;
 
     const absoluteX = position.x * imageBoxDimensions.width / 100 + 'px';
     const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
@@ -83,6 +86,17 @@ const Painted: React.FC<PaintedProperties> = (
     }
 
 
+    /** effects */
+    /** Handle editable entities */
+    useEffect(() => {
+        if (!editableEntities) {
+            setShowEditor(false);
+        }
+    }, [
+        editableEntities,
+    ]);
+
+
     /** render */
     return (
         <StyledPainted
@@ -95,7 +109,6 @@ const Painted: React.FC<PaintedProperties> = (
             }}
         >
             <canvas
-
             />
 
             {showEditor && (

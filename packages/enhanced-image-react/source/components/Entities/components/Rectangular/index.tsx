@@ -30,7 +30,7 @@ import {
 
 /** [START] component */
 export interface RectangularProperties {
-    data: ImageEntityRectangular;
+    entity: ImageEntityRectangular;
 }
 
 const Rectangular: React.FC<RectangularProperties> = (
@@ -44,12 +44,14 @@ const Rectangular: React.FC<RectangularProperties> = (
 
     const {
         imageBoxDimensions,
+
+        editableEntities,
     } = context;
 
 
     /** properties */
     const {
-        data,
+        entity,
     } = properties;
 
     const {
@@ -57,7 +59,7 @@ const Rectangular: React.FC<RectangularProperties> = (
         height,
         width,
         position,
-    } = data.data;
+    } = entity.data;
 
     const absoluteWidth = width * imageBoxDimensions.width / 100 + 'px';
     const absoluteHeight = height * imageBoxDimensions.height / 100 + 'px';
@@ -106,6 +108,17 @@ const Rectangular: React.FC<RectangularProperties> = (
     }, [
         // editableText,
         mouseOver,
+    ]);
+
+
+    /** effects */
+    /** Handle editable entities */
+    useEffect(() => {
+        if (!editableEntities) {
+            setShowEditor(false);
+        }
+    }, [
+        editableEntities,
     ]);
 
 
