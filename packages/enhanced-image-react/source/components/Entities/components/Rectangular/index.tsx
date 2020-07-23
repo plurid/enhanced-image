@@ -11,6 +11,7 @@ import {
     PluridIconPalette,
     PluridIconPlay,
     PluridIconSquare,
+    PluridIconFrame,
 } from '@plurid/plurid-icons-react';
 
 
@@ -101,11 +102,17 @@ const Rectangular: React.FC<RectangularProperties> = (
     } = entity;
 
     const {
+        position,
         width,
         height,
         color,
         border,
-        position,
+        opacity,
+        highlight,
+        action,
+        customStyle,
+        annotation,
+        labels,
         viewable,
     } = data;
 
@@ -239,6 +246,7 @@ const Rectangular: React.FC<RectangularProperties> = (
                 width: absoluteWidth,
                 height: absoluteHeight,
                 backgroundColor: color,
+                opacity,
                 border: `${border.width}px solid ${border.color}`,
             }}
             ref={entityElement}
@@ -282,7 +290,23 @@ const Rectangular: React.FC<RectangularProperties> = (
                             theme={theme}
                             transparentUI={transparentUI}
                             type="data.width"
-                            changeValue={() => {}}
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                const percentage = percentageFromValue(
+                                    value,
+                                    imageBoxDimensions.width,
+                                );
+
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value: percentage,
+                                    }],
+                                );
+                            }}
                             value={Math.round(valueFromPercentage(entity.data.width, imageBoxDimensions.width))}
                             icon={(
                                 <div>W</div>
@@ -293,7 +317,23 @@ const Rectangular: React.FC<RectangularProperties> = (
                             theme={theme}
                             transparentUI={transparentUI}
                             type="data.height"
-                            changeValue={() => {}}
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                const percentage = percentageFromValue(
+                                    value,
+                                    imageBoxDimensions.height,
+                                );
+
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value: percentage,
+                                    }],
+                                );
+                            }}
                             value={Math.round(valueFromPercentage(entity.data.height, imageBoxDimensions.height))}
                             icon={(
                                 <div>H</div>
@@ -302,8 +342,19 @@ const Rectangular: React.FC<RectangularProperties> = (
 
                         <SimpleInput
                             value={resolveColor(entity.data.color)}
-                            valueType="color"
-                            changeValue={() => {}}
+                            valueType="data.color"
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value,
+                                    }],
+                                );
+                            }}
                             theme={theme}
                             transparentUI={transparentUI}
                             Icon={PluridIconPalette}
@@ -329,31 +380,108 @@ const Rectangular: React.FC<RectangularProperties> = (
                             Icon={PluridIconSquare}
                         />
 
-                        {/* <SimpleInput
-                            value={resolveColor(entity.data.border.width)}
-                            valueType="border.width"
-                            changeValue={() => {}}
+                        <ButtonIncrements
                             theme={theme}
                             transparentUI={transparentUI}
-                            Icon={PluridIconSquare}
-                        /> */}
+                            type="data.border.width"
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value,
+                                    }],
+                                );
+                            }}
+                            value={entity.data.border.width}
+                            icon={(
+                                <div>H</div>
+                            )}
+                        />
+
+                        <ButtonIncrements
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            type="data.opacity"
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                if (value > 1 || value < 0.1) {
+                                    return;
+                                }
+
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value,
+                                    }],
+                                );
+                            }}
+                            value={opacity}
+                            step={0.1}
+                            icon={(
+                                <div>O</div>
+                            )}
+                        />
+
+                        <SimpleInput
+                            value={resolveColor(entity.data.highlight)}
+                            valueType="data.highlight"
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value,
+                                    }],
+                                );
+                            }}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconFrame}
+                        />
 
                         <ButtonInput
                             theme={theme}
                             transparentUI={transparentUI}
-                            // toggle={() => toggleTextFormat('action.active', true)}
-                            toggle={() => {}}
+                            toggle={() => {
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type: 'data.action.active',
+                                        value: !entity.data.action.active,
+                                    }],
+                                );
+                            }}
                             toggled={entity.data.action.active}
                             icon={(
                                 <PluridIconPlay />
                             )}
                             value={entity.data.action.type}
-                            valueType="action.type"
-                            // changeValue={updateField}
+                            valueType="data.action.type"
                             // renderOutside={renderOutside}
                             // outsideKind={outsideKind}
                             // setOutsideKind={setOutsideKind}
-                            changeValue={() => {}}
+                            changeValue={(
+                                type,
+                                value,
+                            ) => {
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value,
+                                    }],
+                                );
+                            }}
                             renderOutside={() => {}}
                             outsideKind={''}
                             setOutsideKind={() => {}}
@@ -381,9 +509,51 @@ const Rectangular: React.FC<RectangularProperties> = (
                             setOutsideKind={() => {}}
                         />
 
-                        {/* annotation  */}
+                        <ButtonInput
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            toggle={() => {}}
+                            toggled={entity.data.action.active}
+                            icon={(
+                                <div>
+                                    {/* annotation  */}
+                                    A
+                                </div>
+                            )}
+                            value={entity.data.action.type}
+                            valueType="action.type"
+                            // changeValue={updateField}
+                            // renderOutside={renderOutside}
+                            // outsideKind={outsideKind}
+                            // setOutsideKind={setOutsideKind}
+                            changeValue={() => {}}
+                            renderOutside={() => {}}
+                            outsideKind={''}
+                            setOutsideKind={() => {}}
+                        />
 
-                        {/* labels  */}
+                        <ButtonInput
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            toggle={() => {}}
+                            toggled={entity.data.action.active}
+                            icon={(
+                                <div>
+                                    {/* labels  */}
+                                    L
+                                </div>
+                            )}
+                            value={entity.data.action.type}
+                            valueType="action.type"
+                            // changeValue={updateField}
+                            // renderOutside={renderOutside}
+                            // outsideKind={outsideKind}
+                            // setOutsideKind={setOutsideKind}
+                            changeValue={() => {}}
+                            renderOutside={() => {}}
+                            outsideKind={''}
+                            setOutsideKind={() => {}}
+                        />
                     </Drawer>
 
                     <VerticalDivider
