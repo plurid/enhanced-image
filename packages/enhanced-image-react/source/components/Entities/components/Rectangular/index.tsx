@@ -84,6 +84,8 @@ const Rectangular: React.FC<RectangularProperties> = (
         revealedEntities,
         convertEntity,
         updateEntityField,
+        duplicateEntity,
+        obliterateEntity,
     } = context;
 
 
@@ -385,8 +387,8 @@ const Rectangular: React.FC<RectangularProperties> = (
                                 ],
                             );
                         }}
-                        duplicate={() => {}}
-                        obliterate={() => {}}
+                        duplicate={() => duplicateEntity(id)}
+                        obliterate={() => obliterateEntity(id)}
                     />
                 </Editor>
             )}

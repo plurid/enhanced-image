@@ -353,7 +353,13 @@ export interface Context {
         id: string,
         to: ImageEntityType,
     ) => void;
-    updateEntityField: updateEntityField,
+    updateEntityField: updateEntityField;
+    duplicateEntity: (
+        id: string,
+    ) => void;
+    obliterateEntity: (
+        id: string,
+    ) => void;
 }
 
 
