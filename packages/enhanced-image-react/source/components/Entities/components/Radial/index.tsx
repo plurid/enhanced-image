@@ -157,23 +157,26 @@ const Radial: React.FC<RadialProperties> = (
      * Handle showEditor
      */
     useEffect(() => {
+        if (!editableEntities) {
+            setShowEditor(false);
+            return;
+        }
+
         if (dragging) {
             setShowEditor(false);
             return;
         }
 
-        if (
-            mouseOver
-            // && editableText
-        ) {
-            setShowEditor(true);
-        } else {
+        if (!mouseOver) {
             setShowEditor(false);
+            return;
         }
+
+        setShowEditor(true);
     }, [
-        // editableText,
         mouseOver,
         dragging,
+        editableEntities,
     ]);
 
 
