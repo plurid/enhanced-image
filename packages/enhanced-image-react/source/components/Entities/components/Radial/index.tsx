@@ -81,6 +81,7 @@ const Radial: React.FC<RadialProperties> = (
         imageBoxDimensions,
 
         editableEntities,
+        revealedEntities,
         convertEntity,
         updateEntityField,
     } = context;
@@ -209,6 +210,16 @@ const Radial: React.FC<RadialProperties> = (
 
 
     /** render */
+    if (
+        !editableEntities
+        && !revealedEntities
+        && !viewable
+    ) {
+        return (
+            <></>
+        );
+    }
+
     return (
         <StyledRadial
             tabIndex={0}

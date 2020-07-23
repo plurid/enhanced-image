@@ -81,6 +81,7 @@ const Painted: React.FC<PaintedProperties> = (
         imageBoxDimensions,
 
         editableEntities,
+        revealedEntities,
         convertEntity,
         updateEntityField,
     } = context;
@@ -235,6 +236,16 @@ const Painted: React.FC<PaintedProperties> = (
 
 
     /** render */
+    if (
+        !editableEntities
+        && !revealedEntities
+        && !viewable
+    ) {
+        return (
+            <></>
+        );
+    }
+
     return (
         <StyledPainted
             tabIndex={0}
