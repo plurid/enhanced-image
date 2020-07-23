@@ -18,7 +18,7 @@ import {
 
 import ButtonToggle from '../ButtonToggle';
 
-import GoToLinkIcon from '../../../../../../../../assets/icons/text-editor/gotolink';
+import GoToLinkIcon from '#assets/icons/text-editor/gotolink';
 /** [END] imports */
 
 

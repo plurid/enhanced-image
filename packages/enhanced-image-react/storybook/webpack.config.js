@@ -1,4 +1,5 @@
 const path = require('path');
+
 const SRC_PATH = path.join(__dirname, '../source');
 const STORIES_PATH = path.join(__dirname, '../source/__stories__');
 
@@ -11,12 +12,19 @@ module.exports = ({config}) => {
             {
                 loader: require.resolve('awesome-typescript-loader'),
                 options: {
-                    configFileName: './storybook/tsconfig.json'
-                }
+                    configFileName: './storybook/tsconfig.json',
+                },
             },
-            { loader: require.resolve('react-docgen-typescript-loader') }
-        ]
+            { loader: require.resolve('react-docgen-typescript-loader') },
+        ],
     });
+
     config.resolve.extensions.push('.ts', '.tsx');
+
+    config.resolve.modules = [
+        'node_modules',
+        path.resolve(__dirname, '../source'),
+    ];
+
     return config;
 };
