@@ -4,7 +4,7 @@ import React from 'react';
 
 const SVG = (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
-        <title>Extract Text</title>
+        <title>Extract</title>
 
         <g>
             <polygon points="715 810 715 900 100 900 100 100 715 100 715 190 815 190 815 0 0 0 0 1000 815 1000 815 810 715 810"/>
