@@ -144,6 +144,7 @@ const Image: React.FC<{}> = () => {
                     filter,
                     transform,
                     background: resolvedImageBackground,
+                    pointerEvents: 'none',
                 }}
                 ref={image}
                 onLoad={(
