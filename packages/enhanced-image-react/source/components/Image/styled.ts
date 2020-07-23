@@ -15,4 +15,8 @@ export const StyledImage = styled.div<IStyledImage>`
             topologyOverflow,
         }: IStyledImage) => topologyOverflow ? 'initial' : 'auto'
     };
+
+    img {
+        pointer-events: none;
+    }
 `;

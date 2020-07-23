@@ -2,6 +2,9 @@
 /** libraries */
 import React, {
     useContext,
+    useRef,
+    useState,
+    useEffect,
 } from 'react';
 
 
@@ -13,6 +16,8 @@ import {
 import {
     Context,
 } from '../../../../services/utilities';
+
+import Editor from '../../../Editor';
 
 
 /** internal */
@@ -61,9 +66,55 @@ const Rectangular: React.FC<RectangularProperties> = (
     const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
 
 
+    /** references */
+    const timeoutMouseOver = useRef<any>(0);
+
+
+    /** state */
+    const [showEditor, setShowEditor] = useState(false);
+    const [mouseOver, setMouseOver] = useState(false);
+
+
+    /** handlers */
+    const handleMouseEnter = () => {
+        clearTimeout(timeoutMouseOver.current);
+        setMouseOver(true);
+    }
+
+    const handleMouseLeave = () => {
+        timeoutMouseOver.current = setTimeout(() => {
+            if (mouseOver) {
+                setMouseOver(false)
+            }
+        }, 700);
+    }
+
+
+    /** effects */
+    /**
+     * Handle showEditor
+     */
+    useEffect(() => {
+        if (
+            mouseOver
+            // && editableText
+        ) {
+            setShowEditor(true);
+        } else {
+            setShowEditor(false);
+        }
+    }, [
+        // editableText,
+        mouseOver,
+    ]);
+
+
     /** render */
     return (
         <StyledRectangular
+            tabIndex={0}
+            onMouseEnter={() => handleMouseEnter()}
+            onMouseLeave={() => handleMouseLeave()}
             style={{
                 top: absoluteY,
                 left: absoluteX,
@@ -71,7 +122,24 @@ const Rectangular: React.FC<RectangularProperties> = (
                 height: absoluteHeight,
                 backgroundColor: color,
             }}
-        />
+        >
+            {showEditor && (
+                <Editor
+                    positions={{
+                        x: -17,
+                        y: -34,
+                    }}
+                    drawers={[]}
+                    toggleDrawer={() => {}}
+                    setWidth={() => {}}
+                    fullWidth={false}
+                >
+                    <div>
+                        button
+                    </div>
+                </Editor>
+            )}
+        </StyledRectangular>
     );
 }
 

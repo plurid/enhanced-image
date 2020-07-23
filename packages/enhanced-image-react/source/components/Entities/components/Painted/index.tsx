@@ -2,6 +2,8 @@
 /** libraries */
 import React, {
     useContext,
+    useRef,
+    useState,
 } from 'react';
 
 
@@ -13,6 +15,8 @@ import {
 import {
     Context,
 } from '../../../../services/utilities';
+
+import Editor from '../../../Editor';
 
 
 /** internal */
@@ -55,9 +59,36 @@ const Painted: React.FC<PaintedProperties> = (
     const absoluteY = position.y * imageBoxDimensions.height / 100 + 'px';
 
 
+    /** references */
+    const timeoutMouseOver = useRef<any>(0);
+
+
+    /** state */
+    const [showEditor, setShowEditor] = useState(false);
+    const [mouseOver, setMouseOver] = useState(false);
+
+
+    /** handlers */
+    const handleMouseEnter = () => {
+        clearTimeout(timeoutMouseOver.current);
+        setMouseOver(true);
+    }
+
+    const handleMouseLeave = () => {
+        timeoutMouseOver.current = setTimeout(() => {
+            if (mouseOver) {
+                setMouseOver(false)
+            }
+        }, 700);
+    }
+
+
     /** render */
     return (
         <StyledPainted
+            tabIndex={0}
+            onMouseEnter={() => handleMouseEnter()}
+            onMouseLeave={() => handleMouseLeave()}
             style={{
                 top: absoluteY,
                 left: absoluteX,
@@ -66,6 +97,23 @@ const Painted: React.FC<PaintedProperties> = (
             <canvas
 
             />
+
+            {showEditor && (
+                <Editor
+                    positions={{
+                        x: 0,
+                        y: 0,
+                    }}
+                    drawers={[]}
+                    toggleDrawer={() => {}}
+                    setWidth={() => {}}
+                    fullWidth={false}
+                >
+                    <div>
+                        button
+                    </div>
+                </Editor>
+            )}
         </StyledPainted>
     );
 }
