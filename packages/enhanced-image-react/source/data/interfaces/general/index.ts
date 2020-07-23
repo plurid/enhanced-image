@@ -360,6 +360,7 @@ export interface Context {
     obliterateEntity: (
         id: string,
     ) => void;
+    downloadEntities: () => void;
 }
 
 

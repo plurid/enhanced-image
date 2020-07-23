@@ -156,6 +156,7 @@ const SettingsMenu: React.FC<any> = () => {
 
         /** entities */
         addEntity,
+        downloadEntities,
     } = context;
 
 
@@ -582,7 +583,7 @@ const SettingsMenu: React.FC<any> = () => {
                                         <li>
                                             <ButtonItem
                                                 theme={theme}
-                                                atClick={() => {}}
+                                                atClick={downloadEntities}
                                                 icon={SaveIcon}
                                                 text="Download Entities"
                                             />

@@ -87,6 +87,8 @@ import {
     /** image */
     loadImage,
     dataURIToBlob,
+
+    downloadContent,
 } from '../../services/utilities';
 
 import client from '../../services/graphql/client';
@@ -1225,22 +1227,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const downloadText = () => {
         const stringifiedText = JSON.stringify(imageText, null, 4);
 
-        const imageName = imageID || databaseImageID || 'eit-' + src;
+        const imageName = imageID || databaseImageID || 'ei-text' + src;
         const filename = imageName + '.json';
 
-        const element = document.createElement('a');
-        element.setAttribute(
-            'href',
-            'data:text/plain;charset=utf-8,' + encodeURIComponent(stringifiedText),
+        downloadContent(
+            filename,
+            stringifiedText,
         );
-        element.setAttribute('download', filename);
-
-        element.style.display = 'none';
-        document.body.appendChild(element);
-
-        element.click();
-
-        document.body.removeChild(element);
     }
 
     const saveImage = async () => {
@@ -1788,6 +1781,18 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         ]);
     }
 
+    const downloadEntities = () => {
+        const stringifiedText = JSON.stringify(imageEntities, null, 4);
+
+        const imageName = imageID || databaseImageID || 'ei-entities-' + src;
+        const filename = imageName + '.json';
+
+        downloadContent(
+            filename,
+            stringifiedText,
+        );
+    }
+
 
     /** effects */
     /** Defaults Colors */
@@ -2163,13 +2168,13 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         updateTextCoordinates,
         updateTextItemField,
 
-
         /** entities */
         addEntity,
         convertEntity,
         updateEntityField,
         duplicateEntity,
         obliterateEntity,
+        downloadEntities,
     };
 
 
