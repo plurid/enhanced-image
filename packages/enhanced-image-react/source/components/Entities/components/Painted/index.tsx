@@ -34,6 +34,10 @@ import {
 } from '#data/interfaces';
 
 import {
+    useGrab,
+} from '#services/hooks';
+
+import {
     Context,
 
     /** percentage */
@@ -105,9 +109,23 @@ const Painted: React.FC<PaintedProperties> = (
     /** references */
     const timeoutMouseOver = useRef<any>(0);
     const canvasElement = useRef<HTMLCanvasElement>(null);
+    const entityElement = useRef<HTMLDivElement>(null);
 
 
     /** state */
+    const {
+        xCoordinate,
+        yCoordinate,
+        draggable,
+        setDraggable,
+        dragging,
+        handleMouseDown,
+    } = useGrab(
+        absoluteX,
+        absoluteY,
+        entityElement.current,
+    );
+
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
 
@@ -176,6 +194,11 @@ const Painted: React.FC<PaintedProperties> = (
      * Handle showEditor
      */
     useEffect(() => {
+        if (dragging) {
+            setShowEditor(false);
+            return;
+        }
+
         if (
             mouseOver
             // && editableText
@@ -187,6 +210,7 @@ const Painted: React.FC<PaintedProperties> = (
     }, [
         // editableText,
         mouseOver,
+        dragging,
     ]);
 
 
@@ -196,10 +220,14 @@ const Painted: React.FC<PaintedProperties> = (
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
+            onMouseDown={(event) => handleMouseDown(event)}
+            dragMode={draggable}
+            draggingMode={dragging}
             style={{
-                top: absoluteY,
-                left: absoluteX,
+                top: yCoordinate,
+                left: xCoordinate,
             }}
+            ref={entityElement}
         >
             <canvas
                 ref={canvasElement}
@@ -218,10 +246,8 @@ const Painted: React.FC<PaintedProperties> = (
                 >
                     <ButtonToggle
                         theme={theme}
-                        toggle={() => {
-
-                        }}
-                        toggled={false}
+                        toggle={() => setDraggable(drag => !drag)}
+                        toggled={draggable}
                         icon={GrabIcon}
                     />
 
