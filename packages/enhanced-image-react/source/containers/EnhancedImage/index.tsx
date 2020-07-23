@@ -195,6 +195,8 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const [showSettingsButton, setShowSettingsButton] = useState(false);
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
+    const [showTooltips, setShowTooltips] = useState(false);
+
     const [expandTextDrawer, setExpandTextDrawer] = useState(false);
     const [expandColorDrawer, setExpandColorDrawer] = useState(false);
     const [expandTopologyDrawer, setExpandTopologyDrawer] = useState(false);
@@ -1993,9 +1995,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
         showSettingsButton,
         setShowSettingsButton,
-
         showSettingsMenu,
         setShowSettingsMenu,
+        showTooltips,
+        setShowTooltips,
 
         expandTextDrawer,
         setExpandTextDrawer,

@@ -167,7 +167,7 @@ export interface EnhancedImageProperties {
 
     /**
      * Specify which actions to be available in the Varia Drawer of the Settings Menu.
-     * `('ALL' | 'REVEAL_TEXT' | 'GET_TEXT' | 'EXTRACT_TEXT')[]`
+     * `('ALL' | 'SHOW_TOOLTIPS' | 'REVEAL_TEXT' | 'GET_TEXT' | 'EXTRACT_TEXT')[]`
      *
      * Default: `['ALL']`.
      */
@@ -221,9 +221,10 @@ export interface Context {
 
     showSettingsButton: boolean;
     setShowSettingsButton: Dispatch<SetStateAction<boolean>>;
-
     showSettingsMenu: boolean;
     setShowSettingsMenu: Dispatch<SetStateAction<boolean>>;
+    showTooltips: boolean;
+    setShowTooltips: Dispatch<SetStateAction<boolean>>;
 
     expandTextDrawer: boolean;
     setExpandTextDrawer: Dispatch<SetStateAction<boolean>>;
@@ -392,6 +393,7 @@ export type TopologyDrawer =
 
 export type VariaDrawer =
     | 'ALL'
+    | 'SHOW_TOOLTIPS'
     | 'VIEW_FULLSCREEN'
     | 'SHARE_IMAGE'
     | 'DOWNLOAD_IMAGE';
