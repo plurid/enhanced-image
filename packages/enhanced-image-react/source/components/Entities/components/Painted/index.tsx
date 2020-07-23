@@ -82,6 +82,7 @@ const Painted: React.FC<PaintedProperties> = (
 
         editableEntities,
         convertEntity,
+        updateEntityField,
     } = context;
 
 
@@ -116,6 +117,7 @@ const Painted: React.FC<PaintedProperties> = (
         draggable,
         setDraggable,
         dragging,
+        coordinatesPercentage,
         handleMouseDown,
     } = useGrab(
         position,
@@ -208,6 +210,21 @@ const Painted: React.FC<PaintedProperties> = (
         // editableText,
         mouseOver,
         dragging,
+    ]);
+
+    /** Update coordinates */
+    useEffect(() => {
+        const fields = [
+            ['data.position.x', coordinatesPercentage.x],
+            ['data.position.y', coordinatesPercentage.x],
+        ];
+
+        updateEntityField(
+            id,
+            fields,
+        );
+    }, [
+        coordinatesPercentage,
     ]);
 
 

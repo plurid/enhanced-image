@@ -1672,8 +1672,30 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     ) => {
         const updatedImageEntities = imageEntities.map(entity => {
             if (entity.id === id) {
+                const currentEntityData = entity.data;
+
                 let newEntity: any = {
                     ...entity,
+                    data: {
+                        ...currentEntityData,
+                        position: {
+                            ...currentEntityData.position,
+                        },
+                        viewable: currentEntityData.viewable,
+                        action: {
+                            ...currentEntityData.action,
+                        },
+                        border: {
+                            ...currentEntityData.border,
+                        },
+                        highlight: currentEntityData.highlight,
+                        customStyle: currentEntityData.customStyle,
+                        opacity: currentEntityData.opacity,
+                        annotation: currentEntityData.annotation,
+                        labels: [
+                            ...currentEntityData.labels,
+                        ],
+                    },
                 };
 
                 for (const [type, value] of fields) {
@@ -1685,7 +1707,7 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                 }
 
                 return {
-                    ...entity,
+                    ...newEntity,
                 };
             }
 
