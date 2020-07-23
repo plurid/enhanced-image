@@ -1,12 +1,16 @@
-export interface ImageEntityAction {
-    active: boolean;
-    type: string;
-}
-
-
 export interface ImageEntityPosition {
     x: number;
     y: number;
+}
+
+export interface ImageEntityBorder {
+    color: string;
+    width: number;
+}
+
+export interface ImageEntityAction {
+    active: boolean;
+    type: string;
 }
 
 export interface ImageEntityLabel {
@@ -27,6 +31,8 @@ export interface ImageEntityDataBase {
     action: ImageEntityAction;
     customStyle: string;
     opacity: number;
+    highlight: string
+    border: ImageEntityBorder;
     annotation: string;
     labels: ImageEntityLabel[];
 }
@@ -44,7 +50,6 @@ export interface ImageEntityRectangularData extends ImageEntityDataBase {
     width: number;
     height: number;
     color: string;
-    border: string;
 }
 
 
@@ -59,7 +64,6 @@ export interface ImageEntityRadial extends ImageEntityBase {
 export interface ImageEntityRadialData extends ImageEntityDataBase {
     radius: number;
     color: string;
-    border: string;
 }
 
 

@@ -248,13 +248,22 @@ const Rectangular: React.FC<RectangularProperties> = (
                         />
 
                         <SimpleInput
-                            value={resolveColor(entity.data.border)}
-                            valueType="border"
+                            value={resolveColor(entity.data.border.color)}
+                            valueType="border.color"
                             changeValue={() => {}}
                             theme={theme}
                             transparentUI={transparentUI}
                             Icon={PluridIconSquare}
                         />
+
+                        {/* <SimpleInput
+                            value={resolveColor(entity.data.border.width)}
+                            valueType="border.width"
+                            changeValue={() => {}}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconSquare}
+                        /> */}
 
                         <ButtonInput
                             theme={theme}
