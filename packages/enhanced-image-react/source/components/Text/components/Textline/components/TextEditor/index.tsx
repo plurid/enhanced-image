@@ -33,6 +33,18 @@ import WordSpacingIcon from '#assets/icons/text-editor/word-spacing';
 import DuplicateIcon from '#assets/icons/text-editor/duplicate';
 import DeleteIcon from '#assets/icons/text-editor/delete';
 
+import VerticalDivider from '#components/Editor/components/VerticalDivider';
+import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
+import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
+import ButtonInput from '#components/Editor/components/ButtonInput';
+import ButtonToggle from '#components/Editor/components/ButtonToggle';
+import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
+import ButtonsColors from '#components/Editor/components/ButtonsColors';
+import ButtonClick from '#components/Editor/components/ButtonClick';
+import SimpleInput from '#components/Editor/components/SimpleInput';
+import Slider from '#components/Editor/components/Slider';
+import Drawer from '#components/Editor/components/Drawer';
+
 import {
     selectableFonts,
  } from '#data/constants/fonts';
@@ -55,22 +67,11 @@ import {
 
 
 /** internal */
-import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonInput from '#components/Editor/components/ButtonInput';
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
-import ButtonsColors from '#components/Editor/components/ButtonsColors';
-import ButtonClick from '#components/Editor/components/ButtonClick';
-import SimpleInput from '#components/Editor/components/SimpleInput';
-import Slider from '#components/Editor/components/Slider';
-import Drawer from '#components/Editor/components/Drawer';
 import TransviewContainer from './components/TransviewContainer';
 
 import {
     StyledTextEditor,
     StyledOutside,
-    StyledVerticalDivider,
     StyledTransformSliders,
 } from './styled';
 /** [END] imports */
@@ -384,11 +385,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     icon={GrabIcon}
                 />
 
-                <StyledVerticalDivider
+                <VerticalDivider
                     theme={theme}
-                >
-                    &nbsp;
-                </StyledVerticalDivider>
+                />
 
                 <Drawer
                     theme={theme}
@@ -515,11 +514,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     />
                 </Drawer>
 
-                <StyledVerticalDivider
+                <VerticalDivider
                     theme={theme}
-                >
-                    &nbsp;
-                </StyledVerticalDivider>
+                />
 
                 <Drawer
                     theme={theme}
@@ -635,11 +632,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     </StyledTransformSliders>
                 </Drawer>
 
-                <StyledVerticalDivider
+                <VerticalDivider
                     theme={theme}
-                >
-                    &nbsp;
-                </StyledVerticalDivider>
+                />
 
                 <ButtonToggle
                     theme={theme}

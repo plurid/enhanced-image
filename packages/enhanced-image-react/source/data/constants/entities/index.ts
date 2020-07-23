@@ -17,7 +17,7 @@ export const emptyImageEntityRectangular: ImageEntityRectangular = {
         color: 'darkslateblue',
         border: '',
         height: 7,
-        width: 7,
+        width: 14,
         position: {
             x: 14,
             y: 14,
