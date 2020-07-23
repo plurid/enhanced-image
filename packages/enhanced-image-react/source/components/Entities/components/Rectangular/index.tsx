@@ -10,6 +10,10 @@ import React, {
 import {
     PluridIconPalette,
     PluridIconPlay,
+    PluridIconRectangle,
+    PluridIconCircle,
+    PluridIconPaintBrush,
+    PluridIconSquare,
 } from '@plurid/plurid-icons-react';
 
 
@@ -22,6 +26,7 @@ import DeleteIcon from '#assets/icons/text-editor/delete';
 
 import Editor from '#components/Editor';
 
+import Handlers from '#components/Editor/components/Handlers';
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
 import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
@@ -29,6 +34,8 @@ import ButtonClick from '#components/Editor/components/ButtonClick';
 import ButtonInput from '#components/Editor/components/ButtonInput';
 import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
+
+import TypeSelector from '#components/Entities/components/Common/TypeSelector';
 
 import {
     ImageEntityRectangular,
@@ -102,11 +109,17 @@ const Rectangular: React.FC<RectangularProperties> = (
     } = properties;
 
     const {
+        type,
+        data,
+    } = entity;
+
+    const {
         color,
         height,
         width,
         position,
-    } = entity.data;
+        viewable,
+    } = data;
 
     const absoluteWidth = width * imageBoxDimensions.width / 100 + 'px';
     const absoluteHeight = height * imageBoxDimensions.height / 100 + 'px';
@@ -205,31 +218,9 @@ const Rectangular: React.FC<RectangularProperties> = (
                         icon={GrabIcon}
                     />
 
-                    {/* rectangular type */}
-                    <ButtonToggle
+                    <TypeSelector
                         theme={theme}
-                        toggle={() => {
-                        }}
-                        toggled={false}
-                        icon={GrabIcon}
-                    />
-
-                    {/* radial type */}
-                    <ButtonToggle
-                        theme={theme}
-                        toggle={() => {
-                        }}
-                        toggled={false}
-                        icon={GrabIcon}
-                    />
-
-                    {/* painted type */}
-                    <ButtonToggle
-                        theme={theme}
-                        toggle={() => {
-                        }}
-                        toggled={false}
-                        icon={GrabIcon}
+                        type={type}
                     />
 
                     <VerticalDivider
@@ -279,7 +270,7 @@ const Rectangular: React.FC<RectangularProperties> = (
                             changeValue={() => {}}
                             theme={theme}
                             transparentUI={transparentUI}
-                            Icon={PluridIconPalette}
+                            Icon={PluridIconSquare}
                         />
 
                         <ButtonInput
@@ -330,24 +321,9 @@ const Rectangular: React.FC<RectangularProperties> = (
                         theme={theme}
                     />
 
-                    <ButtonToggle
+                    <Handlers
                         theme={theme}
-                        toggle={() => {}}
-                        toggled={false}
-                        icon={NotViewableIcon}
-                        // icon={false ? ViewableIcon : NotViewableIcon}
-                    />
-
-                    <ButtonClick
-                        theme={theme}
-                        atClick={() => {}}
-                        icon={DuplicateIcon}
-                    />
-
-                    <ButtonClick
-                        theme={theme}
-                        atClick={() => {}}
-                        icon={DeleteIcon}
+                        viewable={viewable}
                     />
                 </Editor>
             )}
