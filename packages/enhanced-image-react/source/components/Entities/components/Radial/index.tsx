@@ -370,12 +370,10 @@ const Radial: React.FC<RadialProperties> = (
                         toggleViewable={() => {
                             updateEntityField(
                                 id,
-                                [
-                                    {
-                                        type: 'data.viewable',
-                                        value: !viewable
-                                    },
-                                ],
+                                [{
+                                    type: 'data.viewable',
+                                    value: !viewable,
+                                }],
                             );
                         }}
                         duplicate={() => duplicateEntity(id)}

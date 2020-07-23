@@ -104,6 +104,7 @@ const Rectangular: React.FC<RectangularProperties> = (
         width,
         height,
         color,
+        border,
         position,
         viewable,
     } = data;
@@ -238,6 +239,7 @@ const Rectangular: React.FC<RectangularProperties> = (
                 width: absoluteWidth,
                 height: absoluteHeight,
                 backgroundColor: color,
+                border: `${border.width}px solid ${border.color}`,
             }}
             ref={entityElement}
         >
@@ -309,8 +311,19 @@ const Rectangular: React.FC<RectangularProperties> = (
 
                         <SimpleInput
                             value={resolveColor(entity.data.border.color)}
-                            valueType="border.color"
-                            changeValue={() => {}}
+                            valueType="data.border.color"
+                            changeValue={(
+                                type,
+                                value,
+                            ) => {
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value,
+                                    }],
+                                );
+                            }}
                             theme={theme}
                             transparentUI={transparentUI}
                             Icon={PluridIconSquare}
@@ -367,6 +380,10 @@ const Rectangular: React.FC<RectangularProperties> = (
                             outsideKind={''}
                             setOutsideKind={() => {}}
                         />
+
+                        {/* annotation  */}
+
+                        {/* labels  */}
                     </Drawer>
 
                     <VerticalDivider
@@ -379,12 +396,10 @@ const Rectangular: React.FC<RectangularProperties> = (
                         toggleViewable={() => {
                             updateEntityField(
                                 id,
-                                [
-                                    {
-                                        type: 'data.viewable',
-                                        value: !viewable
-                                    },
-                                ],
+                                [{
+                                    type: 'data.viewable',
+                                    value: !viewable,
+                                }],
                             );
                         }}
                         duplicate={() => duplicateEntity(id)}
