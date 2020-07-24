@@ -94,11 +94,6 @@ const Rectangular: React.FC<RectangularProperties> = (
         color,
         border,
         opacity,
-        highlight,
-        action,
-        customStyle,
-        annotation,
-        labels,
         viewable,
     } = data;
 

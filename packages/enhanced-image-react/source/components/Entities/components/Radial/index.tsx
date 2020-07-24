@@ -7,12 +7,6 @@ import React, {
     useEffect,
 } from 'react';
 
-import {
-    PluridIconPalette,
-    PluridIconPlay,
-    PluridIconSquare,
-} from '@plurid/plurid-icons-react';
-
 
 /** external */
 import GrabIcon from '#assets/icons/text-editor/grab';
@@ -22,9 +16,6 @@ import Editor from '#components/Editor';
 import Handlers from '#components/Editor/components/Handlers';
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonInput from '#components/Editor/components/ButtonInput';
-import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
@@ -41,13 +32,6 @@ import {
 
 import {
     Context,
-
-    /** percentage */
-    valueFromPercentage,
-    percentageFromValue,
-
-    /** color */
-    resolveColor,
 
     /** ui */
     toggleDrawer,
@@ -109,11 +93,6 @@ const Radial: React.FC<RadialProperties> = (
         position,
         border,
         opacity,
-        highlight,
-        action,
-        customStyle,
-        annotation,
-        labels,
         viewable,
     } = data;
 
@@ -294,51 +273,12 @@ const Radial: React.FC<RadialProperties> = (
                         expand={editorDrawers.includes('DATA')}
                         toggleExpand={() => toggleDrawer('DATA', editorDrawers, setEditorDrawers)}
                     >
-                        <ButtonIncrements
+                        <RegularShapesTransforms
                             theme={theme}
                             transparentUI={transparentUI}
-                            type="data.radius"
-                            changeValue={(
-                                type: any,
-                                value: any,
-                            ) => {
-                                const percentage = percentageFromValue(
-                                    value,
-                                    imageBoxDimensions.width,
-                                );
-
-                                updateEntityField(
-                                    id,
-                                    [{
-                                        type,
-                                        value: percentage,
-                                    }],
-                                );
-                            }}
-                            value={Math.round(valueFromPercentage(entity.data.radius, imageBoxDimensions.width))}
-                            icon={(
-                                <div>W</div>
-                            )}
-                        />
-
-                        <SimpleInput
-                            value={resolveColor(entity.data.color)}
-                            valueType="data.color"
-                            changeValue={(
-                                type: any,
-                                value: any,
-                            ) => {
-                                updateEntityField(
-                                    id,
-                                    [{
-                                        type,
-                                        value,
-                                    }],
-                                );
-                            }}
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            Icon={PluridIconPalette}
+                            imageBoxDimensions={imageBoxDimensions}
+                            entity={entity}
+                            updateEntityField={updateEntityField}
                         />
 
                         <GeneralTransforms
