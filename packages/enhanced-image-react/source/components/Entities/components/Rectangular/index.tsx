@@ -100,6 +100,7 @@ const Rectangular: React.FC<RectangularProperties> = (
         color,
         border,
         opacity,
+        highlight,
         viewable,
     } = data;
 
@@ -264,6 +265,7 @@ const Rectangular: React.FC<RectangularProperties> = (
         !editableEntities
         && !revealedEntities
         && !viewable
+        && !highlight
     ) {
         return (
             <></>
@@ -288,8 +290,14 @@ const Rectangular: React.FC<RectangularProperties> = (
         >
             <StyledRectangularView
                 style={{
-                    backgroundColor: color,
-                    border: `${border.width}px solid ${border.color}`,
+                    backgroundColor: mouseOver && highlight && !editableEntities && !revealedEntities && !viewable
+                        ? highlight
+                        : !mouseOver && highlight && !editableEntities && !revealedEntities && !viewable
+                            ? 'transparent'
+                            : color,
+                    border: editableEntities || revealedEntities || viewable
+                        ? `${border.width}px solid ${border.color}`
+                        : '',
                     opacity,
                 }}
             />
