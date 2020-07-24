@@ -31,6 +31,7 @@ export interface ImageEntityDataBase {
     action: ImageEntityAction;
     customStyle: string;
     opacity: number;
+    color: string;
     highlight: string
     border: ImageEntityBorder;
     annotation: string;
@@ -49,7 +50,6 @@ export interface ImageEntityRectangular extends ImageEntityBase {
 export interface ImageEntityRectangularData extends ImageEntityDataBase {
     width: number;
     height: number;
-    color: string;
 }
 
 
@@ -63,7 +63,6 @@ export interface ImageEntityRadial extends ImageEntityBase {
 
 export interface ImageEntityRadialData extends ImageEntityDataBase {
     radius: number;
-    color: string;
 }
 
 
@@ -77,6 +76,8 @@ export interface ImageEntityPainted extends ImageEntityBase {
 
 export interface ImageEntityPaintedData extends ImageEntityDataBase {
     dataURL: string;
+    width: number;
+    height: number;
 }
 
 

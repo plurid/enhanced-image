@@ -16,8 +16,7 @@ import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
 import SimpleInput from '#components/Editor/components/SimpleInput';
 
 import {
-    ImageEntityRectangular,
-    ImageEntityRadial,
+    ImageEntity,
     ImageBoxDimensions,
     updateEntityField,
 } from '#data/interfaces';
@@ -44,7 +43,7 @@ export interface RegularShapesTransformsProperties {
     theme: Theme;
     transparentUI: boolean;
     imageBoxDimensions: ImageBoxDimensions;
-    entity: ImageEntityRectangular | ImageEntityRadial;
+    entity: ImageEntity;
     /** - methods */
     updateEntityField: updateEntityField;
 
@@ -85,9 +84,9 @@ const RegularShapesTransforms: React.FC<RegularShapesTransformsProperties> = (
             <ButtonIncrements
                 theme={theme}
                 transparentUI={transparentUI}
-                type={type === 'RECTANGULAR'
-                    ? 'data.width'
-                    : 'data.radius'
+                type={type === 'RADIAL'
+                    ? 'data.radius'
+                    : 'data.width'
                 }
                 changeValue={(
                     type: any,
@@ -106,21 +105,21 @@ const RegularShapesTransforms: React.FC<RegularShapesTransformsProperties> = (
                         }],
                     );
                 }}
-                value={type === 'RECTANGULAR'
-                    ? Math.round(valueFromPercentage((data as any).width, imageBoxDimensions.width))
-                    : Math.round(valueFromPercentage((data as any).radius, imageBoxDimensions.width))
+                value={type === 'RADIAL'
+                    ? Math.round(valueFromPercentage((data as any).radius, imageBoxDimensions.width))
+                    : Math.round(valueFromPercentage((data as any).width, imageBoxDimensions.width))
                 }
                 icon={(
                     <div>
-                        {type === 'RECTANGULAR'
-                            ? 'W'
-                            : 'R'
+                        {type === 'RADIAL'
+                            ? 'R'
+                            : 'W'
                         }
                     </div>
                 )}
             />
 
-            {type === 'RECTANGULAR' && (
+            {type !== 'RADIAL' && (
                 <ButtonIncrements
                     theme={theme}
                     transparentUI={transparentUI}
@@ -142,10 +141,7 @@ const RegularShapesTransforms: React.FC<RegularShapesTransformsProperties> = (
                             }],
                         );
                     }}
-                    value={type === 'RECTANGULAR'
-                        ? Math.round(valueFromPercentage((data as any).height, imageBoxDimensions.height))
-                        : 0
-                    }
+                    value={Math.round(valueFromPercentage((data as any).height, imageBoxDimensions.height))}
                     icon={(
                         <div>H</div>
                     )}

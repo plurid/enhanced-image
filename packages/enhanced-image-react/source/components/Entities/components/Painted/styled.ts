@@ -38,7 +38,7 @@ export const StyledPainted = styled.div<IStyledPainted>`
     };
 
     canvas {
+        display: block;
         pointer-events: none;
-        background-color: hsla(220, 20%, 40%, 0.3);
     }
 `;
