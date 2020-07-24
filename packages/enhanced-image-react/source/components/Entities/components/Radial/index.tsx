@@ -28,6 +28,8 @@ import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
+import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
+import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
 
 import {
     ImageEntityRadial,
@@ -55,6 +57,7 @@ import {
 /** internal */
 import {
     StyledRadial,
+    StyledRadialView,
 } from './styled';
 /** [END] imports */
 
@@ -104,6 +107,13 @@ const Radial: React.FC<RadialProperties> = (
         radius,
         color,
         position,
+        border,
+        opacity,
+        highlight,
+        action,
+        customStyle,
+        annotation,
+        labels,
         viewable,
     } = data;
 
@@ -238,11 +248,17 @@ const Radial: React.FC<RadialProperties> = (
                 left: xCoordinate,
                 width: absoluteWidth,
                 height: absoluteHeight,
-                borderRadius: absoluteRadius / 2 + 'px',
-                backgroundColor: color,
             }}
             ref={entityElement}
         >
+            <StyledRadialView
+                style={{
+                    backgroundColor: color,
+                    border: `${border.width}px solid ${border.color}`,
+                    opacity,
+                }}
+            />
+
             {showEditor && (
                 <Editor
                     positions={{
@@ -282,7 +298,23 @@ const Radial: React.FC<RadialProperties> = (
                             theme={theme}
                             transparentUI={transparentUI}
                             type="data.radius"
-                            changeValue={() => {}}
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                const percentage = percentageFromValue(
+                                    value,
+                                    imageBoxDimensions.width,
+                                );
+
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value: percentage,
+                                    }],
+                                );
+                            }}
                             value={Math.round(valueFromPercentage(entity.data.radius, imageBoxDimensions.width))}
                             icon={(
                                 <div>W</div>
@@ -291,72 +323,29 @@ const Radial: React.FC<RadialProperties> = (
 
                         <SimpleInput
                             value={resolveColor(entity.data.color)}
-                            valueType="color"
-                            changeValue={() => {}}
+                            valueType="data.color"
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                updateEntityField(
+                                    id,
+                                    [{
+                                        type,
+                                        value,
+                                    }],
+                                );
+                            }}
                             theme={theme}
                             transparentUI={transparentUI}
                             Icon={PluridIconPalette}
                         />
 
-                        <SimpleInput
-                            value={resolveColor(entity.data.border.color)}
-                            valueType="border.color"
-                            changeValue={() => {}}
+                        <GeneralTransforms
                             theme={theme}
                             transparentUI={transparentUI}
-                            Icon={PluridIconSquare}
-                        />
-
-                        {/* <SimpleInput
-                            value={resolveColor(entity.data.border.width)}
-                            valueType="border.width"
-                            changeValue={() => {}}
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            Icon={PluridIconSquare}
-                        /> */}
-
-                        <ButtonInput
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            // toggle={() => toggleTextFormat('action.active', true)}
-                            toggle={() => {}}
-                            toggled={entity.data.action.active}
-                            icon={(
-                                <PluridIconPlay />
-                            )}
-                            value={entity.data.action.type}
-                            valueType="action.type"
-                            // changeValue={updateField}
-                            // renderOutside={renderOutside}
-                            // outsideKind={outsideKind}
-                            // setOutsideKind={setOutsideKind}
-                            changeValue={() => {}}
-                            renderOutside={() => {}}
-                            outsideKind={''}
-                            setOutsideKind={() => {}}
-                        />
-
-                        <ButtonInput
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            toggle={() => {}}
-                            toggled={entity.data.action.active}
-                            icon={(
-                                <div>
-                                    CSS
-                                </div>
-                            )}
-                            value={entity.data.action.type}
-                            valueType="action.type"
-                            // changeValue={updateField}
-                            // renderOutside={renderOutside}
-                            // outsideKind={outsideKind}
-                            // setOutsideKind={setOutsideKind}
-                            changeValue={() => {}}
-                            renderOutside={() => {}}
-                            outsideKind={''}
-                            setOutsideKind={() => {}}
+                            entity={entity}
+                            updateEntityField={updateEntityField}
                         />
                     </Drawer>
 

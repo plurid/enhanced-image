@@ -28,6 +28,7 @@ import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
+import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
 
 import {
     ImageEntityPainted,
@@ -103,6 +104,7 @@ const Painted: React.FC<PaintedProperties> = (
     const {
         dataURL,
         position,
+        opacity,
         viewable,
     } = data;
 
@@ -266,6 +268,9 @@ const Painted: React.FC<PaintedProperties> = (
             ref={entityElement}
         >
             <canvas
+                style={{
+                    opacity,
+                }}
                 ref={canvasElement}
             />
 
@@ -322,65 +327,12 @@ const Painted: React.FC<PaintedProperties> = (
                             Icon={PluridIconPalette}
                         /> */}
 
-                        {/* <SimpleInput
-                            value={resolveColor(entity.data.border.color)}
-                            valueType="border.color"
-                            changeValue={() => {}}
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            Icon={PluridIconSquare}
-                        /> */}
 
-                        {/* <SimpleInput
-                            value={resolveColor(entity.data.border.width)}
-                            valueType="border.width"
-                            changeValue={() => {}}
+                        <GeneralTransforms
                             theme={theme}
                             transparentUI={transparentUI}
-                            Icon={PluridIconSquare}
-                        /> */}
-
-                        <ButtonInput
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            // toggle={() => toggleTextFormat('action.active', true)}
-                            toggle={() => {}}
-                            toggled={entity.data.action.active}
-                            icon={(
-                                <PluridIconPlay />
-                            )}
-                            value={entity.data.action.type}
-                            valueType="action.type"
-                            // changeValue={updateField}
-                            // renderOutside={renderOutside}
-                            // outsideKind={outsideKind}
-                            // setOutsideKind={setOutsideKind}
-                            changeValue={() => {}}
-                            renderOutside={() => {}}
-                            outsideKind={''}
-                            setOutsideKind={() => {}}
-                        />
-
-                        <ButtonInput
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            toggle={() => {}}
-                            toggled={entity.data.action.active}
-                            icon={(
-                                <div>
-                                    CSS
-                                </div>
-                            )}
-                            value={entity.data.action.type}
-                            valueType="action.type"
-                            // changeValue={updateField}
-                            // renderOutside={renderOutside}
-                            // outsideKind={outsideKind}
-                            // setOutsideKind={setOutsideKind}
-                            changeValue={() => {}}
-                            renderOutside={() => {}}
-                            outsideKind={''}
-                            setOutsideKind={() => {}}
+                            entity={entity}
+                            updateEntityField={updateEntityField}
                         />
                     </Drawer>
 
