@@ -117,6 +117,11 @@ const Painted: React.FC<PaintedProperties> = (
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
 
+    const [positions, setPositions] = useState({
+        x: 0,
+        y: 0,
+    });
+
     const [editorDrawers, setEditorDrawers] = useState<string[]>([]);
 
 
@@ -175,6 +180,62 @@ const Painted: React.FC<PaintedProperties> = (
                 },
             ],
         );
+    }
+
+
+    /** DRAWING */
+    const mouseDownSetPosition = (
+        event: any,
+    ) => {
+        setPositions({
+            x: event.pageX,
+            y: event.pageY,
+        });
+    }
+
+    const draw = (
+        event: any,
+    ) => {
+        if (draggable) {
+            return;
+        }
+
+        // mouse left button must be pressed
+        if (event.buttons !== 1) {
+            return;
+        }
+
+        if (!entityElement.current) {
+            return;
+        }
+
+        const {
+            left,
+            top,
+        } = entityElement.current.getBoundingClientRect();
+
+        if (!canvasElement.current) {
+            return;
+        }
+
+        const context = canvasElement.current.getContext('2d');
+
+        if (!context) {
+            return;
+        }
+
+        context.beginPath();
+
+        context.lineWidth = 20;
+        context.lineCap = 'round';
+        context.strokeStyle = '#483d8b';
+
+        context.moveTo(positions.x - left, positions.y - top);
+        mouseDownSetPosition(event);
+        context.lineTo(positions.x - left, positions.y - top);
+
+        context.stroke();
+        context.closePath();
     }
 
 
@@ -311,7 +372,10 @@ const Painted: React.FC<PaintedProperties> = (
         if (canvasElement.current) {
             resizeCanvasToDisplaySize(canvasElement.current);
         }
-    }, []);
+    }, [
+        width,
+        height,
+    ]);
 
 
     /** render */
@@ -330,7 +394,11 @@ const Painted: React.FC<PaintedProperties> = (
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            onMouseDown={(event) => handleMouseDownDrag(event)}
+            onMouseDown={(event) => {
+                mouseDownSetPosition(event)
+                handleMouseDownDrag(event)
+            }}
+            onMouseMove={(event) => draw(event)}
             dragMode={draggable}
             draggingMode={dragging}
             style={{
