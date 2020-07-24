@@ -85,7 +85,10 @@ const RegularShapesTransforms: React.FC<RegularShapesTransformsProperties> = (
             <ButtonIncrements
                 theme={theme}
                 transparentUI={transparentUI}
-                type="data.width"
+                type={type === 'RECTANGULAR'
+                    ? 'data.width'
+                    : 'data.radius'
+                }
                 changeValue={(
                     type: any,
                     value: any,
@@ -108,7 +111,12 @@ const RegularShapesTransforms: React.FC<RegularShapesTransformsProperties> = (
                     : Math.round(valueFromPercentage((data as any).radius, imageBoxDimensions.width))
                 }
                 icon={(
-                    <div>W</div>
+                    <div>
+                        {type === 'RECTANGULAR'
+                            ? 'W'
+                            : 'R'
+                        }
+                    </div>
                 )}
             />
 
