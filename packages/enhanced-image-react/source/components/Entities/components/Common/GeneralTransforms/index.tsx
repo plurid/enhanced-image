@@ -123,7 +123,7 @@ const GeneralTransforms: React.FC<GeneralTransformsProperties> = (
                 }}
                 value={entity.data.border.width}
                 icon={(
-                    <div>H</div>
+                    <div>❚</div>
                 )}
             />
 

@@ -45,4 +45,5 @@ export const StyledRectangularView = styled.div<IStyledRectangularView>`
     height: 100%;
     pointer-events: none;
     outline: none;
+    box-sizing: border-box;
 `;
