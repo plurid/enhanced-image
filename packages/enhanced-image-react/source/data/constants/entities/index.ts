@@ -24,8 +24,8 @@ export const emptyImageEntityRectangular: ImageEntityRectangular = {
             type: '',
         },
         border: {
-            color: '',
-            width: 0,
+            color: 'darkslateblue',
+            width: 3,
         },
         highlight: '',
         customStyle: '',
@@ -33,7 +33,7 @@ export const emptyImageEntityRectangular: ImageEntityRectangular = {
         annotation: '',
         labels: [],
 
-        color: 'darkslateblue',
+        color: 'darkturquoise',
         height: 7,
         width: 14,
     },
@@ -54,8 +54,8 @@ export const emptyImageEntityRadial: ImageEntityRadial = {
             type: '',
         },
         border: {
-            color: '',
-            width: 0,
+            color: 'darkturquoise',
+            width: 3,
         },
         highlight: '',
         customStyle: '',

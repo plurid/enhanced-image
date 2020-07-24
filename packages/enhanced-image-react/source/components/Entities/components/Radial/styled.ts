@@ -46,4 +46,5 @@ export const StyledRadialView = styled.div<IStyledRadialView>`
     pointer-events: none;
     outline: none;
     border-radius: 50%;
+    box-sizing: border-box;
 `;
