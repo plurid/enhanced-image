@@ -361,8 +361,8 @@ const Painted: React.FC<PaintedProperties> = (
             top,
         } = entityElement.current.getBoundingClientRect();
 
-        const x = event.pageX - left;
-        const y = event.pageY - top;
+        const x = event.clientX - left;
+        const y = event.clientY - top;
 
         drawBrushDiameter(x, y);
 
@@ -721,13 +721,13 @@ const Painted: React.FC<PaintedProperties> = (
             onMouseMove={(event) => draw(event)}
             dragMode={draggable}
             draggingMode={dragging}
+            brushDrawing={brushDrawing}
+            enclosureDrawing={enclosureDrawing}
             style={{
                 top: yCoordinate,
                 left: xCoordinate,
                 width: absoluteWidth + 'px',
                 height: absoluteHeight + 'px',
-                cursor: brushDrawing || enclosureDrawing
-                    ? 'crosshair' : 'initial',
             }}
             ref={entityElement}
         >
