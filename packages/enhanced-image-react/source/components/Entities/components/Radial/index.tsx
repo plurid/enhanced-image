@@ -102,10 +102,13 @@ const Radial: React.FC<RadialProperties> = (
         viewable,
     } = data;
 
-    const absoluteRadius = radius * imageBoxDimensions.width / 100;
+    const absoluteRadius = valueFromPercentage(
+        radius,
+        imageBoxDimensions.width,
+    );
 
-    const absoluteWidth = absoluteRadius + 'px';
-    const absoluteHeight = absoluteRadius + 'px';
+    const absoluteWidth = (absoluteRadius * 2) + 'px';
+    const absoluteHeight = (absoluteRadius * 2) + 'px';
 
 
     /** references */
@@ -146,7 +149,7 @@ const Radial: React.FC<RadialProperties> = (
         );
 
         const percentageRadius = percentageFromValue(
-            radiusValue + x,
+            radiusValue + x / 2,
             imageBoxDimensions.width,
         );
 
