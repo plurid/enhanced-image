@@ -21,6 +21,7 @@ import Drawer from '#components/Editor/components/Drawer';
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
 import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
 import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
+import ShapeResizer from '#components/Entities/components/Common/ShapeResizer';
 
 import {
     ImageEntityRectangular,
@@ -28,10 +29,15 @@ import {
 
 import {
     useGrab,
+    useResize,
 } from '#services/hooks';
 
 import {
     Context,
+
+    /** percentage */
+    percentageFromValue,
+    valueFromPercentage,
 
     /** ui */
     toggleDrawer,
@@ -107,20 +113,6 @@ const Rectangular: React.FC<RectangularProperties> = (
 
 
     /** state */
-    const {
-        xCoordinate,
-        yCoordinate,
-        draggable,
-        setDraggable,
-        dragging,
-        coordinatesPercentage,
-        handleMouseDown,
-    } = useGrab(
-        position,
-        imageBoxDimensions,
-        entityElement.current,
-    );
-
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
 
@@ -140,6 +132,71 @@ const Rectangular: React.FC<RectangularProperties> = (
             }
         }, 700);
     }
+
+    const updateSize = (
+        x: number,
+        y: number,
+    ) => {
+        const widthValue = Math.round(
+            valueFromPercentage(
+                width,
+                imageBoxDimensions.width,
+            )
+        );
+
+        const heightValue = Math.round(
+            valueFromPercentage(
+                height,
+                imageBoxDimensions.height,
+            )
+        );
+
+        const percentageX = percentageFromValue(
+            widthValue + x,
+            imageBoxDimensions.width,
+        );
+
+        const percentageY = percentageFromValue(
+            heightValue + y,
+            imageBoxDimensions.height,
+        );
+
+        updateEntityField(
+            id,
+            [
+                {
+                    type: 'data.width',
+                    value: percentageX,
+                },
+                {
+                    type: 'data.height',
+                    value: percentageY,
+                },
+            ],
+        );
+    }
+
+
+    /** hooks */
+    const {
+        xCoordinate,
+        yCoordinate,
+        draggable,
+        setDraggable,
+        dragging,
+        coordinatesPercentage,
+        handleMouseDown: handleMouseDownDrag,
+    } = useGrab(
+        position,
+        imageBoxDimensions,
+        entityElement.current,
+    );
+
+    const {
+        handleMouseDown: handleMouseDownResize,
+    } = useResize(
+        updateSize,
+    );
 
 
     /** effects */
@@ -218,7 +275,7 @@ const Rectangular: React.FC<RectangularProperties> = (
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            onMouseDown={(event) => handleMouseDown(event)}
+            onMouseDown={(event) => handleMouseDownDrag(event)}
             draggingMode={dragging}
             dragMode={draggable}
             style={{
@@ -236,6 +293,13 @@ const Rectangular: React.FC<RectangularProperties> = (
                     opacity,
                 }}
             />
+
+            {showEditor && (
+                <ShapeResizer
+                    theme={theme}
+                    handleMouseDownResize={handleMouseDownResize}
+                />
+            )}
 
             {showEditor && (
                 <Editor

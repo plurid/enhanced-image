@@ -7,12 +7,6 @@ import React, {
     useEffect,
 } from 'react';
 
-import {
-    PluridIconPalette,
-    PluridIconPlay,
-    PluridIconSquare,
-} from '@plurid/plurid-icons-react';
-
 
 /** external */
 import GrabIcon from '#assets/icons/text-editor/grab';
@@ -22,13 +16,11 @@ import Editor from '#components/Editor';
 import Handlers from '#components/Editor/components/Handlers';
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonInput from '#components/Editor/components/ButtonInput';
-import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
 import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
+import ShapeResizer from '#components/Entities/components/Common/ShapeResizer';
 
 import {
     ImageEntityPainted,
@@ -36,6 +28,7 @@ import {
 
 import {
     useGrab,
+    useResize,
 } from '#services/hooks';
 
 import {
@@ -44,9 +37,6 @@ import {
     /** percentage */
     valueFromPercentage,
     percentageFromValue,
-
-    /** color */
-    resolveColor,
 
     /** ui */
     toggleDrawer,
@@ -116,20 +106,6 @@ const Painted: React.FC<PaintedProperties> = (
 
 
     /** state */
-    const {
-        xCoordinate,
-        yCoordinate,
-        draggable,
-        setDraggable,
-        dragging,
-        coordinatesPercentage,
-        handleMouseDown,
-    } = useGrab(
-        position,
-        imageBoxDimensions,
-        entityElement.current,
-    );
-
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
 
@@ -149,6 +125,71 @@ const Painted: React.FC<PaintedProperties> = (
             }
         }, 700);
     }
+
+    const updateSize = (
+        x: number,
+        y: number,
+    ) => {
+        // const widthValue = Math.round(
+        //     valueFromPercentage(
+        //         width,
+        //         imageBoxDimensions.width,
+        //     )
+        // );
+
+        // const heightValue = Math.round(
+        //     valueFromPercentage(
+        //         height,
+        //         imageBoxDimensions.height,
+        //     )
+        // );
+
+        // const percentageX = percentageFromValue(
+        //     widthValue + x,
+        //     imageBoxDimensions.width,
+        // );
+
+        // const percentageY = percentageFromValue(
+        //     heightValue + y,
+        //     imageBoxDimensions.height,
+        // );
+
+        // updateEntityField(
+        //     id,
+        //     [
+        //         {
+        //             type: 'data.width',
+        //             value: percentageX,
+        //         },
+        //         {
+        //             type: 'data.height',
+        //             value: percentageY,
+        //         },
+        //     ],
+        // );
+    }
+
+
+    /** hooks */
+    const {
+        xCoordinate,
+        yCoordinate,
+        draggable,
+        setDraggable,
+        dragging,
+        coordinatesPercentage,
+        handleMouseDown: handleMouseDownDrag,
+    } = useGrab(
+        position,
+        imageBoxDimensions,
+        entityElement.current,
+    );
+
+    const {
+        handleMouseDown: handleMouseDownResize,
+    } = useResize(
+        updateSize,
+    );
 
 
     /** effects */
@@ -258,7 +299,7 @@ const Painted: React.FC<PaintedProperties> = (
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            onMouseDown={(event) => handleMouseDown(event)}
+            onMouseDown={(event) => handleMouseDownDrag(event)}
             dragMode={draggable}
             draggingMode={dragging}
             style={{
@@ -273,6 +314,13 @@ const Painted: React.FC<PaintedProperties> = (
                 }}
                 ref={canvasElement}
             />
+
+            {showEditor && (
+                <ShapeResizer
+                    theme={theme}
+                    handleMouseDownResize={handleMouseDownResize}
+                />
+            )}
 
             {showEditor && (
                 <Editor

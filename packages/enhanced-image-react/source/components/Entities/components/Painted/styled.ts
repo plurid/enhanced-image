@@ -39,5 +39,6 @@ export const StyledPainted = styled.div<IStyledPainted>`
 
     canvas {
         pointer-events: none;
+        background-color: hsla(220, 20%, 40%, 0.3);
     }
 `;

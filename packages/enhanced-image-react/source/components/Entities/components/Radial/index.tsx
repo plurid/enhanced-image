@@ -21,6 +21,7 @@ import Drawer from '#components/Editor/components/Drawer';
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
 import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
 import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
+import ShapeResizer from '#components/Entities/components/Common/ShapeResizer';
 
 import {
     ImageEntityRadial,
@@ -28,10 +29,15 @@ import {
 
 import {
     useGrab,
+    useResize,
 } from '#services/hooks';
 
 import {
     Context,
+
+    /** percentage */
+    percentageFromValue,
+    valueFromPercentage,
 
     /** ui */
     toggleDrawer,
@@ -108,20 +114,6 @@ const Radial: React.FC<RadialProperties> = (
 
 
     /** state */
-    const {
-        xCoordinate,
-        yCoordinate,
-        draggable,
-        setDraggable,
-        dragging,
-        coordinatesPercentage,
-        handleMouseDown,
-    } = useGrab(
-        position,
-        imageBoxDimensions,
-        entityElement.current,
-    );
-
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
 
@@ -141,6 +133,55 @@ const Radial: React.FC<RadialProperties> = (
             }
         }, 700);
     }
+
+    const updateSize = (
+        x: number,
+        y: number,
+    ) => {
+        const radiusValue = Math.round(
+            valueFromPercentage(
+                radius,
+                imageBoxDimensions.width,
+            )
+        );
+
+        const percentageRadius = percentageFromValue(
+            radiusValue + x,
+            imageBoxDimensions.width,
+        );
+
+        updateEntityField(
+            id,
+            [
+                {
+                    type: 'data.radius',
+                    value: percentageRadius,
+                },
+            ],
+        );
+    }
+
+
+    /** hooks */
+    const {
+        xCoordinate,
+        yCoordinate,
+        draggable,
+        setDraggable,
+        dragging,
+        coordinatesPercentage,
+        handleMouseDown: handleMouseDownDrag,
+    } = useGrab(
+        position,
+        imageBoxDimensions,
+        entityElement.current,
+    );
+
+    const {
+        handleMouseDown: handleMouseDownResize,
+    } = useResize(
+        updateSize,
+    );
 
 
     /** effects */
@@ -219,7 +260,7 @@ const Radial: React.FC<RadialProperties> = (
             tabIndex={0}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
-            onMouseDown={(event) => handleMouseDown(event)}
+            onMouseDown={(event) => handleMouseDownDrag(event)}
             dragMode={draggable}
             draggingMode={dragging}
             style={{
@@ -237,6 +278,13 @@ const Radial: React.FC<RadialProperties> = (
                     opacity,
                 }}
             />
+
+            {showEditor && (
+                <ShapeResizer
+                    theme={theme}
+                    handleMouseDownResize={handleMouseDownResize}
+                />
+            )}
 
             {showEditor && (
                 <Editor
