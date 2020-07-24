@@ -5,6 +5,8 @@ import styled from 'styled-components';
 export interface IStyledPainted {
     dragMode: boolean;
     draggingMode: boolean;
+    brushDrawing: boolean;
+    enclosureDrawing: boolean;
 }
 
 export const StyledPainted = styled.div<IStyledPainted>`
@@ -18,9 +20,15 @@ export const StyledPainted = styled.div<IStyledPainted>`
         ({
             draggingMode,
             dragMode,
+            brushDrawing,
+            enclosureDrawing,
             // toggledEditable,
             // actionable,
         }: IStyledPainted) => {
+            if (brushDrawing || enclosureDrawing) {
+                return 'crosshair';
+            }
+
             // if (actionable && !toggledEditable) {
             //     return 'pointer';
             // }
