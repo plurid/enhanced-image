@@ -182,6 +182,49 @@ const Painted: React.FC<PaintedProperties> = (
         );
     }
 
+    const loadContext = () => {
+        if (!canvasElement.current) {
+            return;
+        }
+
+        const context = canvasElement.current.getContext('2d');
+        if (!context) {
+            return;
+        }
+
+        const image = new Image;
+        image.onload = () => {
+            if (!canvasElement.current) {
+                return;
+            }
+
+            context.drawImage(
+                image,
+                0,
+                0,
+                image.width,
+                image.height,
+            );
+        };
+        image.src = dataURL;
+    }
+
+    const saveContext = () => {
+        if (!canvasElement.current) {
+            return;
+        }
+
+        const dataURL = canvasElement.current.toDataURL();
+
+        updateEntityField(
+            id,
+            [{
+                type: 'data.dataURL',
+                value: dataURL,
+            }],
+        );
+    }
+
 
     /** DRAWING */
     const mouseDownSetPosition = (
@@ -196,7 +239,7 @@ const Painted: React.FC<PaintedProperties> = (
     const draw = (
         event: any,
     ) => {
-        if (draggable) {
+        if (draggable || resizing) {
             return;
         }
 
@@ -255,6 +298,7 @@ const Painted: React.FC<PaintedProperties> = (
     );
 
     const {
+        resizing,
         handleMouseDown: handleMouseDownResize,
     } = useResize(
         updateSize,
@@ -377,6 +421,20 @@ const Painted: React.FC<PaintedProperties> = (
         height,
     ]);
 
+    useEffect(() => {
+        if (resizing) {
+            // save context
+            saveContext();
+            console.log('save context');
+        } else {
+            // restore context
+            loadContext();
+            console.log('restore context');
+        }
+    }, [
+        resizing,
+    ]);
+
 
     /** render */
     if (
@@ -395,10 +453,15 @@ const Painted: React.FC<PaintedProperties> = (
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
             onMouseDown={(event) => {
-                mouseDownSetPosition(event)
-                handleMouseDownDrag(event)
+                mouseDownSetPosition(event);
+                handleMouseDownDrag(event);
             }}
             onMouseMove={(event) => draw(event)}
+            onMouseUp={(event) => {
+                if (!dragging && !resizing) {
+                    saveContext();
+                }
+            }}
             dragMode={draggable}
             draggingMode={dragging}
             style={{
