@@ -7,6 +7,14 @@ import React, {
     useEffect,
 } from 'react';
 
+import {
+    PluridIconPaintBrush,
+    PluridIconFrame,
+    PluridIconObliterate,
+    PluridIconEdit,
+    PluridIconPaintBucket,
+} from '@plurid/plurid-icons-react';
+
 
 /** external */
 import GrabIcon from '#assets/icons/text-editor/grab';
@@ -16,6 +24,8 @@ import Editor from '#components/Editor';
 import Handlers from '#components/Editor/components/Handlers';
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
+import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
+import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
@@ -38,6 +48,9 @@ import {
     /** percentage */
     valueFromPercentage,
     percentageFromValue,
+
+    /** color */
+    resolveColor,
 
     /** ui */
     toggleDrawer,
@@ -116,6 +129,12 @@ const Painted: React.FC<PaintedProperties> = (
     /** state */
     const [showEditor, setShowEditor] = useState(false);
     const [mouseOver, setMouseOver] = useState(false);
+    const [brushDrawing, setBrushDrawing] = useState(false);
+    const [enclosureDrawing, setEnclosureDrawing] = useState(false);
+    const [enclosurePoints, setEnclosurePoints] = useState<any[]>([]);
+    const [eraserMode, setEraserMode] = useState(false);
+    const [brushSize, setBrushSize] = useState(20);
+    const [brushColor, setBrushColor] = useState('#483d8b');
 
     const [positions, setPositions] = useState({
         x: 0,
@@ -225,21 +244,77 @@ const Painted: React.FC<PaintedProperties> = (
         );
     }
 
+    const resizeCanvasToDisplaySize = (
+        canvas: HTMLCanvasElement,
+    ) => {
+        // look up the size the canvas is being displayed
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+
+        // If it's resolution does not match change it
+        if (canvas.width !== width || canvas.height !== height) {
+            canvas.width = width;
+            canvas.height = height;
+            return true;
+        }
+
+        return false;
+    }
+
+    const setDrawingMode = (
+        mode: 'brush' | 'enclosure',
+    ) => {
+        switch (mode) {
+            case 'brush':
+                setBrushDrawing(draw => !draw);
+                setEnclosureDrawing(false);
+                break;
+            case 'enclosure':
+                setBrushDrawing(false);
+                setEnclosureDrawing(draw => !draw);
+                break;
+        }
+    }
+
 
     /** DRAWING */
     const mouseDownSetPosition = (
         event: any,
     ) => {
-        setPositions({
+        if (event.target !== entityElement.current) {
+            return;
+        }
+
+        const position = {
             x: event.pageX,
             y: event.pageY,
-        });
+        };
+
+        setPositions(position);
+
+        if (enclosureDrawing) {
+            const updatedEnclosurePoints = [
+                ...enclosurePoints,
+                {
+                    ...position,
+                },
+            ];
+            setEnclosurePoints(updatedEnclosurePoints);
+        }
     }
 
     const draw = (
         event: any,
     ) => {
+        if (!editableEntities) {
+            return;
+        }
+
         if (draggable || resizing) {
+            return;
+        }
+
+        if (!brushDrawing) {
             return;
         }
 
@@ -269,9 +344,9 @@ const Painted: React.FC<PaintedProperties> = (
 
         context.beginPath();
 
-        context.lineWidth = 20;
+        context.lineWidth = brushSize;
         context.lineCap = 'round';
-        context.strokeStyle = '#483d8b';
+        context.strokeStyle = brushColor;
 
         context.moveTo(positions.x - left, positions.y - top);
         mouseDownSetPosition(event);
@@ -279,6 +354,68 @@ const Painted: React.FC<PaintedProperties> = (
 
         context.stroke();
         context.closePath();
+    }
+
+    const drawEnclosure = (
+        enclosurePoints: any[],
+    ) => {
+        if (!entityElement.current) {
+            return;
+        }
+
+        const {
+            left,
+            top,
+        } = entityElement.current.getBoundingClientRect();
+
+        if (!canvasElement.current) {
+            return;
+        }
+
+        const context = canvasElement.current.getContext('2d');
+
+        if (!context) {
+            return;
+        }
+
+        const region = new Path2D();
+
+        region.moveTo(
+            enclosurePoints[0].x - left,
+            enclosurePoints[0].y - top,
+        );
+
+        for (const point of enclosurePoints) {
+            region.lineTo(
+                point.x - left,
+                point.y - top,
+            );
+        }
+
+        region.closePath();
+
+        context.fillStyle = brushColor;
+        context.fill(region, 'evenodd');
+    }
+
+    const toggleEraser = (
+        active: boolean,
+    ) => {
+        if (!canvasElement.current) {
+            return;
+        }
+
+        const context = canvasElement.current.getContext('2d');
+
+        if (!context) {
+            return;
+        }
+
+        if (active) {
+            context.globalCompositeOperation = 'destination-out';
+        } else {
+            context.globalCompositeOperation = 'source-over';
+        }
     }
 
 
@@ -315,6 +452,7 @@ const Painted: React.FC<PaintedProperties> = (
         editableEntities,
     ]);
 
+    /** Handle first load. */
     useEffect(() => {
         if (!canvasElement.current) {
             return;
@@ -348,9 +486,7 @@ const Painted: React.FC<PaintedProperties> = (
         image.src = dataURL;
     }, []);
 
-    /**
-     * Handle showEditor
-     */
+    /** Handle showEditor */
     useEffect(() => {
         if (!editableEntities) {
             setShowEditor(false);
@@ -374,7 +510,7 @@ const Painted: React.FC<PaintedProperties> = (
         editableEntities,
     ]);
 
-    /** Update coordinates */
+    /** Update coordinates. */
     useEffect(() => {
         const fields = [
             {
@@ -395,24 +531,8 @@ const Painted: React.FC<PaintedProperties> = (
         coordinatesPercentage,
     ]);
 
+    /** Handle resize. */
     useEffect(() => {
-        const resizeCanvasToDisplaySize = (
-            canvas: HTMLCanvasElement,
-        ) => {
-            // look up the size the canvas is being displayed
-            const width = canvas.clientWidth;
-            const height = canvas.clientHeight;
-
-            // If it's resolution does not match change it
-            if (canvas.width !== width || canvas.height !== height) {
-                canvas.width = width;
-                canvas.height = height;
-                return true;
-            }
-
-            return false;
-        }
-
         if (canvasElement.current) {
             resizeCanvasToDisplaySize(canvasElement.current);
         }
@@ -421,18 +541,47 @@ const Painted: React.FC<PaintedProperties> = (
         height,
     ]);
 
+    /** Handle save/load context. */
     useEffect(() => {
         if (resizing) {
-            // save context
             saveContext();
-            console.log('save context');
         } else {
-            // restore context
             loadContext();
-            console.log('restore context');
         }
     }, [
         resizing,
+    ]);
+
+    /** Handle load context. */
+    useEffect(() => {
+        if (editableEntities || revealedEntities) {
+            loadContext();
+
+            if (canvasElement.current) {
+                resizeCanvasToDisplaySize(canvasElement.current);
+            }
+        }
+    }, [
+        editableEntities,
+        revealedEntities,
+    ]);
+
+    /** Draw enclosure. */
+    useEffect(() => {
+        if (enclosureDrawing && enclosurePoints.length > 0) {
+            drawEnclosure(enclosurePoints);
+        }
+    }, [
+        enclosurePoints,
+    ]);
+
+    /** Clear enclosure */
+    useEffect(() => {
+        if (!enclosureDrawing) {
+            setEnclosurePoints([]);
+        }
+    }, [
+        enclosureDrawing,
     ]);
 
 
@@ -524,23 +673,65 @@ const Painted: React.FC<PaintedProperties> = (
                         expand={editorDrawers.includes('DATA')}
                         toggleExpand={() => toggleDrawer('DATA', editorDrawers, setEditorDrawers)}
                     >
-                        {/* <div>
-                            brush size
+                        <ButtonToggle
+                            theme={theme}
+                            toggle={() => setDrawingMode('brush')}
+                            toggled={brushDrawing}
+                            icon={(
+                                <PluridIconPaintBrush />
+                            )}
+                        />
 
-                            brush
+                        <ButtonToggle
+                            theme={theme}
+                            toggle={() => setDrawingMode('enclosure')}
+                            toggled={enclosureDrawing}
+                            icon={(
+                                <PluridIconFrame />
+                            )}
+                        />
 
-                            eraser
-                        </div> */}
+                        <ButtonToggle
+                            theme={theme}
+                            toggle={() => {
+                                toggleEraser(!eraserMode);
+                                setEraserMode(mode => !mode);
+                            }}
+                            toggled={eraserMode}
+                            icon={(
+                                <PluridIconObliterate />
+                            )}
+                        />
 
-
-                        {/* <SimpleInput
-                            value={resolveColor(entity.data.color)}
-                            valueType="color"
-                            changeValue={() => {}}
+                        <ButtonIncrements
                             theme={theme}
                             transparentUI={transparentUI}
-                            Icon={PluridIconPalette}
-                        /> */}
+                            type={'brush.size'}
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                setBrushSize(value);
+                            }}
+                            value={brushSize}
+                            icon={(
+                                <PluridIconEdit />
+                            )}
+                        />
+
+                        <SimpleInput
+                            value={resolveColor(brushColor)}
+                            valueType="brush.color"
+                            changeValue={(
+                                type: any,
+                                value: any,
+                            ) => {
+                                setBrushColor(value);
+                            }}
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            Icon={PluridIconPaintBucket}
+                        />
 
                         <RegularShapesTransforms
                             theme={theme}
