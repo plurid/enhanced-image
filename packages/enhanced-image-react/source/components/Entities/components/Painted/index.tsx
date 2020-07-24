@@ -158,6 +158,28 @@ const Painted: React.FC<PaintedProperties> = (
         }, 700);
     }
 
+    const handleMouseUp = () => {
+        if (!dragging && !resizing) {
+            saveContext();
+        }
+
+        if (brushDrawing) {
+            if (!printCanvasElement.current) {
+                return;
+            }
+
+            const context = printCanvasElement.current.getContext('2d');
+
+            if (!context) {
+                return;
+            }
+
+            brushDrawingContext.current.inProgress = false;
+            context.closePath();
+            context.save();
+        }
+    }
+
     const updateSize = (
         x: number,
         y: number,
@@ -286,10 +308,24 @@ const Painted: React.FC<PaintedProperties> = (
         }
 
         if (enclosureDrawing) {
+            if (!entityElement.current) {
+                return;
+            }
+
+            const {
+                left,
+                top,
+            } = entityElement.current.getBoundingClientRect();
+
             const position = {
-                x: event.pageX,
-                y: event.pageY,
+                x: event.pageX - left,
+                y: event.pageY - top,
             };
+
+            drawEnclosurePoint(
+                position.x,
+                position.y,
+            );
 
             const updatedEnclosurePoints = [
                 ...enclosurePoints,
@@ -369,18 +405,32 @@ const Painted: React.FC<PaintedProperties> = (
         context.stroke();
     }
 
-    const drawEnclosure = (
-        enclosurePoints: any[],
+    const drawEnclosurePoint = (
+        x: number,
+        y: number,
     ) => {
-        if (!entityElement.current) {
+        if (!printCanvasElement.current) {
             return;
         }
 
-        const {
-            left,
-            top,
-        } = entityElement.current.getBoundingClientRect();
+        const canvas = printCanvasElement.current;
+        const context = canvas.getContext('2d');
+        if (!context) {
+            return;
+        }
 
+        const radius = 1;
+
+        context.beginPath();
+        context.arc(x, y, radius, 0, 2 * Math.PI, false);
+        context.lineWidth = 1;
+        context.strokeStyle = brushColor;
+        context.stroke();
+    }
+
+    const drawEnclosure = (
+        enclosurePoints: any[],
+    ) => {
         if (!printCanvasElement.current) {
             return;
         }
@@ -394,14 +444,14 @@ const Painted: React.FC<PaintedProperties> = (
         const region = new Path2D();
 
         region.moveTo(
-            enclosurePoints[0].x - left,
-            enclosurePoints[0].y - top,
+            enclosurePoints[0].x,
+            enclosurePoints[0].y,
         );
 
         for (const point of enclosurePoints) {
             region.lineTo(
-                point.x - left,
-                point.y - top,
+                point.x,
+                point.y,
             );
         }
 
@@ -667,28 +717,8 @@ const Painted: React.FC<PaintedProperties> = (
                 mouseDownSetPosition(event);
                 handleMouseDownDrag(event);
             }}
+            onMouseUp={() => handleMouseUp()}
             onMouseMove={(event) => draw(event)}
-            onMouseUp={(event) => {
-                if (!dragging && !resizing) {
-                    saveContext();
-                }
-
-                if (brushDrawing) {
-                    if (!printCanvasElement.current) {
-                        return;
-                    }
-
-                    const context = printCanvasElement.current.getContext('2d');
-
-                    if (!context) {
-                        return;
-                    }
-
-                    brushDrawingContext.current.inProgress = false;
-                    context.closePath();
-                    context.save();
-                }
-            }}
             dragMode={draggable}
             draggingMode={dragging}
             style={{
@@ -696,6 +726,8 @@ const Painted: React.FC<PaintedProperties> = (
                 left: xCoordinate,
                 width: absoluteWidth + 'px',
                 height: absoluteHeight + 'px',
+                cursor: brushDrawing || enclosureDrawing
+                    ? 'crosshair' : 'initial',
             }}
             ref={entityElement}
         >
