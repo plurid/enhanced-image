@@ -42,3 +42,12 @@ export const StyledPainted = styled.div<IStyledPainted>`
         pointer-events: none;
     }
 `;
+
+
+export const StyledDisplayCanvas = styled.canvas`
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    pointer-events: none;
+`;

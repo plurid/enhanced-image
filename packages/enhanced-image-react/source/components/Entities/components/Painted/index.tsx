@@ -60,6 +60,7 @@ import {
 /** internal */
 import {
     StyledPainted,
+    StyledDisplayCanvas,
 } from './styled';
 /** [END] imports */
 
@@ -122,8 +123,12 @@ const Painted: React.FC<PaintedProperties> = (
 
     /** references */
     const timeoutMouseOver = useRef<any>(0);
-    const canvasElement = useRef<HTMLCanvasElement>(null);
+    const displayCanvasElement = useRef<HTMLCanvasElement>(null);
+    const printCanvasElement = useRef<HTMLCanvasElement>(null);
     const entityElement = useRef<HTMLDivElement>(null);
+    const brushDrawingContext = useRef({
+        inProgress: false,
+    });
 
 
     /** state */
@@ -135,11 +140,6 @@ const Painted: React.FC<PaintedProperties> = (
     const [eraserMode, setEraserMode] = useState(false);
     const [brushSize, setBrushSize] = useState(20);
     const [brushColor, setBrushColor] = useState('#483d8b');
-
-    const [positions, setPositions] = useState({
-        x: 0,
-        y: 0,
-    });
 
     const [editorDrawers, setEditorDrawers] = useState<string[]>([]);
 
@@ -202,18 +202,18 @@ const Painted: React.FC<PaintedProperties> = (
     }
 
     const loadContext = () => {
-        if (!canvasElement.current) {
+        if (!printCanvasElement.current) {
             return;
         }
 
-        const context = canvasElement.current.getContext('2d');
+        const context = printCanvasElement.current.getContext('2d');
         if (!context) {
             return;
         }
 
         const image = new Image;
         image.onload = () => {
-            if (!canvasElement.current) {
+            if (!printCanvasElement.current) {
                 return;
             }
 
@@ -229,11 +229,11 @@ const Painted: React.FC<PaintedProperties> = (
     }
 
     const saveContext = () => {
-        if (!canvasElement.current) {
+        if (!printCanvasElement.current) {
             return;
         }
 
-        const dataURL = canvasElement.current.toDataURL();
+        const dataURL = printCanvasElement.current.toDataURL();
 
         updateEntityField(
             id,
@@ -285,14 +285,12 @@ const Painted: React.FC<PaintedProperties> = (
             return;
         }
 
-        const position = {
-            x: event.pageX,
-            y: event.pageY,
-        };
-
-        setPositions(position);
-
         if (enclosureDrawing) {
+            const position = {
+                x: event.pageX,
+                y: event.pageY,
+            };
+
             const updatedEnclosurePoints = [
                 ...enclosurePoints,
                 {
@@ -318,11 +316,6 @@ const Painted: React.FC<PaintedProperties> = (
             return;
         }
 
-        // mouse left button must be pressed
-        if (event.buttons !== 1) {
-            return;
-        }
-
         if (!entityElement.current) {
             return;
         }
@@ -332,28 +325,48 @@ const Painted: React.FC<PaintedProperties> = (
             top,
         } = entityElement.current.getBoundingClientRect();
 
-        if (!canvasElement.current) {
+        const x = event.pageX - left;
+        const y = event.pageY - top;
+
+        drawBrushDiameter(x, y);
+
+        // mouse left button must be pressed
+        if (event.buttons !== 1) {
             return;
         }
 
-        const context = canvasElement.current.getContext('2d');
+        if (!printCanvasElement.current) {
+            return;
+        }
+
+        const context = printCanvasElement.current.getContext('2d');
 
         if (!context) {
             return;
         }
 
-        context.beginPath();
-
         context.lineWidth = brushSize;
         context.lineCap = 'round';
+        context.lineJoin = 'round';
         context.strokeStyle = brushColor;
 
-        context.moveTo(positions.x - left, positions.y - top);
-        mouseDownSetPosition(event);
-        context.lineTo(positions.x - left, positions.y - top);
+        context.shadowColor = brushColor;
+        context.shadowBlur = 1;
+
+        const {
+            inProgress,
+        } = brushDrawingContext.current;
+
+        if (!inProgress) {
+            context.beginPath();
+            context.moveTo(x, y);
+
+            brushDrawingContext.current.inProgress = true;
+        } else {
+            context.lineTo(x,y);
+        }
 
         context.stroke();
-        context.closePath();
     }
 
     const drawEnclosure = (
@@ -368,11 +381,11 @@ const Painted: React.FC<PaintedProperties> = (
             top,
         } = entityElement.current.getBoundingClientRect();
 
-        if (!canvasElement.current) {
+        if (!printCanvasElement.current) {
             return;
         }
 
-        const context = canvasElement.current.getContext('2d');
+        const context = printCanvasElement.current.getContext('2d');
 
         if (!context) {
             return;
@@ -398,14 +411,53 @@ const Painted: React.FC<PaintedProperties> = (
         context.fill(region, 'evenodd');
     }
 
-    const toggleEraser = (
-        active: boolean,
-    ) => {
-        if (!canvasElement.current) {
+    const clearDisplayCanvas = () => {
+        if (!displayCanvasElement.current) {
             return;
         }
 
-        const context = canvasElement.current.getContext('2d');
+        const canvas = displayCanvasElement.current;
+        const context = canvas.getContext('2d');
+        if (!context) {
+            return;
+        }
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    const drawBrushDiameter = (
+        x: number,
+        y: number,
+    ) => {
+        if (!displayCanvasElement.current) {
+            return;
+        }
+
+        const canvas = displayCanvasElement.current;
+        const context = canvas.getContext('2d');
+        if (!context) {
+            return;
+        }
+
+        clearDisplayCanvas();
+
+        const radius = brushSize / 2;
+
+        context.beginPath();
+        context.arc(x, y, radius, 0, 2 * Math.PI, false);
+        context.lineWidth = 1;
+        context.strokeStyle = '#000000';
+        context.stroke();
+    }
+
+    const toggleEraser = (
+        active: boolean,
+    ) => {
+        if (!printCanvasElement.current) {
+            return;
+        }
+
+        const context = printCanvasElement.current.getContext('2d');
 
         if (!context) {
             return;
@@ -454,25 +506,25 @@ const Painted: React.FC<PaintedProperties> = (
 
     /** Handle first load. */
     useEffect(() => {
-        if (!canvasElement.current) {
+        if (!printCanvasElement.current) {
             return;
         }
 
-        const context = canvasElement.current.getContext('2d');
+        const context = printCanvasElement.current.getContext('2d');
         if (!context) {
             return;
         }
 
         const image = new Image;
         image.onload = () => {
-            if (!canvasElement.current) {
+            if (!printCanvasElement.current) {
                 return;
             }
 
             // Clear Old Image and Reset Bounds
-            context.clearRect(0, 0, canvasElement.current.width, canvasElement.current.height);
-            canvasElement.current.height = image.height;
-            canvasElement.current.width = image.width;
+            context.clearRect(0, 0, printCanvasElement.current.width, printCanvasElement.current.height);
+            printCanvasElement.current.height = image.height;
+            printCanvasElement.current.width = image.width;
 
             // Redraw Image
             context.drawImage(
@@ -533,8 +585,9 @@ const Painted: React.FC<PaintedProperties> = (
 
     /** Handle resize. */
     useEffect(() => {
-        if (canvasElement.current) {
-            resizeCanvasToDisplaySize(canvasElement.current);
+        if (printCanvasElement.current && displayCanvasElement.current) {
+            resizeCanvasToDisplaySize(printCanvasElement.current);
+            resizeCanvasToDisplaySize(displayCanvasElement.current);
         }
     }, [
         width,
@@ -557,8 +610,8 @@ const Painted: React.FC<PaintedProperties> = (
         if (editableEntities || revealedEntities) {
             loadContext();
 
-            if (canvasElement.current) {
-                resizeCanvasToDisplaySize(canvasElement.current);
+            if (printCanvasElement.current) {
+                resizeCanvasToDisplaySize(printCanvasElement.current);
             }
         }
     }, [
@@ -582,6 +635,15 @@ const Painted: React.FC<PaintedProperties> = (
         }
     }, [
         enclosureDrawing,
+    ]);
+
+    /** Clear display canvas. */
+    useEffect(() => {
+        if (!brushDrawing) {
+            clearDisplayCanvas();
+        }
+    }, [
+        brushDrawing,
     ]);
 
 
@@ -610,6 +672,22 @@ const Painted: React.FC<PaintedProperties> = (
                 if (!dragging && !resizing) {
                     saveContext();
                 }
+
+                if (brushDrawing) {
+                    if (!printCanvasElement.current) {
+                        return;
+                    }
+
+                    const context = printCanvasElement.current.getContext('2d');
+
+                    if (!context) {
+                        return;
+                    }
+
+                    brushDrawingContext.current.inProgress = false;
+                    context.closePath();
+                    context.save();
+                }
             }}
             dragMode={draggable}
             draggingMode={dragging}
@@ -621,6 +699,14 @@ const Painted: React.FC<PaintedProperties> = (
             }}
             ref={entityElement}
         >
+            <StyledDisplayCanvas
+                style={{
+                    width: absoluteWidth + 'px',
+                    height: absoluteHeight + 'px',
+                }}
+                ref={displayCanvasElement}
+            />
+
             <canvas
                 style={{
                     opacity,
@@ -628,7 +714,7 @@ const Painted: React.FC<PaintedProperties> = (
                     height: absoluteHeight + 'px',
                     backgroundColor: showEditor ? color : 'transparent',
                 }}
-                ref={canvasElement}
+                ref={printCanvasElement}
             />
 
             {showEditor && (
