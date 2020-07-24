@@ -19,6 +19,7 @@ import ButtonToggle from '#components/Editor/components/ButtonToggle';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
+import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
 import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
 import ShapeResizer from '#components/Entities/components/Common/ShapeResizer';
 
@@ -92,11 +93,18 @@ const Painted: React.FC<PaintedProperties> = (
     } = entity;
 
     const {
-        dataURL,
         position,
+        width,
+        height,
+        color,
+        border,
         opacity,
         viewable,
+        dataURL,
     } = data;
+
+    const absoluteWidth = width * imageBoxDimensions.width / 100;
+    const absoluteHeight = height * imageBoxDimensions.height / 100;
 
 
     /** references */
@@ -130,43 +138,43 @@ const Painted: React.FC<PaintedProperties> = (
         x: number,
         y: number,
     ) => {
-        // const widthValue = Math.round(
-        //     valueFromPercentage(
-        //         width,
-        //         imageBoxDimensions.width,
-        //     )
-        // );
+        const widthValue = Math.round(
+            valueFromPercentage(
+                width,
+                imageBoxDimensions.width,
+            )
+        );
 
-        // const heightValue = Math.round(
-        //     valueFromPercentage(
-        //         height,
-        //         imageBoxDimensions.height,
-        //     )
-        // );
+        const heightValue = Math.round(
+            valueFromPercentage(
+                height,
+                imageBoxDimensions.height,
+            )
+        );
 
-        // const percentageX = percentageFromValue(
-        //     widthValue + x,
-        //     imageBoxDimensions.width,
-        // );
+        const percentageX = percentageFromValue(
+            widthValue + x,
+            imageBoxDimensions.width,
+        );
 
-        // const percentageY = percentageFromValue(
-        //     heightValue + y,
-        //     imageBoxDimensions.height,
-        // );
+        const percentageY = percentageFromValue(
+            heightValue + y,
+            imageBoxDimensions.height,
+        );
 
-        // updateEntityField(
-        //     id,
-        //     [
-        //         {
-        //             type: 'data.width',
-        //             value: percentageX,
-        //         },
-        //         {
-        //             type: 'data.height',
-        //             value: percentageY,
-        //         },
-        //     ],
-        // );
+        updateEntityField(
+            id,
+            [
+                {
+                    type: 'data.width',
+                    value: percentageX,
+                },
+                {
+                    type: 'data.height',
+                    value: percentageY,
+                },
+            ],
+        );
     }
 
 
@@ -282,6 +290,29 @@ const Painted: React.FC<PaintedProperties> = (
         coordinatesPercentage,
     ]);
 
+    useEffect(() => {
+        const resizeCanvasToDisplaySize = (
+            canvas: HTMLCanvasElement,
+        ) => {
+            // look up the size the canvas is being displayed
+            const width = canvas.clientWidth;
+            const height = canvas.clientHeight;
+
+            // If it's resolution does not match change it
+            if (canvas.width !== width || canvas.height !== height) {
+                canvas.width = width;
+                canvas.height = height;
+                return true;
+            }
+
+            return false;
+        }
+
+        if (canvasElement.current) {
+            resizeCanvasToDisplaySize(canvasElement.current);
+        }
+    }, []);
+
 
     /** render */
     if (
@@ -305,12 +336,17 @@ const Painted: React.FC<PaintedProperties> = (
             style={{
                 top: yCoordinate,
                 left: xCoordinate,
+                width: absoluteWidth + 'px',
+                height: absoluteHeight + 'px',
             }}
             ref={entityElement}
         >
             <canvas
                 style={{
                     opacity,
+                    width: absoluteWidth + 'px',
+                    height: absoluteHeight + 'px',
+                    backgroundColor: showEditor ? color : 'transparent',
                 }}
                 ref={canvasElement}
             />
@@ -375,6 +411,13 @@ const Painted: React.FC<PaintedProperties> = (
                             Icon={PluridIconPalette}
                         /> */}
 
+                        <RegularShapesTransforms
+                            theme={theme}
+                            transparentUI={transparentUI}
+                            imageBoxDimensions={imageBoxDimensions}
+                            entity={entity}
+                            updateEntityField={updateEntityField}
+                        />
 
                         <GeneralTransforms
                             theme={theme}

@@ -1626,11 +1626,9 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             type: to,
             data: {
                 ...toEntityData,
-                color: (previousEntityData as any).color && (toEntityData as any).color
-                    ? (previousEntityData as any).color
-                    : (toEntityData as any).color
-                        ? (toEntityData as any).color
-                        : undefined,
+                color: to === 'PAINTED'
+                    ? toEntityData.color
+                    : previousEntityData.color,
                 position: {
                     ...previousEntityData.position,
                 },
@@ -2205,11 +2203,11 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
                 <Image />
 
                 {loadedImage && (
-                    <Text />
+                    <Entities />
                 )}
 
                 {loadedImage && (
-                    <Entities />
+                    <Text />
                 )}
 
                 {loadedImage
