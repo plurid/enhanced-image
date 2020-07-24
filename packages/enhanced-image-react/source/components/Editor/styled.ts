@@ -48,6 +48,7 @@ export const StyledTextEditor: any = styled.div`
     font-weight: normal;
     font-style: normal;
     margin: 0;
+    opacity: 1;
     z-index: 9999;
     user-select: none;
     box-shadow: 0px 2px 4px 0px hsla(220, 2%, 10%, 0.9);

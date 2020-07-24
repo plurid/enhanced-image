@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 
 export interface IStyledRectangular {
-    dragMode: boolean;
     draggingMode: boolean;
+    dragMode: boolean;
 }
 
 export const StyledRectangular = styled.div<IStyledRectangular>`
@@ -34,4 +34,15 @@ export const StyledRectangular = styled.div<IStyledRectangular>`
             return 'initial';
         }
     };
+`;
+
+
+export interface IStyledRectangularView {
+}
+
+export const StyledRectangularView = styled.div<IStyledRectangularView>`
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    outline: none;
 `;

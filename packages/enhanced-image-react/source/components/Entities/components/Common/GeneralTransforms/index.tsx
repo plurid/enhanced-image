@@ -40,7 +40,7 @@ import {
 
 
 /** [START] component */
-export interface TransformsProperties {
+export interface GeneralTransformsProperties {
     /** required */
     /** - values */
     theme: Theme;
@@ -54,7 +54,7 @@ export interface TransformsProperties {
     /** - methods */
 }
 
-const Transforms: React.FC<TransformsProperties> = (
+const GeneralTransforms: React.FC<GeneralTransformsProperties> = (
     properties,
 ) => {
     /** properties */
@@ -284,5 +284,5 @@ const Transforms: React.FC<TransformsProperties> = (
 }
 
 
-export default Transforms;
+export default GeneralTransforms;
 /** [END] component */

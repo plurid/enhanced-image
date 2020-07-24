@@ -15,6 +15,7 @@ export interface IStyledSimpleInput {
 export const StyledSimpleInput = styled.div<IStyledSimpleInput>`
     display: flex;
     align-items: center;
+    margin: 0 5px;
 
     input {
         background: ${
@@ -58,4 +59,6 @@ export const StyledSimpleInput = styled.div<IStyledSimpleInput>`
 export const StyledInfo = styled.div`
     margin-right: 3px;
     pointer-events: none;
+    display: grid;
+    place-content: center;
 `;

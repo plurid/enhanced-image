@@ -7,13 +7,6 @@ import React, {
     useEffect,
 } from 'react';
 
-import {
-    PluridIconPalette,
-    PluridIconPlay,
-    PluridIconSquare,
-    PluridIconFrame,
-} from '@plurid/plurid-icons-react';
-
 
 /** external */
 import GrabIcon from '#assets/icons/text-editor/grab';
@@ -23,13 +16,11 @@ import Editor from '#components/Editor';
 import Handlers from '#components/Editor/components/Handlers';
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonInput from '#components/Editor/components/ButtonInput';
-import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
-import Transforms from '#components/Entities/components/Common/Transforms';
+import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
+import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
 
 import {
     ImageEntityRectangular,
@@ -42,13 +33,6 @@ import {
 import {
     Context,
 
-    /** percentage */
-    valueFromPercentage,
-    percentageFromValue,
-
-    /** color */
-    resolveColor,
-
     /** ui */
     toggleDrawer,
 } from '#services/utilities';
@@ -57,6 +41,7 @@ import {
 /** internal */
 import {
     StyledRectangular,
+    StyledRectangularView,
 } from './styled';
 /** [END] imports */
 
@@ -239,19 +224,24 @@ const Rectangular: React.FC<RectangularProperties> = (
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
             onMouseDown={(event) => handleMouseDown(event)}
-            dragMode={draggable}
             draggingMode={dragging}
+            dragMode={draggable}
             style={{
                 top: yCoordinate,
                 left: xCoordinate,
                 width: absoluteWidth,
                 height: absoluteHeight,
-                backgroundColor: color,
-                opacity,
-                border: `${border.width}px solid ${border.color}`,
             }}
             ref={entityElement}
         >
+            <StyledRectangularView
+                style={{
+                    backgroundColor: color,
+                    border: `${border.width}px solid ${border.color}`,
+                    opacity,
+                }}
+            />
+
             {showEditor && (
                 <Editor
                     positions={{
@@ -287,81 +277,15 @@ const Rectangular: React.FC<RectangularProperties> = (
                         expand={editorDrawers.includes('DATA')}
                         toggleExpand={() => toggleDrawer('DATA', editorDrawers, setEditorDrawers)}
                     >
-                        <ButtonIncrements
+                        <RegularShapesTransforms
                             theme={theme}
                             transparentUI={transparentUI}
-                            type="data.width"
-                            changeValue={(
-                                type: any,
-                                value: any,
-                            ) => {
-                                const percentage = percentageFromValue(
-                                    value,
-                                    imageBoxDimensions.width,
-                                );
-
-                                updateEntityField(
-                                    id,
-                                    [{
-                                        type,
-                                        value: percentage,
-                                    }],
-                                );
-                            }}
-                            value={Math.round(valueFromPercentage(entity.data.width, imageBoxDimensions.width))}
-                            icon={(
-                                <div>W</div>
-                            )}
+                            imageBoxDimensions={imageBoxDimensions}
+                            entity={entity}
+                            updateEntityField={updateEntityField}
                         />
 
-                        <ButtonIncrements
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            type="data.height"
-                            changeValue={(
-                                type: any,
-                                value: any,
-                            ) => {
-                                const percentage = percentageFromValue(
-                                    value,
-                                    imageBoxDimensions.height,
-                                );
-
-                                updateEntityField(
-                                    id,
-                                    [{
-                                        type,
-                                        value: percentage,
-                                    }],
-                                );
-                            }}
-                            value={Math.round(valueFromPercentage(entity.data.height, imageBoxDimensions.height))}
-                            icon={(
-                                <div>H</div>
-                            )}
-                        />
-
-                        <SimpleInput
-                            value={resolveColor(entity.data.color)}
-                            valueType="data.color"
-                            changeValue={(
-                                type: any,
-                                value: any,
-                            ) => {
-                                updateEntityField(
-                                    id,
-                                    [{
-                                        type,
-                                        value,
-                                    }],
-                                );
-                            }}
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            Icon={PluridIconPalette}
-                        />
-
-                        <Transforms
+                        <GeneralTransforms
                             theme={theme}
                             transparentUI={transparentUI}
                             entity={entity}
