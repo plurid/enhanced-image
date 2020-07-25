@@ -2,21 +2,16 @@
 /** libraries */
 import React, {
     useContext,
-    useState,
-    useEffect,
 } from 'react';
 
 import {
     PluridIconPalette,
-    PluridIconPlay,
 
     PluridIconFontSize,
-    PluridIconLink,
     PluridIconBold,
     PluridIconItalic,
     PluridIconLetterSpacing,
     PluridIconWordSpacing,
-    PluridIconTransview,
 } from '@plurid/plurid-icons-react';
 
 
@@ -24,9 +19,7 @@ import {
 import Drawer from '#components/Editor/components/Drawer';
 import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
 import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
-import ButtonInput from '#components/Editor/components/ButtonInput';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
 import ButtonsColors from '#components/Editor/components/ButtonsColors';
 import SimpleInput from '#components/Editor/components/SimpleInput';
 
@@ -44,8 +37,6 @@ import {
     resolveColor,
 } from '#services/utilities';
 
-import TransviewContainer from '../TransviewContainer';
-
 
 /** internal */
 /** [END] imports */
@@ -59,7 +50,6 @@ export interface FontDrawerProperties {
     drawers: string[];
     currentVersion: any;
     outsideKind: any;
-    textID: string;
     /** - methods */
     toggleDrawer: (
         drawer: string,
@@ -97,7 +87,6 @@ const FontDrawer: React.FC<FontDrawerProperties> = (
         drawers,
         currentVersion,
         outsideKind,
-        textID,
         /** - methods */
         toggleDrawer,
         updateField,
@@ -109,48 +98,6 @@ const FontDrawer: React.FC<FontDrawerProperties> = (
         /** - values */
         /** - methods */
     } = properties;
-
-
-    /** state */
-    const [showTransview, setShowTransview] = useState(false);
-    const [transviewContainer, setTransviewContainer] = useState((
-        <TransviewContainer
-            theme={theme}
-            transparentUI={transparentUI}
-            textID={textID}
-            transview={currentVersion.transview}
-        />
-    ));
-
-
-    /** effects */
-    /** Transview Container */
-    useEffect(() => {
-        const transviewContainer = (
-            <TransviewContainer
-                theme={theme}
-                transparentUI={transparentUI}
-                textID={textID}
-                transview={currentVersion.transview}
-            />
-        );
-
-        setTransviewContainer(transviewContainer);
-    }, [
-        currentVersion.transview,
-        currentVersion.transview.active,
-        currentVersion.transview.data,
-        currentVersion.transview.data.length,
-    ]);
-
-    /** Show Transview */
-    useEffect(() => {
-        if (outsideKind !== 'transview') {
-            setShowTransview(false);
-        }
-    }, [
-        outsideKind,
-    ]);
 
 
     /** render */
@@ -187,53 +134,6 @@ const FontDrawer: React.FC<FontDrawerProperties> = (
                 renderOutside={renderOutside}
                 outsideKind={outsideKind}
                 setOutsideKind={setOutsideKind}
-            />
-
-            <ButtonInput
-                theme={theme}
-                transparentUI={transparentUI}
-                toggle={() => toggleTextFormat('link.active', true)}
-                toggled={currentVersion.link.active}
-                icon={(
-                    <PluridIconLink />
-                )}
-                value={currentVersion.link.to}
-                valueType="link.to"
-                changeValue={updateField}
-                renderOutside={renderOutside}
-                outsideKind={outsideKind}
-                setOutsideKind={setOutsideKind}
-                goToLink={true}
-            />
-
-            <ButtonInput
-                theme={theme}
-                transparentUI={transparentUI}
-                toggle={() => toggleTextFormat('action.active', true)}
-                toggled={currentVersion.action.active}
-                icon={(
-                    <PluridIconPlay />
-                )}
-                value={currentVersion.action.type}
-                valueType="action.type"
-                changeValue={updateField}
-                renderOutside={renderOutside}
-                outsideKind={outsideKind}
-                setOutsideKind={setOutsideKind}
-            />
-
-            <ButtonToggleRender
-                theme={theme}
-                type={'transview'}
-                toggle={() => setShowTransview(show => !show)}
-                toggled={showTransview}
-                icon={(
-                    <PluridIconTransview />
-                )}
-                renderOutside={renderOutside}
-                outsideKind={outsideKind}
-                setOutsideKind={setOutsideKind}
-                Outside={transviewContainer}
             />
 
             <ButtonToggle

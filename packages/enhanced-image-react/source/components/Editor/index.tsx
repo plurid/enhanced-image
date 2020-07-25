@@ -35,6 +35,7 @@ export interface TextEditorProperties {
     ) => void;
     setWidth: React.Dispatch<React.SetStateAction<number>>;
     fullWidth: boolean;
+    children: any;
 }
 
 const TextEditor: React.FC<TextEditorProperties> = (
@@ -132,7 +133,11 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     top: positions.y + 'px',
                 }}
             >
-                {children}
+                {children({
+                    renderOutside,
+                    outsideKind,
+                    setOutsideKind,
+                })}
             </StyledTextEditor>
 
             <StyledOutside
