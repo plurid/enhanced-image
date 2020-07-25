@@ -730,10 +730,10 @@ const Textline: React.FC<TextlineProperties> = (
                 </StyledTextContent>
             )}
 
-            {showEditor
+            {/* {showEditor
             && currentVersion
             && !dragging
-            && (
+            && ( */}
                 <TextlineEditor
                     /** required */
                     /** - values */
@@ -749,7 +749,7 @@ const Textline: React.FC<TextlineProperties> = (
                     saveTextValue={saveTextValue}
                     toggleDrawer={toggleDrawer}
                 />
-            )}
+            {/* )} */}
 
             {/* {showEditor
             && currentVersion

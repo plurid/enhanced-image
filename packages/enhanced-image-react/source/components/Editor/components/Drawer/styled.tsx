@@ -16,6 +16,7 @@ export const StyledDrawerTitle = styled.div`
     cursor: pointer;
     text-align: left;
     padding: 0 7px;
+    z-index: 999;
     display: flex;
     align-items: center;
     height: 100%;

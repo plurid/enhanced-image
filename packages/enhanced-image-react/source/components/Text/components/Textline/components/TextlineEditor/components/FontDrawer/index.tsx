@@ -2,15 +2,49 @@
 /** libraries */
 import React, {
     useContext,
+    useState,
+    useEffect,
 } from 'react';
+
+import {
+    PluridIconPalette,
+    PluridIconPlay,
+
+    PluridIconFontSize,
+    PluridIconLink,
+    PluridIconBold,
+    PluridIconItalic,
+    PluridIconLetterSpacing,
+    PluridIconWordSpacing,
+    PluridIconTransview,
+} from '@plurid/plurid-icons-react';
 
 
 /** external */
 import Drawer from '#components/Editor/components/Drawer';
+import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
+import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
+import ButtonInput from '#components/Editor/components/ButtonInput';
+import ButtonToggle from '#components/Editor/components/ButtonToggle';
+import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
+import ButtonsColors from '#components/Editor/components/ButtonsColors';
+import SimpleInput from '#components/Editor/components/SimpleInput';
+
+import {
+    selectableFonts,
+ } from '#data/constants/fonts';
 
 import {
     Context,
+
+    /** percentage */
+    valueFromPercentage,
+
+    /** color */
+    resolveColor,
 } from '#services/utilities';
+
+import TransviewContainer from '../TransviewContainer';
 
 
 /** internal */
@@ -23,10 +57,17 @@ export interface FontDrawerProperties {
     /** required */
     /** - values */
     drawers: string[];
+    currentVersion: any;
+    outsideKind: any;
+    textID: string;
     /** - methods */
     toggleDrawer: (
         drawer: string,
     ) => void;
+    updateField: any;
+    toggleTextFormat: any;
+    renderOutside: any;
+    setOutsideKind: any;
 
     /** optional */
     /** - values */
@@ -44,6 +85,8 @@ const FontDrawer: React.FC<FontDrawerProperties> = (
 
     const {
         theme,
+        transparentUI,
+        imageBoxDimensions,
     } = context;
 
 
@@ -52,13 +95,62 @@ const FontDrawer: React.FC<FontDrawerProperties> = (
         /** required */
         /** - values */
         drawers,
+        currentVersion,
+        outsideKind,
+        textID,
         /** - methods */
         toggleDrawer,
+        updateField,
+        toggleTextFormat,
+        renderOutside,
+        setOutsideKind,
 
         /** optional */
         /** - values */
         /** - methods */
     } = properties;
+
+
+    /** state */
+    const [showTransview, setShowTransview] = useState(false);
+    const [transviewContainer, setTransviewContainer] = useState((
+        <TransviewContainer
+            theme={theme}
+            transparentUI={transparentUI}
+            textID={textID}
+            transview={currentVersion.transview}
+        />
+    ));
+
+
+    /** effects */
+    /** Transview Container */
+    useEffect(() => {
+        const transviewContainer = (
+            <TransviewContainer
+                theme={theme}
+                transparentUI={transparentUI}
+                textID={textID}
+                transview={currentVersion.transview}
+            />
+        );
+
+        setTransviewContainer(transviewContainer);
+    }, [
+        currentVersion.transview,
+        currentVersion.transview.active,
+        currentVersion.transview.data,
+        currentVersion.transview.data.length,
+    ]);
+
+    /** Show Transview */
+    useEffect(() => {
+        if (outsideKind !== 'transview') {
+            setShowTransview(false);
+        }
+    }, [
+        outsideKind,
+    ]);
 
 
     /** render */
@@ -69,7 +161,7 @@ const FontDrawer: React.FC<FontDrawerProperties> = (
             expand={drawers.includes('FONT')}
             toggleExpand={() => toggleDrawer('FONT')}
         >
-            {/* <ButtonIncrements
+            <ButtonIncrements
                 theme={theme}
                 transparentUI={transparentUI}
                 type="font.size"
@@ -199,7 +291,7 @@ const FontDrawer: React.FC<FontDrawerProperties> = (
                 theme={theme}
                 transparentUI={transparentUI}
                 Icon={PluridIconPalette}
-            /> */}
+            />
         </Drawer>
     );
 }
