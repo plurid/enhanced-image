@@ -28,15 +28,15 @@ import {
 /** external */
 import {
     transviewTargetLanguages,
-} from '../../../../../../../../data/constants/transview';
+} from '#data/constants/transview';
 
 import {
     TextlineTransview,
-} from '../../../../../../../../data/interfaces/text';
+} from '#data/interfaces/text';
 
 import {
-    Context
-} from '../../../../../../../../services/utilities';
+    Context,
+} from '#services/utilities';
 
 
 /** internal */

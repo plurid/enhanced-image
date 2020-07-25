@@ -24,12 +24,11 @@ import {
     PluridIconItalic,
     PluridIconLetterSpacing,
     PluridIconWordSpacing,
+    PluridIconTransview,
 } from '@plurid/plurid-icons-react';
 
 
 /** external */
-import TransviewIcon from '#assets/icons/settings-menu/transview-text';
-
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
 import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
 import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
@@ -463,7 +462,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         type={'transview'}
                         toggle={() => setShowTransview(show => !show)}
                         toggled={showTransview}
-                        icon={TransviewIcon}
+                        icon={(
+                            <PluridIconTransview />
+                        )}
                         renderOutside={renderOutside}
                         outsideKind={outsideKind}
                         setOutsideKind={setOutsideKind}
