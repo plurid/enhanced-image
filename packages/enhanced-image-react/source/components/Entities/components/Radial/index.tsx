@@ -47,6 +47,8 @@ import {
 
 
 /** internal */
+import RadialEditor from './components/RadialEditor';
+
 import {
     StyledRadial,
     StyledRadialView,
@@ -292,78 +294,16 @@ const Radial: React.FC<RadialProperties> = (
             )}
 
             {showEditor && (
-                <Editor
-                    positions={{
-                        x: -17,
-                        y: -34,
-                    }}
-                    drawers={[]}
-                    toggleDrawer={() => {}}
-                    setWidth={() => {}}
-                    fullWidth={false}
-                >
-                    <ButtonToggle
-                        theme={theme}
-                        toggle={() => setDraggable(drag => !drag)}
-                        toggled={draggable}
-                        icon={(
-                            <PluridIconGrab />
-                        )}
-                    />
-
-                    <TypeSelector
-                        theme={theme}
-                        id={id}
-                        type={type}
-                        convertEntity={convertEntity}
-                    />
-
-                    <VerticalDivider
-                        theme={theme}
-                    />
-
-                    <Drawer
-                        theme={theme}
-                        title="Data"
-                        expand={editorDrawers.includes('DATA')}
-                        toggleExpand={() => toggleDrawer('DATA', editorDrawers, setEditorDrawers)}
-                    >
-                        <RegularShapesTransforms
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            imageBoxDimensions={imageBoxDimensions}
-                            entity={entity}
-                            updateEntityField={updateEntityField}
-                        />
-
-                        <GeneralTransforms
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            entity={entity}
-                            updateEntityField={updateEntityField}
-                        />
-                    </Drawer>
-
-                    <VerticalDivider
-                        theme={theme}
-                    />
-
-                    <Handlers
-                        theme={theme}
-                        viewable={viewable}
-                        toggleViewable={() => {
-                            updateEntityField(
-                                id,
-                                [{
-                                    type: 'data.viewable',
-                                    value: !viewable,
-                                }],
-                            );
-                        }}
-                        duplicate={() => duplicateEntity(id)}
-                        obliterate={() => obliterateEntity(id)}
-                    />
-                </Editor>
+                <RadialEditor
+                    /** required */
+                    /** - values */
+                    draggable={draggable}
+                    drawers={editorDrawers}
+                    entity={entity}
+                    /** - methods */
+                    setDraggable={setDraggable}
+                    setDrawers={setEditorDrawers}
+                />
             )}
         </StyledRadial>
     );

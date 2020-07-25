@@ -730,10 +730,10 @@ const Textline: React.FC<TextlineProperties> = (
                 </StyledTextContent>
             )}
 
-            {/* {showEditor
+            {showEditor
             && currentVersion
             && !dragging
-            && ( */}
+            && (
                 <TextlineEditor
                     /** required */
                     /** - values */
@@ -749,31 +749,7 @@ const Textline: React.FC<TextlineProperties> = (
                     saveTextValue={saveTextValue}
                     toggleDrawer={toggleDrawer}
                 />
-            {/* )} */}
-
-            {/* {showEditor
-            && currentVersion
-            && !dragging
-            && (
-                <TextEditor
-                    textItem={data}
-                    currentVersion={currentVersion}
-
-                    editable={editable}
-                    setEditable={setEditable}
-                    draggable={draggable}
-                    setDraggable={setDraggable}
-                    setViewable={setVersionViewable}
-
-                    positions={editorPositions}
-                    drawers={editorDrawers}
-                    toggleDrawer={toggleDrawer}
-                    setWidth={setEditorWidth}
-                    fullWidth={editorFullWidth}
-
-                    saveTextValue={saveTextValue}
-                />
-            )} */}
+            )}
         </StyledTextItem>
     );
 }
