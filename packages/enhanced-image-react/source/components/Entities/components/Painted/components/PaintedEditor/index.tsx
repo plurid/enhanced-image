@@ -263,6 +263,19 @@ const PaintedEditor: React.FC<PaintedEditorProperties> = (
                             theme={theme}
                         />
 
+                        <Drawer
+                            theme={theme}
+                            title="Extra"
+                            expand={drawers.includes('EXTRA')}
+                            toggleExpand={() => toggleDrawer('EXTRA', drawers, setDrawers)}
+                        >
+
+                        </Drawer>
+
+                        <VerticalDivider
+                            theme={theme}
+                        />
+
                         <Handlers
                             theme={theme}
                             viewable={viewable}
