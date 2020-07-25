@@ -7,10 +7,12 @@ import {
 } from '@plurid/plurid-themes';
 
 import {
-    PluridIconPalette,
     PluridIconPlay,
     PluridIconSquare,
-    PluridIconFrame,
+    PluridIconOpacity,
+    PluridIconHighlight,
+    PluridIconAnnotation,
+    PluridIconTag,
 } from '@plurid/plurid-icons-react';
 
 
@@ -150,7 +152,7 @@ const GeneralTransforms: React.FC<GeneralTransformsProperties> = (
                 value={opacity}
                 step={0.1}
                 icon={(
-                    <div>O</div>
+                    <PluridIconOpacity />
                 )}
             />
 
@@ -171,7 +173,7 @@ const GeneralTransforms: React.FC<GeneralTransformsProperties> = (
                 }}
                 theme={theme}
                 transparentUI={transparentUI}
-                Icon={PluridIconFrame}
+                Icon={PluridIconHighlight}
             />
 
             <ButtonInput
@@ -240,10 +242,7 @@ const GeneralTransforms: React.FC<GeneralTransformsProperties> = (
                 toggle={() => {}}
                 toggled={entity.data.action.active}
                 icon={(
-                    <div>
-                        {/* annotation  */}
-                        A
-                    </div>
+                    <PluridIconAnnotation />
                 )}
                 value={entity.data.action.type}
                 valueType="action.type"
@@ -263,10 +262,7 @@ const GeneralTransforms: React.FC<GeneralTransformsProperties> = (
                 toggle={() => {}}
                 toggled={entity.data.action.active}
                 icon={(
-                    <div>
-                        {/* labels  */}
-                        L
-                    </div>
+                    <PluridIconTag />
                 )}
                 value={entity.data.action.type}
                 valueType="action.type"
