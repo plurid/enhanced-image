@@ -7,23 +7,10 @@ import React, {
     useEffect,
 } from 'react';
 
-import {
-    PluridIconGrab,
-} from '@plurid/plurid-icons-react';
-
 
 /** external */
-import Editor from '#components/Editor';
-
-import Handlers from '#components/Editor/components/Handlers';
-import VerticalDivider from '#components/Editor/components/VerticalDivider';
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import Drawer from '#components/Editor/components/Drawer';
-
-import TypeSelector from '#components/Entities/components/Common/TypeSelector';
-import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
-import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
 import ShapeResizer from '#components/Entities/components/Common/ShapeResizer';
+import RegularShapesEditor from '#components/Entities/components/Common/RegularShapesEditor';
 
 import {
     ImageEntityRectangular,
@@ -47,8 +34,6 @@ import {
 
 
 /** internal */
-import RectangularEditor from './components/RectangularEditor';
-
 import {
     StyledRectangular,
     StyledRectangularView,
@@ -314,7 +299,7 @@ const Rectangular: React.FC<RectangularProperties> = (
             )}
 
             {showEditor && (
-                <RectangularEditor
+                <RegularShapesEditor
                     /** required */
                     /** - values */
                     draggable={draggable}

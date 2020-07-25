@@ -25,7 +25,7 @@ import SimpleInput from '#components/Editor/components/SimpleInput';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
-import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
+import ShapeTransforms from '#components/Entities/components/Common/ShapeTransforms';
 import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
 
 import {
@@ -179,9 +179,9 @@ const PaintedEditor: React.FC<PaintedEditorProperties> = (
 
                         <Drawer
                             theme={theme}
-                            title="Data"
-                            expand={drawers.includes('DATA')}
-                            toggleExpand={() => toggleDrawer('DATA', drawers, setDrawers)}
+                            title="Shape"
+                            expand={drawers.includes('SHAPE')}
+                            toggleExpand={() => toggleDrawer('SHAPE', drawers, setDrawers)}
                         >
                             <ButtonToggle
                                 theme={theme}
@@ -243,7 +243,7 @@ const PaintedEditor: React.FC<PaintedEditorProperties> = (
                                 Icon={PluridIconPaintBucket}
                             />
 
-                            <RegularShapesTransforms
+                            <ShapeTransforms
                                 theme={theme}
                                 transparentUI={transparentUI}
                                 imageBoxDimensions={imageBoxDimensions}
