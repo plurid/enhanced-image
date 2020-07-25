@@ -11,14 +11,20 @@ import {
 } from '@plurid/plurid-themes';
 
 import {
+    PluridIconGoToLink,
+} from '@plurid/plurid-icons-react';
+
+
+/** external */
+import ButtonToggle from '../ButtonToggle';
+
+
+/** internal */
+import {
     StyledButtonInput,
     StyledButtonInputContainer,
     StyledButtonInputGotoLink,
 } from './styled';
-
-import ButtonToggle from '../ButtonToggle';
-
-import GoToLinkIcon from '#assets/icons/text-editor/gotolink';
 /** [END] imports */
 
 
@@ -127,7 +133,7 @@ const ButtonInput: React.FC<ButtonInputProperties> = (
                         <StyledButtonInputGotoLink
                             theme={theme}
                         >
-                            {GoToLinkIcon}
+                            <PluridIconGoToLink />
                         </StyledButtonInputGotoLink>
                     </a>
                 )}

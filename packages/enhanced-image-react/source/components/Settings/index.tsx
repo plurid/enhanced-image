@@ -6,11 +6,11 @@ import React, {
 
 
 /** external */
-import SettingsIcon from '../../assets/icons/settings';
+import SettingsIcon from '#assets/icons/settings';
 
 import {
     Context
-} from '../../services/utilities';
+} from '#services/utilities';
 
 
 /** internal */

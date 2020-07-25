@@ -7,10 +7,12 @@ import React, {
     useEffect,
 } from 'react';
 
+import {
+    PluridIconGrab,
+} from '@plurid/plurid-icons-react';
+
 
 /** external */
-import GrabIcon from '#assets/icons/text-editor/grab';
-
 import Editor from '#components/Editor';
 
 import Handlers from '#components/Editor/components/Handlers';
@@ -324,7 +326,9 @@ const Rectangular: React.FC<RectangularProperties> = (
                         theme={theme}
                         toggle={() => setDraggable(drag => !drag)}
                         toggled={draggable}
-                        icon={GrabIcon}
+                        icon={(
+                            <PluridIconGrab />
+                        )}
                     />
 
                     <TypeSelector

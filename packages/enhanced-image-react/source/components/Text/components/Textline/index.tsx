@@ -18,15 +18,15 @@ import {
 import {
     ImageText,
     ImageTextVersionTextline,
-} from '../../../../data/interfaces';
+} from '#data/interfaces';
 
 import {
     Context,
-} from '../../../../services/utilities';
+} from '#services/utilities';
 
 import {
     percentageFromValue,
-} from '../../../../services/utilities/percentage';
+} from '#services/utilities/percentage';
 
 
 /** internal */
