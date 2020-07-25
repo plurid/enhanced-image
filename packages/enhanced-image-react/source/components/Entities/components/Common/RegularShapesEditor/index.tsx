@@ -32,6 +32,8 @@ import {
     toggleDrawer,
 } from '#services/utilities';
 
+import ExtraDrawer from '../ExtraDrawer';
+
 
 /** internal */
 /** [END] imports */
@@ -174,7 +176,15 @@ const RegularShapesEditor: React.FC<RegularShapesEditorProperties> = (
                             expand={drawers.includes('EXTRA')}
                             toggleExpand={() => toggleDrawer('EXTRA', drawers, setDrawers)}
                         >
-
+                            <ExtraDrawer
+                                /** required */
+                                /** - values */
+                                theme={theme}
+                                entity={entity}
+                                transparentUI={transparentUI}
+                                /** - methods */
+                                updateEntityField={updateEntityField}
+                            />
                         </Drawer>
 
                         <VerticalDivider
