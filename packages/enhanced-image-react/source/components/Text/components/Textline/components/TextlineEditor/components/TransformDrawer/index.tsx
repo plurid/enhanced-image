@@ -2,11 +2,17 @@
 /** libraries */
 import React, {
     useContext,
+    useState,
 } from 'react';
+
+import {
+    PluridIconSpace,
+} from '@plurid/plurid-icons-react';
 
 
 /** external */
 import Drawer from '#components/Editor/components/Drawer';
+import Slider from '#components/Editor/components/Slider';
 
 import {
     Context,
@@ -14,6 +20,9 @@ import {
 
 
 /** internal */
+import {
+    StyledTransformSliders,
+} from './styled';
 /** [END] imports */
 
 
@@ -23,10 +32,13 @@ export interface TransformDrawerProperties {
     /** required */
     /** - values */
     drawers: string[];
+    currentVersion: any;
     /** - methods */
     toggleDrawer: (
         drawer: string,
     ) => void;
+    updateField: any;
+    renderOutside: any;
 
     /** optional */
     /** - values */
@@ -44,6 +56,7 @@ const TransformDrawer: React.FC<TransformDrawerProperties> = (
 
     const {
         theme,
+        transparentUI,
     } = context;
 
 
@@ -52,13 +65,23 @@ const TransformDrawer: React.FC<TransformDrawerProperties> = (
         /** required */
         /** - values */
         drawers,
+        currentVersion,
         /** - methods */
         toggleDrawer,
+        updateField,
+        renderOutside,
 
         /** optional */
         /** - values */
         /** - methods */
     } = properties;
+
+
+    /** state */
+    const [
+        transformSlider,
+        setTransformSlider,
+    ] = useState('');
 
 
     /** render */
@@ -69,7 +92,7 @@ const TransformDrawer: React.FC<TransformDrawerProperties> = (
             expand={drawers.includes('TRANSFORM')}
             toggleExpand={() => toggleDrawer('TRANSFORM')}
         >
-            {/* <StyledTransformSliders>
+            <StyledTransformSliders>
                 <Slider
                     value={currentVersion.transform.perspective + 1}
                     valueType="transform.perspective"
@@ -174,7 +197,7 @@ const TransformDrawer: React.FC<TransformDrawerProperties> = (
                     show={transformSlider}
                     setShow={setTransformSlider}
                 />
-            </StyledTransformSliders> */}
+            </StyledTransformSliders>
         </Drawer>
     );
 }

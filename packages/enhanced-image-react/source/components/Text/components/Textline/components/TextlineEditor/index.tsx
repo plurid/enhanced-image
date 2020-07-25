@@ -2,33 +2,16 @@
 /** libraries */
 import React, {
     useContext,
-    useRef,
     useState,
-    useEffect,
 } from 'react';
-
-import {
-    Theme,
-} from '@plurid/plurid-themes';
 
 import {
     objects,
  } from '@plurid/plurid-functions';
 
 import {
-    PluridIconPalette,
-    PluridIconSpace,
-    PluridIconPlay,
-
     PluridIconText,
     PluridIconGrab,
-    PluridIconFontSize,
-    PluridIconLink,
-    PluridIconBold,
-    PluridIconItalic,
-    PluridIconLetterSpacing,
-    PluridIconWordSpacing,
-    PluridIconTransview,
 } from '@plurid/plurid-icons-react';
 
 
@@ -36,20 +19,8 @@ import {
 import Editor from '#components/Editor';
 
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
-import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonInput from '#components/Editor/components/ButtonInput';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
-import ButtonsColors from '#components/Editor/components/ButtonsColors';
-import SimpleInput from '#components/Editor/components/SimpleInput';
-import Slider from '#components/Editor/components/Slider';
-import Drawer from '#components/Editor/components/Drawer';
 import Handlers from '#components/Editor/components/Handlers';
-
-import {
-    selectableFonts,
- } from '#data/constants/fonts';
 
 import {
     ImageText,
@@ -60,19 +31,15 @@ import {
     Context,
 
     /** percentage */
-    valueFromPercentage,
     percentageFromValue,
 
     /** color */
-    resolveColor
 } from '#services/utilities';
 
 
 /** internal */
 import FontDrawer from './components/FontDrawer';
 import TransformDrawer from './components/TransformDrawer';
-import TransviewContainer from './components/TransviewContainer';
-
 /** [END] imports */
 
 
@@ -122,31 +89,6 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
     } = context;
 
 
-    /** state */
-    const [outside, setOutside] = useState(<></>);
-    const [outsideKind, setOutsideKind] = useState('');
-    const [outsideTopBased, setOutsideTopBased] = useState(false);
-    const [outsideLeft, setOutsideLeft] = useState(100);
-
-
-    /** handlers */
-    const renderOutside = (
-        outside: JSX.Element,
-        left: number = 0,
-    ) => {
-        setOutside(outside);
-
-        // const itemLeft = positions.x + left;
-        // const editorScrollLeft = editor.current
-        //     ? editor.current.scrollLeft
-        //     : 0;
-
-        // const outsideLeft = itemLeft - editorScrollLeft;
-
-        // setOutsideLeft(outsideLeft);
-    }
-
-
     /** properties */
     const {
         /** required */
@@ -167,6 +109,13 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
         /** - values */
         /** - methods */
     } = properties;
+
+
+    /** state */
+    const [outside, setOutside] = useState(<></>);
+    const [outsideKind, setOutsideKind] = useState('');
+    const [outsideTopBased, setOutsideTopBased] = useState(false);
+    const [outsideLeft, setOutsideLeft] = useState(100);
 
 
     /** handlers */
@@ -259,6 +208,22 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
         }
     }
 
+    const renderOutside = (
+        outside: JSX.Element,
+        left: number = 0,
+    ) => {
+        setOutside(outside);
+
+        // const itemLeft = positions.x + left;
+        // const editorScrollLeft = editor.current
+        //     ? editor.current.scrollLeft
+        //     : 0;
+
+        // const outsideLeft = itemLeft - editorScrollLeft;
+
+        // setOutsideLeft(outsideLeft);
+    }
+
 
     /** render */
     return (
@@ -329,7 +294,10 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
 
             <TransformDrawer
                 drawers={drawers}
+                currentVersion={currentVersion}
                 toggleDrawer={toggleDrawer}
+                updateField={updateField}
+                renderOutside={renderOutside}
             />
 
             <VerticalDivider
