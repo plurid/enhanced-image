@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 
 import {
+    PluridIconGrab,
     PluridIconPaintBrush,
     PluridIconFrame,
     PluridIconObliterate,
@@ -17,8 +18,6 @@ import {
 
 
 /** external */
-import GrabIcon from '#assets/icons/text-editor/grab';
-
 import Editor from '#components/Editor';
 
 import Handlers from '#components/Editor/components/Handlers';
@@ -771,7 +770,9 @@ const Painted: React.FC<PaintedProperties> = (
                         theme={theme}
                         toggle={() => setDraggable(drag => !drag)}
                         toggled={draggable}
-                        icon={GrabIcon}
+                        icon={(
+                            <PluridIconGrab />
+                        )}
                     />
 
                     <TypeSelector

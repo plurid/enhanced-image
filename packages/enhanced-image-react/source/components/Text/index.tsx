@@ -8,13 +8,13 @@ import React, {
 /** external */
 import {
     useTransform,
-} from '../../services/hooks';
+} from '#services/hooks';
 
 import {
     Context,
 
     getVersionById,
-} from '../../services/utilities';
+} from '#services/utilities';
 
 
 /** internal */

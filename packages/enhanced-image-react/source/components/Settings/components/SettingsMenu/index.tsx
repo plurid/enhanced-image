@@ -10,26 +10,26 @@ import React, {
 
 
 /** external */
-import AddTextIcon from '../../../../assets/icons/settings-menu/add-text';
-import SaveTextIcon from '../../../../assets/icons/settings-menu/save-text';
+import AddTextIcon from '#assets/icons/settings-menu/add-text';
+import SaveTextIcon from '#assets/icons/settings-menu/save-text';
 
-import GetTextIcon from '../../../../assets/icons/settings-menu/get-text';
-import ExtractTextIcon from '../../../../assets/icons/settings-menu/extract-text';
-import TransviewTextIcon from '../../../../assets/icons/settings-menu/transview-text';
+import GetTextIcon from '#assets/icons/settings-menu/get-text';
+import ExtractTextIcon from '#assets/icons/settings-menu/extract-text';
+import TransviewTextIcon from '#assets/icons/settings-menu/transview-text';
 
-import BackgroundColorTransparent from '../../../../assets/icons/settings-menu/background-color-transparent';
-import BackgroundColorWhite from '../../../../assets/icons/settings-menu/background-color-white';
-import BackgroundColorBlack from '../../../../assets/icons/settings-menu/background-color-black';
+import BackgroundColorTransparent from '#assets/icons/settings-menu/background-color-transparent';
+import BackgroundColorWhite from '#assets/icons/settings-menu/background-color-white';
+import BackgroundColorBlack from '#assets/icons/settings-menu/background-color-black';
 
-// import GenerateImageIcon from '../../../../assets/icons/settings-menu/generate-image';
-// import ColorizeImageIcon from '../../../../assets/icons/settings-menu/colorize-image';
+// import GenerateImageIcon from '#assets/icons/settings-menu/generate-image';
+// import ColorizeImageIcon from '#assets/icons/settings-menu/colorize-image';
 
-import ResetIcon from '../../../../assets/icons/settings-menu/reset';
-import FullscreenIcon from '../../../../assets/icons/settings-menu/fullscreen';
-import ShareIcon from '../../../../assets/icons/settings-menu/share';
-import SaveIcon from '../../../../assets/icons/settings-menu/save';
+import ResetIcon from '#assets/icons/settings-menu/reset';
+import FullscreenIcon from '#assets/icons/settings-menu/fullscreen';
+import ShareIcon from '#assets/icons/settings-menu/share';
+import SaveIcon from '#assets/icons/settings-menu/save';
 
-import AboutIcon from '../../../../assets/icons/settings-menu/about';
+import AboutIcon from '#assets/icons/settings-menu/about';
 
 import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,
@@ -37,11 +37,11 @@ import {
     IMAGE_TYPES,
 
     sliders,
-} from '../../../../data/constants';
+} from '#data/constants';
 
 import {
     Context
-} from '../../../../services/utilities';
+} from '#services/utilities';
 
 
 /** internal */
