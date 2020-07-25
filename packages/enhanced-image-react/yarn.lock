@@ -1300,10 +1300,10 @@
   resolved "https://registry.yarnpkg.com/@plurid/plurid-functions/-/plurid-functions-0.1.15.tgz#4900bf02bb36240e8d2cafd1d27c0e9712ac3ebf"
   integrity sha512-gTzhFlbK6G5jE+KBpcT4UlnO9poUOLLihXS3qwAYtu3ldSvGbu4g+bKJgaAwTBmS+t8B6vWntU5qXyi4pdX/7A==
 
-"@plurid/plurid-icons-react@^0.1.26":
-  version "0.1.26"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-icons-react/-/plurid-icons-react-0.1.26.tgz#3471a5b7114ff7e6ee60206d0e7f514f4d94ce2a"
-  integrity sha512-WbsoE/s5qEeHPoH/9eGtRRZhmR/T7htiW3hP7sUIfRU8oyTBIvBxTakX0kMTJnDqAOY7b1a4yxHyT/XccLD2Ww==
+"@plurid/plurid-icons-react@^0.1.27":
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-icons-react/-/plurid-icons-react-0.1.27.tgz#216fcd9ba336eaf63f7c210f058a1288865af4b1"
+  integrity sha512-MYKTGPFgwKbXvFZoLKxK3sTysevi0Iz36J004lO1t8imugo8cV15awB6UpKNjva719s7SJR3viguXE5jbOcafg==
 
 "@plurid/plurid-themes@^0.1.26":
   version "0.1.26"
