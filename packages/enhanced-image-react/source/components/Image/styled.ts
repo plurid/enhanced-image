@@ -13,6 +13,6 @@ export const StyledImage = styled.div<IStyledImage>`
     overflow: ${
         ({
             topologyOverflow,
-        }: IStyledImage) => topologyOverflow ? 'initial' : 'auto'
+        }: IStyledImage) => topologyOverflow ? 'initial' : 'hidden'
     };
 `;
