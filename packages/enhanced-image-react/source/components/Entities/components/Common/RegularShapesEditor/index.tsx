@@ -18,7 +18,7 @@ import ButtonToggle from '#components/Editor/components/ButtonToggle';
 import Drawer from '#components/Editor/components/Drawer';
 
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
-import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
+import ShapeTransforms from '#components/Entities/components/Common/ShapeTransforms';
 import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
 
 import {
@@ -39,7 +39,7 @@ import {
 
 
 /** [START] component */
-export interface RectangularEditorProperties {
+export interface RegularShapesEditorProperties {
     /** required */
     /** - values */
     draggable: boolean;
@@ -54,7 +54,7 @@ export interface RectangularEditorProperties {
     /** - methods */
 }
 
-const RectangularEditor: React.FC<RectangularEditorProperties> = (
+const RegularShapesEditor: React.FC<RegularShapesEditorProperties> = (
     properties,
 ) => {
     /** context */
@@ -144,11 +144,11 @@ const RectangularEditor: React.FC<RectangularEditorProperties> = (
 
                         <Drawer
                             theme={theme}
-                            title="Data"
-                            expand={drawers.includes('DATA')}
-                            toggleExpand={() => toggleDrawer('DATA', drawers, setDrawers)}
+                            title="Shape"
+                            expand={drawers.includes('SHAPE')}
+                            toggleExpand={() => toggleDrawer('SHAPE', drawers, setDrawers)}
                         >
-                            <RegularShapesTransforms
+                            <ShapeTransforms
                                 theme={theme}
                                 transparentUI={transparentUI}
                                 imageBoxDimensions={imageBoxDimensions}
@@ -191,5 +191,5 @@ const RectangularEditor: React.FC<RectangularEditorProperties> = (
 }
 
 
-export default RectangularEditor;
+export default RegularShapesEditor;
 /** [END] component */
