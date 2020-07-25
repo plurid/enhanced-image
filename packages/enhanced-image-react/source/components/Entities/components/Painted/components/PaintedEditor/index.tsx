@@ -27,6 +27,7 @@ import Drawer from '#components/Editor/components/Drawer';
 import TypeSelector from '#components/Entities/components/Common/TypeSelector';
 import ShapeTransforms from '#components/Entities/components/Common/ShapeTransforms';
 import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
+import ExtraDrawer from '#components/Entities/components/Common/ExtraDrawer';
 
 import {
     ImageEntity,
@@ -269,7 +270,15 @@ const PaintedEditor: React.FC<PaintedEditorProperties> = (
                             expand={drawers.includes('EXTRA')}
                             toggleExpand={() => toggleDrawer('EXTRA', drawers, setDrawers)}
                         >
-
+                            <ExtraDrawer
+                                /** required */
+                                /** - values */
+                                theme={theme}
+                                entity={entity}
+                                transparentUI={transparentUI}
+                                /** - methods */
+                                updateEntityField={updateEntityField}
+                            />
                         </Drawer>
 
                         <VerticalDivider
