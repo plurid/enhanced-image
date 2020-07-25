@@ -8,9 +8,13 @@ import React, {
     useLayoutEffect,
 } from 'react';
 
+import {
+    PluridIconExpandPlus,
+    PluridIconInfo,
+} from '@plurid/plurid-icons-react';
+
 
 /** external */
-import AddTextIcon from '#assets/icons/settings-menu/add-text';
 import SaveTextIcon from '#assets/icons/settings-menu/save-text';
 
 import GetTextIcon from '#assets/icons/settings-menu/get-text';
@@ -28,8 +32,6 @@ import ResetIcon from '#assets/icons/settings-menu/reset';
 import FullscreenIcon from '#assets/icons/settings-menu/fullscreen';
 import ShareIcon from '#assets/icons/settings-menu/share';
 import SaveIcon from '#assets/icons/settings-menu/save';
-
-import AboutIcon from '#assets/icons/settings-menu/about';
 
 import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,
@@ -248,7 +250,9 @@ const SettingsMenu: React.FC<any> = () => {
                                         <ButtonItem
                                             theme={theme}
                                             atClick={addText}
-                                            icon={AddTextIcon}
+                                            icon={(
+                                                <PluridIconExpandPlus />
+                                            )}
                                             text="Add Text"
                                         />
                                     </li>
@@ -565,7 +569,9 @@ const SettingsMenu: React.FC<any> = () => {
                                         <ButtonItem
                                             theme={theme}
                                             atClick={addEntity}
-                                            icon={AddTextIcon}
+                                            icon={(
+                                                <PluridIconExpandPlus />
+                                            )}
                                             text="Add Entity"
                                         />
                                     </li>
@@ -699,7 +705,9 @@ const SettingsMenu: React.FC<any> = () => {
                                     <ButtonItem
                                         theme={theme}
                                         atClick={viewAbout}
-                                        icon={AboutIcon}
+                                        icon={(
+                                            <PluridIconInfo />
+                                        )}
                                         text="About eImage"
                                     />
                                 </li>
