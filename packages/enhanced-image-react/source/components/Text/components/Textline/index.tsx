@@ -37,6 +37,7 @@ import {
     StyledEditableDiv,
 } from './styled';
 
+import TextlineEditor from './components/TextlineEditor';
 import TextEditor from './components/TextEditor';
 /** [END] imports */
 
@@ -58,6 +59,8 @@ const Textline: React.FC<TextlineProperties> = (
     }
 
     const {
+        theme,
+
         editableText,
         revealedText,
         imageBoxDimensions,
@@ -731,6 +734,27 @@ const Textline: React.FC<TextlineProperties> = (
             && currentVersion
             && !dragging
             && (
+                <TextlineEditor
+                    /** required */
+                    /** - values */
+                    textItem={data}
+                    currentVersion={currentVersion}
+                    editable={editable}
+                    draggable={draggable}
+                    drawers={editorDrawers}
+                    /** - methods */
+                    setEditable={setEditable}
+                    setDraggable={setDraggable}
+                    setViewable={setVersionViewable}
+                    saveTextValue={saveTextValue}
+                    toggleDrawer={toggleDrawer}
+                />
+            )}
+
+            {/* {showEditor
+            && currentVersion
+            && !dragging
+            && (
                 <TextEditor
                     textItem={data}
                     currentVersion={currentVersion}
@@ -749,7 +773,7 @@ const Textline: React.FC<TextlineProperties> = (
 
                     saveTextValue={saveTextValue}
                 />
-            )}
+            )} */}
         </StyledTextItem>
     );
 }
