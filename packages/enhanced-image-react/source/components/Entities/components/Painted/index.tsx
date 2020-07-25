@@ -318,8 +318,8 @@ const Painted: React.FC<PaintedProperties> = (
             } = entityElement.current.getBoundingClientRect();
 
             const position = {
-                x: event.pageX - left,
-                y: event.pageY - top,
+                x: event.clientX - left,
+                y: event.clientY - top,
             };
 
             drawEnclosurePoint(
