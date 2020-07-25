@@ -122,6 +122,31 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
     } = context;
 
 
+    /** state */
+    const [outside, setOutside] = useState(<></>);
+    const [outsideKind, setOutsideKind] = useState('');
+    const [outsideTopBased, setOutsideTopBased] = useState(false);
+    const [outsideLeft, setOutsideLeft] = useState(100);
+
+
+    /** handlers */
+    const renderOutside = (
+        outside: JSX.Element,
+        left: number = 0,
+    ) => {
+        setOutside(outside);
+
+        // const itemLeft = positions.x + left;
+        // const editorScrollLeft = editor.current
+        //     ? editor.current.scrollLeft
+        //     : 0;
+
+        // const outsideLeft = itemLeft - editorScrollLeft;
+
+        // setOutsideLeft(outsideLeft);
+    }
+
+
     /** properties */
     const {
         /** required */
@@ -142,6 +167,97 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
         /** - values */
         /** - methods */
     } = properties;
+
+
+    /** handlers */
+    const updateField = (
+        type: string,
+        value: number | string | boolean,
+    ) => {
+        switch (type) {
+            case 'font.size':
+                if (typeof value === 'number') {
+                    const fontSizePercentage = percentageFromValue(value, imageBoxDimensions.height);
+                    updateTextItemField(textItem.id, 'font.size', fontSizePercentage);
+                }
+                break;
+            case 'font.family':
+                updateTextItemField(textItem.id, 'font.family', value);
+                break;
+            case 'font.letterSpacing':
+                if (typeof value === 'number') {
+                    const letterSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
+                    updateTextItemField(textItem.id, 'font.letterSpacing', letterSpacingPercentage);
+                }
+                break;
+            case 'font.wordSpacing':
+                if (typeof value === 'number') {
+                    const wordSpacingPercentage = percentageFromValue(value, imageBoxDimensions.width);
+                    updateTextItemField(textItem.id, 'font.wordSpacing', wordSpacingPercentage);
+                }
+                break;
+            case 'link.to':
+                updateTextItemField(textItem.id, 'link.to', value);
+                break;
+            case 'action.type':
+                updateTextItemField(textItem.id, 'action.type', value);
+                break;
+            case 'color':
+                updateTextItemField(textItem.id, 'color', value);
+                break;
+            case 'transform.perspective':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'transform.perspective', value - 1);
+                }
+                break;
+            case 'transform.rx':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'transform.rx', value - 1);
+                }
+                break;
+            case 'transform.ry':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'transform.ry', value - 1);
+                }
+                break;
+            case 'transform.rz':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'transform.rz', value - 1);
+                }
+                break;
+            case 'transform.sx':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'transform.sx', value - 1);
+                }
+                break;
+            case 'transform.sy':
+                if (typeof value === 'number') {
+                    updateTextItemField(textItem.id, 'transform.sy', value - 1);
+                }
+                break;
+        }
+    }
+
+    const toggleTextFormat = (
+        type: string,
+        checkValue: string | boolean,
+    ) => {
+        const data = objects.getNested(currentVersion, type);
+
+        if (typeof checkValue === 'boolean') {
+            if (data) {
+                updateTextItemField(textItem.id, type, false);
+            } else {
+                updateTextItemField(textItem.id, type, true);
+            }
+        } else {
+            if (data === checkValue) {
+                updateTextItemField(textItem.id, type, 'normal');
+            } else {
+                updateTextItemField(textItem.id, type, checkValue);
+            }
+        }
+    }
 
 
     /** render */
@@ -197,7 +313,14 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
 
             <FontDrawer
                 drawers={drawers}
+                currentVersion={currentVersion}
+                outsideKind={outsideKind}
+                textID={textItem.id}
                 toggleDrawer={toggleDrawer}
+                updateField={updateField}
+                toggleTextFormat={toggleTextFormat}
+                renderOutside={renderOutside}
+                setOutsideKind={setOutsideKind}
             />
 
             <VerticalDivider

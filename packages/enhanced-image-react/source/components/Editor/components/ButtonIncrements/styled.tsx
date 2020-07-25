@@ -16,7 +16,8 @@ export const StyledButtonIncrement: any = styled.div`
             return props.theme.backgroundColorSecondary;
         }};
         color: ${props => props.theme.colorPrimary};
-        height: 18px;
+        height: 100%;
+        box-sizing: border-box;
         width: 30px;
         border: none;
         text-align: center;
@@ -69,7 +70,7 @@ export const StyledButtonIncrements: any = styled.div`
     font-size: 6px;
     justify-items: center;
     justify-content: space-between;
-    height: 24px;
+    height: 100%;
     user-select: none;
 `;
 
