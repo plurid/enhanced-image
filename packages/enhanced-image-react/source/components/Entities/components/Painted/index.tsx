@@ -7,29 +7,8 @@ import React, {
     useEffect,
 } from 'react';
 
-import {
-    PluridIconGrab,
-    PluridIconPaintBrush,
-    PluridIconFrame,
-    PluridIconObliterate,
-    PluridIconEdit,
-    PluridIconPaintBucket,
-} from '@plurid/plurid-icons-react';
-
 
 /** external */
-import Editor from '#components/Editor';
-
-import Handlers from '#components/Editor/components/Handlers';
-import VerticalDivider from '#components/Editor/components/VerticalDivider';
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import SimpleInput from '#components/Editor/components/SimpleInput';
-import Drawer from '#components/Editor/components/Drawer';
-
-import TypeSelector from '#components/Entities/components/Common/TypeSelector';
-import RegularShapesTransforms from '#components/Entities/components/Common/RegularShapesTransforms';
-import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
 import ShapeResizer from '#components/Entities/components/Common/ShapeResizer';
 
 import {
@@ -47,16 +26,12 @@ import {
     /** percentage */
     valueFromPercentage,
     percentageFromValue,
-
-    /** color */
-    resolveColor,
-
-    /** ui */
-    toggleDrawer,
 } from '#services/utilities';
 
 
 /** internal */
+import PaintedEditor from './components/PaintedEditor';
+
 import {
     StyledPainted,
     StyledDisplayCanvas,
@@ -756,138 +731,29 @@ const Painted: React.FC<PaintedProperties> = (
             )}
 
             {showEditor && (
-                <Editor
-                    positions={{
-                        x: -17,
-                        y: -34,
-                    }}
-                    drawers={[]}
-                    toggleDrawer={() => {}}
-                    setWidth={() => {}}
-                    fullWidth={false}
-                >
-                    <ButtonToggle
-                        theme={theme}
-                        toggle={() => setDraggable(drag => !drag)}
-                        toggled={draggable}
-                        icon={(
-                            <PluridIconGrab />
-                        )}
-                    />
+                <PaintedEditor
+                    /** required */
+                    /** - values */
+                    draggable={draggable}
+                    drawers={editorDrawers}
+                    entity={entity}
 
-                    <TypeSelector
-                        theme={theme}
-                        id={id}
-                        type={type}
-                        convertEntity={convertEntity}
-                    />
+                    brushDrawing={brushDrawing}
+                    enclosureDrawing={enclosureDrawing}
+                    eraserMode={eraserMode}
+                    brushSize={brushSize}
+                    brushColor={brushColor}
 
-                    <VerticalDivider
-                        theme={theme}
-                    />
+                    /** - methods */
+                    setDraggable={setDraggable}
+                    setDrawers={setEditorDrawers}
 
-                    <Drawer
-                        theme={theme}
-                        title="Data"
-                        expand={editorDrawers.includes('DATA')}
-                        toggleExpand={() => toggleDrawer('DATA', editorDrawers, setEditorDrawers)}
-                    >
-                        <ButtonToggle
-                            theme={theme}
-                            toggle={() => setDrawingMode('brush')}
-                            toggled={brushDrawing}
-                            icon={(
-                                <PluridIconPaintBrush />
-                            )}
-                        />
-
-                        <ButtonToggle
-                            theme={theme}
-                            toggle={() => setDrawingMode('enclosure')}
-                            toggled={enclosureDrawing}
-                            icon={(
-                                <PluridIconFrame />
-                            )}
-                        />
-
-                        <ButtonToggle
-                            theme={theme}
-                            toggle={() => {
-                                toggleEraser(!eraserMode);
-                                setEraserMode(mode => !mode);
-                            }}
-                            toggled={eraserMode}
-                            icon={(
-                                <PluridIconObliterate />
-                            )}
-                        />
-
-                        <ButtonIncrements
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            type={'brush.size'}
-                            changeValue={(
-                                type: any,
-                                value: any,
-                            ) => {
-                                setBrushSize(value);
-                            }}
-                            value={brushSize}
-                            icon={(
-                                <PluridIconEdit />
-                            )}
-                        />
-
-                        <SimpleInput
-                            value={resolveColor(brushColor)}
-                            valueType="brush.color"
-                            changeValue={(
-                                type: any,
-                                value: any,
-                            ) => {
-                                setBrushColor(value);
-                            }}
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            Icon={PluridIconPaintBucket}
-                        />
-
-                        <RegularShapesTransforms
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            imageBoxDimensions={imageBoxDimensions}
-                            entity={entity}
-                            updateEntityField={updateEntityField}
-                        />
-
-                        <GeneralTransforms
-                            theme={theme}
-                            transparentUI={transparentUI}
-                            entity={entity}
-                            updateEntityField={updateEntityField}
-                        />
-                    </Drawer>
-
-                    <VerticalDivider
-                        theme={theme}
-                    />
-
-                    <Handlers
-                        theme={theme}
-                        viewable={viewable}
-                        toggleViewable={() => {
-                            updateEntityField(
-                                id,
-                                [{
-                                    type: 'data.viewable',
-                                    value: !viewable,
-                                }],
-                            );
-                        }}
-                        duplicate={() => duplicateEntity(id)}
-                        obliterate={() => obliterateEntity(id)}
-                    />
-                </Editor>
+                    setDrawingMode={setDrawingMode}
+                    toggleEraser={toggleEraser}
+                    setEraserMode={setEraserMode}
+                    setBrushSize={setBrushSize}
+                    setBrushColor={setBrushColor}
+                />
             )}
         </StyledPainted>
     );
