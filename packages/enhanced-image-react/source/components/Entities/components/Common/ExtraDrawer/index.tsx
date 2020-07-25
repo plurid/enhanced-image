@@ -8,36 +8,21 @@ import {
 
 import {
     PluridIconPlay,
-    PluridIconSquare,
-    PluridIconOpacity,
-    PluridIconHighlight,
     PluridIconAnnotation,
     PluridIconTag,
 } from '@plurid/plurid-icons-react';
 
 
 /** external */
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
 import ButtonInput from '#components/Editor/components/ButtonInput';
-import SimpleInput from '#components/Editor/components/SimpleInput';
 
 import {
     ImageEntity,
 } from '#data/interfaces';
 
-import {
-    /** percentage */
-    valueFromPercentage,
-    percentageFromValue,
-
-    /** color */
-    resolveColor,
-} from '#services/utilities';
-
 
 /** internal */
 /** [END] imports */
-
 
 
 

@@ -7,18 +7,14 @@ import {
 } from '@plurid/plurid-themes';
 
 import {
-    PluridIconPlay,
     PluridIconSquare,
     PluridIconOpacity,
     PluridIconHighlight,
-    PluridIconAnnotation,
-    PluridIconTag,
 } from '@plurid/plurid-icons-react';
 
 
 /** external */
 import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonInput from '#components/Editor/components/ButtonInput';
 import SimpleInput from '#components/Editor/components/SimpleInput';
 
 import {
@@ -26,10 +22,6 @@ import {
 } from '#data/interfaces';
 
 import {
-    /** percentage */
-    valueFromPercentage,
-    percentageFromValue,
-
     /** color */
     resolveColor,
 } from '#services/utilities';
@@ -37,7 +29,6 @@ import {
 
 /** internal */
 /** [END] imports */
-
 
 
 
@@ -174,106 +165,6 @@ const GeneralTransforms: React.FC<GeneralTransformsProperties> = (
                 theme={theme}
                 transparentUI={transparentUI}
                 Icon={PluridIconHighlight}
-            />
-
-            <ButtonInput
-                theme={theme}
-                transparentUI={transparentUI}
-                toggle={() => {
-                    updateEntityField(
-                        id,
-                        [{
-                            type: 'data.action.active',
-                            value: !entity.data.action.active,
-                        }],
-                    );
-                }}
-                toggled={entity.data.action.active}
-                icon={(
-                    <PluridIconPlay />
-                )}
-                value={entity.data.action.type}
-                valueType="data.action.type"
-                // renderOutside={renderOutside}
-                // outsideKind={outsideKind}
-                // setOutsideKind={setOutsideKind}
-                changeValue={(
-                    type,
-                    value,
-                ) => {
-                    updateEntityField(
-                        id,
-                        [{
-                            type,
-                            value,
-                        }],
-                    );
-                }}
-                renderOutside={() => {}}
-                outsideKind={''}
-                setOutsideKind={() => {}}
-            />
-
-            <ButtonInput
-                theme={theme}
-                transparentUI={transparentUI}
-                toggle={() => {}}
-                toggled={entity.data.action.active}
-                icon={(
-                    <div>
-                        CSS
-                    </div>
-                )}
-                value={entity.data.action.type}
-                valueType="action.type"
-                // changeValue={updateField}
-                // renderOutside={renderOutside}
-                // outsideKind={outsideKind}
-                // setOutsideKind={setOutsideKind}
-                changeValue={() => {}}
-                renderOutside={() => {}}
-                outsideKind={''}
-                setOutsideKind={() => {}}
-            />
-
-            <ButtonInput
-                theme={theme}
-                transparentUI={transparentUI}
-                toggle={() => {}}
-                toggled={entity.data.action.active}
-                icon={(
-                    <PluridIconAnnotation />
-                )}
-                value={entity.data.action.type}
-                valueType="action.type"
-                // changeValue={updateField}
-                // renderOutside={renderOutside}
-                // outsideKind={outsideKind}
-                // setOutsideKind={setOutsideKind}
-                changeValue={() => {}}
-                renderOutside={() => {}}
-                outsideKind={''}
-                setOutsideKind={() => {}}
-            />
-
-            <ButtonInput
-                theme={theme}
-                transparentUI={transparentUI}
-                toggle={() => {}}
-                toggled={entity.data.action.active}
-                icon={(
-                    <PluridIconTag />
-                )}
-                value={entity.data.action.type}
-                valueType="action.type"
-                // changeValue={updateField}
-                // renderOutside={renderOutside}
-                // outsideKind={outsideKind}
-                // setOutsideKind={setOutsideKind}
-                changeValue={() => {}}
-                renderOutside={() => {}}
-                outsideKind={''}
-                setOutsideKind={() => {}}
             />
         </>
     );
