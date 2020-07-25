@@ -6,13 +6,15 @@ import {
     Theme,
 } from '@plurid/plurid-themes';
 
+import {
+    PluridIconViewable,
+    PluridIconNotViewable,
+    PluridIconDuplicate,
+    PluridIconDelete,
+} from '@plurid/plurid-icons-react';
+
 
 /** external */
-import ViewableIcon from '#assets/icons/text-editor/viewable';
-import NotViewableIcon from '#assets/icons/text-editor/not-viewable';
-import DuplicateIcon from '#assets/icons/text-editor/duplicate';
-import DeleteIcon from '#assets/icons/text-editor/delete';
-
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
 import ButtonClick from '#components/Editor/components/ButtonClick';
 
@@ -64,19 +66,26 @@ const TypeSelector: React.FC<TypeSelectorProperties> = (
                 theme={theme}
                 toggle={() => toggleViewable()}
                 toggled={viewable}
-                icon={viewable ? ViewableIcon : NotViewableIcon}
+                icon={viewable
+                    ? (<PluridIconViewable />)
+                    : (<PluridIconNotViewable />)
+                }
             />
 
             <ButtonClick
                 theme={theme}
                 atClick={() => duplicate()}
-                icon={DuplicateIcon}
+                icon={(
+                    <PluridIconDuplicate />
+                )}
             />
 
             <ButtonClick
                 theme={theme}
                 atClick={() => obliterate()}
-                icon={DeleteIcon}
+                icon={(
+                    <PluridIconDelete />
+                )}
             />
         </>
     );

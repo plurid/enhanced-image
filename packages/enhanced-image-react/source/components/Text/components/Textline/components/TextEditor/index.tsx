@@ -15,23 +15,20 @@ import {
     PluridIconPalette,
     PluridIconSpace,
     PluridIconPlay,
+
+    PluridIconText,
+    PluridIconGrab,
+    PluridIconFontSize,
+    PluridIconLink,
+    PluridIconBold,
+    PluridIconItalic,
+    PluridIconLetterSpacing,
+    PluridIconWordSpacing,
 } from '@plurid/plurid-icons-react';
 
 
 /** external */
-import SelectTextIcon from '#assets/icons/text-editor/select-text';
-import GrabIcon from '#assets/icons/text-editor/grab';
-import ViewableIcon from '#assets/icons/text-editor/viewable';
-import NotViewableIcon from '#assets/icons/text-editor/not-viewable';
-import FontSizeIcon from '#assets/icons/text-editor/font-size';
-import LinkIcon from '#assets/icons/text-editor/link';
 import TransviewIcon from '#assets/icons/settings-menu/transview-text';
-import BoldIcon from '#assets/icons/text-editor/bold';
-import ItalicIcon from '#assets/icons/text-editor/italic';
-import LetterSpacingIcon from '#assets/icons/text-editor/letter-spacing';
-import WordSpacingIcon from '#assets/icons/text-editor/word-spacing';
-import DuplicateIcon from '#assets/icons/text-editor/duplicate';
-import DeleteIcon from '#assets/icons/text-editor/delete';
 
 import VerticalDivider from '#components/Editor/components/VerticalDivider';
 import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
@@ -40,10 +37,11 @@ import ButtonInput from '#components/Editor/components/ButtonInput';
 import ButtonToggle from '#components/Editor/components/ButtonToggle';
 import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
 import ButtonsColors from '#components/Editor/components/ButtonsColors';
-import ButtonClick from '#components/Editor/components/ButtonClick';
 import SimpleInput from '#components/Editor/components/SimpleInput';
 import Slider from '#components/Editor/components/Slider';
 import Drawer from '#components/Editor/components/Drawer';
+
+import Handlers from '#components/Editor/components/Handlers';
 
 import {
     selectableFonts,
@@ -368,7 +366,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         setEditable(editable => !editable);
                     }}
                     toggled={editable}
-                    icon={SelectTextIcon}
+                    icon={(
+                        <PluridIconText />
+                    )}
                 />
 
                 <ButtonToggle
@@ -382,7 +382,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         setDraggable(draggable => !draggable)
                     }}
                     toggled={draggable}
-                    icon={GrabIcon}
+                    icon={(
+                        <PluridIconGrab />
+                    )}
                 />
 
                 <VerticalDivider
@@ -401,7 +403,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         type="font.size"
                         changeValue={updateField}
                         value={Math.round(valueFromPercentage(currentVersion.font.size, imageBoxDimensions.height))}
-                        icon={FontSizeIcon}
+                        icon={(
+                            <PluridIconFontSize />
+                        )}
                     />
 
                     <ButtonDropdown
@@ -426,7 +430,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         transparentUI={transparentUI}
                         toggle={() => toggleTextFormat('link.active', true)}
                         toggled={currentVersion.link.active}
-                        icon={LinkIcon}
+                        icon={(
+                            <PluridIconLink />
+                        )}
                         value={currentVersion.link.to}
                         valueType="link.to"
                         changeValue={updateField}
@@ -468,14 +474,18 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         theme={theme}
                         toggle={() => toggleTextFormat('font.weight', 'bold')}
                         toggled={currentVersion.font.weight === 'bold'}
-                        icon={BoldIcon}
+                        icon={(
+                            <PluridIconBold />
+                        )}
                     />
 
                     <ButtonToggle
                         theme={theme}
                         toggle={() => toggleTextFormat('font.style', 'italic')}
                         toggled={currentVersion.font.style === 'italic'}
-                        icon={ItalicIcon}
+                        icon={(
+                            <PluridIconItalic />
+                        )}
                     />
 
                     <ButtonIncrements
@@ -484,7 +494,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         type="font.letterSpacing"
                         changeValue={updateField}
                         value={valueFromPercentage(currentVersion.font.letterSpacing, imageBoxDimensions.width)}
-                        icon={LetterSpacingIcon}
+                        icon={(
+                            <PluridIconLetterSpacing />
+                        )}
                         step={0.1}
                     />
 
@@ -494,7 +506,9 @@ const TextEditor: React.FC<TextEditorProperties> = (
                         type="font.wordSpacing"
                         changeValue={updateField}
                         value={valueFromPercentage(currentVersion.font.wordSpacing, imageBoxDimensions.width)}
-                        icon={WordSpacingIcon}
+                        icon={(
+                            <PluridIconWordSpacing />
+                        )}
                         step={0.1}
                     />
 
@@ -636,23 +650,12 @@ const TextEditor: React.FC<TextEditorProperties> = (
                     theme={theme}
                 />
 
-                <ButtonToggle
+                <Handlers
                     theme={theme}
-                    toggle={() => setViewable()}
-                    toggled={currentVersion.viewable}
-                    icon={currentVersion.viewable ? ViewableIcon : NotViewableIcon}
-                />
-
-                <ButtonClick
-                    theme={theme}
-                    atClick={() => duplicateTextItem(textItem.id)}
-                    icon={DuplicateIcon}
-                />
-
-                <ButtonClick
-                    theme={theme}
-                    atClick={() => deleteTextItem(textItem.id)}
-                    icon={DeleteIcon}
+                    viewable={currentVersion.viewable}
+                    toggleViewable={() => setViewable()}
+                    duplicate={() => duplicateTextItem(textItem.id)}
+                    obliterate={() => deleteTextItem(textItem.id)}
                 />
             </StyledTextEditor>
 
