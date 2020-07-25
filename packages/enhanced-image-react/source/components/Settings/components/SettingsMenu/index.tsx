@@ -9,29 +9,25 @@ import React, {
 } from 'react';
 
 import {
+    PluridIconUpload,
+    PluridIconDownload,
+    PluridIconGet,
+    PluridIconExtract,
+    PluridIconTransview,
+    PluridIconReset,
+    PluridIconFullscreen,
+    PluridIconShare,
     PluridIconExpandPlus,
     PluridIconInfo,
+    // PluridIconBrainCircuits,
+    // PluridIconPalette,
 } from '@plurid/plurid-icons-react';
 
 
 /** external */
-import SaveTextIcon from '#assets/icons/settings-menu/save-text';
-
-import GetTextIcon from '#assets/icons/settings-menu/get-text';
-import ExtractTextIcon from '#assets/icons/settings-menu/extract-text';
-import TransviewTextIcon from '#assets/icons/settings-menu/transview-text';
-
 import BackgroundColorTransparent from '#assets/icons/settings-menu/background-color-transparent';
 import BackgroundColorWhite from '#assets/icons/settings-menu/background-color-white';
 import BackgroundColorBlack from '#assets/icons/settings-menu/background-color-black';
-
-// import GenerateImageIcon from '#assets/icons/settings-menu/generate-image';
-// import ColorizeImageIcon from '#assets/icons/settings-menu/colorize-image';
-
-import ResetIcon from '#assets/icons/settings-menu/reset';
-import FullscreenIcon from '#assets/icons/settings-menu/fullscreen';
-import ShareIcon from '#assets/icons/settings-menu/share';
-import SaveIcon from '#assets/icons/settings-menu/save';
 
 import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,
@@ -261,7 +257,9 @@ const SettingsMenu: React.FC<any> = () => {
                                         <ButtonItem
                                             theme={theme}
                                             atClick={saveText}
-                                            icon={SaveTextIcon}
+                                            icon={(
+                                                <PluridIconUpload />
+                                            )}
                                             text="Upload Text"
                                         />
                                     </li>
@@ -271,7 +269,9 @@ const SettingsMenu: React.FC<any> = () => {
                                             <ButtonItem
                                                 theme={theme}
                                                 atClick={downloadText}
-                                                icon={SaveIcon}
+                                                icon={(
+                                                    <PluridIconDownload />
+                                                )}
                                                 text="Download Text"
                                             />
                                         </li>
@@ -299,7 +299,9 @@ const SettingsMenu: React.FC<any> = () => {
                                     <ButtonItem
                                         theme={theme}
                                         atClick={async () => await getText()}
-                                        icon={GetTextIcon}
+                                        icon={(
+                                            <PluridIconGet />
+                                        )}
                                         text="Get Text"
                                     />
                                 </li>
@@ -311,7 +313,9 @@ const SettingsMenu: React.FC<any> = () => {
                                     <ButtonItem
                                         theme={theme}
                                         atClick={extractText}
-                                        icon={ExtractTextIcon}
+                                        icon={(
+                                            <PluridIconExtract />
+                                        )}
                                         text="Extract Text"
                                     />
                                 </li>
@@ -323,7 +327,9 @@ const SettingsMenu: React.FC<any> = () => {
                                     <ButtonItem
                                         theme={theme}
                                         atClick={() => setShowTransviewSettings(show => !show)}
-                                        icon={TransviewTextIcon}
+                                        icon={(
+                                            <PluridIconTransview />
+                                        )}
                                         text="Transview Text"
                                     />
                                 </li>
@@ -433,7 +439,9 @@ const SettingsMenu: React.FC<any> = () => {
                                 <ButtonItem
                                     theme={theme}
                                     atClick={resetDefaultsColor}
-                                    icon={ResetIcon}
+                                    icon={(
+                                        <PluridIconReset />
+                                    )}
                                     text="Reset to Defaults"
                                 />
                             </li>
@@ -535,7 +543,9 @@ const SettingsMenu: React.FC<any> = () => {
                                     <ButtonItem
                                         theme={theme}
                                         atClick={resetDefaultsTopology}
-                                        icon={ResetIcon}
+                                        icon={(
+                                            <PluridIconReset />
+                                        )}
                                         text="Reset to Defaults"
                                     />
                                 </li>
@@ -580,7 +590,9 @@ const SettingsMenu: React.FC<any> = () => {
                                         <ButtonItem
                                             theme={theme}
                                             atClick={() => {}}
-                                            icon={SaveTextIcon}
+                                            icon={(
+                                                <PluridIconUpload />
+                                            )}
                                             text="Upload Entities"
                                         />
                                     </li>
@@ -590,7 +602,9 @@ const SettingsMenu: React.FC<any> = () => {
                                             <ButtonItem
                                                 theme={theme}
                                                 atClick={downloadEntities}
-                                                icon={SaveIcon}
+                                                icon={(
+                                                    <PluridIconDownload />
+                                                )}
                                                 text="Download Entities"
                                             />
                                         </li>
@@ -613,7 +627,9 @@ const SettingsMenu: React.FC<any> = () => {
                                 <ButtonItem
                                     theme={theme}
                                     atClick={() => {}}
-                                    icon={GetTextIcon}
+                                    icon={(
+                                        <PluridIconGet />
+                                    )}
                                     text="Get Entities"
                                 />
                             </li>
@@ -622,7 +638,9 @@ const SettingsMenu: React.FC<any> = () => {
                                 <ButtonItem
                                     theme={theme}
                                     atClick={() => {}}
-                                    icon={ExtractTextIcon}
+                                    icon={(
+                                        <PluridIconExtract />
+                                    )}
                                     text="Extract Entities"
                                 />
                             </li>
@@ -658,7 +676,9 @@ const SettingsMenu: React.FC<any> = () => {
                                     <ButtonItem
                                         theme={theme}
                                         atClick={viewFullscreen}
-                                        icon={FullscreenIcon}
+                                        icon={(
+                                            <PluridIconFullscreen />
+                                        )}
                                         text="View Fullscreen"
                                     />
                                 </li>
@@ -671,7 +691,9 @@ const SettingsMenu: React.FC<any> = () => {
                                     <ButtonItem
                                         theme={theme}
                                         atClick={shareImage}
-                                        icon={ShareIcon}
+                                        icon={(
+                                            <PluridIconShare />
+                                        )}
                                         text="Share Image"
                                     />
                                 </li>
@@ -689,7 +711,9 @@ const SettingsMenu: React.FC<any> = () => {
                                         <ButtonItem
                                             theme={theme}
                                             atClick={() => {}}
-                                            icon={SaveIcon}
+                                            icon={(
+                                                <PluridIconDownload />
+                                            )}
                                             text="Download Image"
                                         />
                                     </a>
