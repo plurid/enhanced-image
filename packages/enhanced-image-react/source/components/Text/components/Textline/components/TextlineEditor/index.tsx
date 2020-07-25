@@ -2,7 +2,6 @@
 /** libraries */
 import React, {
     useContext,
-    useState,
 } from 'react';
 
 import {
@@ -32,14 +31,13 @@ import {
 
     /** percentage */
     percentageFromValue,
-
-    /** color */
 } from '#services/utilities';
 
 
 /** internal */
 import FontDrawer from './components/FontDrawer';
 import TransformDrawer from './components/TransformDrawer';
+import ExtraDrawer from './components/ExtraDrawer';
 /** [END] imports */
 
 
@@ -78,7 +76,6 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
 
     const {
         theme,
-        transparentUI,
 
         imageBoxDimensions,
 
@@ -109,13 +106,6 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
         /** - values */
         /** - methods */
     } = properties;
-
-
-    /** state */
-    const [outside, setOutside] = useState(<></>);
-    const [outsideKind, setOutsideKind] = useState('');
-    const [outsideTopBased, setOutsideTopBased] = useState(false);
-    const [outsideLeft, setOutsideLeft] = useState(100);
 
 
     /** handlers */
@@ -208,22 +198,6 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
         }
     }
 
-    const renderOutside = (
-        outside: JSX.Element,
-        left: number = 0,
-    ) => {
-        setOutside(outside);
-
-        // const itemLeft = positions.x + left;
-        // const editorScrollLeft = editor.current
-        //     ? editor.current.scrollLeft
-        //     : 0;
-
-        // const outsideLeft = itemLeft - editorScrollLeft;
-
-        // setOutsideLeft(outsideLeft);
-    }
-
 
     /** render */
     return (
@@ -237,80 +211,105 @@ const TextlineEditor: React.FC<TextlineEditorProperties> = (
             setWidth={() => {}}
             fullWidth={false}
         >
-            <ButtonToggle
-                theme={theme}
-                toggle={() => {
-                    if (draggable) {
-                        setDraggable(false);
-                    }
+            {({
+                renderOutside,
+                outsideKind,
+                setOutsideKind,
+            }: any) => {
+                return (
+                    <>
+                        <ButtonToggle
+                            theme={theme}
+                            toggle={() => {
+                                if (draggable) {
+                                    setDraggable(false);
+                                }
 
-                    if (editable) {
-                        saveTextValue();
-                    }
+                                if (editable) {
+                                    saveTextValue();
+                                }
 
-                    setEditable(editable => !editable);
-                }}
-                toggled={editable}
-                icon={(
-                    <PluridIconText />
-                )}
-            />
+                                setEditable(editable => !editable);
+                            }}
+                            toggled={editable}
+                            icon={(
+                                <PluridIconText />
+                            )}
+                        />
 
-            <ButtonToggle
-                theme={theme}
-                toggle={() => {
-                    if (editable) {
-                        saveTextValue();
-                        setEditable(false);
-                    }
+                        <ButtonToggle
+                            theme={theme}
+                            toggle={() => {
+                                if (editable) {
+                                    saveTextValue();
+                                    setEditable(false);
+                                }
 
-                    setDraggable(draggable => !draggable)
-                }}
-                toggled={draggable}
-                icon={(
-                    <PluridIconGrab />
-                )}
-            />
+                                setDraggable(draggable => !draggable)
+                            }}
+                            toggled={draggable}
+                            icon={(
+                                <PluridIconGrab />
+                            )}
+                        />
 
-            <VerticalDivider
-                theme={theme}
-            />
+                        <VerticalDivider
+                            theme={theme}
+                        />
 
-            <FontDrawer
-                drawers={drawers}
-                currentVersion={currentVersion}
-                outsideKind={outsideKind}
-                textID={textItem.id}
-                toggleDrawer={toggleDrawer}
-                updateField={updateField}
-                toggleTextFormat={toggleTextFormat}
-                renderOutside={renderOutside}
-                setOutsideKind={setOutsideKind}
-            />
+                        <FontDrawer
+                            drawers={drawers}
+                            currentVersion={currentVersion}
+                            outsideKind={outsideKind}
+                            toggleDrawer={toggleDrawer}
+                            updateField={updateField}
+                            toggleTextFormat={toggleTextFormat}
+                            renderOutside={renderOutside}
+                            setOutsideKind={setOutsideKind}
+                        />
 
-            <VerticalDivider
-                theme={theme}
-            />
+                        <VerticalDivider
+                            theme={theme}
+                        />
 
-            <TransformDrawer
-                drawers={drawers}
-                currentVersion={currentVersion}
-                toggleDrawer={toggleDrawer}
-                updateField={updateField}
-                renderOutside={renderOutside}
-            />
+                        <TransformDrawer
+                            drawers={drawers}
+                            currentVersion={currentVersion}
+                            toggleDrawer={toggleDrawer}
+                            updateField={updateField}
+                            renderOutside={renderOutside}
+                        />
 
-            <VerticalDivider
-                theme={theme}
-            />
+                        <VerticalDivider
+                            theme={theme}
+                        />
 
-            <Handlers
-                theme={theme}
-                viewable={currentVersion.viewable}
-                toggleViewable={() => setViewable()}
-                duplicate={() => duplicateTextItem(textItem.id)}
-                obliterate={() => deleteTextItem(textItem.id)}
-            />
+                        <ExtraDrawer
+                            drawers={drawers}
+                            currentVersion={currentVersion}
+                            outsideKind={outsideKind}
+                            textID={textItem.id}
+                            toggleDrawer={toggleDrawer}
+                            updateField={updateField}
+                            toggleTextFormat={toggleTextFormat}
+                            renderOutside={renderOutside}
+                            setOutsideKind={setOutsideKind}
+                        />
+
+                        <VerticalDivider
+                            theme={theme}
+                        />
+
+                        <Handlers
+                            theme={theme}
+                            viewable={currentVersion.viewable}
+                            toggleViewable={() => setViewable()}
+                            duplicate={() => duplicateTextItem(textItem.id)}
+                            obliterate={() => deleteTextItem(textItem.id)}
+                        />
+                    </>
+                );
+            }}
         </Editor>
     );
 }
