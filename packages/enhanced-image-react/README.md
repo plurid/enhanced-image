@@ -4,6 +4,7 @@
         height="250px"
     >
     <br />
+    <br />
     <a
         target="_blank"
         href="https://www.npmjs.com/package/@plurid/enhanced-image-react"
