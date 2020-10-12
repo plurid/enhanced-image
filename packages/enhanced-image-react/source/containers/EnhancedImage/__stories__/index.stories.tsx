@@ -1,4 +1,5 @@
 import React, {
+    useRef,
     useState,
     useEffect,
 } from 'react';
@@ -18,6 +19,7 @@ import {
 
 import {
     PreloadedData,
+    EnhancedImageReferenceProperties,
 } from '../../../data/interfaces';
 
 import {
@@ -51,6 +53,8 @@ storiesOf(
 )
 .addDecorator(withKnobs)
 .add('basic', () => {
+
+    const ref = useRef<EnhancedImageReferenceProperties | null>(null);
     // const theme = select(themeLabel, themeOptions, defaultThemeValue);
 
     const generator = boolean('Generator', true);
@@ -94,7 +98,10 @@ storiesOf(
 
 
     /** state */
-    const [preloadedData, setPreloadedData] = useState<PreloadedData | undefined>(undefined);
+    const [
+        preloadedData,
+        setPreloadedData,
+    ] = useState<PreloadedData | undefined>(undefined);
 
 
     /** effects */
@@ -132,6 +139,15 @@ storiesOf(
         };
     }, []);
 
+    /**
+     * Add text through the forward reference.
+     */
+    useEffect(() => {
+        if (ref.current) {
+            ref.current.addText();
+        }
+    }, []);
+
 
     /** render */
     return (
@@ -142,6 +158,7 @@ storiesOf(
             }}
         >
             <EnhancedImage
+                ref={ref}
                 // src="/assets/food-text.jpg"
                 // src="/assets/perspective.png"
                 src="/assets/screenshot.png"

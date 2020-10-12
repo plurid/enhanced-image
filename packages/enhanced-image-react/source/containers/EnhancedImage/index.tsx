@@ -1,112 +1,118 @@
-/** [START] imports */
-/** libraries */
-import React, {
-    useState,
-    useRef,
-    useEffect,
-} from 'react';
+// #region imports
+    // #region libraries
+    import React, {
+        useState,
+        useRef,
+        useEffect,
+        forwardRef,
+        useImperativeHandle,
+    } from 'react';
 
-import {
-    ApolloClient,
-    NormalizedCacheObject,
-} from '@apollo/client';
+    import {
+        ApolloClient,
+        NormalizedCacheObject,
+    } from '@apollo/client';
 
-import themes, {
-    Theme,
-} from '@plurid/plurid-themes';
+    import themes, {
+        Theme,
+    } from '@plurid/plurid-themes';
 
-import {
-    uuid,
-    objects,
-} from '@plurid/plurid-functions';
+    import {
+        uuid,
+        objects,
+    } from '@plurid/plurid-functions';
 
-import {
-    useDebouncedCallback,
-} from '@plurid/plurid-functions-react';
-
-
-/** external */
-import logic from '../../logic';
-
-import Image from '../../components/Image';
-import Text from '../../components/Text';
-import Entities from '../../components/Entities';
-import Settings from '../../components/Settings';
-import Message from '../../components/Message';
-import Spinner from '../../components/Spinner';
-
-import {
-    EnhancedImageProperties,
-    Context as IContext,
-    ImageDimensions,
-    ImageBoxDimensions,
-    ImageText,
-    ImageEntity,
-    ImageEntityRectangular,
-    ImageColorsData,
-    ActionDetail,
-    ImageEntityType,
-} from '../../data/interfaces';
-
-import {
-    TextlineTransview,
-    TextlineTransviewData,
-} from '../../data/interfaces/text';
-
-import {
-    PLURID_API_ENDPOINT,
-    SLIDER_VALUE_DEFAULTS,
-    ABOUT_URL,
-    DEPICT_DOMAIN,
-    REQUEST_ERRORS,
-    MESSAGE_TYPES,
-
-    IMAGE_TYPES,
-
-    ENHANCED_IMAGE_ACTION,
-
-    emptyImageEntityRectangular,
-    baseEntitiesData,
-} from '../../data/constants';
-
-import {
-    initialImageDimensions,
-    initialImageBoxDimensions,
-    initialPreviousImageColors,
-} from '../../data/constants/initializers';
-
-import {
-    Context,
-
-    /** imageText */
-    getImmutableTextline,
-    getVersionById,
-    updateVersion,
-    imageURLFromSrc,
-
-    /** image */
-    loadImage,
-    dataURIToBlob,
-
-    downloadContent,
-} from '../../services/utilities';
-
-import client from '../../services/graphql/client';
+    import {
+        useDebouncedCallback,
+    } from '@plurid/plurid-functions-react';
+    // #endregion libraries
 
 
-/** internal */
-import {
-    StyledEnhancedImage,
-} from './styled';
-/** [END] imports */
+    // #region external
+    import logic from '../../logic';
+
+    import Image from '../../components/Image';
+    import Text from '../../components/Text';
+    import Entities from '../../components/Entities';
+    import Settings from '../../components/Settings';
+    import Message from '../../components/Message';
+    import Spinner from '../../components/Spinner';
+
+    import {
+        EnhancedImageType,
+        Context as IContext,
+        ImageDimensions,
+        ImageBoxDimensions,
+        ImageText,
+        ImageEntity,
+        ImageEntityRectangular,
+        ImageColorsData,
+        ActionDetail,
+        ImageEntityType,
+    } from '../../data/interfaces';
+
+    import {
+        TextlineTransview,
+        TextlineTransviewData,
+    } from '../../data/interfaces/text';
+
+    import {
+        PLURID_API_ENDPOINT,
+        SLIDER_VALUE_DEFAULTS,
+        ABOUT_URL,
+        DEPICT_DOMAIN,
+        REQUEST_ERRORS,
+        MESSAGE_TYPES,
+
+        IMAGE_TYPES,
+
+        ENHANCED_IMAGE_ACTION,
+
+        emptyImageEntityRectangular,
+        baseEntitiesData,
+    } from '../../data/constants';
+
+    import {
+        initialImageDimensions,
+        initialImageBoxDimensions,
+        initialPreviousImageColors,
+    } from '../../data/constants/initializers';
+
+    import {
+        Context,
+
+        /** imageText */
+        getImmutableTextline,
+        getVersionById,
+        updateVersion,
+        imageURLFromSrc,
+
+        /** image */
+        loadImage,
+        dataURIToBlob,
+
+        downloadContent,
+    } from '../../services/utilities';
+
+    import client from '../../services/graphql/client';
+    // #endregion external
+
+
+    // #region internal
+    import {
+        StyledEnhancedImage,
+    } from './styled';
+    // #endregion internal
+// #endregion imports
 
 
 
-/** [START] component */
-const EnhancedImage: React.FC<EnhancedImageProperties> = (
+// #region module
+const EnhancedImage: React.ForwardRefExoticComponent<EnhancedImageType> = forwardRef((
     properties,
+    reference,
 ) => {
-    /** properties */
+    // #region properties
     const {
         src,
         srcset,
@@ -170,9 +176,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const _textDrawer = textDrawer ?? ['ALL'];
     const _topologyDrawer = topologyDrawer ?? ['ALL'];
     const _variaDrawer = variaDrawer ?? ['ALL'];
+    // #endregion properties
 
 
-    /** references */
+    // #region references
     const componentIsMounted = useRef(true);
     const messageTimer = useRef<any>(null);
 
@@ -180,9 +187,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
 
     const imageContainer = useRef<HTMLDivElement>(null);
     const transviews = useRef<Map<string, ImageText[]>>(new Map());
+    // #endregion references
 
 
-    /** state */
+    // #region state
     const [imageType, setImageType] = useState('');
 
     const [imageBackground, setImageBackground] = useState(0);
@@ -247,9 +255,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
     const [imageTopologyScale, setImageTopologyScale] = useState(0);
 
     const [databaseImageID, setDatabaseImageID] = useState('');
+    // #endregion state
 
 
-    /** handlers */
+    // #region handlers
     /** GENERAL */
     const handleLoadedImage = async (
         image: EventTarget & HTMLImageElement,
@@ -1795,9 +1804,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             stringifiedText,
         );
     }
+    // #endregion handlers
 
 
-    /** effects */
+    // #region effects
     /** Defaults Colors */
     useEffect(() => {
         if (defaultsToggled) {
@@ -2023,10 +2033,10 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         imageTopologyX,
         imageTopologyY,
     ]);
+    // #endregion effects
 
 
-
-    /** context */
+    // #region context
     const context: IContext = {
         src,
         srcset,
@@ -2179,9 +2189,194 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
         obliterateEntity,
         downloadEntities,
     };
+    // #endregion context
 
 
-    /** render */
+    // #region render
+    useImperativeHandle(
+        reference,
+        () => ({
+            // #region state
+            imageType,
+            setImageType,
+
+            imageBackground,
+            setImageBackground,
+
+            loadedImage,
+            setLoadedImage,
+            imageDimensions,
+            setImageDimensions,
+            imageBoxDimensions,
+            setImageBoxDimensions,
+
+            showSpinner,
+            setShowSpinner,
+            message,
+            setMessage,
+
+            showSettingsButton,
+            setShowSettingsButton,
+            showSettingsMenu,
+            setShowSettingsMenu,
+
+            showTooltips,
+            setShowTooltips,
+
+            expandTextDrawer,
+            setExpandTextDrawer,
+            expandColorDrawer,
+            setExpandColorDrawer,
+            expandTopologyDrawer,
+            setExpandTopologyDrawer,
+            expandEntitiesDrawer,
+            setExpandEntitiesDrawer,
+            expandVariaDrawer,
+            setExpandVariaDrawer,
+
+            editableText,
+            setEditableText,
+            revealedText,
+            setRevealedText,
+
+            editableEntities,
+            setEditableEntities,
+            revealedEntities,
+            setRevealedEntities,
+
+            showTransviewSettings,
+            setShowTransviewSettings,
+            transviewActive,
+            setTransviewActive,
+            transviewSourceLanguage,
+            setTransviewSourceLanguage,
+            transviewTargetLanguage,
+            setTransviewTargetLanguage,
+
+            saveImageHref,
+            setSaveImageHref,
+            saveImageDownload,
+            setSaveImageDownload,
+
+            imageText,
+            setImageText,
+            imageEntities,
+            setImageEntities,
+
+            deletedTexts,
+            setDeletedTexts,
+
+            imageColorsInvert,
+            setImageColorsInvert,
+            imageColorsContrast,
+            setImageColorsContrast,
+            imageColorsHue,
+            setImageColorsHue,
+            imageColorsSaturation,
+            setImageColorsSaturation,
+            imageColorsBrightness,
+            setImageColorsBrightness,
+
+            defaultsToggled,
+            setDefaultsToggled,
+
+            previousImageColors,
+            setPreviousImageColors,
+
+            imageTopologyOverflow,
+            setImageTopologyOverflow,
+            flipVertical,
+            setFlipVertical,
+            flipHorizontal,
+            setFlipHorizontal,
+            imageTopologyDrag,
+            setImageTopologyDrag,
+            imageTopologyDragging,
+            setImageTopologyDragging,
+            imageTopologyX,
+            setImageTopologyX,
+            imageTopologyY,
+            setImageTopologyY,
+            imageCoordinateX,
+            setImageCoordinateX,
+            imageCoordinateY,
+            setImageCoordinateY,
+            imageTopologyRotate,
+            setImageTopologyRotate,
+            imageTopologyScale,
+            setImageTopologyScale,
+
+            databaseImageID,
+            setDatabaseImageID,
+            // #endregion state
+
+
+            // #region handlers
+            handleLoadedImage,
+            setMessageTimed,
+            addText,
+            handleResize,
+            handleMouseDown,
+            updateTopologyLocation,
+
+            getTextWithApiKey,
+            getTextWithOwnerToken,
+            getTextWithImageID,
+            handleGetText,
+            getText,
+
+            extractTextWithApiKey,
+            extractTextWithOwnerToken,
+            extractTextWithImageID,
+            handleExtractText,
+            extractText,
+
+            saveTextWithApiKey,
+            saveTextWithOwnerToken,
+            saveTextWithImageID,
+            handleSaveText,
+            saveText,
+
+            transviewTextWithApiKey,
+            transviewTextWithOwnerToken,
+            transviewTextWithImageID,
+            handleTransviewText,
+            transviewText,
+
+            addTransviewLanguage,
+            removeTransviewLanguage,
+            setActiveTransview,
+            toggleBackgroundedTransview,
+
+            emitAction,
+
+            downloadText,
+            saveImage,
+            generateImage,
+            colorizeImage,
+            cycleImageBackground,
+            resetDefaultsColor,
+            resetDefaultsTopology,
+            viewFullscreen,
+            shareImage,
+            viewAbout,
+            toggleDefaults,
+            updateVersionContent,
+            toggleVersionViewable,
+            duplicateTextItem,
+            deleteTextItem,
+            updateTextCoordinates,
+            updateTextItemField,
+
+            addEntity,
+            convertEntity,
+            updateEntityField,
+            duplicateEntity,
+            obliterateEntity,
+            // #endregion handlers
+        }),
+    );
+
     return (
         <Context.Provider
             value={context}
@@ -2233,8 +2428,12 @@ const EnhancedImage: React.FC<EnhancedImageProperties> = (
             </StyledEnhancedImage>
         </Context.Provider>
     );
-}
+    // #endregion render
+});
+// #endregion module
 
 
+
+// #region exports
 export default EnhancedImage;
-/** [END] component */
+// #endregion exports

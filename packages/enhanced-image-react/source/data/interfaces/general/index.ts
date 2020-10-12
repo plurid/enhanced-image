@@ -16,7 +16,13 @@ import {
     ImageEntityType,
 } from '../entities';
 
+import {
+    EnhancedImageReferenceProperties,
+} from '../reference';
 
+
+
+export type EnhancedImageType = EnhancedImageProperties & React.RefAttributes<EnhancedImageReferenceProperties>;
 
 export interface EnhancedImageProperties {
     /**
