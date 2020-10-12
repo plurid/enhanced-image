@@ -39,12 +39,12 @@
         "clean": "rm -rf ./distribution",
         "clean.tests": "find ./distribution -type d -name '__tests__' -exec rm -r {} +",
         "clean.stories": "find ./distribution -type d -name '__stories__' -exec rm -r {} +",
-        "test": "jest",
-        "lint": "eslint ./source --ext .ts,.tsx",
-        "start": "yarn clean && rollup -c -w --environment ENV_MODE:local",
-        "build.local": "yarn clean && rollup -c --environment ENV_MODE:local",
-        "build.development": "yarn clean && rollup -c --environment ENV_MODE:development",
-        "build.production": "yarn clean && yarn lint && yarn test && rollup -c --environment ENV_MODE:production && yarn clean.tests && yarn clean.stories",
+        "test": "jest -c ./configurations/jest.config.js",
+        "lint": "eslint -c ./configurations/.eslintrc.js ./source",
+        "start": "yarn clean && rollup -c ./scripts/rollup.config.js -w --environment ENV_MODE:local",
+        "build.local": "yarn clean && rollup -c ./scripts/rollup.config.js --environment ENV_MODE:local",
+        "build.development": "yarn clean && rollup -c ./scripts/rollup.config.js --environment ENV_MODE:development",
+        "build.production": "yarn clean && yarn lint && yarn test && rollup -c ./scripts/rollup.config.js --environment ENV_MODE:production && yarn clean.tests && yarn clean.stories",
         "prepublishOnly": "yarn build.production"
     },
     "peerDependencies": {
