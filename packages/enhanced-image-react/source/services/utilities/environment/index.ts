@@ -1,5 +1,7 @@
+const currentEnvironment: any = process.env.ENV_MODE;
+
 export const environment = {
-    local: process.env.ENV_MODE === 'local',
-    development: process.env.ENV_MODE === 'development',
-    production: process.env.ENV_MODE === 'production',
+    local: currentEnvironment === 'local',
+    development: currentEnvironment === 'development',
+    production: currentEnvironment === 'production',
 };
