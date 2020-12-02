@@ -5,8 +5,8 @@ import React, {
 } from 'react';
 
 import {
-    PluridDropdown,
-} from '@plurid/plurid-ui-react';
+    universal,
+} from '@plurid/plurid-ui-components-react';
 
 
 /** external */
@@ -33,6 +33,12 @@ import {
 
 
 /** [START] component */
+const {
+    inputs: {
+        Dropdown: PluridDropdown,
+    },
+} = universal;
+
 const Transview: React.FC<any> = (
     properties,
 ) => {

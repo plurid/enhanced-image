@@ -21,8 +21,8 @@ import {
 } from '@plurid/plurid-icons-react';
 
 import {
-    PluridDropdown,
-} from '@plurid/plurid-ui-react';
+    universal,
+} from '@plurid/plurid-ui-components-react';
 
 
 /** external */
@@ -54,6 +54,12 @@ import {
 const TRANSVIEW_DEFAULT_SELECT = 'Select';
 
 /** [START] component */
+const {
+    inputs: {
+        Dropdown: PluridDropdown,
+    },
+} = universal;
+
 export interface TransviewContainerProperties {
     /** required */
     /** - values */
