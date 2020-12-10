@@ -1,25 +1,30 @@
-import EnhancedImage from './containers/EnhancedImage';
+// #region imports
+    // #region internal
+    import EnhancedImage from './containers/EnhancedImage';
 
-import {
-    MESSAGE_TYPES,
-} from './data/constants';
+    import {
+        MESSAGE_TYPES,
+    } from './data/constants';
 
-import {
-    EnhancedImageProperties,
-    ImageColorsData,
-    PreloadedData,
-    ActionDetail,
+    import {
+        EnhancedImageProperties,
+        ImageColorsData,
+        PreloadedData,
+        ActionDetail,
 
-    ImageText,
-    ImageTextVersion,
-    ImageTextVersionTextarea,
-    ImageTextVersionTextline,
-} from './data/interfaces';
+        ImageText,
+        ImageTextVersion,
+        ImageTextVersionTextarea,
+        ImageTextVersionTextline,
+    } from './data/interfaces';
 
-import logic from './logic';
+    import logic from './logic';
+    // #endregion internal
+// #endregion imports
 
 
 
+// #region exports
 export {
     /** constants */
     MESSAGE_TYPES,
@@ -43,3 +48,4 @@ export {
 
 
 export default EnhancedImage;
+// #endregion exports
