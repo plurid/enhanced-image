@@ -9,8 +9,8 @@
         href="https://github.com/plurid/enhanced-image/blob/master/LICENSE"
     >
         <img
-            src="https://img.shields.io/badge/license-MIT-blue.svg?colorB=1380C3&style=for-the-badge"
-            alt="License: MIT"
+            src="https://img.shields.io/badge/license-DEL-blue.svg?colorB=1380C3&style=for-the-badge"
+            alt="License: DEL"
         >
     </a>
 </p>
