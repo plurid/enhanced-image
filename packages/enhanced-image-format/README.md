@@ -38,7 +38,16 @@
 
 
 
-The Enhanced Image file format has the file extension `.emg` and is a wrapper around the known image formats (`.png`, `.jpeg`, `.webp`, etc.).
+### Contents
+
++ [About](#about)
++ [Exampe](#example)
+
+
+
+## About
+
+An `Enhanced Image` file format has the file extension `.emg` and is a decorating wrapper around the known image formats (`.png`, `.jpeg`, `.webp`, etc.).
 
 The Enhanced Image file format is comprised of the `header` and the `image` data.
 
@@ -56,7 +65,7 @@ emg.format ---
 
 The format can be `.deon` or `.json`.
 
-Within the header start and end is the header `data` which implements the recursive partial interface `Header`
+Within the start and end of the header is the header `data` which implements the recursive partial interface `Header`
 
 ``` typescript
 interface Header {
@@ -111,6 +120,10 @@ interface Text {
 
 On the next line after the header end the image data starts based on it's type.
 
+
+
+## Example
+
 An `.emg` hex dump example of a `.png` enhanced image (full header and six lines of the `.png` data):
 
 ``` emg
@@ -134,7 +147,7 @@ An `.emg` hex dump example of a `.png` enhanced image (full header and six lines
 00000110: ac40 1832 c25e a2c8 0c20 2384 1541 4036  .@.2.^... #..A@6
 ```
 
-The header is condensed and has the value
+The header is `condensed` and has the value
 
 ``` deon
 {
