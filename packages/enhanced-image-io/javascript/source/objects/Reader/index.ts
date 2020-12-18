@@ -40,13 +40,14 @@ class Reader {
 
     public async read() {
         try {
-            console.log('this.filepath', this.filepath);
-            // const data = await fs.readFile(this.filepath, 'utf-8');
-            // console.log('data', data);
+            const data = await fs.readFile(
+                this.filepath,
+                'binary',
+            );
 
-            // const result = await this.handleFile(data);
+            const result = await this.handleFile(data);
 
-            // return result;
+            return result;
         } catch (error) {
             throw 'Something went wrong.';
         }
@@ -214,7 +215,7 @@ class Reader {
 
         const lines = data.split('\n');
         const image = lines
-            .slice(0, headerLines)
+            .slice(headerLines)
             .join('\n');
 
         return {
