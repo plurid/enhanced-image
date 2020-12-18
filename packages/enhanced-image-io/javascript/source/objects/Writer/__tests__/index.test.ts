@@ -60,7 +60,7 @@ describe('Writer', () => {
 
 
 
-    it('simple - write png.eimg', async () => {
+    it('simple - write() png.eimg', async () => {
         const image = await fs.readFile('./tests/enhanced-image-text.png');
 
         const writer = new Writer(
