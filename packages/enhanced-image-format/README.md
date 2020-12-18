@@ -56,10 +56,10 @@ emg.format ---
 
 The format can be `.deon` or `.json`.
 
-Within the header start and end is the header `data` which follows the interface
+Within the header start and end is the header `data` which implements the recursive partial interface `Header`
 
 ``` typescript
-interface HeaderData {
+interface Header {
     type: string; // `png`, `jpeg`, `webp`, etc.
     height: number; // the natural `height` of the image
     width: number; // the natural `width` of the image
