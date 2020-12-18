@@ -127,7 +127,7 @@ class Writer {
     }
 
     private resolveHeaderData(
-        headerType?: HeaderType,
+        headerType: HeaderType,
     ) {
         if (headerType === 'json') {
             return JSON.stringify(this.header);
@@ -137,6 +137,7 @@ class Writer {
         const headerData = deon.stringify(
             this.header,
             {
+
                 indentation: 0,
             },
         );
