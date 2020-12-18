@@ -45,6 +45,7 @@
         "prepublishOnly": "yarn build"
     },
     "dependencies": {
+        "@plurid/deon": "^0.0.0-0",
         "commander": "^6.2.1"
     },
     "devDependencies": {
