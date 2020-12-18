@@ -1,0 +1,29 @@
+--- emg.deon
+{
+type png
+text [
+{
+id 1
+position {
+x 10
+y 10
+}
+data {
+type TEXTLINE
+content 'Some text'
+}
+}
+{
+id 2
+position {
+x 15
+y 15
+}
+data {
+type TEXTLINE
+content 'Some other text'
+}
+}
+]
+}
+emg.deon ---
