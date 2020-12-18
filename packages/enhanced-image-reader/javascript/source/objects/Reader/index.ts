@@ -8,6 +8,8 @@
 
     import stream from 'stream';
     import readline from 'readline';
+
+    import Deon from '@plurid/deon';
     // #endregion libraries
 
 
@@ -43,7 +45,7 @@ class Reader {
         try {
             const data = await fs.readFile(this.filepath, 'utf-8');
 
-            const result = this.handleFile(data);
+            const result = await this.handleFile(data);
 
             return result;
         } catch (error) {
@@ -53,7 +55,10 @@ class Reader {
 
     public async readHeader() {
         try {
-            const data: string = await new Promise((resolve, reject) => {
+            const {
+                headerData,
+                lineCount,
+            }: any = await new Promise((resolve, reject) => {
                 const instream = fsSync.createReadStream(this.filepath);
                 const outstream = new stream.Writable();
 
@@ -71,7 +76,6 @@ class Reader {
                     lineCount += 1;
 
                     const headerStartMatch = line.match(HeaderStart);
-
                     if (
                         !headerStart
                         && headerStartMatch
@@ -81,7 +85,6 @@ class Reader {
                     }
 
                     const headerEndMatch = line.match(HeaderEnd);
-
                     if (
                         !headerEnd
                         && headerEndMatch
@@ -105,7 +108,10 @@ class Reader {
                         reject('Header type error.');
                     }
 
-                    resolve(lines.join('\n'));
+                    resolve({
+                        headerData: lines.join('\n'),
+                        lineCount,
+                    });
                 });
 
                 readliner.on('error', () => {
@@ -113,7 +119,7 @@ class Reader {
                 });
             });
 
-            const header = this.handleHeader(data);
+            const header = await this.handleHeader(headerData);
 
             return header;
         } catch (error) {
@@ -124,30 +130,94 @@ class Reader {
     public extractHeader(
         data: string,
     ) {
-        return '';
+        const lines: string[] = [];
+
+        let headerStart = false;
+        let headerEnd = false;
+        let headerStartType = '';
+        let headerEndType = '';
+        let lineCount = 0;
+
+        for (const line of data.split('\n')) {
+            lineCount += 1;
+
+            const headerStartMatch = line.match(HeaderStart);
+            if (
+                !headerStart
+                && headerStartMatch
+            ) {
+                headerStart = true;
+                headerStartType = headerStartMatch[1];
+
+                continue;
+            }
+
+            const headerEndMatch = line.match(HeaderEnd);
+            if (
+                !headerEnd
+                && headerEndMatch
+            ) {
+                headerEnd = true;
+                headerEndType = headerEndMatch[1];
+
+                break;
+            }
+
+            if (headerStart) {
+                lines.push(line);
+            }
+        }
+
+        if (
+            headerStartType !== headerEndType
+            || !headerAllowedTypes.includes(headerStartType)
+        ) {
+            throw 'Header type error.';
+        }
+
+        return {
+            headerData: lines.join('\n'),
+            lineCount,
+        };
     }
 
-    public parseHeader(
+    public async parseHeader(
         data: string,
     ) {
-        return {};
+        const deon = new Deon();
+        const parsed = await deon.parse(data);
+
+        return parsed;
     }
 
 
-    private handleHeader(
+    private async handleHeader(
         data: string,
     ) {
-        const headerData = this.extractHeader(data);
-        const header = this.parseHeader(headerData);
+        const {
+            headerData,
+            lineCount,
+        } = this.extractHeader(data);
+        const header = await this.parseHeader(headerData);
 
-        return header;
+        return {
+            header,
+            headerLines: lineCount,
+        };
     }
 
-    private handleFile(
+    private async handleFile(
         data: string,
     ) {
-        const header = this.handleHeader(data);
-        const image = '';
+        const {
+            header,
+            headerLines,
+        } = await this.handleHeader(data);
+
+        const lines = data.split('\n');
+        const image = lines
+            .slice(0, headerLines)
+            .join('\n');
 
         return {
             header,
