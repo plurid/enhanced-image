@@ -31,7 +31,7 @@
 
 
 
-The Enhanced Image file format has the file extension `.emg` and is a wrapper around the known image formats.
+The Enhanced Image file format has the file extension `.emg` and is a wrapper around the known image formats (`.png`, `.jpge`, `.webp`, etc.).
 
 The Enhanced Image file format is comprised of the `header` and the `image` data.
 
@@ -53,7 +53,9 @@ Within the header start and end is the header `data` which follows the interface
 
 ``` typescript
 interface HeaderData {
-    type: string; // 'png', 'jpeg', 'webp', etc.
+    type: string; // `png`, `jpeg`, `webp`, etc.
+    height: number; // the natural `height` of the image;
+    width: number; // the natural `width` of the image;
     text: Text[];
 }
 
@@ -75,6 +77,21 @@ interface Text {
     };
 
     viewable: boolean;
+
+    data: {
+        type: 'TEXTLINE';
+
+        font: TextlineFont;
+        color: string;
+        content: string;
+        transview: TextlineTransview;
+        link: TextlineLink;
+        action: TextlineAction;
+    } | {
+        type: 'TEXTAREA';
+        content: string;
+        [key: string]: any;
+    };
 }
 ```
 
