@@ -1,4 +1,4 @@
---- emg.deon
+--- eimg.deon
 {
 type png
 text [
@@ -26,4 +26,4 @@ content 'Some other text'
 }
 ]
 }
-emg.deon ---
+eimg.deon ---
