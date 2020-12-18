@@ -504,8 +504,8 @@
 
 "@plurid/deon@^0.0.0-0":
   version "0.0.0-0"
-  resolved "https://npm.plurid.cloud/@plurid%2fdeon/-/deon-0.0.0-0.tgz#fdec8b6895f651082a7dd26d04731e9f50e31be5"
-  integrity sha512-hnV+dwHG+L9C/BDd3+1CO2uhgsSzZGobrpReZencMOckfamKclY5wMeq0ZQZUbXhVBoCTilg8MlY5YZmGHubqQ==
+  resolved "https://npm.plurid.cloud/@plurid%2fdeon/-/deon-0.0.0-0.tgz#b534bee70b99733ed6c75ece8456890b13e3b399"
+  integrity sha512-rLbUfNgWpNeD10yV7VVPKvV4W0MHw2CB499XpgfpK1bB+qinsk9Z8/F09Vsw0FxcJqjih3eDR+Tku5UogcGPhQ==
   dependencies:
     commander "^6.2.0"
     cross-fetch "^3.0.6"
