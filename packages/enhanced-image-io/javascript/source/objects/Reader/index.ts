@@ -7,7 +7,9 @@
     import stream from 'stream';
     import readline from 'readline';
 
-    import Deon from '@plurid/deon';
+    import Deon, {
+        typer,
+    } from '@plurid/deon';
     // #endregion libraries
 
 
@@ -54,9 +56,7 @@ class Reader {
 
     public async readHeader() {
         try {
-            const {
-                headerData,
-            }: any = await new Promise((resolve, reject) => {
+            const data: any = await new Promise((resolve, reject) => {
                 const instream = fsSync.createReadStream(this.filepath);
                 const outstream = new stream.Writable();
 
@@ -90,6 +90,8 @@ class Reader {
                         headerEnd = true;
                         headerEndType = headerEndMatch[1];
 
+                        lines.push(line);
+
                         readliner.emit('close');
                     }
 
@@ -107,7 +109,9 @@ class Reader {
                     }
 
                     resolve({
-                        headerData: lines.join('\n'),
+                        headerData: Buffer.from(
+                            lines.join('\n'),
+                        ),
                         lineCount,
                     });
                 });
@@ -116,6 +120,14 @@ class Reader {
                     reject();
                 });
             });
+
+            if (!data) {
+                throw 'Something went wrong reading the file.';
+            }
+
+            const {
+                headerData,
+            } = data;
 
             const header = await this.handleHeader(headerData);
 
@@ -174,7 +186,7 @@ class Reader {
         }
 
         return {
-            headerData: lines.join('\n'),
+            headerRaw: lines.join('\n'),
             lineCount,
         };
     }
@@ -184,8 +196,9 @@ class Reader {
     ) {
         const deon = new Deon();
         const parsed = await deon.parse(data);
+        const typed = typer(parsed);
 
-        return parsed;
+        return typed;
     }
 
 
@@ -193,13 +206,14 @@ class Reader {
         data: Buffer,
     ) {
         const {
-            headerData,
+            headerRaw,
             lineCount,
         } = this.extractHeader(data.toString());
-        const header = await this.parseHeader(headerData);
+        const header = await this.parseHeader(headerRaw);
 
         return {
             header,
+            headerRaw,
             headerLines: lineCount,
         };
     }
@@ -209,6 +223,7 @@ class Reader {
     ) {
         const {
             header,
+            headerRaw,
             headerLines,
         } = await this.handleHeader(data);
 
@@ -230,6 +245,7 @@ class Reader {
 
         return {
             header,
+            headerRaw,
             headerLines,
             image,
         };

@@ -8,16 +8,18 @@
 
 // #region module
 describe('Reader', () => {
-    it('works', async () => {
-        // try {
-        //     const reader = new Reader('./tests/enhanced-image-from-jpg.eimg');
-        //     const data = await reader.read();
-        //     console.log('data', data);
-        // } catch (error) {
-        //     console.log('error', error);
-        // }
+    it('simple - read()', async () => {
+        const reader = new Reader('./tests/enhanced-image-from-jpg.eimg');
+        const data = await reader.read();
 
-        // expect(true).toBeTruthy();
+        expect(data.headerLines).toEqual(29);
+    });
+
+    it('simple - readHeader()', async () => {
+        const reader = new Reader('./tests/enhanced-image-from-jpg.eimg');
+        const data = await reader.readHeader();
+
+        expect(data.headerLines).toEqual(29);
     });
 });
 // #endregion module
