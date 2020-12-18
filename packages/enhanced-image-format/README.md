@@ -41,7 +41,7 @@
 ### Contents
 
 + [About](#about)
-+ [Exampe](#example)
++ [Example](#example)
 
 
 
