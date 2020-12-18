@@ -34,7 +34,7 @@
         "eimg": "binder/eimg"
     },
     "scripts": {
-        "test": "jest -c ./configurations/jest.config.js --coverage --verbose  ./source",
+        "test": "jest -c ./configurations/jest.config.js --coverage --verbose ./source",
         "test.suite": "jest -c ./configurations/jest.config.js --coverage --verbose",
         "clean": "rm -rf distribution",
         "start": "rollup -c ./scripts/rollup.config.ts -w",
