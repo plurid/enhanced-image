@@ -40,11 +40,13 @@ class Reader {
 
     public async read() {
         try {
-            const data = await fs.readFile(this.filepath, 'utf-8');
+            console.log('this.filepath', this.filepath);
+            // const data = await fs.readFile(this.filepath, 'utf-8');
+            // console.log('data', data);
 
-            const result = await this.handleFile(data);
+            // const result = await this.handleFile(data);
 
-            return result;
+            // return result;
         } catch (error) {
             throw 'Something went wrong.';
         }
