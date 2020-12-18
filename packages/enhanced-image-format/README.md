@@ -124,9 +124,9 @@ On the next line after the header end the image data starts based on it's type.
 
 ## Example
 
-An `.emg` hex dump example of a `.png` enhanced image (full header and six lines of the `.png` data) \[`./example/enhanced-image-from-png.eimg`\]:
+An `.eimg` hex dump example of a `.png` enhanced image (full header and six lines of the `.png` data) \[`./example/enhanced-image-from-png.eimg`\]:
 
-``` emg
+``` eimg
 00000000: 2d2d 2d20 6569 6d67 2e64 656f 6e0a 7b0a  --- eimg.deon.{.
 00000010: 7479 7065 2070 6e67 0a74 6578 7420 5b0a  type png.text [.
 00000020: 7b0a 6964 2031 0a70 6f73 6974 696f 6e20  {.id 1.position
