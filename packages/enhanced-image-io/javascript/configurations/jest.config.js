@@ -1,32 +1,18 @@
 module.exports = {
     rootDir: '../',
     transform: {
-        '.(ts|tsx)': 'ts-jest'
+        '.(ts|tsx)': 'ts-jest',
     },
     testEnvironment: 'node',
     testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
-    testPathIgnorePatterns: [
-        'data',
-    ],
     moduleFileExtensions: [
         'ts',
         'tsx',
-        'js'
+        'js',
     ],
-    moduleDirectories: [
-        'node_modules',
-        'source',
-    ],
-    moduleNameMapper: {
-        "#data/(.*)": "<rootDir>/source/data/$1",
-        "#objects/(.*)": "<rootDir>/source/objects/$1",
-        "#commands/(.*)": "<rootDir>/source/commands/$1",
-        "#utilities/(.*)": "<rootDir>/source/utilities/$1",
-    },
-    collectCoverage: true,
+    collectCoverage: false,
     coveragePathIgnorePatterns: [
         '/node_modules/',
-        '/build/',
         '/distribution/',
     ],
     coverageThreshold: {
@@ -34,15 +20,20 @@ module.exports = {
             branches: 0,
             functions: 0,
             lines: 0,
-            statements: 0
+            statements: 0,
             // branches: 90,
             // functions: 95,
             // lines: 95,
             // statements: 95
-        }
+        },
     },
     collectCoverageFrom: [
-        'source/*.{js,ts}'
+        'source/*.{js,ts}',
     ],
-    testTimeout: 30000
+    moduleNameMapper: {
+        "#data/(.*)": "<rootDir>/source/data/$1",
+        "#objects/(.*)": "<rootDir>/source/objects/$1",
+        "#commands/(.*)": "<rootDir>/source/commands/$1",
+        "#utilities/(.*)": "<rootDir>/source/utilities/$1",
+    },
 }
