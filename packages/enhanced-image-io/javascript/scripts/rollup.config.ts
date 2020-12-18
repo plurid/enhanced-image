@@ -33,11 +33,13 @@ const cli = {
         },
     ],
     external: [
-        '@plurid/deon',
-        'commander',
         'os',
-        'path',
         'fs',
+        'stream',
+        'path',
+        'readline',
+        'commander',
+        '@plurid/deon',
     ],
     plugins: [
         ...common.plugins,
