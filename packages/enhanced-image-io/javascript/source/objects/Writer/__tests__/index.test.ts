@@ -58,6 +58,8 @@ describe('Writer', () => {
         expect(written).toBeTruthy();
     });
 
+
+
     it('simple - write png.eimg', async () => {
         const image = await fs.readFile('./tests/enhanced-image-text.png');
 

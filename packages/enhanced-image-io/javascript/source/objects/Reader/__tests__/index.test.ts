@@ -15,6 +15,8 @@ describe('Reader', () => {
         expect(data.headerLines).toEqual(29);
     });
 
+
+
     it('simple - readHeader()', async () => {
         const reader = new Reader('./tests/enhanced-image-from-jpg.eimg');
         const data = await reader.readHeader();
