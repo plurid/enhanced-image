@@ -17,12 +17,6 @@
             "#data/*": [
                 "./source/data/*"
             ],
-            "#functions/*": [
-                "./source/functions/*"
-            ],
-            "#logics/*": [
-                "./source/logics/*"
-            ],
             "#objects/*": [
                 "./source/objects/*"
             ],
