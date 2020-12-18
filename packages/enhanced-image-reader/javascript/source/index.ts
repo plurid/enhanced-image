@@ -4,6 +4,7 @@
     import * as commands from '#commands/index';
 
     import Reader from './objects/Reader';
+    import Writer from './objects/Writer';
     // #endregion internal
 // #endregion imports
 
@@ -18,5 +19,6 @@ export {
     commands,
 
     Reader,
+    Writer,
 };
 // #endregion exports

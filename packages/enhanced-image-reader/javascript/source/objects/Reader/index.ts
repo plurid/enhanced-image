@@ -4,8 +4,6 @@
         promises as fs,
     } from 'fs';
 
-    import path from 'path';
-
     import stream from 'stream';
     import readline from 'readline';
 
@@ -19,6 +17,10 @@
         HeaderEnd,
         headerAllowedTypes,
     } from '../../data/constants';
+
+    import {
+        resolveAbsolutePath,
+    } from '#utilities/general';
     // #endregion external
 // #endregion imports
 
@@ -32,12 +34,7 @@ class Reader {
     constructor(
         file: string,
     ) {
-        this.filepath = path.isAbsolute(file)
-            ? file
-            : path.join(
-                process.cwd(),
-                file,
-            );
+        this.filepath = resolveAbsolutePath(file);
     }
 
 
