@@ -24,11 +24,11 @@
 // #region module
 class Writer {
     private header: any;
-    private image: any;
+    private image: Buffer;
 
     constructor(
         header: any,
-        image: any,
+        image: Buffer,
     ) {
         this.header = header;
         this.image = image;
@@ -44,10 +44,17 @@ class Writer {
     ) {
         try {
             const header = this.composeHeader(
-                headerType,
+                headerType || 'deon',
             );
 
-            const file = header + this.image;
+            const headerBuffer = Buffer.from(header);
+
+            const bufferList = [
+                headerBuffer,
+                this.image,
+            ];
+
+            const file = Buffer.concat(bufferList);
 
             await fs.writeFile(
                 resolveAbsolutePath(filepath),
@@ -69,7 +76,7 @@ class Writer {
     ) {
         try {
             const header = this.composeHeader(
-                headerType,
+                headerType || 'deon',
             );
 
             await fs.writeFile(
@@ -103,7 +110,7 @@ class Writer {
 
 
     private composeHeader(
-        headerType?: HeaderType,
+        headerType: HeaderType,
     ) {
         const headerStart = `--- eimg.${headerType}`;
         const headerData = this.resolveHeaderData(headerType);

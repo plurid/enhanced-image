@@ -8,27 +8,58 @@ const {
 
 
 
+const header = {
+    "type": "png",
+    "text": [
+        {
+            "id": "1",
+            "position": {
+                "x": "10",
+                "y": "10"
+            },
+            "data": {
+                "type": "TEXTLINE",
+                "content": "Some text"
+            }
+        },
+        {
+            "id": "2",
+            "position": {
+                "x": "15",
+                "y": "15"
+            },
+            "data": {
+                "type": "TEXTLINE",
+                "content": "Some other text"
+            }
+        }
+    ]
+};
+
+
 const main = async () => {
     {
+        const image = await fs.readFile('./tests/enhanced-image-text.jpg');
+
         const writer = new Writer(
-            {
-                type: 'jpg',
-            },
+            header,
+            image,
         );
         const data = await writer.write(
-            'eimg.jpg',
+            'jpg.eimg',
         );
         console.log('data', data);
     }
 
     {
+        const image = await fs.readFile('./tests/enhanced-image-text.png');
+
         const writer = new Writer(
-            {
-                type: 'png',
-            },
+            header,
+            image,
         );
         const data = await writer.write(
-            'eimg.png',
+            'png.eimg',
         );
         console.log('data', data);
     }
