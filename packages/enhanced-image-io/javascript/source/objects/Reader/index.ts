@@ -42,7 +42,6 @@ class Reader {
         try {
             const data = await fs.readFile(
                 this.filepath,
-                'binary',
             );
 
             const result = await this.handleFile(data);
@@ -191,12 +190,12 @@ class Reader {
 
 
     private async handleHeader(
-        data: string,
+        data: Buffer,
     ) {
         const {
             headerData,
             lineCount,
-        } = this.extractHeader(data);
+        } = this.extractHeader(data.toString());
         const header = await this.parseHeader(headerData);
 
         return {
@@ -206,20 +205,32 @@ class Reader {
     }
 
     private async handleFile(
-        data: string,
+        data: Buffer,
     ) {
         const {
             header,
             headerLines,
         } = await this.handleHeader(data);
 
-        const lines = data.split('\n');
-        const image = lines
-            .slice(headerLines)
-            .join('\n');
+        let lineCount = 0;
+        let sliceIndex = 0;
+
+        for (const [index, byte] of data.entries()) {
+            if (String.fromCharCode(byte) === '\n') {
+                lineCount += 1;
+            }
+
+            if (lineCount === headerLines) {
+                sliceIndex = index + 1;
+                break;
+            }
+        }
+
+        const image = data.slice(sliceIndex);
 
         return {
             header,
+            headerLines,
             image,
         };
     }
