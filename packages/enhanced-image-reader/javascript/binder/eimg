@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-
-const enhancedImageReader = require('../distribution/index.js');
-
-enhancedImageReader.cli();

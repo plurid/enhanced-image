@@ -16,7 +16,7 @@
         HeaderStart,
         HeaderEnd,
         headerAllowedTypes,
-    } from '../../data/constants';
+    } from '#data/constants';
 
     import {
         resolveAbsolutePath,
@@ -54,7 +54,6 @@ class Reader {
         try {
             const {
                 headerData,
-                lineCount,
             }: any = await new Promise((resolve, reject) => {
                 const instream = fsSync.createReadStream(this.filepath);
                 const outstream = new stream.Writable();

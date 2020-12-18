@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+const enhancedImageIO = require('../distribution/index.js');
+
+enhancedImageIO.cli();

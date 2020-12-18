@@ -10,6 +10,10 @@
 
     // #region external
     import {
+        HeaderType,
+    } from '#data/interfaces';
+
+    import {
         resolveAbsolutePath,
     } from '#utilities/general';
     // #endregion external
@@ -36,7 +40,7 @@ class Writer {
      */
     public async write(
         filepath: string,
-        headerType?: 'deon' | 'json',
+        headerType?: HeaderType,
     ) {
         try {
             const header = this.composeHeader(
@@ -61,7 +65,7 @@ class Writer {
      */
     public async writeHeader(
         filepath: string,
-        headerType?: 'deon' | 'json',
+        headerType?: HeaderType,
     ) {
         try {
             const header = this.composeHeader(
@@ -99,7 +103,7 @@ class Writer {
 
 
     private composeHeader(
-        headerType?: 'deon' | 'json',
+        headerType?: HeaderType,
     ) {
         const headerStart = `--- eimg.${headerType}`;
         const headerData = this.resolveHeaderData(headerType);
@@ -115,9 +119,8 @@ class Writer {
         return header;
     }
 
-
     private resolveHeaderData(
-        headerType?: 'deon' | 'json',
+        headerType?: HeaderType,
     ) {
         if (headerType === 'json') {
             return JSON.stringify(this.header);

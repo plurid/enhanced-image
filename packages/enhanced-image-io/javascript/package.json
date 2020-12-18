@@ -1,7 +1,7 @@
 {
-    "name": "@plurid/enhanced-image-reader",
+    "name": "@plurid/enhanced-image-io",
     "version": "0.0.0-0",
-    "description": "Enhanced Image Reader",
+    "description": "Enhanced Image Input/Output",
     "keywords": [
         "enhanced image"
     ],
@@ -15,7 +15,7 @@
         "email": "source@plurid.com",
         "url": "https://github.com/plurid/enhanced-image/issues"
     },
-    "homepage": "https://github.com/plurid/enhanced-image/blob/master/packages/enhanced-image-reader/README.md",
+    "homepage": "https://github.com/plurid/enhanced-image/blob/master/packages/enhanced-image-io/README.md",
     "publishConfig": {
         "registry": "https://registry.npmjs.org/",
         "access": "public"
