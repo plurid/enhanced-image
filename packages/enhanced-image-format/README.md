@@ -63,7 +63,7 @@ and ends with
 eimg.format ---
 ```
 
-The format can be `.deon` or `.json`.
+The format can be `.deon` or `.json` and refers only to the format of the header `data`.
 
 Within the start and end of the header is the header `data` which implements the recursive partial interface `Header`
 
@@ -147,7 +147,7 @@ An `.eimg` hex dump example of a `.png` enhanced image (full header and six line
 00000110: 4310 096e c2c1 415c c49f ad63 d296 2238  C..n..A\...c.."8
 ```
 
-The header is `condensed` and has the value
+The example header data is `condensed` and has the value
 
 ``` deon
 {
