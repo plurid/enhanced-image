@@ -4,6 +4,7 @@
         height="250px"
     >
     <br />
+    <br />
     <a
         target="_blank"
         href="https://github.com/plurid/enhanced-image/blob/master/LICENSE"
@@ -23,14 +24,29 @@
     Enhanced Image
 </h1>
 
-<p
+
+
+<h3
     align="center"
 >
     HTML Custom Image Element with Enhanced Abilities
-</p>
+</h3>
+
+
+
+<br />
+
 
 
 Extract, select, translate text from images in your browser, adjust image colors, modify image appearance.
+
+
+### Contents
+
++ [Extension](#extension)
++ [Features](#features)
++ [Depict](#depict)
++ [Packages](#packages)
 
 
 
@@ -89,20 +105,20 @@ The Element uses plurid's [depict][depict] services for text extraction. A custo
 
 ## Packages
 
-<a target="_blank" href="https://www.npmjs.com/package/@plurid/enhanced-image-html">
-    <img src="https://img.shields.io/npm/v/@plurid/enhanced-image-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
-</a>
-
-[@plurid/enhanced-image-html][enhanced-image-html] • HTML implementation
-
-[enhanced-image-html]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-html
-
-
-
 <a target="_blank" href="https://www.npmjs.com/package/@plurid/enhanced-image-react">
     <img src="https://img.shields.io/npm/v/@plurid/enhanced-image-react.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
 
-[@plurid/enhanced-image-react][enhanced-image-react] • React implementation
+[@plurid/enhanced-image-react][enhanced-image-react] • implementation for `React`
 
 [enhanced-image-react]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-react
+
+
+
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/enhanced-image-io">
+    <img src="https://img.shields.io/npm/v/@plurid/enhanced-image-io.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/enhanced-image-io][enhanced-image-io] • input/output operations
+
+[enhanced-image-io]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-io
