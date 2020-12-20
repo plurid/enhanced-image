@@ -40,7 +40,8 @@
         "start": "rollup -c ./scripts/rollup.config.ts -w",
         "build.clean": "rm -rf `find ./distribution/ -type d -name __tests__`",
         "build.development": "rollup -c ./scripts/rollup.config.ts && yarn build.clean",
-        "build": "rollup -c ./scripts/rollup.config.ts && yarn build.clean",
+        "build.production": "rollup -c ./scripts/rollup.config.ts && yarn build.clean",
+        "build": "yarn build.production",
         "prebuild": "yarn clean",
         "prepublishOnly": "yarn build"
     },
