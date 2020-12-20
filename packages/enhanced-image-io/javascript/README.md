@@ -7,7 +7,7 @@
     <br />
     <a
         target="_blank"
-        href="https://github.com/plurid/enhanced-image/blob/master/LICENSE"
+        href="https://github.com/plurid/enhanced-image/blob/master/packages/enhanced-image-io/javascript/LICENSE"
     >
         <img
             src="https://img.shields.io/badge/license-DEL-blue.svg?colorB=1380C3&style=for-the-badge"
@@ -21,7 +21,7 @@
 <h1
     align="center"
 >
-    Enhanced Image
+    Enhanced Image Input/Output
 </h1>
 
 
@@ -29,7 +29,7 @@
 <h3
     align="center"
 >
-    HTML Custom Image Element with Enhanced Abilities
+    Image with Enhanced Abilities
 </h3>
 
 
@@ -38,19 +38,7 @@
 
 
 
-Extract, select, translate text from images in your browser, adjust image colors, modify image appearance.
-
-
-
-## Extension
-
-The Element can enhance arbitrary Internet images as a browser extension:
-
-+ [Chrome Extension][chrome] • [source][enhanced-image-chrome]
-
-[chrome]: https://chrome.google.com/webstore/detail/enhanced-image/pdcicakelecpcnchbbnkonjpmhagcbnm
-
-[enhanced-image-chrome]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-chrome
+The `enhaced image input/output` package provides utility for the enhanced image format [`.eimg`](https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-format).
 
 
 
@@ -89,7 +77,7 @@ The Element can enhance arbitrary Internet images as a browser extension:
 
 ## Depict
 
-The Element uses plurid's [depict][depict] services for text extraction. A custom API endpoint can be used, provided it uses GraphQL and respects the schema.
+Enhanced Image uses plurid's [depict][depict] services for text extraction. A custom API endpoint can be used, provided it uses GraphQL and implements the schema.
 
 [depict]: https://plurid.com/depict
 
@@ -97,20 +85,20 @@ The Element uses plurid's [depict][depict] services for text extraction. A custo
 
 ## Packages
 
-<a target="_blank" href="https://www.npmjs.com/package/@plurid/enhanced-image-html">
-    <img src="https://img.shields.io/npm/v/@plurid/enhanced-image-html.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
-</a>
-
-[@plurid/enhanced-image-html][enhanced-image-html] • HTML implementation
-
-[enhanced-image-html]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-html
-
-
-
 <a target="_blank" href="https://www.npmjs.com/package/@plurid/enhanced-image-react">
     <img src="https://img.shields.io/npm/v/@plurid/enhanced-image-react.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
 
-[@plurid/enhanced-image-react][enhanced-image-react] • React implementation
+[@plurid/enhanced-image-react][enhanced-image-react] • implementation for `React`
 
 [enhanced-image-react]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-react
+
+
+
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/enhanced-image-io">
+    <img src="https://img.shields.io/npm/v/@plurid/enhanced-image-io.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/enhanced-image-io][enhanced-image-io] • input/output operations
+
+[enhanced-image-io]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-io
