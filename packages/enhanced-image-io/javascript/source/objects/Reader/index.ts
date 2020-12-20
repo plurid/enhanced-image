@@ -21,6 +21,10 @@
     } from '#data/constants';
 
     import {
+        PartialHeader,
+    } from '#data/interfaces';
+
+    import {
         resolveAbsolutePath,
     } from '#utilities/general';
     // #endregion external
@@ -129,7 +133,9 @@ class Reader {
                 headerData,
             } = data;
 
-            const header = await this.handleHeader(headerData);
+            const header = await this.handleHeader(
+                headerData,
+            );
 
             return header;
         } catch (error) {
@@ -196,7 +202,7 @@ class Reader {
     ) {
         const deon = new Deon();
         const parsed = await deon.parse(data);
-        const typed = typer(parsed);
+        const typed = typer<PartialHeader>(parsed);
 
         return typed;
     }

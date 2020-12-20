@@ -11,6 +11,7 @@
     // #region external
     import {
         HeaderType,
+        PartialHeader,
     } from '#data/interfaces';
 
     import {
@@ -23,11 +24,11 @@
 
 // #region module
 class Writer {
-    private header: any;
+    private header: PartialHeader;
     private image: Buffer;
 
     constructor(
-        header: any,
+        header: PartialHeader,
         image: Buffer,
     ) {
         this.header = header;
@@ -47,14 +48,18 @@ class Writer {
                 headerType || 'deon',
             );
 
-            const headerBuffer = Buffer.from(header);
+            const headerBuffer = Buffer.from(
+                header,
+            );
 
             const bufferList = [
                 headerBuffer,
                 this.image,
             ];
 
-            const file = Buffer.concat(bufferList);
+            const file = Buffer.concat(
+                bufferList,
+            );
 
             await fs.writeFile(
                 resolveAbsolutePath(filepath),
@@ -137,7 +142,6 @@ class Writer {
         const headerData = deon.stringify(
             this.header,
             {
-
                 indentation: 0,
             },
         );
