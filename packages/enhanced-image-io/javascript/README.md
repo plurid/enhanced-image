@@ -98,7 +98,7 @@ const main = async () => {
         const reader = new Reader(eimgImage);
         const data = await reader.read();
 
-        // use the header data
+        // Use the header data.
         console.log('eimg header', data.header);
 
         const jpgPath = 'eimg.jpg';
@@ -130,7 +130,7 @@ const main = async () => {
         );
 
         if (result) {
-            console.log('Enhanced Image written succesfully.');
+            console.log('Enhanced Image written succesfully to', eimgPath);
         } else {
             console.log('Enhanced Image written unsuccesfully.');
         }
