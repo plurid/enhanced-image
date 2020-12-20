@@ -41,6 +41,107 @@
 The `enhaced image input/output` package provides utility for the enhanced image format [`.eimg`](https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-format).
 
 
+### Contents
+
++ [Install](#install)
++ [Usage](#usage)
++ [Features](#features)
++ [Viewing](#viewing)
++ [Depict](#depict)
++ [Packages](#Packages)
+
+
+
+## Install
+
+To install the `enhaced image input/output` package run
+
+```
+npm install @plurid/enhanced-image-io
+```
+
+or
+
+```
+yarn add @plurid/enhanced-image-io
+```
+
+
+
+## Usage
+
+Import `Reader` and `Writer` and use accordingly.
+
+``` typescript
+import {
+    promises as fs,
+} from 'fs';
+
+import {
+    // Objects.
+    Reader,
+    Writer,
+
+    // Interface.
+    PartialHeader,
+} from '@plurid/enhanced-image-io`;
+
+
+// Local paths to images.
+const jpgImage = '/path/to/jpg/image';
+const eimgImage = '/path/to/eimg/image';
+
+
+const main = async () => {
+    // Reading an .eimg and writing the image it enhances to a separate file.
+    {
+        const reader = new Reader(eimgImage);
+        const data = await reader.read();
+
+        // use the header data
+        console.log('eimg header', data.header);
+
+        const jpgPath = 'eimg.jpg';
+
+        await fs.writeFile(
+            jpgPath,
+            data.image,
+        );
+    }
+
+    // Writing an .eimg from a .jpg with a custom header.
+    {
+        const customHeader: PartialHeader = {
+            // ...
+            // header data
+            // ...
+        };
+
+        const image = await fs.readFile(jpgImage);
+
+        const writer = new Writer(
+            customHeader,
+            image,
+        );
+
+        const eimgPath = 'jpg.eimg';
+        const result = await writer.write(
+            eimgPath,
+        );
+
+        if (result) {
+            console.log('Enhanced Image written succesfully.');
+        } else {
+            console.log('Enhanced Image written unsuccesfully.');
+        }
+    }
+}
+
+
+main();
+```
+
+
 
 ## Features
 
@@ -72,6 +173,20 @@ The `enhaced image input/output` package provides utility for the enhanced image
 <p align="center">
     <img src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/screenshots/ss-4-bless.png" height="500px">
 </p>
+
+
+
+## Viewing
+
+Enhanced Images can be viewed natively using the [viewer](https://github.com/plurid/viewer) application.
+
+Enhanced Images can be viewed in browser using the browser extension:
+
++ [Chrome Extension][chrome] • [source][enhanced-image-chrome]
+
+[chrome]: https://chrome.google.com/webstore/detail/enhanced-image/pdcicakelecpcnchbbnkonjpmhagcbnm
+
+[enhanced-image-chrome]: https://github.com/plurid/enhanced-image/tree/master/packages/enhanced-image-chrome
 
 
 
