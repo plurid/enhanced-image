@@ -1,5 +1,6 @@
 // #region imports
     // #region libraries
+    import ttypescript from 'ttypescript';
     import commonjs from '@rollup/plugin-commonjs';
     import typescript from 'rollup-plugin-typescript2';
     // #endregion libraries
@@ -16,14 +17,15 @@
 const common = {
     plugins: [
         typescript({
+            typescript: ttypescript,
             tsconfig: './tsconfig.json',
         }),
         commonjs(),
-    ]
+    ],
 };
 
 
-const cli = {
+const build = {
     input: './source/index.ts',
     output: [
         {
@@ -51,6 +53,6 @@ const cli = {
 
 // #region exports
 export default [
-    cli,
+    build,
 ];
 // #endregion exports

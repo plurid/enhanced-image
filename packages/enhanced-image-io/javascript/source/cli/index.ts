@@ -8,7 +8,11 @@
 
     // #region external
     import {
-    } from '#commands/index';
+        cliVersion,
+    } from '#data/constants';
+
+    // import {
+    // } from '#commands/index';
     // #endregion external
 // #endregion imports
 
@@ -22,8 +26,17 @@ const main = async (
         .storeOptionsAsProperties(false)
         .passCommandToAction(false);
 
+    program
+        .name('eimg')
+        .usage('<command>')
+        .version(cliVersion, '-v, --version')
+        .action(() => {
+            program.outputHelp();
+        });
 
-    program.parseAsync(process.argv);
+    program.parseAsync(
+        process.argv,
+    );
 }
 
 
