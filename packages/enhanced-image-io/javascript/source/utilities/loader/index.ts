@@ -7,7 +7,7 @@
 
 
 // #region module
-const loadEnhacedImage = async (
+const loadEnhancedImage = async (
     filepath: string,
 ) =>  {
     const reader = new Reader(filepath);
@@ -21,6 +21,6 @@ const loadEnhacedImage = async (
 
 // #region exports
 export {
-    loadEnhacedImage,
+    loadEnhancedImage,
 };
 // #endregion exports

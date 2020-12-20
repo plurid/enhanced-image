@@ -7,7 +7,7 @@
     import Writer from './objects/Writer';
 
     import {
-        loadEnhacedImage,
+        loadEnhancedImage,
     } from './utilities/loader';
     // #endregion internal
 // #endregion imports
@@ -27,6 +27,6 @@ export {
     Writer,
 
     // utilities
-    loadEnhacedImage,
+    loadEnhancedImage,
 };
 // #endregion exports
