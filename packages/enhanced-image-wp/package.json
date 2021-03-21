@@ -1,0 +1,89 @@
+{
+    "name": "@plurid/enhanced-image-wp",
+    "version": "0.0.0-0",
+    "description": "Enhanced Image Wordpress plugin",
+    "keywords": [
+        "enhanced",
+        "image",
+        "wordpress"
+    ],
+    "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
+    "license": "SEE LICENSE IN LICENSE",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plurid/enhanced-image"
+    },
+    "bugs": {
+        "email": "source@plurid.com",
+        "url": "https://github.com/plurid/enhanced-image/issues"
+    },
+    "homepage": "https://github.com/plurid/enhanced-image/blob/master/packages/enhanced-image-react",
+    "main": "distribution/index.js",
+    "types": "distribution/index.d.ts",
+    "engines": {
+        "node": ">=12",
+        "npm": ">=6"
+    },
+    "scripts": {
+        "clean": "rm -rf ./distribution",
+        "clean.tests": "find ./distribution -type d -name '__tests__' -exec rm -r {} +",
+        "test": "jest -c ./configurations/jest.config.js",
+        "lint": "eslint -c ./configurations/.eslintrc.js ./source",
+        "start": "yarn clean && rollup -c ./scripts/rollup.config.js -w --environment ENV_MODE:local",
+        "build.local": "yarn clean && rollup -c ./scripts/rollup.config.js --environment ENV_MODE:local",
+        "build.development": "yarn clean && rollup -c ./scripts/rollup.config.js --environment ENV_MODE:development",
+        "build.production": "yarn clean && yarn lint && yarn test && rollup -c ./scripts/rollup.config.js --environment ENV_MODE:production && yarn clean.tests",
+        "build": "yarn build.production",
+        "prepublishOnly": "yarn build"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.3.12",
+        "@plurid/detoolbar-react": "^0.0.0-0",
+        "@plurid/enhanced-image-react": "^0.0.0-0",
+        "@plurid/plurid-functions": "^0.0.0-1",
+        "@plurid/plurid-functions-react": "^0.0.0-1",
+        "@plurid/plurid-icons-react": "^0.0.0-0",
+        "@plurid/plurid-themes": "^0.0.0-0",
+        "@plurid/plurid-ui-components-react": "^0.0.0-1",
+        "@plurid/plurid-ui-state-react": "^0.0.0-0",
+        "@wordpress/blocks": "^8.0.0",
+        "@wordpress/i18n": "^3.19.0",
+        "@wordpress/scripts": "^14.0.1",
+        "cross-fetch": "^3.1.2",
+        "draft-js": "^0.11.7",
+        "graphql": "^15.5.0",
+        "graphql-tag": "^2.11.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-redux": "^7.2.2",
+        "redux": "^4.0.5",
+        "redux-thunk": "^2.3.0",
+        "styled-components": "^5.2.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.13.10",
+        "@rollup/plugin-commonjs": "^17.1.0",
+        "@rollup/plugin-node-resolve": "^11.2.0",
+        "@rollup/plugin-replace": "^2.4.1",
+        "@rollup/plugin-url": "^6.0.0",
+        "@types/draft-js": "^0.10.45",
+        "@types/jest": "^26.0.21",
+        "@types/react": "^17.0.3",
+        "@types/react-dom": "^17.0.2",
+        "@types/styled-components": "^5.1.9",
+        "@types/wordpress__blocks": "^6.4.12",
+        "@typescript-eslint/eslint-plugin": "^4.18.0",
+        "@typescript-eslint/parser": "^4.18.0",
+        "eslint": "^7.22.0",
+        "jest": "^26.6.3",
+        "react-is": "^17.0.1",
+        "rollup": "^2.42.1",
+        "rollup-plugin-typescript2": "^0.30.0",
+        "subscriptions-transport-ws": "^0.9.18",
+        "ts-jest": "^26.5.4",
+        "ts-loader": "^8.0.18",
+        "tsconfig-paths-webpack-plugin": "^3.5.1",
+        "typescript": "^4.2.3"
+    }
+}
