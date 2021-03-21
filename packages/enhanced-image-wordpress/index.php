@@ -12,19 +12,29 @@
  * @package         enhancedImage
  */
 
-add_action( 'init', function() {
-	$dir = dirname( __FILE__ );
 
-	$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
+
+function plurid_enhanced_image_block () {
+	// $dir = dirname( __FILE__ );
+
+	// $asset_file = include( plugin_dir_path( __FILE__ ) . 'distribution/index.asset.php');
 
 	wp_register_script(
 		'plurid-enhanced-image-editor',
-		plugins_url( 'build/index.js', __FILE__ ),
-		$asset_file['dependencies'],
-		$asset_file['version']
+		plugins_url( 'distribution/index.js', __FILE__ ),
+		array(
+			'wp-blocks'
+		)
+		// $asset_file['dependencies'],
+		// $asset_file['version']
 	);
 
-	register_block_type( 'plurid/enhanced-image', array(
-		'editor_script' => 'plurid-enhanced-image-editor',
-	) );
-} );
+	register_block_type(
+		'plurid/enhanced-image',
+		array(
+			'editor_script' => 'plurid-enhanced-image-editor',
+		)
+	);
+}
+
+add_action( 'init', 'plurid_enhanced_image_block' );

@@ -23,13 +23,18 @@ registerBlockType(
 			'enhanced-image.',
 			'enhancedImage'
 		),
-		category: 'widgets',
-		icon: 'cover-image',
+		category: 'common',
+		icon: 'format-image',
 		supports: {
 			// Removes support for an HTML mode.
 			html: false,
 		},
-		attributes: {},
+		attributes: {
+			backgroundImage: {
+				type: 'string',
+				// default: null,
+			},
+		},
 		edit,
 		save,
 	},

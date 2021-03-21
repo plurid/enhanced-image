@@ -4,13 +4,31 @@
 
 	import { __ } from '@wordpress/i18n';
 
+	import {
+		BlockSaveProps,
+	} from '@wordpress/blocks';
+
 	import EnhancedImage from '@plurid/enhanced-image-react';
 	// #endregion libraries
+
+
+	// #region external
+	import {
+		EnhancedImageGutenbergAttributes,
+	} from '../data/interfaces';
+	// #endregion external
 // #endregion imports
 
 
 
-const save = () => {
+// #region module
+const Save: React.FC<BlockSaveProps<EnhancedImageGutenbergAttributes>> = (
+	properties,
+) => {
+	const {
+		attributes,
+	} = properties;
+
 	return (
 		<div>
 			save
@@ -21,5 +39,10 @@ const save = () => {
 		</div>
 	);
 }
+// #endregion module
 
-export default save;
+
+
+// #region exports
+export default Save;
+// #endregion exports

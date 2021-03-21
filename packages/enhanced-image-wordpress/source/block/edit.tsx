@@ -4,26 +4,91 @@
 
 	import { __ } from '@wordpress/i18n';
 
+	import {
+		InspectorControls,
+		MediaUpload,
+		BlockControls,
+		AlignmentToolbar,
+	} from '@wordpress/block-editor';
+
+	import {
+		PanelBody,
+	} from '@wordpress/components';
+
+	import {
+		BlockEditProps,
+	} from '@wordpress/blocks';
+
 	import EnhancedImage from '@plurid/enhanced-image-react';
 	// #endregion libraries
+
+
+	// #region external
+	import {
+		EnhancedImageGutenbergAttributes,
+	} from '../data/interfaces';
+	// #endregion external
 // #endregion imports
 
 
 
 // #region module
-type EditProps = {
-	'className': string,
-};
+const Edit: React.FC<BlockEditProps<EnhancedImageGutenbergAttributes>> = (
+	properties,
+) => {
+	// #region properties
+	const {
+		attributes,
+		setAttributes,
+	} = properties;
 
-const Edit = ( { className }: EditProps ) => {
+	const {
+		backgroundImage,
+	} = attributes;
+	// #endregion properties
+
+
+	// #region handlers
+	const onSelectImage = (
+		image: any,
+	) => {
+		setAttributes({
+			backgroundImage: image.sizes.full.url,
+		});
+	}
+	// #endregion handlers
+
+
+
 	return (
-		<div>
-			edit
+		<>
+			<InspectorControls>
+				<PanelBody
+					title="User Interface"
+				>
 
-			<EnhancedImage
-				src=""
-			/>
-		</div>
+				</PanelBody>
+			</InspectorControls>
+
+			<div>
+				edit
+
+				<MediaUpload
+					onSelect={onSelectImage}
+					// type="image"
+					// value={backgroundImage}
+					render={(renderProps) => {
+						return (
+							<div />
+						);
+					}}
+				/>
+
+				<EnhancedImage
+					src=""
+				/>
+			</div>
+		</>
 	);
 }
 // #endregion module
