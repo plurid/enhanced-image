@@ -9,16 +9,16 @@ import React, {
 
 
 /** external */
-import ShapeResizer from '#components/Entities/components/Common/ShapeResizer';
+import ShapeResizer from '~components/Entities/components/Common/ShapeResizer';
 
 import {
     ImageEntityPainted,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 import {
     useGrab,
     useResize,
-} from '#services/hooks';
+} from '~services/hooks';
 
 import {
     Context,
@@ -26,7 +26,7 @@ import {
     /** percentage */
     valueFromPercentage,
     percentageFromValue,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */
@@ -113,7 +113,7 @@ const Painted: React.FC<PaintedProperties> = (
     const [enclosurePoints, setEnclosurePoints] = useState<any[]>([]);
     const [eraserMode, setEraserMode] = useState(false);
     const [brushSize, setBrushSize] = useState(20);
-    const [brushColor, setBrushColor] = useState('#483d8b');
+    const [brushColor, setBrushColor] = useState('~483d8b');
 
     const [editorDrawers, setEditorDrawers] = useState<string[]>([]);
 
@@ -470,7 +470,7 @@ const Painted: React.FC<PaintedProperties> = (
         context.beginPath();
         context.arc(x, y, radius, 0, 2 * Math.PI, false);
         context.lineWidth = 1;
-        context.strokeStyle = '#000000';
+        context.strokeStyle = '~000000';
         context.stroke();
     }
 

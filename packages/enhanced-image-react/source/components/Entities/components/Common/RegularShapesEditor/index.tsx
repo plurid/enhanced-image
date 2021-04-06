@@ -10,27 +10,27 @@ import {
 
 
 /** external */
-import Editor from '#components/Editor';
+import Editor from '~components/Editor';
 
-import Handlers from '#components/Editor/components/Handlers';
-import VerticalDivider from '#components/Editor/components/VerticalDivider';
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import Drawer from '#components/Editor/components/Drawer';
+import Handlers from '~components/Editor/components/Handlers';
+import VerticalDivider from '~components/Editor/components/VerticalDivider';
+import ButtonToggle from '~components/Editor/components/ButtonToggle';
+import Drawer from '~components/Editor/components/Drawer';
 
-import TypeSelector from '#components/Entities/components/Common/TypeSelector';
-import ShapeTransforms from '#components/Entities/components/Common/ShapeTransforms';
-import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
+import TypeSelector from '~components/Entities/components/Common/TypeSelector';
+import ShapeTransforms from '~components/Entities/components/Common/ShapeTransforms';
+import GeneralTransforms from '~components/Entities/components/Common/GeneralTransforms';
 
 import {
     ImageEntity,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 import {
     Context,
 
     /** ui */
     toggleDrawer,
-} from '#services/utilities';
+} from '~services/utilities';
 
 import ExtraDrawer from '../ExtraDrawer';
 

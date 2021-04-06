@@ -29,27 +29,27 @@ import {
 
 
 /** external */
-import VerticalDivider from '#components/Editor/components/VerticalDivider';
-import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonInput from '#components/Editor/components/ButtonInput';
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
-import ButtonsColors from '#components/Editor/components/ButtonsColors';
-import SimpleInput from '#components/Editor/components/SimpleInput';
-import Slider from '#components/Editor/components/Slider';
-import Drawer from '#components/Editor/components/Drawer';
+import VerticalDivider from '~components/Editor/components/VerticalDivider';
+import ButtonDropdown from '~components/Editor/components/ButtonDropdown';
+import ButtonIncrements from '~components/Editor/components/ButtonIncrements';
+import ButtonInput from '~components/Editor/components/ButtonInput';
+import ButtonToggle from '~components/Editor/components/ButtonToggle';
+import ButtonToggleRender from '~components/Editor/components/ButtonToggleRender';
+import ButtonsColors from '~components/Editor/components/ButtonsColors';
+import SimpleInput from '~components/Editor/components/SimpleInput';
+import Slider from '~components/Editor/components/Slider';
+import Drawer from '~components/Editor/components/Drawer';
 
-import Handlers from '#components/Editor/components/Handlers';
+import Handlers from '~components/Editor/components/Handlers';
 
 import {
     selectableFonts,
- } from '#data/constants/fonts';
+ } from '~data/constants/fonts';
 
 import {
     ImageText,
     ImageTextVersionTextline,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 import {
     Context,
@@ -60,7 +60,7 @@ import {
 
     /** color */
     resolveColor
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

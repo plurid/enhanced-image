@@ -9,17 +9,17 @@ import React, {
 
 
 /** external */
-import ShapeResizer from '#components/Entities/components/Common/ShapeResizer';
-import RegularShapesEditor from '#components/Entities/components/Common/RegularShapesEditor';
+import ShapeResizer from '~components/Entities/components/Common/ShapeResizer';
+import RegularShapesEditor from '~components/Entities/components/Common/RegularShapesEditor';
 
 import {
     ImageEntityRectangular,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 import {
     useGrab,
     useResize,
-} from '#services/hooks';
+} from '~services/hooks';
 
 import {
     Context,
@@ -30,7 +30,7 @@ import {
 
     /** ui */
     toggleDrawer,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

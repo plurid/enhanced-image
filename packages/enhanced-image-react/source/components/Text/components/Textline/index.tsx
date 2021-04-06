@@ -18,15 +18,15 @@ import {
 import {
     ImageText,
     ImageTextVersionTextline,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 import {
     Context,
-} from '#services/utilities';
+} from '~services/utilities';
 
 import {
     percentageFromValue,
-} from '#services/utilities/percentage';
+} from '~services/utilities/percentage';
 
 
 /** internal */
@@ -612,8 +612,8 @@ const Textline: React.FC<TextlineProperties> = (
 
         if (transview.backgrounded) {
             if (currentVersion.color === 'black'
-                || currentVersion.color === '#000'
-                || currentVersion.color === '#000000'
+                || currentVersion.color === '~000'
+                || currentVersion.color === '~000000'
             ) {
                 setBackgrounded('white');
             } else {

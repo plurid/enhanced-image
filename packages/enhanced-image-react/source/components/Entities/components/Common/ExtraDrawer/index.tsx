@@ -14,11 +14,11 @@ import {
 
 
 /** external */
-import ButtonInput from '#components/Editor/components/ButtonInput';
+import ButtonInput from '~components/Editor/components/ButtonInput';
 
 import {
     ImageEntity,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 
 /** internal */

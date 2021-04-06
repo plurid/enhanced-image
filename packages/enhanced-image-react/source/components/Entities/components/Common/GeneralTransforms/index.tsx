@@ -14,17 +14,17 @@ import {
 
 
 /** external */
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import SimpleInput from '#components/Editor/components/SimpleInput';
+import ButtonIncrements from '~components/Editor/components/ButtonIncrements';
+import SimpleInput from '~components/Editor/components/SimpleInput';
 
 import {
     ImageEntity,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 import {
     /** color */
     resolveColor,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

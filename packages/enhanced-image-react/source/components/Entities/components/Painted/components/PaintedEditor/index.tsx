@@ -15,23 +15,23 @@ import {
 
 
 /** external */
-import Editor from '#components/Editor';
+import Editor from '~components/Editor';
 
-import Handlers from '#components/Editor/components/Handlers';
-import VerticalDivider from '#components/Editor/components/VerticalDivider';
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import SimpleInput from '#components/Editor/components/SimpleInput';
-import Drawer from '#components/Editor/components/Drawer';
+import Handlers from '~components/Editor/components/Handlers';
+import VerticalDivider from '~components/Editor/components/VerticalDivider';
+import ButtonToggle from '~components/Editor/components/ButtonToggle';
+import ButtonIncrements from '~components/Editor/components/ButtonIncrements';
+import SimpleInput from '~components/Editor/components/SimpleInput';
+import Drawer from '~components/Editor/components/Drawer';
 
-import TypeSelector from '#components/Entities/components/Common/TypeSelector';
-import ShapeTransforms from '#components/Entities/components/Common/ShapeTransforms';
-import GeneralTransforms from '#components/Entities/components/Common/GeneralTransforms';
-import ExtraDrawer from '#components/Entities/components/Common/ExtraDrawer';
+import TypeSelector from '~components/Entities/components/Common/TypeSelector';
+import ShapeTransforms from '~components/Entities/components/Common/ShapeTransforms';
+import GeneralTransforms from '~components/Entities/components/Common/GeneralTransforms';
+import ExtraDrawer from '~components/Entities/components/Common/ExtraDrawer';
 
 import {
     ImageEntity,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 import {
     Context,
@@ -41,7 +41,7 @@ import {
 
     /** color */
     resolveColor,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

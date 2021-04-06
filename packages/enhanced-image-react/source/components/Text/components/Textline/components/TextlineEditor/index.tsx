@@ -15,23 +15,23 @@ import {
 
 
 /** external */
-import Editor from '#components/Editor';
+import Editor from '~components/Editor';
 
-import VerticalDivider from '#components/Editor/components/VerticalDivider';
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import Handlers from '#components/Editor/components/Handlers';
+import VerticalDivider from '~components/Editor/components/VerticalDivider';
+import ButtonToggle from '~components/Editor/components/ButtonToggle';
+import Handlers from '~components/Editor/components/Handlers';
 
 import {
     ImageText,
     ImageTextVersionTextline,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 import {
     Context,
 
     /** percentage */
     percentageFromValue,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

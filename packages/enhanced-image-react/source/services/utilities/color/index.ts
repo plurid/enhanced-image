@@ -3,11 +3,11 @@ export const resolveColor = (
 ) => {
     switch (value) {
         case 'black':
-            return '#000';
+            return '~000';
         case 'white':
-            return '#fff';
+            return '~fff';
         case 'red':
-            return '#f00';
+            return '~f00';
         default:
             return value;
     }

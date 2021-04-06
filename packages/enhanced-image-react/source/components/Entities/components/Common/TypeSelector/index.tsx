@@ -14,11 +14,11 @@ import {
 
 
 /** external */
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
+import ButtonToggle from '~components/Editor/components/ButtonToggle';
 
 import {
     ImageEntityType,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 /** internal */
 /** [END] imports */

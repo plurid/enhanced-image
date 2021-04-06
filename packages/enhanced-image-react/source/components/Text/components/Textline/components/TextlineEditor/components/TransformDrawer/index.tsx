@@ -11,12 +11,12 @@ import {
 
 
 /** external */
-import Drawer from '#components/Editor/components/Drawer';
-import Slider from '#components/Editor/components/Slider';
+import Drawer from '~components/Editor/components/Drawer';
+import Slider from '~components/Editor/components/Slider';
 
 import {
     Context,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

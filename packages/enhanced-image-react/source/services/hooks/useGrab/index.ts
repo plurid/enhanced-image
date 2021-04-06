@@ -9,13 +9,13 @@ import {
 /** external */
 import {
     ImageBoxDimensions,
-} from '#data/interfaces';
+} from '~data/interfaces';
 
 
 /** internal */
 import {
     percentageFromValue,
-} from '#services/utilities';
+} from '~services/utilities';
 /** [END] imports */
 
 

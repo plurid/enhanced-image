@@ -14,13 +14,13 @@ import {
 
 
 /** external */
-import Drawer from '#components/Editor/components/Drawer';
-import ButtonInput from '#components/Editor/components/ButtonInput';
-import ButtonToggleRender from '#components/Editor/components/ButtonToggleRender';
+import Drawer from '~components/Editor/components/Drawer';
+import ButtonInput from '~components/Editor/components/ButtonInput';
+import ButtonToggleRender from '~components/Editor/components/ButtonToggleRender';
 
 import {
     Context,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

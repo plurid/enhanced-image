@@ -15,8 +15,8 @@ import {
 
 
 /** external */
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonClick from '#components/Editor/components/ButtonClick';
+import ButtonToggle from '~components/Editor/components/ButtonToggle';
+import ButtonClick from '~components/Editor/components/ButtonClick';
 
 /** internal */
 /** [END] imports */

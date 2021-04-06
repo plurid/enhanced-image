@@ -16,16 +16,16 @@ import {
 
 
 /** external */
-import Drawer from '#components/Editor/components/Drawer';
-import ButtonIncrements from '#components/Editor/components/ButtonIncrements';
-import ButtonDropdown from '#components/Editor/components/ButtonDropdown';
-import ButtonToggle from '#components/Editor/components/ButtonToggle';
-import ButtonsColors from '#components/Editor/components/ButtonsColors';
-import SimpleInput from '#components/Editor/components/SimpleInput';
+import Drawer from '~components/Editor/components/Drawer';
+import ButtonIncrements from '~components/Editor/components/ButtonIncrements';
+import ButtonDropdown from '~components/Editor/components/ButtonDropdown';
+import ButtonToggle from '~components/Editor/components/ButtonToggle';
+import ButtonsColors from '~components/Editor/components/ButtonsColors';
+import SimpleInput from '~components/Editor/components/SimpleInput';
 
 import {
     selectableFonts,
- } from '#data/constants/fonts';
+ } from '~data/constants/fonts';
 
 import {
     Context,
@@ -35,7 +35,7 @@ import {
 
     /** color */
     resolveColor,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

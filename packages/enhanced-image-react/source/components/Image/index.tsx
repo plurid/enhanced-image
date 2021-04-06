@@ -11,15 +11,15 @@ import React, {
 /** external */
 import {
     IMAGE_BACKGROUNDS,
-} from '#data/constants';
+} from '~data/constants';
 
 import {
     useTransform,
-} from '#services/hooks';
+} from '~services/hooks';
 
 import {
     Context,
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

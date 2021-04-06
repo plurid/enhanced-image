@@ -12,12 +12,12 @@ import {
 /** external */
 import {
     Context
-} from '#services/utilities';
+} from '~services/utilities';
 
 import {
     transviewAvailableLanguages,
     transviewTargetLanguages,
-} from '#data/constants/transview';
+} from '~data/constants/transview';
 
 import ButtonCheckmark from '../../components/ButtonCheckmark';
 

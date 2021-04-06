@@ -25,9 +25,9 @@ import {
 
 
 /** external */
-import BackgroundColorTransparent from '#assets/icons/settings-menu/background-color-transparent';
-import BackgroundColorWhite from '#assets/icons/settings-menu/background-color-white';
-import BackgroundColorBlack from '#assets/icons/settings-menu/background-color-black';
+import BackgroundColorTransparent from '~assets/icons/settings-menu/background-color-transparent';
+import BackgroundColorWhite from '~assets/icons/settings-menu/background-color-white';
+import BackgroundColorBlack from '~assets/icons/settings-menu/background-color-black';
 
 import {
     SETTINGS_MENU_HEIGHT_DIFFERENCE,
@@ -35,11 +35,11 @@ import {
     IMAGE_TYPES,
 
     sliders,
-} from '#data/constants';
+} from '~data/constants';
 
 import {
     Context
-} from '#services/utilities';
+} from '~services/utilities';
 
 
 /** internal */

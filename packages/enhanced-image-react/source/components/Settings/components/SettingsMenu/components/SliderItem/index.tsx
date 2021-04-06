@@ -14,7 +14,7 @@ import {
     SLIDER_NAMES,
     SLIDER_INPUT_DEFAULTS,
     SLIDER_VALUE_DEFAULTS,
-} from '#data/constants';
+} from '~data/constants';
 
 
 /** internal */

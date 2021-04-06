@@ -9,22 +9,22 @@
 
         "baseUrl": ".",
         "paths": {
-            "#assets/*": [
+            "~assets/*": [
                 "./source/assets/*"
             ],
-            "#components/*": [
+            "~components/*": [
                 "./source/components/*"
             ],
-            "#containers/*": [
+            "~containers/*": [
                 "./source/containers/*"
             ],
-            "#data/*": [
+            "~data/*": [
                 "./source/data/*"
             ],
-            "#logic/*": [
+            "~logic/*": [
                 "./source/logic/*"
             ],
-            "#services/*": [
+            "~services/*": [
                 "./source/services/*"
             ]
         },
