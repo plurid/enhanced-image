@@ -1,8 +1,13 @@
 <p align="center">
-    <img
-        src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/identity/enhanced-image-logo.png"
-        height="250px"
+    <a
+        target="_blank"
+        href="https://depict.plurid.com"
     >
+        <img
+            src="https://raw.githubusercontent.com/plurid/enhanced-image/master/about/assets/identity/enhanced-image-logo.png"
+            height="250px"
+        >
+    </a>
     <br />
     <br />
     <a
