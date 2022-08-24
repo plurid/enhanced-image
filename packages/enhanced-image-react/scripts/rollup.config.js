@@ -28,6 +28,7 @@ export default {
     ],
     plugins: [
         replace({
+            preventAssignment: true,
             'process.env.ENV_MODE': JSON.stringify(process.env.ENV_MODE),
         }),
         depsExternal(),
