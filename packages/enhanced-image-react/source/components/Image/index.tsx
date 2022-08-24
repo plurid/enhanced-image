@@ -141,10 +141,9 @@ const Image: React.FC<{}> = () => {
                 alt={alt}
                 style={{
                     ...imageStyle,
-                    filter,
-                    transform,
-                    background: resolvedImageBackground,
-                    pointerEvents: 'none',
+                    filter: filter ? filter: undefined,
+                    transform: transform ? transform : undefined,
+                    background: resolvedImageBackground.toLowerCase(),
                 }}
                 ref={image}
                 onLoad={(
