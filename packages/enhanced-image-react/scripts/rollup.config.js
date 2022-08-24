@@ -39,7 +39,6 @@ export default {
             modulesOnly: true,
         }),
         typescript({
-            rollupCommonJSResolveHack: true,
             clean: true,
         }),
         commonjs(),
